@@ -1,0 +1,60 @@
+%%{
+    let common = system.getScript("/common");
+    let module = system.modules['/board/ioexp/ioexp'];
+%%}
+/*
+ * IOEXP
+ */
+int32_t Board_ioexpOpen()
+{
+    int32_t  status = SystemP_SUCCESS;
+%   let addedDriverNames = []; 
+%   for(let instance of module.$instances){
+%       let staticArrCfg = module.getInstanceConfig(instance)
+%       let expName      = staticArrCfg.driverName.replace("ioexp_","").toUpperCase();
+%       if(!addedDriverNames.includes(staticArrCfg.driverName)){
+%           addedDriverNames.push(staticArrCfg.driverName)
+    static `expName`_Config  g`expName`_Config;
+    `expName`_Params      `expName`Params;
+    `expName`_Params_init(&`expName`Params);
+%       }else{
+%       }
+
+    `expName`Params.i2cInstance  =  `instance.peripheralDriver.$name.toUpperCase()`;
+    `expName`Params.i2cAddress  = 0x`instance.i2cAddress.split("x").pop()`U;
+    status = `expName`_open(&g`expName`_Config, &`expName`Params);
+%       for(let pin of staticArrCfg.pinSet){
+%           let pinName_filtered = module.filterIoexpPinName(pin.pinName);
+%           let element_name = staticArrCfg.name+"_"+"port"+pin.portNumber+"_"+"pin"+pinName_filtered;
+%           if(instance[element_name+"_mode"] == 0){
+    
+    /* Configure State */
+    status = `expName`_setOutput(
+                    &g`expName`_Config,
+                    IO_EXP_`pinName_filtered`_LINE,
+                    IO_EXP_`pinName_filtered`_STATE);
+
+    /* Configure as output  */
+    status += `expName`_config(
+                    &g`expName`_Config,
+                    IO_EXP_`pinName_filtered`_LINE,
+                    `expName`_MODE_OUTPUT);
+    
+    if(status != SystemP_SUCCESS)
+    {
+        DebugP_log("Failure to Set IO Expander lines\r\n");
+        `expName`_close(&g`expName`_Config);
+    }
+%           }
+%       }
+%   }
+
+
+
+    if(SystemP_FAILURE == status)
+    {
+        /* Exit gracefully */
+    }
+
+    return status;
+}

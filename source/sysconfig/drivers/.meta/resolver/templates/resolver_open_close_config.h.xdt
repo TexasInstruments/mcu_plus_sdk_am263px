@@ -1,0 +1,8 @@
+
+/* RDC Driver Open and configs. 
+The Params structure is made global for in application reference*/
+
+#include <drivers/resolver.h>
+
+extern RDC_configParams gRdcParams;
+void Drivers_resolverOpen(void);

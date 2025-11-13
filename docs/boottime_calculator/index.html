@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1><img src="favicon.png" alt="logo" style="vertical-align: middle; margin-right: 10px;"/> Secure Boot Time Calculator</h1>
+
+    <p style="color: #666; line-height: 1.6;">
+      This secure boot time calculator helps users get an accurate representation of secure boot
+      performance for their needs.<br>
+      AutoSAR application runtime should be incremented to boot time interpolated from graphs below.
+    </p>
+
+    <div style="margin: 20px 0;">
+      <label for="mySOC" style="margin-right: 10px;">Select the SOC:</label>
+      <select id="mySOC" onchange="toggleAlgorithmDropdown()">
+        <option value="am263x">AM263x</option>
+        <option value="am263px">AM263Px</option>
+        <option value="am261x">AM261x</option>
+      </select>
+
+      <span id="algorithmLabel" style="display: none; margin-left: 10px;">
+        Select Security Algorithm:
+      </span>
+      
+      <select id="algorithmType" style="display: none; margin-left: 10px;">
+        <option value="RSA4k">RSA4k</option>
+        <option value="ECDSA256">ECDSA256R1</option>
+        <option value="ECDSA384">ECDSA384R1</option>
+        <option value="ECDSA521">ECDSA521R1</option>
+        <option value="BRAINPOOL512">BRAINPOOL512</option>
+      </select>    
+      <button onclick="onSubmitInfo()">Get boot time data</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <canvas id="myChart" style="width:50%;max-width:800px"></canvas>
+    <div id="table-container"></div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+{
+    "name": "MCU_PLUS_SDK_AM263Px",
+    "displayName": "MCU+ SDK for AM263Px",
+    "version": "11.00.00",
+    "documentationPath": "../docs",
+    "includePaths": [
+        "../source/sysconfig",
+        "../source/networking/enet/core/sysconfig",
+    ],
+    "components": [
+        "/kernel/dpl",
+        "/drivers/drivers",
+        "/board/board",
+        "/fs/fs",
+        "/networking/networking",
+        "/security/security",
+        "/xbar/xbar",
+        "/memory_configurator/components",
+        "/optiflash/optiflash",
+        "sdl/sdl",
+        "/clockTree/clockTreeComponents.js"
+    ],
+    "devices": [
+        "AM263Px",
+    ],
+    "boardPath": "/board/",
+    "contexts": {
+        "AM263Px": [{
+            "name": "r5fss0-0",
+            "targetdbId": "Cortex_R5_0"
+        }, {
+            "name": "r5fss0-1",
+            "targetdbId": "Cortex_R5_1"
+        },{
+            "name": "r5fss1-0",
+            "targetdbId": "Cortex_R5_2"
+        }, {
+            "name": "r5fss1-1",
+            "targetdbId": "Cortex_R5_3"
+        }, {
+            "name": "hsm0-0",
+            "targetdbId": "Cortex_M4_0"
+        },{
+            "name": "icss_m0_pru0",
+            "targetdbId": "icss_m0_pru0"
+        },{
+            "name": "icss_m0_pru1",
+            "targetdbId": "icss_m0_pru1"
+        }],
+    },
+    "pinmuxUIOptions": {
+        "group": "merged",
+        "hidePeripheralTab": false,
+        "showPinTable": true,
+        "showSignals": true,
+        "showUsed": true
+    },
+    "minToolVersion" : "1.25.0"
+}

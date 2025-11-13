@@ -1,0 +1,10 @@
+
+void Drivers_mcanOpen(void)
+{
+    return;
+}
+
+void Drivers_mcanClose(void)
+{
+    return;
+}

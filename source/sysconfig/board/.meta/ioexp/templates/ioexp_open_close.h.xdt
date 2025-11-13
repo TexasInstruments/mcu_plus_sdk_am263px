@@ -1,0 +1,32 @@
+%%{
+    let common = system.getScript("/common");
+    let module = system.modules['/board/ioexp/ioexp'];
+%%}
+%if(module)
+%{
+%    let addedDriverNames = [];
+%    for(let instance of module.$instances)
+%    {
+%       let staticArrCfg = module.getInstanceConfig(instance)
+%       let expName      = staticArrCfg.driverName.replace("ioexp_","").toUpperCase();
+%       if(!addedDriverNames.includes(staticArrCfg.driverName)){
+%           addedDriverNames.push(staticArrCfg.driverName);
+/*
+ * IOEXP `instance.name`
+ */
+#include <board/ioexp/`staticArrCfg.driverName`.h>
+%       }
+%       for(let pin of staticArrCfg.pinSet){
+%           let pinName_filtered = module.filterIoexpPinName(pin.pinName);
+%           let element_name = staticArrCfg.name+"_"+"port"+pin.portNumber+"_"+"pin"+pinName_filtered;
+/* Port Number : `pin.portNumber`, Pin Number : `pin.pinNumber`. Line Number : (Port Number * 8) + Pin Number */
+#define IO_EXP_`pinName_filtered`_LINE      (`pin.portNumber*8+pin.pinNumber`)
+%           if(instance[element_name+"_mode"] == 0){
+#define IO_EXP_`pinName_filtered`_STATE     (`expName`_OUT_STATE_`(instance[element_name+"_state"]==1)?"HIGH":"LOW"`)
+%}
+%       }
+%    }
+%}
+
+/* IOEXP Driver open/close - can be used by application when Board_driversOpen() */
+int32_t Board_ioexpOpen(void);

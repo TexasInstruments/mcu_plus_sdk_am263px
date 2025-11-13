@@ -1,0 +1,153 @@
+%%{
+    let common = system.getScript("/common");
+    let soc = system.getScript(`/drivers/soc/drivers_${common.getSocName()}`);
+    let driverVer = soc.getDriverVer("mmcsd");
+    let mmcsdEdmaInstances = [];
+    let module = system.modules['/drivers/mmcsd/mmcsd'];
+%%}
+/*
+ * MMCSD
+ */
+/* MMCSD Device Data structures */
+% for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    % let config = module.getInstanceConfig(instance);
+        %if(config.cardType == "EMMC") {
+MMCSD_EmmcDeviceData gEmmcData`i`;
+        %}
+        %else if(config.cardType == "SD") {
+MMCSD_SdDeviceData gSdData`i`;
+        %}
+    % if(instance.dmaEnable === true) {
+    %   mmcsdEdmaInstances.push(config.edmaDriver);
+    % }
+%}
+
+/* MMCSD temporary data buffers */
+% for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    % let config = module.getInstanceConfig(instance);
+    % if((config.cardType == "EMMC") || (config.cardType == "SD")) {
+uint8_t gMmcsdDataBuf`i`[512U] __attribute__((aligned(128U)));;
+    % }
+%}
+
+
+/* MMCSD Driver handles */
+MMCSD_Handle gMmcsdHandle[CONFIG_MMCSD_NUM_INSTANCES];
+
+/* MMCSD Driver Parameters */
+MMCSD_Params gMmcsdParams[CONFIG_MMCSD_NUM_INSTANCES] =
+{
+% for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    % let config = module.getInstanceConfig(instance);
+    {
+        %if(config.cardType == "EMMC") {
+        .deviceData = &gEmmcData`i`,
+        %}
+        %else if(config.cardType == "SD") {
+        .deviceData = &gSdData`i`,
+        %}
+        %if((config.cardType == "EMMC") || (config.cardType == "SD")) {
+        .dataBuf    = &gMmcsdDataBuf`i`[0],
+        %}
+        .transferMode = MMCSD_MODE_`config.transferMode`,
+        %if(config.transferMode == "CALLBACK" && config.transferCallbackFxn != "NULL") {
+        .txnCallbackFxn = `config.transferCallbackFxn`,
+        %}
+        %else{
+        .txnCallbackFxn = NULL,
+        %}
+        %if(config.dmaEnable == true) {
+        .edmaInst = `instance.edmaConfig.$name`,
+        %}
+        %else {
+        .edmaInst = -1,
+        %}
+    },
+% }
+};
+
+%if(mmcsdEdmaInstances.length > 0) {
+#include <drivers/edma.h>
+#include <drivers/mmcsd/v1/lld/dma/edma/mmcsd_edma_lld.h>
+
+%  for(let i=0; i < module.$instances.length; i++) {
+%      let instance = module.$instances[i];
+%      let config = module.getInstanceConfig(instance);
+%      let instNameCamelCase = common.camelSentence(instance.$name);
+%      if(instance.dmaEnable == true) {
+
+MMCSD_EdmaChConfig g`instNameCamelCase`DmaChCfg[CONFIG_MMCSD_NUM_DMA_INSTANCES] =
+{   
+    {
+        .edmaRxChId = `instance.mmcRxConfigXbar.instance`,
+        .edmaTxChId = `instance.mmcTxConfigXbar.instance`,
+    },
+};
+%}
+%}
+%}
+
+MMCSD_DmaChConfig gMmcsdDmaChConfig[`module.$instances.length`] = 
+{
+    
+    % for(let i=0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    % let instNameCamelCase = common.camelSentence(instance.$name);
+    % if(instance.dmaEnable == true) {
+        &g`instNameCamelCase`DmaChCfg[0],
+    % }
+    % else{
+        NULL,
+    % }
+    % }
+};
+
+void Drivers_mmcsdOpen(void)
+{
+    uint32_t instCnt;
+    int32_t  status = SystemP_SUCCESS;
+
+    for(instCnt = 0U; instCnt < CONFIG_MMCSD_NUM_INSTANCES; instCnt++)
+    {
+        gMmcsdHandle[instCnt] = NULL;   /* Init to NULL so that we can exit gracefully */
+    }
+
+    /* Open all instances */
+    for(instCnt = 0U; instCnt < CONFIG_MMCSD_NUM_INSTANCES; instCnt++)
+    {
+        gMmcsdHandle[instCnt] = MMCSD_open(instCnt, &gMmcsdParams[instCnt]);
+        if(NULL == gMmcsdHandle[instCnt])
+        {
+            DebugP_logError("MMCSD open failed for instance %d !!!\r\n", instCnt);
+            status = SystemP_FAILURE;
+            break;
+        }
+    }
+
+    if(SystemP_FAILURE == status)
+    {
+        Drivers_mmcsdClose();   /* Exit gracefully */
+    }
+
+    return;
+}
+
+void Drivers_mmcsdClose(void)
+{
+    uint32_t instCnt;
+
+    /* Close all instances that are open */
+    for(instCnt = 0U; instCnt < CONFIG_MMCSD_NUM_INSTANCES; instCnt++)
+    {
+        if(gMmcsdHandle[instCnt] != NULL)
+        {
+            MMCSD_close(gMmcsdHandle[instCnt]);
+            gMmcsdHandle[instCnt] = NULL;
+        }
+    }
+
+    return;
+}

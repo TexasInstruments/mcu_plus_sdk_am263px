@@ -1,0 +1,23 @@
+%%{
+    let module = system.modules['/drivers/mmcsd/mmcsd'];
+    let numDmaInstances = 0;
+    for(let i=0; i < module.$instances.length; i++) {
+        let instance = module.$instances[i];
+        if(instance.dmaEnable == true) {
+            numDmaInstances++;
+        }  
+    }
+%%}
+/*
+ * MMCSD
+ */
+#include <drivers/mmcsd/v1/lld/mmcsd_lld.h>
+#include <kernel/dpl/ClockP.h>
+
+/* I2C Instance Macros */
+% for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+#define `instance.$name.toUpperCase()` (`i`U)
+% }
+#define CONFIG_MMCSD_NUM_INSTANCES (`module.$instances.length`U)
+#define CONFIG_MMCSD_NUM_DMA_INSTANCES (`numDmaInstances`U)

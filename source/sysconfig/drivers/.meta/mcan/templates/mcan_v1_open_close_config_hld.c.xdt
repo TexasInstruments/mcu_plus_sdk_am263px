@@ -1,0 +1,48 @@
+extern CANFD_OpenParams openParams[CONFIG_MCAN_NUM_INSTANCES];
+
+void Drivers_mcanOpen(void)
+{
+    uint32_t instCnt;
+    int32_t  status = SystemP_SUCCESS;
+
+    for(instCnt = 0U; instCnt < CONFIG_MCAN_NUM_INSTANCES; instCnt++)
+    {
+        gCanfdHandle[instCnt] = NULL;   /* Init to NULL so that we can exit gracefully */
+    }
+
+    /* Open all instances */
+    for(instCnt = 0U; instCnt < CONFIG_MCAN_NUM_INSTANCES; instCnt++)
+    {
+        gCanfdHandle[instCnt] = CANFD_open(instCnt, &openParams[instCnt]);
+        if(NULL == gCanfdHandle[instCnt])
+        {
+            DebugP_logError("CANFD open failed for instance %d !!!\r\n", instCnt);
+            status = SystemP_FAILURE;
+            break;
+        }
+    }
+
+    if(SystemP_FAILURE == status)
+    {
+        Drivers_mcanClose();   /* Exit gracefully */
+    }
+
+    return;
+}
+
+void Drivers_mcanClose(void)
+{
+    uint32_t instCnt;
+
+    /* Close all instances that are open */
+    for(instCnt = 0U; instCnt < CONFIG_MCAN_NUM_INSTANCES; instCnt++)
+    {
+        if(gCanfdHandle[instCnt] != NULL)
+        {
+            CANFD_close(gCanfdHandle[instCnt]);
+            gCanfdHandle[instCnt] = NULL;
+        }
+    }
+
+    return;
+}

@@ -1,0 +1,32 @@
+%%{
+    let module = system.modules[args[0]];
+    let common = system.getScript("/common");
+%%}
+/*
+ * GPIO
+ */
+#include <drivers/gpio.h>
+#include <kernel/dpl/AddrTranslateP.h>
+
+/* GPIO PIN Macros */
+% for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    % let config = module.getInstanceConfig(instance);
+#define `instance.$name.toUpperCase()`_BASE_ADDR (`config.baseAddr`)
+#define `instance.$name.toUpperCase()`_PIN (`config.pinIndex`)
+#define `instance.$name.toUpperCase()`_DIR (GPIO_DIRECTION_`config.pinDir`)
+#define `instance.$name.toUpperCase()`_TRIG_TYPE (GPIO_TRIG_TYPE_`config.trigType`)
+% if(config.enableIntr && (!["am263x", "am263px", "am261x"].includes(common.getSocName()))){
+
+%if(config.routerId === 'MCU_M4FSS0_CORE0_NVIC_MCU_MCU') {
+/* On M4F, interrupt number as specified in TRM is input to the NVIC but from M4 point of view there are 16 internal interrupts
+* and then the NVIC input interrupts start, hence we need to add +16 to the value specified by TRM */
+#define `instance.$name.toUpperCase()`_INTR_NUM      (CSLR_`config.routerId`_GPIOMUX_INTROUTER0_OUTP_`config.intrOut` + 16u)
+%}
+%else {
+#define `instance.$name.toUpperCase()`_INTR_NUM      (CSLR_`config.routerId`_GPIOMUX_INTROUTER0_OUTP_`config.intrOut`)
+%}
+
+% }
+% }
+#define CONFIG_GPIO_NUM_INSTANCES (`module.$instances.length`U)

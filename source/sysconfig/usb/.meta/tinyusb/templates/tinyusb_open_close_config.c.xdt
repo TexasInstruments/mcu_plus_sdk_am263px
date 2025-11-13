@@ -1,0 +1,43 @@
+%%{
+    let module = system.modules['/drivers/usb/usb'];
+    let common = system.getScript("/common"); 
+%%}
+/*
+ * USB
+ */
+% if(common.getSocName() == "am64x" || common.getSocName() == "am243x") {
+#define USB_CLK_SEL_HFOSC0_CLKOUT   (0x00U)
+#define USB_CLK_SEL_HFOSC1_CLKOUT   (0x01U)
+/* USB init Parameters */
+static usb_init_param_t gUsbInitParam = {
+    0,                          /*< for AM64x/AM243x only instance 0 is available */
+    USB_CLK_SEL_HFOSC0_CLKOUT,  /*< select HFOSC0_CLKOUT for USB clock source */
+    6,                          /*< for AM64x/AM243x EVM set PHY ref clock selection to 6 for 25Mhz */
+    1,                          /*< enable USB 2.0 only (disable USB 3.0) */
+    0,                          /*< no invert polarity */
+    1,                          /*< VBUS_SEL for external divider */
+    0                           /*< set to device mode */
+};
+% }
+
+void Drivers_usbOpen(void)
+{
+    /* initialize USB HW for TI SOC */
+    % if(common.getSocName() == "am64x" || common.getSocName() == "am243x") {
+    usb_init(&gUsbInitParam);
+    % } else {
+    USB_init();
+    %}
+    /* tiny USB init */
+    tusb_init();
+
+    return;
+}
+
+void Drivers_usbClose(void)
+{
+    % if(common.getSocName() == "am261x"){
+    USB_deinit();
+    % }
+    return;
+}
