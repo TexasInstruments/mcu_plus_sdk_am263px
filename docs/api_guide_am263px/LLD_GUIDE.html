@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('LLD_GUIDE.html',''); initResizable(); 
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md411">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md412">LLD SW Architecture</a></li>
-<li class="level1"><a href="#autotoc_md413">SysCfg Support</a></li>
-<li class="level1"><a href="#autotoc_md414">Steps to use LLD Drivers in Application</a></li>
-<li class="level1"><a href="#autotoc_md415">Additional References</a></li>
+<ul><li class="level1"><a href="#autotoc_md455">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md456">LLD SW Architecture</a></li>
+<li class="level1"><a href="#autotoc_md457">SysCfg Support</a></li>
+<li class="level1"><a href="#autotoc_md458">Steps to use LLD Drivers in Application</a></li>
+<li class="level1"><a href="#autotoc_md459">Additional References</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_lld_drivers"></a></p>
-<h1><a class="anchor" id="autotoc_md411"></a>
+<h1><a class="anchor" id="autotoc_md455"></a>
 Introduction</h1>
 <p>MCU+ SDK supports two different driver types - High Level Drivers(HLDs) and Low Level Drivers(LLDs). High Level Drivers are heavily abstracted and promote ease of use. The majority of driver requirements, including Interrupt registration, Debug support and more, are handled within the driver. This allows the application to be minimal in terms of Lines of code and complexity. These drivers internally use the Low level Drivers for IP functionality and rely on the SDK DPL layer for abstraction. Low Level Drivers are designed for configurability and enhanced performance. These drivers access the hardware and configure it according to application requirement; they do not contain any DPL components integrated within. Since LLDs don't rely on any DPL layer, applications must handle driver dependencies such as Interrupt registration and implementation of hook functions such as Clock.</p>
-<h1><a class="anchor" id="autotoc_md412"></a>
+<h1><a class="anchor" id="autotoc_md456"></a>
 LLD SW Architecture</h1>
 <p>Shown below is a block diagram of HLD driver in SDK,</p>
 <p> <style>div.image img[src="lld.png"]{width:20%}</style> </p><div class="image">
@@ -121,7 +121,7 @@ SDK HLD SW Block Diagram</div></div>
 <li>HLD Drivers have most parameters abstracted into a single structure but LLD API's follow a flat prototype.</li>
 <li>...</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md413"></a>
+<h1><a class="anchor" id="autotoc_md457"></a>
 SysCfg Support</h1>
 <p>SysCfg Support is enabled for both HLDs and LLDs. The generated code takes care of Initialization in both cases. For LLD, Interrupt registration has to be done in Application. SysCfg GUI will have a configrable called "SDK Infra" which can be set to "LLD" or "HLD" which allows for choice between Low Level and High Level driver.</p>
 <p>Below image shows the SysCfg GUI as mentioned above:</p>
@@ -129,7 +129,7 @@ SysCfg Support</h1>
 <img src="lld_syscfg.png" alt=""/>
 <div class="caption">
 SDK HLD-LLD SysCfg configuration</div></div>
-<h1><a class="anchor" id="autotoc_md414"></a>
+<h1><a class="anchor" id="autotoc_md458"></a>
 Steps to use LLD Drivers in Application</h1>
 <p>Below are the steps to be followed to integrate LLD Drivers in application:</p>
 <ul>
@@ -142,7 +142,7 @@ Steps to use LLD Drivers in Application</h1>
 <li>Unregister the interrupt.</li>
 <li>Call LLD De-Init API's.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md415"></a>
+<h1><a class="anchor" id="autotoc_md459"></a>
 Additional References</h1>
 <p>See also these additional pages for more details and examples about LLD's,</p>
 <ul>

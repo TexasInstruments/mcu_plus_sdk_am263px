@@ -92,33 +92,33 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_HIGH_PRIORITY_SOC
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1895">Introduction</a><ul><li class="level2"><a href="#autotoc_md1896">High Priority SOC Configuration :</a></li>
-<li class="level2"><a href="#autotoc_md1897">Configurations</a></li>
+<ul><li class="level1"><a href="#autotoc_md1967">Introduction</a><ul><li class="level2"><a href="#autotoc_md1968">High Priority SOC Configuration :</a></li>
+<li class="level2"><a href="#autotoc_md1969">Configurations</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1898">External Connections</a></li>
+<li class="level1"><a href="#autotoc_md1970">External Connections</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_HIGH_PRIORITY_SOC_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md1899">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md1900">See Also</a></li>
-<li class="level1"><a href="#autotoc_md1901">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md1971">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md1972">See Also</a></li>
+<li class="level1"><a href="#autotoc_md1973">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_high_priority_soc"></a></p>
-<h1><a class="anchor" id="autotoc_md1895"></a>
+<h1><a class="anchor" id="autotoc_md1967"></a>
 Introduction</h1>
 <p>This example showcases the feature "High Priority SOC configuration"</p>
 <p> <style>div.image img[src="am263_adc_high_priority_soc.png"]{width:100%}</style> </p><div class="image">
 <img src="am263_adc_high_priority_soc.png" alt=""/>
 <div class="caption">
 Conversions timing diagram</div></div>
- <h2><a class="anchor" id="autotoc_md1896"></a>
+ <h2><a class="anchor" id="autotoc_md1968"></a>
 High Priority SOC Configuration :</h2>
 <ul>
 <li>When the SOC are configured in high priority (SOC0 through SOCx) the other SOC are configured in the Round Robin mode.</li>
 <li>The high priority SOC, when triggered, pre-empts the Round Robin Priority.</li>
 <li>If two or more High Priority SOC are triggered at same time, the SOC with lower number precedences.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1897"></a>
+<h2><a class="anchor" id="autotoc_md1969"></a>
 Configurations</h2>
 <ul>
 <li>Triggers from EPWM0 are configured through Syscfg.</li>
@@ -179,7 +179,7 @@ Configurations</h2>
 <p>Watch Variables</p><ul>
 <li>The watch variables gAdc0PpbDelay, gAdc1PpbDelay, gAdc2PpbDelay, gAdc3PpbDelay, gAdc4PpbDelay, gAdc4PpbDelay_case2 storing ADC conversion delays can be used to view the respective delays for the SOCs configured.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1898"></a>
+<h1><a class="anchor" id="autotoc_md1970"></a>
 External Connections</h1>
 <ul>
 <li>For this example demonstration, SOCs in respective ADCs are configured for Channel 0 (arbitrarily, any channel can be selected).</li>
@@ -198,7 +198,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_high_priority_soc/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1899"></a>
+<h1><a class="anchor" id="autotoc_md1971"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -208,10 +208,10 @@ Steps to Run the Example</h1>
 <li>Using the watch variables, view the ADC conversion results.</li>
 <li>View the ADC conversion results in UART console logs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1900"></a>
+<h1><a class="anchor" id="autotoc_md1972"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md1901"></a>
+<h1><a class="anchor" id="autotoc_md1973"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ADC High Priority SOC Test Started ...</div>

@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) Texas Instruments Incorporated 2021-2024
+ *  Copyright (c) Texas Instruments Incorporated 2021-2025
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions
@@ -103,6 +103,9 @@ static void Dp83tc812_configClkShift(EthPhyDrv_Handle hPhy, bool txClkShiftEn, b
 
 static void Dp83tc812_configIntr(EthPhyDrv_Handle hPhy, bool intrEn);
 
+static int32_t Dp83tc812_getSpeedDuplex (EthPhyDrv_Handle hPhy,
+                                       Phy_Link_SpeedDuplex* pConfig);
+
 /* ========================================================================== */
 /*                            Global Variables                                */
 /* ========================================================================== */
@@ -113,35 +116,39 @@ Phy_DrvObj_t gEnetPhyDrvDp83tc812 =
     {
         .name               = "Dp83tc812",
         .bind               = Dp83tc812_bind,
-    	.isPhyDevSupported  = Dp83tc812_isPhyDevSupported,
-    	.isMacModeSupported = Dp83tc812_isMacModeSupported,
-    	.config             = Dp83tc812_config,
-    	.reset              = Dp83tc812_reset,
-    	.isResetComplete    = Dp83tc812_isResetComplete,
-    	.readExtReg         = GenericPhy_readExtReg,
-    	.writeExtReg        = GenericPhy_writeExtReg,
-    	.printRegs          = Dp83tc812_printRegs,
-    	.adjPtpFreq              = NULL,
-    	.adjPtpPhase             = NULL,
-    	.getPtpTime              = NULL,
-    	.setPtpTime              = NULL,
-    	.getPtpTxTime            = NULL,
-    	.getPtpRxTime            = NULL,
-    	.waitPtpTxTime           = NULL,
-    	.procStatusFrame         = NULL,
-    	.getStatusFrameEthHeader = NULL,
-    	.enablePtp               = NULL,
-    	.tickDriver              = NULL,
-    	.enableEventCapture      = NULL,
-    	.enableTriggerOutput     = NULL,
-    	.getEventTs              = NULL,
+        .isPhyDevSupported  = Dp83tc812_isPhyDevSupported,
+        .isMacModeSupported = Dp83tc812_isMacModeSupported,
+        .config             = Dp83tc812_config,
+        .reset              = Dp83tc812_reset,
+        .isResetComplete    = Dp83tc812_isResetComplete,
+        .readExtReg         = GenericPhy_readExtReg,
+        .writeExtReg        = GenericPhy_writeExtReg,
+        .printRegs          = Dp83tc812_printRegs,
+        .adjPtpFreq              = NULL,
+        .adjPtpPhase             = NULL,
+        .getPtpTime              = NULL,
+        .setPtpTime              = NULL,
+        .getPtpTxTime            = NULL,
+        .getPtpRxTime            = NULL,
+        .waitPtpTxTime           = NULL,
+        .procStatusFrame         = NULL,
+        .getStatusFrameEthHeader = NULL,
+        .enablePtp               = NULL,
+        .tickDriver              = NULL,
+        .enableEventCapture      = NULL,
+        .enableTriggerOutput     = NULL,
+        .getEventTs              = NULL,
+        .configMediaClock        = NULL,
+        .nudgeCodecClock         = NULL,
+        .getSpeedDuplex          = Dp83tc812_getSpeedDuplex,
+
     }
 };
 
 /* PHY Device Attributes */
 static struct dp83tc812_privParams dp83tc812_params = {
-	.chip = -1,
-	.is_master = false,
+    .chip = -1,
+    .is_master = false,
 };
 
 /* ========================================================================== */
@@ -150,16 +157,16 @@ static struct dp83tc812_privParams dp83tc812_params = {
 
 void Dp83tc812_initCfg(Dp83tc812_Cfg *cfg)
 {
-	cfg->txClkShiftEn = true;
-	cfg->rxClkShiftEn = true;
-	cfg->interruptEn = false;
-	cfg->sgmiiAutoNegEn = true;
-	cfg->MasterSlaveMode = DP83TC812_MASTER_SLAVE_STRAP;
+    cfg->txClkShiftEn = true;
+    cfg->rxClkShiftEn = true;
+    cfg->interruptEn = false;
+    cfg->sgmiiAutoNegEn = true;
+    cfg->MasterSlaveMode = DP83TC812_MASTER_SLAVE_STRAP;
 }
 
-void Dp83tc812_bind(EthPhyDrv_Handle* hPhy, 
-					uint8_t phyAddr, 
-					Phy_RegAccessCb_t* pRegAccessCb)
+void Dp83tc812_bind(EthPhyDrv_Handle* hPhy,
+                    uint8_t phyAddr,
+                    Phy_RegAccessCb_t* pRegAccessCb)
 {
     Phy_Obj_t* pObj = (Phy_Obj_t*) hPhy;
     pObj->phyAddr = phyAddr;
@@ -169,7 +176,7 @@ void Dp83tc812_bind(EthPhyDrv_Handle* hPhy,
 bool Dp83tc812_isPhyDevSupported(EthPhyDrv_Handle hPhy,
                                 const void *pVersion)
 {
-	const Phy_Version *version = (Phy_Version *)pVersion;
+    const Phy_Version *version = (Phy_Version *)pVersion;
 
     bool supported = false;
 
@@ -179,39 +186,39 @@ bool Dp83tc812_isPhyDevSupported(EthPhyDrv_Handle hPhy,
         supported = true;
     }
 
-	if (version->model == DP83TC812_MODEL)
-	{
-			//Determine PHY version
-		if (version->revision == DP83TC812_REV_CS1)
-			dp83tc812_params.chip = DP83TC812_CS1;
-		else if (version->revision == DP83TC812_REV_CS2)
-			dp83tc812_params.chip = DP83TC812_CS2;
-	}
-	else if (version->model == DP83TC813_MODEL)
-		dp83tc812_params.chip = DP83TC813;
-	else if (version->model == DP83TC814_MODEL)
-		dp83tc812_params.chip = DP83TC814;
-	else if (version->model == DP83TC815_MODEL)
-		dp83tc812_params.chip = DP83TC815;
+    if (version->model == DP83TC812_MODEL)
+    {
+            //Determine PHY version
+        if (version->revision == DP83TC812_REV_CS1)
+            dp83tc812_params.chip = DP83TC812_CS1;
+        else if (version->revision == DP83TC812_REV_CS2)
+            dp83tc812_params.chip = DP83TC812_CS2;
+    }
+    else if (version->model == DP83TC813_MODEL)
+        dp83tc812_params.chip = DP83TC813;
+    else if (version->model == DP83TC814_MODEL)
+        dp83tc812_params.chip = DP83TC814;
+    else if (version->model == DP83TC815_MODEL)
+        dp83tc812_params.chip = DP83TC815;
 
     return supported;
 }
 
 bool Dp83tc812_isMacModeSupported(EthPhyDrv_Handle hPhy,
-                                	Phy_Mii mii)
+                                    Phy_Mii mii)
 {
     bool supported = false;
 
     switch (mii)
     {
         case PHY_MAC_MII_MII:
-			break;
-        case PHY_MAC_MII_GMII:
-			break;
-        case PHY_MAC_MII_RGMII:
-			supported = true;
             break;
-		case PHY_MAC_MII_SGMII:
+        case PHY_MAC_MII_GMII:
+            break;
+        case PHY_MAC_MII_RGMII:
+            supported = true;
+            break;
+        case PHY_MAC_MII_SGMII:
             supported = true;
             break;
         default:
@@ -225,8 +232,8 @@ bool Dp83tc812_isMacModeSupported(EthPhyDrv_Handle hPhy,
 int32_t Dp83tc812_config(EthPhyDrv_Handle hPhy,
                         const void *pExtCfg,
                         const uint32_t extCfgSize,
-						Phy_Mii mii, 
-						bool loopbackEn)
+                        Phy_Mii mii,
+                        bool loopbackEn)
 {
     uint8_t phyAddr = PhyPriv_getPhyAddr(hPhy);
 
@@ -244,59 +251,59 @@ int32_t Dp83tc812_config(EthPhyDrv_Handle hPhy,
 		return status;
     }
 
-	/* Read strap register */
-	if (status == PHY_SOK)
+    /* Read strap register */
+    if (status == PHY_SOK)
     {
-		Dp83tc812_readStraps(hPhy, extendedCfg->MasterSlaveMode);
-	}
+        Dp83tc812_readStraps(hPhy, extendedCfg->MasterSlaveMode);
+    }
 
-	/* Set Master/Slave mode - through PHY config */
-	if(extendedCfg->MasterSlaveMode == DP83TC812_MASTER_MODE)
-	{
-		dp83tc812_params.is_master = true;
-		PHYTRACE_DBG("PHY %u: Master Mode enabled\n",phyAddr);
-	}
-	else if(extendedCfg->MasterSlaveMode == DP83TC812_SLAVE_MODE)
-	{
-		dp83tc812_params.is_master = false;
-		PHYTRACE_DBG("PHY %u: Slave Mode enabled\n",phyAddr);
-	}
-
-	/* Init specific chip */
-	if (status == PHY_SOK)
+    /* Set Master/Slave mode - through PHY config */
+    if(extendedCfg->MasterSlaveMode == DP83TC812_MASTER_MODE)
     {
-		Dp83tc812_chipInit(hPhy);
-	}
-
-	/* Configure MII interface */
-	if (status == PHY_SOK)
+        dp83tc812_params.is_master = true;
+        PHYTRACE_DBG("PHY %u: Master Mode enabled\n",phyAddr);
+    }
+    else if(extendedCfg->MasterSlaveMode == DP83TC812_SLAVE_MODE)
     {
-		Dp83tc812_setMiiMode(hPhy, mii);
-	}
+        dp83tc812_params.is_master = false;
+        PHYTRACE_DBG("PHY %u: Slave Mode enabled\n",phyAddr);
+    }
 
-	/* Configure SGMII auto negotiation */
-	if (status == PHY_SOK &&
-		mii == PHY_MAC_MII_SGMII)
+    /* Init specific chip */
+    if (status == PHY_SOK)
     {
-		Dp83tc812_configAutoNeg(hPhy, extendedCfg->sgmiiAutoNegEn);
-	}
+        Dp83tc812_chipInit(hPhy);
+    }
 
-	/* Configure RGMII clock shift */
-	if (status == PHY_SOK &&
-		mii == PHY_MAC_MII_RGMII)
-	{
-		Dp83tc812_configClkShift(hPhy,
-								 extendedCfg->txClkShiftEn,
-							     extendedCfg->rxClkShiftEn);
-	}
-
-	/* Configure interrupts */
-	if (status == PHY_SOK)
+    /* Configure MII interface */
+    if (status == PHY_SOK)
     {
-		Dp83tc812_configIntr(hPhy, extendedCfg->interruptEn);
-	}
+        Dp83tc812_setMiiMode(hPhy, mii);
+    }
 
-	/* Set loopback configuration: enable or disable */
+    /* Configure SGMII auto negotiation */
+    if (status == PHY_SOK &&
+        mii == PHY_MAC_MII_SGMII)
+    {
+        Dp83tc812_configAutoNeg(hPhy, extendedCfg->sgmiiAutoNegEn);
+    }
+
+    /* Configure RGMII clock shift */
+    if (status == PHY_SOK &&
+        mii == PHY_MAC_MII_RGMII)
+    {
+        Dp83tc812_configClkShift(hPhy,
+                                 extendedCfg->txClkShiftEn,
+                                 extendedCfg->rxClkShiftEn);
+    }
+
+    /* Configure interrupts */
+    if (status == PHY_SOK)
+    {
+        Dp83tc812_configIntr(hPhy, extendedCfg->interruptEn);
+    }
+
+    /* Set loopback configuration: enable or disable */
     if (status == PHY_SOK)
     {
         Dp83tc812_setLoopbackCfg(hPhy, loopbackEn);
@@ -315,25 +322,25 @@ static void Dp83tc812_setLoopbackCfg(EthPhyDrv_Handle hPhy,
 
     PHYTRACE_DBG("PHY %u: %s loopback\n", PhyPriv_getPhyAddr(hPhy), enable ? "enable" : "disable");
 
-	status = pRegAccessApi->EnetPhy_readReg(pRegAccessApi->pArgs, PHY_BMCR, &val);
-	if(status != PHY_SOK && enable)
-	{
-		PHYTRACE_ERR_IF(status != PHY_SOK,
+    status = pRegAccessApi->EnetPhy_readReg(pRegAccessApi->pArgs, PHY_BMCR, &val);
+    if(status != PHY_SOK && enable)
+    {
+        PHYTRACE_ERR_IF(status != PHY_SOK,
                      "PHY %u: failed to set loopback mode: could not read reg %u\n", PhyPriv_getPhyAddr(hPhy), PHY_BMCR);
-		return;
-	}
+        return;
+    }
     if (enable)
     {
-		//xMII Loopback Mode
-		val |= PHY_BMCR_LOOPBACK;
+        //xMII Loopback Mode
+        val |= PHY_BMCR_LOOPBACK;
     }
     else
     {
-		//Normal Mode
+        //Normal Mode
         val &= ~PHY_BMCR_LOOPBACK;
     }
 
-	/* Specific predefined loopback configuration values are required for
+    /* Specific predefined loopback configuration values are required for
      * normal mode or loopback mode */
     pRegAccessApi->EnetPhy_writeReg(pRegAccessApi->pArgs, PHY_BMCR, val);
 
@@ -408,11 +415,11 @@ static int32_t Dp83tc812_readMmd(EthPhyDrv_Handle hPhy, uint16_t devad, uint32_t
     }
 
     PHYTRACE_VERBOSE_IF(status == PHY_SOK,
-						 "PHY %u: read reg %u val 0x%04x\n",phyAddr, reg, *val);
+                         "PHY %u: read reg %u val 0x%04x\n",phyAddr, reg, *val);
     PHYTRACE_ERR_IF(status != PHY_SOK,
                      "PHY %u: failed to read reg %u\n",phyAddr, reg);
 
-	return status;
+    return status;
 }
 
 static void Dp83tc812_writeMmd(EthPhyDrv_Handle hPhy, uint16_t devad, uint32_t reg, uint16_t val)
@@ -444,274 +451,274 @@ static void Dp83tc812_writeMmd(EthPhyDrv_Handle hPhy, uint16_t devad, uint32_t r
 
 static void Dp83tc812_setBitsMmd(EthPhyDrv_Handle hPhy, uint16_t devad, uint32_t reg, uint16_t val)
 {
-	uint16_t value;
-	int32_t status;
+    uint16_t value;
+    int32_t status;
 
-	status = Dp83tc812_readMmd(hPhy, devad, reg, &value);
-	if (status == PHY_SOK)
+    status = Dp83tc812_readMmd(hPhy, devad, reg, &value);
+    if (status == PHY_SOK)
     {
-		value = value | val;
-		Dp83tc812_writeMmd(hPhy, devad, reg, value);
-	}
+        value = value | val;
+        Dp83tc812_writeMmd(hPhy, devad, reg, value);
+    }
 }
 
 static void Dp83tc812_readStraps(EthPhyDrv_Handle hPhy, Dp83tc812_MasterSlaveMode msMode)
 {
-	uint16_t strap;
-	int32_t status;
+    uint16_t strap;
+    int32_t status;
 
-	status = Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_STRAP, &strap);
-	if (status != PHY_SOK)
-		return;
+    status = Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_STRAP, &strap);
+    if (status != PHY_SOK)
+        return;
 
-	PHYTRACE_DBG("PHY %u: Strap register is 0x%X\n", PhyPriv_getPhyAddr(hPhy), strap);
+    PHYTRACE_DBG("PHY %u: Strap register is 0x%X\n", PhyPriv_getPhyAddr(hPhy), strap);
 
-	if(msMode == DP83TC812_MASTER_SLAVE_STRAP)
-	{
-		if (strap & DP83TC812_MASTER_MODE_EN)
-		{
-			dp83tc812_params.is_master = true;
-			PHYTRACE_DBG("PHY %u: Strap: Master Mode enabled\n", PhyPriv_getPhyAddr(hPhy));
-		}
-		else
-		{
-			dp83tc812_params.is_master = false;
-			PHYTRACE_DBG("PHY %u: Strap: Slave Mode enabled\n", PhyPriv_getPhyAddr(hPhy));
-		}
-	}
+    if(msMode == DP83TC812_MASTER_SLAVE_STRAP)
+    {
+        if (strap & DP83TC812_MASTER_MODE_EN)
+        {
+            dp83tc812_params.is_master = true;
+            PHYTRACE_DBG("PHY %u: Strap: Master Mode enabled\n", PhyPriv_getPhyAddr(hPhy));
+        }
+        else
+        {
+            dp83tc812_params.is_master = false;
+            PHYTRACE_DBG("PHY %u: Strap: Slave Mode enabled\n", PhyPriv_getPhyAddr(hPhy));
+        }
+    }
 
-	if (strap & DP83TC812_RGMII_IS_EN)
-	{
-		PHYTRACE_DBG("PHY %u: Strap: RGMII Mode enabled\n", PhyPriv_getPhyAddr(hPhy));
-		if (((strap & DP83TC812_TX_RX_SHIFT) == DP83TC812_TX_RX_SHIFT_EN) ||
-			((strap & DP83TC812_TX_RX_SHIFT) == DP83TC812_TX_SHIFT_EN))
-			PHYTRACE_DBG("PHY %u: Strap: TX Clock Shift enabled\n", PhyPriv_getPhyAddr(hPhy));
-		if (((strap & DP83TC812_TX_RX_SHIFT) == DP83TC812_TX_RX_SHIFT_EN) ||
-			((strap & DP83TC812_TX_RX_SHIFT) == DP83TC812_RX_SHIFT_EN))
-			PHYTRACE_DBG("PHY %u: Strap: RX Clock Shift enabled\n", PhyPriv_getPhyAddr(hPhy));
-	}
-	else
-	{
-		PHYTRACE_DBG("PHY %u: Strap: SGMII Mode enabled\n", PhyPriv_getPhyAddr(hPhy));
-	}
+    if (strap & DP83TC812_RGMII_IS_EN)
+    {
+        PHYTRACE_DBG("PHY %u: Strap: RGMII Mode enabled\n", PhyPriv_getPhyAddr(hPhy));
+        if (((strap & DP83TC812_TX_RX_SHIFT) == DP83TC812_TX_RX_SHIFT_EN) ||
+            ((strap & DP83TC812_TX_RX_SHIFT) == DP83TC812_TX_SHIFT_EN))
+            PHYTRACE_DBG("PHY %u: Strap: TX Clock Shift enabled\n", PhyPriv_getPhyAddr(hPhy));
+        if (((strap & DP83TC812_TX_RX_SHIFT) == DP83TC812_TX_RX_SHIFT_EN) ||
+            ((strap & DP83TC812_TX_RX_SHIFT) == DP83TC812_RX_SHIFT_EN))
+            PHYTRACE_DBG("PHY %u: Strap: RX Clock Shift enabled\n", PhyPriv_getPhyAddr(hPhy));
+    }
+    else
+    {
+        PHYTRACE_DBG("PHY %u: Strap: SGMII Mode enabled\n", PhyPriv_getPhyAddr(hPhy));
+    }
 
 };
 
 static void Dp83tc812_writeSeq(EthPhyDrv_Handle hPhy, const struct dp83tc812_init_reg *init_data, int size)
 {
-	int i;
-	for (i = 0; i < size; i++) {
-		Dp83tc812_writeMmd(hPhy, init_data[i].mmd, init_data[i].reg, init_data[i].val);
-	}
+    int i;
+    for (i = 0; i < size; i++) {
+        Dp83tc812_writeMmd(hPhy, init_data[i].mmd, init_data[i].reg, init_data[i].val);
+    }
 }
 
 static void Dp83tc812_chipInit(EthPhyDrv_Handle hPhy)
 {
-	bool complete = false;
+    bool complete = false;
 
-	/* Perform a hardware reset prior to configuration */
-	Dp83tc812_resetHw(hPhy);
-	do
+    /* Perform a hardware reset prior to configuration */
+    Dp83tc812_resetHw(hPhy);
+    do
     {
         complete = Dp83tc812_isResetComplete(hPhy);
     }
     while (!complete);
 
 /* Apply chip-specific configuration */
-	switch (dp83tc812_params.chip) {
-		case DP83TC812_CS1:
-			if (dp83tc812_params.is_master){
-				Dp83tc812_writeSeq(hPhy, dp83tc812_cs1_master_init,
-								   sizeof(dp83tc812_cs1_master_init)/sizeof(dp83tc812_cs1_master_init[0]));
-				PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC812 CS1.0 Master\n", PhyPriv_getPhyAddr(hPhy));}
-			else{
-				Dp83tc812_writeSeq(hPhy, dp83tc812_cs1_slave_init,
-								   sizeof(dp83tc812_cs1_slave_init)/sizeof(dp83tc812_cs1_slave_init[0]));
-				PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC812 CS1.0 Slave\n", PhyPriv_getPhyAddr(hPhy));}
-			break;
-		case DP83TC812_CS2:
-			if (dp83tc812_params.is_master){
-				Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_master_init,
-								   sizeof(dp83tc812_cs2_master_init)/sizeof(dp83tc812_cs2_master_init[0]));
-				PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC812 CS2.0 Master\n", PhyPriv_getPhyAddr(hPhy));}
-			else{
-				Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_slave_init,
-								   sizeof(dp83tc812_cs2_slave_init)/sizeof(dp83tc812_cs2_slave_init[0]));
-				PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC812 CS2.0 Slave\n", PhyPriv_getPhyAddr(hPhy));}
-			break;
-		case DP83TC813:
-			if (dp83tc812_params.is_master){
-				Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_master_init,
-								   sizeof(dp83tc812_cs2_master_init)/sizeof(dp83tc812_cs2_master_init[0]));
-				PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC813 CS2.0 Master\n", PhyPriv_getPhyAddr(hPhy));}
-			else{
-				Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_slave_init,
-								   sizeof(dp83tc812_cs2_slave_init)/sizeof(dp83tc812_cs2_slave_init[0]));
-				PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC813 CS2.0 Slave\n", PhyPriv_getPhyAddr(hPhy));}
-			break;
-		case DP83TC814:
-			if (dp83tc812_params.is_master){
-				Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_master_init,
-								   sizeof(dp83tc812_cs2_master_init)/sizeof(dp83tc812_cs2_master_init[0]));
-				PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC814 CS2.0 Master\n", PhyPriv_getPhyAddr(hPhy));}
-			else{
-				Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_slave_init,
-								   sizeof(dp83tc812_cs2_slave_init)/sizeof(dp83tc812_cs2_slave_init[0]));
-				PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC814 CS2.0 Slave\n", PhyPriv_getPhyAddr(hPhy));}
-			break;
-		case DP83TC815:
-			if (dp83tc812_params.is_master){
-				Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_master_init,
-								   sizeof(dp83tc812_cs2_master_init)/sizeof(dp83tc812_cs2_master_init[0]));
-				PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC815 CS2.0 Master\n", PhyPriv_getPhyAddr(hPhy));}
-			else{
-				Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_slave_init,
-								   sizeof(dp83tc812_cs2_slave_init)/sizeof(dp83tc812_cs2_slave_init[0]));
-				PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC815 CS2.0 Slave\n", PhyPriv_getPhyAddr(hPhy));}
-			break;
-		default:
-			PHYTRACE_DBG("PHY %u: No supported DP83TC81x Chip. Skipping chip-specific configuration!\n", PhyPriv_getPhyAddr(hPhy));
-			break;
-	};
+    switch (dp83tc812_params.chip) {
+        case DP83TC812_CS1:
+            if (dp83tc812_params.is_master){
+                Dp83tc812_writeSeq(hPhy, dp83tc812_cs1_master_init,
+                                   sizeof(dp83tc812_cs1_master_init)/sizeof(dp83tc812_cs1_master_init[0]));
+                PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC812 CS1.0 Master\n", PhyPriv_getPhyAddr(hPhy));}
+            else{
+                Dp83tc812_writeSeq(hPhy, dp83tc812_cs1_slave_init,
+                                   sizeof(dp83tc812_cs1_slave_init)/sizeof(dp83tc812_cs1_slave_init[0]));
+                PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC812 CS1.0 Slave\n", PhyPriv_getPhyAddr(hPhy));}
+            break;
+        case DP83TC812_CS2:
+            if (dp83tc812_params.is_master){
+                Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_master_init,
+                                   sizeof(dp83tc812_cs2_master_init)/sizeof(dp83tc812_cs2_master_init[0]));
+                PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC812 CS2.0 Master\n", PhyPriv_getPhyAddr(hPhy));}
+            else{
+                Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_slave_init,
+                                   sizeof(dp83tc812_cs2_slave_init)/sizeof(dp83tc812_cs2_slave_init[0]));
+                PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC812 CS2.0 Slave\n", PhyPriv_getPhyAddr(hPhy));}
+            break;
+        case DP83TC813:
+            if (dp83tc812_params.is_master){
+                Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_master_init,
+                                   sizeof(dp83tc812_cs2_master_init)/sizeof(dp83tc812_cs2_master_init[0]));
+                PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC813 CS2.0 Master\n", PhyPriv_getPhyAddr(hPhy));}
+            else{
+                Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_slave_init,
+                                   sizeof(dp83tc812_cs2_slave_init)/sizeof(dp83tc812_cs2_slave_init[0]));
+                PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC813 CS2.0 Slave\n", PhyPriv_getPhyAddr(hPhy));}
+            break;
+        case DP83TC814:
+            if (dp83tc812_params.is_master){
+                Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_master_init,
+                                   sizeof(dp83tc812_cs2_master_init)/sizeof(dp83tc812_cs2_master_init[0]));
+                PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC814 CS2.0 Master\n", PhyPriv_getPhyAddr(hPhy));}
+            else{
+                Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_slave_init,
+                                   sizeof(dp83tc812_cs2_slave_init)/sizeof(dp83tc812_cs2_slave_init[0]));
+                PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC814 CS2.0 Slave\n", PhyPriv_getPhyAddr(hPhy));}
+            break;
+        case DP83TC815:
+            if (dp83tc812_params.is_master){
+                Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_master_init,
+                                   sizeof(dp83tc812_cs2_master_init)/sizeof(dp83tc812_cs2_master_init[0]));
+                PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC815 CS2.0 Master\n", PhyPriv_getPhyAddr(hPhy));}
+            else{
+                Dp83tc812_writeSeq(hPhy, dp83tc812_cs2_slave_init,
+                                   sizeof(dp83tc812_cs2_slave_init)/sizeof(dp83tc812_cs2_slave_init[0]));
+                PHYTRACE_DBG("PHY %u: Applying configuration for DP83TC815 CS2.0 Slave\n", PhyPriv_getPhyAddr(hPhy));}
+            break;
+        default:
+            PHYTRACE_DBG("PHY %u: No supported DP83TC81x Chip. Skipping chip-specific configuration!\n", PhyPriv_getPhyAddr(hPhy));
+            break;
+    };
 
-	/* Perform a software reset to restart the PHY with the updated configuration */
-	Dp83tc812_reset(hPhy);
-	do
+    /* Perform a software reset to restart the PHY with the updated configuration */
+    Dp83tc812_reset(hPhy);
+    do
     {
         complete = Dp83tc812_isResetComplete(hPhy);
     }
     while (!complete);
 
-	/* Enable transmitter */
-	Dp83tc812_writeMmd(hPhy, DP83TC812_DEVADDR, 0x0523U, 0x0000U);
+    /* Enable transmitter */
+    Dp83tc812_writeMmd(hPhy, DP83TC812_DEVADDR, 0x0523U, 0x0000U);
 
 }
 
 static void Dp83tc812_setMiiMode(EthPhyDrv_Handle hPhy, Phy_Mii mii)
 {
     uint16_t rgmii_val = 0U;
-	uint16_t sgmii_val = 0U;
-	int32_t status = PHY_SOK;
+    uint16_t sgmii_val = 0U;
+    int32_t status = PHY_SOK;
 
-	status = Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_RGMII_CTRL, &rgmii_val);
-	if(status != PHY_SOK)
-		return;
-	status = Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_SGMII_CTRL, &sgmii_val);
-	if(status != PHY_SOK)
-		return;
+    status = Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_RGMII_CTRL, &rgmii_val);
+    if(status != PHY_SOK)
+        return;
+    status = Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_SGMII_CTRL, &sgmii_val);
+    if(status != PHY_SOK)
+        return;
 
     if (mii == PHY_MAC_MII_RGMII)
     {
-		rgmii_val |= DP83TC812_RGMII_EN;
-		sgmii_val &= ~DP83TC812_SGMII_EN;
-		PHYTRACE_DBG("PHY %u: RGMII Mode enabled\n", PhyPriv_getPhyAddr(hPhy));
+        rgmii_val |= DP83TC812_RGMII_EN;
+        sgmii_val &= ~DP83TC812_SGMII_EN;
+        PHYTRACE_DBG("PHY %u: RGMII Mode enabled\n", PhyPriv_getPhyAddr(hPhy));
     }
-	else if (mii == PHY_MAC_MII_SGMII)
-	{
-		rgmii_val &= ~DP83TC812_RGMII_EN;
-		sgmii_val |= DP83TC812_SGMII_EN;
-		PHYTRACE_DBG("PHY %u: SGMII Mode enabled\n", PhyPriv_getPhyAddr(hPhy));
-	}
+    else if (mii == PHY_MAC_MII_SGMII)
+    {
+        rgmii_val &= ~DP83TC812_RGMII_EN;
+        sgmii_val |= DP83TC812_SGMII_EN;
+        PHYTRACE_DBG("PHY %u: SGMII Mode enabled\n", PhyPriv_getPhyAddr(hPhy));
+    }
 
-	Dp83tc812_writeMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_RGMII_CTRL, rgmii_val);
-	Dp83tc812_writeMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_SGMII_CTRL, sgmii_val);
+    Dp83tc812_writeMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_RGMII_CTRL, rgmii_val);
+    Dp83tc812_writeMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_SGMII_CTRL, sgmii_val);
 }
 
 static void Dp83tc812_configAutoNeg(EthPhyDrv_Handle hPhy, bool sgmiiAutoNegEn)
 {
-	uint16_t val = 0U;
-	int32_t status = PHY_SOK;
+    uint16_t val = 0U;
+    int32_t status = PHY_SOK;
 
-	status = Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_SGMII_CTRL, &val);
+    status = Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_SGMII_CTRL, &val);
 
-	if(status != PHY_SOK)
-		return;
+    if(status != PHY_SOK)
+        return;
 
-	if(sgmiiAutoNegEn)
-	{
-		val |= DP83TC812_SGMII_AUTO_NEG_EN;
-		PHYTRACE_DBG("PHY %u: SGMII Auto Negotiation enabled\n", PhyPriv_getPhyAddr(hPhy));
-	}
-	else
-	{
-		val &= ~DP83TC812_SGMII_AUTO_NEG_EN;
-		PHYTRACE_DBG("PHY %u: SGMII Auto Negotiation disabled\n", PhyPriv_getPhyAddr(hPhy));
-	}
+    if(sgmiiAutoNegEn)
+    {
+        val |= DP83TC812_SGMII_AUTO_NEG_EN;
+        PHYTRACE_DBG("PHY %u: SGMII Auto Negotiation enabled\n", PhyPriv_getPhyAddr(hPhy));
+    }
+    else
+    {
+        val &= ~DP83TC812_SGMII_AUTO_NEG_EN;
+        PHYTRACE_DBG("PHY %u: SGMII Auto Negotiation disabled\n", PhyPriv_getPhyAddr(hPhy));
+    }
 
-	Dp83tc812_writeMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_SGMII_CTRL, val);
+    Dp83tc812_writeMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_SGMII_CTRL, val);
 }
 
 static void Dp83tc812_configClkShift(EthPhyDrv_Handle hPhy, bool txClkShiftEn, bool rxClkShiftEn)
 {
-	uint16_t val = 0U;
-	int32_t status = PHY_SOK;
+    uint16_t val = 0U;
+    int32_t status = PHY_SOK;
 
-	status = Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_RGMII_ID_CTRL, &val);
+    status = Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_RGMII_ID_CTRL, &val);
 
-	if(status != PHY_SOK)
-		return;
+    if(status != PHY_SOK)
+        return;
 
-	if (!txClkShiftEn)
-		val &= ~DP83TC812_TX_CLK_SHIFT;
-	else
-		val |= DP83TC812_TX_CLK_SHIFT;
-	if (!rxClkShiftEn)
-		val &= ~DP83TC812_RX_CLK_SHIFT;
-	else
-		val |= DP83TC812_RX_CLK_SHIFT;
+    if (!txClkShiftEn)
+        val &= ~DP83TC812_TX_CLK_SHIFT;
+    else
+        val |= DP83TC812_TX_CLK_SHIFT;
+    if (!rxClkShiftEn)
+        val &= ~DP83TC812_RX_CLK_SHIFT;
+    else
+        val |= DP83TC812_RX_CLK_SHIFT;
 
-	Dp83tc812_writeMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_RGMII_ID_CTRL, val);
+    Dp83tc812_writeMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_RGMII_ID_CTRL, val);
 
-	PHYTRACE_DBG("PHY %u: RGMII TX Clock Shift %s\n", PhyPriv_getPhyAddr(hPhy), txClkShiftEn ? "enabled" : "disabled");
-	PHYTRACE_DBG("PHY %u: RGMII RX Clock Shift %s\n", PhyPriv_getPhyAddr(hPhy), rxClkShiftEn ? "enabled" : "disabled");
+    PHYTRACE_DBG("PHY %u: RGMII TX Clock Shift %s\n", PhyPriv_getPhyAddr(hPhy), txClkShiftEn ? "enabled" : "disabled");
+    PHYTRACE_DBG("PHY %u: RGMII RX Clock Shift %s\n", PhyPriv_getPhyAddr(hPhy), rxClkShiftEn ? "enabled" : "disabled");
 }
 
 static void Dp83tc812_configIntr(EthPhyDrv_Handle hPhy, bool intrEn)
  {
-	uint16_t reg_val;
-	int32_t status = PHY_SOK;
-	Phy_RegAccessCb_t* pRegAccessApi = PhyPriv_getRegAccessApi(hPhy);
+    uint16_t reg_val;
+    int32_t status = PHY_SOK;
+    Phy_RegAccessCb_t* pRegAccessApi = PhyPriv_getRegAccessApi(hPhy);
 
-	if (intrEn) {
-		PHYTRACE_DBG("PHY %u: Enable interrupts\n", PhyPriv_getPhyAddr(hPhy));
-		status = pRegAccessApi->EnetPhy_readReg(pRegAccessApi->pArgs, MII_DP83TC812_INT_STAT1, &reg_val);
+    if (intrEn) {
+        PHYTRACE_DBG("PHY %u: Enable interrupts\n", PhyPriv_getPhyAddr(hPhy));
+        status = pRegAccessApi->EnetPhy_readReg(pRegAccessApi->pArgs, MII_DP83TC812_INT_STAT1, &reg_val);
         if (status != PHY_SOK)
-			return;
+            return;
 
         reg_val |= (DP83TC812_ANEG_COMPLETE_INT_EN |
-					DP83TC812_ESD_EVENT_INT_EN |
-					DP83TC812_LINK_STAT_INT_EN |
+                    DP83TC812_ESD_EVENT_INT_EN |
+                    DP83TC812_LINK_STAT_INT_EN |
                     DP83TC812_ENERGY_DET_INT_EN |
                     DP83TC812_LINK_QUAL_INT_EN);
 
-		pRegAccessApi->EnetPhy_writeReg(pRegAccessApi->pArgs, MII_DP83TC812_INT_STAT1, reg_val);
+        pRegAccessApi->EnetPhy_writeReg(pRegAccessApi->pArgs, MII_DP83TC812_INT_STAT1, reg_val);
 
-		status = pRegAccessApi->EnetPhy_readReg(pRegAccessApi->pArgs, MII_DP83TC812_INT_STAT2, &reg_val);
+        status = pRegAccessApi->EnetPhy_readReg(pRegAccessApi->pArgs, MII_DP83TC812_INT_STAT2, &reg_val);
         if (status != PHY_SOK)
-			return;
+            return;
 
         reg_val |= (DP83TC812_SLEEP_MODE_INT_EN |
-					DP83TC812_OVERTEMP_INT_EN |
-					DP83TC812_OVERVOLTAGE_INT_EN |
-					DP83TC812_UNDERVOLTAGE_INT_EN);
+                    DP83TC812_OVERTEMP_INT_EN |
+                    DP83TC812_OVERVOLTAGE_INT_EN |
+                    DP83TC812_UNDERVOLTAGE_INT_EN);
 
         pRegAccessApi->EnetPhy_writeReg(pRegAccessApi->pArgs, MII_DP83TC812_INT_STAT2, reg_val);
 
         status = pRegAccessApi->EnetPhy_readReg(pRegAccessApi->pArgs, MII_DP83TC812_INT_STAT3, &reg_val);
         if (status != PHY_SOK)
-			return;
+            return;
 
         reg_val |= (DP83TC812_LPS_INT_EN |
-					DP83TC812_WAKE_REQ_EN |
-					DP83TC812_NO_FRAME_INT_EN |
-					DP83TC812_POR_DONE_INT_EN);
+                    DP83TC812_WAKE_REQ_EN |
+                    DP83TC812_NO_FRAME_INT_EN |
+                    DP83TC812_POR_DONE_INT_EN);
 
-		pRegAccessApi->EnetPhy_writeReg(pRegAccessApi->pArgs, MII_DP83TC812_INT_STAT3, reg_val);
+        pRegAccessApi->EnetPhy_writeReg(pRegAccessApi->pArgs, MII_DP83TC812_INT_STAT3, reg_val);
 
     }
-	else {
-		PHYTRACE_DBG("PHY %u: Disable interrupts\n", PhyPriv_getPhyAddr(hPhy));
-		pRegAccessApi->EnetPhy_writeReg(pRegAccessApi->pArgs, MII_DP83TC812_INT_STAT1, 0U);
+    else {
+        PHYTRACE_DBG("PHY %u: Disable interrupts\n", PhyPriv_getPhyAddr(hPhy));
+        pRegAccessApi->EnetPhy_writeReg(pRegAccessApi->pArgs, MII_DP83TC812_INT_STAT1, 0U);
 
         pRegAccessApi->EnetPhy_writeReg(pRegAccessApi->pArgs, MII_DP83TC812_INT_STAT2, 0U);
 
@@ -755,12 +762,42 @@ void Dp83tc812_printRegs(EthPhyDrv_Handle hPhy)
     pRegAccessApi->EnetPhy_readReg(pRegAccessApi->pArgs, DP83TC812_PHYRCR, &val);
     printf("PHY %u: PHYRCR  = 0x%04x\r\n",phyAddr, val);
 
-	Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_SGMII_CTRL, &val);
-	printf("PHY %u: SGMII_CTRL      = 0x%04x\r\n",phyAddr, val);
-	Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_RGMII_CTRL, &val);
-	printf("PHY %u: RGMII_CTRL      = 0x%04x\r\n",phyAddr, val);
-	Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_RGMII_ID_CTRL, &val);
-	printf("PHY %u: RGMII_ID_CTRL   = 0x%04x\r\n",phyAddr, val);
-	Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR_MMD1, DP83TC812_MMD1_PMA_CTRL_2, &val);
-	printf("PHY %u: MMD1_PMA_CTRL_2 = 0x%04x\r\n",phyAddr, val);
+    Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_SGMII_CTRL, &val);
+    printf("PHY %u: SGMII_CTRL      = 0x%04x\r\n",phyAddr, val);
+    Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_RGMII_CTRL, &val);
+    printf("PHY %u: RGMII_CTRL      = 0x%04x\r\n",phyAddr, val);
+    Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR, DP83TC812_RGMII_ID_CTRL, &val);
+    printf("PHY %u: RGMII_ID_CTRL   = 0x%04x\r\n",phyAddr, val);
+    Dp83tc812_readMmd(hPhy, DP83TC812_DEVADDR_MMD1, DP83TC812_MMD1_PMA_CTRL_2, &val);
+    printf("PHY %u: MMD1_PMA_CTRL_2 = 0x%04x\r\n",phyAddr, val);
+}
+
+int32_t Dp83tc812_getSpeedDuplex (EthPhyDrv_Handle hPhy, Phy_Link_SpeedDuplex* pConfig)
+{
+    int32_t  status;
+    uint32_t speed;
+    uint16_t val;
+
+    Phy_RegAccessCb_t* pRegAccessApi = PhyPriv_getRegAccessApi(hPhy);
+
+    /* Restart is complete when RESET bit has self-cleared */
+    status = pRegAccessApi->EnetPhy_readReg(pRegAccessApi->pArgs, DP83TC812_PHYSTS, &val);
+    if (status == PHY_SOK)
+    {
+        if (val & DP83TC812_PHYSTS_LINK)
+        {
+            speed = 100;
+            *pConfig = PHY_LINK_FD100;
+        } else 
+        {
+            *pConfig = PHY_LINK_INVALID;
+        }
+        
+    }
+
+    PHYTRACE_DBG("PHY %u: selected speed is %d Mbps with %s-duplex\n", PhyPriv_getPhyAddr(hPhy), speed, (val & PHYST_DUPLEXMODEENV_FD) ? "full" : "half");
+
+    (void)speed;
+
+    return status;
 }

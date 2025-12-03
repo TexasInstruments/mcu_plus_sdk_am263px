@@ -4,11 +4,14 @@
     let driverVer = soc.getDriverVer("mcasp");
     let module = system.modules['/drivers/mcasp/mcasp'];
     let module_ch = system.modules[`/drivers/mcasp/${driverVer}/mcasp_${driverVer}_channel`];
+    let EXTERNAL_CLOCK = 0;
+    let INTERNAL_CLOCK = 1;
 %%}
 
 /*
  * MCASP
  */
+extern MCASP_Config gMcaspConfig[CONFIG_MCASP_NUM_INSTANCES];
 
 % for(let i = 0; i < module.$instances.length; i++) {
     % let instance = module.$instances[i];
@@ -108,10 +111,62 @@ MCASP_OpenParams gMcaspOpenParams[CONFIG_MCASP_NUM_INSTANCES] =
    %}
 };
 
+void Drivers_mcaspAuxClkCfg(void)
+{
+    uintptr_t baseAddr;
+    % for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    % let config = module.getInstanceConfig(instance);
+    {
+        baseAddr = gMcaspConfig[`i`].attrs->baseAddr;
+        volatile uint32_t clkDivReg = 0U;
+        volatile uint32_t clkSrcReg = 0U;
+        volatile uint32_t clkDivVal = 0U;
+        volatile uint32_t clksrcVal = 0U;
+        /* point to start address */
+        switch(baseAddr)
+        {
+            case CSL_RCSS_MCASP_A_U_BASE:
+                /* MCASP0 */
+                clkDivReg = 0x05000070;
+                clkSrcReg = 0x05000034;
+                break;
+            case CSL_RCSS_MCASP_B_U_BASE:
+                /* MCASP1 */
+                clkDivReg = 0x0500007C;
+                clkSrcReg = 0x05000040;
+                break;
+            case CSL_RCSS_MCASP_C_U_BASE:
+                /* MCASP2 */
+                clkDivReg = 0x05000088;
+                clkSrcReg = 0x0500004C;
+                break;
+        }
+
+        volatile uint32_t *ptrClkDivReg = (volatile uint32_t *)clkDivReg;
+        clkDivVal = 0x0`config.txHclkDiv`;
+        clkDivVal = (clkDivVal | (clkDivVal << 4U) | (clkDivVal << 8U));
+        CSL_REG32_WR(ptrClkDivReg, clkDivVal);
+        while(CSL_REG32_RD(ptrClkDivReg) != clkDivVal)
+        {;}
+
+        volatile uint32_t *ptrClkSrcReg = (volatile uint32_t *)clkSrcReg;
+        clksrcVal = 0x0`config.auxClkSource`;
+        clksrcVal = (clksrcVal | (clksrcVal << 4U) | (clksrcVal << 8U));
+        CSL_REG32_WR(ptrClkSrcReg, clksrcVal);
+        while(CSL_REG32_RD(ptrClkSrcReg) != clksrcVal)
+        {;}
+    }
+    %}
+}
+
 void Drivers_mcaspOpen(void)
 {
     uint32_t instCnt;
     int32_t  status = SystemP_SUCCESS;
+
+    /* Config AuxClks for MCASP */
+    Drivers_mcaspAuxClkCfg();
 
     for(instCnt = 0U; instCnt < CONFIG_MCASP_NUM_INSTANCES; instCnt++)
     {

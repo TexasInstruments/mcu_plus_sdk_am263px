@@ -87,10 +87,6 @@ $(document).ready(function(){initNavTree('ospi__lld__dma_8h.html',''); initResiz
 </script>
 <div id="doc-content">
 <div class="header">
-  <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">ospi_lld_dma.h File Reference</div>  </div>
 </div><!--header-->
@@ -99,49 +95,6 @@ $(document).ready(function(){initNavTree('ospi__lld__dma_8h.html',''); initResiz
 <div class="textblock"><p>OSPI LLD DMA header file. </p>
 </div>
 <p><a href="ospi__lld__dma_8h_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPI__DmaFxns.html">OSPI_DmaFxns</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver implementation callbacks.  <a href="structOSPI__DmaFxns.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPI__DmaConfig.html">OSPI_DmaConfig</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">OSPI DMA Configuration, these are filled by SysCfg based on the DMA driver that is selected.  <a href="structOSPI__DmaConfig.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:gac17f5f295276bb71eb228f998f096db9"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OSPI__DMA.html#gac17f5f295276bb71eb228f998f096db9">OSPI_DmaHandle</a></td></tr>
-<tr class="memdesc:gac17f5f295276bb71eb228f998f096db9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle to the OSPI DMA Config Object returned by <a class="el" href="group__OSPI__DMA.html#ga7fe4f44f3f75f087aab3da1d74a956d1">OSPI_dmaOpen</a>.  <a href="group__OSPI__DMA.html#gac17f5f295276bb71eb228f998f096db9">More...</a><br /></td></tr>
-<tr class="separator:gac17f5f295276bb71eb228f998f096db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga62888664f675e7992b82dc3f2acca41d"><td class="memItemLeft" align="right" valign="top">typedef int32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OSPI__DMA.html#ga62888664f675e7992b82dc3f2acca41d">OSPI_dmaOpenFxn</a>) (void *ospiDmaArgs)</td></tr>
-<tr class="memdesc:ga62888664f675e7992b82dc3f2acca41d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver implementation to open a specific DMA driver channel - UDMA, EDMA etc.  <a href="group__OSPI__DMA.html#ga62888664f675e7992b82dc3f2acca41d">More...</a><br /></td></tr>
-<tr class="separator:ga62888664f675e7992b82dc3f2acca41d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1825115040b7457b4fbc605d861e7f26"><td class="memItemLeft" align="right" valign="top">typedef int32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OSPI__DMA.html#ga1825115040b7457b4fbc605d861e7f26">OSPI_dmaCloseFxn</a>) (void *ospiDmaArgs)</td></tr>
-<tr class="memdesc:ga1825115040b7457b4fbc605d861e7f26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver implementation to close a specific DMA driver channel - UDMA, EDMA etc.  <a href="group__OSPI__DMA.html#ga1825115040b7457b4fbc605d861e7f26">More...</a><br /></td></tr>
-<tr class="separator:ga1825115040b7457b4fbc605d861e7f26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5fb3e04cca7a609479cad7ae4df364b3"><td class="memItemLeft" align="right" valign="top">typedef int32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OSPI__DMA.html#ga5fb3e04cca7a609479cad7ae4df364b3">OSPI_dmaCopyFxn</a>) (void *ospiDmaArgs, void *dst, void *src, uint32_t length, uint32_t timeout)</td></tr>
-<tr class="memdesc:ga5fb3e04cca7a609479cad7ae4df364b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver implementation to do a DMA copy using a specific DMA driver - UDMA, EDMA etc.  <a href="group__OSPI__DMA.html#ga5fb3e04cca7a609479cad7ae4df364b3">More...</a><br /></td></tr>
-<tr class="separator:ga5fb3e04cca7a609479cad7ae4df364b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafae3dad5ea35c97d001631dfabf43e76"><td class="memItemLeft" align="right" valign="top">typedef int32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OSPI__DMA.html#gafae3dad5ea35c97d001631dfabf43e76">OSPI_dmaItrFxn</a>) (void *ospiDmaArgs)</td></tr>
-<tr class="memdesc:gafae3dad5ea35c97d001631dfabf43e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver implementation to get the interrupt enable status for DMA driver channel.  <a href="group__OSPI__DMA.html#gafae3dad5ea35c97d001631dfabf43e76">More...</a><br /></td></tr>
-<tr class="separator:gafae3dad5ea35c97d001631dfabf43e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:ga7fe4f44f3f75f087aab3da1d74a956d1"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OSPI__DMA.html#ga7fe4f44f3f75f087aab3da1d74a956d1">OSPI_dmaOpen</a> (int32_t index)</td></tr>
-<tr class="memdesc:ga7fe4f44f3f75f087aab3da1d74a956d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">API to open an OSPI DMA channel.  <a href="group__OSPI__DMA.html#ga7fe4f44f3f75f087aab3da1d74a956d1">More...</a><br /></td></tr>
-<tr class="separator:ga7fe4f44f3f75f087aab3da1d74a956d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga40b5f277ace4ab4fee2ac7aa585b6519"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OSPI__DMA.html#ga40b5f277ace4ab4fee2ac7aa585b6519">OSPI_dmaClose</a> (<a class="el" href="group__DRV__OSPI__LLD__MODULE.html#gac17f5f295276bb71eb228f998f096db9">OSPI_DmaHandle</a> handle)</td></tr>
-<tr class="memdesc:ga40b5f277ace4ab4fee2ac7aa585b6519"><td class="mdescLeft">&#160;</td><td class="mdescRight">API to close an OSPI DMA channel.  <a href="group__OSPI__DMA.html#ga40b5f277ace4ab4fee2ac7aa585b6519">More...</a><br /></td></tr>
-<tr class="separator:ga40b5f277ace4ab4fee2ac7aa585b6519"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadeaf516d537b8810d5a1fb8c6a3dc2ed"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OSPI__DMA.html#gadeaf516d537b8810d5a1fb8c6a3dc2ed">OSPI_dmaCopy</a> (<a class="el" href="group__DRV__OSPI__LLD__MODULE.html#gac17f5f295276bb71eb228f998f096db9">OSPI_DmaHandle</a> handle, void *dst, void *src, uint32_t length, uint32_t timeout)</td></tr>
-<tr class="memdesc:gadeaf516d537b8810d5a1fb8c6a3dc2ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">API to do a DMA Copy using appropriate DMA Channel opened.  <a href="group__OSPI__DMA.html#gadeaf516d537b8810d5a1fb8c6a3dc2ed">More...</a><br /></td></tr>
-<tr class="separator:gadeaf516d537b8810d5a1fb8c6a3dc2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab46b5e4f2080c8b08da1b781f7737c18"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OSPI__DMA.html#gab46b5e4f2080c8b08da1b781f7737c18">OSPI_isDmaInterruptEnabled</a> (<a class="el" href="group__DRV__OSPI__LLD__MODULE.html#gac17f5f295276bb71eb228f998f096db9">OSPI_DmaHandle</a> handle)</td></tr>
-<tr class="memdesc:gab46b5e4f2080c8b08da1b781f7737c18"><td class="mdescLeft">&#160;</td><td class="mdescRight">API to get the DMA Interrupt status.  <a href="group__OSPI__DMA.html#gab46b5e4f2080c8b08da1b781f7737c18">More...</a><br /></td></tr>
-<tr class="separator:gab46b5e4f2080c8b08da1b781f7737c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.11-->

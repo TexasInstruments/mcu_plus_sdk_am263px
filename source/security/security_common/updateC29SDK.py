@@ -17,6 +17,9 @@ def update_include_paths(file_path):
     filedata = filedata.replace('drivers/hw_include', 'security/drivers/hw_include')
     filedata = filedata.replace('security_common/drivers', 'security/drivers')
     filedata = filedata.replace('security/drivers/hw_include/f29h85x/', 'security/drivers/hw_include/')
+    
+    # Handle <crypto/dthe/...> style includes
+    filedata = filedata.replace('<crypto/dthe/', '<security/drivers/crypto/dthe/')
 
     # write back the updated contents
     with open(file_path, 'w', encoding="utf8") as file:

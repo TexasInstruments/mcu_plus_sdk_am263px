@@ -92,23 +92,23 @@ $(document).ready(function(){initNavTree('BOARD_EEPROM_PAGE.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1128">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1129">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1130">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1131">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1132">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1133">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1172">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1173">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1174">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1175">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1176">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1177">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_board_eeprom"></a></p>
 <p>The EEPROM driver provides API to read and write to I2C based EEPROM devices present in the board. The driver takes care of all sequencing necessary to perform writes across pages and the application need not take care of the programming intricacies.</p>
-<h1><a class="anchor" id="autotoc_md1128"></a>
+<h1><a class="anchor" id="autotoc_md1172"></a>
 Features Supported</h1>
 <ul>
 <li>Read and write API from any offset</li>
 <li>Provide API to return EEPROM attributes like size, page size etc</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1129"></a>
+<h1><a class="anchor" id="autotoc_md1173"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -119,20 +119,20 @@ SysConfig Features</h1>
 </pre><ul>
 <li>Option to set the I2C address of the EEPROM</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1130"></a>
+<h1><a class="anchor" id="autotoc_md1174"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md1131"></a>
+<h1><a class="anchor" id="autotoc_md1175"></a>
 Important Usage Guidelines</h1>
 <p>None</p>
-<h1><a class="anchor" id="autotoc_md1132"></a>
+<h1><a class="anchor" id="autotoc_md1176"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="eeprom_8h.html">board/eeprom.h</a>&gt;</span></div>
 </div><!-- fragment --><p> EEPROM Read API </p><div class="fragment"><div class="line">    status = <a class="code" href="group__BOARD__EEPROM__MODULE.html#ga68ee21f3536d1285b710553023a27b2d">EEPROM_read</a>(handle, 0, buffer, 100);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> == status);</div>
 </div><!-- fragment --><p> EEPROM Write API </p><div class="fragment"><div class="line">    status = <a class="code" href="group__BOARD__EEPROM__MODULE.html#ga0b9c545f8bb83dd9a6e11858ffb3bb42">EEPROM_write</a>(handle, 0, buffer, 100);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> == status);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1133"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1177"></a>
 API</h1>
 <p><a class="el" href="group__BOARD__EEPROM__MODULE.html">APIs for I2C based EEPROM</a> </p>
 </div></div><!-- contents -->

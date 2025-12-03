@@ -92,32 +92,32 @@ $(document).ready(function(){initNavTree('DRIVERS_MPU_FIREWALL_PAGE.html',''); i
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md982">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md983">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md984">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md985">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md986">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1026">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1027">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1028">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1029">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1030">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_mpu_firewall"></a></p>
 <p>MPU FIREWALL driver provides API to read different regions in all supported firewalls.</p>
-<h1><a class="anchor" id="autotoc_md982"></a>
+<h1><a class="anchor" id="autotoc_md1026"></a>
 Features Supported</h1>
 <ul>
 <li>API to read MPU Firewall regions, including region start address, size, attributes like access permissions and AID configurations</li>
 <li>APIs to read fault address, fault status and to get interrupt status for a mpu region.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md983"></a>
+<h1><a class="anchor" id="autotoc_md1027"></a>
 Features NOT Supported</h1>
 <ul>
 <li>Configuration of MPU firewall regions is not supported via this driver and is supported via HSM Services. For more information <a class="el" href="DRIVERS_HSMCLIENT_PAGE.html#DRIVERS_HSMCLIENT_SET_FIREWALL">HSM Client SetFirewall Service.</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md984"></a>
+<h1><a class="anchor" id="autotoc_md1028"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md985"></a>
+<h1><a class="anchor" id="autotoc_md1029"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="mpu__firewall_8h.html">drivers/mpu_firewall.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Example to setup MPU Firewall regions is shown below, </p><div class="fragment"><div class="line"> </div>
@@ -133,7 +133,7 @@ Example Usage</h1>
 <div class="line">    <span class="comment">/* Program the parameters for the region */</span></div>
 <div class="line">    <a class="code" href="group__DRV__MPU__FIREWALL__MODULE.html#ga77946c4d90ef123ae1c37f743f0fa457">MPU_FIREWALL_getRegion</a>(&amp;mpuParams);</div>
 <div class="line"> </div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md986"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1030"></a>
 API</h1>
 <p><a class="el" href="group__DRV__MPU__FIREWALL__MODULE.html">APIs for MPU Firewall</a> </p>
 </div></div><!-- contents -->

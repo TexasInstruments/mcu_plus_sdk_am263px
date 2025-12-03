@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2021-2024 Texas Instruments Incorporated
+ *  Copyright (C) 2021-2025 Texas Instruments Incorporated
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions
@@ -297,6 +297,15 @@ typedef int32_t (*Flash_quirksFxn)(Flash_Config *config);
  */
 typedef int32_t (*Flash_custProtocolFxn)(Flash_Config *config);
 
+/**
+ * \brief Driver implementation to perform phy tune flash
+ *
+ * \param config [in] Flash configuration for the specific flash device
+ *
+ * \return SystemP_SUCCESS on success, else failure
+ */
+typedef int32_t (*Flash_phyTuneFxn)(Flash_Config *confifg);
+
 /** @} */
 
 
@@ -324,6 +333,7 @@ typedef struct Flash_Fxns_s
     Flash_ResetFxn resetFxn; /**< Flash driver implementation specific callback */
     Flash_EnableDacModeFxn enableDacModeFxn; /**< Flash driver implementation specific callback */
     Flash_DisableDacModeFxn disableDacModeFxn; /**< Flash driver implementation specific callback */
+    Flash_phyTuneFxn phyTuneFxn; /**< Flash driver implementation specific callback */
 
 } Flash_Fxns;
 
@@ -359,6 +369,7 @@ typedef struct Flash_Config_s
     void                       *object;      /**< Flash driver object, used to maintain driver implementation state */
     uint32_t                   skipHwInit;  /**< Option to skip the HW initialization of the flash */
     uint32_t                   rwOffset;    /**< Global read write offset*/
+    void                       *fallBackCfg; /**< Flash fallback configs, used to configure flash in  */
 } Flash_Config;
 
 /* Flash specific includes */
@@ -569,6 +580,15 @@ uint32_t Flash_getPhyTuningOffset(Flash_Handle handle);
  * \return \ref Flash_Attrs, else NULL if instanceId is invalid
  */
 Flash_Attrs *Flash_getAttrs(uint32_t instanceId);
+
+/**
+ * \brief Tunes the flash controller physical layer parameters
+ *
+ * \param handle The flash controller handle
+ *
+ * \return SystemP_SUCCESS on success, else failure
+ */
+int32_t Flash_phyTune(Flash_Handle handle);
 
 /** @} */
 

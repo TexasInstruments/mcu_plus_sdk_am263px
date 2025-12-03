@@ -43,6 +43,7 @@
 #include <string.h>
 #include <security_common/drivers/crypto/dthe/dthe_aes.h>
 #include <security_common/drivers/crypto/dthe/dma.h>
+
 /* ========================================================================== */
 /*                           Macros & Typedefs                                */
 /* ========================================================================== */
@@ -79,7 +80,8 @@ static uint8_t gStreamState = AES_STATE_NEW;
 /* ========================================================================== */
 /*                 Internal Function Declarations                             */
 /* ========================================================================== */
-
+static void DTHE_AES_CTRWidth(CSL_AesRegs *ptrAesRegs, uint32_t ctrWidth);
+static void DTHE_AES_updateXTSIv(CSL_AesRegs *ptrAesRegs, const DTHE_AES_Params* ptrParams, uint32_t *newIv, Bool isFirstBlock);
 static void DTHE_AES_setDMAContextStatus(CSL_AesRegs *ptrAesRegs, uint8_t dmaStatus);
 static void DTHE_AES_setDMAOutputRequestStatus(CSL_AesRegs *ptrAesRegs, uint8_t dmaStatus);
 static void DTHE_AES_setDMAInputRequestStatus(CSL_AesRegs *ptrAesRegs, uint8_t dmaStatus);
@@ -676,24 +678,24 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
                                 dmaHandle = DMA_open(0);
                                 
                                 /* Configure DMA channel to transfer the data to Data Register */
-                                DMA_Config_TxChannel(dmaHandle, ptrWordInputBuffer, (uint32_t *)&ptrAesRegs->DATA_IN_3, numBlocks, 0U, DMA_AES_ENABLE);
+                                (void)DMA_Config_TxChannel(dmaHandle, ptrWordInputBuffer, (uint32_t *)&ptrAesRegs->DATA_IN_3, numBlocks, 0U, DMA_AES_ENABLE);
                                 
                                 /* Clear all the DMA interrupts */
                                 DTHE_AES_clearAllInterrupts(ptrAesRegs);
 
                                 /* Enable the transfer region */
-                                DMA_enableTxTransferRegion(dmaHandle);
+                                (void)DMA_enableTxTransferRegion(dmaHandle);
 
                                 /* Force the first trigger */
                                 DTHE_AES_setDMAInputRequestStatus(ptrAesRegs, 1);
 
                                 /* Poll for completion */
-                                DMA_WaitForTxTransfer(dmaHandle);
+                                (void)DMA_WaitForTxTransfer(dmaHandle);
 
                                 /* Clear the status, channel and handle */
                                 DTHE_AES_setDMAInputRequestStatus(ptrAesRegs, 0);
-                                DMA_disableTxCh(dmaHandle);
-                                DMA_close(dmaHandle);
+                                (void)DMA_disableTxCh(dmaHandle);
+                                (void)DMA_close(dmaHandle);
 
                                 index = numBlocks;
                             }
@@ -712,8 +714,8 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
                             
                             if(partialDataSize != DTHE_AES_ZERO)
                             {
-                                memset(inPartialBlock,0u,sizeof(inPartialBlock));
-                                memcpy(inPartialBlock,&ptrWordInputBuffer[numBlocks*4U],partialDataSize);
+                                (void)memset(inPartialBlock,0u,sizeof(inPartialBlock));
+                                (void)memcpy(inPartialBlock,&ptrWordInputBuffer[numBlocks*4U],partialDataSize);
 
                                 /* Wait for the AES IP to be ready to receive the data: */
                                 DTHE_AES_pollInputReady(ptrAesRegs);
@@ -807,11 +809,11 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
                 {                   
                     dmaHandle = DMA_open(0);
 
-                    DMA_Config_TxChannel(dmaHandle, ptrWordInputBuffer, (uint32_t *)&ptrAesRegs->DATA_IN_3, numBlocks, 0U, DMA_AES_ENABLE);
+                    (void)DMA_Config_TxChannel(dmaHandle, ptrWordInputBuffer, (uint32_t *)&ptrAesRegs->DATA_IN_3, numBlocks, 0U, DMA_AES_ENABLE);
 
                     if((ptrParams->algoType != DTHE_AES_CBC_MAC_MODE)&&(ptrParams->algoType != DTHE_AES_CMAC_MODE)&&(ptrParams->algoType != DTHE_AES_GHASH_ONLY_MODE))
                     {
-                        DMA_Config_RxChannel(dmaHandle, (uint32_t *)&ptrAesRegs->DATA_IN_3, ptrWordOutputBuffer, numBlocks);
+                        (void)DMA_Config_RxChannel(dmaHandle, (uint32_t *)&ptrAesRegs->DATA_IN_3, ptrWordOutputBuffer, numBlocks);
                     }
 
                     DTHE_AES_clearAllInterrupts(ptrAesRegs);
@@ -819,18 +821,18 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
                     if((ptrParams->algoType != DTHE_AES_CBC_MAC_MODE)&&(ptrParams->algoType != DTHE_AES_CMAC_MODE)&&(ptrParams->algoType != DTHE_AES_GHASH_ONLY_MODE))
                     {
                         DTHE_AES_setDMAOutputRequestStatus(ptrAesRegs, 1);
-                        DMA_enableRxTransferRegion(dmaHandle);
+                        (void)DMA_enableRxTransferRegion(dmaHandle);
                     }
 
-                    DMA_enableTxTransferRegion(dmaHandle);
+                    (void)DMA_enableTxTransferRegion(dmaHandle);
                     DTHE_AES_setDMAInputRequestStatus(ptrAesRegs, 1);
 
                     if((ptrParams->algoType != DTHE_AES_CBC_MAC_MODE)&&(ptrParams->algoType != DTHE_AES_CMAC_MODE)&&(ptrParams->algoType != DTHE_AES_GHASH_ONLY_MODE))
                     {
-                        DMA_WaitForRxTransfer(dmaHandle);
+                        (void)DMA_WaitForRxTransfer(dmaHandle);
                     }
 
-                    DMA_WaitForTxTransfer(dmaHandle);
+                    (void)DMA_WaitForTxTransfer(dmaHandle);
 
                     DTHE_AES_setDMAInputRequestStatus(ptrAesRegs, 0);
                     if((ptrParams->algoType != DTHE_AES_CBC_MAC_MODE)&&(ptrParams->algoType != DTHE_AES_CMAC_MODE)&&(ptrParams->algoType == DTHE_AES_GHASH_ONLY_MODE))
@@ -838,14 +840,14 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
                         DTHE_AES_setDMAOutputRequestStatus(ptrAesRegs, 0);
                     }
 
-                    DMA_disableTxCh(dmaHandle);
+                    (void)DMA_disableTxCh(dmaHandle);
 
                     if((ptrParams->algoType != DTHE_AES_CBC_MAC_MODE)&&(ptrParams->algoType != DTHE_AES_CMAC_MODE)&&(ptrParams->algoType != DTHE_AES_GHASH_ONLY_MODE))
                     {
-                        DMA_disableRxCh(dmaHandle);
+                        (void)DMA_disableRxCh(dmaHandle);
                     }
 
-                    DMA_close(dmaHandle);
+                    (void)DMA_close(dmaHandle);
 
                     /* Compute the number of bytes which have been processed: */
                     numBytes = numBytes + (numBlocks * 4U * sizeof(uint32_t));
@@ -946,16 +948,16 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
                                 }
                             }
 
-                            memset(tempData, 0, sizeof(tempData));
+                            (void)memset(tempData, 0, sizeof(tempData));
 
                             /*Copy last "complete 16-byte block" output data to tempData buffer*/
                             ptrByteBuf = (uint8_t*)&ptrWordOutputBuffer[(numBlocks-DTHE_AES_ONE)<<2U];
-                            memcpy(&tempData[0], ptrByteBuf, 16);
+                            (void)memcpy(&tempData[0], ptrByteBuf, 16);
 
                             /*Update pointer to last valid byte of inPartialBlock and fill remaing data from last
                                 output data block at same index to make inPartialBlock 128 bit aligned*/
                             ptrByteBuf = (uint8_t*)&inPartialBlock[0];
-                            memcpy(&ptrByteBuf[partialDataSize], &tempData[partialDataSize], DTHE_AES_BLOCK_LENGTH-partialDataSize);
+                            (void)memcpy(&ptrByteBuf[partialDataSize], &tempData[partialDataSize], DTHE_AES_BLOCK_LENGTH-partialDataSize);
                         }
 
                         /* Wait for the AES IP to be ready to receive the data: */

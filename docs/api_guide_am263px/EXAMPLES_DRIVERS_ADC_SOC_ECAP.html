@@ -92,25 +92,25 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_SOC_ECAP.html',''
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1997">Introduction</a><ul><li class="level2"><a href="#autotoc_md1998">ECAP Configurations</a></li>
-<li class="level2"><a href="#autotoc_md1999">ADC Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2000">ISRs</a></li>
+<ul><li class="level1"><a href="#autotoc_md2069">Introduction</a><ul><li class="level2"><a href="#autotoc_md2070">ECAP Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2071">ADC Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2072">ISRs</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2001">External Connections</a><ul><li class="level2"><a href="#autotoc_md2002">AM263x-CC E2 or AM263Px-CC E2 or AM261x-SOM E1:</a></li>
-<li class="level2"><a href="#autotoc_md2003">AM263x-LP :</a></li>
-<li class="level2"><a href="#autotoc_md2004">AM261x-LP :</a></li>
+<li class="level1"><a href="#autotoc_md2073">External Connections</a><ul><li class="level2"><a href="#autotoc_md2074">AM263x-CC E2 or AM263Px-CC E2 or AM261x-SOM E1:</a></li>
+<li class="level2"><a href="#autotoc_md2075">AM263x-LP :</a></li>
+<li class="level2"><a href="#autotoc_md2076">AM261x-LP :</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2005">Watch Variables</a></li>
+<li class="level1"><a href="#autotoc_md2077">Watch Variables</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_SOC_ECAP_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2006">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2007">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2008">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2078">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2079">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2080">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_soc_ecap"></a></p>
-<h1><a class="anchor" id="autotoc_md1997"></a>
+<h1><a class="anchor" id="autotoc_md2069"></a>
 Introduction</h1>
 <p>This example demostrates how the ECAP and ADC to be configured so that the ADC SOC can be triggered from the ECAP Events. The ECAP can trigger the ADC SOC Conversions in its both Capture mode and APWM mode.</p><ul>
 <li>In ECAP Capture Mode, the CAPEVTx [x= 1 to 4] can be used and</li>
@@ -121,7 +121,7 @@ Introduction</h1>
 <img src="am263_adc_soc_ecap.png" alt=""/>
 <div class="caption">
 Example Block diagram</div></div>
-<h2><a class="anchor" id="autotoc_md1998"></a>
+<h2><a class="anchor" id="autotoc_md2070"></a>
 ECAP Configurations</h2>
 <ol type="1">
 <li>APWM_ECAP :</li>
@@ -137,40 +137,40 @@ ECAP Configurations</h2>
 <li>recieve 2 edges, 1 rising then 1 falling (CAPEVT1,2)</li>
 <li>generate an ADC SOC trigger at CAPEVT2</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1999"></a>
+<h2><a class="anchor" id="autotoc_md2071"></a>
 ADC Configurations</h2>
 <p>ADC_APWM_TRIG (or ADC_CAP_TRIG) :</p><ul>
 <li>SOC 0 is configured to recieve trigger from the APWM_ECAP (or CAPTURE_ECAP)</li>
 <li>INT 1 is generated at the EOC/SOC0</li>
 <li>Prescaled at 3, with Sample and Hold window of 18, configuring for 4MSPS on ADC. </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2000"></a>
+<h2><a class="anchor" id="autotoc_md2072"></a>
 ISRs</h2>
 <p>App_apwmTrigAdcISR (or App_capTrigAdcISR)</p><ul>
 <li>ADC INT 1 from ADC_APWM_TRIG (or ADC_CAP_TRIG) is configured via INTxBar to trigger App_apwmTrigAdcISR (or App_capTrigAdcISR).</li>
 <li>Each ISR reads the respective SOC result, clears the ADC INT flags and Increments a counter for validation.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2001"></a>
+<h1><a class="anchor" id="autotoc_md2073"></a>
 External Connections</h1>
-<h2><a class="anchor" id="autotoc_md2002"></a>
+<h2><a class="anchor" id="autotoc_md2074"></a>
 AM263x-CC E2 or AM263Px-CC E2 or AM261x-SOM E1:</h2>
 <p>Feed Analog voltages on ADC_APWM_TRIG (ADC0)</p><ul>
 <li>ADC0_AIN2, i.e., HSEC PIN 15 Feed Analog voltages on ADC_CAP_TRIG (ADC1)</li>
 <li>ADC1_AIN0, i.e., HSEC PIN 12 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2003"></a>
+<h2><a class="anchor" id="autotoc_md2075"></a>
 AM263x-LP :</h2>
 <p>Feed Analog voltages on ADC_APWM_TRIG (ADC0)</p><ul>
 <li>ADC0_AIN2, i.e., J5/7 PIN 66 Feed Analog voltages on ADC_CAP_TRIG (ADC1)</li>
 <li>ADC1_AIN0, i.e., J1/3 PIN 24 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2004"></a>
+<h2><a class="anchor" id="autotoc_md2076"></a>
 AM261x-LP :</h2>
 <p>Feed Analog voltages on ADC_APWM_TRIG (ADC0)</p><ul>
 <li>ADC0_AIN2, i.e., J5/7 PIN 63 Feed Analog voltages on ADC_CAP_TRIG (ADC1)</li>
 <li>ADC1_AIN0, i.e., J1/3 PIN 24</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2005"></a>
+<h1><a class="anchor" id="autotoc_md2077"></a>
 Watch Variables</h1>
 <p>The below watch variables can be used to view ADC conversion results.</p><ul>
 <li>gApwmTrigAdcResult[] : Digital representation of the voltage sample on pin AIN2 of ADC_APWM_TRIG</li>
@@ -190,7 +190,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_soc_ecap/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2006"></a>
+<h1><a class="anchor" id="autotoc_md2078"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -200,10 +200,10 @@ Steps to Run the Example</h1>
 <li>Using watch variables, view the ADC conversion results.</li>
 <li>View the ADC conversion results in UART console logs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2007"></a>
+<h1><a class="anchor" id="autotoc_md2079"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md2008"></a>
+<h1><a class="anchor" id="autotoc_md2080"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ADC Triggered by ECAP Test Started ...</div>

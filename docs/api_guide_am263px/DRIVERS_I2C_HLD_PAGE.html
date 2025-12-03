@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('DRIVERS_I2C_HLD_PAGE.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_i2c_v1_hld"></a> </p>
-<h1><a class="anchor" id="autotoc_md860"></a>
+<h1><a class="anchor" id="autotoc_md904"></a>
 Features Supported</h1>
 <ul>
 <li>Controller and Target mode of Operation</li>
@@ -101,7 +101,7 @@ Features Supported</h1>
 <li>Queueing of I2C transactions</li>
 <li>I2C Bus Recovery</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md861"></a>
+<h1><a class="anchor" id="autotoc_md905"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <p>SysConfig can be used to configure below parameters apart from common configuration like Clock,MPU,RAT and others.</p><ul>
@@ -114,14 +114,14 @@ SysConfig Features</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md862"></a>
+<h1><a class="anchor" id="autotoc_md906"></a>
 Features NOT Supported</h1>
 <ul>
 <li>DMA Mode Operation.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md863"></a>
+<h1><a class="anchor" id="autotoc_md907"></a>
 Usage Overview</h1>
-<h2><a class="anchor" id="autotoc_md864"></a>
+<h2><a class="anchor" id="autotoc_md908"></a>
 API Sequence</h2>
 <p>To use the I2C HLD driver to transmit/receive data over the I2C bus, probe target and set bus frequency the application may call the following APIs:</p>
 <ul>
@@ -135,13 +135,13 @@ API Sequence</h2>
 <li><a class="el" href="group__DRV__I2C__HLD__MODULE.html#gad78db5aecccd790b4e9b5b45cbb05f5b" title="API to set the bus frequency of I2C Instance.">I2C_setBusFrequency()</a>: Set Bus frequency.</li>
 <li><a class="el" href="group__DRV__I2C__HLD__MODULE.html#gae72fbbef5977e287d18c7fb842464c6e" title="API to get the handle of an open I2C instance from the instance index.">I2C_getHandle()</a>: Get I2C Handle from index.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md865"></a>
+<h2><a class="anchor" id="autotoc_md909"></a>
 Initializing the I2C HLD Driver</h2>
 <p><a class="el" href="group__DRV__I2C__HLD__MODULE.html#ga9ff51ddf1d325776fef90cce0223772b" title="Initialize the I2C module.">I2C_init()</a> must be called before any other I2C Open is called.</p>
 <p><a class="el" href="group__DRV__I2C__HLD__MODULE.html#ga942a6589f060e6a9becb4eae13eee8f5" title="API to Open I2C at index idx with parameters params.">I2C_open()</a> must be called before calling any I2C APIs. This function takes index and params to initialize an instance and returns the handle to the I2C instance.</p>
 <p>Calling <a class="el" href="group__DRV__I2C__HLD__MODULE.html#ga12c86d89a687f2ee1eb980d99c32326d" title="API to close the I2C instance specified by the handle passed.">I2C_close()</a> closes the instance passed.</p>
 <p>Please note that the initialization of I2C HLD instances is taken care by the SysConfig generated code.</p>
-<h1><a class="anchor" id="autotoc_md866"></a>
+<h1><a class="anchor" id="autotoc_md910"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;drivers/i2c.h&gt;</span></div>
 </div><!-- fragment --><p> Instance Open Example </p><div class="fragment"><div class="line">    <a class="code" href="structI2C__Params.html">I2C_Params</a>      params;</div>
@@ -169,7 +169,7 @@ Example Usage</h1>
 <div class="line">    <span class="keywordflow">if</span> (<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> != status) {</div>
 <div class="line">        <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(FALSE);</div>
 <div class="line">    }</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md867"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md911"></a>
 API</h1>
 <p><a class="el" href="group__DRV__I2C__HLD__MODULE.html">APIs for I2C HLD</a> </p>
 </div></div><!-- contents -->

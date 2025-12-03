@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('DRIVERS_MDIO_PAGE.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md978">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md979">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md980">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md981">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1022">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1023">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1024">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1025">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_mdio"></a></p>
 <p>MDIO driver provides an interface to the MDIO management interface module which implements the 802.3 serial management interface to interrogate and control the Ethernet PHYs on the board.</p>
-<h1><a class="anchor" id="autotoc_md978"></a>
+<h1><a class="anchor" id="autotoc_md1022"></a>
 Features Supported</h1>
 <ul>
 <li>Initialize MDIO clock</li>
@@ -108,10 +108,10 @@ Features Supported</h1>
 <li>Read the link status of Ethernet PHY</li>
 <li>Enable link change Interrupt</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md979"></a>
+<h1><a class="anchor" id="autotoc_md1023"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md980"></a>
+<h1><a class="anchor" id="autotoc_md1024"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="drivers_2mdio_8h.html">drivers/mdio.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Initializing MDIO clock </p><div class="fragment"><div class="line">    status = <a class="code" href="group__DRV__MDIO__MODULE.html#ga4fa82fb47226414567b3f803b0fdf5a0">MDIO_initClock</a>(mdioBaseAddress);</div>
@@ -125,7 +125,7 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Write a PHY register */</span></div>
 <div class="line">    status = <a class="code" href="group__DRV__MDIO__MODULE.html#gadc80f49a087953a4485744fec734eaab">MDIO_phyRegWrite</a>(mdioBaseAddress, NULL, phyAddress, 0, phyRegVal);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md981"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1025"></a>
 API</h1>
 <p><a class="el" href="group__DRV__MDIO__MODULE.html">APIs for MDIO</a> </p>
 </div></div><!-- contents -->

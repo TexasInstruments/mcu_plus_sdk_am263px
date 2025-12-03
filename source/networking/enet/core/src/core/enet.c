@@ -618,6 +618,10 @@ static Enet_IoctlValidate gEnetPhy_ioctlValidate[] =
                           sizeof(EnetPhy_GenericInArgs),
                           sizeof(EnetMacPort_LinkCfg)),
 
+    ENET_IOCTL_VALID_PRMS(ENET_PHY_IOCTL_GET_LINK_STATUS,
+                          sizeof(EnetPhy_GenericInArgs),
+                          sizeof(EnetMacPort_LinkCfg)),
+
     ENET_IOCTL_VALID_PRMS(ENET_PHY_IOCTL_RESET,
                           sizeof(EnetPhy_GenericInArgs),
                           0U),
@@ -701,6 +705,14 @@ static Enet_IoctlValidate gEnetPhy_ioctlValidate[] =
     ENET_IOCTL_VALID_PRMS(ENET_PHY_IOCTL_GET_EVENT_TIMESTAMP,
                           sizeof(EnetPhy_GenericInArgs),
                           sizeof(EnetPhy_GetEventTimestampOutArgs)),
+
+    ENET_IOCTL_VALID_PRMS(ENET_PHY_IOCTL_CONFIG_MEDIA_CLOCK,
+                          sizeof(EnetPhy_ConfigMediaClockInArgs),
+                          0U),
+
+    ENET_IOCTL_VALID_PRMS(ENET_PHY_IOCTL_NUDGE_CODEC_CLOCK,
+                          sizeof(EnetPhy_NudgeCodecClockInArgs),
+                          0U),
 };
 #endif
 

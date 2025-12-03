@@ -1235,7 +1235,7 @@ int32_t SA2UL_contextAlloc(SA2UL_Handle handle, SA2UL_ContextObject *ctxObj, con
                 /* Perform cache writeback */
                 CacheP_wb(&ctxObj->secCtx, sizeof(sc), CacheP_TYPE_ALLD);
 
-                /* Perform cache writeback */
+                /* Perform cache invalidation */
                 CacheP_inv(&ctxObj->secCtx, sizeof(sc), CacheP_TYPE_ALLD);
 
                 ctxObj->handle = (SA2UL_Config *)handle;
@@ -1312,14 +1312,16 @@ int32_t SA2UL_contextProcess(SA2UL_ContextObject *pCtxObj,const uint8_t  *input,
                 retVal      = SA2UL_pushBuffer(pCtxObj,ptrInput, maxLength, ptrOutput);
                 if(SystemP_SUCCESS == retVal)
                 {
+                    donedataLen = 0U;
+
                     /* Consider timeout */
                     while((doneBufAddr != (uint64_t)ptrInput) && ( donedataLen != maxLength) && (doneFlag != (uint8_t)TRUE))
                     {
                         retVal = SA2UL_popBuffer(pCtxObj, &doneBufAddr, &donedataLen, &doneFlag);
                     }
                 }
-                ptrInput    = ptrInput + ((processIterations + 1) * maxLength);
-                ptrOutput   = ptrOutput + ((processIterations + 1) * maxLength);
+                ptrInput    = ptrInput + (maxLength);
+                ptrOutput   = ptrOutput + (maxLength);
             }
             if(SystemP_SUCCESS == retVal)
             {
@@ -1328,6 +1330,8 @@ int32_t SA2UL_contextProcess(SA2UL_ContextObject *pCtxObj,const uint8_t  *input,
                     retVal = SA2UL_pushBuffer(pCtxObj, ptrInput, remainingBytes, ptrOutput);
                     if(SystemP_SUCCESS == retVal)
                     {
+                        donedataLen = 0U;
+
                         /* Consider timeout */
                         while((doneBufAddr != (uint64_t)ptrInput) && ( donedataLen != remainingBytes ) && (doneFlag != (uint8_t)TRUE))
                         {
@@ -1950,13 +1954,13 @@ static int32_t SA2UL_pushBuffer(SA2UL_ContextObject *pCtxObj,const uint8_t  *inp
         /* Perform cache writeback */
         CacheP_wb(rxDescr, attrs->descSize, CacheP_TYPE_ALLD);
 
-        /* Perform cache writeback */
+        /* Perform cache invalidation */
         CacheP_inv(rxDescr, attrs->descSize, CacheP_TYPE_ALLD);
 
         /* Perform cache writeback */
         CacheP_wb(txDescr, attrs->descSize, CacheP_TYPE_ALLD);
 
-        /* Perform cache writeback */
+        /* Perform cache invalidation */
         CacheP_inv(txDescr, attrs->descSize, CacheP_TYPE_ALLD);
 
         /* Push the RX descriptor to RX free ring */
@@ -1972,7 +1976,7 @@ static int32_t SA2UL_pushBuffer(SA2UL_ContextObject *pCtxObj,const uint8_t  *inp
         /* Perform cache writeback */
         CacheP_wb(output, ilen, CacheP_TYPE_ALLD);
 
-        /* Perform cache writeback */
+        /* Perform cache invalidation */
         CacheP_inv(output, ilen, CacheP_TYPE_ALLD);
     }
     return (retVal);

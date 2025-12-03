@@ -57,8 +57,8 @@ var group__DRV__MMCSD__LLD__MODULE =
       [ "dataBuf", "structMMCSDLLD__InitObject.html#a27f25fb245288ac84b6c13ed0ccf7ae6", null ]
     ] ],
     [ "MMCSDLLD_Object", "structMMCSDLLD__Object.html", [
-      [ "cmdErrorStat", "structMMCSDLLD__Object.html#a9d51450df987623d53fa720b0be5bf40", null ],
-      [ "xferErrorStat", "structMMCSDLLD__Object.html#a0f9e64143b0c819394b1a8812e265872", null ],
+      [ "cmdErrorStat", "structMMCSDLLD__Object.html#a8b3ccf901a5d2a8f27cd1cfb5b916c17", null ],
+      [ "xferErrorStat", "structMMCSDLLD__Object.html#a582eaf0ff7d0c694ab2f3b9c9351baf8", null ],
       [ "dataBufIdx", "structMMCSDLLD__Object.html#ae4a51b787d8859cb3c11638f36e864ea", null ],
       [ "dataBlockCount", "structMMCSDLLD__Object.html#ad128b5539bc7b086f789e493ab78ba25", null ],
       [ "dataBlockSize", "structMMCSDLLD__Object.html#a4c99ece053d5b80124017c8c5b130d98", null ],

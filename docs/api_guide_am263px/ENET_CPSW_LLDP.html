@@ -92,45 +92,45 @@ $(document).ready(function(){initNavTree('ENET_CPSW_LLDP.html',''); initResizabl
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md309">Pre-requisites</a></li>
-<li class="level1"><a href="#autotoc_md310">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md311">Demo and Examples</a></li>
-<li class="level1"><a href="#autotoc_md312">TSN Stack</a><ul><li class="level2"><a href="#autotoc_md313">Compilation</a></li>
-<li class="level2"><a href="#autotoc_md314">Modules</a></li>
-<li class="level2"><a href="#autotoc_md315">Stack Initialization</a></li>
-<li class="level2"><a href="#autotoc_md316">Logging</a></li>
-<li class="level2"><a href="#autotoc_md317">Starting uniconf and LLDP applications</a></li>
-<li class="level2"><a href="#autotoc_md318">LLDP Deinitialization</a></li>
+<ul><li class="level1"><a href="#autotoc_md353">Pre-requisites</a></li>
+<li class="level1"><a href="#autotoc_md354">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md355">Demo and Examples</a></li>
+<li class="level1"><a href="#autotoc_md356">TSN Stack</a><ul><li class="level2"><a href="#autotoc_md357">Compilation</a></li>
+<li class="level2"><a href="#autotoc_md358">Modules</a></li>
+<li class="level2"><a href="#autotoc_md359">Stack Initialization</a></li>
+<li class="level2"><a href="#autotoc_md360">Logging</a></li>
+<li class="level2"><a href="#autotoc_md361">Starting uniconf and LLDP applications</a></li>
+<li class="level2"><a href="#autotoc_md362">LLDP Deinitialization</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md319">Integration</a><ul><li class="level2"><a href="#autotoc_md320">Source integration</a></li>
-<li class="level2"><a href="#autotoc_md321">Uniconf configuration</a></li>
-<li class="level2"><a href="#autotoc_md322">LLDP configuration parameters</a></li>
+<li class="level1"><a href="#autotoc_md363">Integration</a><ul><li class="level2"><a href="#autotoc_md364">Source integration</a></li>
+<li class="level2"><a href="#autotoc_md365">Uniconf configuration</a></li>
+<li class="level2"><a href="#autotoc_md366">LLDP configuration parameters</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md323">See Also</a></li>
+<li class="level1"><a href="#autotoc_md367">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_enet_cpsw_lldp_apiguide"></a></p>
-<h1><a class="anchor" id="autotoc_md309"></a>
+<h1><a class="anchor" id="autotoc_md353"></a>
 Pre-requisites</h1>
 <p>Reader are expected to have basic knowledge on below IEEE specifications</p><ul>
 <li>Standard ethernet (IEEE 802.1)</li>
 <li>Link Layer Discovery Protocol - LLDP (IEEE 802.1AB-2016)</li>
 <li>LLDP Amendment 1: YANG Data Model (IEEE 802.1ABcu-2021)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md310"></a>
+<h1><a class="anchor" id="autotoc_md354"></a>
 Introduction</h1>
 <p>This guide is intended to enhance user's understanding of the LLDP stack and provide guidance on how to seamlessly integrate LLDP modules into their own applications.</p>
-<h1><a class="anchor" id="autotoc_md311"></a>
+<h1><a class="anchor" id="autotoc_md355"></a>
 Demo and Examples</h1>
 <p><a class="el" href="EXAMPLES_ENET_CPSW_LLDP.html">Ethernet LLDP Example</a></p>
-<h1><a class="anchor" id="autotoc_md312"></a>
+<h1><a class="anchor" id="autotoc_md356"></a>
 TSN Stack</h1>
-<h2><a class="anchor" id="autotoc_md313"></a>
+<h2><a class="anchor" id="autotoc_md357"></a>
 Compilation</h2>
 <p>The compilation of library is similar with <a class="el" href="ENET_CPSW_TSN_GPTP.html">Ethernet TSN and gPTP Stack - API and Integration Guide</a>.</p>
-<h2><a class="anchor" id="autotoc_md314"></a>
+<h2><a class="anchor" id="autotoc_md358"></a>
 Modules</h2>
 <p>The TSN Stack library is composed of the following source modules:</p>
 <table class="markdownTable">
@@ -145,13 +145,13 @@ Modules</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">LLDP  </td><td class="markdownTableBodyNone"><code>&lt;mcu_plus_sdk&gt;/source/networking/tsn/tsn_lldp</code>  </td><td class="markdownTableBodyNone">Implementation of the IEEE 802.1 AB LLDP   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md315"></a>
+<h2><a class="anchor" id="autotoc_md359"></a>
 Stack Initialization</h2>
 <p>Refer <a class="el" href="ENET_CPSW_TSN_GPTP.html">Ethernet TSN and gPTP Stack - API and Integration Guide</a>. <b>Stack Initialization</b> section</p>
-<h2><a class="anchor" id="autotoc_md316"></a>
+<h2><a class="anchor" id="autotoc_md360"></a>
 Logging</h2>
 <p>Refer <a class="el" href="ENET_CPSW_TSN_GPTP.html">Ethernet TSN and gPTP Stack - API and Integration Guide</a>. <b>Logging</b> section</p>
-<h2><a class="anchor" id="autotoc_md317"></a>
+<h2><a class="anchor" id="autotoc_md361"></a>
 Starting uniconf and LLDP applications</h2>
 <p>Refer <a class="el" href="ENET_CPSW_TSN_GPTP.html">Ethernet TSN and gPTP Stack - API and Integration Guide</a>. <b>Starting uniconf and gPTP</b> section.</p>
 <p>This function will start:</p><ul>
@@ -159,18 +159,18 @@ Starting uniconf and LLDP applications</h2>
 <li>Initial uniconf DB after uniconf is finished by uniconf runtime config or yang config file.</li>
 <li>After uniconf and DB initialization is finished, lldp task is able to start</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md318"></a>
+<h2><a class="anchor" id="autotoc_md362"></a>
 LLDP Deinitialization</h2>
 <p>Refer <a class="el" href="ENET_CPSW_TSN_GPTP.html">Ethernet TSN and gPTP Stack - API and Integration Guide</a>. <b>TSN Deinitialization</b> section</p>
-<h1><a class="anchor" id="autotoc_md319"></a>
+<h1><a class="anchor" id="autotoc_md363"></a>
 Integration</h1>
-<h2><a class="anchor" id="autotoc_md320"></a>
+<h2><a class="anchor" id="autotoc_md364"></a>
 Source integration</h2>
 <p>Refer <a class="el" href="ENET_CPSW_TSN_GPTP.html">Ethernet TSN and gPTP Stack - API and Integration Guide</a>. <b>Source integration</b> section</p>
-<h2><a class="anchor" id="autotoc_md321"></a>
+<h2><a class="anchor" id="autotoc_md365"></a>
 Uniconf configuration</h2>
 <p>Refer <a class="el" href="ENET_CPSW_TSN_GPTP.html">Ethernet TSN and gPTP Stack - API and Integration Guide</a>. <b>Uniconf configuration</b> section</p>
-<h2><a class="anchor" id="autotoc_md322"></a>
+<h2><a class="anchor" id="autotoc_md366"></a>
 LLDP configuration parameters</h2>
 <p>This section describes the standard Yang parameters utilized for LLDP. The LLDP Yang structure is defined in IEEE 802.1ABcu 2021 Amendment 1: YANG Data Model.</p>
 <p>To configure LLDP params, refer <code>EnetApp_setLldpRtConfig</code> which is generating per-system and per-port configurations.</p>
@@ -254,7 +254,7 @@ LLDP configuration parameters</h2>
 <div class="line">    },</div>
 <div class="line">};</div>
 </div><!-- fragment --><p>In case of User want to support only one Destination MAC address, the entry of gLldpPortCfgData can be reduced accordingly.</p>
-<h1><a class="anchor" id="autotoc_md323"></a>
+<h1><a class="anchor" id="autotoc_md367"></a>
 See Also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> </p>
 </div></div><!-- contents -->

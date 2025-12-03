@@ -167,7 +167,12 @@ static EnetApp_DbKeyVal_IntItem_t gGptpPortDsInt[] =
 static EnetApp_DbKeyVal_IntItem_t gGptpDefaultDsInt[] =
 {
     // rw
+    #if GPTP_MASTER
+    {IEEE1588_PTP_TT_PRIORITY1, 200, sizeof(uint32_t), true},
+    #else
     {IEEE1588_PTP_TT_PRIORITY1, 248, sizeof(uint32_t), true},
+    #endif
+
     {IEEE1588_PTP_TT_PRIORITY2, 248, sizeof(uint32_t), true},
     {IEEE1588_PTP_TT_EXTERNAL_PORT_CONFIG_ENABLE, false, 1, true},
     // ro
@@ -244,9 +249,9 @@ static EnetApp_DbIntVal_t gGptpNonYangDs[] =
 #else
     {"SKIP_FREQADJ_COUNT_MAX", XL4_EXTMOD_XL4GPTP_SKIP_FREQADJ_COUNT_MAX, 0},
     {"CLOCK_COMPUTE_INTERVAL_MSEC", XL4_EXTMOD_XL4GPTP_CLOCK_COMPUTE_INTERVAL_MSEC, 100},
-    // If the phase offset between the GM and the local clock exceeds the threshold PHASE_OFFSET_ADJUST_BY_FREQ, 
+    // If the phase offset between the GM and the local clock exceeds the threshold PHASE_OFFSET_ADJUST_BY_FREQ,
     // phase offset will be applied; otherwise, the clock rate is adjusted to match the phase.
-    #ifdef ENET_ENABLE_PER_ICSSG 
+    #ifdef ENET_ENABLE_PER_ICSSG
     /* Increase this value to 10E6 for ICSSG because Nudge API is not supported. */
     {"PHASE_OFFSET_ADJUST_BY_FREQ", XL4_EXTMOD_XL4GPTP_PHASE_OFFSET_ADJUST_BY_FREQ, 1000000}, // in ns
     #else
@@ -292,7 +297,7 @@ int EnetApp_addGptpModCtx(EnetApp_ModuleCtx_t *modCtxTbl)
     return 0;
 }
 
-static void EnetApp_cfgGptpPortDs(int instance, int domain, 
+static void EnetApp_cfgGptpPortDs(int instance, int domain,
                                   int port_index, bool dbInitFlag)
 {
     int i;
@@ -309,8 +314,8 @@ static void EnetApp_cfgGptpPortDs(int instance, int domain,
                                         &gGptpPortDsInt[i].val, gGptpPortDsInt[i].sz,
                                         YDBI_NO_NOTICE);
             }
-        } 
-        else 
+        }
+        else
         {
             gptpgcfg_set_yang_port_item(instance, IEEE1588_PTP_TT_PORT_DS,
                                         gGptpPortDsInt[i].key, port_index,
@@ -344,8 +349,8 @@ static void EnetApp_cfgGptpDefaultDs(int instance, int domain, bool dbInitFlag)
                                         &gGptpDefaultDsInt[i].val, gGptpDefaultDsInt[i].sz,
                                         YDBI_NO_NOTICE);
             }
-        } 
-        else 
+        }
+        else
         {
             gptpgcfg_set_yang_defaultds_item(instance, gGptpDefaultDsInt[i].key,
                                         255, domain, YDBI_STATUS,
@@ -364,7 +369,7 @@ static void EnetApp_cfgGptpDefaultDs(int instance, int domain, bool dbInitFlag)
                         YDBI_NO_NOTICE);
         }
     }
-    
+
 }
 
 static void EnetApp_gptpUpdateDomainMap(int instance, int domain, EnetApp_Ctx_t *appCtx)
@@ -374,10 +379,10 @@ static void EnetApp_gptpUpdateDomainMap(int instance, int domain, EnetApp_Ctx_t 
         yang_db_item_access_t *ydbia=ydbi_access_handle();
         uint16_t dmap;
         uint8_t aps[]={IEEE1588_PTP_TT_RW_Y, IEEE1588_PTP_TT_PTP,
-		IEEE1588_PTP_TT_INSTANCE_DOMAIN_MAP, 255};
-	    yang_db_access_para_t dbpara={((instance | domain) != 0) ? YANG_DB_ACTION_APPEND:YANG_DB_ACTION_CREATE, 
+        IEEE1588_PTP_TT_INSTANCE_DOMAIN_MAP, 255};
+        yang_db_access_para_t dbpara={((instance | domain) != 0) ? YANG_DB_ACTION_APPEND:YANG_DB_ACTION_CREATE,
                                         YANG_DB_ONHW_NOACTION,
-		                                NULL, aps, NULL, NULL, &dmap, sizeof(uint16_t)};
+                                        NULL, aps, NULL, NULL, &dmap, sizeof(uint16_t)};
         dmap=instance<<8|domain;
         if(yang_db_action(ydbia->dbald, NULL, &dbpara)!=0){
             DPRINT("%s:Can't create instance|domainmap=0x%04x", __func__, dmap);
@@ -526,7 +531,7 @@ int EnetApp_adjustTimeInterval()
         if (GMSYNC_SYNC_STABLE != gmsts) {continue;}
         if (GMSYNC_SYNC_STABLE == gmsts)
         {
-            UB_TLOG(UBL_INFO, "di=%d, GM is stable. Adjust messages interval now\n", di);
+            UB_LOG(UBL_INFO, "di=%d, GM is stable. Adjust messages interval now\n", di);
 
             int8_t logSync=-3; // default: 125ms
             int8_t logAnnounce=-128; // do not change Announce

@@ -92,20 +92,20 @@ $(document).ready(function(){initNavTree('DRIVERS_HSMCLIENT_PAGE.html',''); init
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1118">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md1119">MCU+SDK v10.02.00 Supported Services</a></li>
-<li class="level1"><a href="#autotoc_md1120">HSM Client message format.</a><ul><ul><li class="level3"><a href="#autotoc_md1121">Message structure description.</a></li>
+<ul><li class="level1"><a href="#autotoc_md1162">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md1163">MCU+SDK v10.02.00 Supported Services</a></li>
+<li class="level1"><a href="#autotoc_md1164">HSM Client message format.</a><ul><ul><li class="level3"><a href="#autotoc_md1165">Message structure description.</a></li>
 </ul>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1122">HSM client Initialization.</a></li>
-<li class="level1"><a href="#autotoc_md1123">HSM Client generic service flow.</a></li>
-<li class="level1"><a href="#autotoc_md1124">HSM Client Load TIFS-MCU API and BootNotify message.</a></li>
-<li class="level1"><a href="#DRIVERS_HSMCLIENT_GET_VERSION">HSM Client GetVersion Service.</a><ul><ul><li class="level3"><a href="#autotoc_md1125">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1166">HSM client Initialization.</a></li>
+<li class="level1"><a href="#autotoc_md1167">HSM Client generic service flow.</a></li>
+<li class="level1"><a href="#autotoc_md1168">HSM Client Load TIFS-MCU API and BootNotify message.</a></li>
+<li class="level1"><a href="#DRIVERS_HSMCLIENT_GET_VERSION">HSM Client GetVersion Service.</a><ul><ul><li class="level3"><a href="#autotoc_md1169">Example Usage</a></li>
 </ul>
 </ul>
 </li>
-<li class="level1"><a href="#DRIVERS_HSMCLIENT_GET_UID">HSM Client GetUID Service.</a><ul><ul><li class="level3"><a href="#autotoc_md1126">Example Usage</a></li>
+<li class="level1"><a href="#DRIVERS_HSMCLIENT_GET_UID">HSM Client GetUID Service.</a><ul><ul><li class="level3"><a href="#autotoc_md1170">Example Usage</a></li>
 </ul>
 </ul>
 </li>
@@ -128,12 +128,12 @@ $(document).ready(function(){initNavTree('DRIVERS_HSMCLIENT_PAGE.html',''); init
 <li class="level1"><a href="#DRIVERS_HSMCLIENT_readOTFARegions">HSM Client Read OTFA Region Configuration Service</a></li>
 <li class="level1"><a href="#DRIVERS_HSMCLIENT_VerifyROTSwitchingCertificate">HSM Client Verify RoT Switching Certificate</a></li>
 <li class="level1"><a href="#DRIVERS_HSMCLIENT_UpdateKeyRevsion">HSM Client Update Key Revision</a></li>
-<li class="level1"><a href="#autotoc_md1127">APIs</a></li>
+<li class="level1"><a href="#autotoc_md1171">APIs</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_security_hsmclient"></a></p>
 <dl class="section note"><dt>Note</dt><dd>In the following document and in <b>TIFS-MCU</b> document the term used to refer to the Firmware which runs on HSM core is <b>TIFS-MCU Firmware</b>. Please note that the terms 1.**HSMRt Firmware** and 2.**HSMRt** are synonymous to <b>TIFS-MCU Firmware</b>.</dd></dl>
-<h1><a class="anchor" id="autotoc_md1118"></a>
+<h1><a class="anchor" id="autotoc_md1162"></a>
 Introduction</h1>
 <ul>
 <li>The objective of HSM client is to provide APIs for accessing HSM services. Below given model explains the use of HSM client graphically. It uses <a class="el" href="DRIVERS_SIPC_NOTIFY_PAGE.html">SIPC Notify</a> driver as a low level message passing mechanism to talk to HSM M4 core. HSM client APIs can be used with either <b>FreeRTOS</b> or <b>noRTOS</b> application.</li>
@@ -148,7 +148,7 @@ HSM CLIENT communication model</div></div>
 <li>The trusted R5Fs cores which can communicate with HSM are known as <b>Secure hosts</b>.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>For HS-SE device specific services, please contact your TI representative to get access to TIFS-MCU add-on package.</dd></dl>
-<h1><a class="anchor" id="autotoc_md1119"></a>
+<h1><a class="anchor" id="autotoc_md1163"></a>
 MCU+SDK v10.02.00 Supported Services</h1>
 <ul>
 <li><b>Following services are supported in MCU+SDK v10.02.00</b> <table class="markdownTable">
@@ -201,7 +201,7 @@ MCU+SDK v10.02.00 Supported Services</h1>
 </table>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1120"></a>
+<h1><a class="anchor" id="autotoc_md1164"></a>
 HSM Client message format.</h1>
 <ul>
 <li>Which public cores are going to be <b>secure hosts</b> will be decided by sysconfig configurations of <b>TIFS-MCU</b> at compile time and user has to make sure that similar configurations is done on the R5F side as well.</li>
@@ -211,7 +211,7 @@ HSM Client message format.</h1>
 <img src="sipc_message_ex.png" alt=""/>
 <div class="caption">
 SIPC message structure</div></div>
-<h3><a class="anchor" id="autotoc_md1121"></a>
+<h3><a class="anchor" id="autotoc_md1165"></a>
 Message structure description.</h3>
 <ul>
 <li><b>DestClientID</b> -: Client Id to which a message is going to be sent. In case of R5F -&gt; HSM ( R5 send message to HSM ) this field will always be <b>equal to 1</b> because TIFS-MCU is a NORTOS application and only one client is required.</li>
@@ -228,7 +228,7 @@ Message structure description.</h3>
 <li>The argument will reside in <b>OCRAM</b> and only its pointer is going to be passed in the message itself. When HSM receive the message it reads the argument content from OCRAM and process it. Thus other information needed by HSM server can be passed along with the message through HSM MBOX. <dl class="section note"><dt>Note</dt><dd>It is strongly suggested that user application must cleary define a boundary between secure R5FSS and non secure R5FSS core's OCRAM memory so that non secure core cannot access the parameters of HSM message. One way to define such boundary is to protect some predefined memory region in OCRAM with firewalls so that only secure cores can access this particular memory region.</dd></dl>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1122"></a>
+<h1><a class="anchor" id="autotoc_md1166"></a>
 HSM client Initialization.</h1>
 <ul>
 <li>User needs to add an instance of HSM client in <b>Secure R5F's</b> sysconfig configuration.</li>
@@ -246,7 +246,7 @@ HSM Client sysconfig</div></div>
 <li><dl class="section note"><dt>Note</dt><dd>If user is not using sysconfig then it is important to call <b><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga3b55ad3229c657ca509f9b29451e37e5" title="Initialize the HSM client for current core.">HsmClient_init()</a></b> with appropriate <a class="el" href="structSIPC__Params.html" title="Parameters used by SIPC_init.">SIPC_Params</a> before any service function calls.</dd></dl>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1123"></a>
+<h1><a class="anchor" id="autotoc_md1167"></a>
 HSM Client generic service flow.</h1>
 <ul>
 <li>Below mentioned are the generic steps that every service request made by HSM client follows except <a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga65e1efbec7ecc3f8a2c27e8a26b9ead0">HSM_MSG_BOOT_NOTIFY</a></li>
@@ -273,7 +273,7 @@ HSM Client generic service flow</div></div>
 <li>check RespMsg integrity i.e CRC16 for HSM message and CRC16 for args. if integrity check fails then return SystemP_FAILURE.</li>
 <li>If HSM_FLAG_ACK is received then returns SystemP_SUCCESS else SystemP_FAILURE.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1124"></a>
+<h1><a class="anchor" id="autotoc_md1168"></a>
 HSM Client Load TIFS-MCU API and BootNotify message.</h1>
 <ul>
 <li>HSM client Module is used by <b>SBL</b> to load <b>TIFS-MCU Fiwmware</b> on HSM core.</li>
@@ -301,7 +301,7 @@ HSM Client GetVersion Service.</h1>
 <li>Refer to <a class="el" href="unionHsmVer__t__.html" title="type for reading HSMRt version.">HsmVer_t_</a> for the description of different fields that defines a unique TIFS-MCU Firmware version. If User needs to know just the unique 64 bit version ID then, user should read <a class="el" href="unionHsmVer__t__.html#a8c5ddfe5a8c5a319511da15173f1bddf">HsmVer_t_::HsmrtVer</a> a 64 bit field which combines all the different fields of <a class="el" href="unionHsmVer__t__.html" title="type for reading HSMRt version.">HsmVer_t_</a>.</li>
 <li><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga70b2b53821f5782e083984e34df972b7" title="populates the current HSMRT version Id by default the hsm flag is set to HSM_FLAG_AOP for this servic...">HsmClient_getVersion()</a> API takes <b>timeToWaitInTicks</b> parameter as input which dictates how long application will wait for the response from HSM core. If the timeout exception occurs <a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga70b2b53821f5782e083984e34df972b7" title="populates the current HSMRT version Id by default the hsm flag is set to HSM_FLAG_AOP for this servic...">HsmClient_getVersion()</a> API return SystemP_TIMEOUT. </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1125"></a>
+<h3><a class="anchor" id="autotoc_md1169"></a>
 Example Usage</h3>
 <ul>
 <li>Demo code for <a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga3b55ad3229c657ca509f9b29451e37e5" title="Initialize the HSM client for current core.">HsmClient_init()</a>. This will be autogenerated by sysconfig.</li>
@@ -333,7 +333,7 @@ Example Usage</h3>
 <div class="line">    <span class="comment">/* This is HSM -&gt; R5F queue */</span></div>
 <div class="line">    sipcParams.<a class="code" href="structSIPC__Params.html#a187a5d40b35a335a03619580b9eecb58">tx_SipcQueues</a>[<a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2a7d22d9c30e99359f1c7e59fea1e48ea5">CORE_INDEX_HSM</a>] = (uintptr_t)gQueue_HsmToR5[0] ;</div>
 <div class="line">    sipcParams.<a class="code" href="structSIPC__Params.html#acc0e3df1965dc7364dfec784fa90bcdf">rx_SipcQueues</a>[<a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2a7d22d9c30e99359f1c7e59fea1e48ea5">CORE_INDEX_HSM</a>] = (uintptr_t)gQueue_R5ToHsm[0] ;</div>
-<div class="line">    sipcParams.<a class="code" href="structSIPC__Params.html#a2c25f5d7c4028f22038dda53a58686ed">secHostCoreId</a>[<a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2aec8bd284ef7986d731a488732fbdf2a8">CORE_INDEX_SEC_MASTER_0</a>] = <a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4aa782ed37b1959ba8b9bcc5a9a375802a">CORE_ID_R5FSS0_0</a>;</div>
+<div class="line">    sipcParams.<a class="code" href="structSIPC__Params.html#a4a109a8bbbf92def86b8c7ec9e05266b">secHostCoreId</a>[<a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2aec8bd284ef7986d731a488732fbdf2a8">CORE_INDEX_SEC_MASTER_0</a>] = <a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4aa782ed37b1959ba8b9bcc5a9a375802a">CORE_ID_R5FSS0_0</a>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* initialize the HsmClient module */</span></div>
 <div class="line">    status = <a class="code" href="group__DRV__HSMCLIENT__MODULE.html#ga3b55ad3229c657ca509f9b29451e37e5">HsmClient_init</a>(&amp;sipcParams);</div>
@@ -386,7 +386,7 @@ HSM Client GetUID Service.</h1>
 <li>This service is used to get UID or Unique ID of the device running TIFS_MCU Firmware.</li>
 <li>UID is a 64 byte unique ID for a device which user needs to instantiate as an uint8_t * object and call <a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gad9f5c4c23d11b16ef7ff0eb03a7fa740" title="The service issued to HSM Server populates the Device UID by default the hsm flag is set to HSM_FLAG_...">HsmClient_getUID()</a> API to get the device UID.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1126"></a>
+<h3><a class="anchor" id="autotoc_md1170"></a>
 Example Usage</h3>
 <ul>
 <li>Registering <a class="el" href="structHsmClient__t.html" title="This is a HSMClient type which holds the information needed by hsm client to communicate with HSM .">HsmClient_t</a> with client ID and requesting device UID.</li>
@@ -618,20 +618,19 @@ HSM Client Update Key Revision</h1>
 <li>This service is available on <b>HS_SE</b> devices.</li>
 <li>This service is responsible for switching the RoT to backup keys permanently.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1127"></a>
+<h1><a class="anchor" id="autotoc_md1171"></a>
 APIs</h1>
 <p><a class="el" href="group__DRV__HSMCLIENT__MODULE.html">APIs for HSMCLIENT</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
-<div class="ttc" id="agroup__DRV__HSMCLIENT__MODULE_html_gaaeb1c6f595adbdc6376975787d729ebf"><div class="ttname"><a href="group__DRV__HSMCLIENT__MODULE.html#gaaeb1c6f595adbdc6376975787d729ebf">HSM_UID_SIZE</a></div><div class="ttdeci">#define HSM_UID_SIZE</div><div class="ttdoc">UID or Unique ID is a device specific ID of 64 bytes.</div><div class="ttdef"><b>Definition:</b> hsmclient_msg.h:150</div></div>
+<div class="ttc" id="agroup__DRV__HSMCLIENT__MODULE_html_gaaeb1c6f595adbdc6376975787d729ebf"><div class="ttname"><a href="group__DRV__HSMCLIENT__MODULE.html#gaaeb1c6f595adbdc6376975787d729ebf">HSM_UID_SIZE</a></div><div class="ttdeci">#define HSM_UID_SIZE</div><div class="ttdoc">UID or Unique ID is a device specific ID of 64 bytes.</div><div class="ttdef"><b>Definition:</b> hsmclient_msg.h:153</div></div>
 <div class="ttc" id="astructSIPC__Params_html"><div class="ttname"><a href="structSIPC__Params.html">SIPC_Params</a></div><div class="ttdoc">Parameters used by SIPC_init.</div><div class="ttdef"><b>Definition:</b> sipc_notify.h:84</div></div>
 <div class="ttc" id="agroup__DRV__HSMCLIENT__MODULE_html_ga823fa989f0c2b87f8b231da6f4000e12"><div class="ttname"><a href="group__DRV__HSMCLIENT__MODULE.html#ga823fa989f0c2b87f8b231da6f4000e12">HsmClient_setFirewall</a></div><div class="ttdeci">int32_t HsmClient_setFirewall(HsmClient_t *HsmClient, FirewallReq_t *FirewallReqObj, uint32_t timeout)</div><div class="ttdoc">The service issued to HSM Server sets the firewall for the given firewall id and region.</div><div class="ttdef"><b>Definition:</b> hsmclient.c:1319</div></div>
 <div class="ttc" id="astructSIPC__Params_html_a187a5d40b35a335a03619580b9eecb58"><div class="ttname"><a href="structSIPC__Params.html#a187a5d40b35a335a03619580b9eecb58">SIPC_Params::tx_SipcQueues</a></div><div class="ttdeci">uintptr_t tx_SipcQueues[MAX_SEC_CORES_WITH_HSM]</div><div class="ttdef"><b>Definition:</b> sipc_notify.h:98</div></div>
 <div class="ttc" id="agroup__DRV__SIPC__NOTIFY__MODULE_html_gga8602ce075b94d70bcde46634dd6ab8d2a7d22d9c30e99359f1c7e59fea1e48ea5"><div class="ttname"><a href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2a7d22d9c30e99359f1c7e59fea1e48ea5">CORE_INDEX_HSM</a></div><div class="ttdeci">@ CORE_INDEX_HSM</div><div class="ttdef"><b>Definition:</b> sipc_notify_cfg.h:128</div></div>
 <div class="ttc" id="astructFirewallReq__t_html_ad46aa5f2946a3cc035a64aff66d37878"><div class="ttname"><a href="structFirewallReq__t.html#ad46aa5f2946a3cc035a64aff66d37878">FirewallReq_t::FirewallRegionArr</a></div><div class="ttdeci">FirewallRegionReq_t * FirewallRegionArr</div><div class="ttdef"><b>Definition:</b> hsmclient.h:212</div></div>
 <div class="ttc" id="astructHsmClient__t_html"><div class="ttname"><a href="structHsmClient__t.html">HsmClient_t</a></div><div class="ttdoc">This is a HSMClient type which holds the information needed by hsm client to communicate with HSM .</div><div class="ttdef"><b>Definition:</b> hsmclient.h:111</div></div>
-<div class="ttc" id="astructSIPC__Params_html_a2c25f5d7c4028f22038dda53a58686ed"><div class="ttname"><a href="structSIPC__Params.html#a2c25f5d7c4028f22038dda53a58686ed">SIPC_Params::secHostCoreId</a></div><div class="ttdeci">uint32_t secHostCoreId[MAX_SEC_CORES_WITH_HSM - 1]</div><div class="ttdef"><b>Definition:</b> sipc_notify.h:104</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SYSTEM_html_ga376db5d2fbbc54611736778be8e15431"><div class="ttname"><a href="group__KERNEL__DPL__SYSTEM.html#ga376db5d2fbbc54611736778be8e15431">SystemP_WAIT_FOREVER</a></div><div class="ttdeci">#define SystemP_WAIT_FOREVER</div><div class="ttdoc">Value to use when needing a timeout of infinity or wait forver until resource is available.</div><div class="ttdef"><b>Definition:</b> SystemP.h:83</div></div>
 <div class="ttc" id="astructSIPC__Params_html_a38ea5e6c8f8dba16b482f0a24f94874a"><div class="ttname"><a href="structSIPC__Params.html#a38ea5e6c8f8dba16b482f0a24f94874a">SIPC_Params::numCores</a></div><div class="ttdeci">uint32_t numCores</div><div class="ttdef"><b>Definition:</b> sipc_notify.h:86</div></div>
 <div class="ttc" id="agroup__DRV__HSMCLIENT__MODULE_html_ga152f4adbca2128ca988769beca7009aa"><div class="ttname"><a href="group__DRV__HSMCLIENT__MODULE.html#ga152f4adbca2128ca988769beca7009aa">HsmClient_register</a></div><div class="ttdeci">int32_t HsmClient_register(HsmClient_t *HsmClient, uint8_t clientId)</div><div class="ttdoc">register a client to a particular ClientId</div><div class="ttdef"><b>Definition:</b> hsmclient.c:461</div></div>
@@ -648,6 +647,7 @@ APIs</h1>
 <div class="ttc" id="agroup__KERNEL__DPL__SYSTEM_html_ga47e638d7c694e6d42e57b96b071b8a6f"><div class="ttname"><a href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a></div><div class="ttdeci">#define SystemP_SUCCESS</div><div class="ttdoc">Return status when the API execution was successful.</div><div class="ttdef"><b>Definition:</b> SystemP.h:56</div></div>
 <div class="ttc" id="astructFirewallReq__t_html_a517b37cdf25d7cd61b2ffe644f15df59"><div class="ttname"><a href="structFirewallReq__t.html#a517b37cdf25d7cd61b2ffe644f15df59">FirewallReq_t::regionCount</a></div><div class="ttdeci">uint16_t regionCount</div><div class="ttdef"><b>Definition:</b> hsmclient.h:210</div></div>
 <div class="ttc" id="agroup__DRV__SIPC__NOTIFY__MODULE_html_gga8602ce075b94d70bcde46634dd6ab8d2aec8bd284ef7986d731a488732fbdf2a8"><div class="ttname"><a href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2aec8bd284ef7986d731a488732fbdf2a8">CORE_INDEX_SEC_MASTER_0</a></div><div class="ttdeci">@ CORE_INDEX_SEC_MASTER_0</div><div class="ttdef"><b>Definition:</b> sipc_notify_cfg.h:126</div></div>
+<div class="ttc" id="astructSIPC__Params_html_a4a109a8bbbf92def86b8c7ec9e05266b"><div class="ttname"><a href="structSIPC__Params.html#a4a109a8bbbf92def86b8c7ec9e05266b">SIPC_Params::secHostCoreId</a></div><div class="ttdeci">uint32_t secHostCoreId[MAX_SEC_CORES_WITH_HSM - 1U]</div><div class="ttdef"><b>Definition:</b> sipc_notify.h:104</div></div>
 <div class="ttc" id="agroup__DRV__HSMCLIENT__MODULE_html_gad9f5c4c23d11b16ef7ff0eb03a7fa740"><div class="ttname"><a href="group__DRV__HSMCLIENT__MODULE.html#gad9f5c4c23d11b16ef7ff0eb03a7fa740">HsmClient_getUID</a></div><div class="ttdeci">int32_t HsmClient_getUID(HsmClient_t *HsmClient, uint8_t *uid, uint32_t timeout)</div><div class="ttdoc">The service issued to HSM Server populates the Device UID by default the hsm flag is set to HSM_FLAG_...</div><div class="ttdef"><b>Definition:</b> hsmclient.c:592</div></div>
 <div class="ttc" id="astructSIPC__Params_html_acc0e3df1965dc7364dfec784fa90bcdf"><div class="ttname"><a href="structSIPC__Params.html#acc0e3df1965dc7364dfec784fa90bcdf">SIPC_Params::rx_SipcQueues</a></div><div class="ttdeci">uintptr_t rx_SipcQueues[MAX_SEC_CORES_WITH_HSM]</div><div class="ttdef"><b>Definition:</b> sipc_notify.h:100</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>

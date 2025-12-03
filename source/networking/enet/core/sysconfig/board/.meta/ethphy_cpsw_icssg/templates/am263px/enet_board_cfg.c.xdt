@@ -7,13 +7,10 @@
 % let device = common.getDeviceName();
 
 % if (cpsw_instance.customBoardEnable === false) {
-
 % let module = system.modules["/board/ethphy_cpsw_icssg/ethphy_cpsw_icssg"];
 % let instances = module.$instances;
 % let uniqueDevices = ethphyScript.getUniqueLinkedEthphy(module);
 % let linkedInstances = ethphyScript.getLinkedInstances(module);
-
-% if(linkedInstances.length > 0) {
 /* ========================================================================== */
 /*                             Include Files                                  */
 /* ========================================================================== */
@@ -28,7 +25,7 @@
 #include <enet_appboardutils.h>
 
 #include <drivers/hw_include/cslr_soc.h>
-#include <networking/enet/core/src/phy/generic_phy.h>
+#include <generic_phy.h>
 #include <networking/enet/core/src/phy/enetphy_priv.h>
 #include "ti_board_open_close.h"
 #include <kernel/dpl/AddrTranslateP.h>
@@ -43,18 +40,22 @@ static void EnetBoard_setMacPort2IOExpanderCfg(void);
 %}
 
 /* PHY drivers */
+% if(linkedInstances.length > 0) {
 % for (let phyDevice of uniqueDevices){
 extern Phy_DrvObj_t gEnetPhyDrv`common.camelSentence(phyDevice)`;
 %}
 extern Phy_DrvObj_t gEnetPhyDrvGeneric;
+%}
 
 /*! \brief All the registered PHY specific drivers. */
 static const EthPhyDrv_If gEnetPhyDrvs[] =
 {
+% if(linkedInstances.length > 0) {
 % for (let phyDevice of uniqueDevices){
     &gEnetPhyDrv`common.camelSentence(phyDevice)`,    /* `phyDevice` */
 %}
-    &gEnetPhyDrvGeneric,   /* Generic PHY - must be last */
+    &gEnetPhyDrvGeneric,    /* Generic PHY - must be last */
+%}
 };
 
 const EnetPhy_DrvInfoTbl gEnetPhyDrvTbl =
@@ -293,7 +294,7 @@ static void EnetBoard_setMacPort2IOExpanderCfg(void)
     {
         /* Read from Am263Px PCB revision */
         status = EEPROM_read(eepromHandle, EEPROM_READ_PCB_REV_DATA_OFFSET, pEepromRdPtr, 2);
-        
+
         if ((pEepromRdPtr[0] == 'E') && (pEepromRdPtr[1] == '1')) /* Checking PCB revision E1 */
         {
             DebugP_logInfo("AM263Px CC E1 Board found\r\n");
@@ -485,5 +486,4 @@ uint32_t EnetBoard_getId(void)
     return ENETBOARD_AM263PX_EVM;
 }
 
-% }
 % }

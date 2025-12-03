@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('EXAMPLES_RAT.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3651">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md3732">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_RAT_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3652">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3653">Sample Output</a></li>
-<li class="level1"><a href="#autotoc_md3654">Description</a></li>
+<li class="level1"><a href="#autotoc_md3733">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3734">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3735">Description</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_rat_basic"></a></p>
-<h1><a class="anchor" id="autotoc_md3651"></a>
+<h1><a class="anchor" id="autotoc_md3732"></a>
 Introduction</h1>
 <p>RAT example provides how to use configure RAT.</p>
 <h1><a class="anchor" id="EXAMPLES_RAT_COMBOS"></a>
@@ -117,14 +117,14 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/rat   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3652"></a>
+<h1><a class="anchor" id="autotoc_md3733"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination &#160; and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li><b>When using makefiles to build</b>, note the required combination and build using &#160; make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3653"></a>
+<h1><a class="anchor" id="autotoc_md3734"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">Starting OSPI Bootloader ...</div>
 <div class="line">[BOOTLOADER_PROFILE] Boot Media       : NOR SPI FLASH</div>
@@ -142,7 +142,7 @@ Sample Output</h1>
 <div class="line">Image loading done, switching to application ...</div>
 <div class="line"> </div>
 <div class="line">All tests have passed!!</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3654"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3735"></a>
 Description</h1>
 <p>On how to configure RAT, please go through <a class="el" href="OPTIFLASH_CONFIGURE.html">Configuring OptiFlash various IP</a>.</p>
 <p>This application configures RAT to translate a region with starting address 0x70200000 and size of 32KB that would translate to 0x70000000 and both of these addresses are in OCRAM. So when writing to address 0x70200000 would actually write to 0x70000000. At 0x70000000 address <code>buffer</code> array has been placed using memory configurator. Therefore, All that is written at address 0x70200000, can be read from buffer variable. This function is being displayed through this example. </p>

@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('EXAMPLES_KERNEL_DPL_INTERRUPT_PRIORITI
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1575">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md1576">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md1577">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md1578">See Also</a></li>
-<li class="level1"><a href="#autotoc_md1579">Sample Output</a></li>
+<ul><li class="level1"><a href="#autotoc_md1646">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md1647">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md1648">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md1649">See Also</a></li>
+<li class="level1"><a href="#autotoc_md1650">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_kernel_interrupt_prioritization"></a></p>
-<h1><a class="anchor" id="autotoc_md1575"></a>
+<h1><a class="anchor" id="autotoc_md1646"></a>
 Introduction</h1>
 <p>This examples demonstrates the prioritization of interrupts in VIM through nesting of 3 Timer interrupts of different priority.</p>
 <p>The example does the below</p><ul>
@@ -120,7 +120,7 @@ Introduction</h1>
 </li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>This example uses SysCfg to configure priority of Timer interrupts. For configuring the priority of interrupts which are not supported by SysCfg, use the element "HwiP_Params.priority" in HwiP. Priority can be specified from a level of 0 to 15, where 0 denotes highest priority.</dd></dl>
-<h1><a class="anchor" id="autotoc_md1576"></a>
+<h1><a class="anchor" id="autotoc_md1647"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -136,7 +136,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/kernel/dpl/interrupt_prioritization/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1577"></a>
+<h1><a class="anchor" id="autotoc_md1648"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -144,10 +144,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>The trace gets printed and can be used to verify interrupt nesting and prioritization.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1578"></a>
+<h1><a class="anchor" id="autotoc_md1649"></a>
 See Also</h1>
 <p><a class="el" href="KERNEL_DPL_PAGE.html">Driver Porting Layer (DPL)</a></p>
-<h1><a class="anchor" id="autotoc_md1579"></a>
+<h1><a class="anchor" id="autotoc_md1650"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">[DPL] Interrupt prioritization Test Started...</div>

@@ -174,6 +174,12 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:ga4f84fb4c92d0f2ae8ae13d674f42a9a7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__ENET__CPSW.html#ga4f84fb4c92d0f2ae8ae13d674f42a9a7">CPSW_COMMON_TX_MTU_DEFAULT</a>&#160;&#160;&#160;(2024U)</td></tr>
+<tr class="memdesc:ga4f84fb4c92d0f2ae8ae13d674f42a9a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default common TX MTU.  <a href="group__DRV__ENET__CPSW.html#ga4f84fb4c92d0f2ae8ae13d674f42a9a7">More...</a><br /></td></tr>
+<tr class="separator:ga4f84fb4c92d0f2ae8ae13d674f42a9a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga230c0d4f968b07113f2be4f587c0cc82"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__ENET__CPSW.html#ga230c0d4f968b07113f2be4f587c0cc82">CPSW_ESC_PRI_LD_VAL</a>&#160;&#160;&#160;(2U)</td></tr>
+<tr class="memdesc:ga230c0d4f968b07113f2be4f587c0cc82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Priority escalation value for switch scheduler.  <a href="group__DRV__ENET__CPSW.html#ga230c0d4f968b07113f2be4f587c0cc82">More...</a><br /></td></tr>
+<tr class="separator:ga230c0d4f968b07113f2be4f587c0cc82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga38260bffd42c0ef43ce49eee0045ef18"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__ENET__CPSW.html#ga38260bffd42c0ef43ce49eee0045ef18">CPSW_PER_PUBLIC_IOCTL</a>(x)</td></tr>
 <tr class="memdesc:ga38260bffd42c0ef43ce49eee0045ef18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper macro to create CPSW IOCTL commands.  <a href="group__DRV__ENET__CPSW.html#ga38260bffd42c0ef43ce49eee0045ef18">More...</a><br /></td></tr>
 <tr class="separator:ga38260bffd42c0ef43ce49eee0045ef18"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,6 +219,39 @@ CPSW InterVLAN ingress packet match types.</h2></td></tr>
 <tr class="separator:gae251a9b7e53050a62f6313bc0acbec33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ga4f84fb4c92d0f2ae8ae13d674f42a9a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4f84fb4c92d0f2ae8ae13d674f42a9a7">&#9670;&nbsp;</a></span>CPSW_COMMON_TX_MTU_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CPSW_COMMON_TX_MTU_DEFAULT&#160;&#160;&#160;(2024U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default common TX MTU. </p>
+
+</div>
+</div>
+<a id="ga230c0d4f968b07113f2be4f587c0cc82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga230c0d4f968b07113f2be4f587c0cc82">&#9670;&nbsp;</a></span>CPSW_ESC_PRI_LD_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CPSW_ESC_PRI_LD_VAL&#160;&#160;&#160;(2U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Priority escalation value for switch scheduler. </p>
+<p>When a port is in escalate priority, this is the number of higher priority packets sent before the next lower priority is allowed to send a packet. Escalate priority allows lower priority packets to be sent at a fixed rate relative to the next higher priority. The min value of esc_pri_ld_val = 2 </p>
+
+</div>
+</div>
 <a id="ga38260bffd42c0ef43ce49eee0045ef18"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga38260bffd42c0ef43ce49eee0045ef18">&#9670;&nbsp;</a></span>CPSW_PER_PUBLIC_IOCTL</h2>
 

@@ -90,7 +90,6 @@ $(document).ready(function(){initNavTree('group__DRV__OSPI__LLD__MODULE.html',''
   <div class="summary">
 <a href="#groups">Sub Modules</a> &#124;
 <a href="#files">Files</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
 <div class="title">APIs for OSPI LLD<div class="ingroups"><a class="el" href="group__DRV__MODULE.html">APIs for SOC Specific Device Drivers</a></div></div>  </div>
@@ -101,8 +100,6 @@ $(document).ready(function(){initNavTree('group__DRV__OSPI__LLD__MODULE.html',''
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
 Sub Modules</h2></td></tr>
-<tr class="memitem:group__OSPI__DMA"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__OSPI__DMA.html">APIs for OSPI DMA mode</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html">Generic NOR Flash API for single pin mode</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__DRV__OSPI__LLD__PHY__API__MODULE"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__LLD__PHY__API__MODULE.html">Generic Phy layer API.</a></td></tr>
@@ -121,17 +118,6 @@ Files</h2></td></tr>
 <tr class="memitem:ospi__lld_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ospi__lld_8h.html">ospi_lld.h</a></td></tr>
 <tr class="memdesc:ospi__lld_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">OSPI LLD Driver API/interface file. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:gac17f5f295276bb71eb228f998f096db9"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__LLD__MODULE.html#gac17f5f295276bb71eb228f998f096db9">OSPI_DmaHandle</a></td></tr>
-<tr class="memdesc:gac17f5f295276bb71eb228f998f096db9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The handle for DMA instance used with OSPI.  <a href="group__DRV__OSPI__LLD__MODULE.html#gac17f5f295276bb71eb228f998f096db9">More...</a><br /></td></tr>
-<tr class="separator:gac17f5f295276bb71eb228f998f096db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga864d26872cd84abdb4ff93e5657c93b6"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__LLD__MODULE.html#ga864d26872cd84abdb4ff93e5657c93b6">OSPI_DmaChConfig</a></td></tr>
-<tr class="memdesc:ga864d26872cd84abdb4ff93e5657c93b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">A handle that holds DMA configuration parameters for OSPI.  <a href="group__DRV__OSPI__LLD__MODULE.html#ga864d26872cd84abdb4ff93e5657c93b6">More...</a><br /></td></tr>
-<tr class="separator:ga864d26872cd84abdb4ff93e5657c93b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7dc3c40915b842f332dbff0b4d6e4489"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__LLD__MODULE.html#ga7dc3c40915b842f332dbff0b4d6e4489">OSPI_DrvHandle</a></td></tr>
-<tr class="separator:ga7dc3c40915b842f332dbff0b4d6e4489"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -988,53 +974,6 @@ Decoder Chip Selects</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define OSPI_DECODER_SELECT16&#160;&#160;&#160;((uint32_t) 1U)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a id="gac17f5f295276bb71eb228f998f096db9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac17f5f295276bb71eb228f998f096db9">&#9670;&nbsp;</a></span>OSPI_DmaHandle</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void* <a class="el" href="group__DRV__OSPI__LLD__MODULE.html#gac17f5f295276bb71eb228f998f096db9">OSPI_DmaHandle</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The handle for DMA instance used with OSPI. </p>
-
-</div>
-</div>
-<a id="ga864d26872cd84abdb4ff93e5657c93b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga864d26872cd84abdb4ff93e5657c93b6">&#9670;&nbsp;</a></span>OSPI_DmaChConfig</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void* <a class="el" href="group__DRV__OSPI__LLD__MODULE.html#ga864d26872cd84abdb4ff93e5657c93b6">OSPI_DmaChConfig</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>A handle that holds DMA configuration parameters for OSPI. </p>
-
-</div>
-</div>
-<a id="ga7dc3c40915b842f332dbff0b4d6e4489"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga7dc3c40915b842f332dbff0b4d6e4489">&#9670;&nbsp;</a></span>OSPI_DrvHandle</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void* <a class="el" href="group__DRV__OSPI__LLD__MODULE.html#ga7dc3c40915b842f332dbff0b4d6e4489">OSPI_DrvHandle</a></td>
         </tr>
       </table>
 </div><div class="memdoc">

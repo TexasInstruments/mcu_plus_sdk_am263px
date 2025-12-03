@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) Texas Instruments Incorporated 2021
+ *  Copyright (c) Texas Instruments Incorporated 2021-2025
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions
@@ -130,6 +130,9 @@ extern "C" {
 /*! \brief RGMII ID CTRL */
 #define DP83TC812_RX_CLK_SHIFT    PHY_BIT(1)
 #define DP83TC812_TX_CLK_SHIFT    PHY_BIT(0)
+
+/*! \brief PHY STS bits */
+#define DP83TC812_PHYSTS_LINK	PHY_BIT(0)
 
 
 /* ========================================================================== */

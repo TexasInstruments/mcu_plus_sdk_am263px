@@ -11,5 +11,10 @@ var group__DRV__OSPI__NOR__FLASH__API__MODULE =
     [ "OSPI_configBaudrate", "group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gaa2e6caaca51234f8438bf183a9668371", null ],
     [ "OSPI_readBaudRateDivFromReg", "group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gacd2e47532e230e9483fd237c4483d00f", null ],
     [ "OSPI_getBaudRateDivFromObj", "group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga9245450f7a454c847b625d16d1ca9de4", null ],
-    [ "OSPI_setResetPinStatus", "group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga571cf9598daae7049416eb502b493e88", null ]
+    [ "OSPI_setResetPinStatus", "group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga571cf9598daae7049416eb502b493e88", null ],
+    [ "OSPI_phyValidateTuningPoint", "group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gacdf02bfd0923a1131c2550dbff2a274b", null ],
+    [ "OSPI_isValidateOtpEnable", "group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga0ee9c708db4f78a7dd88a0eb68dadca0", null ],
+    [ "OSPI_setFrequency", "group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga12d03e24e5378860702fcd3a3ee72d12", null ],
+    [ "OSPI_setDelays", "group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga55a8848488b2dddfe65b1cafa330e9d1", null ],
+    [ "OSPI_setBaudRateDiv", "group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gacb120f1d20c835efd02acaef7dd4e545", null ]
 ];

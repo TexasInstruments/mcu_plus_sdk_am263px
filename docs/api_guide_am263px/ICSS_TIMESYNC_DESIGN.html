@@ -92,31 +92,31 @@ $(document).ready(function(){initNavTree('ICSS_TIMESYNC_DESIGN.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1353">Terms and Abbreviations</a></li>
-<li class="level1"><a href="#autotoc_md1354">Timer</a></li>
-<li class="level1"><a href="#autotoc_md1355">Sync Signal Generation</a></li>
+<ul><li class="level1"><a href="#autotoc_md1424">Terms and Abbreviations</a></li>
+<li class="level1"><a href="#autotoc_md1425">Timer</a></li>
+<li class="level1"><a href="#autotoc_md1426">Sync Signal Generation</a></li>
 <li class="level1"><a href="#ICSS_TIMESYNC_DESIGN_TIMESTAMPING">Timestamping</a></li>
-<li class="level1"><a href="#autotoc_md1356">State Machine</a></li>
-<li class="level1"><a href="#autotoc_md1357">Synchronization</a><ul><li class="level2"><a href="#autotoc_md1358">Determination of Sync Period</a></li>
+<li class="level1"><a href="#autotoc_md1427">State Machine</a></li>
+<li class="level1"><a href="#autotoc_md1428">Synchronization</a><ul><li class="level2"><a href="#autotoc_md1429">Determination of Sync Period</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1359">Delay Calculation</a><ul><li class="level2"><a href="#ICSS_TIMESYNC_LINE_DELAY_CALCULATION">Line Delay Calculation for E2E mode</a></li>
-<li class="level2"><a href="#autotoc_md1360">Peer Delay Calculation for P2P mode</a></li>
+<li class="level1"><a href="#autotoc_md1430">Delay Calculation</a><ul><li class="level2"><a href="#ICSS_TIMESYNC_LINE_DELAY_CALCULATION">Line Delay Calculation for E2E mode</a></li>
+<li class="level2"><a href="#autotoc_md1431">Peer Delay Calculation for P2P mode</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1361">Syntonization</a></li>
-<li class="level1"><a href="#autotoc_md1362">Reset</a></li>
-<li class="level1"><a href="#autotoc_md1363">Forwarding Rules</a></li>
-<li class="level1"><a href="#autotoc_md1364">OS Components</a><ul><li class="level2"><a href="#ICSS_TIMESYNC_DESIGN_INTERRUPTS">Interrupts</a></li>
-<li class="level2"><a href="#autotoc_md1365">Tasks</a></li>
-<li class="level2"><a href="#autotoc_md1366">Semaphores</a></li>
-<li class="level2"><a href="#autotoc_md1367">Events</a></li>
+<li class="level1"><a href="#autotoc_md1432">Syntonization</a></li>
+<li class="level1"><a href="#autotoc_md1433">Reset</a></li>
+<li class="level1"><a href="#autotoc_md1434">Forwarding Rules</a></li>
+<li class="level1"><a href="#autotoc_md1435">OS Components</a><ul><li class="level2"><a href="#ICSS_TIMESYNC_DESIGN_INTERRUPTS">Interrupts</a></li>
+<li class="level2"><a href="#autotoc_md1436">Tasks</a></li>
+<li class="level2"><a href="#autotoc_md1437">Semaphores</a></li>
+<li class="level2"><a href="#autotoc_md1438">Events</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_icss_timesync_design"></a></p>
-<h1><a class="anchor" id="autotoc_md1353"></a>
+<h1><a class="anchor" id="autotoc_md1424"></a>
 Terms and Abbreviations</h1>
 <table class="doxtable">
 <tr>
@@ -142,10 +142,10 @@ Terms and Abbreviations</h1>
 <tr>
 <td>RCF </td><td>Syntonization/(Frequency Compensation) factor  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1354"></a>
+<h1><a class="anchor" id="autotoc_md1425"></a>
 Timer</h1>
 <p>ICSS TimeSync Driver uses the 64-bit free running IEP Timer inside PRU-ICSS running at 200 MHz as the base timer for all synchronization related activities. PRU-ICSS has the capability to timestamp entry and exit of a frame based on this timer.</p>
-<h1><a class="anchor" id="autotoc_md1355"></a>
+<h1><a class="anchor" id="autotoc_md1426"></a>
 Sync Signal Generation</h1>
 <p>Sync signal is enabled in IEP with a sync pulse width that is relative to the sync signal generation interval. This sync is equivalent to the 1PPS output and should not be confused with PTP Sync frame. For the sync signal generation CMP1 is programmed to a value ranging from 1ms to 1 second. Firmware checks this event and re-programs it after every hit to ensure that accurate sync pulses are generated. The sync interval must not be configured such that the 1000000000 ns or 1 seconds is not an integral multiple of it. This will lead to sync signal generation which is not at the second boundary, this might impact synchronizing other devices using the sync output.</p>
 <h1><a class="anchor" id="ICSS_TIMESYNC_DESIGN_TIMESTAMPING"></a>
@@ -162,7 +162,7 @@ Timestamping</h1>
 <li>Peer Delay Response : Rx and Tx timestamps</li>
 <li>Peer Delay Response Follow Up : No timestamp</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1356"></a>
+<h1><a class="anchor" id="autotoc_md1427"></a>
 State Machine</h1>
 <p>The PTP state machine has the following states:</p>
 <ol type="1">
@@ -185,14 +185,14 @@ State Machine</h1>
 <li>Synchronized</li>
 </ol>
 <p>They correspond to states 3-7 of the states described earlier. States 1, 2 and 8 are implicit states.</p>
-<h1><a class="anchor" id="autotoc_md1357"></a>
+<h1><a class="anchor" id="autotoc_md1428"></a>
 Synchronization</h1>
 <p>Synchronization is about ensuring that the local clock on both Time Source and receiver reflect the same value (after adjustment for path delay). This is done by</p><ol type="1">
 <li>Copying the value of clock directly at first (also called the "Initial adjustment")</li>
 <li>Calculating the drift every time a sync frame comes and then adjusting the local clock to take care of the drift.</li>
 </ol>
 <p>Synchronization is done in the Sync frame context and adjustment must be complete by the time next Sync packet arrives. To calculate the drift the assumption is that seconds field is synchronized and hence only nanoseconds field is compared to find the drift irrespective of the sync interval. Exception is when there is a wraparound and Seconds field is not the same, this can happen when the receiver is so far from the Time Source that seconds field increments by the time Sync frame reaches it. Actual synchronization is done by the function <a class="el" href="icss__timeSync_8h.html#afa613964ff1cb3ae68de9bab806ea900">TimeSync_synchronizeClock</a> which computes the current offset from the Time Source and calls the function <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga77c2531f5d442d3b83f1627f5996b135">TimeSync_adjTimeSlowComp</a> to adjust the IEP counter using slow compensation mechanism.</p>
-<h2><a class="anchor" id="autotoc_md1358"></a>
+<h2><a class="anchor" id="autotoc_md1429"></a>
 Determination of Sync Period</h2>
 <ul>
 <li>Sync frame interval is determined in the driver from Sync frames. The driver waits for at least 3 sync timestamps to do this.</li>
@@ -200,7 +200,7 @@ Determination of Sync Period</h2>
 <li>Driver monitors if the time base has changed significantly (by 1 s or more). This excludes special cases such as leap59 and leap60. Such a condition triggers state machine to be initialized again and PTP receiver has to sync all over again.</li>
 <li>The sync frame interval is determined in the same function which calculates RCF. <a class="el" href="icss__timeSync_8h.html#aa19f1b0ec370b0212e9a250b4121afc9">TimeSync_calcRcfAndSyncInterval</a> does this calculation.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1359"></a>
+<h1><a class="anchor" id="autotoc_md1430"></a>
 Delay Calculation</h1>
 <h2><a class="anchor" id="ICSS_TIMESYNC_LINE_DELAY_CALCULATION"></a>
 Line Delay Calculation for E2E mode</h2>
@@ -216,12 +216,12 @@ Line Delay Calculation for E2E mode</h2>
 <p>The timestamps are respectively indicated by t1, t2, t3 and t4.</p>
 <p>Line delay is calculated as <code>Mean Path Delay = (Forward Delay + Reverse Delay) / 2 = ((t2 – t1) + (t4 – t3))/ 2</code></p>
 <p>Since on both receiver and Time Source the counters are free counters, it makes more sense to re-arrange the computation like this. <code>Mean Path Delay = ((t4 - t1) – (t3 – t2))/2</code></p>
-<h2><a class="anchor" id="autotoc_md1360"></a>
+<h2><a class="anchor" id="autotoc_md1431"></a>
 Peer Delay Calculation for P2P mode</h2>
 <p>Peer delay refers to the time delay between adjacent PTP nodes in a P2P network. The API for this is <a class="el" href="icss__timeSync_8h.html#a2a869683af6571dd04d97b383c20d75e">TimeSync_peerDelayCalc</a>. It is called inside the function <a class="el" href="icss__timeSync_8h.html#ab64de5336932889cc234176f21363dc4">TimeSync_processPdelayRespFrame</a> which processes the peer delay response frame. As soon as a response is detected the peer delay calculation runs, it is run for both the ports. For an adjacent node requesting a Pdelay Response the receiver gives a 2-step response. Upon receiving the Pdelay Request, it's Rx timestamp is stored and when Pdelay Response goes out, it's Tx timestamp is used to calculate the resident time. This resident time is reflected in the correction field of Pdelay Response.</p>
 <p>The main differences compared to E2E mode is that Peer Delay Request/Response messages are used instead of Delay Request/Response messages and Sync packets are not required.</p>
 <p>Since Peer to Peer Requests are meant for adjacent nodes, it is important that these packets are dropped and not forwarded.</p>
-<h1><a class="anchor" id="autotoc_md1361"></a>
+<h1><a class="anchor" id="autotoc_md1432"></a>
 Syntonization</h1>
 <p>Syntonization is accounting for the frequency difference between Time Source and Receiver. This is done by</p>
 <ol type="1">
@@ -234,7 +234,7 @@ Syntonization</h1>
 <p>Timestamps are recorded and Syntonization is done in a PTP task context and not inside Sync frame processing. The function which calculates RCF is <a class="el" href="icss__timeSync_8h.html#aa19f1b0ec370b0212e9a250b4121afc9">TimeSync_calcRcfAndSyncInterval</a>.</p>
 <p>If we consider the image shown in <a class="el" href="ICSS_TIMESYNC_DESIGN.html#ICSS_TIMESYNC_LINE_DELAY_CALCULATION">Line Delay Calculation for E2E mode</a>, RCF is calculated as follows.</p>
 <p>T3 is the sync transmit timestamp from Time Source and T4 is the sync receive timestamp on receiver. T3' is T3 measured again in future (same for T4). &lsquo;RCF = (T3&rsquo; – T3) / (T4' – T4)<code> </code>Mean Path Delay (compensated) = Mean Path Delay * rcf;`</p>
-<h1><a class="anchor" id="autotoc_md1362"></a>
+<h1><a class="anchor" id="autotoc_md1433"></a>
 Reset</h1>
 <p>This section talks about the ICSS TimeSync driver reset. The various PTP variables and state machine inside the driver require a reset every time an exception occurs. <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga0ecd71c8cf84fc9ee69373dba314d9c2">TimeSync_reset</a> can be called for this reset.</p>
 <p>The steps performed during this reset are</p>
@@ -260,7 +260,7 @@ Reset</h1>
 <li>Sync frame missed : When a sync frame is missed this is detected by the sync timeout mechanism. Three consecutive misses leads to a reset.</li>
 <li>Current offset out of range : Whenever absolute offset exceeds a threshold, reset is triggered. This comparison is done in the function <a class="el" href="icss__timeSync_8h.html#afa613964ff1cb3ae68de9bab806ea900">TimeSync_synchronizeClock</a>. The threshold of change is set by the macro <a class="el" href="icss__timeSync_8h.html#a88b89939f699357296deecf17abee3f9">OFFSET_THRESHOLD_FOR_RESET</a>, value is in nanoseconds.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1363"></a>
+<h1><a class="anchor" id="autotoc_md1434"></a>
 Forwarding Rules</h1>
 <p>PTP frames have a common format but the implementation varies widely depending on the Annex or Profile in use. ICSS TimeSync driver supports following profile:</p>
 <ol type="1">
@@ -275,7 +275,7 @@ Forwarding Rules</h1>
 <li>Delay Response : Forward without correction if it's not a delay response corresponding to our delay request and don't send to Host. If the delay response matches our delay request then send to host and don't forward.</li>
 <li>Management messages : Forward without correction</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1364"></a>
+<h1><a class="anchor" id="autotoc_md1435"></a>
 OS Components</h1>
 <p>This section describes the OS entities used by ICSS TimeSync. All initialization is again done in the function <code>TimeSync_isrAndTaskInit</code>.</p>
 <h2><a class="anchor" id="ICSS_TIMESYNC_DESIGN_INTERRUPTS"></a>
@@ -285,7 +285,7 @@ Interrupts</h2>
 <li>Rx Interrupt : All incoming PTP frames are handled through the regular Rx interrupt registered by ICSS-EMAC (See <a class="el" href="ICSS_EMAC_DESIGN.html#ICSS_EMAC_DESIGN_INTERRUPTS">Interrupts</a> section in <a class="el" href="ICSS_EMAC_DESIGN.html">ICSS-EMAC Design</a> for more details). <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga0d9348a67c56e2431736a2824cdfcf55">TimeSync_processPTPFrame</a> must be called for processing PTP frames. Firmware will use highest priority queue for PTP frames. As mentioned in <a class="el" href="ICSS_EMAC_DESIGN.html#ICSS_EMAC_DESIGN_DATA_PATH_RX">Rx Data Path</a>, <code>rxRTCallBack</code> needs to be registered to process these frames in queues. Therefore, either <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga0d9348a67c56e2431736a2824cdfcf55">TimeSync_processPTPFrame</a> must be registered as <code>rxRTCallBack</code>, or if different types of frames (other than PTP) are coming on the high priority queues, then application must differentiate PTP frames in <code>rxRTCallBack</code> and then call the <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga0d9348a67c56e2431736a2824cdfcf55">TimeSync_processPTPFrame</a> API for PTP frames.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>All PTP frames are sent by firmware on the highest priority queue to the host.</dd></dl>
-<h2><a class="anchor" id="autotoc_md1365"></a>
+<h2><a class="anchor" id="autotoc_md1436"></a>
 Tasks</h2>
 <p>ICSS TimeSync driver uses a multitude of tasks to send/process frames, act as a watchdog and for book keeping.</p>
 <table class="doxtable">
@@ -304,7 +304,7 @@ Tasks</h2>
 <tr>
 <td><code>TimeSync_BackgroundTask</code> </td><td>Checks for Sync timeout and performs offset stabilization.  </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md1366"></a>
+<h2><a class="anchor" id="autotoc_md1437"></a>
 Semaphores</h2>
 <table class="doxtable">
 <tr>
@@ -312,7 +312,7 @@ Semaphores</h2>
 <tr>
 <td><code>delayReqTxSemObject</code> </td><td>This is posted when a Sync frame is received. It enables a suspended task to send Delay Request frame to PTP Time Source. Only applicable for E2E configuration.  </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md1367"></a>
+<h2><a class="anchor" id="autotoc_md1438"></a>
 Events</h2>
 <p>ICSS TimeSync driver uses a lot of events to process PTP frames. All events are in pairs, one each for physical port.</p>
 <table class="doxtable">

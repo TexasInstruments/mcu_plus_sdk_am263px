@@ -8,13 +8,13 @@ var group__DRV__SIPC__NOTIFY__MODULE =
       [ "ipcQueue_totalSize_inBytes", "structSIPC__Params.html#ae5275d68d7243a328a8a640ebec6f048", null ],
       [ "tx_SipcQueues", "structSIPC__Params.html#a187a5d40b35a335a03619580b9eecb58", null ],
       [ "rx_SipcQueues", "structSIPC__Params.html#acc0e3df1965dc7364dfec784fa90bcdf", null ],
-      [ "secHostCoreId", "structSIPC__Params.html#a2c25f5d7c4028f22038dda53a58686ed", null ],
+      [ "secHostCoreId", "structSIPC__Params.html#a4a109a8bbbf92def86b8c7ec9e05266b", null ],
       [ "intrPriority", "structSIPC__Params.html#af8dc68c8fb765c81272f4d0e0dfc1423", null ],
       [ "interruptConfig_Num", "structSIPC__Params.html#aec09e6f0113c173c3e6e28c2c5651cc3", null ]
     ] ],
     [ "SIPC_SwQueue", "structSIPC__SwQueue.html", [
-      [ "rdIdx", "structSIPC__SwQueue.html#a53d5859eadc17e90994df08e74270e77", null ],
-      [ "wrIdx", "structSIPC__SwQueue.html#a2fff6b826d8a20298ec0d39e593b9e73", null ],
+      [ "rdIdx", "structSIPC__SwQueue.html#af6fefea1af172dcceb3332cf96a92824", null ],
+      [ "wrIdx", "structSIPC__SwQueue.html#ac9f4b0195555b35ee3aa63f29c79a644", null ],
       [ "EleSize", "structSIPC__SwQueue.html#a5a9724f399cfe87455b13164331603ac", null ],
       [ "Qlength", "structSIPC__SwQueue.html#adc75c2a18bc0965ff9080d9c3112e24a", null ],
       [ "Qfifo", "structSIPC__SwQueue.html#ab2172a9c2368d801cc6875c190fe07e4", null ]

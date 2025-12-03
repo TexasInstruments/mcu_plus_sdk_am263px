@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_MMCSD_FILE_IO.html','
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2655">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md2728">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_MMCSD_FILE_IO_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2656">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2657">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2658">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2729">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2730">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2731">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_mmcsd_file_io"></a></p>
-<h1><a class="anchor" id="autotoc_md2655"></a>
+<h1><a class="anchor" id="autotoc_md2728"></a>
 Introduction</h1>
 <p>This example demonstrates file I/O operations using the FreeRTOS+FAT file system to the SD Card inserted. The MMCSD instance and the media connected to it are selectable via Sysconfig. In the Sysconfig of the example, user just needs to add the FreeRTOS+FAT module. The MMCSD module instance will be added automatically.</p>
 <p>The example initially checks for a FAT partition in the media. If it doesn't find one, a 128 MB partition is created (FAT16). Then a file is created and some known data is written to that. Then the file is closed and re-opened for read back. The file is then read back and compared with the known data.</p>
@@ -121,17 +121,17 @@ Supported Combinations</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/mmcsd/mmcsd_file_io   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2656"></a>
+<h1><a class="anchor" id="autotoc_md2729"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2657"></a>
+<h1><a class="anchor" id="autotoc_md2730"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_MMCSD_PAGE.html">MMCSD</a></p>
-<h1><a class="anchor" id="autotoc_md2658"></a>
+<h1><a class="anchor" id="autotoc_md2731"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">[MMCSD FILE IO] Starting...</div>
 <div class="line">All tests have passed!!</div>

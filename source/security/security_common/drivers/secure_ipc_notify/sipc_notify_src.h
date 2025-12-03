@@ -90,7 +90,7 @@ extern SIPC_MailboxConfig gSIPC_SecureHostMboxConfig[CORE_ID_MAX - 1] ;
  * This is a pre-defined global since this config typically does not need to change based
  * on end user use-cases for this SOC.
  */
-extern SIPC_MailboxConfig gSIPC_HsmMboxConfig[CORE_ID_MAX - 1] ;
+extern SIPC_MailboxConfig gSIPC_HsmMboxConfig[CORE_ID_MAX - 1U] ;
 
 /**
  * @brief Global structure holding R5 to HSM queues addresses indexed by sec core id
@@ -98,14 +98,14 @@ extern SIPC_MailboxConfig gSIPC_HsmMboxConfig[CORE_ID_MAX - 1] ;
  * This is a pre-defined global since this config typically does not need to change based
  * on end user use-cases for this SOC.
  */
-extern SIPC_SwQueue* gSIPC_QueSecureHostToHsm [MAX_SEC_CORES_WITH_HSM - 1];
+extern SIPC_SwQueue* gSIPC_QueSecureHostToHsm [MAX_SEC_CORES_WITH_HSM - 1U];
 /**
  * @brief Global structure holding HSM -> R5 queues addresses indexed by sec core id
  *
  * This is a pre-defined global since this config typically does not need to change based
  * on end user use-cases for this SOC.
  */
-extern SIPC_SwQueue* gSIPC_QueHsmToSecureHost[MAX_SEC_CORES_WITH_HSM - 1];
+extern SIPC_SwQueue* gSIPC_QueHsmToSecureHost[MAX_SEC_CORES_WITH_HSM - 1U];
 
 /**
  * @brief Register SIPC interrupts for SOC

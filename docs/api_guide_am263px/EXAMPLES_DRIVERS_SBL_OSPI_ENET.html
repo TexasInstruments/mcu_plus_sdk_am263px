@@ -92,20 +92,20 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_SBL_OSPI_ENET.html','
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2715">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2716">Supported Combinations</a><ul><li class="level2"><a href="#autotoc_md2717">Application Flow</a></li>
-<li class="level2"><a href="#autotoc_md2718">Create a network between EVM and host PC</a><ul><li class="level3"><a href="#autotoc_md2719">Linux (Ubuntu 22.04):</a></li>
+<ul><li class="level1"><a href="#autotoc_md2788">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2789">Supported Combinations</a><ul><li class="level2"><a href="#autotoc_md2790">Application Flow</a></li>
+<li class="level2"><a href="#autotoc_md2791">Create a network between EVM and host PC</a><ul><li class="level3"><a href="#autotoc_md2792">Linux (Ubuntu 22.04):</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2720">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2721">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2793">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2794">See Also</a></li>
 <li class="level1"><a href="#SBL_QSPI_ENET_OUTPUT_SAMPLE">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_sbl_ospi_enet"></a></p>
-<h1><a class="anchor" id="autotoc_md2715"></a>
+<h1><a class="anchor" id="autotoc_md2788"></a>
 Introduction</h1>
 <p>This bootloader performs SOC initializations and offers additional functionality, including:</p><ol type="1">
 <li>Receiving an application images via UDP over Ethernet.</li>
@@ -131,7 +131,7 @@ MSRAM specifications:<ol type="1">
 </dd>
 <dd>
 The remaining 0x13C000 space is reserved for the application image.</dd></dl>
-<h1><a class="anchor" id="autotoc_md2716"></a>
+<h1><a class="anchor" id="autotoc_md2789"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -145,7 +145,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/boot/sbl_ospi_enet   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md2717"></a>
+<h2><a class="anchor" id="autotoc_md2790"></a>
 Application Flow</h2>
 <p>The below flow diagram shows the application flow for the reception of an application image via UDP over ethernet on boot of the sbl_ospi_enet SBL.</p>
 <p> <style>div.image img[src="sbl_qspi_enet_flow_diagram.png"]{width:30%}</style> </p><div class="image">
@@ -153,9 +153,9 @@ Application Flow</h2>
 <div class="caption">
 Flow Path</div></div>
 <p>This SBL application consumes more MSRAM memory (&gt;0x20000) as compared to the sbl_uart_uniflash SBL due to the increased size of the ethernet driver library.</p>
-<h2><a class="anchor" id="autotoc_md2718"></a>
+<h2><a class="anchor" id="autotoc_md2791"></a>
 Create a network between EVM and host PC</h2>
-<h3><a class="anchor" id="autotoc_md2719"></a>
+<h3><a class="anchor" id="autotoc_md2792"></a>
 Linux (Ubuntu 22.04):</h3>
 <p>The instructions provided below have been validated on Ubuntu(v22.04), but are also applicable to other operating systems. The scripts included in MCU+SDK are designed to be compatible with multiple host PC operating systems, ensuring seamless execution across different platforms.</p>
 <ol type="1">
@@ -180,7 +180,7 @@ Linux (Ubuntu 22.04):</h3>
 <dl class="section attention"><dt>Attention</dt><dd>Make sure to set the value of the MACRO <b>ENET_HOST_PC_MAC_ADDRESS</b> in the file <b>sbl_enet.h</b> to the MAC address of the corresponding ethernet interface of Linux Host PC: <div class="fragment"><div class="line">/* Host PC MAC Address */</div>
 <div class="line">#define ENET_HOST_PC_MAC_ADDRESS        { 0xC0, 0x18, 0x03, 0xBD, 0xB2, 0x7B}</div>
 </div><!-- fragment --></dd></dl>
-<h1><a class="anchor" id="autotoc_md2720"></a>
+<h1><a class="anchor" id="autotoc_md2793"></a>
 Steps to Run the Example</h1>
 <p>Since this is a bootloader, the example will be run every time you boot an application using this example. It is run from a OSPI boot media unlike other examples which are usually loaded with CCS. Nevertheless, you can build this example like you do for the others using makefile or build it via CCS by importing as a project.</p>
 <ul>
@@ -189,7 +189,7 @@ Steps to Run the Example</h1>
 <li>Refer to the page <a class="el" href="TOOLS_FLASH.html#BASIC_STEPS_TO_FLASH_FILES">Basic steps to flash files</a> to flash the sbl_ospi_enet bootloader to the EVM in UART Boot Mode. Ensure that you should flash the sbl_ospi_enet bootloader, rather than the default sbl_ospi bootloader. Optionally, you can also flash the application image to the OSPI flash memory at offset 0x81000 as mentioned in <a class="el" href="TOOLS_FLASH.html#BASIC_STEPS_TO_FLASH_FILES">Basic steps to flash files</a>. Alternatively, you can omit this step and transmit the application image over Ethernet using the procedure outlined below.</li>
 <li>Once the sbl_ospi_enet bootloader image is flashed on the EVM, switch to OSPI Boot Mode and refer to the page <a class="el" href="TOOLS_FLASH.html#BASIC_STEPS_TO_FLASH_FILES_OVER_ENET">Basic steps to flash files over ethernet</a> to send an application image over ethernet to the EVM. </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2721"></a>
+<h1><a class="anchor" id="autotoc_md2794"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_BOOTLOADER_PAGE.html">BOOTLOADER</a></p>
 <h1><a class="anchor" id="SBL_QSPI_ENET_OUTPUT_SAMPLE"></a>

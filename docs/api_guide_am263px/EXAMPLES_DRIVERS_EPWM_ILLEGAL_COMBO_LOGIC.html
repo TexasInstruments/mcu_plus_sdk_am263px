@@ -92,28 +92,28 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_EPWM_ILLEGAL_COMBO_LO
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2374">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2375">Various ICL configurations</a><ul><li class="level2"><a href="#autotoc_md2376">XOR and XNOR</a></li>
-<li class="level2"><a href="#autotoc_md2377">NAND and NOR</a></li>
-<li class="level2"><a href="#autotoc_md2378">Both NOT HIGH at the same time</a></li>
+<ul><li class="level1"><a href="#autotoc_md2447">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2448">Various ICL configurations</a><ul><li class="level2"><a href="#autotoc_md2449">XOR and XNOR</a></li>
+<li class="level2"><a href="#autotoc_md2450">NAND and NOR</a></li>
+<li class="level2"><a href="#autotoc_md2451">Both NOT HIGH at the same time</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2379">External Connections</a><ul><li class="level2"><a href="#autotoc_md2380">AM263X-CC or AM263Px-CC or AM261x-SOM</a></li>
-<li class="level2"><a href="#autotoc_md2381">AM263PX-LP</a></li>
+<li class="level1"><a href="#autotoc_md2452">External Connections</a><ul><li class="level2"><a href="#autotoc_md2453">AM263X-CC or AM263Px-CC or AM261x-SOM</a></li>
+<li class="level2"><a href="#autotoc_md2454">AM263PX-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_EPWM_ILLEGAL_COMBO_LOGIC_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2382">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2383">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2384">Sample Output</a></li>
-<li class="level1"><a href="#autotoc_md2385">References</a></li>
+<li class="level1"><a href="#autotoc_md2455">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2456">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2457">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2458">References</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_epwm_illegal_combo_logic"></a></p>
-<h1><a class="anchor" id="autotoc_md2374"></a>
+<h1><a class="anchor" id="autotoc_md2447"></a>
 Introduction</h1>
 <p>The purpose of the example is to show some of the operations that can be done using ICL. We can route a signal of EPWM instance through some other EPWM instance without even configuring the latter. We use ICLXBar along with the ICL block functionalities provided inside each instance to get the desired results.</p>
-<h1><a class="anchor" id="autotoc_md2375"></a>
+<h1><a class="anchor" id="autotoc_md2448"></a>
 Various ICL configurations</h1>
 <p>The screenshots attached in the documentation are as per the results obtained by executing the example on CC. Please note that there are some instance differences between CC and LP.</p>
 <p>The mapping is such that:</p>
@@ -125,7 +125,7 @@ EPWM4A(B) on CC &lt;--&gt; EPWM9A(B) on LP <br  />
 EPWM5A(B) on CC &lt;--&gt; EPWM13A(B) on LP <br  />
 EPWM6A(B) on CC &lt;--&gt; EPWM12A(B) on LP <br  />
 </p>
-<h2><a class="anchor" id="autotoc_md2376"></a>
+<h2><a class="anchor" id="autotoc_md2449"></a>
 XOR and XNOR</h2>
 <p>Here, we configure EPWM3 with some TBPRD, CMPA and CMPB values and define some actions on each event. Since no MDL functions are performed, so the signal coming out of AQ submodule is what comes out of MDL blocks A and B respectively. They are then routed through separate ICLXBARs.</p>
 <p> <style>div.image img[src="am263_epwm_icl_xor_xnor_connection.PNG"]{width:60%}</style> </p><div class="image">
@@ -172,7 +172,7 @@ Figure 1.a Xbar connectivity for ICL</div></div>
 <img src="am263_epwm_icl_xor_xnor.PNG" alt=""/>
 <div class="caption">
 Figure 1.b EPWM showing XOR and XNOR operation on channels A and B</div></div>
-<h2><a class="anchor" id="autotoc_md2377"></a>
+<h2><a class="anchor" id="autotoc_md2450"></a>
 NAND and NOR</h2>
 <p>Here, we configure EPWM5A with some TBPRD, CMPA and CMPB values and define some actions on each event. Since no MDL functions are performed, so the signal coming out of AQ submodule is what comes out of MDL blocks A and B respectively.</p>
 <p>They are then routed through separate ICLXBARs.</p>
@@ -220,7 +220,7 @@ Figure 2.a Xbar connectivity for ICL</div></div>
 <img src="am263_epwm_icl_nand_nor.PNG" alt=""/>
 <div class="caption">
 Figure 1.b EPWM showing NAND and NOR operation on channels A and B</div></div>
-<h2><a class="anchor" id="autotoc_md2378"></a>
+<h2><a class="anchor" id="autotoc_md2451"></a>
 Both NOT HIGH at the same time</h2>
 <p>EPWM0 (EPWM7 in case of AM261x-LP) is configured such that when TripIN gets HIGH, then it pulls EPWM0A (EPWM7A in case of AM261x-LP) to high. Here the EPWM0A_MDL (EPWM7A_MDL in case of AM261x-LP) has been routed through EPWM2 in the same process as mentioned in the above cases. EPWM2B shows how EPWM0B (EPWM7B in case of AM261x-LP) was before ICL was applied to it. The ICL for block B inside EPWM0 (EPWM7 in case of AM261x-LP) was configured such that EPWM0A and EPWM0B (EPWM7A and EPWM7B in case of AM261x-LP) cannot be high at the same time. So whenever EPWM0A_MDL (EPWM7A_MDL in case of AM261x-LP) gets pulled because of the trip, the EPWM0B (EPWM7B in case of AM261x-LP) should be pulled down. Since ICL Block A is disabled, EPWM0A_MDL (EPWM7A_MDL in case of AM261x-LP) will go as the final output.</p>
 <p> <style>div.image img[src="am263_epwm_icl_both_not_high_connection.PNG"]{width:60%}</style> </p><div class="image">
@@ -244,7 +244,7 @@ Figure 3.a Connection between EPWMs</div></div>
 <img src="am263_epwm_icl_both_not_high.PNG" alt=""/>
 <div class="caption">
 Figure 3.b EPWM showing how channel B gets pulled to low when channel A is high</div></div>
-<h1><a class="anchor" id="autotoc_md2379"></a>
+<h1><a class="anchor" id="autotoc_md2452"></a>
 External Connections</h1>
 <ul>
 <li>EPWM0_A/B pin can be connected to an oscilloscope to view the waveform.</li>
@@ -255,7 +255,7 @@ External Connections</h1>
 <li>EPWM5_A/B, pin can be connected to an oscilloscope to view the waveform.</li>
 <li>EPWM6_A/B, pin can be connected to an oscilloscope to view the waveform.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2380"></a>
+<h2><a class="anchor" id="autotoc_md2453"></a>
 AM263X-CC or AM263Px-CC or AM261x-SOM</h2>
 <p>When using AM263x-CC, AM263Px-CC or AM261x-SOM with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Connect HSEC pin 49, 51 to scope for EPWM0A(B)</li>
@@ -266,7 +266,7 @@ AM263X-CC or AM263Px-CC or AM261x-SOM</h2>
 <li>Connect HSEC pin 61, 63 to scope for EPWM5A(B)</li>
 <li>Connect HSEC pin 58, 60 to scope for EPWM6A(B)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2381"></a>
+<h2><a class="anchor" id="autotoc_md2454"></a>
 AM263PX-LP</h2>
 <ul>
 <li>Connect J2/J4 pin 11, J6/J8 pin 59 to scope for EPWM0A(B)</li>
@@ -291,7 +291,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/epwm/epwm_illegal_combo_logic/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2382"></a>
+<h1><a class="anchor" id="autotoc_md2455"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -299,17 +299,17 @@ Steps to Run the Example</h1>
 <li>Establish connections as mentioned in External Connections section</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2383"></a>
+<h1><a class="anchor" id="autotoc_md2456"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_EPWM_PAGE.html">EPWM</a></p>
-<h1><a class="anchor" id="autotoc_md2384"></a>
+<h1><a class="anchor" id="autotoc_md2457"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">EPWM Illegal Combo Logic Test Started ...</div>
 <div class="line">App will wait for 60 seconds</div>
 <div class="line">EPWM Illegal Combo Logic Test Passed!!</div>
 <div class="line">All tests have passed!!</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2385"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2458"></a>
 References</h1>
 <p> <style>div.image img[src="am263_epwm_mdl_icl_blockdiagram.PNG"]{width:60%}</style> </p><div class="image">
 <img src="am263_epwm_mdl_icl_blockdiagram.PNG" alt=""/>

@@ -92,16 +92,16 @@ $(document).ready(function(){initNavTree('COMPONENT_PRU_GUIDE_INTRO.html',''); i
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3695">PRU_ICSSM Subsystem</a></li>
-<li class="level1"><a href="#autotoc_md3696">PRU Core</a></li>
-<li class="level1"><a href="#autotoc_md3697">PRU Instruction Set</a></li>
-<li class="level1"><a href="#autotoc_md3698">PRU Register Addressing</a></li>
-<li class="level1"><a href="#autotoc_md3699">PRU Broadside Accelerators</a></li>
-<li class="level1"><a href="#autotoc_md3700">PRU I/O Control Modes</a></li>
+<ul><li class="level1"><a href="#autotoc_md3776">PRU_ICSSM Subsystem</a></li>
+<li class="level1"><a href="#autotoc_md3777">PRU Core</a></li>
+<li class="level1"><a href="#autotoc_md3778">PRU Instruction Set</a></li>
+<li class="level1"><a href="#autotoc_md3779">PRU Register Addressing</a></li>
+<li class="level1"><a href="#autotoc_md3780">PRU Broadside Accelerators</a></li>
+<li class="level1"><a href="#autotoc_md3781">PRU I/O Control Modes</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_pru_io_pru_guide_intro"></a></p>
-<h1><a class="anchor" id="autotoc_md3695"></a>
+<h1><a class="anchor" id="autotoc_md3776"></a>
 PRU_ICSSM Subsystem</h1>
 <p>The Programmable Real-Time Unit Subsystem and Industrial Communication Subsystem (PRU_ICSSM) consists of:</p>
 <ul>
@@ -119,7 +119,7 @@ PRU_ICSSM Subsystem</h1>
 PRU-ICSSM Sub-System Block Diagram</div></div>
 <p>Refer to latest AM263x TRM (Technical Reference Manual) for complete details. (Can be found here: <a href="https://www.ti.com/product/AM2634-Q1">https://www.ti.com/product/AM2634-Q1</a>)</p>
 <p>Refer to latest AM261x TRM (Technical Reference Manual) for complete details. (Can be found here: <a href="https://www.ti.com/product/AM2612">https://www.ti.com/product/AM2612</a>)</p>
-<h1><a class="anchor" id="autotoc_md3696"></a>
+<h1><a class="anchor" id="autotoc_md3777"></a>
 PRU Core</h1>
 <p>PRU core is optimized for low latency and jitter. It contains:</p>
 <ul>
@@ -131,7 +131,7 @@ PRU Core</h1>
 <p> <style>div.image img[src="PRU_core.png"]{width:50%}</style> </p><div class="image">
 <img src="PRU_core.png" alt=""/>
 </div>
-<h1><a class="anchor" id="autotoc_md3697"></a>
+<h1><a class="anchor" id="autotoc_md3778"></a>
 PRU Instruction Set</h1>
 <ul>
 <li><span style="color:green">Arithmetic Operations (green)</span></li>
@@ -150,7 +150,7 @@ PRU Instruction Set</h1>
 <td><span style="color:red">JAL</span> </td><td><span style="color:red">JMP</span> </td><td><span style="color:red">QBGT</span> </td><td><span style="color:red">QBGE</span> </td><td><span style="color:red">QBLT</span> </td><td><span style="color:red">QBLE</span> </td><td><span style="color:red">QBEQ</span> </td><td><span style="color:red">QBNE</span> </td><td><span style="color:red">QBA</span> </td><td><span style="color:red">QBBS</span> </td><td><span style="color:red">QBBC</span> </td><td><span style="color:red">WBS</span> </td><td><span style="color:red">WBC</span> </td><td><span style="color:red">HALT</span> </td><td><span style="color:red">SLP</span> </td></tr>
 </table>
 <p>Refer for usage details: <a href="https://www.ti.com/lit/ug/spruij2/spruij2.pdf">PRU Assembly Instruction User Guide</a></p>
-<h1><a class="anchor" id="autotoc_md3698"></a>
+<h1><a class="anchor" id="autotoc_md3779"></a>
 PRU Register Addressing</h1>
 <p>Possible Addressability in Instructions: Bit, Byte (8-bit), Half-word (16-bit), Word (32-bit), Pointer</p>
 <p> <style>div.image img[src="Pru_register_addressing.png"]{width:55%}</style> </p><div class="image">
@@ -161,7 +161,7 @@ PRU Register Addressing</h1>
 <div class="line">mov     r0.w1, r1.w0        ; Copy Value      - copies r1.w0 into r0.w1</div>
 <div class="line">set     r1.b1, r1.b0, 5     ; Set Bit         - copies value of r1.b0 into r1.b1 after setting it&#39;s 5th bit (0 indexing)</div>
 <div class="line">lbbo    &amp;r3, r1, r2.w0, b0  ; Load Byte Burst - Copy &quot;r0.b0&quot; bytes into r3 from the memory address r1+r2.w0</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3699"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3780"></a>
 PRU Broadside Accelerators</h1>
 <p>PRU_ICSSM supports a broadside interface, which uses the XFR (XIN, XOUT, or XCHG) instruction to transfer the contents of PRUn(where n = 0 or 1) registers to or from accelerators. This interface enables up to 30 registers (R0-R29, or 120 bytes) to be transferred in a single instruction.</p>
 <p>Data processing accelerators</p><ul>
@@ -171,7 +171,7 @@ PRU Broadside Accelerators</h1>
 <p>Data movement accelerators</p><ul>
 <li>XFR2VBUS</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3700"></a>
+<h1><a class="anchor" id="autotoc_md3781"></a>
 PRU I/O Control Modes</h1>
 <p>Each slice is directly connected to 20 GPIO pins which can be controlled by the PRUs using <b>R30</b> register and pin values can be read using <b>R31</b> register. By default <b>PRU0</b> and <b>PRU1</b> cores are able to control the respective GPIO pins (after they have been correctly pinmuxed). Overall:</p><ul>
 <li><p class="startli">PRU has full input and output control on all interfaces</p>

@@ -12,5 +12,14 @@ var group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE =
     [ "OSPI_lld_configBaudrate", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga69b88a4659ba922cf5ab2e66ad08268e", null ],
     [ "OSPI_lld_readBaudRateDivFromReg", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gace20ec87c90df9fbfe13016b477a3a17", null ],
     [ "OSPI_lld_getBaudRateDivFromObj", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gaf71eb1418d11ce87737003da84dc02e7", null ],
-    [ "OSPI_lld_setResetPinStatus", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga920390d96c2c42e0a7b9068cdf5bbfa3", null ]
+    [ "OSPI_lld_setResetPinStatus", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga920390d96c2c42e0a7b9068cdf5bbfa3", null ],
+    [ "OSPI_dmaOpen", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga70d926629bc722fdf5250d15bd67adde", null ],
+    [ "OSPI_dmaClose", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga3617d3e1c4b7d80f6a043a096d1a5528", null ],
+    [ "OSPI_dmaCopy", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gaf89b41aacae520a35ca2c318d7c6c6ac", null ],
+    [ "OSPI_isDmaInterruptEnabled", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gac3f643327af7948039a5bdaa4359a0e6", null ],
+    [ "OSPI_lld_phyValidateTuningPoint", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga1a3e97d489fd7dad034aa786de115466", null ],
+    [ "OSPI_lld_isValidateOtpEnable", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga016b4802e71f603a163c409035eaec2c", null ],
+    [ "OSPI_lld_setFrequency", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gaea64faff981b9a81edadbc7c3d60d384", null ],
+    [ "OSPI_lld_setDelays", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga4344e2f746fbd1a7d7bfc352d065dc3c", null ],
+    [ "OSPI_lld_setBaudRateDiv", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gae0f6320ae6158bf639a53d885e622e92", null ]
 ];

@@ -92,39 +92,39 @@ $(document).ready(function(){initNavTree('ENET_CPSW_TSN_GPTP.html',''); initResi
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md291">Pre-requisites</a></li>
-<li class="level1"><a href="#autotoc_md292">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md293">Demo and Examples</a></li>
-<li class="level1"><a href="#autotoc_md294">TSN Stack</a><ul><li class="level2"><a href="#autotoc_md295">Compilation</a></li>
-<li class="level2"><a href="#autotoc_md296">Modules</a></li>
+<ul><li class="level1"><a href="#autotoc_md335">Pre-requisites</a></li>
+<li class="level1"><a href="#autotoc_md336">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md337">Demo and Examples</a></li>
+<li class="level1"><a href="#autotoc_md338">TSN Stack</a><ul><li class="level2"><a href="#autotoc_md339">Compilation</a></li>
+<li class="level2"><a href="#autotoc_md340">Modules</a></li>
 <li class="level2"><a href="#ENET_CPSW_TSN_STACK_INITIALIZATION">Stack Initialization</a></li>
 <li class="level2"><a href="#ENET_CPSW_TSN_LOGGING">Logging</a></li>
 <li class="level2"><a href="#ENET_CPSW_TSN_UNICONF_INITIALIZATION">Starting uniconf and gPTP</a></li>
 <li class="level2"><a href="#ENET_CPSW_TSN_STACK_DEINITIALIZATION">TSN Deinitialization</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md297">Integration</a><ul><li class="level2"><a href="#ENET_CPSW_TSN_SOURCE_INTEGRATION">Source integration</a></li>
+<li class="level1"><a href="#autotoc_md341">Integration</a><ul><li class="level2"><a href="#ENET_CPSW_TSN_SOURCE_INTEGRATION">Source integration</a></li>
 <li class="level2"><a href="#ENET_CPSW_TSN_UNICONF_CONFIGURATION">Uniconf configuration</a></li>
-<li class="level2"><a href="#ENET_CPSW_TSN_YANG_CONFIG_PARAMS">gPTP Yang Config Parameters</a><ul><li class="level3"><a href="#autotoc_md298">gPTP string-based to key-based mapping</a></li>
-<li class="level3"><a href="#autotoc_md299">ieee1588-ptp-tt_access.c/h</a></li>
-<li class="level3"><a href="#autotoc_md300">Default example configurations</a></li>
+<li class="level2"><a href="#ENET_CPSW_TSN_YANG_CONFIG_PARAMS">gPTP Yang Config Parameters</a><ul><li class="level3"><a href="#autotoc_md342">gPTP string-based to key-based mapping</a></li>
+<li class="level3"><a href="#autotoc_md343">ieee1588-ptp-tt_access.c/h</a></li>
+<li class="level3"><a href="#autotoc_md344">Default example configurations</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md301">gPTP Non-Yang Config Parameters</a><ul><li class="level3"><a href="#autotoc_md302">gptpgcfg wrapper APIs to modify Non-Yang parameter</a></li>
-<li class="level3"><a href="#autotoc_md303">Default example configurations</a></li>
-<li class="level3"><a href="#autotoc_md304">gPTP Multiple Domains</a></li>
-<li class="level3"><a href="#autotoc_md305">gPTP Shorter Sync Interval</a></li>
-<li class="level3"><a href="#autotoc_md306">gPTP Performance optimization</a></li>
+<li class="level2"><a href="#autotoc_md345">gPTP Non-Yang Config Parameters</a><ul><li class="level3"><a href="#autotoc_md346">gptpgcfg wrapper APIs to modify Non-Yang parameter</a></li>
+<li class="level3"><a href="#autotoc_md347">Default example configurations</a></li>
+<li class="level3"><a href="#autotoc_md348">gPTP Multiple Domains</a></li>
+<li class="level3"><a href="#autotoc_md349">gPTP Shorter Sync Interval</a></li>
+<li class="level3"><a href="#autotoc_md350">gPTP Performance optimization</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md307">Limitations</a></li>
-<li class="level1"><a href="#autotoc_md308">See Also</a></li>
+<li class="level1"><a href="#autotoc_md351">Limitations</a></li>
+<li class="level1"><a href="#autotoc_md352">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_enet_cpsw_tsn_gptp_apiguide"></a></p>
-<h1><a class="anchor" id="autotoc_md291"></a>
+<h1><a class="anchor" id="autotoc_md335"></a>
 Pre-requisites</h1>
 <p>Reader are expected to have basic knowledge on below IEEE specifications</p><ul>
 <li>Standard ethernet (IEEE 802.1)</li>
@@ -134,24 +134,24 @@ Pre-requisites</h1>
 <li>Frame Preemption (IEEE 802.1Qbu)</li>
 <li>YANG Data Modeling Language (rfc7950)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md292"></a>
+<h1><a class="anchor" id="autotoc_md336"></a>
 Introduction</h1>
 <p>This guide is intended to enhance user's understanding of the TSN stack and provide guidance on how to seamlessly integrate TSN modules into their own applications.</p>
-<h1><a class="anchor" id="autotoc_md293"></a>
+<h1><a class="anchor" id="autotoc_md337"></a>
 Demo and Examples</h1>
 <p><a class="el" href="EXAMPLES_ENET_CPSW_TSN_GPTP_BRIDGE.html">Ethernet TSN CPSW gPTP Bridge Example</a></p>
 <p><a class="el" href="EXAMPLES_ENET_CPSW_TSN_GPTP_TR.html">Ethernet TSN CPSW gPTP TimeReceiver (gPTP Slave) Example</a></p>
 <p><a class="el" href="EXAMPLES_ENET_CPSW_TSN_GPTP_TT.html">Ethernet TSN CPSW gPTP TimeTransmitter (gPTP Master) Example</a></p>
-<h1><a class="anchor" id="autotoc_md294"></a>
+<h1><a class="anchor" id="autotoc_md338"></a>
 TSN Stack</h1>
-<h2><a class="anchor" id="autotoc_md295"></a>
+<h2><a class="anchor" id="autotoc_md339"></a>
 Compilation</h2>
 <p>TSN stack library is pre-built in SDK and located in <code>&lt;mcu_plus_sdk&gt;/source/networking/enet/core/examples/tsn</code> directory as .lib files. Any changes in the stack source code needs rebuild of library. In order to re-build the library, follow the below steps- </p><div class="fragment"><div class="line">cd  &lt;mcu_plus_sdk&gt;</div>
 <div class="line">gmake DEVICE:=@VAR_SOC_NAME PROFILE:=debug libs-clean</div>
 <div class="line">gmake DEVICE:=@VAR_SOC_NAME PROFILE:=release libs-clean</div>
 <div class="line">gmake DEVICE:=@VAR_SOC_NAME PROFILE:=debug libs</div>
 <div class="line">gmake DEVICE:=@VAR_SOC_NAME PROFILE:=release libs</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md296"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md340"></a>
 Modules</h2>
 <p>The TSN Stack library is composed of the following source modules:</p>
 <table class="markdownTable">
@@ -193,7 +193,7 @@ Starting uniconf and gPTP</h2>
 <h2><a class="anchor" id="ENET_CPSW_TSN_STACK_DEINITIALIZATION"></a>
 TSN Deinitialization</h2>
 <p>To deinitialize the TSN modules, you can invoke the <code>EnetApp_stopTsn();</code> and <code>EnetApp_deInitTsn();</code> functions.</p>
-<h1><a class="anchor" id="autotoc_md297"></a>
+<h1><a class="anchor" id="autotoc_md341"></a>
 Integration</h1>
 <h2><a class="anchor" id="ENET_CPSW_TSN_SOURCE_INTEGRATION"></a>
 Source integration</h2>
@@ -258,7 +258,7 @@ gPTP Yang Config Parameters</h2>
 <li>ieee1588: <a href="https://github.com/YangModels/yang/blob/main/standard/ieee/published/1588/ieee1588-ptp-tt.yang">https://github.com/YangModels/yang/blob/main/standard/ieee/published/1588/ieee1588-ptp-tt.yang</a></li>
 <li>802.1AS: <a href="https://github.com/YangModels/yang/blob/main/standard/ieee/published/802.1/ieee802-dot1as-gptp.yang">https://github.com/YangModels/yang/blob/main/standard/ieee/published/802.1/ieee802-dot1as-gptp.yang</a></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md298"></a>
+<h3><a class="anchor" id="autotoc_md342"></a>
 gPTP string-based to key-based mapping</h3>
 <p>First of all, the key-based (uint8_t) enums which are used to map with YANG (string-based) are generated during initialization. For example, the corresponding ptp generated enum are defined in <code>&lt;mcu_plus_sdk&gt;/source/networking/tsn/tsn-stack/tsn_uniconf/yangs/cores/generated/ieee1588-ptp-tt.h</code></p>
 <p>This section will explain on how to map between generated key-based and string-based.</p>
@@ -278,7 +278,7 @@ gPTP string-based to key-based mapping</h3>
 <ul>
 <li>The list's key <code>|instance-index:0|</code>: will be described in next section, together with <code>ieee1588-ptp-tt_access.*</code></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md299"></a>
+<h3><a class="anchor" id="autotoc_md343"></a>
 ieee1588-ptp-tt_access.c/h</h3>
 <p>Beside of generated files eg:ieee1588-ptp-tt.h, there is APIs helper for each YANG generated file, named *access.h/c. Eg: for ieee1588-ptp-tt.yang, the corresponding helper will be ieee1588-ptp-tt_access.c/h.</p>
 <p>The <code>ieee1588-ptp-tt_access</code> provide wrapper APIs for quicker access <code>ieee1588-ptp-tt</code> entries. Consider below set of APIs:</p>
@@ -301,7 +301,7 @@ ieee1588-ptp-tt_access.c/h</h3>
 </ul>
 <p>The <code>uint32_t instIndex</code> is used to get corresponding <code>|instance-index:0|</code> which we need in previous section. Please refer to <code>set_dpara_k4vk1</code> for more detail of using instIndex.</p>
 <p>The higher level DB API wrapper, which is using specificly for gptp, is defined in <code>&lt;mcu_plus_sdk&gt;/source/networking/tsn/tsn-stack/tsn_gptp/gptpconf/gptpgcfg.h</code>.</p>
-<h3><a class="anchor" id="autotoc_md300"></a>
+<h3><a class="anchor" id="autotoc_md344"></a>
 Default example configurations</h3>
 <p>Let's walk-through all of yang configuration those are using in <code>&lt;mcu_plus_sdk&gt;/source/networking/enet/core/examples/tsn/gptp_init.c</code>.</p>
 <table class="markdownTable">
@@ -375,10 +375,10 @@ Default example configurations</h3>
 <td class="markdownTableBodyRight">IEEE1588_PTP_TT_EGRESS_LATENCY  </td><td class="markdownTableBodyCenter">ieee1588-ptp-tt:egress-latency  </td><td class="markdownTableBodyNone">Config this if you know the internal egress-latency of a tx ptp packets. Currently the value is 0   </td></tr>
 </table>
 <p>For more accessible parameters along with the default values in gPTP example, please refer to the file located at: -<code>&lt;mcu_plus_sdk&gt;/source/networking/tsn/tsn-stack/tsn_gptp/gptpconf/gptp-yangconfig.xml</code>.</p>
-<h2><a class="anchor" id="autotoc_md301"></a>
+<h2><a class="anchor" id="autotoc_md345"></a>
 gPTP Non-Yang Config Parameters</h2>
 <p>In addition to the standard Yang parameters, gPTP also includes a set of non-Yang configuration parameters that are specific to its implementation.</p>
-<h3><a class="anchor" id="autotoc_md302"></a>
+<h3><a class="anchor" id="autotoc_md346"></a>
 gptpgcfg wrapper APIs to modify Non-Yang parameter</h3>
 <p>To modify the default value of the Non-Yang parameters, please refer to the <code>gptp_nonyang_config()</code> function in the <code>gptp_init.c</code> file. This function will invokes <code>gptpgcfg_set_item()</code> to configure each params:</p>
 <div class="fragment"><div class="line">int gptpgcfg_set_item(uint8_t gptpInstanceIndex, uint8_t confitem,</div>
@@ -394,7 +394,7 @@ gptpgcfg wrapper APIs to modify Non-Yang parameter</h3>
 <li>As a reference, please consult the <code>&lt;mcu_plus_sdk&gt;/source/networking/enet/core/examples/tsn/gptp_init.c</code> file.</li>
 <li>The configuration must be done before calling the <code>gptpman_run()</code> function inside the <code>gptp_init.c</code> file, and it should follow the the gptpgcfg_init function call.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md303"></a>
+<h3><a class="anchor" id="autotoc_md347"></a>
 Default example configurations</h3>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -435,7 +435,7 @@ Default example configurations</h3>
 <td class="markdownTableBodyCenter">SECOND_DOMAIN_THIS_CLOCK  </td><td class="markdownTableBodyLeft">In case of number of domain is 2, this flag also need to be set to one to indicate software clock mode   </td></tr>
 </table>
 <p>To access the list of these parameters, along with their descriptions and default values for gPTP, please refer to the file located at: <code>&lt;mcu_plus_sdk&gt;/source/networking/tsn/tsn-stack/tsn_gptp/gptpconf/gptp_nonyangconfig.xml</code>.</p>
-<h3><a class="anchor" id="autotoc_md304"></a>
+<h3><a class="anchor" id="autotoc_md348"></a>
 gPTP Multiple Domains</h3>
 <p>At the moment, our system supports two domains, but this feature is turned off by default. To turn on multiple domains, follow these steps:</p>
 <ul>
@@ -447,7 +447,7 @@ gPTP Multiple Domains</h3>
 </div><!-- fragment --></li>
 </ul>
 <p>This will activate the second domain in the gPTP system.</p>
-<h3><a class="anchor" id="autotoc_md305"></a>
+<h3><a class="anchor" id="autotoc_md349"></a>
 gPTP Shorter Sync Interval</h3>
 <p>By default, the gPTP Sync interval is set to 125 milliseconds (log2(0.125)=-3) which is corresponding to the default SYNC_LOG value is -3 (refer <code>gptp_init.c</code>)</p>
 <p><code>#define SYNC_LOG -3 // Default: 125ms</code></p>
@@ -462,7 +462,7 @@ gPTP Shorter Sync Interval</h3>
 <li>LOG_PDELAY: Default 0 which mean PDelay Request will be sent every 1s</li>
 <li>LOG_GPTP_CAPABLE: Default 3 which mean GPTP CAPABLE Signaling will be send every 8s</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md306"></a>
+<h3><a class="anchor" id="autotoc_md350"></a>
 gPTP Performance optimization</h3>
 <p>Out of box configuration is not optimized for performance as the connected devices (e.g. Intel I218/219) may not be compatible with these optimal configuration. The following configurations can be tuned for optimizing the gPTP performance:</p>
 <ul>
@@ -481,10 +481,10 @@ gPTP Performance optimization</h3>
 <div class="line">gptpgcfg_set_item(gpoptd.instnum, XL4_EXTMOD_XL4GPTP_FREQ_OFFSET_UPDATE_MRATE_PPB, YDBI_CONFIG, &amp;freq_offset_update_mrate_ppb, sizeof(freq_offset_update_mrate_ppb));</div>
 <div class="line">gptpgcfg_set_item(gpoptd.instnum, XL4_EXTMOD_XL4GPTP_PHASE_OFFSET_IIR_ALPHA_STABLE_VALUE, YDBI_CONFIG, &amp;phase_offset_iir_alpha_stable_value, sizeof(phase_offset_iir_alpha_stable_value));</div>
 <div class="line">gptpgcfg_set_item(gpoptd.instnum, XL4_EXTMOD_XL4GPTP_FREQ_OFFSET_IIR_ALPHA_STABLE_VALUE, YDBI_CONFIG, &amp;freq_offset_iir_alpha_stable_value, sizeof(freq_offset_iir_alpha_stable_value));</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md307"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md351"></a>
 Limitations</h1>
 <p>For all parameters related to interval, the minimum interval can be configured for gPTP is 7.8125ms. The reason for that minimum interval is the implementation uses a base timer which has minimum period is 7.8125ms. Thus, increasing the interval parameters like <code>sync-interval</code> which is not a multiple of 7.8125ms may produce inaccurate interval of sending sync message.Or reducing interval of sync message below 7.8125ms is not possible. And the same limitation applied for all remaining interval parameters.</p>
-<h1><a class="anchor" id="autotoc_md308"></a>
+<h1><a class="anchor" id="autotoc_md352"></a>
 See Also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> </p>
 </div></div><!-- contents -->

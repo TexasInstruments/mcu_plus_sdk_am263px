@@ -127,7 +127,7 @@ void pmic_qa_watchdog_interrupt_main(void *args)
 
     if(PMIC_ST_SUCCESS == status)
     {
-        /* Configure the PMIC NINT pin to genrate interrupt */
+        /* Configure the PMIC NINT pin to generate interrupt */
         status = PMICApp_setGpoNint(handle);
     }
        

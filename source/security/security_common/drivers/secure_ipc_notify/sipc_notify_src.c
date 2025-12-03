@@ -65,7 +65,7 @@ static inline void SIPC_setMboxConfig(SIPC_Params *params, uint32_t selfCoreId)
     if (selfCoreId == CORE_ID_HSM0_0 )
     {
         /* Define HSM->R5 tx and R5 -> HSM rx queues */
-        for( secMaster = 0 ; secMaster < (MAX_SEC_CORES_WITH_HSM - 1); secMaster ++)
+        for( secMaster = 0 ; secMaster < (uint8_t)(MAX_SEC_CORES_WITH_HSM - 1); secMaster ++)
         {
             /*****************************************************************************/
             /* HSM TX queue setup                                                        */
@@ -122,7 +122,7 @@ static inline void SIPC_getWriteMailbox(uint32_t remoteSecCoreId, uint32_t *mail
 {
     SIPC_MailboxConfig *pMailboxConfig;
     /* If it is HSM */
-    if ((gSIPC_ctrl.selfCoreId == CORE_ID_HSM0_0) && (remoteSecCoreId < 2))
+    if ((gSIPC_ctrl.selfCoreId == CORE_ID_HSM0_0) && (remoteSecCoreId < 2U))
     {
         /* Read the necessary fields */
         pMailboxConfig = &gSIPC_HsmMboxConfig[gSIPC_ctrl.secHostCoreId[remoteSecCoreId]];
@@ -297,7 +297,7 @@ void SIPC_isr(void *args)
         SIPC_getReadMailbox(&mailboxBaseAddr);
         /* We need to keeping doing this until all status bits are 0, else we dont get new interrupt */
         pendingIntr = SIPC_mailboxGetPendingIntr(mailboxBaseAddr);
-    } while ( pendingIntr != 0 );
+    } while ( pendingIntr != 0U );
 }
 /* This api will be used to send message to a particular remoteSecCodeId and remoteClientId. */
 int32_t SIPC_sendMsg(uint8_t remoteSecCoreId, uint8_t remoteClientId,uint8_t localClientId, uint8_t* msgValue, SIPC_fifoFlags waitForFifoNotFull)
@@ -329,7 +329,7 @@ int32_t SIPC_sendMsg(uint8_t remoteSecCoreId, uint8_t remoteClientId,uint8_t loc
                     HwiP_restore(oldIntState);
                     oldIntState = HwiP_disable();
                 }
-            } while(status != (SystemP_SUCCESS  && waitForFifoNotFull));
+            } while(status != (int32_t)(SystemP_SUCCESS  && waitForFifoNotFull));
 
             HwiP_restore(oldIntState);
             /* If not wait option is selected then return failure if FIFO is full */
@@ -406,7 +406,7 @@ int32_t SIPC_init(SIPC_Params *params)
     /* check if current core who is doing sipc init is a secure host or not if not.
      * if not then return init failure */
 
-    for( secMaster = 0 ; secMaster < (MAX_SEC_CORES_WITH_HSM - 1) ; secMaster ++)
+    for( secMaster = 0 ; secMaster < (uint8_t)(MAX_SEC_CORES_WITH_HSM - 1) ; secMaster ++)
     {
         if((selfCoreId == params->secHostCoreId[secMaster]) || (selfCoreId == CORE_ID_HSM0_0))
         {
@@ -428,7 +428,7 @@ int32_t SIPC_init(SIPC_Params *params)
         }
     }
     /* Indicates that this core is not a secHost*/
-    if(assertFlag == 1)
+    if(assertFlag == 1U)
     {
         return SystemP_FAILURE ;
     }
@@ -443,7 +443,7 @@ int32_t SIPC_init(SIPC_Params *params)
         /* Unregister previously registered clients. */
         for(i = 0; i < SIPC_CLIENT_ID_MAX; i++)
         {
-            SIPC_unregisterClient(i);
+            (void)SIPC_unregisterClient(i);
         }
         /* Register queues pointer point to an allocated queue. & initialize mailboxconfig swQ parameters.
          * set the mailbox config based on wether a core is secure master or not */
@@ -509,7 +509,7 @@ void SIPC_deInit(void)
 
     for(itr = 0; itr < SIPC_CLIENT_ID_MAX; itr++)
     {
-        SIPC_unregisterClient(itr);
+        (void)SIPC_unregisterClient(itr);
     }
 
     oldIntState = HwiP_disable();

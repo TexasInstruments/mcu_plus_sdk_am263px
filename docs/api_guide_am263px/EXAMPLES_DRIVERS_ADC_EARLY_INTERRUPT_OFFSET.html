@@ -92,34 +92,34 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_EARLY_INTERRUPT_O
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1881">Introduction</a><ul><li class="level2"><a href="#autotoc_md1882">Example Description</a></li>
-<li class="level2"><a href="#autotoc_md1883">SOC Configurations</a></li>
-<li class="level2"><a href="#autotoc_md1884">PPB Configurations</a></li>
-<li class="level2"><a href="#autotoc_md1885">Interrupt Configurations</a></li>
-<li class="level2"><a href="#autotoc_md1886">ISR configurations</a></li>
+<ul><li class="level1"><a href="#autotoc_md1953">Introduction</a><ul><li class="level2"><a href="#autotoc_md1954">Example Description</a></li>
+<li class="level2"><a href="#autotoc_md1955">SOC Configurations</a></li>
+<li class="level2"><a href="#autotoc_md1956">PPB Configurations</a></li>
+<li class="level2"><a href="#autotoc_md1957">Interrupt Configurations</a></li>
+<li class="level2"><a href="#autotoc_md1958">ISR configurations</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1887">External Connections</a><ul><li class="level2"><a href="#autotoc_md1888">AM263Px-CC E2 or AM263x-CC E2 or AM261x-SOM E1</a></li>
-<li class="level2"><a href="#autotoc_md1889">AM263x-CC E1</a></li>
-<li class="level2"><a href="#autotoc_md1890">AM263Px-LP or AM263x-LP or AM261X-LP</a></li>
+<li class="level1"><a href="#autotoc_md1959">External Connections</a><ul><li class="level2"><a href="#autotoc_md1960">AM263Px-CC E2 or AM263x-CC E2 or AM261x-SOM E1</a></li>
+<li class="level2"><a href="#autotoc_md1961">AM263x-CC E1</a></li>
+<li class="level2"><a href="#autotoc_md1962">AM263Px-LP or AM263x-LP or AM261X-LP</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1891">Watch Variables</a></li>
+<li class="level1"><a href="#autotoc_md1963">Watch Variables</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_EARLY_INTERRUPT_OFFSET_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md1892">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md1893">See Also</a></li>
-<li class="level1"><a href="#autotoc_md1894">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md1964">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md1965">See Also</a></li>
+<li class="level1"><a href="#autotoc_md1966">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_early_interrupt_offset"></a></p>
-<h1><a class="anchor" id="autotoc_md1881"></a>
+<h1><a class="anchor" id="autotoc_md1953"></a>
 Introduction</h1>
 <p>The early interrupt feature allows generation (or setting) of INT flag right before the Conversion starts, but after the sample and hold (acquisition) window. This is to facilitate the early updation to the system that the ADC result could be expected. The configurability of offset for the early interrupt allows even more flexibility as of after how many sysclk cycles from the Sample and hold windw should the interrupt be generated.</p>
 <p> <style>div.image img[src="am263_adc_early_interrupt_offset.png"]{width:50%}</style> </p><div class="image">
 <img src="am263_adc_early_interrupt_offset.png" alt=""/>
 <div class="caption">
 Diagram showcasing Early Interrupt and Offset feature of ADC</div></div>
- <h2><a class="anchor" id="autotoc_md1882"></a>
+ <h2><a class="anchor" id="autotoc_md1954"></a>
 Example Description</h2>
 <p>This example demonstrates the early interrupt feature and its offset configurability for the ADC. SOC 1 is set to be triggered when ADC1_INT1 is set, which in turn is set for EOC/SOC0. Hence, SOC1 are supposed to happen at EOC0. The ADC1_INT1 is set as an early interrupt and the offset is varied. which delays the triggering of the SOC1. Although triggered, the SOC1 should wait until the conversion of SOC0 is complete. hence a delay from trigger to acquisition is present in SOC1. This can be obtained by setting the PPB (Post Processing Block) to the SOC1. So, by reading the varied delay against offset value, the example records the offset configurability of the early interrupt.</p><ul>
 <li>Note :<ul>
@@ -128,7 +128,7 @@ Example Description</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1883"></a>
+<h2><a class="anchor" id="autotoc_md1955"></a>
 SOC Configurations</h2>
 <ul>
 <li>SOC 0 :<ol type="1">
@@ -144,12 +144,12 @@ SOC Configurations</h2>
 </ol>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1884"></a>
+<h2><a class="anchor" id="autotoc_md1956"></a>
 PPB Configurations</h2>
 <ol type="1">
 <li>PPB 1 is set for SOC 1 </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md1885"></a>
+<h2><a class="anchor" id="autotoc_md1957"></a>
 Interrupt Configurations</h2>
 <p>INT xbar0 is set for ADC 1 INT 2.</p><ul>
 <li>ADC 1 INT 1 :<ol type="1">
@@ -162,7 +162,7 @@ Interrupt Configurations</h2>
 </ol>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1886"></a>
+<h2><a class="anchor" id="autotoc_md1958"></a>
 ISR configurations</h2>
 <ul>
 <li>App_adcISR0 :<ul>
@@ -171,18 +171,18 @@ ISR configurations</h2>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1887"></a>
+<h1><a class="anchor" id="autotoc_md1959"></a>
 External Connections</h1>
-<h2><a class="anchor" id="autotoc_md1888"></a>
+<h2><a class="anchor" id="autotoc_md1960"></a>
 AM263Px-CC E2 or AM263x-CC E2 or AM261x-SOM E1</h2>
 <p>Feed analog inputs to channels ADC1_AIN0 - HSEC Pin 12</p>
-<h2><a class="anchor" id="autotoc_md1889"></a>
+<h2><a class="anchor" id="autotoc_md1961"></a>
 AM263x-CC E1</h2>
 <p>Feed analog inputs to channels ADC1_AIN0 - HSEC Pin 18 </p>
-<h2><a class="anchor" id="autotoc_md1890"></a>
+<h2><a class="anchor" id="autotoc_md1962"></a>
 AM263Px-LP or AM263x-LP or AM261X-LP</h2>
 <p>Feed analog inputs to channels ADC1_AIN0 - J1/3 Pin 24 </p>
-<h1><a class="anchor" id="autotoc_md1891"></a>
+<h1><a class="anchor" id="autotoc_md1963"></a>
 Watch Variables</h1>
 <p>gAdc1soc1Delay[] - holds the delay values for ADC1_SOC1</p>
 <h1><a class="anchor" id="EXAMPLES_DRIVERS_ADC_EARLY_INTERRUPT_OFFSET_COMBOS"></a>
@@ -199,7 +199,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_early_interrupt_offset/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1892"></a>
+<h1><a class="anchor" id="autotoc_md1964"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -209,10 +209,10 @@ Steps to Run the Example</h1>
 <li>Using the watch variables, view the ADC conversion results.</li>
 <li>View the ADC conversion results in UART console logs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1893"></a>
+<h1><a class="anchor" id="autotoc_md1965"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md1894"></a>
+<h1><a class="anchor" id="autotoc_md1966"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ADC Early Interrupt and Configurable Offset Test Started</div>

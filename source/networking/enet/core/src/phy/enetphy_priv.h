@@ -428,6 +428,48 @@ typedef struct EnetPhy_Drv_s
      */
     int32_t (*getEventTs)(EnetPhy_Handle hPhy, uint32_t *eventIdx,
                 uint32_t *seqId, uint64_t *ts64);
+
+
+    /*!
+     * \brief Provides selected speed and duplex when link is up
+     *
+     * Accessing vendor specific or extended registers based on type of PHY to provide
+     * agreed speed and duplex mode for actual connection.
+     *
+     * \param hPhy           PHY device handle
+     * \param pConfig        Contains speed/duplex combination used for actual
+     *                       connection. See \ref Phy_Link_SpeedDuplex_e.
+     *
+     * \return \ref EnetPhy_ErrorCodes
+     */
+    int32_t (*getSpeedDuplex)(EthPhyDrv_Handle hPhy, Phy_Link_SpeedDuplex* pConfig);
+
+    /*!
+     * \brief config Media Clock
+     *
+     * config Media Clock
+     *
+     * \param hPhy               PHY device handle
+     * \param isMaster           Media Clock Master/Slave Mode
+     * \param streamIDMatchValue Stream ID Match value for CRF Parsing
+     * \param enTrigOut          If true, starts 100Hz phase aligned signal
+     *                           to the media clock at LED0
+     *
+     * \return \ref EnetPhy_ErrorCodes
+     */
+    int32_t (*configMediaClock)(EthPhyDrv_Handle hPhy, bool isMaster,
+                 uint8_t *streamIDMatchValue, bool enTrigOut);
+    /*!
+     * \brief Nudge Codec Clock
+     *
+     * Nudge Codec Clock
+     *
+     * \param hPhy         PHY device handle
+     * \param NudgeValue   int8_t value to nudge Codec clock.
+     *
+     * \return \ref EnetPhy_ErrorCodes
+     */
+    int32_t (*nudgeCodecClock)(EthPhyDrv_Handle hPhy, int8_t nudgeValue);
 } EnetPhy_Drv;
 
 

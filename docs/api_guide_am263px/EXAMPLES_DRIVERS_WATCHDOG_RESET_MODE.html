@@ -92,21 +92,21 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_WATCHDOG_RESET_MODE.h
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2815">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md2888">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_WATCHDOG_RESET_MODE_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2816">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2817">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2818">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2819">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2889">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md2890">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2891">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2892">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_watchdog_reset_mode"></a></p>
-<h1><a class="anchor" id="autotoc_md2815"></a>
+<h1><a class="anchor" id="autotoc_md2888"></a>
 Introduction</h1>
 <p>This example uses the WDT module in reset mode to trigger SOC warm reset. Servicing the WDT for few iterations before triggering the warm reset. It will reset the device once it reaches the expiry time set by user. Note that this example won't work in the debug mode as the user must not service the watchdog while in debug mode. For it to work, we can flash the image to get the expected result.</p>
 <h1><a class="anchor" id="EXAMPLES_DRIVERS_WATCHDOG_RESET_MODE_COMBOS"></a>
 Supported Combinations</h1>
-<h1><a class="anchor" id="autotoc_md2816"></a>
+<h1><a class="anchor" id="autotoc_md2889"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -120,7 +120,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/watchdog/watchdog_reset/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2817"></a>
+<h1><a class="anchor" id="autotoc_md2890"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -128,10 +128,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>Please select the UART port used for console as mentioned in <a class="el" href="EVM_SETUP_PAGE.html#CCS_UART_TERMINAL">Setup UART Terminal</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2818"></a>
+<h1><a class="anchor" id="autotoc_md2891"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_WATCHDOG_PAGE.html">WATCHDOG</a></p>
-<h1><a class="anchor" id="autotoc_md2819"></a>
+<h1><a class="anchor" id="autotoc_md2892"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run, Please note that application prints in both CCS and UART console.</p>
 <dl class="section note"><dt>Note</dt><dd>Console prints will be stopped once WDT triggers warm reset.</dd></dl>

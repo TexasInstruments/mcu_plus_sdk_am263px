@@ -92,34 +92,34 @@ $(document).ready(function(){initNavTree('EXAMPLES_CPSW_LWIP_HTTPS.html',''); in
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2828">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2829">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2830">Packet pool configuration</a></li>
-<li class="level1"><a href="#autotoc_md2831">Configuring Syscfg</a></li>
-<li class="level1"><a href="#autotoc_md2832">To Configure Static IP</a></li>
-<li class="level1"><a href="#autotoc_md2833">mbedTLS</a></li>
-<li class="level1"><a href="#autotoc_md2834">TLS certificates used</a><ul><li class="level2"><a href="#autotoc_md2835">Certificate Authority</a></li>
-<li class="level2"><a href="#autotoc_md2836">Server Certificates</a></li>
-<li class="level2"><a href="#autotoc_md2837">Certificate Authority (Self signing)</a><ul><li class="level3"><a href="#autotoc_md2838">Sample generated certificate</a></li>
-<li class="level3"><a href="#autotoc_md2839">Sample generated key</a></li>
+<ul><li class="level1"><a href="#autotoc_md2901">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2902">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md2903">Packet pool configuration</a></li>
+<li class="level1"><a href="#autotoc_md2904">Configuring Syscfg</a></li>
+<li class="level1"><a href="#autotoc_md2905">To Configure Static IP</a></li>
+<li class="level1"><a href="#autotoc_md2906">mbedTLS</a></li>
+<li class="level1"><a href="#autotoc_md2907">TLS certificates used</a><ul><li class="level2"><a href="#autotoc_md2908">Certificate Authority</a></li>
+<li class="level2"><a href="#autotoc_md2909">Server Certificates</a></li>
+<li class="level2"><a href="#autotoc_md2910">Certificate Authority (Self signing)</a><ul><li class="level3"><a href="#autotoc_md2911">Sample generated certificate</a></li>
+<li class="level3"><a href="#autotoc_md2912">Sample generated key</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2840">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md2841">Build the example</a></li>
-<li class="level2"><a href="#autotoc_md2842">HW Setup</a></li>
-<li class="level2"><a href="#autotoc_md2843">Create a network between EVM and host PC</a></li>
-<li class="level2"><a href="#autotoc_md2844">Run the example</a></li>
-<li class="level2"><a href="#autotoc_md2845">Sample output for CPSW example</a></li>
-<li class="level2"><a href="#autotoc_md2846">Steps to execute</a></li>
-<li class="level2"><a href="#autotoc_md2847">Troubleshooting issues</a></li>
+<li class="level1"><a href="#autotoc_md2913">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md2914">Build the example</a></li>
+<li class="level2"><a href="#autotoc_md2915">HW Setup</a></li>
+<li class="level2"><a href="#autotoc_md2916">Create a network between EVM and host PC</a></li>
+<li class="level2"><a href="#autotoc_md2917">Run the example</a></li>
+<li class="level2"><a href="#autotoc_md2918">Sample output for CPSW example</a></li>
+<li class="level2"><a href="#autotoc_md2919">Steps to execute</a></li>
+<li class="level2"><a href="#autotoc_md2920">Troubleshooting issues</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2848">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2921">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_cpsw_lwip_https"></a></p>
-<h1><a class="anchor" id="autotoc_md2828"></a>
+<h1><a class="anchor" id="autotoc_md2901"></a>
 Introduction</h1>
 <dl class="section note"><dt>Note</dt><dd>LwIP and MbedTLS features are made available as is from the public lwIP and MbedTLS project. SDK configuration may only enable and exercise a subset of these features.</dd></dl>
 <p>This example demonstates how to run a HTTPS server on LwIP networking stack using raw API coupled with ethernet driver (ENET), with MbedTLS providing TLS functionality in the L4 layer.</p>
@@ -137,13 +137,13 @@ Introduction</h1>
 <li>HTTPS Server completes the handshake and sends back an "index.html" webpage back to client at the address {<a href="https://IP_ADDR/index.html">https://IP_ADDR/index.html</a>}.</li>
 <li>This showcases the ability of the TI device to act as an HTTPS server </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2829"></a>
+<h1><a class="anchor" id="autotoc_md2902"></a>
 Supported Combinations</h1>
 <dl class="section note"><dt>Note</dt><dd>In this implementation of HTTPS server, we have used PBUF_RAM to allocate pbufs instead of PBUF_POOLS. This is subject to change in the future releases. The lwip-stack/src/apps/altcp_tls/altcp_tls_mbedtls.c file has also been moved out to the example for the aforementioned reason.</dd></dl>
-<h1><a class="anchor" id="autotoc_md2830"></a>
+<h1><a class="anchor" id="autotoc_md2903"></a>
 Packet pool configuration</h1>
 <p>To change packet pool configuration from syscfg, please refer to <a class="el" href="PACKETPOOL_CONFIG_TOP.html">Ethernet Packet Pool Allocation Guidelines</a></p>
-<h1><a class="anchor" id="autotoc_md2831"></a>
+<h1><a class="anchor" id="autotoc_md2904"></a>
 Configuring Syscfg</h1>
 <ul>
 <li>Following Syscfg option allows flexibility to configure memory footprint based on the required use case like: Number of DMA descriptors and buffering.</li>
@@ -180,19 +180,19 @@ Configuring Syscfg</h1>
 <td>Number of Rx Packet </td><td>TI Networking / Enet (CPSW) / DMA channel config </td><td>No of Rx packets required for DMA channel </td><td>Default is 40.<br  />
  It contributes to the size of Pkt Mem Pool, DMA ring buffer and accessories size.  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2832"></a>
+<h1><a class="anchor" id="autotoc_md2905"></a>
 To Configure Static IP</h1>
 <p>Please refer to <a class="el" href="NETWORKING_LWIP_STATIC_IP.html">Ethernet LwIP TCP/IP Static IP</a>.</p>
-<h1><a class="anchor" id="autotoc_md2833"></a>
+<h1><a class="anchor" id="autotoc_md2906"></a>
 mbedTLS</h1>
 <p>Mbed TLS is a C library that implements cryptographic primitives, X.509 certificate manipulation and the SSL/TLS and DTLS protocols. It is distributed under the Apache License version 2.0. Its small code footprint makes it suitable for embedded systems. It is known to be easy to understand, use, integrate and expand. The library is designed to integrate with existing (embedded) applications and to provide the building blocks for secure communication, cryptography and key management. It is designed to be as loosely coupled as possible, allowing you to only integrate the parts you need without having overhead from the rest.</p>
 <ul>
 <li>mbedTLS tag used for this example: mbedtls-2.13.1 (<a href="https://github.com/Mbed-TLS/mbedtls/tree/mbedtls-2.13.1">https://github.com/Mbed-TLS/mbedtls/tree/mbedtls-2.13.1</a>)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2834"></a>
+<h1><a class="anchor" id="autotoc_md2907"></a>
 TLS certificates used</h1>
 <p>Here we use self signed openSSL generated certificates for TLS handshake. The steps for generation of certificate are shown below. First we generate the certificates and then convert it to DER format, which is further converted to hex and used in "server_certificates.h" file.</p>
-<h2><a class="anchor" id="autotoc_md2835"></a>
+<h2><a class="anchor" id="autotoc_md2908"></a>
 Certificate Authority</h2>
 <ul>
 <li>Generate unencrypted 2048-bits RSA private key for the certificate authority (CA). <div class="fragment"><div class="line">$ openssl genrsa -out ca-prk.pem 2048</div>
@@ -202,7 +202,7 @@ Certificate Authority</h2>
 <li>Self-sign the CSR and to generate a certificate for the CA <div class="fragment"><div class="line">$ openssl x509 -req -signkey ca-prk.pem -in ca-csr.pem -out ca-cer.pem -days 3650</div>
 </div><!-- fragment --></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2836"></a>
+<h2><a class="anchor" id="autotoc_md2909"></a>
 Server Certificates</h2>
 <ul>
 <li>Generate unencrypted 2048-bits RSA private key for the server (CA) <div class="fragment"><div class="line">$ openssl genrsa -out server-prk.pem 2048</div>
@@ -210,7 +210,7 @@ Server Certificates</h2>
 <li>Generate CSR for the server <div class="fragment"><div class="line">$ openssl req -new -sha256 -key server-prk.pem -out server-csr.pem -subj &quot;/C={country}/ST={state}/L={locality}/O={organization}/CN={common name, ex. 127.0.0.1}&quot;</div>
 </div><!-- fragment --></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2837"></a>
+<h2><a class="anchor" id="autotoc_md2910"></a>
 Certificate Authority (Self signing)</h2>
 <ul>
 <li>View the server CSR and verify its content: <div class="fragment"><div class="line">$ openssl req -in server-csr.pem -noout -text</div>
@@ -225,7 +225,7 @@ Certificate Authority (Self signing)</h2>
 </div><!-- fragment --></li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>In this implementation of HTTPS server, we have not enabled the file system support. We directly use the certificate's and key's data as hex dump array. The server_certificates.h file has both the Certificate and the private key. The variable 'Certificate' is the hex dump of certificate.pem and the variable 'PrivateKey' is the hex dump of key.pem.</dd></dl>
-<h3><a class="anchor" id="autotoc_md2838"></a>
+<h3><a class="anchor" id="autotoc_md2911"></a>
 Sample generated certificate</h3>
 <p> <style>div.image img[src="cpsw_lwip_https_cert1.png"]{width:70%}</style> </p><div class="image">
 <img src="cpsw_lwip_https_cert1.png" alt=""/>
@@ -233,23 +233,23 @@ Sample generated certificate</h3>
 <p>  <style>div.image img[src="cpsw_lwip_https_cert2.png"]{width:70%}</style> </p><div class="image">
 <img src="cpsw_lwip_https_cert2.png" alt=""/>
 </div>
-<h3><a class="anchor" id="autotoc_md2839"></a>
+<h3><a class="anchor" id="autotoc_md2912"></a>
 Sample generated key</h3>
 <p> <style>div.image img[src="cpsw_lwip_https_key.png"]{width:70%}</style> </p><div class="image">
 <img src="cpsw_lwip_https_key.png" alt=""/>
 </div>
-<h1><a class="anchor" id="autotoc_md2840"></a>
+<h1><a class="anchor" id="autotoc_md2913"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md2841"></a>
+<h2><a class="anchor" id="autotoc_md2914"></a>
 Build the example</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2842"></a>
+<h2><a class="anchor" id="autotoc_md2915"></a>
 HW Setup</h2>
 <dl class="section note"><dt>Note</dt><dd>Make sure you have setup the EVM with cable connections as shown here, <a class="el" href="EVM_SETUP_PAGE.html">EVM Setup</a>. In addition do below steps.</dd></dl>
-<h2><a class="anchor" id="autotoc_md2843"></a>
+<h2><a class="anchor" id="autotoc_md2916"></a>
 Create a network between EVM and host PC</h2>
 <ul>
 <li>The EVM will get an IP address using DHCP, so make sure to connect the other end of the cable to a network which has a DHCP server running.</li>
@@ -264,7 +264,7 @@ Local network between PC and EVM</div></div>
 <li>After we run the example on the EVM (next step), the EVM will similarly be assigned a IP address, and then host can communicate with the EVM using the assigned IP address.</li>
 <li>To enable static IP, set the static IP in the ipAddr variable in the App_setupNetif() before passing it as arguement to initiate the netif, and stop the DHCP from starting in the App_allocateIPAddress() function.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2844"></a>
+<h2><a class="anchor" id="autotoc_md2917"></a>
 Run the example</h2>
 <dl class="section attention"><dt>Attention</dt><dd>If you need to reload and run again, a CPU power-cycle is MUST</dd></dl>
 <ul>
@@ -272,7 +272,7 @@ Run the example</h2>
 <li>You will see logs in the UART terminal as shown in the next section.</li>
 <li>Note the IP address seen in the log, this is what we will use to communicate with the EVM via a Web Browser. The address in this case is <a href="https://192.168.1.2/index.html">https://192.168.1.2/index.html</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2845"></a>
+<h2><a class="anchor" id="autotoc_md2918"></a>
 Sample output for CPSW example</h2>
 <div class="fragment"><div class="line">==========================</div>
 <div class="line">       CPSW HTTPS TCP</div>
@@ -309,7 +309,7 @@ Sample output for CPSW example</h2>
 <img src="cpsw_lwip_https_server.png" alt=""/>
 <div class="caption">
 Client web browser connected to HTTPS server</div></div>
-<h2><a class="anchor" id="autotoc_md2846"></a>
+<h2><a class="anchor" id="autotoc_md2919"></a>
 Steps to execute</h2>
 <ol type="1">
 <li>Run example on the EVM</li>
@@ -320,7 +320,7 @@ Steps to execute</h2>
 <li>The lwIP home page will load with the title "lwip -  A Lightweight TCP/IP Stack"</li>
 <li>To close the connection, simply close the tab in the web browser.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md2847"></a>
+<h2><a class="anchor" id="autotoc_md2920"></a>
 Troubleshooting issues</h2>
 <ul>
 <li>To ensure compatibility with CPSW RGMII2 port on am263px-cc board, make sure that SW-15(switch) should be set to <code>LOW</code> for board versions(E2/A/B versions). This configuration ensures seamless out-of-box support and functionality with the CPSW RGMII2 port on the specified versions.</li>
@@ -340,7 +340,7 @@ Troubleshooting issues</h2>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2848"></a>
+<h1><a class="anchor" id="autotoc_md2921"></a>
 See Also</h1>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

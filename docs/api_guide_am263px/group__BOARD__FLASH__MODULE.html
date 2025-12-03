@@ -171,6 +171,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gab26c7728148eda750247aa3d0b6fbae4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structFlash__Attrs.html">Flash_Attrs</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOARD__FLASH__MODULE.html#gab26c7728148eda750247aa3d0b6fbae4">Flash_getAttrs</a> (uint32_t instanceId)</td></tr>
 <tr class="memdesc:gab26c7728148eda750247aa3d0b6fbae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return flash attributes.  <a href="group__BOARD__FLASH__MODULE.html#gab26c7728148eda750247aa3d0b6fbae4">More...</a><br /></td></tr>
 <tr class="separator:gab26c7728148eda750247aa3d0b6fbae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac4353f83384e9f69996ff3c80defa1f0"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOARD__FLASH__MODULE.html#gac4353f83384e9f69996ff3c80defa1f0">Flash_phyTune</a> (<a class="el" href="group__BOARD__FLASH__MODULE.html#ga0aa97d350ea7374b917f12dddc1abba4">Flash_Handle</a> handle)</td></tr>
+<tr class="memdesc:gac4353f83384e9f69996ff3c80defa1f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tunes the flash controller physical layer parameters.  <a href="group__BOARD__FLASH__MODULE.html#gac4353f83384e9f69996ff3c80defa1f0">More...</a><br /></td></tr>
+<tr class="separator:gac4353f83384e9f69996ff3c80defa1f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -219,6 +222,9 @@ Flash driver implementation callbacks</h2></td></tr>
 <tr class="memitem:gadeb86f8db9fb0e614573ef99bcfd8b42"><td class="memItemLeft" align="right" valign="top">typedef int32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOARD__FLASH__MODULE.html#gadeb86f8db9fb0e614573ef99bcfd8b42">Flash_custProtocolFxn</a>) (<a class="el" href="structFlash__Config.html">Flash_Config</a> *config)</td></tr>
 <tr class="memdesc:gadeb86f8db9fb0e614573ef99bcfd8b42"><td class="mdescLeft">&#160;</td><td class="mdescRight">User implementation of a custom function to configure flash to operate in a specific protocol.  <a href="group__BOARD__FLASH__MODULE.html#gadeb86f8db9fb0e614573ef99bcfd8b42">More...</a><br /></td></tr>
 <tr class="separator:gadeb86f8db9fb0e614573ef99bcfd8b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga39875778449fda30dd84533f5a8e5332"><td class="memItemLeft" align="right" valign="top">typedef int32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOARD__FLASH__MODULE.html#ga39875778449fda30dd84533f5a8e5332">Flash_phyTuneFxn</a>) (<a class="el" href="structFlash__Config.html">Flash_Config</a> *confifg)</td></tr>
+<tr class="memdesc:ga39875778449fda30dd84533f5a8e5332"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver implementation to perform phy tune flash.  <a href="group__BOARD__FLASH__MODULE.html#ga39875778449fda30dd84533f5a8e5332">More...</a><br /></td></tr>
+<tr class="separator:ga39875778449fda30dd84533f5a8e5332"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="ga0aa97d350ea7374b917f12dddc1abba4"></a>
@@ -531,6 +537,29 @@ Flash driver implementation callbacks</h2></td></tr>
 </div><div class="memdoc">
 
 <p>User implementation of a custom function to configure flash to operate in a specific protocol. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">config</td><td>[in] Flash configuration for the specific flash device</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on success, else failure </dd></dl>
+
+</div>
+</div>
+<a id="ga39875778449fda30dd84533f5a8e5332"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga39875778449fda30dd84533f5a8e5332">&#9670;&nbsp;</a></span>Flash_phyTuneFxn</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int32_t(* Flash_phyTuneFxn) (<a class="el" href="structFlash__Config.html">Flash_Config</a> *confifg)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Driver implementation to perform phy tune flash. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">config</td><td>[in] Flash configuration for the specific flash device</td></tr>
@@ -1191,6 +1220,33 @@ NULL in case of failure </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structFlash__Attrs.html">Flash_Attrs</a>, else NULL if instanceId is invalid </dd></dl>
+
+</div>
+</div>
+<a id="gac4353f83384e9f69996ff3c80defa1f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac4353f83384e9f69996ff3c80defa1f0">&#9670;&nbsp;</a></span>Flash_phyTune()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t Flash_phyTune </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__BOARD__FLASH__MODULE.html#ga0aa97d350ea7374b917f12dddc1abba4">Flash_Handle</a>&#160;</td>
+          <td class="paramname"><em>handle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tunes the flash controller physical layer parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>The flash controller handle</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on success, else failure </dd></dl>
 
 </div>
 </div>

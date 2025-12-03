@@ -92,19 +92,19 @@ $(document).ready(function(){initNavTree('DRIVERS_SIPC_NOTIFY_PAGE.html',''); in
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md891">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md892">Secure IPC design description</a><ul><li class="level2"><a href="#Mailbox-mechanism-for-sipc">Mailbox mechanism for SIPC</a></li>
-<li class="level2"><a href="#autotoc_md893">SIPC initialization</a></li>
-<li class="level2"><a href="#autotoc_md894">Message format.</a></li>
+<ul><li class="level1"><a href="#autotoc_md935">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md936">Secure IPC design description</a><ul><li class="level2"><a href="#Mailbox-mechanism-for-sipc">Mailbox mechanism for SIPC</a></li>
+<li class="level2"><a href="#autotoc_md937">SIPC initialization</a></li>
+<li class="level2"><a href="#autotoc_md938">Message format.</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md895">Example usage.</a></li>
-<li class="level1"><a href="#autotoc_md896">API</a></li>
+<li class="level1"><a href="#autotoc_md939">Example usage.</a></li>
+<li class="level1"><a href="#autotoc_md940">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_sipc_notify"></a></p>
 <dl class="section note"><dt>Note</dt><dd>Secure IPC Notify driver enables IPC communication between R5F cores and HSM M4 core. This driver cannot be used without encrypted HSMRt binary for HS-FS devices (will be available in 8.4) and TIFS-MCU for HS-SE devices (available on mySecureSW).</dd></dl>
-<h1><a class="anchor" id="autotoc_md891"></a>
+<h1><a class="anchor" id="autotoc_md935"></a>
 Introduction</h1>
 <ul>
 <li>The <b>secure IPC notify(SIPC Notify)</b> driver enables IPC communication between R5FSSx-x cores and HSM M4 core for <b>HS-SE</b> devices.</li>
@@ -112,7 +112,7 @@ Introduction</h1>
 <li>The trusted R5FSSx-x which can post a request for services from HSM are termed as <b>secure hosts</b>. A non-secure host cannot communicate with HSM, moreover, the shared memory used in SIPC communication is not accessible to non-secure hosts. The cores that are going to be secure hosts are defined via <b>sysconfig</b> and this will be a static configuration at compile time. At a time there can only be atmost two secure hosts which can talk to HSM via SIPC, thus the name <b>secure IPC</b>.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>Sysconfig initialization has to be handled by <b>HSM client</b>. For Secure IPC, Sysconfig is not supported in this release. It will be available with upcoming SDK releases along with <b>HSM client</b> </dd></dl>
-<h1><a class="anchor" id="autotoc_md892"></a>
+<h1><a class="anchor" id="autotoc_md936"></a>
 Secure IPC design description</h1>
 <ul>
 <li>SIPC supports RTOS-based implementation on the R5F side. The concept of <b>CLIENT IDs</b> is borrowed from <a class="el" href="DRIVERS_IPC_NOTIFY_PAGE.html">IPC Notify</a>, where in the RTOS scenario each task has a callback registered of type <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gaff91d2f85a004ae8509bff4429426e39">SIPC_FxnCallback</a>. This function will be called when a message is received for a respective CLIENT ID. Refer to <a class="el" href="IPC_GUIDE.html">Understanding inter-processor communication (IPC)</a> to know more about CLIENT IDs.</li>
@@ -138,7 +138,7 @@ SIPC shared memory configuration</div></div>
 <li>The swQx is a struct holding pointer to actual queue location in HSM MBOX. There can be atmost 2 secure hosts at a time, so the total number of queues will be 4. If R5F wants to send a message to HSM then R5F writes into R5F -&gt; HSM queue and sends an interrupt to HSM M4, once acknowledged HSM will read the message from the same queue. Similarly, If HSM wants to send a message then HSM will write into HSM --&gt; R5 queues and sends an interrupt to R5F.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>The entire HSM MBOX memory must be read and write protected for non-secure hosts. setting up this firewall configuration is the responsibility of the HSM server running on M4.</dd></dl>
-<h2><a class="anchor" id="autotoc_md893"></a>
+<h2><a class="anchor" id="autotoc_md937"></a>
 SIPC initialization</h2>
 <ul>
 <li>Following parameters are user-configurable.<ol type="1">
@@ -188,8 +188,8 @@ SIPC initialization</h2>
 <div class="line">    notifyParams.<a class="code" href="structSIPC__Params.html#a187a5d40b35a335a03619580b9eecb58">tx_SipcQueues</a>[<a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2a7d22d9c30e99359f1c7e59fea1e48ea5">CORE_INDEX_HSM</a>] = (uintptr_t)gQueue_R5ToHsm[0] ;</div>
 <div class="line">    notifyParams.<a class="code" href="structSIPC__Params.html#acc0e3df1965dc7364dfec784fa90bcdf">rx_SipcQueues</a>[<a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2a7d22d9c30e99359f1c7e59fea1e48ea5">CORE_INDEX_HSM</a>] = (uintptr_t)gQueue_HsmToR5[0] ;</div>
 <div class="line"> </div>
-<div class="line">    notifyParams.<a class="code" href="structSIPC__Params.html#a2c25f5d7c4028f22038dda53a58686ed">secHostCoreId</a>[<a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2aec8bd284ef7986d731a488732fbdf2a8">CORE_INDEX_SEC_MASTER_0</a>] = <a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4aa782ed37b1959ba8b9bcc5a9a375802a">CORE_ID_R5FSS0_0</a> ;</div>
-<div class="line">    notifyParams.<a class="code" href="structSIPC__Params.html#a2c25f5d7c4028f22038dda53a58686ed">secHostCoreId</a>[<a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2ae268e8479dd36ced622187e6118ac5e9">CORE_INDEX_SEC_MASTER_1</a>] = <a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4a9eb93bd5b751c8bc5e646ae5b3bdc9e7">CORE_ID_R5FSS0_1</a> ;</div>
+<div class="line">    notifyParams.<a class="code" href="structSIPC__Params.html#a4a109a8bbbf92def86b8c7ec9e05266b">secHostCoreId</a>[<a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2aec8bd284ef7986d731a488732fbdf2a8">CORE_INDEX_SEC_MASTER_0</a>] = <a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4aa782ed37b1959ba8b9bcc5a9a375802a">CORE_ID_R5FSS0_0</a> ;</div>
+<div class="line">    notifyParams.<a class="code" href="structSIPC__Params.html#a4a109a8bbbf92def86b8c7ec9e05266b">secHostCoreId</a>[<a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2ae268e8479dd36ced622187e6118ac5e9">CORE_INDEX_SEC_MASTER_1</a>] = <a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4a9eb93bd5b751c8bc5e646ae5b3bdc9e7">CORE_ID_R5FSS0_1</a> ;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Initialize the IPC Notify module */</span></div>
 <div class="line">    status = <a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#ga41b553325afa726d6add36b361d7bdbc">SIPC_init</a>(&amp;notifyParams);</div>
@@ -224,8 +224,8 @@ SIPC initialization</h2>
 <div class="line">    <span class="comment">/* This is R5 -&gt; HSM queue */</span></div>
 <div class="line">    notifyParams.<a class="code" href="structSIPC__Params.html#acc0e3df1965dc7364dfec784fa90bcdf">rx_SipcQueues</a>[<a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2ae268e8479dd36ced622187e6118ac5e9">CORE_INDEX_SEC_MASTER_1</a>] = (uintptr_t)gQueue_R5ToHsm[1] ;</div>
 <div class="line"> </div>
-<div class="line">    notifyParams.<a class="code" href="structSIPC__Params.html#a2c25f5d7c4028f22038dda53a58686ed">secHostCoreId</a>[<a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2aec8bd284ef7986d731a488732fbdf2a8">CORE_INDEX_SEC_MASTER_0</a>] = <a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4aa782ed37b1959ba8b9bcc5a9a375802a">CORE_ID_R5FSS0_0</a> ;</div>
-<div class="line">    notifyParams.<a class="code" href="structSIPC__Params.html#a2c25f5d7c4028f22038dda53a58686ed">secHostCoreId</a>[<a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2ae268e8479dd36ced622187e6118ac5e9">CORE_INDEX_SEC_MASTER_1</a>] = <a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4a9eb93bd5b751c8bc5e646ae5b3bdc9e7">CORE_ID_R5FSS0_1</a> ;</div>
+<div class="line">    notifyParams.<a class="code" href="structSIPC__Params.html#a4a109a8bbbf92def86b8c7ec9e05266b">secHostCoreId</a>[<a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2aec8bd284ef7986d731a488732fbdf2a8">CORE_INDEX_SEC_MASTER_0</a>] = <a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4aa782ed37b1959ba8b9bcc5a9a375802a">CORE_ID_R5FSS0_0</a> ;</div>
+<div class="line">    notifyParams.<a class="code" href="structSIPC__Params.html#a4a109a8bbbf92def86b8c7ec9e05266b">secHostCoreId</a>[<a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2ae268e8479dd36ced622187e6118ac5e9">CORE_INDEX_SEC_MASTER_1</a>] = <a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4a9eb93bd5b751c8bc5e646ae5b3bdc9e7">CORE_ID_R5FSS0_1</a> ;</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Initialize the SIPC Notify module */</span></div>
 <div class="line">    status = <a class="code" href="group__DRV__SIPC__NOTIFY__MODULE.html#ga41b553325afa726d6add36b361d7bdbc">SIPC_init</a>(&amp;notifyParams);</div>
@@ -254,7 +254,7 @@ SIPC initialization</h2>
 </div><!-- fragment --></li>
 <li>In order to inherit the HSM services, the application must comply the uses of IPC via shared memory i.e. a memory region should be designated to both the CPUs. Make sure to mark this section as non-cached in the R5F MPU. However if the cache is enabled, for the shared region its application responsibility to bypass cache or invalidate the cache.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md894"></a>
+<h2><a class="anchor" id="autotoc_md938"></a>
 Message format.</h2>
 <p>Unlike <a class="el" href="DRIVERS_IPC_NOTIFY_PAGE.html">IPC Notify</a> the message size of SIPC can be in the range of 3 to 100 bytes.</p><ul>
 <li>The minimum message size is 3 bytes i.e [ <b>Dest ClientId</b> ][ <b>Src ClientId</b> ][<b>data</b>]. Users can change <a class="el" href="sipc__notify__cfg_8h.html#ac2fdfb0ed32bb14a82ca144071714220">SIPC_MSG_SIZE</a> based on a protocol that is implemented on top of SIPC.</li>
@@ -265,7 +265,7 @@ Message format.</h2>
 <div class="caption">
 message format used by HSM client</div></div>
 <dl class="section note"><dt>Note</dt><dd>It is recommended to use 13 bytes message format as mentioned above for optimal latency.</dd></dl>
-<h1><a class="anchor" id="autotoc_md895"></a>
+<h1><a class="anchor" id="autotoc_md939"></a>
 Example usage.</h1>
 <ul>
 <li>Consider a use case where R5F sends a message to HSM and HSM echoes back the same message.<ol type="1">
@@ -330,7 +330,7 @@ Example usage.</h1>
 <li>Refer <b>Secure IPC example</b> for more info.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>The secure IPC example project is a part of <b>TIFS</b> package for <b>HS-SE</b> devices. To use this example user needs to sign an NDA(non disclosure agreement). <b>TIFS</b> package can installed via mysecure software. </dd></dl>
-<h1><a class="anchor" id="autotoc_md896"></a>
+<h1><a class="anchor" id="autotoc_md940"></a>
 API</h1>
 <p><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html">APIs for Secure IPC Notify</a> </p>
 </div></div><!-- contents -->
@@ -341,7 +341,6 @@ API</h1>
 <div class="ttc" id="astructSIPC__Params_html_a187a5d40b35a335a03619580b9eecb58"><div class="ttname"><a href="structSIPC__Params.html#a187a5d40b35a335a03619580b9eecb58">SIPC_Params::tx_SipcQueues</a></div><div class="ttdeci">uintptr_t tx_SipcQueues[MAX_SEC_CORES_WITH_HSM]</div><div class="ttdef"><b>Definition:</b> sipc_notify.h:98</div></div>
 <div class="ttc" id="agroup__DRV__SIPC__NOTIFY__MODULE_html_gga8602ce075b94d70bcde46634dd6ab8d2ae268e8479dd36ced622187e6118ac5e9"><div class="ttname"><a href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2ae268e8479dd36ced622187e6118ac5e9">CORE_INDEX_SEC_MASTER_1</a></div><div class="ttdeci">@ CORE_INDEX_SEC_MASTER_1</div><div class="ttdef"><b>Definition:</b> sipc_notify_cfg.h:127</div></div>
 <div class="ttc" id="agroup__DRV__SIPC__NOTIFY__MODULE_html_gga8602ce075b94d70bcde46634dd6ab8d2a7d22d9c30e99359f1c7e59fea1e48ea5"><div class="ttname"><a href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2a7d22d9c30e99359f1c7e59fea1e48ea5">CORE_INDEX_HSM</a></div><div class="ttdeci">@ CORE_INDEX_HSM</div><div class="ttdef"><b>Definition:</b> sipc_notify_cfg.h:128</div></div>
-<div class="ttc" id="astructSIPC__Params_html_a2c25f5d7c4028f22038dda53a58686ed"><div class="ttname"><a href="structSIPC__Params.html#a2c25f5d7c4028f22038dda53a58686ed">SIPC_Params::secHostCoreId</a></div><div class="ttdeci">uint32_t secHostCoreId[MAX_SEC_CORES_WITH_HSM - 1]</div><div class="ttdef"><b>Definition:</b> sipc_notify.h:104</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SYSTEM_html_ga376db5d2fbbc54611736778be8e15431"><div class="ttname"><a href="group__KERNEL__DPL__SYSTEM.html#ga376db5d2fbbc54611736778be8e15431">SystemP_WAIT_FOREVER</a></div><div class="ttdeci">#define SystemP_WAIT_FOREVER</div><div class="ttdoc">Value to use when needing a timeout of infinity or wait forver until resource is available.</div><div class="ttdef"><b>Definition:</b> SystemP.h:83</div></div>
 <div class="ttc" id="astructSIPC__Params_html_a38ea5e6c8f8dba16b482f0a24f94874a"><div class="ttname"><a href="structSIPC__Params.html#a38ea5e6c8f8dba16b482f0a24f94874a">SIPC_Params::numCores</a></div><div class="ttdeci">uint32_t numCores</div><div class="ttdef"><b>Definition:</b> sipc_notify.h:86</div></div>
 <div class="ttc" id="agroup__lld__ethernet_html_ga8c1dfc1ccf00a08192611433ee7f17b4"><div class="ttname"><a href="group__lld__ethernet.html#ga8c1dfc1ccf00a08192611433ee7f17b4">__attribute__</a></div><div class="ttdeci">struct lld_sockaddr __attribute__</div><div class="ttdoc">This is the SecureBoot Stream type which holds the data for a specific bootloader to HSM call....</div></div>
@@ -354,6 +353,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__SIPC__NOTIFY__MODULE_html_ga41b553325afa726d6add36b361d7bdbc"><div class="ttname"><a href="group__DRV__SIPC__NOTIFY__MODULE.html#ga41b553325afa726d6add36b361d7bdbc">SIPC_init</a></div><div class="ttdeci">int32_t SIPC_init(SIPC_Params *params)</div><div class="ttdoc">Initialize Secure IPC notify module.</div></div>
 <div class="ttc" id="agroup__DRV__SIPC__NOTIFY__MODULE_html_ga6824ed8d43c1424eccae8773b5d74a12"><div class="ttname"><a href="group__DRV__SIPC__NOTIFY__MODULE.html#ga6824ed8d43c1424eccae8773b5d74a12">SIPC_registerClient</a></div><div class="ttdeci">int32_t SIPC_registerClient(uint8_t localClientId, SIPC_FxnCallback msgCallback, void *args)</div><div class="ttdoc">Register a callback to handle messages received from a specific remote core and for a specific local ...</div></div>
 <div class="ttc" id="agroup__DRV__SIPC__NOTIFY__MODULE_html_gga8602ce075b94d70bcde46634dd6ab8d2aec8bd284ef7986d731a488732fbdf2a8"><div class="ttname"><a href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2aec8bd284ef7986d731a488732fbdf2a8">CORE_INDEX_SEC_MASTER_0</a></div><div class="ttdeci">@ CORE_INDEX_SEC_MASTER_0</div><div class="ttdef"><b>Definition:</b> sipc_notify_cfg.h:126</div></div>
+<div class="ttc" id="astructSIPC__Params_html_a4a109a8bbbf92def86b8c7ec9e05266b"><div class="ttname"><a href="structSIPC__Params.html#a4a109a8bbbf92def86b8c7ec9e05266b">SIPC_Params::secHostCoreId</a></div><div class="ttdeci">uint32_t secHostCoreId[MAX_SEC_CORES_WITH_HSM - 1U]</div><div class="ttdef"><b>Definition:</b> sipc_notify.h:104</div></div>
 <div class="ttc" id="agroup__DRV__SIPC__NOTIFY__MODULE_html_gaf0c62c59f382b1cad7b460f7a016b7a1"><div class="ttname"><a href="group__DRV__SIPC__NOTIFY__MODULE.html#gaf0c62c59f382b1cad7b460f7a016b7a1">SIPC_sendMsg</a></div><div class="ttdeci">int32_t SIPC_sendMsg(uint8_t remoteSecCoreId, uint8_t remoteClientId, uint8_t localClientId, uint8_t *msgValue, SIPC_fifoFlags waitForFifoNotFull)</div><div class="ttdoc">Send message to a specific remote core and specific client ID on that remote core.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SEMAPHORE_html_ga23075425da4d8a65a53209b5fdd3fafe"><div class="ttname"><a href="group__KERNEL__DPL__SEMAPHORE.html#ga23075425da4d8a65a53209b5fdd3fafe">SemaphoreP_post</a></div><div class="ttdeci">void SemaphoreP_post(SemaphoreP_Object *obj)</div><div class="ttdoc">Post a semaphore object or unlock a mutex.</div></div>
 <div class="ttc" id="astructSIPC__Params_html_acc0e3df1965dc7364dfec784fa90bcdf"><div class="ttname"><a href="structSIPC__Params.html#acc0e3df1965dc7364dfec784fa90bcdf">SIPC_Params::rx_SipcQueues</a></div><div class="ttdeci">uintptr_t rx_SipcQueues[MAX_SEC_CORES_WITH_HSM]</div><div class="ttdef"><b>Definition:</b> sipc_notify.h:100</div></div>

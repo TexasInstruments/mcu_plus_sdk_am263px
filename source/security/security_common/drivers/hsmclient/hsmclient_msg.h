@@ -107,6 +107,9 @@ extern "C"
 #define HSM_MSG_READ_OTFA                        (0x9057)
 /** @brief Validate Sec-Cfg service ID*/
 #define HSM_MSG_PROC_AUTH_BOOT_SEC_CFG           (0x9058)
+/** @brief Copy active flash bank contents to dormant flash bank*/
+#define HSM_MSG_FLASH_BANK_COPY                  (0x9059)
+
 /* message flags */
 
 /**
@@ -190,6 +193,33 @@ extern "C"
  *
  */
 #define CERT_TYPE_SECCFG_CPU3   (0x6U)
+
+/**
+ * @brief
+ * C29 CPU1 macro to be used while requesting 
+ * active to dormant flash bank copy
+ * Valid only for F29x family of devices
+ *
+ */
+#define C29_CPU1_FLASH_BANK   (0x1U)
+
+/**
+ * @brief
+ * C29 CPU3 macro to be used while requesting 
+ * active to dormant flash bank copy
+ * Valid only for F29x family of devices
+ *
+ */
+#define C29_CPU3_FLASH_BANK   (0x3U)
+
+/**
+ * @brief
+ * HSM CPU macro to be used while requesting 
+ * active to dormant flash bank copy
+ * Valid only for F29x family of devices
+ *
+ */
+#define HSM_CPU_FLASH_BANK    (0x0U)
 
 /**
  * @brief

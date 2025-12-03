@@ -58,6 +58,7 @@
 #include <stdbool.h>
 #include <drivers/hw_include/csl_types.h>
 #include <drivers/hw_include/cslr_ospi.h>
+#include <drivers/ospi/v0/lld/dma/ospi_lld_dma.h>
 #include <drivers/ospi/v0/cslr_ospi.h>
 
 #ifdef __cplusplus
@@ -68,13 +69,6 @@ extern "C" {
 /*                           Macros & Typedefs                                */
 /* ========================================================================== */
 
-/** \brief The handle for DMA instance used with OSPI */
-typedef void *OSPI_DmaHandle;
-
-/** \brief A handle that holds DMA configuration parameters for OSPI */
-typedef void *OSPI_DmaChConfig;
-
-typedef void *OSPI_DrvHandle;
 
 /**
  *  \anchor OSPI_TransferStatus
@@ -584,6 +578,10 @@ typedef struct
 {
     uint32_t                dataBaseAddr;
     /**< Base address of the OSPI flash */
+    uint32_t                moduleId;
+    /**< OSPI Module Id */
+    uint32_t                clkId;
+    /**< OSPI Clock Id */
     uint32_t                inputClkFreq;
     /**< Module input clock frequency */
 
@@ -612,6 +610,8 @@ typedef struct
     /**< Decoder Chip select number */
     uint32_t                baudRateDiv;
     /**< Baud-rate divisor to derive DQS and other output clks */
+    uint32_t                validateOtp;
+    /**< Enable Phy Tuning Point validatation */
     const OSPI_AddrRegion *dmaRestrictedRegions;
     /**< Pointer to array of OSPI_AddrRegion data structures filled by SysConfig. The
     array should be terminated by a { 0xFFFFFFFFU, 0U } entry. It is used while
@@ -1301,7 +1301,7 @@ int32_t OSPI_lld_phyTuneSDR(OSPILLD_Handle handle, uint32_t flashOffset);
  *
  *  \return #OSPI_SYSTEM_SUCCESS on success, #OSPI_SYSTEM_FAILURE otherwise
  */
-int32_t OSPI_lld_phyTuneGrapher(OSPILLD_Handle handle, uint32_t flashOffset, uint8_t arrays[4][128][128]);
+int32_t OSPI_lld_phyTuneGrapher(OSPILLD_Handle handle, uint32_t flashOffset, uint8_t arrays[5][128][128]);
 
 /**
  *  \brief  This function returns the address to the attack vector buf required for tuning the PHY
@@ -1545,6 +1545,120 @@ int32_t OSPI_lld_getBaudRateDivFromObj(OSPILLD_Handle handle, uint32_t *baudDiv)
  *  \return #SystemP_SUCCESS on success, #SystemP_FAILURE otherwise
  */
 int32_t OSPI_lld_setResetPinStatus(OSPILLD_Handle hOspi, uint32_t pinStatus);
+
+/**
+ * \brief API to open an OSPI DMA channel
+ *
+ * This API will open a DMA Channel using the appropriate DMA driver callbacks and the registered via Sysconfig
+ *
+ * \param  hOspi        An #OSPILLD_Handle returned from an #OSPI_open()
+ *
+ * \return SystemP_SUCCESS on success, else failure
+ */
+int32_t OSPI_dmaOpen(OSPILLD_Handle hOspi);
+
+/**
+ * \brief API to close an OSPI DMA channel
+ *
+ * This API will open a DMA Channel using the appropriate DMA driver callbacks registered via Sysconfig
+ *
+ * \param handle  [in] An #OSPILLD_Handle returned from an #OSPI_open()
+ *
+ * \return SystemP_SUCCESS on success, else failure
+ */
+int32_t OSPI_dmaClose(OSPILLD_Handle handle);
+
+/**
+ * \brief API to do a DMA Copy using appropriate DMA Channel opened
+ *
+ * This API will open a DMA Channel using the appropriate DMA driver callbacks registered via Sysconfig
+ *
+ * \param handle        [in] An #OSPILLD_Handle returned from an #OSPI_open()
+ * \param dst           [in] Destination address to which the data is to be copied
+ * \param src           [in] Source address from which the data is to be copied
+ * \param length        [in] Data length
+ * \param timeout 		[in] Timeout for the transaction
+ *
+ * \return SystemP_SUCCESS on success, else failure
+ */
+int32_t OSPI_dmaCopy(OSPILLD_Handle handle, void* dst, void* src, uint32_t length,uint32_t timeout);
+
+/**
+ * \brief API to get the DMA Interrupt status
+ *
+ * This API will retrieve the interrrupt status of the DMA Channel
+
+ * \param handle        [in] An #OSPILLD_Handle returned from an #OSPI_open()
+ *
+ * \return SystemP_SUCCESS on success, else failure
+ */
+int32_t OSPI_isDmaInterruptEnabled(OSPILLD_Handle handle);
+
+/**
+ * \brief Validates a tuning point for the OSPI physical interface
+ *
+ * This function verifies if the current OSPI physical interface configuration
+ * (tuning point) is valid by performing a read operation at the specified flash offset.
+ *
+ * \param hOspi OSPI LLD handle
+ * \param flashOffset Flash memory offset to use for the validation read operation
+ *
+ * \return #SystemP_SUCCESS on success, #SystemP_FAILURE otherwise
+ */
+int32_t OSPI_lld_phyValidateTuningPoint(OSPILLD_Handle hOspi, uint32_t flashOffset);
+
+/**
+ * \brief Checks if OTP validation is enabled for the OSPI controller
+ *
+ * This function determines whether the OTP (One-Time Programmable) validation
+ * feature is currently enabled in the OSPI controller.
+ *
+ * \param hOspi    Handle to the OSPI controller instance
+ *
+ * \return uint32_t    Returns 1 if OTP validation is enabled, 0 otherwise
+ */
+uint32_t OSPI_lld_isValidateOtpEnable(OSPILLD_Handle hOspi);
+
+/**
+ *  \brief Sets the operating frequency for the OSPI peripheral
+ *
+ *  This function configures the OSPI controller to operate at the specified
+ *  frequency based on the input clock frequency provided.
+ *
+ *  \param hOspi OSPI LLD handle
+ *  \param inputClkFreq Input clock frequency in Hz
+ *
+ *  \return SystemP_SUCCESS on success, error code on failure
+ */
+int32_t OSPI_lld_setFrequency(OSPILLD_Handle hOspi, uint64_t inputClkFreq);
+
+/**
+ *  \brief Sets timing delays for the OSPI interface based on input clock frequency
+ *
+ *  This function configures the appropriate timing delays for the OSPI interface
+ *  to ensure reliable communication with external memory devices. The delays are
+ *  calculated based on the provided input clock frequency.
+ *
+ *  \param hOspi OSPI LLD handle
+ *  \param inputClkFreq Input clock frequency in Hz
+ *
+ *  \return SystemP_SUCCESS on success, error code on failure
+ */
+int32_t OSPI_lld_setDelays(OSPILLD_Handle hOspi, uint32_t inputClkFreq);
+
+/**
+ *  \brief Sets the baud rate divider for OSPI communication
+ *
+ *  This function configures the baud rate divider to control the OSPI clock frequency.
+ *  The actual OSPI clock frequency is determined by dividing the input clock frequency
+ *  by the specified baud rate divider.
+ *
+ *  \param hOspi OSPI LLD handle
+ *  \param baudRateDiv Baud rate divider value
+ *
+ *  \return SystemP_SUCCESS on success, error code on failure
+ */
+int32_t OSPI_lld_setBaudRateDiv(OSPILLD_Handle hOspi, uint32_t baudRateDiv);
 
 /** @} */
 

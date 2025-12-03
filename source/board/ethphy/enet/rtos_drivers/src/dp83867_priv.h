@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) Texas Instruments Incorporated 2020
+ *  Copyright (c) Texas Instruments Incorporated 2020 - 2025
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions
@@ -132,6 +132,14 @@ extern "C" {
 #define PHYCR_MDICROSSOVER_MDIX               (0x0020U)
 #define PHYCR_MDICROSSOVER_MDI                (0x0000U)
 
+/* PHYST register definitions */
+#define PHYST_SPEEDSEL_MASK                   (0xC000U)
+#define PHYST_SPEEDSEL_RESERVED               (0xC000U)
+#define PHYST_SPEEDSEL_1000_MBPS              (0x8000U)
+#define PHYST_SPEEDSEL_100_MBPS               (0x4000U)
+#define PHYST_SPEEDSEL_10_MBPS                (0x0000U)
+#define PHYST_DUPLEXMODEENV_FD                (0x2000U)
+
 /* LEDCR1 register definitions */
 #define LEDCR1_LEDGPIOSEL_MASK                (0xF000U)
 #define LEDCR1_LEDGPIOSEL_OFFSET              (12U)
@@ -216,6 +224,9 @@ extern "C" {
 #define GPIOMUXCTRL_GPIO1_OFFSET              (4U)
 #define GPIOMUXCTRL_GPIO0_MASK                (0x000FU)
 #define GPIOMUXCTRL_GPIO0_OFFSET              (0U)
+
+/*! \brief PHY STS bits */
+#define DP83867_PHYSTS_LINK	    PHY_BIT(10)
 
 /* ========================================================================== */
 /*                         Structures and Enums                               */

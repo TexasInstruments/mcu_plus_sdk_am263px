@@ -140,7 +140,7 @@ AsymCrypt_Handle AsymCrypt_open(uint32_t index)
     pke_rng_handle = gRngHandle;
     DebugP_assert(pke_rng_handle != NULL);
 
-    RNG_setup(pke_rng_handle);
+    (void)RNG_setup(pke_rng_handle);
 
     gPKEContext.copy_flags = 0U;
     gPKEContext.resp_flags = 0U;
@@ -676,14 +676,14 @@ AsymCrypt_Return_t AsymCrypt_EddsaSign(AsymCrypt_Handle handle,
 
             /* Copy 1st part of privKey hash, and clamp it */
             if (input_curve == ASYM_CRYPT_CURVE_TYPE_EDDSA_25519) {
-                k0[0U] &= 0xF8;
-                k0[31] &= 0x7F;
-                k0[31] |= 0x40;
+                k0[0U] &= 0xF8U;
+                k0[31] &= 0x7FU;
+                k0[31] |= 0x40U;
             } else {
-                k0[0U] &= 0xFC;
-                k0[31] &= 0x00;
-                for (uint8_t i = 1; i <= 31 ; i++) {
-                    k0[i] |= 0x80;
+                k0[0U] &= 0xFCU;
+                k0[31] &= 0x00U;
+                for (uint8_t i = 1; i <= 31U ; i++) {
+                    k0[i] |= 0x80U;
                 }
             }
 
@@ -838,14 +838,14 @@ AsymCrypt_Return_t AsymCrypt_EddsaGetPubKey(AsymCrypt_Handle handle,
 
         /*Only first half of privatekey hash is used, clamp the fist half and clear the second half*/
         if (input_curve == ASYM_CRYPT_CURVE_TYPE_EDDSA_25519) {
-            privKeyHash[0U] &= 0xF8;
-            privKeyHash[31] &= 0x7F;
-            privKeyHash[31] |= 0x40;
+            privKeyHash[0U] &= 0xF8U;
+            privKeyHash[31] &= 0x7FU;
+            privKeyHash[31] |= 0x40U;
         } else {
-            privKeyHash[0U] &= 0xFC;
-            privKeyHash[31] &= 0x00;
-            for (uint8_t i = 1; i <= 31 ; i++) {
-                privKeyHash[i] |= 0x80;
+            privKeyHash[0U] &= 0xFCU;
+            privKeyHash[31] &= 0x00U;
+            for (uint8_t i = 1; i <= 31U ; i++) {
+                privKeyHash[i] |= 0x80U;
             }
         }
 
@@ -1142,13 +1142,14 @@ AsymCrypt_Return_t AsymCrypt_SM2DSAKeyGenPublic(AsymCrypt_Handle handle,
 static uint32_t PKE_countLeadingZeros(uint32_t x)
 {
     uint32_t bit_count = 0, lz = 0;
+    uint32_t temp_x = x;  // Create a local copy of x
 
-    bit_count = sizeof(x)*8;
+    bit_count = sizeof(temp_x)*8U;
 
     /* Left shift until Most significant bit doesn become 1 */
 
-    while ((x & (1 << (bit_count - 1))) == 0) {
-        x <<= 1;
+    while ((temp_x & (1U << (bit_count - (uint32_t)1))) == 0U) {
+        temp_x <<= 1;
         lz++;
     }
 

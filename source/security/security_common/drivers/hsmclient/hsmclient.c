@@ -2366,3 +2366,46 @@ int32_t HsmClient_secCfgValidate(HsmClient_t *HsmClient,
     return status;
 }
 
+int32_t HsmClient_activeToDormantBankCopy(HsmClient_t *HsmClient,
+                                          FlashBankCopy_t *pFlashBankCopyObject, 
+                                          uint32_t timeout) {
+    /* make the message */
+    int32_t status;
+
+    /*populate the send message structure */
+    HsmClient->ReqMsg.destClientId = HSM_CLIENT_ID_1;
+    HsmClient->ReqMsg.srcClientId = HsmClient->ClientId;
+
+    /* Always expect acknowledgement from HSM server */
+    HsmClient->ReqMsg.flags = HSM_FLAG_AOP;
+    HsmClient->ReqMsg.serType = HSM_MSG_FLASH_BANK_COPY;
+
+    /* Add arg crc */
+    HsmClient->ReqMsg.crcArgs = crc16_ccit((uint8_t *)pFlashBankCopyObject, sizeof(FlashBankCopy_t));
+
+    /* Change the Arguments Address in Physical Address */
+    HsmClient->ReqMsg.args = (void *)(uintptr_t)SOC_virtToPhy(pFlashBankCopyObject);
+
+    /*
+       Write back the pFlashBankCopyObject struct and
+       invalidate the cache before passing it to HSM
+    */
+    CacheP_wbInv(pFlashBankCopyObject, GET_CACHE_ALIGNED_SIZE(sizeof(FlashBankCopy_t)), CacheP_TYPE_ALL);
+
+    status = HsmClient_SendAndRecv(HsmClient, timeout);
+
+    if (status == SystemP_SUCCESS) {
+        /* if this request has not been processed correctly */
+        if (HsmClient->RespFlag == HSM_FLAG_NACK) {
+            DebugP_log("\r\n [HSM_CLIENT] Flash Bank swap request NACKed by HSM server\r\n");
+            status = SystemP_FAILURE;
+        } else {
+            status = SystemP_SUCCESS;
+        }
+    /* If failure occur due to some reason */
+    } else {
+        /* Do Nothing */
+    }
+    return status;
+}
+

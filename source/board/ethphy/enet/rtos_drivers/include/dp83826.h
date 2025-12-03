@@ -99,20 +99,20 @@ typedef struct Dp83826_Cfg_s
  */
 void Dp83826_initCfg(Dp83826_Cfg *cfg);
 
-void Dp83826_bind(EthPhyDrv_Handle* hPhy, 
-					uint8_t phyAddr, 
-					Phy_RegAccessCb_t* pRegAccessCb);
+void Dp83826_bind(EthPhyDrv_Handle* hPhy,
+                    uint8_t phyAddr,
+                    Phy_RegAccessCb_t* pRegAccessCb);
 
-bool Dp83826_isPhyDevSupported(EthPhyDrv_Handle hPhy, 
+bool Dp83826_isPhyDevSupported(EthPhyDrv_Handle hPhy,
                                 const void *pVersion);
 
-bool Dp83826_isMacModeSupported(EthPhyDrv_Handle hPhy, 
+bool Dp83826_isMacModeSupported(EthPhyDrv_Handle hPhy,
                                 Phy_Mii mii);
 
 int32_t Dp83826_config(EthPhyDrv_Handle hPhy,
                         const void *pExtCfg,
                         const uint32_t extCfgSize,
-                        Phy_Mii mii, 
+                        Phy_Mii mii,
                         bool loopbackEn);
 
 void Dp83826_printRegs(EthPhyDrv_Handle hPhy);

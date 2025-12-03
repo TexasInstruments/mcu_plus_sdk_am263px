@@ -92,16 +92,16 @@ $(document).ready(function(){initNavTree('DRIVERS_PRUICSS_PAGE.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1011">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1012">SysConfig Features</a></li>
+<ul><li class="level1"><a href="#autotoc_md1055">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1056">SysConfig Features</a></li>
 <li class="level1"><a href="#PRUICSS_INTC">PRUICSS Interrupt Controller</a></li>
-<li class="level1"><a href="#autotoc_md1013">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1014">API</a></li>
+<li class="level1"><a href="#autotoc_md1057">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1058">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_pruicss_m_v0"></a></p>
 <p>Programmable Real-Time Unit and Industrial Communication Subsystem(PRU-ICSS) driver provides a well-defined API layer which allows applications to use the PRU-ICSS. PRU-ICSS is firmware programmable and can take on various personalities like Industrial Communication Protocol Switch (for protocols like EtherCAT, Profinet, EtherNet/IP), Ethernet Switch, Ethernet MAC, Industrial Drives, etc.</p>
-<h1><a class="anchor" id="autotoc_md1011"></a>
+<h1><a class="anchor" id="autotoc_md1055"></a>
 Features Supported</h1>
 <ul>
 <li>PRU control features like enabling/disabling/resetting a Programmable Real-Time Units (PRU0 and PRU1)</li>
@@ -112,7 +112,7 @@ Features Supported</h1>
 <li>IEP clock selection, IEP counter enable/disable, IEP counter increment configuration</li>
 <li>PRU Constant Table Configuration</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1012"></a>
+<h1><a class="anchor" id="autotoc_md1056"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -151,7 +151,7 @@ PRUICSS Interrupt Controller</h1>
 <div class="line">{CHANNEL1, PRU1}</div>
 </div><!-- fragment --><p>This configuration maps both Port 0 and Port 1 link interrupts to a single channel and in turn to a single host interrupt for PRU1 (Host Interrupt 1 out of 20).</p>
 <p><a class="el" href="group__DRV__PRUICSS__MODULE.html#gacb9fcd2e989376394c0c628ea9ddc39f">PRUICSS_intcInit</a> API should be used to configure the INTC module.</p>
-<h1><a class="anchor" id="autotoc_md1013"></a>
+<h1><a class="anchor" id="autotoc_md1057"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="pruicss_8h.html">drivers/pruicss.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Instance Open Example </p><div class="fragment"><div class="line">    <span class="comment">/*Use CONFIG_PRU_ICSS0 macro as parameter to PRUICSS_open */</span></div>
@@ -182,7 +182,7 @@ Example Usage</h1>
 <div class="line">                        pruFirmwareLength);</div>
 <div class="line">    <span class="comment">/* Enable PRU */</span></div>
 <div class="line">    <a class="code" href="group__DRV__PRUICSS__MODULE.html#ga38b0b2f969a1f8f6fa7e7d911f07dc71">PRUICSS_enableCore</a>(gPruicssHandle, <a class="code" href="group__DRV__PRUICSS__MODULE.html#ga5d7a6d9f38b8cc1f8b15b9324c868fd8">PRUICSS_PRU0</a>);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1014"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1058"></a>
 API</h1>
 <p><a class="el" href="group__DRV__PRUICSS__MODULE.html">APIs for PRUICSS</a> </p>
 </div></div><!-- contents -->

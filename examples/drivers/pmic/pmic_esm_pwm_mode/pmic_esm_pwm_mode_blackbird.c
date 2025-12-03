@@ -187,7 +187,7 @@ static int32_t PMICApp_setEsmIn(Pmic_CoreHandle_t *pmicHandle)
 
     Pmic_GpioCfg_t gpiocfg = {
         .validParams = PMIC_CFG_GPI1_VALID_SHIFT,
-        .gpo1 = PMIC_GPI1_ESM_IN,
+        .gpi1 = PMIC_GPI1_ESM_IN,
     };
     status = Pmic_gpioSetCfg(pmicHandle, &gpiocfg);
     return status;
@@ -351,10 +351,6 @@ static void PMICApp_esmPwmMode(Pmic_CoreHandle_t* pmicHandle)
 
         DebugP_log("\r\n");
         DebugP_log("Reset: Setting ESM Delay2 error config to device transitions to RESET-MCU state\r\n");
-        
-        status = Pmic_irqSetCfgs(pmicHandle, PMIC_NO_OF_ESM_ERRORS, IrqMasks);
-        DebugP_assert(status == PMIC_ST_SUCCESS);
-
         DebugP_log("Generating error from MCU to PMIC\r\n");
         status = SDL_ESM_setNError(SDL_ESM_INST_MAIN_ESM0);
         if(status == PMIC_ST_SUCCESS)

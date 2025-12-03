@@ -273,8 +273,8 @@ EnetPhy_Handle EnetPhy_open(const EnetPhy_Cfg *phyCfg,
                             EnetPhy_MdioHandle hMdio,
                             Mdio_Obj * mdioArgs)
 {
-    Enet_devAssert(ETHPHYDRV_MAX_OBJ_SIZE >= sizeof(Phy_Obj_t));    
-    
+    Enet_devAssert(ETHPHYDRV_MAX_OBJ_SIZE >= sizeof(Phy_Obj_t));
+
     EnetPhy_Handle hPhy = EnetPhy_getHandle();
     bool manualMode = false;
     bool alive;
@@ -308,6 +308,13 @@ EnetPhy_Handle EnetPhy_open(const EnetPhy_Cfg *phyCfg,
                 if (hPhy->reqLinkCaps == 0U)
                 {
                     hPhy->reqLinkCaps = ENETPHY_LINK_CAP_ALL;
+                }
+
+                /* 1G FD/HD advertisement disabled If PHY is in MII or RMII mode */
+                if (mii == ENETPHY_MAC_MII_MII || mii == ENETPHY_MAC_MII_RMII)
+                {
+                    hPhy->reqLinkCaps = hPhy->reqLinkCaps & ~(ENETPHY_LINK_CAP_HD1000|ENETPHY_LINK_CAP_FD1000);
+                    ENETTRACE_DBG("PHY %u: 1G FD/HD advertisement disabled for MII/RMII modes\r\n", phyCfg->phyAddr);
                 }
             }
             else
@@ -612,6 +619,106 @@ int32_t EnetPhy_getLinkCfg(EnetPhy_Handle hPhy,
         ENETTRACE_WARN("PHY %u: PHY is not linked, can't get link config\r\n", hPhy->addr);
         status = ENETPHY_EPERM;
     }
+    return status;
+}
+
+/* API to convert Phy_Link_SpeedDuplex enum to EnetPhy_Speed,EnetPhy_Duplexity */
+static int32_t EnetPhy_convertPhyLinkToSpeedDuplex(const Phy_Link_SpeedDuplex speedDuplex,
+                                                   EnetPhy_Speed *speed,
+                                                   EnetPhy_Duplexity *duplex)
+{
+    int32_t status = ENETPHY_SOK;
+    if (speedDuplex != PHY_LINK_INVALID)
+    {
+        switch(speedDuplex)
+        {
+            case PHY_LINK_FD10:
+                *speed = ENETPHY_SPEED_10MBIT;
+                *duplex = ENETPHY_DUPLEX_FULL;
+                break;
+            case PHY_LINK_FD100:
+                *speed = ENETPHY_SPEED_100MBIT;
+                *duplex = ENETPHY_DUPLEX_FULL;
+                break;
+            case PHY_LINK_FD1000:
+                *speed = ENETPHY_SPEED_1GBIT;
+                *duplex = ENETPHY_DUPLEX_FULL;
+                break;
+            case PHY_LINK_HD10:
+                *speed = ENETPHY_SPEED_10MBIT;
+                *duplex = ENETPHY_DUPLEX_HALF;
+                break;
+            case PHY_LINK_HD100:
+                *speed = ENETPHY_SPEED_100MBIT;
+                *duplex = ENETPHY_DUPLEX_HALF;
+                break;
+            case PHY_LINK_HD1000:
+                *speed = ENETPHY_SPEED_1GBIT;
+                *duplex = ENETPHY_DUPLEX_HALF;
+                break;
+            default:
+                status = ENETPHY_EFAIL;
+        }
+    }
+    else
+    {
+        status = ENETPHY_EFAIL;
+    }
+
+    return status;
+}
+
+int32_t EnetPhy_getLinkStatus(EnetPhy_Handle hPhy, EnetPhy_Speed *speed, EnetPhy_Duplexity *duplex)
+{
+    bool isLinked = false;
+    int32_t status = ENETPHY_EFAIL;
+    Phy_Link_SpeedDuplex speedDuplex = PHY_LINK_INVALID;
+    EnetPhy_LinkCfg linkCfg;
+
+    Enet_devAssert(hPhy != NULL, "PHY %u: Null phy handle address\r\n", hPhy->addr);
+
+    if (hPhy == NULL)
+    {
+        status = ENETPHY_EPERM;
+    }
+    else if (hPhy->phyCfg.loopbackEn)
+    {
+        /* If phy loopback is enabled, read the phy link speed, duplexity from state machine. In this
+         * scenario phy link is down in phy registers which causes 'getSpeedDuplex' API to return invalid
+         * link speed, duplexity */
+        status = EnetPhy_getLinkCfg(hPhy, &linkCfg);
+        if (status == ENETPHY_SOK)
+        {
+            *speed = linkCfg.speed;
+            *duplex = linkCfg.duplexity;
+        }
+    }
+    else
+    {
+        /* Read the phy speed, duplex only If link state is up */
+        isLinked = EnetPhy_isLinked(hPhy);
+        if (isLinked)
+        {
+            if ((hPhy->hDrvIf.fxn.name != NULL) && (hPhy->hDrvIf.fxn.getSpeedDuplex != NULL))
+            {
+                status = hPhy->hDrvIf.fxn.getSpeedDuplex(hPhy->hDrvIf.hDrv,&speedDuplex);
+                if (status == ENETPHY_SOK)
+                {
+                    status = EnetPhy_convertPhyLinkToSpeedDuplex(speedDuplex, speed, duplex);
+                }
+                if (status != ENETPHY_SOK)
+                {
+                    ENETTRACE_WARN("PHY %u: Invalid link status\r\n", hPhy->addr);
+                }
+            }
+        }
+        else
+        {
+            ENETTRACE_WARN("PHY %u: PHY is not linked, can't get link status\r\n", hPhy->addr);
+            status = ENETPHY_EPERM;
+        }
+    }
+
     return status;
 }
 
@@ -2182,6 +2289,31 @@ int32_t EnetPhy_getEventTs(EnetPhy_Handle hPhy, uint32_t *eventIdx,
     if ((hPhy->hDrvIf.fxn.name != NULL) && (hPhy->hDrvIf.fxn.getEventTs != NULL))
     {
         status = hPhy->hDrvIf.fxn.getEventTs(hPhy->hDrvIf.hDrv, eventIdx, seqId, ts64);
+    }
+
+    return status;
+}
+
+int32_t EnetPhy_configMediaClock(EnetPhy_Handle hPhy, bool isMaster, uint8_t *streamIDMatchValue,
+                                         bool enTrigOut)
+{
+    int32_t status = ENETPHY_ENOTSUPPORTED;
+
+    if ((hPhy->hDrvIf.fxn.name != NULL) && (hPhy->hDrvIf.fxn.configMediaClock != NULL))
+    {
+        status = hPhy->hDrvIf.fxn.configMediaClock(hPhy->hDrvIf.hDrv, isMaster, streamIDMatchValue, enTrigOut);
+    }
+
+    return status;
+}
+
+int32_t EnetPhy_nudgeCodecClock(EnetPhy_Handle hPhy, int8_t nudgeValue)
+{
+    int32_t status = ENETPHY_ENOTSUPPORTED;
+
+    if ((hPhy->hDrvIf.fxn.name != NULL) && (hPhy->hDrvIf.fxn.nudgeCodecClock != NULL))
+    {
+        status = hPhy->hDrvIf.fxn.nudgeCodecClock(hPhy->hDrvIf.hDrv, nudgeValue);
     }
 
     return status;

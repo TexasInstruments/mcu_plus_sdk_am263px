@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('DRIVERS_MCSPI_HLD_PAGE.html',''); init
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_mcspi_hld"></a> </p>
-<h1><a class="anchor" id="autotoc_md957"></a>
+<h1><a class="anchor" id="autotoc_md1001"></a>
 Features Supported</h1>
 <ul>
 <li>Controller and Peripheral mode of operation</li>
@@ -110,15 +110,15 @@ Features Supported</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md958"></a>
+<h1><a class="anchor" id="autotoc_md1002"></a>
 Features NOT Supported</h1>
 <ul>
 <li>Default TX data feature is not supported in DMA mode.</li>
 <li>In DMA mode, FIFO is not enabled.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md959"></a>
+<h1><a class="anchor" id="autotoc_md1003"></a>
 Usage Overview</h1>
-<h2><a class="anchor" id="autotoc_md960"></a>
+<h2><a class="anchor" id="autotoc_md1004"></a>
 API Sequence</h2>
 <p>To use the MCSPI driver to send data over the SPI bus, the application calls the following APIs:</p>
 <ul>
@@ -129,24 +129,24 @@ API Sequence</h2>
 <li><a class="el" href="group__DRV__MCSPI__MODULE.html#ga12824149d7be9c07abd4cb120ec7cf13" title="Function to close a MCSPI peripheral specified by the MCSPI handle.">MCSPI_close()</a>: Close the MCSPI instance.</li>
 <li><a class="el" href="group__DRV__MCSPI__MODULE.html#gaf34ea4d022337821d4c7066505726893" title="This function de-initializes the MCSPI module.">MCSPI_deinit()</a>: De-initialize the MCSPI driver.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md961"></a>
+<h2><a class="anchor" id="autotoc_md1005"></a>
 Initializing the MCSPI Driver</h2>
 <p><a class="el" href="group__DRV__MCSPI__MODULE.html#ga7ab49f55fcfb89a487857e9a27ca7083" title="This function initializes the MCSPI module.">MCSPI_init()</a> must be called before any other MCSPI APIs. This function iterates through the elements of the MCSPI_config[] array, calling the element's device implementation MCSPI initialization function. Please note that initializing MCSPI driver is taken care by the SysConfig generated code.</p>
-<h2><a class="anchor" id="autotoc_md962"></a>
+<h2><a class="anchor" id="autotoc_md1006"></a>
 Opening the MCSPI Driver</h2>
 <p>After initializing the MCSPI driver by calling <a class="el" href="group__DRV__MCSPI__MODULE.html#ga7ab49f55fcfb89a487857e9a27ca7083" title="This function initializes the MCSPI module.">MCSPI_init()</a>, the application can open a MCSPI instance by calling <a class="el" href="group__DRV__MCSPI__MODULE.html#gabedb148b6832d0c132352b9c4fd0a923" title="This function opens a given MCSPI peripheral.">MCSPI_open()</a>. Please note that opening MCSPI driver is taken care by the SysConfig generated code. This function takes an index into the MCSPI_config[] array, and the MCSPI parameters data structure. The MCSPI instance is specified by the index of the SPI in MCSPI_config[]. Calling <a class="el" href="group__DRV__MCSPI__MODULE.html#gabedb148b6832d0c132352b9c4fd0a923" title="This function opens a given MCSPI peripheral.">MCSPI_open()</a> a second time with the same index previously passed to <a class="el" href="group__DRV__MCSPI__MODULE.html#gabedb148b6832d0c132352b9c4fd0a923" title="This function opens a given MCSPI peripheral.">MCSPI_open()</a> will result in an error. You can, though, re-use the index if the instance is closed via <a class="el" href="group__DRV__MCSPI__MODULE.html#ga12824149d7be9c07abd4cb120ec7cf13" title="Function to close a MCSPI peripheral specified by the MCSPI handle.">MCSPI_close()</a>.</p>
 <p>If no <a class="el" href="structMCSPI__OpenParams.html" title="MCSPI Parameters.">MCSPI_OpenParams</a> structure is passed to <a class="el" href="group__DRV__MCSPI__MODULE.html#gabedb148b6832d0c132352b9c4fd0a923" title="This function opens a given MCSPI peripheral.">MCSPI_open()</a>, default values are used. If the open call is successful, it returns a non-NULL value.</p>
-<h2><a class="anchor" id="autotoc_md963"></a>
+<h2><a class="anchor" id="autotoc_md1007"></a>
 MCSPI Transfer Mode</h2>
 <p>The MCSPI driver supports three transfer modes of operation: Interrupt, Polling and DMA Mode. In Interrupt and DMA mode, it again supports two modes: blocking and callback. The transfer mode is determined by the <a class="el" href="structMCSPI__OpenParams.html#a0b4ecaba7263bd18bc7e40924d8d6c97">MCSPI_OpenParams.transferMode</a> parameter. The MCSPI driver defaults to blocking mode, if the application does not set it. Once a MCSPI driver is opened, the only way to change the operation mode is to close and re-open the MCSPI instance with the new transfer mode.</p>
 <p>In blocking mode, a task's code execution is blocked until a MCSPI transaction has completed or a timeout has occurred. This ensures that only one MCSPI transfer operates at a given time. Other tasks requesting MCSPI transfers while a transfer is currently taking place will receive a error return value. If a timeout occurs the transfer is canceled, the task is unblocked &amp; will receive a error return value. The transaction count field will have the amount of frames which were transferred successfully before the timeout. In blocking mode, transfers cannot be performed in software or hardware ISR context.</p>
 <p>In callback mode, a MCSPI transaction functions asynchronously, which means that it does not block code execution. After a MCSPI transaction has been completed, the MCSPI driver calls a user-provided hook function. Callback mode is supported in the execution context of tasks and hardware interrupt routines.</p>
 <p>In multichannel mode connected to multiple external devices, the MCSPI exchanges data with one MCSPI device at a time and FIFO is enabled per each channel at a time.</p>
-<h2><a class="anchor" id="autotoc_md964"></a>
+<h2><a class="anchor" id="autotoc_md1008"></a>
 MCSPI Frame Formats and Data Size</h2>
 <p>The MCSPI driver can configure the device's MCSPI peripheral to transfer data in several MCSPI format options: MCSPI (with various polarity and phase settings). The frame format is set with <a class="el" href="structMCSPI__ChConfig.html#a4a6549cd630c209437341c9c518e02aa">MCSPI_ChConfig.frameFormat</a>.</p>
 <p>The smallest single unit of data transmitted onto the MCSPI bus is called a MCSPI frame and is of size <a class="el" href="structMCSPI__Transaction.html#a145ceab9ccb5279a3b0994feb10a6444">MCSPI_Transaction.dataSize</a>. A series of MCSPI frames transmitted/received on a MCSPI bus is referred to as a MCSPI transaction.</p>
-<h2><a class="anchor" id="autotoc_md965"></a>
+<h2><a class="anchor" id="autotoc_md1009"></a>
 MCSPI Transactions</h2>
 <p>A MCSPI transaction consists of a series of MCSPI frames transmitted/received on a MCSPI bus. A MCSPI transaction is performed using <a class="el" href="group__DRV__MCSPI__MODULE.html#ga35061166ed36e50dc6d7b38a8fbf13e9" title="Function to perform MCSPI transactions.">MCSPI_transfer()</a>. <a class="el" href="group__DRV__MCSPI__MODULE.html#ga35061166ed36e50dc6d7b38a8fbf13e9" title="Function to perform MCSPI transactions.">MCSPI_transfer()</a> accepts a pointer to a <a class="el" href="structMCSPI__Transaction.html" title="Data structure used with MCSPI_transfer()">MCSPI_Transaction</a> structure that dictates the quantity of data to be sent and received. The <a class="el" href="structMCSPI__Transaction.html#a1344bb4f68f64e6841a25884de818f7b">MCSPI_Transaction.txBuf</a> and <a class="el" href="structMCSPI__Transaction.html#a13379551362963f30946a9ef45d9efc9">MCSPI_Transaction.rxBuf</a> are both pointers to data buffers. If txBuf is NULL, the driver sends MCSPI frames with all data set to the default value specified in the hardware attributes. If rxBuf is NULL, the driver discards all MCSPI frames received. <a class="el" href="group__DRV__MCSPI__MODULE.html#ga35061166ed36e50dc6d7b38a8fbf13e9" title="Function to perform MCSPI transactions.">MCSPI_transfer()</a> of a MCSPI transaction is performed atomically.</p>
 <p>NOTE: The size of txBuf and RxBuf must be greater than the data size bits, if data size is not a multiple of 8 bits. Mask the data size bits in txBuf and rxBuf as the remaining bits will be discarded. For example, consider datasize = 18 bits then txBuf and rxBuf size should be uint32_t and the mask bits should be 0x3FFFF.</p>
@@ -156,7 +156,7 @@ MCSPI Transactions</h2>
 <p>The optional <a class="el" href="structMCSPI__Transaction.html#a7789f4810d4b1818b3cd2a1cdd4a01cd">MCSPI_Transaction.args</a> variable can only be used when the MCSPI driver has been opened in callback mode. This variable is used to pass a user-defined value into the user-defined callback function.</p>
 <p><a class="el" href="group__DRV__MCSPI__MODULE.html#ga35061166ed36e50dc6d7b38a8fbf13e9" title="Function to perform MCSPI transactions.">MCSPI_transfer()</a> always performs full-duplex MCSPI transactions. This means the MCSPI simultaneously receives data as it transmits data. The application is responsible for formatting the data to be transmitted as well as determining whether the data received is meaningful. Specifics about MCSPI frame formatting and data sizes are provided in device-specific data sheets and technical reference manuals.</p>
 <p>In case of MCSPI operating in <a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#ga1447ffe86b17d95258dcad6594a3f0a9" title="The module receives the clock and CS.">MCSPI_MS_MODE_PERIPHERAL</a> mode if Rx overflow or Tx underflow occurs, driver cancels the current transfer and return status MCSPI_TRANSFER_CANCELLED to the application. Application need to check the status and reinitiate transfers again.</p>
-<h1><a class="anchor" id="autotoc_md966"></a>
+<h1><a class="anchor" id="autotoc_md1010"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>The MCSPI protocol does not account for a built-in handshaking mechanism and neither does this driver. Therefore, when operating in <a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#ga1447ffe86b17d95258dcad6594a3f0a9" title="The module receives the clock and CS.">MCSPI_MS_MODE_PERIPHERAL</a> mode, the application must provide such a mechanism to ensure that the MCSPI peripheral is ready for the MCSPI controller. The MCSPI peripheral must call <a class="el" href="group__DRV__MCSPI__MODULE.html#ga35061166ed36e50dc6d7b38a8fbf13e9" title="Function to perform MCSPI transactions.">MCSPI_transfer()</a> <em>before</em> the controller starts transmitting. Some example application mechanisms could include:<ul>
@@ -166,7 +166,7 @@ Important Usage Guidelines</h1>
 </li>
 <li>In case of DMA mode, as R5F core is not Cache Coherent, Cache Writeback is required if R5F writes to the buffers. And before reading the buffers, application needs to invalidate those. Please refer <a class="el" href="EXAMPLES_DRIVERS_MCSPI_LOOPBACK_DMA.html">MCSPI Loopback DMA</a>.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md967"></a>
+<h1><a class="anchor" id="autotoc_md1011"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="mcspi_8h.html">drivers/mcspi.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Instance Open Example </p><div class="fragment"><div class="line">    <a class="code" href="structMCSPI__OpenParams.html">MCSPI_OpenParams</a>    spiParams;</div>
@@ -290,7 +290,7 @@ Example Usage</h1>
 <div class="line">    status = <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga8733f9edac3a2d559b97dc0d115c3ba8">SemaphoreP_pend</a>(&amp;gMcspiISRDoneSem, <a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga376db5d2fbbc54611736778be8e15431">SystemP_WAIT_FOREVER</a>);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(status == <a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a>);</div>
 <div class="line">}</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md968"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1012"></a>
 API</h1>
 <p><a class="el" href="group__DRV__MCSPI__MODULE.html">APIs for MCSPI</a> </p>
 </div></div><!-- contents -->

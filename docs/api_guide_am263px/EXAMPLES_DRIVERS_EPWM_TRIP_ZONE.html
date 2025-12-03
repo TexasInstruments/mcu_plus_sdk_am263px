@@ -92,19 +92,19 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_EPWM_TRIP_ZONE.html',
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2276">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2277">External Connections</a><ul><li class="level2"><a href="#autotoc_md2278">AM263X-CC or AM263PX-CC</a></li>
-<li class="level2"><a href="#autotoc_md2279">AM263X-LP or AM263PX-LP</a></li>
+<ul><li class="level1"><a href="#autotoc_md2349">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2350">External Connections</a><ul><li class="level2"><a href="#autotoc_md2351">AM263X-CC or AM263PX-CC</a></li>
+<li class="level2"><a href="#autotoc_md2352">AM263X-LP or AM263PX-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_EPWM_TRIP_ZONE_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2280">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2281">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2282">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2353">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2354">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2355">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_epwm_trip_zone"></a></p>
-<h1><a class="anchor" id="autotoc_md2276"></a>
+<h1><a class="anchor" id="autotoc_md2349"></a>
 Introduction</h1>
 <p>This example configures ePWMx and ePWMy as follows</p><ul>
 <li>ePWMx has TZ1 as one shot trip source</li>
@@ -118,7 +118,7 @@ Introduction</h1>
 <p>The TZ-Event is defined such that ePWMxA will undergo a One-Shot Trip and ePWMyA will undergo a Cycle-By-Cycle Trip.</p>
 <p>The difference could be seen in the waveform generated as shown below. We can see that the for OSHT, as long as we kept clearing the flag (i.e. for 10 times) it recovered. Once loop exits, it goes into permanent trip state.</p>
 <p>For CBC as observed at the end, after exiting the loop, it recovers from trip state and goes to active state.</p>
-<h1><a class="anchor" id="autotoc_md2277"></a>
+<h1><a class="anchor" id="autotoc_md2350"></a>
 External Connections</h1>
 <ul>
 <li>For AM263x-CC:<ul>
@@ -132,14 +132,14 @@ External Connections</h1>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2278"></a>
+<h2><a class="anchor" id="autotoc_md2351"></a>
 AM263X-CC or AM263PX-CC</h2>
 <p>When using AM263x-CC with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Connect HSEC Pin 52 to HSEC Pin 72</li>
 <li>Connect FSI header (on ControlCard) pin 8 to scope for epwm9_A</li>
 <li>Connect HSEC Pin 53 to scope for epwm1_A</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2279"></a>
+<h2><a class="anchor" id="autotoc_md2352"></a>
 AM263X-LP or AM263PX-LP</h2>
 <ul>
 <li>Connect boosterpack header J1/J3 pin 7 to J2/J4 pin 18</li>
@@ -160,7 +160,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/epwm/epwm_trip_zone   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2280"></a>
+<h1><a class="anchor" id="autotoc_md2353"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -170,10 +170,10 @@ Steps to Run the Example</h1>
 <li>When the trip input TZ is high, 2 EPWMs generate PWM waveforms.</li>
 <li>When trip input is pulled low , 2 EPWMs gets tripped.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2281"></a>
+<h1><a class="anchor" id="autotoc_md2354"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_EPWM_PAGE.html">EPWM</a></p>
-<h1><a class="anchor" id="autotoc_md2282"></a>
+<h1><a class="anchor" id="autotoc_md2355"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">EPWM Trip Zone Test Started ...</div>

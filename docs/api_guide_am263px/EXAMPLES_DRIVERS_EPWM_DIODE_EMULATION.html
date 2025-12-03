@@ -92,31 +92,31 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_EPWM_DIODE_EMULATION.
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2412">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2413">EPWM Basic Configuration</a></li>
-<li class="level1"><a href="#autotoc_md2414">Various DE configurations</a><ul><li class="level2"><a href="#autotoc_md2415">EPWM in CBC mode</a></li>
-<li class="level2"><a href="#autotoc_md2416">EPWM in OST mode</a></li>
-<li class="level2"><a href="#autotoc_md2417">EPWM in CBC mode with Re-entry delay</a></li>
-<li class="level2"><a href="#autotoc_md2418">EPWM in OST mode with DE Monitor Mode Enabled</a></li>
+<ul><li class="level1"><a href="#autotoc_md2485">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2486">EPWM Basic Configuration</a></li>
+<li class="level1"><a href="#autotoc_md2487">Various DE configurations</a><ul><li class="level2"><a href="#autotoc_md2488">EPWM in CBC mode</a></li>
+<li class="level2"><a href="#autotoc_md2489">EPWM in OST mode</a></li>
+<li class="level2"><a href="#autotoc_md2490">EPWM in CBC mode with Re-entry delay</a></li>
+<li class="level2"><a href="#autotoc_md2491">EPWM in OST mode with DE Monitor Mode Enabled</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2419">External Connections</a><ul><li class="level2"><a href="#autotoc_md2420">AM263PX-CC or AM261X-SOM</a></li>
-<li class="level2"><a href="#autotoc_md2421">AM263PX-LP</a></li>
-<li class="level2"><a href="#autotoc_md2422">AM261X-LP</a></li>
+<li class="level1"><a href="#autotoc_md2492">External Connections</a><ul><li class="level2"><a href="#autotoc_md2493">AM263PX-CC or AM261X-SOM</a></li>
+<li class="level2"><a href="#autotoc_md2494">AM263PX-LP</a></li>
+<li class="level2"><a href="#autotoc_md2495">AM261X-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_EPWM_DIODE_EMULATION_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2423">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2424">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2425">Sample Output</a></li>
-<li class="level1"><a href="#autotoc_md2426">References</a></li>
+<li class="level1"><a href="#autotoc_md2496">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2497">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2498">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2499">References</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_epwm_diode_emulation"></a></p>
-<h1><a class="anchor" id="autotoc_md2412"></a>
+<h1><a class="anchor" id="autotoc_md2485"></a>
 Introduction</h1>
 <p>This example demonstrates the functionalities of epwm working in DE mode, the trip inputs are sourced from other epwm instances only and not from cmpss.</p>
-<h1><a class="anchor" id="autotoc_md2413"></a>
+<h1><a class="anchor" id="autotoc_md2486"></a>
 EPWM Basic Configuration</h1>
 <p>All total 7 epwm instances have been used out of which EPWM0A (EPWM7A in case of AM261x-LP) and EPWM1A are made to be TripH and TripL sources respectively.</p>
 <p>The screenshots attached in the documentation are as per the results obtained by executing the example on CC. Please note that there are some instance differences between CC and LP.</p>
@@ -149,9 +149,9 @@ Table 1.a Basic Configuration of EPWMs</div></div>
 Figure 1.c XBar Configuration b/w Trip sources and EPWM</div></div>
 <p>OutputXbar13 is used to route the PWMSYNCOUT from EPWM4. OutputXbar14 is used to route the DE_Trip from EPWM6.</p>
 <p>In the below section, we will be discussing about various cases which can be observed by varying the configurations inside DE.</p>
-<h1><a class="anchor" id="autotoc_md2414"></a>
+<h1><a class="anchor" id="autotoc_md2487"></a>
 Various DE configurations</h1>
-<h2><a class="anchor" id="autotoc_md2415"></a>
+<h2><a class="anchor" id="autotoc_md2488"></a>
 EPWM in CBC mode</h2>
 <p>EPWM2 is configured in CBC mode where on occurrence of every PWMSYNC it evaluates if TRIPHorTRIPL condition is present and if not then DEACTIVE flag is cleared.</p>
 <p>Channel A:</p>
@@ -176,7 +176,7 @@ Figure 2.c EPWM in CBC mode entering DEACTIVE zone for channel B</div></div>
 <div class="caption">
 Figure 2.d EPWM in CBC mode exiting DEACTIVE zone for channel B</div></div>
 <p>This shows the period where EPWM2 exits the DE mode and EPWM2B generates signals as per its AQ actions until the second green marker. At this point it again enters the DEACTIVE mode and since TripL is low, EPWM2B is immediately pulled down to Low. The little green High signal that we observe at the beginning of this Exit zone is due to the AQ action. As PWMSYNC clears the DEACTIVE flag, EPWM2B resumes its normal behaviour (take EPWM4B as reference) just when its about to go low with its TBCTR reaching TBPRD.</p>
-<h2><a class="anchor" id="autotoc_md2416"></a>
+<h2><a class="anchor" id="autotoc_md2489"></a>
 EPWM in OST mode</h2>
 <p>EPWM3 works in DE OST mode where if once entered into the DEACTIVE mode, it remains there until the flag is software cleared. Here we don’t software clear it to see the difference. EPWM2A(B) are also shown for comparison along with EPWM4A(B).</p>
 <p>Channel A:</p>
@@ -191,7 +191,7 @@ Figure 3.a EPWM in OST mode for channel A</div></div>
 <div class="caption">
 Figure 3.b EPWM in OST mode for channel B</div></div>
 <p>For EPWM3B also, it doesn’t recover even after exiting the DEACTIVE mode and remains low in this period as TripL is also low.</p>
-<h2><a class="anchor" id="autotoc_md2417"></a>
+<h2><a class="anchor" id="autotoc_md2490"></a>
 EPWM in CBC mode with Re-entry delay</h2>
 <p>EPWM5 works in DE CBC mode but with Re-entry delay = 8. This means once EPWM5 exits the DEACTIVE mode, for next 8 PWMSYNCs it won’t enter into DEACTIVE mode even if TripHorTripL is High. EPWM2A(B) are also shown for comparison.</p>
 <p>Channel A:</p>
@@ -206,7 +206,7 @@ Figure 4.a EPWM in CBC mode with Re-entry = 8 for channel A</div></div>
 <div class="caption">
 Figure 4.b EPWM in CBC mode with Re-entry = 8 for channel B</div></div>
 <p>Here also we can see that till the counter reaches 0, EPWM5B continues its normal action by AQ. On the counter reaching 0, TripL starts driving it.</p>
-<h2><a class="anchor" id="autotoc_md2418"></a>
+<h2><a class="anchor" id="autotoc_md2491"></a>
 EPWM in OST mode with DE Monitor Mode Enabled</h2>
 <p>EPWM6 works in DEL OST mode and here the DE mode monitor is enabled. The DEMONTHRES.THRESHOLD = 200, DEMONSTEP.INCSTEP = 20, DEMONSTEP.DECSTEP = 0. So on every PWMSYNC, if TripHorTripL is High, DEMONCNT.CNT is increased in steps of 20 (INCSTEP) and decremented in step of 0 (DECSTEP) if TripHorTripL is Low.</p>
 <p>Once the counter reaches the threshold, DE_TRIP pulse is generated and the counter is cleared.</p>
@@ -227,7 +227,7 @@ Figure 5.b EPWM in OST mode with DE Monitor Mode enabled for Channel A</div></di
 <div class="caption">
 Figure 5.c EPWM in OST mode with DE Monitor Mode enabled for Channel B</div></div>
 <p>Similarly for channel B, the flag gets cleared at the point marked by the green single pointer after which it resumes it normal AQ actions.</p>
-<h1><a class="anchor" id="autotoc_md2419"></a>
+<h1><a class="anchor" id="autotoc_md2492"></a>
 External Connections</h1>
 <ul>
 <li>EPWM0_A(B) pin can be connected to an oscilloscope to view the waveform.</li>
@@ -239,7 +239,7 @@ External Connections</h1>
 <li>EPWM6_A(B), pin can be connected to an oscilloscope to view the waveform.</li>
 <li>Output Xbar 13 and 14 can be connected to an oscilloscope to view the waveform.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2420"></a>
+<h2><a class="anchor" id="autotoc_md2493"></a>
 AM263PX-CC or AM261X-SOM</h2>
 <p>When using AM263PX-CC with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Connect HSEC pin 49, 51 to scope for EPWM0A(B)</li>
@@ -252,7 +252,7 @@ AM263PX-CC or AM261X-SOM</h2>
 <li>Connect HSEC pin 68 to scope for OutputXbar 13</li>
 <li>Connect HSEC pin 70 to scope for OutputXbar 14</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2421"></a>
+<h2><a class="anchor" id="autotoc_md2494"></a>
 AM263PX-LP</h2>
 <ul>
 <li>Connect J2/J4 pin 11, J6/J8 pin 59 to scope for EPWM0A(B)</li>
@@ -263,7 +263,7 @@ AM263PX-LP</h2>
 <li>Connect J6/J8 pin 51, 52 to scope for EPWM11A(B)</li>
 <li>Connect J6/J8 pin 53, 57 to scope for EPWM12A(B)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2422"></a>
+<h2><a class="anchor" id="autotoc_md2495"></a>
 AM261X-LP</h2>
 <ul>
 <li>Connect J6/J8 pin 76, 75 to scope for EPWM7A(B)</li>
@@ -288,7 +288,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/epwm/epwm_diode_emulation/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2423"></a>
+<h1><a class="anchor" id="autotoc_md2496"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -296,17 +296,17 @@ Steps to Run the Example</h1>
 <li>Establish connections as mentioned in External Connections section</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2424"></a>
+<h1><a class="anchor" id="autotoc_md2497"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_EPWM_PAGE.html">EPWM</a></p>
-<h1><a class="anchor" id="autotoc_md2425"></a>
+<h1><a class="anchor" id="autotoc_md2498"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">EPWM Diode Emulation Logic Test Started ...</div>
 <div class="line">App will wait for 60 seconds</div>
 <div class="line">EPWM Diode Emulation Logic Test Passed!!</div>
 <div class="line">All tests have passed!!</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2426"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2499"></a>
 References</h1>
 <p> <style>div.image img[src="am263_epwm_de_reference_1.PNG"]{width:60%}</style> </p><div class="image">
 <img src="am263_epwm_de_reference_1.PNG" alt=""/>

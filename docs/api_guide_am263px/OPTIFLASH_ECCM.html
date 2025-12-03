@@ -92,26 +92,26 @@ $(document).ready(function(){initNavTree('OPTIFLASH_ECCM.html',''); initResizabl
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md619">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md620">How to enable ECCM module</a><ul><li class="level2"><a href="#autotoc_md621">Write a config file</a></li>
-<li class="level2"><a href="#autotoc_md622">Using the config file</a></li>
+<ul><li class="level1"><a href="#autotoc_md663">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md664">How to enable ECCM module</a><ul><li class="level2"><a href="#autotoc_md665">Write a config file</a></li>
+<li class="level2"><a href="#autotoc_md666">Using the config file</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md623">Additional details</a><ul><li class="level2"><a href="#autotoc_md624">ECCM Module</a></li>
-<li class="level2"><a href="#autotoc_md625">Important considerations</a></li>
-<li class="level2"><a href="#autotoc_md626">Seeing the change</a></li>
+<li class="level1"><a href="#autotoc_md667">Additional details</a><ul><li class="level2"><a href="#autotoc_md668">ECCM Module</a></li>
+<li class="level2"><a href="#autotoc_md669">Important considerations</a></li>
+<li class="level2"><a href="#autotoc_md670">Seeing the change</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_optiflash_eccm_optiflash_eccm"></a></p>
-<h1><a class="anchor" id="autotoc_md619"></a>
+<h1><a class="anchor" id="autotoc_md663"></a>
 Introduction</h1>
 <p>Unlike NAND flash, which has <code>spare area</code> for storing ECC of <code>main area</code>, NOR flash do not have such provision. NOR flash in AM26x devices are also being used to perform XIP as well.</p>
 <p>This Page goes over how safety can be enabled on external NOR flash in AM26x devices which also use NOR flash for XIP.</p>
-<h1><a class="anchor" id="autotoc_md620"></a>
+<h1><a class="anchor" id="autotoc_md664"></a>
 How to enable ECCM module</h1>
-<h2><a class="anchor" id="autotoc_md621"></a>
+<h2><a class="anchor" id="autotoc_md665"></a>
 Write a config file</h2>
 <p>The following is an example of a config file (conf.json)</p>
 <div class="fragment"><div class="line">{</div>
@@ -126,16 +126,16 @@ Write a config file</h2>
 <div class="line">}</div>
 </div><!-- fragment --><p>There can be at most 4 different ECC regions that can be configured. The above shows 1 region. For example, in am263px, there are 4 different core and each core can have its own region configured. Make sure that each region is not overlaping each other.</p>
 <p>In the above, region start address is 0x60100000 and size 4MB.</p>
-<h2><a class="anchor" id="autotoc_md622"></a>
+<h2><a class="anchor" id="autotoc_md666"></a>
 Using the config file</h2>
 <p>The example <a class="el" href="BENCHMARK_SMART_PLACEMENT.html">Memory Benchmark with Smart Placement</a> uses XIP and for the sake of demostration, it is being used.</p>
 <p>While compiling the application, pass in the argument <code>oeconfig=conf.json</code>.</p>
 <p>For example, if current working directory is <code>MCU_PLUS_SDK_PATH</code>, the following command will process the flash contents for ECC.</p>
 <div class="fragment"><div class="line">gmake -C .\examples\benchmarks\ocmc_benchmarking\am263px-cc\system_tri_core\ oeconfig=conf.json</div>
 </div><!-- fragment --><p>for Linux machine, <code>gmake</code> will be replaced by <code>make</code>.</p>
-<h1><a class="anchor" id="autotoc_md623"></a>
+<h1><a class="anchor" id="autotoc_md667"></a>
 Additional details</h1>
-<h2><a class="anchor" id="autotoc_md624"></a>
+<h2><a class="anchor" id="autotoc_md668"></a>
 ECCM Module</h2>
 <p>The following diagram shows</p>
 <p> <style>div.image img[src="am263px_safety_io_highlight.png"]{width:40%}</style> </p><div class="image">
@@ -155,14 +155,14 @@ ECC Padding To Data Byte</div></div>
 </li>
 </ol>
 <p>If computed ECC and saved ECC matches, ECCM forwards the data to the requestor, otherwise, it sends 0 and puts up an interrupt to the requestor, indicating that data fault has been detected.</p>
-<h2><a class="anchor" id="autotoc_md625"></a>
+<h2><a class="anchor" id="autotoc_md669"></a>
 Important considerations</h2>
 <ol type="1">
 <li>Flash region should be defined as <code>Normal &amp; Cached</code> in the MPU.</li>
 <li>As can be seen, for every 32B, there is 4B of ECC. Because of this, the available size of flash is decreased and as per datasheet, size of flash is decreaed by ~11.11%. During the architecture phase of the software, one has to consider this fact. If the software requirement is to enable ECC on external flash, then, the size of the external flash should be reduced in linker file, etc. For example if 8mb of external flash is being used, then sofware/user applicaiton should only use 7mb of flash.</li>
 <li>Writing to flash with ECCM enabled should be avoided at all cost. Harware does not supports it. The right way to do this is to pre-compute ECC for the data that is to be written to flash and write the computed data via the flsopskd controller (<a class="el" href="FLSOPSKD_IP.html">How to use Flash Operation Scheduler Hardware</a>). (or write to external flash via <code>bypass region</code>).</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md626"></a>
+<h2><a class="anchor" id="autotoc_md670"></a>
 Seeing the change</h2>
 <p>To see if the processing has been done correctly, use the command</p>
 <p><code>tiarmreadelf --headers app_name.mcelf_xip</code></p>

@@ -44,6 +44,8 @@ static OSPI_Attrs gOspiAttrs[CONFIG_OSPI_NUM_INSTANCES] =
         .baseAddr             = `config.baseAddr`,
         .protocol             = OSPI_PROTO_`config.protocol.toUpperCase()`,
         .dataBaseAddr         = `config.dataBaseAddr`,
+        .moduleId             = `config.clockFrequencies[0].moduleId`,
+        .clkId                = `config.clockFrequencies[0].clkId`,
         .inputClkFreq         = `config.inputClkFreq`U,
         .intrNum              = `config.intrNum`U,
         .intrEnable           = `config.intrEnable.toString(10).toUpperCase()`,
@@ -56,6 +58,7 @@ static OSPI_Attrs gOspiAttrs[CONFIG_OSPI_NUM_INSTANCES] =
         .decChipSelect        = `config.decChipSelect`,
         .baudRateDiv          = `config.baudRateDiv`,
         .dmaRestrictedRegions = gOspiDmaRestrictRegions,
+        .validateOtp          = `config.validateOtp`,
     },
 % }
 };
@@ -144,7 +147,6 @@ OSPI_DmaConfig gOspiDmaConfig[CONFIG_OSPI_NUM_DMA_INSTANCES] =
 {
 %for(let i = 0; i < ospiUdmaInstances.length; i++) {
     {
-        .fxns        = &gOspiDmaUdmaFxns,
         .ospiDmaArgs = (void *)&gOspiUdma`i`Args,
     }
 %}

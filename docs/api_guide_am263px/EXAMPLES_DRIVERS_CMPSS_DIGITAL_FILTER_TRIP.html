@@ -92,21 +92,21 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_CMPSS_DIGITAL_FILTER_
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2130">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2131">External Connections</a><ul><li class="level2"><a href="#autotoc_md2132">AM263X-CC or AM263PX-CC E2</a></li>
-<li class="level2"><a href="#autotoc_md2133">AM261X-SOM</a></li>
-<li class="level2"><a href="#autotoc_md2134">AM263PX-LP or AM263X-LP</a></li>
-<li class="level2"><a href="#autotoc_md2135">AM261X-LP</a></li>
+<ul><li class="level1"><a href="#autotoc_md2203">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2204">External Connections</a><ul><li class="level2"><a href="#autotoc_md2205">AM263X-CC or AM263PX-CC E2</a></li>
+<li class="level2"><a href="#autotoc_md2206">AM261X-SOM</a></li>
+<li class="level2"><a href="#autotoc_md2207">AM263PX-LP or AM263X-LP</a></li>
+<li class="level2"><a href="#autotoc_md2208">AM261X-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_CMPSS_DIGITAL_FILTER_TRIP_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2136">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2137">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2138">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2209">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2210">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2211">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_cmpss_digital_filter_trip"></a></p>
-<h1><a class="anchor" id="autotoc_md2130"></a>
+<h1><a class="anchor" id="autotoc_md2203"></a>
 Introduction</h1>
 <p>A CMPSS example that enables the CMPSS High comparator and feeds the digital filter output to GPIO/OUTPUTXBAR pin</p>
 <p>This example enables the CMPSSA1 COMPH comparator and feeds the digital filter CTRIPH signal to the OUTPUTXBAR pin.</p>
@@ -121,34 +121,34 @@ Block diagram</div></div>
 <p>When a high input(higher than VDD/2) is provided to CMPIN1P,</p><ul>
 <li>Trip signal(OUTPUTXBAR) output turns high</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2131"></a>
+<h1><a class="anchor" id="autotoc_md2204"></a>
 External Connections</h1>
 <ul>
 <li>OUTPUTXBAR can be connected to an oscilloscope to view the Digital Filter Output.</li>
 <li>For External Voltage (Input to CMPIN1P), we can use the Dac Output as well (Here we generate a sine wave at DAC_OUT)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2132"></a>
+<h2><a class="anchor" id="autotoc_md2205"></a>
 AM263X-CC or AM263PX-CC E2</h2>
 <ul>
 <li>Give input on CMPIN1P (ADC0_AIN2 - HSEC Pin 15)</li>
 <li>Outputs can be observed on OUTPUTXBAR8 (HSEC Pin 85)</li>
 <li>For DAC loop back as input, connect DAC_OUT (HSEC Pin 9) to CMPIN1P</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2133"></a>
+<h2><a class="anchor" id="autotoc_md2206"></a>
 AM261X-SOM</h2>
 <ul>
 <li>Give input on CMPIN1P (ADC0_AIN2 - HSEC Pin 15)</li>
 <li>Outputs can be observed on OUTPUTXBAR5 (HSEC Pin 76)</li>
 <li>For DAC loop back as input, connect DAC_OUT (HSEC Pin 9) to CMPIN1P</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2134"></a>
+<h2><a class="anchor" id="autotoc_md2207"></a>
 AM263PX-LP or AM263X-LP</h2>
 <ul>
 <li>Give input on CMPIN1P (Pin j7.66)</li>
 <li>Outputs can be observed on OUTPUTXBAR8 (j5.50)</li>
 <li>For DAC loop back as input, connect DAC_OUT (J3.30) to CMPIN1P</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2135"></a>
+<h2><a class="anchor" id="autotoc_md2208"></a>
 AM261X-LP</h2>
 <ul>
 <li>Give input on CMPIN1P (Pin J7.63)</li>
@@ -169,7 +169,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/cmpss/cmpss_digital_filter_trip/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2136"></a>
+<h1><a class="anchor" id="autotoc_md2209"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -179,10 +179,10 @@ Steps to Run the Example</h1>
 <li>When a low input is provided, Trip signal output is low</li>
 <li>When a high input(higher than VDD/2) is provided, Trip signal output turns high</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2137"></a>
+<h1><a class="anchor" id="autotoc_md2210"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_CMPSS_PAGE.html">CMPSS</a></p>
-<h1><a class="anchor" id="autotoc_md2138"></a>
+<h1><a class="anchor" id="autotoc_md2211"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <p> <style>div.image img[src="am263_cmpss_digital_filter_trip_output.png"]{width:50%}</style> </p><div class="image">

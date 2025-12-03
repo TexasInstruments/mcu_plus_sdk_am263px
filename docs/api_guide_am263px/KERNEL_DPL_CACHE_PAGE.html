@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('KERNEL_DPL_CACHE_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md706">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md707">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md708">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md709">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md710">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md750">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md751">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md752">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md753">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md754">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_dpl_CacheP"></a></p>
-<h1><a class="anchor" id="autotoc_md706"></a>
+<h1><a class="anchor" id="autotoc_md750"></a>
 Features Supported</h1>
 <ul>
 <li>APIs to perform below cache operations<ul>
@@ -112,10 +112,10 @@ Features Supported</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md707"></a>
+<h1><a class="anchor" id="autotoc_md751"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md708"></a>
+<h1><a class="anchor" id="autotoc_md752"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>The region based cache APIs, <a class="el" href="group__KERNEL__DPL__CACHE.html#ga53f4efb4e3538bc517f14d5a8e60bcec">CacheP_wb</a>, <a class="el" href="group__KERNEL__DPL__CACHE.html#ga00eda537bc092a20584dcc7a3ed0d8e0">CacheP_wbInv</a>, <a class="el" href="group__KERNEL__DPL__CACHE.html#ga894fcf969b6afb5f30e25861d39c9219">CacheP_inv</a>, operate on a CPU cache line, hence its strongly recommended to make sure 'addr' is cache line aliged and 'size` is a multiple of cache line size<ul>
@@ -136,7 +136,7 @@ Important Usage Guidelines</h1>
 <li>On R5F, It is recommended to enable both program and data cache in R5F in all applications. In R5F for cache to be enabled MPU needs to be enabled.</li>
 <li>On M4F, the CPU does not support cache so these APIs when used with M4F, will be blank and will have no effect</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md709"></a>
+<h1><a class="anchor" id="autotoc_md753"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs, </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="CacheP_8h.html">kernel/dpl/CacheP.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Example usage for cache write back invalidate, </p><div class="fragment"><div class="line">    <span class="keywordtype">char</span> buf[1024];</div>
@@ -157,7 +157,7 @@ Example Usage</h1>
 <div class="line">    <span class="comment">// invalidate contents of cache so that a CPU can see the data written by DMA or HW peripheral</span></div>
 <div class="line"> </div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__CACHE.html#ga894fcf969b6afb5f30e25861d39c9219">CacheP_inv</a>(addr, size, <a class="code" href="group__KERNEL__DPL__CACHE.html#gad32c7fc7ab9abcd63a3d5feb77b9b825">CacheP_TYPE_ALL</a>);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md710"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md754"></a>
 API</h1>
 <p><a class="el" href="group__KERNEL__DPL__CACHE.html">APIs for Cache</a>, </p>
 </div></div><!-- contents -->

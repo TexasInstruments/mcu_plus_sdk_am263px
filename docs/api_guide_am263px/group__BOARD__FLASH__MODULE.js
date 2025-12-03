@@ -61,7 +61,8 @@ var group__BOARD__FLASH__MODULE =
       [ "eraseSectorFxn", "structFlash__Fxns.html#a188c641aa936112bf55838b157b6c75a", null ],
       [ "resetFxn", "structFlash__Fxns.html#a10e797df598663ad56a0de7fc97948e6", null ],
       [ "enableDacModeFxn", "structFlash__Fxns.html#a6254564547e4ab2f04437ad5f6e03e06", null ],
-      [ "disableDacModeFxn", "structFlash__Fxns.html#a2a2e6bba1dc3f3b11b62e551075a87f8", null ]
+      [ "disableDacModeFxn", "structFlash__Fxns.html#a2a2e6bba1dc3f3b11b62e551075a87f8", null ],
+      [ "phyTuneFxn", "structFlash__Fxns.html#a74ab46d3d14c31dc1f3caab9113bb4b5", null ]
     ] ],
     [ "Flash_Attrs", "structFlash__Attrs.html", [
       [ "flashType", "structFlash__Attrs.html#a36c227118f5cc35e681ab38b5c59e3b9", null ],
@@ -85,7 +86,8 @@ var group__BOARD__FLASH__MODULE =
       [ "devConfig", "structFlash__Config.html#af8513dd274fc29a7fa4af0ca8437bb5c", null ],
       [ "object", "structFlash__Config.html#acdb5ad7537573eab6ed13155f9fcd9ea", null ],
       [ "skipHwInit", "structFlash__Config.html#ac0bc75373ec642eec1934a7a0399c50b", null ],
-      [ "rwOffset", "structFlash__Config.html#abafe9fd498cad9c38defa06383183499", null ]
+      [ "rwOffset", "structFlash__Config.html#abafe9fd498cad9c38defa06383183499", null ],
+      [ "fallBackCfg", "structFlash__Config.html#a1a59751bde097d04063251b1e59b4b5b", null ]
     ] ],
     [ "Flash_Handle", "group__BOARD__FLASH__MODULE.html#ga0aa97d350ea7374b917f12dddc1abba4", null ],
     [ "Flash_Config", "group__BOARD__FLASH__MODULE.html#gabead45069a5ee9015a31b22f09689b30", null ],
@@ -101,6 +103,7 @@ var group__BOARD__FLASH__MODULE =
     [ "Flash_DisableDacModeFxn", "group__BOARD__FLASH__MODULE.html#gae7da8fb01d04a623d7d04c2b79d4d2e8", null ],
     [ "Flash_quirksFxn", "group__BOARD__FLASH__MODULE.html#ga6a8fc7238066b55a7befe161e447ef64", null ],
     [ "Flash_custProtocolFxn", "group__BOARD__FLASH__MODULE.html#gadeb86f8db9fb0e614573ef99bcfd8b42", null ],
+    [ "Flash_phyTuneFxn", "group__BOARD__FLASH__MODULE.html#ga39875778449fda30dd84533f5a8e5332", null ],
     [ "Flash_Params_init", "group__BOARD__FLASH__MODULE.html#ga548767b7c425042f55d8e5df0e9c3374", null ],
     [ "Flash_open", "group__BOARD__FLASH__MODULE.html#ga433c1193175febd7b27b3a305bd7d57c", null ],
     [ "Flash_close", "group__BOARD__FLASH__MODULE.html#ga0e5d8fc8573b2aa27461762fba84c3b3", null ],
@@ -117,5 +120,6 @@ var group__BOARD__FLASH__MODULE =
     [ "Flash_enableDacMode", "group__BOARD__FLASH__MODULE.html#gaa36b595a17f4756ce41487fa842632a9", null ],
     [ "Flash_disableDacMode", "group__BOARD__FLASH__MODULE.html#gaebea4e04f838b98f54792c0e79ac83a4", null ],
     [ "Flash_getPhyTuningOffset", "group__BOARD__FLASH__MODULE.html#gad8034938eca81084dbdcc548f37ef053", null ],
-    [ "Flash_getAttrs", "group__BOARD__FLASH__MODULE.html#gab26c7728148eda750247aa3d0b6fbae4", null ]
+    [ "Flash_getAttrs", "group__BOARD__FLASH__MODULE.html#gab26c7728148eda750247aa3d0b6fbae4", null ],
+    [ "Flash_phyTune", "group__BOARD__FLASH__MODULE.html#gac4353f83384e9f69996ff3c80defa1f0", null ]
 ];

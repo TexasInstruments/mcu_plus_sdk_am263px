@@ -31,7 +31,7 @@
  */
 
 /*!
- * \file  dp83tg720_priv.h
+ * \file  dp83tg721_priv.h
  *
  * \brief This file contains private type definitions and helper macros for the
  *        DP83TG721 AVB Ethernet PHY.
@@ -65,6 +65,7 @@ extern "C" {
 #define ENETPHY_MASK(h, l) ((0xFFFF - (1 << (l)) + 1) & (0xFFFF >> (15 - (h))))
 
 /* General registers */
+#define DP83TG721_PHYSTS        (0x10U)
 #define MII_REG_12              (0x12U)
 #define MII_REG_13              (0x13U)
 #define MII_REG_18              (0x18U)
@@ -76,6 +77,9 @@ extern "C" {
 #define PMA_PMD_CONTROL         (0x1834U)
 #define A2D_REG_48              (0x430U)
 #define LPS_CFG3                (0x018CU)
+
+/*! \brief Loopback Configuration */
+#define BMCR_LOOPBACK           ENETPHY_BIT(14)
 
 /*! \brief MII_REG_1F bits */
 #define HW_RESET                ENETPHY_BIT(15)
@@ -111,6 +115,9 @@ extern "C" {
 /*! \brief RGMII_DELAY_CTRL */
 #define RGMII_RX_SHIFT          ENETPHY_BIT(1)
 #define RGMII_TX_SHIFT          ENETPHY_BIT(0)
+
+/*! \brief PHY STS bits */
+#define DP83TG721_PHYSTS_LINK   ENETPHY_BIT(0)
 
 /* 1588 PTP registers */
 #define PTP_CTL      0xD00 /* PTP Control Register */
@@ -176,6 +183,8 @@ extern "C" {
 #define CRF_MAS_MCLK_LOC_NSEC_15_0    0xD96  /* Media Clock Edge Location nSec LSB */
 
 #define PTP_PLL_EN_CTL       0xD97 /* PTP_PLL Enable control */
+#define CODEC_DIV_CTL_1      0xD9B /* Codec clock Division factor 1 */
+#define CODEC_DIV_CTL_2      0xD9C /* Codec clock Division factor 2 */
 #define MCLK_PH_ADJ_LIM_1    0xD9D /* Media Clock Phase Adj Lim 1 */
 #define MCLK_PH_ADJ_LIM_2    0xD9E /* Media Clock Phase Adj Lim 2 */
 #define MCLK_DIV_CTL_1       0xD9F /* Media clock Division factor 1 */
@@ -186,6 +195,10 @@ extern "C" {
 
 #define CRF_PARSE_CTL             0xD80 /* CRF parsing control register */
 #define CRF_ETYPE                 0xD81 /* CRF ethertype control register */
+#define CRF_STREAMID_63_48        0xD82 /* CRF STREAM ID Match Value */
+#define CRF_STREAMID_47_32        0xD83 /* CRF STREAM ID Match Value */
+#define CRF_STREAMID_31_16        0xD84 /* CRF STREAM ID Match Value */
+#define CRF_STREAMID_15_0         0xD85 /* CRF STREAM ID Match Value */
 #define CRF_IP_CTL                0xD88 /* CRF IP parse control register */
 #define CRF_SAMP_CTL              0xD8A /* CRF sample control register */
 #define CRF_INT                   0xD8B /* CRF Interrupt register */

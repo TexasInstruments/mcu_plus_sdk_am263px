@@ -1,4 +1,5 @@
 {
+    "flashName": "W35N01JWTBAG",
     "flashSize": 134217728,
     "flashPageSize": 4096,
     "flashManfId": "0xEF",
@@ -44,7 +45,7 @@
                 "shift": 0,
                 "mask": "0xFF",
                 "bitP": 223
-            },
+            }
         },
         "p444s": null,
         "p444d": null,
@@ -72,8 +73,8 @@
                 "shift": 0,
                 "mask": "0xFF",
                 "bitP": 231
-            },
-        },
+            }
+        }
     },
 
     "cmdExtType": "REPEAT",

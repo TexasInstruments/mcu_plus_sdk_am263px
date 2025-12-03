@@ -151,6 +151,19 @@ int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_GET_LINK_MODE(EnetPhy_Hand
     return status;
 }
 
+int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_GET_LINK_STATUS(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms)
+{
+    EnetMacPort_LinkCfg *linkCfg = (EnetMacPort_LinkCfg *)prms->outArgs;
+    int32_t status = ENET_SOK;
+
+    status = EnetPhy_getLinkStatus(hPhy, (EnetPhy_Speed*)&linkCfg->speed, (EnetPhy_Duplexity*)&linkCfg->duplexity);
+    if (status != ENETPHY_SOK)
+    {
+        ENETTRACE_ERR("Phy %u: Failed to read phy link speed, duplex: %d\n", hPhy->addr, status);
+    }
+    return status;
+}
+
 int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_RESET(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms)
 {
     int32_t status = ENET_SOK;
@@ -419,6 +432,33 @@ int32_t EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_GET_EVENT_TIMESTAMP(EnetPhy
 
     ENETTRACE_ERR_IF((status != ENETPHY_SOK) && (status != ENETPHY_EUNAVAILABLE),
                     "Port %u: Failed to get event TS: %d\n",
+                    ENET_MACPORT_ID(inArgs->macPort), status);
+    return status;
+}
+
+int32_t EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_CONFIG_MEDIA_CLOCK(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms)
+{
+    const EnetPhy_ConfigMediaClockInArgs *inArgs =
+        (const EnetPhy_ConfigMediaClockInArgs *)prms->inArgs;
+
+    int32_t status = EnetPhy_configMediaClock(hPhy, inArgs->isMaster, \
+                                inArgs->streamIDMatchValue, inArgs->enTrigOut);
+
+    ENETTRACE_ERR_IF((status != ENETPHY_SOK) && (status != ENETPHY_EUNAVAILABLE),
+                    "Port %u: Failed to configure Media Clock: %d\n",
+                    ENET_MACPORT_ID(inArgs->macPort), status);
+    return status;
+}
+
+int32_t EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_NUDGE_CODEC_CLOCK(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms)
+{
+    const EnetPhy_NudgeCodecClockInArgs *inArgs =
+        (const EnetPhy_NudgeCodecClockInArgs *)prms->inArgs;
+
+    int32_t status = EnetPhy_nudgeCodecClock(hPhy, inArgs->nudgeValue);
+
+    ENETTRACE_ERR_IF((status != ENETPHY_SOK) && (status != ENETPHY_EUNAVAILABLE),
+                    "Port %u: Failed to Nudge Codec Clock: %d\n",
                     ENET_MACPORT_ID(inArgs->macPort), status);
     return status;
 }

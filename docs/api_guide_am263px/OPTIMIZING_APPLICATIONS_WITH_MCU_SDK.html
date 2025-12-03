@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('OPTIMIZING_APPLICATIONS_WITH_MCU_SDK.h
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#CHAPTER_OPTIMIZATION">Optimizations</a><ul><li class="level2"><a href="#CHAPTER_OPTIMIZATION_SECTION_1">Optimize Interrupt handling (IRQ/FIQ)</a><ul><li class="level3"><a href="#autotoc_md466">Understand interrupt and exception handling of the ARM Cortex-R5 processor</a></li>
-<li class="level3"><a href="#autotoc_md467">Understanding NORTOS IRQ handler in MCU PLUS SDK DPL</a></li>
-<li class="level3"><a href="#autotoc_md468">Step by step guide for optimizations</a></li>
+<ul><li class="level1"><a href="#CHAPTER_OPTIMIZATION">Optimizations</a><ul><li class="level2"><a href="#CHAPTER_OPTIMIZATION_SECTION_1">Optimize Interrupt handling (IRQ/FIQ)</a><ul><li class="level3"><a href="#autotoc_md510">Understand interrupt and exception handling of the ARM Cortex-R5 processor</a></li>
+<li class="level3"><a href="#autotoc_md511">Understanding NORTOS IRQ handler in MCU PLUS SDK DPL</a></li>
+<li class="level3"><a href="#autotoc_md512">Step by step guide for optimizations</a></li>
 </ul>
 </li>
 <li class="level2"><a href="#CHAPTER_OPTIMIZATION_SECTION_2">Optimize memory placement</a></li>
-<li class="level2"><a href="#CHAPTER_OPTIMIZATION_SECTION_3">Optimize R5F MPU settings</a><ul><li class="level3"><a href="#autotoc_md469">Background info on MPU and Cache settings</a></li>
+<li class="level2"><a href="#CHAPTER_OPTIMIZATION_SECTION_3">Optimize R5F MPU settings</a><ul><li class="level3"><a href="#autotoc_md513">Background info on MPU and Cache settings</a></li>
 </ul>
 </li>
 <li class="level2"><a href="#CHAPTER_OPTIMIZATION_SECTION_4">Optimize compiler settings</a></li>
-<li class="level2"><a href="#CHAPTER_OPTIMIZATION_SECTION_5">Optimize application code</a><ul><li class="level3"><a href="#autotoc_md470">Peripheral Bus Architecture &amp; Mapping</a></li>
+<li class="level2"><a href="#CHAPTER_OPTIMIZATION_SECTION_5">Optimize application code</a><ul><li class="level3"><a href="#autotoc_md514">Peripheral Bus Architecture &amp; Mapping</a></li>
 </ul>
 </li>
 <li class="level2"><a href="#CHAPTER_OPTIMIZATION_SECTION_6">Memory optimization</a></li>
@@ -130,7 +130,7 @@ Optimize Interrupt handling (IRQ/FIQ)</h2>
 <dl class="section note"><dt>Note</dt><dd>Following optimizations are specific to ARM R5 architecture.</dd></dl>
 <p>In MCU SDK Driver Porting Layer (DPL), the NORTOS IRQ handler for R5F uses a common dispatcher (HwiP_irq_handler and HwiP_irq_handler_c) for handling interrupt, to look-up and call user specified ISR function. This has relatively high interrupt latency.</p>
 <p>The optimized approach makes use of dedicated IRQ handlers per interrupt which then calls the user specified ISR function. This has a reduced interrupt latency.</p>
-<h3><a class="anchor" id="autotoc_md466"></a>
+<h3><a class="anchor" id="autotoc_md510"></a>
 Understand interrupt and exception handling of the ARM Cortex-R5 processor</h3>
 <p>This section describes the interrupt and exception handling of the ARM Cortex-R5 processor as implemented on Sitara MCU microcontrollers, as well as the related operating modes of the processor.</p>
 <p>Exceptions are interruptions of the normal program flow this includes peripheral interrupts. The Cortex-R5 processor usually takes care to preserve the critical parts of the current processor state, so that the normal program flow could be resumed after the exception was handled by the application (saving and restoring of the CPSR and banked Stack Pointers). The Cortex-R5 processor implements the following exceptions:</p>
@@ -166,7 +166,7 @@ Understand interrupt and exception handling of the ARM Cortex-R5 processor</h3>
 <img src="Fig17.PNG" alt=""/>
 <div class="caption">
 Hardware Vectored Interrupt Connection Scheme in ARM Cortex R5F in am263px</div></div>
-<h3><a class="anchor" id="autotoc_md467"></a>
+<h3><a class="anchor" id="autotoc_md511"></a>
 Understanding NORTOS IRQ handler in MCU PLUS SDK DPL</h3>
 <p>The ARM Cortex-R5 (ARMv7-R architecture) processor does not support interrupt nesting in hardware, as some Cortex-M (ARMv7-M architecture) processors do. Only a two level nesting is possible when using IRQ and FIQ, where the FIQ can interrupt the IRQ.</p>
 <dl class="section note"><dt>Note</dt><dd>In MCU PLUS SDK , IRQ nesting is emulated in software with the help of reentrant interrupt handlers.</dd></dl>
@@ -194,7 +194,7 @@ Understanding NORTOS IRQ handler in MCU PLUS SDK DPL</h3>
 <div class="caption">
 ARM Cortex R5 interrupt handling in MCU PLUS SDK for am263px</div></div>
 <p>The OS abstraction layer (DPL) of MCU PLUS SDK architected for networking applications introduces performance overheads (interrupt latencies). To support Real Time Control use cases the IRQ handlers are optimized, reducing software overheads down to 150ns. Use below steps to utilize the optimized IRQ handlers.</p>
-<h3><a class="anchor" id="autotoc_md468"></a>
+<h3><a class="anchor" id="autotoc_md512"></a>
 Step by step guide for optimizations</h3>
 <dl class="section note"><dt>Note</dt><dd>Please refer <a class="el" href="EXAMPLES_KERNEL_DPL_LOW_LATENCY_INTERRUPT.html">Driver Porting Layer (DPL) Low Latency Interrupt</a> example which demonstrates the steps to register a custom interrupt using optimized approach</dd></dl>
 <p>Steps to register a custom interrupt using MCU SDK (default approach)</p>
@@ -246,7 +246,7 @@ MPU settings for On-Chip RAM shall not be kept shareable unless specifically int
 <img src="Fig11.PNG" alt=""/>
 <div class="caption">
 MPU settings for EPWM periperals</div></div>
-<h3><a class="anchor" id="autotoc_md469"></a>
+<h3><a class="anchor" id="autotoc_md513"></a>
 Background info on MPU and Cache settings</h3>
 <p>This section provides an overview of various features available in R5F MPU. Cortex-R5 has an in-built Memory Protection Unit (MPU) module that helps configure the memory types and attributes as defined in a processor’s memory ordering mode. The MPU is specific to each core in the system and can only modify the memory ordering model of the CPU to which it is attached.</p>
 <p> <style>div.image img[src="Fig12.PNG"]{width:80%}</style> </p><div class="image">
@@ -408,7 +408,7 @@ Optimize application code</h2>
 </ul>
 </li>
 </ol>
-<h3><a class="anchor" id="autotoc_md470"></a>
+<h3><a class="anchor" id="autotoc_md514"></a>
 Peripheral Bus Architecture &amp; Mapping</h3>
 <p>CONTROLSS interconnect is divided into below list of separate interconnect connected to the CORE VBUSP interconnect individually. Since this are connected to the CORE VBUSP interconnect separately, each of this interconnect can be accessed in parallel by different initiators without any arbitration. Accessing a single CONTROLSS interconnect by multiple initiators at the same time will be arbitrated.</p>
 <ul>

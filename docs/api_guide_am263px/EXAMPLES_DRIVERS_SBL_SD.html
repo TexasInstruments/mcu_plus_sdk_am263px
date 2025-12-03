@@ -92,16 +92,16 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_SBL_SD.html',''); ini
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2722">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md2795">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_SBL_SD_MCELF">SBL SD MULTICORE ELF</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_SBL_SD_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2723">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2724">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2725">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2796">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2797">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2798">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_sbl_sd"></a></p>
-<h1><a class="anchor" id="autotoc_md2722"></a>
+<h1><a class="anchor" id="autotoc_md2795"></a>
 Introduction</h1>
 <p>This bootloader does SOC initializations and attempts to boot a multicore application image file named "app" present in the first FAT partition found in the connected SD card. The file can be copied to the SD card by connecting it to the host PC using a card reader. Make sure that it is named "app" without any file extension. If the card is new, make sure that it is formatted with FAT32/16.</p>
 <p>If a multicore application image file is found at the location, the SBL reads the file into a buffer and parses it. Each core is then initialized, application image is loaded, entry points are set and the core is released from reset. For more on bootflow/bootloaders, please refer <a class="el" href="BOOTFLOW_GUIDE.html">Understanding the bootflow and bootloaders</a></p>
@@ -133,7 +133,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/boot/sbl_sd_multicore_elf   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2723"></a>
+<h1><a class="anchor" id="autotoc_md2796"></a>
 Steps to Run the Example</h1>
 <p>Since this is a bootloader, the example will be run every time you boot an application using this example. It is run from an SD card unlike other examples which are usually loaded with CCS. Nevertheless, you can build this example like you do for the others using makefile or build it via CCS by importing as a project.</p>
 <ul>
@@ -141,10 +141,10 @@ Steps to Run the Example</h1>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Refer to the page <a class="el" href="TOOLS_FLASH.html#BASIC_STEPS_TO_FLASH_FILES">Basic steps to flash files</a> to flash this bootloader along with the application to boot.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2724"></a>
+<h1><a class="anchor" id="autotoc_md2797"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_BOOTLOADER_PAGE.html">BOOTLOADER</a></p>
-<h1><a class="anchor" id="autotoc_md2725"></a>
+<h1><a class="anchor" id="autotoc_md2798"></a>
 Sample Output</h1>
 <p>Logs from IPC RPMSG ECHO example: </p><div class="fragment"><div class="line">Starting SD Bootloader ...</div>
 <div class="line">[BOOTLOADER_PROFILE] Boot Media       : SD Card</div>

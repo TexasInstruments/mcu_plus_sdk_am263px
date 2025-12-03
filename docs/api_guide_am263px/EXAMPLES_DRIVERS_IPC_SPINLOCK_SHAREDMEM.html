@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_IPC_SPINLOCK_SHAREDME
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1733">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md1805">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_IPC_SPINLOCK_SHAREDMEM_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md1734">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md1735">See Also</a></li>
-<li class="level1"><a href="#autotoc_md1736">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md1806">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md1807">See Also</a></li>
+<li class="level1"><a href="#autotoc_md1808">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_ipc_spinlock_sharedmem"></a></p>
-<h1><a class="anchor" id="autotoc_md1733"></a>
+<h1><a class="anchor" id="autotoc_md1805"></a>
 Introduction</h1>
 <p>This example shows shared memory access between multiple cores in an atomic way using spinlock. Shared memory is allocated across two cores - using gUserSharedMem variable.</p>
 <p>In this example, this memory is just a counter for illustration purpose. Each core does a read-modify write to this variable in a continuous manner.</p>
@@ -122,7 +122,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/ipc/ipc_spinlock_sharedmem   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1734"></a>
+<h1><a class="anchor" id="autotoc_md1806"></a>
 Steps to Run the Example</h1>
 <dl class="section note"><dt>Note</dt><dd>This is a <code>system</code> or multi-core project, so refer to system project build instructions for CCS project or makefiles when building the example.</dd></dl>
 <ul>
@@ -132,10 +132,10 @@ Steps to Run the Example</h1>
 <li>This is a multi-core example. Hence the executables should be loaded and run for all the above mentioned cores</li>
 <li>The application has a sync mechanism at the start which waits for all cores to start before doing the test. Hence the cores can be loaded and run in any sequence.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1735"></a>
+<h1><a class="anchor" id="autotoc_md1807"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_SPINLOCK_PAGE.html">SPINLOCK</a></p>
-<h1><a class="anchor" id="autotoc_md1736"></a>
+<h1><a class="anchor" id="autotoc_md1808"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">[IPC Spinlock Sharedmem] Example started ...</div>

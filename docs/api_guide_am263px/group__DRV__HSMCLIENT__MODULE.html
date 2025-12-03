@@ -158,6 +158,9 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSecCfgValidate__t.html">SecCfgValidate_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is Sec-Cfg validation request structure passed to HSM core via SIPC as argument, these parameters are required by the service handler. Valid only for F29x family of devices.  <a href="structSecCfgValidate__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFlashBankCopy__t.html">FlashBankCopy_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is active bank to dormant bank copy request structure passed to HSM core via SIPC as argument, these parameters are required by the service handler. Valid only for F29x family of devices.  <a href="structFlashBankCopy__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHsmMsg__t__.html">HsmMsg_t_</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">HSM client / server message format struct.  <a href="structHsmMsg__t__.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -278,6 +281,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga6634bc2f8d0d9f5574111f6070838002"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga6634bc2f8d0d9f5574111f6070838002">HsmClient_secCfgValidate</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structSecCfgValidate__t.html">SecCfgValidate_t</a> *pSecCfgParams, uint32_t timeout)</td></tr>
 <tr class="memdesc:ga6634bc2f8d0d9f5574111f6070838002"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client request to validate sec-cfg Valid only for F29x family of devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga6634bc2f8d0d9f5574111f6070838002">More...</a><br /></td></tr>
 <tr class="separator:ga6634bc2f8d0d9f5574111f6070838002"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2a4fabce99d63a311aab8352a9fe890b"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga2a4fabce99d63a311aab8352a9fe890b">HsmClient_activeToDormantBankCopy</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structFlashBankCopy__t.html">FlashBankCopy_t</a> *pFlashBankCopyObject, uint32_t timeout)</td></tr>
+<tr class="memdesc:ga2a4fabce99d63a311aab8352a9fe890b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client request to copy active flash bank contents to dormant flash bank Valid only for F29x family of devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga2a4fabce99d63a311aab8352a9fe890b">More...</a><br /></td></tr>
+<tr class="separator:ga2a4fabce99d63a311aab8352a9fe890b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -395,6 +401,9 @@ Macros</h2></td></tr>
 <tr class="memitem:gaab5435a13c609f9d255749ea551375a7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gaab5435a13c609f9d255749ea551375a7">HSM_MSG_PROC_AUTH_BOOT_SEC_CFG</a>&#160;&#160;&#160;(0x9058)</td></tr>
 <tr class="memdesc:gaab5435a13c609f9d255749ea551375a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate Sec-Cfg service ID.  <a href="group__DRV__HSMCLIENT__MODULE.html#gaab5435a13c609f9d255749ea551375a7">More...</a><br /></td></tr>
 <tr class="separator:gaab5435a13c609f9d255749ea551375a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b9e4251d86003eb35eadb0f9712430a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga9b9e4251d86003eb35eadb0f9712430a">HSM_MSG_FLASH_BANK_COPY</a>&#160;&#160;&#160;(0x9059)</td></tr>
+<tr class="memdesc:ga9b9e4251d86003eb35eadb0f9712430a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy active flash bank contents to dormant flash bank.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga9b9e4251d86003eb35eadb0f9712430a">More...</a><br /></td></tr>
+<tr class="separator:ga9b9e4251d86003eb35eadb0f9712430a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0842e3d812796be34207849e8dc8dc3a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga0842e3d812796be34207849e8dc8dc3a">HSM_FLAG_AOP</a>&#160;&#160;&#160;(0x11)</td></tr>
 <tr class="memdesc:ga0842e3d812796be34207849e8dc8dc3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">HSM FLAG used by HSM client to indicate that it expects ACK messasge from HSM and will wait for a response message.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga0842e3d812796be34207849e8dc8dc3a">More...</a><br /></td></tr>
 <tr class="separator:ga0842e3d812796be34207849e8dc8dc3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -431,6 +440,15 @@ Macros</h2></td></tr>
 <tr class="memitem:gafd5dcb2bc8278823739e5593ed356060"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gafd5dcb2bc8278823739e5593ed356060">CERT_TYPE_SECCFG_CPU3</a>&#160;&#160;&#160;(0x6U)</td></tr>
 <tr class="memdesc:gafd5dcb2bc8278823739e5593ed356060"><td class="mdescLeft">&#160;</td><td class="mdescRight">Certificate type for C29 CPU3 Sec-cfg.  <a href="group__DRV__HSMCLIENT__MODULE.html#gafd5dcb2bc8278823739e5593ed356060">More...</a><br /></td></tr>
 <tr class="separator:gafd5dcb2bc8278823739e5593ed356060"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga259589a714501cf1e41c76ae13d044f2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga259589a714501cf1e41c76ae13d044f2">C29_CPU1_FLASH_BANK</a>&#160;&#160;&#160;(0x1U)</td></tr>
+<tr class="memdesc:ga259589a714501cf1e41c76ae13d044f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">C29 CPU1 macro to be used while requesting active to dormant flash bank copy Valid only for F29x family of devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga259589a714501cf1e41c76ae13d044f2">More...</a><br /></td></tr>
+<tr class="separator:ga259589a714501cf1e41c76ae13d044f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga71049731bfb2c2f920ef1285adb5ed38"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga71049731bfb2c2f920ef1285adb5ed38">C29_CPU3_FLASH_BANK</a>&#160;&#160;&#160;(0x3U)</td></tr>
+<tr class="memdesc:ga71049731bfb2c2f920ef1285adb5ed38"><td class="mdescLeft">&#160;</td><td class="mdescRight">C29 CPU3 macro to be used while requesting active to dormant flash bank copy Valid only for F29x family of devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga71049731bfb2c2f920ef1285adb5ed38">More...</a><br /></td></tr>
+<tr class="separator:ga71049731bfb2c2f920ef1285adb5ed38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacb03d811f9790f24a66ae050489c45bf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gacb03d811f9790f24a66ae050489c45bf">HSM_CPU_FLASH_BANK</a>&#160;&#160;&#160;(0x0U)</td></tr>
+<tr class="memdesc:gacb03d811f9790f24a66ae050489c45bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">HSM CPU macro to be used while requesting active to dormant flash bank copy Valid only for F29x family of devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#gacb03d811f9790f24a66ae050489c45bf">More...</a><br /></td></tr>
+<tr class="separator:gacb03d811f9790f24a66ae050489c45bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="ga2cbcf82afe6a7d15348511aba221038e"></a>
@@ -975,6 +993,22 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a id="ga9b9e4251d86003eb35eadb0f9712430a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9b9e4251d86003eb35eadb0f9712430a">&#9670;&nbsp;</a></span>HSM_MSG_FLASH_BANK_COPY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSM_MSG_FLASH_BANK_COPY&#160;&#160;&#160;(0x9059)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy active flash bank contents to dormant flash bank. </p>
+
+</div>
+</div>
 <a id="ga0842e3d812796be34207849e8dc8dc3a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga0842e3d812796be34207849e8dc8dc3a">&#9670;&nbsp;</a></span>HSM_FLAG_AOP</h2>
 
@@ -1164,6 +1198,54 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Certificate type for C29 CPU3 Sec-cfg. </p>
+
+</div>
+</div>
+<a id="ga259589a714501cf1e41c76ae13d044f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga259589a714501cf1e41c76ae13d044f2">&#9670;&nbsp;</a></span>C29_CPU1_FLASH_BANK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define C29_CPU1_FLASH_BANK&#160;&#160;&#160;(0x1U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>C29 CPU1 macro to be used while requesting active to dormant flash bank copy Valid only for F29x family of devices. </p>
+
+</div>
+</div>
+<a id="ga71049731bfb2c2f920ef1285adb5ed38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga71049731bfb2c2f920ef1285adb5ed38">&#9670;&nbsp;</a></span>C29_CPU3_FLASH_BANK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define C29_CPU3_FLASH_BANK&#160;&#160;&#160;(0x3U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>C29 CPU3 macro to be used while requesting active to dormant flash bank copy Valid only for F29x family of devices. </p>
+
+</div>
+</div>
+<a id="gacb03d811f9790f24a66ae050489c45bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacb03d811f9790f24a66ae050489c45bf">&#9670;&nbsp;</a></span>HSM_CPU_FLASH_BANK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSM_CPU_FLASH_BANK&#160;&#160;&#160;(0x0U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>HSM CPU macro to be used while requesting active to dormant flash bank copy Valid only for F29x family of devices. </p>
 
 </div>
 </div>
@@ -2806,6 +2888,55 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ol type="1">
 <li>SystemP_SUCCESS if validation done successfully</li>
+<li>SystemP_FAILURE if NACK message is received or client id not registered. </li>
+</ol>
+</dd></dl>
+
+</div>
+</div>
+<a id="ga2a4fabce99d63a311aab8352a9fe890b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2a4fabce99d63a311aab8352a9fe890b">&#9670;&nbsp;</a></span>HsmClient_activeToDormantBankCopy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t HsmClient_activeToDormantBankCopy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structHsmClient__t.html">HsmClient_t</a> *&#160;</td>
+          <td class="paramname"><em>HsmClient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structFlashBankCopy__t.html">FlashBankCopy_t</a> *&#160;</td>
+          <td class="paramname"><em>pFlashBankCopyObject</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Client request to copy active flash bank contents to dormant flash bank Valid only for F29x family of devices. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HsmClient</td><td>[IN] HsmClient object </td></tr>
+    <tr><td class="paramname">pFlashBankCopyObject</td><td>[IN] Flash Bank copy object </td></tr>
+    <tr><td class="paramname">timeout</td><td>[IN] timeout</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><ol type="1">
+<li>SystemP_SUCCESS if copy done successfully</li>
 <li>SystemP_FAILURE if NACK message is received or client id not registered. </li>
 </ol>
 </dd></dl>

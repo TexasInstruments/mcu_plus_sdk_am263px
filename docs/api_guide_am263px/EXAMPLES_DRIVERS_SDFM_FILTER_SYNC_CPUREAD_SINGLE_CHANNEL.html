@@ -92,19 +92,19 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_SDFM_FILTER_SYNC_CPUR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2783">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2784">External Connections</a><ul><li class="level2"><a href="#autotoc_md2785">AM263X-CC or AM263Px-CC or AM261x-SOM</a></li>
-<li class="level2"><a href="#autotoc_md2786">AM263X-LP</a></li>
+<ul><li class="level1"><a href="#autotoc_md2856">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2857">External Connections</a><ul><li class="level2"><a href="#autotoc_md2858">AM263X-CC or AM263Px-CC or AM261x-SOM</a></li>
+<li class="level2"><a href="#autotoc_md2859">AM263X-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_SDFM_FILTER_SYNC_CPUREAD_COMBOS_SINGLE_CHANNEL">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2787">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2788">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2789">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2860">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2861">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2862">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_sdfm_filter_sync_cpuread_single_channel"></a></p>
-<h1><a class="anchor" id="autotoc_md2783"></a>
+<h1><a class="anchor" id="autotoc_md2856"></a>
 Introduction</h1>
 <p>A SDFM example that reads filter data from CPU</p>
 <p>In this example, SDFM filter data is read by CPU in SDFM ISR routine. The SDFM configuration is shown below:</p><ul>
@@ -137,12 +137,12 @@ Introduction</h1>
 <p>Watch Variables</p><ul>
 <li>filterResult - Output of filter 2</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2784"></a>
+<h1><a class="anchor" id="autotoc_md2857"></a>
 External Connections</h1>
 <ul>
 <li>Connect Sigma-Delta streams to SDFM0_CLK1, SDFM0_D1</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2785"></a>
+<h2><a class="anchor" id="autotoc_md2858"></a>
 AM263X-CC or AM263Px-CC or AM261x-SOM</h2>
 <p>When using with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Connect Sigma-Delta streams to HSEC Pin 99, HSEC Pin 101</li>
@@ -151,7 +151,7 @@ AM263X-CC or AM263Px-CC or AM261x-SOM</h2>
 <li>Connect HSEC Pin 51 to HSEC Pin 99</li>
 <li>Connect HSEC Pin 49 to HSEC Pin 101</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2786"></a>
+<h2><a class="anchor" id="autotoc_md2859"></a>
 AM263X-LP</h2>
 <ul>
 <li>Connect Sigma-Delta streams to Boosterpack header J6/J8 Pin 74, J6/J8 Pin 73</li>
@@ -174,7 +174,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/sdfm/sdfm_filter_sync_cpuread_single_channel.c/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2787"></a>
+<h1><a class="anchor" id="autotoc_md2860"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -183,10 +183,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>View the UART console logs for results</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2788"></a>
+<h1><a class="anchor" id="autotoc_md2861"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_SDFM_PAGE.html">SDFM</a></p>
-<h1><a class="anchor" id="autotoc_md2789"></a>
+<h1><a class="anchor" id="autotoc_md2862"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">[Cortex_R5_0] SDFM filter sync CPU read Test Started ...</div>

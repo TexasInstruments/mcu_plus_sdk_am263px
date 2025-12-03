@@ -92,16 +92,16 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_SBL_UART.html',''); i
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2726">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md2799">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_SBL_UART_MCELF">SBL UART MULTICORE ELF</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_SBL_UART_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2727">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2728">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2729">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2800">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2801">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2802">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_sbl_uart"></a></p>
-<h1><a class="anchor" id="autotoc_md2726"></a>
+<h1><a class="anchor" id="autotoc_md2799"></a>
 Introduction</h1>
 <p>This bootloader does SOC initializations and attempts to boot a multicore application image received over UART via XMODEM. The image file is sent using a python script (See <a class="el" href="TOOLS_BOOT.html#UART_BOOTLOADER_PYTHON_SCRIPT">UART Bootloader Python Script</a>). Once image is received, the SBL parses it. Each core is then initialized, application image is loaded, entry points are set and the core is released from reset. For more on bootflow/bootloaders, please refer <a class="el" href="BOOTFLOW_GUIDE.html">Understanding the bootflow and bootloaders</a></p>
 <h1><a class="anchor" id="EXAMPLES_DRIVERS_SBL_UART_MCELF"></a>
@@ -123,17 +123,17 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/boot/sbl_uart_multicore_elf   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2727"></a>
+<h1><a class="anchor" id="autotoc_md2800"></a>
 Steps to Run the Example</h1>
 <p>Since this is a bootloader and is used as a SOC initialization binary, the example will be run every time you boot an application using this example. It is generally run from a boot media (OSPI Flash, SD Card or over UART) unlike other examples which are usually loaded with CCS. Nevertheless, you can build this example like you do for the others using makefile or build it via CCS by importing as a project.</p>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2728"></a>
+<h1><a class="anchor" id="autotoc_md2801"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_BOOTLOADER_PAGE.html">BOOTLOADER</a></p>
-<h1><a class="anchor" id="autotoc_md2729"></a>
+<h1><a class="anchor" id="autotoc_md2802"></a>
 Sample Output</h1>
 <p>Since this SBL receives the application image over UART using XMODEM protocol, it doesn't print anything to the console so as not to corrupt the XMODEM transport. </p>
 </div></div><!-- contents -->

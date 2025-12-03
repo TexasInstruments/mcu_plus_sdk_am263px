@@ -182,6 +182,8 @@ var group__DRV__ENET__ICSSG =
       [ "queueForwardMode", "structIcssgMacPort__Cfg.html#a7b4e2ac5d82af67b65296d22b8e00154", null ],
       [ "specialFramePrio", "structIcssgMacPort__Cfg.html#a4a90feb1e2f2678c36e43b4ebb9d13d5", null ]
     ] ],
+    [ "ICSSG_CFG_DEFAULT_AGING_PERIOD_MS", "group__DRV__ENET__ICSSG.html#ga7d301df18ccdb816c2c4f25eb66b2e52", null ],
+    [ "ICSSG_IEP_DFLT_CYCLE_TIME_NSECS", "group__DRV__ENET__ICSSG.html#ga780ffcb5ed1cfc8a238d235f3cac124e", null ],
     [ "ICSSG_PUBLIC_IOCTL", "group__DRV__ENET__ICSSG.html#ga0159b18ef747aa2b4dc49ea478ed76db", null ],
     [ "ICSSG_PORT_NUM", "group__DRV__ENET__ICSSG.html#gae20d3b1b66ffd7b75acb7481b7a797f8", null ],
     [ "ICSSG_MAC_PORT_MAX", "group__DRV__ENET__ICSSG.html#ga34d4cc1baaca317b34580eff0a8968ae", null ],

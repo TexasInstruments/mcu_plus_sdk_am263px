@@ -92,23 +92,23 @@ $(document).ready(function(){initNavTree('BOARD_LED_PAGE.html',''); initResizabl
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1145">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1146">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1147">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1148">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1149">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1150">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1189">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1190">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1191">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1192">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1193">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1194">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_board_led"></a></p>
 <p>The LED driver provides API to control I2C/GPIO based LED present in the board. The driver supports multiple LED control for the LEDs connected to the same I2C controller using a single API which can be used to set LED ON/OFF for multiple LED at the same time.</p>
-<h1><a class="anchor" id="autotoc_md1145"></a>
+<h1><a class="anchor" id="autotoc_md1189"></a>
 Features Supported</h1>
 <ul>
 <li>API to turn ON/OFF LED</li>
 <li>Set LED mask using single API to set the LED state of multiple LEDs connected to same controller at one go</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1146"></a>
+<h1><a class="anchor" id="autotoc_md1190"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -118,22 +118,22 @@ SysConfig Features</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1147"></a>
+<h1><a class="anchor" id="autotoc_md1191"></a>
 Features NOT Supported</h1>
 <ul>
 <li>Set mask API is not supported for GPIO based LED as typically only one LED is connected to a single instance of GPIO pin</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1148"></a>
+<h1><a class="anchor" id="autotoc_md1192"></a>
 Important Usage Guidelines</h1>
 <p>None</p>
-<h1><a class="anchor" id="autotoc_md1149"></a>
+<h1><a class="anchor" id="autotoc_md1193"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="led_8h.html">board/led.h</a>&gt;</span></div>
 </div><!-- fragment --><p> LED ON API </p><div class="fragment"><div class="line">    status = <a class="code" href="group__BOARD__LED__MODULE.html#ga7c1c43e232657b067beecaeb961084b3">LED_on</a>(ledHandle, 0U);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> == status);</div>
 </div><!-- fragment --><p> LED OFF API </p><div class="fragment"><div class="line">    status = <a class="code" href="group__BOARD__LED__MODULE.html#ga6366c208b93cf41c8396913530d14bdf">LED_off</a>(ledHandle, 0U);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> == status);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1150"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1194"></a>
 API</h1>
 <p><a class="el" href="group__BOARD__LED__MODULE.html">APIs for I2C/GPIO based LED driver</a> </p>
 </div></div><!-- contents -->

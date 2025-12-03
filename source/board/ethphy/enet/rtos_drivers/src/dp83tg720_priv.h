@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) Texas Instruments Incorporated 2020
+ *  Copyright (c) Texas Instruments Incorporated 2020-2025
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions
@@ -130,6 +130,8 @@ extern "C" {
 #define DP83TG720_RX_CLK_SHIFT    PHY_BIT(1)
 #define DP83TG720_TX_CLK_SHIFT    PHY_BIT(0)
 
+/*! \brief PHY STS bits */
+#define DP83TG720_PHYSTS_LINK	PHY_BIT(0)
 
 /* ========================================================================== */
 /*                         Structures and Enums                               */

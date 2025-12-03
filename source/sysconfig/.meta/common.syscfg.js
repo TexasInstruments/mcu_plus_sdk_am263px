@@ -90,7 +90,7 @@ function getSocName() {
         return "am263x";
     if(system.deviceData.device == "AM263Px")
         return "am263px";
-    if((system.deviceData.device == "AM261x_ZCZ") || (system.deviceData.device == "AM261x_ZFG") || (system.deviceData.device == "AM261x_ZFG_400"))
+    if((system.deviceData.device == "AM261x_ZCZ") || (system.deviceData.device == "AM261x_ZNC") || (system.deviceData.device == "AM261x_ZEJ") || (system.deviceData.device == "AM261x_ZFG") || (system.deviceData.device == "AM261x_ZFG_400"))
         return "am261x";
     if(system.deviceData.device == "AM273x")
         return "am273x";
@@ -151,6 +151,8 @@ function getBoardName() {
     if(system.deviceData.device == "AM261x_ZCZ")
         return "am261x-som";
     if(system.deviceData.device == "AM261x_ZFG")
+        return "am261x-lp";
+    if(system.deviceData.device == "AM261x_ZFG_400")
         return "am261x-lp";
     if(system.deviceData.device == "AM273x")
         return "am273x-evm";
@@ -338,6 +340,81 @@ function isWakeupDomainSupported()
             return false;
     }
 }
+function isMSSDomainSupported()
+{
+    switch(getSocName()) {
+        case "am273x":
+            return true;
+        default:
+            return false;
+    }
+}
+
+function getUseMSSDomainPeripheralsConfig()
+{
+  let config = {
+        name: "useMSSDomainPeripherals",
+        displayName: "Use MSS Domain Peripherals",
+        default: false,
+        readOnly: false,
+        onChange: function(inst, ui) {
+            if(inst.useMSSDomainPeripherals == true &&
+                inst.useDSSDomainPeripherals != undefined)
+            {
+                inst.useDSSDomainPeripherals = false;
+            }
+        }
+    }
+
+    if(getSocName().match(/am273x/))
+    {
+        if(getSelfSysCfgCoreName().includes("r5f"))
+        {
+            /*For MSS Domain r5*/
+            config.default = true;
+        }
+
+    }
+
+    return config;
+}
+
+function isDSSDomainSupported()
+{
+    switch(getSocName()) {
+    case "am273x":
+        return true;
+    default:
+        return false;
+    }
+}
+
+function getUseDSSDomainPeripheralsConfig()
+{
+    let config = {
+        name: "useDSSDomainPeripherals",
+        displayName: "Use DSS Domain Peripherals",
+        default: false,
+        readOnly: false,
+        onChange: function(inst, ui) {
+            if(inst.useDSSDomainPeripherals == true &&
+                inst.useMSSDomainPeripherals != undefined)
+            {
+                inst.useMSSDomainPeripherals = false;
+            }
+        }
+    }
+
+    if(getSocName().match(/am273x/))
+    {
+        if(getSelfSysCfgCoreName().includes("c66"))
+        {
+            config.default = true;
+        }
+    }
+
+    return config;
+}
 
 function findDuplicates(arrayToCheck)
 {
@@ -486,6 +563,10 @@ exports = {
     getOtherContextNames,
     onMigrate,
     getBoardName,
+    isDSSDomainSupported,
+    getUseDSSDomainPeripheralsConfig,
+    isMSSDomainSupported,
+    getUseMSSDomainPeripheralsConfig,
 
     validate: {
         checkSameInstanceName : function (instance, report) {

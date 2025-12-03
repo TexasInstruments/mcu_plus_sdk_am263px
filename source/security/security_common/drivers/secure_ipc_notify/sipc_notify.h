@@ -101,7 +101,7 @@ typedef struct SIPC_Params_ {
                                                     * read the message */
     /* The size of SecureMaster_CoreId array is 2 so the coreId value written on INDEX = 0 will represent the
      * Secure Master 1's CORE ID and so on */
-    uint32_t secHostCoreId[MAX_SEC_CORES_WITH_HSM - 1];
+    uint32_t secHostCoreId[MAX_SEC_CORES_WITH_HSM - 1U];
     /* This field is for soc extension if user wants to configure different interrupt for SIPC communication*/
     /* for am263x it is fixed to zero */
     uint8_t  intrPriority; /**< Interrupt priority */

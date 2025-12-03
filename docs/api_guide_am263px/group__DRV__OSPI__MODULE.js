@@ -5,6 +5,8 @@ var group__DRV__OSPI__MODULE =
     [ "OSPI_Attrs", "structOSPI__Attrs.html", [
       [ "baseAddr", "structOSPI__Attrs.html#a712bae2c500bef1f5d04c6a15b4457ee", null ],
       [ "dataBaseAddr", "structOSPI__Attrs.html#a2758e32ddbddeb1e3127f545aecfbcbc", null ],
+      [ "moduleId", "structOSPI__Attrs.html#a24bdc7cf61b005ceeb002b689bcb26d5", null ],
+      [ "clkId", "structOSPI__Attrs.html#a3a3160e9cf4411544760f39970bb42eb", null ],
       [ "inputClkFreq", "structOSPI__Attrs.html#a899a378953a89c69645e3598f40da22c", null ],
       [ "protocol", "structOSPI__Attrs.html#a3b510ab68c9354ac6c26290bb2adb9ab", null ],
       [ "intrNum", "structOSPI__Attrs.html#a8c02ae12116e6db9e5baceec960c7530", null ],
@@ -18,6 +20,7 @@ var group__DRV__OSPI__MODULE =
       [ "chipSelect", "structOSPI__Attrs.html#a7f9216b376b14b8d954126b6011b5e67", null ],
       [ "decChipSelect", "structOSPI__Attrs.html#a6663207c76e3abe9f8013d9cd26859f2", null ],
       [ "baudRateDiv", "structOSPI__Attrs.html#ae957c3b4d924a730b7006f920b904060", null ],
+      [ "validateOtp", "structOSPI__Attrs.html#af85d19d34e88ea54cda7fecd8e00717c", null ],
       [ "dmaRestrictedRegions", "structOSPI__Attrs.html#a2335c7d39e1e96078e2e6392b07b4b1d", null ],
       [ "phyConfiguration", "structOSPI__Attrs.html#a65a17ba9b21d45bb1c1fe71da8050094", null ]
     ] ],
@@ -38,7 +41,7 @@ var group__DRV__OSPI__MODULE =
       [ "attrs", "structOSPI__Config.html#afae849ff69bd1a26ef1f9d574316497c", null ],
       [ "object", "structOSPI__Config.html#a23a4360ecf2230ba18ff20956ce14274", null ]
     ] ],
-    [ "OSPI_Handle", "group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188", null ],
+    [ "OSPI_Handle", "group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61", null ],
     [ "OSPI_init", "group__DRV__OSPI__MODULE.html#ga53c8b806a48ecdb9d3b8d17c36271819", null ],
     [ "OSPI_deinit", "group__DRV__OSPI__MODULE.html#ga4bf4c5e9986edf6545527bc9690c5f66", null ],
     [ "OSPI_Params_init", "group__DRV__OSPI__MODULE.html#ga2a6c4001017c758a627f1cd78115e120", null ],
@@ -87,7 +90,7 @@ var group__DRV__OSPI__MODULE =
     [ "OSPI_getFlashDataBaseAddr", "group__DRV__OSPI__MODULE.html#gac85aad283f153e3c2a4a717660ef92d8", null ],
     [ "OSPI_phyTuneDDR", "group__DRV__OSPI__MODULE.html#gafd38c99387c090ae11f944bfdae39354", null ],
     [ "OSPI_phyTuneSDR", "group__DRV__OSPI__MODULE.html#gaf17f99e5fa0d563a7be5871601e4cf25", null ],
-    [ "OSPI_phyTuneGrapher", "group__DRV__OSPI__MODULE.html#gadfe1b8c64f92cae7211210a47d831c6f", null ],
+    [ "OSPI_phyTuneGrapher", "group__DRV__OSPI__MODULE.html#gaa6badda57c28836a5d19871e6c286a52", null ],
     [ "OSPI_phyGetTuningData", "group__DRV__OSPI__MODULE.html#gac30f489140d0ff25405969f349a754f4", null ],
     [ "OSPI_phyReadAttackVector", "group__DRV__OSPI__MODULE.html#ga3af2d81bc9e28cb9b7ca4835ff7c1716", null ],
     [ "OSPI_enablePhy", "group__DRV__OSPI__MODULE.html#gac1e3e646e56fade0dae155b15145ed09", null ],

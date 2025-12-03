@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('SDL_ECC_BUS_SAFETY_PAGE.html',''); ini
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1515">Features Supported</a><ul><li class="level2"><a href="#autotoc_md1516">SysConfig Features</a></li>
-<li class="level2"><a href="#autotoc_md1517">Features NOT Supported</a></li>
-<li class="level2"><a href="#autotoc_md1518">Important Usage Guidelines</a></li>
-<li class="level2"><a href="#autotoc_md1519">Example Usage</a></li>
-<li class="level2"><a href="#autotoc_md1520">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1586">Features Supported</a><ul><li class="level2"><a href="#autotoc_md1587">SysConfig Features</a></li>
+<li class="level2"><a href="#autotoc_md1588">Features NOT Supported</a></li>
+<li class="level2"><a href="#autotoc_md1589">Important Usage Guidelines</a></li>
+<li class="level2"><a href="#autotoc_md1590">Example Usage</a></li>
+<li class="level2"><a href="#autotoc_md1591">API</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_ecc_bus_safety"></a></p>
-<h1><a class="anchor" id="autotoc_md1515"></a>
+<h1><a class="anchor" id="autotoc_md1586"></a>
 Features Supported</h1>
 <p>ECC BUS SAFETY module consists ECC Bus Safety Diagnostics.</p>
 <ul>
@@ -115,22 +115,22 @@ Features Supported</h1>
 <li>API to support and induce error on particular node bus.</li>
 <li>API to support interrupt configuration</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1516"></a>
+<h2><a class="anchor" id="autotoc_md1587"></a>
 SysConfig Features</h2>
 <ul>
 <li>None</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1517"></a>
+<h2><a class="anchor" id="autotoc_md1588"></a>
 Features NOT Supported</h2>
 <ul>
 <li>None</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1518"></a>
+<h2><a class="anchor" id="autotoc_md1589"></a>
 Important Usage Guidelines</h2>
 <ul>
 <li>None</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1519"></a>
+<h2><a class="anchor" id="autotoc_md1590"></a>
 Example Usage</h2>
 <p>The following shows an example of SDL ECC BUS SAFETY API usage by the application for Error Injection Tests.</p>
 <p>Include the below file to access the APIs</p>
@@ -422,14 +422,14 @@ Example Usage</h2>
 <div class="line">        ret_val = SDL_EFAIL;</div>
 <div class="line">    }</div>
 <div class="line">}</div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md1520"></a>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md1591"></a>
 API</h2>
 <p><a class="el" href="group__SDL__ECC__BUS__SAFETY__MODULE.html">APIs for SDL ECC BUS SAFETY</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <div class="ttc" id="agroup__SDL__ECC__BUS__SAFETY__FUNCTIONS_html_ga389dfbb6b41b95f2732f6798f52877b1"><div class="ttname"><a href="group__SDL__ECC__BUS__SAFETY__FUNCTIONS.html#ga389dfbb6b41b95f2732f6798f52877b1">SDL_ECC_BUS_SAFETY_MSS_secExecute</a></div><div class="ttdeci">int32_t SDL_ECC_BUS_SAFETY_MSS_secExecute(uint32_t busSftyNode, uint32_t addr, uint32_t wr_data)</div><div class="ttdoc">This API is used for SEC test on MSS.</div></div>
-<div class="ttc" id="agroup__SDL__MSS__CR5__API_html_ga6a0365862e339f8348361dea3019ddf9"><div class="ttname"><a href="group__SDL__MSS__CR5__API.html#ga6a0365862e339f8348361dea3019ddf9">SDL_ECC_BUS_SAFETY_MSS_CPSW</a></div><div class="ttdeci">#define SDL_ECC_BUS_SAFETY_MSS_CPSW</div><div class="ttdef"><b>Definition:</b> sdl_ecc_bus_safety_soc.h:193</div></div>
+<div class="ttc" id="agroup__SDL__MSS__CR5__API_html_ga6a0365862e339f8348361dea3019ddf9"><div class="ttname"><a href="group__SDL__MSS__CR5__API.html#ga6a0365862e339f8348361dea3019ddf9">SDL_ECC_BUS_SAFETY_MSS_CPSW</a></div><div class="ttdeci">#define SDL_ECC_BUS_SAFETY_MSS_CPSW</div><div class="ttdef"><b>Definition:</b> sdl_ecc_bus_safety_soc.h:212</div></div>
 <div class="ttc" id="agroup__SDL__ECC__BUS__SAFETY__FUNCTIONS_html_ga0b818dcbd6698f12a400f47a6123fe1a"><div class="ttname"><a href="group__SDL__ECC__BUS__SAFETY__FUNCTIONS.html#ga0b818dcbd6698f12a400f47a6123fe1a">SDL_ECC_BUS_SAFETY_DSS_dedExecute</a></div><div class="ttdeci">int32_t SDL_ECC_BUS_SAFETY_DSS_dedExecute(uint32_t busSftyNode, uint32_t addr, uint32_t wr_data)</div><div class="ttdoc">This API is used for DED test on DSS.</div></div>
 <div class="ttc" id="agroup__SDL__ECC__BUS__SAFETY__FUNCTIONS_html_gaacacdafe88760b64bccc3e2482b9d8b4"><div class="ttname"><a href="group__SDL__ECC__BUS__SAFETY__FUNCTIONS.html#gaacacdafe88760b64bccc3e2482b9d8b4">SDL_ECC_BUS_SAFETY_DSS_secErrorClear</a></div><div class="ttdeci">int32_t SDL_ECC_BUS_SAFETY_DSS_secErrorClear(uint32_t busSftyNode)</div><div class="ttdoc">This API is used to clear SEC error on DSS.</div></div>
 <div class="ttc" id="agroup__SDL__ECC__BUS__SAFETY__FUNCTIONS_html_ga3b10a7662032ac5436496b47dbc991ea"><div class="ttname"><a href="group__SDL__ECC__BUS__SAFETY__FUNCTIONS.html#ga3b10a7662032ac5436496b47dbc991ea">SDL_ECC_BUS_SAFETY_MSS_dedExecute</a></div><div class="ttdeci">int32_t SDL_ECC_BUS_SAFETY_MSS_dedExecute(uint32_t busSftyNode, uint32_t addr, uint32_t wr_data)</div><div class="ttdoc">This API is used for DED test on MSS.</div></div>
@@ -440,7 +440,7 @@ API</h2>
 <div class="ttc" id="agroup__SDL__ECC__BUS__SAFETY__FUNCTIONS_html_gafa05dc19d83b3ff58dc3f582e62e1673"><div class="ttname"><a href="group__SDL__ECC__BUS__SAFETY__FUNCTIONS.html#gafa05dc19d83b3ff58dc3f582e62e1673">SDL_ECC_BUS_SAFETY_DSS_secExecute</a></div><div class="ttdeci">int32_t SDL_ECC_BUS_SAFETY_DSS_secExecute(uint32_t busSftyNode, uint32_t addr, uint32_t wr_data)</div><div class="ttdoc">This API is used for SEC test on DSS.</div></div>
 <div class="ttc" id="agroup__SDL__ECC__BUS__SAFETY__FUNCTIONS_html_ga01f36b8eefe078b092acc032042f53db"><div class="ttname"><a href="group__SDL__ECC__BUS__SAFETY__FUNCTIONS.html#ga01f36b8eefe078b092acc032042f53db">SDL_ECC_BUS_SAFETY_DSS_getRedErrorStatus</a></div><div class="ttdeci">int32_t SDL_ECC_BUS_SAFETY_DSS_getRedErrorStatus(uint32_t busSftyNode, uint32_t *status)</div><div class="ttdoc">This API is used to get RED error Status on DSS.</div></div>
 <div class="ttc" id="agroup__SDL__ECC__BUS__SAFETY__FUNCTIONS_html_gaf1ab9c24606f955d591b27f81cc3ce3d"><div class="ttname"><a href="group__SDL__ECC__BUS__SAFETY__FUNCTIONS.html#gaf1ab9c24606f955d591b27f81cc3ce3d">SDL_ECC_BUS_SAFETY_DSS_dedErrorClear</a></div><div class="ttdeci">int32_t SDL_ECC_BUS_SAFETY_DSS_dedErrorClear(uint32_t busSftyNode)</div><div class="ttdoc">This API is used to clear DED error on DSS.</div></div>
-<div class="ttc" id="agroup__SDL__MSS__CR5__API_html_ga024724fb140e2b0aa37b355495574576"><div class="ttname"><a href="group__SDL__MSS__CR5__API.html#ga024724fb140e2b0aa37b355495574576">SDL_ECC_BUS_SAFETY_MSS_TPTC_A0_RD</a></div><div class="ttdeci">#define SDL_ECC_BUS_SAFETY_MSS_TPTC_A0_RD</div><div class="ttdef"><b>Definition:</b> sdl_ecc_bus_safety_soc.h:169</div></div>
+<div class="ttc" id="agroup__SDL__MSS__CR5__API_html_ga024724fb140e2b0aa37b355495574576"><div class="ttname"><a href="group__SDL__MSS__CR5__API.html#ga024724fb140e2b0aa37b355495574576">SDL_ECC_BUS_SAFETY_MSS_TPTC_A0_RD</a></div><div class="ttdeci">#define SDL_ECC_BUS_SAFETY_MSS_TPTC_A0_RD</div><div class="ttdef"><b>Definition:</b> sdl_ecc_bus_safety_soc.h:217</div></div>
 <div class="ttc" id="agroup__SDL__ECC__BUS__SAFETY__FUNCTIONS_html_ga11b20ddda3ef3627a9899d8f405c4f05"><div class="ttname"><a href="group__SDL__ECC__BUS__SAFETY__FUNCTIONS.html#ga11b20ddda3ef3627a9899d8f405c4f05">SDL_ECC_BUS_SAFETY_DSS_redExecute</a></div><div class="ttdeci">int32_t SDL_ECC_BUS_SAFETY_DSS_redExecute(uint32_t busSftyNode, SDL_ECC_BUS_SAFETY_busSftyFiType fiType, SDL_ECC_BUS_SAFETY_busSftyFiRedType redType)</div><div class="ttdoc">This API is used for RED test on DSS.</div></div>
 <div class="ttc" id="agroup__SDL__ECC__BUS__SAFETY__FUNCTIONS_html_gadc3a92666f9298af16aea75ec0e2065e"><div class="ttname"><a href="group__SDL__ECC__BUS__SAFETY__FUNCTIONS.html#gadc3a92666f9298af16aea75ec0e2065e">SDL_ECC_BUS_SAFETY_DSS_redErrorClear</a></div><div class="ttdeci">int32_t SDL_ECC_BUS_SAFETY_DSS_redErrorClear(uint32_t busSftyNode)</div><div class="ttdoc">This API is used to clear RED error on DSS.</div></div>
 <!-- HTML footer for doxygen 1.8.11-->

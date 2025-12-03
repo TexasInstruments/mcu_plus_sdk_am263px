@@ -92,20 +92,20 @@ $(document).ready(function(){initNavTree('MCELF_LANDING.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md580">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md581">RPRC vs MCELF</a></li>
-<li class="level1"><a href="#autotoc_md582">Generation of MCELF images</a></li>
-<li class="level1"><a href="#autotoc_md583">Booting MCELF images</a></li>
-<li class="level1"><a href="#autotoc_md584">Limitations</a></li>
+<ul><li class="level1"><a href="#autotoc_md624">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md625">RPRC vs MCELF</a></li>
+<li class="level1"><a href="#autotoc_md626">Generation of MCELF images</a></li>
+<li class="level1"><a href="#autotoc_md627">Booting MCELF images</a></li>
+<li class="level1"><a href="#autotoc_md628">Limitations</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_mcelf_landing_page"></a></p>
 <dl class="section note"><dt>Note</dt><dd>RPRC format has been deprecated from SDK 11.00 release onwards. MCELF is the default application format.</dd></dl>
-<h1><a class="anchor" id="autotoc_md580"></a>
+<h1><a class="anchor" id="autotoc_md624"></a>
 Introduction</h1>
 <p>Multicore ELF, or MCELF is a new application image format different from the older RPRC format. Unlike a proprietary format like RPRC, multicore elf is based on the widely recognized ELF (Executable and Linkable format) standard. This ensures seamless compatibility with industry-standard tools and platforms.</p>
 <p>For more information on ELF format please refer <a href="https://man7.org/linux/man-pages/man5/elf.5.html">https://man7.org/linux/man-pages/man5/elf.5.html</a></p>
-<h1><a class="anchor" id="autotoc_md581"></a>
+<h1><a class="anchor" id="autotoc_md625"></a>
 RPRC vs MCELF</h1>
 <table class="doxtable">
 <tr>
@@ -123,7 +123,7 @@ RPRC vs MCELF</h1>
 <tr>
 <td bgcolor="#F0F0F0">Secure boot time </td><td>Slow </td><td>Very fast  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md582"></a>
+<h1><a class="anchor" id="autotoc_md626"></a>
 Generation of MCELF images</h1>
 <p> <style>div.image img[src="mcelf_intro.png"]{width:70%}</style> </p><div class="image">
 <img src="mcelf_intro.png" alt=""/>
@@ -159,7 +159,7 @@ MCELF Image Generation</div></div>
 <li>Once segment list is fixed, the Program header table is re-written based on the current segments and then the ELF header is regenerated based on updated PHT.</li>
 <li>For more information on the tool refer <a class="el" href="TOOLS_BOOT.html#MCELF_GEN_TOOL">MCELF Image Gen</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md583"></a>
+<h1><a class="anchor" id="autotoc_md627"></a>
 Booting MCELF images</h1>
 <ul>
 <li>The SBL parses the image, loads the segments into memory and releases the core from reset. Refer <a class="el" href="BOOTFLOW_GUIDE.html#BOOTFLOW_MCELF_BOOT">Booting MCELF application</a>.</li>
@@ -173,7 +173,7 @@ Booting MCELF images</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md584"></a>
+<h1><a class="anchor" id="autotoc_md628"></a>
 Limitations</h1>
 <ul>
 <li>XLAT and SSO features are still under development. </li>

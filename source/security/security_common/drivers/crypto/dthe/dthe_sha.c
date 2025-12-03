@@ -320,18 +320,18 @@ DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaPa
         {
             dmaHandle = DMA_open(0);
 
-            DMA_Config_TxChannel(dmaHandle, ptrShaParams->ptrDataBuffer, (uint32_t *)&ptrShaRegs->DATA_IN[0], numBlocks, blockSize, DMA_SHA_ENABLE);
+            (void)DMA_Config_TxChannel(dmaHandle, ptrShaParams->ptrDataBuffer, (uint32_t *)&ptrShaRegs->DATA_IN[0], numBlocks, blockSize, DMA_SHA_ENABLE);
 
             /* Compute the number of full blocks which need to be processed: */
-            DMA_enableTxTransferRegion(dmaHandle);
+            (void)DMA_enableTxTransferRegion(dmaHandle);
 
             DTHE_SHA_setDMA(ptrShaRegs, 1);
 
-            DMA_WaitForTxTransfer(dmaHandle);
+            (void)DMA_WaitForTxTransfer(dmaHandle);
             
             DTHE_SHA_setDMA(ptrShaRegs, 0);
 
-            DMA_disableTxCh(dmaHandle);
+            (void)DMA_disableTxCh(dmaHandle);
 
             /* Compute the number of bytes which have been processed: */
             numBytes = numBytes + (numBlocks * blockSize * sizeof(uint32_t));
@@ -522,18 +522,18 @@ DTHE_SHA_Return_t DTHE_HMACSHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrS
             {
                 dmaHandle = DMA_open(0);
 
-                DMA_Config_TxChannel(dmaHandle, ptrShaParams->ptrDataBuffer, (uint32_t *)&ptrShaRegs->DATA_IN[0], numBlocks, blockSize, DMA_SHA_ENABLE);
+                (void)DMA_Config_TxChannel(dmaHandle, ptrShaParams->ptrDataBuffer, (uint32_t *)&ptrShaRegs->DATA_IN[0], numBlocks, blockSize, DMA_SHA_ENABLE);
 
                 /* Compute the number of full blocks which need to be processed: */
-                DMA_enableTxTransferRegion(dmaHandle);
+                (void)DMA_enableTxTransferRegion(dmaHandle);
 
                 DTHE_SHA_setDMA(ptrShaRegs, 1);
 
-                DMA_WaitForTxTransfer(dmaHandle);
+                (void)DMA_WaitForTxTransfer(dmaHandle);
 
                 DTHE_SHA_setDMA(ptrShaRegs, 0);
 
-                DMA_disableTxCh(dmaHandle);
+                (void)DMA_disableTxCh(dmaHandle);
 
                 /* Compute the number of bytes which have been processed: */
                 numBytes = numBytes + (numBlocks * blockSize * sizeof(uint32_t));
@@ -622,7 +622,7 @@ DTHE_SHA_Return_t DTHE_HMACSHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrS
  */
 static void DTHE_SHA_setInterruptStatus(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t intStatus)
 {
-    CSL_FINSR(ptrSHARegs->SYSCONFIG, 2U, 2U, intStatus);
+    CSL_FINSR(ptrSHARegs->SYSCONFIG, 2U, 2U, (((uint32_t)0) | intStatus));
     return;
 }
 
@@ -638,7 +638,7 @@ static void DTHE_SHA_setInterruptStatus(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t 
 static void DTHE_SHA_setDMA(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t dmaStatus)
 {
     /* SDMA_en */
-    CSL_FINSR (ptrSHARegs->SYSCONFIG, 3U, 3U, dmaStatus);
+    CSL_FINSR (ptrSHARegs->SYSCONFIG, 3U, 3U, (((uint32_t)0) | dmaStatus));
 }
 
 /**
@@ -683,7 +683,7 @@ static uint8_t DTHE_SHA_isContextReadyIRQ(const CSL_EIP57T_SHARegs* ptrSHARegs)
  */
 static void DTHE_SHA_setUseAlgoConstants(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t useAlgConstants)
 {
-    CSL_FINSR (ptrSHARegs->HASH_MODE, 3U, 3U, useAlgConstants);
+    CSL_FINSR (ptrSHARegs->HASH_MODE, 3U, 3U, (((uint32_t)0) | useAlgConstants));
     return;
 }
 
@@ -696,7 +696,7 @@ static void DTHE_SHA_setUseAlgoConstants(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t
  */
 static void DTHE_SHA_setCloseHash(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t closeHashFlag)
 {
-    CSL_FINSR (ptrSHARegs->HASH_MODE, 4U, 4U, closeHashFlag);
+    CSL_FINSR (ptrSHARegs->HASH_MODE, 4U, 4U, (((uint32_t)0) | closeHashFlag));
     return;
 }
 
@@ -709,7 +709,7 @@ static void DTHE_SHA_setCloseHash(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t closeH
  */
 static void DTHE_SHA_setHMACKeyProcessing(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t hmacKeyFlag)
 {
-    CSL_FINSR (ptrSHARegs->HASH_MODE, 5U, 5U, hmacKeyFlag);
+    CSL_FINSR (ptrSHARegs->HASH_MODE, 5U, 5U, (((uint32_t)0) | hmacKeyFlag));
     return;
 }
 
@@ -723,7 +723,7 @@ static void DTHE_SHA_setHMACKeyProcessing(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_
  */
 static void DTHE_SHA_setHMACOuterHash(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t hmacOuterHash)
 {
-    CSL_FINSR (ptrSHARegs->HASH_MODE, 7U, 7U, hmacOuterHash);
+    CSL_FINSR (ptrSHARegs->HASH_MODE, 7U, 7U, (((uint32_t)0) | hmacOuterHash));
     return;
 }
 
@@ -737,7 +737,7 @@ static void DTHE_SHA_setHMACOuterHash(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t hm
  */
 static void DTHE_SHA512_setUseAlgoConstants(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t useAlgConstants)
 {
-    CSL_FINSR (ptrSHARegs->HASH512_MODE, 3U, 3U, useAlgConstants);
+    CSL_FINSR (ptrSHARegs->HASH512_MODE, 3U, 3U, (((uint32_t)0) | useAlgConstants));
     return;
 }
 
@@ -750,7 +750,7 @@ static void DTHE_SHA512_setUseAlgoConstants(CSL_EIP57T_SHARegs* ptrSHARegs, uint
  */
 static void DTHE_SHA512_setCloseHash(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t closeHashFlag)
 {
-    CSL_FINSR (ptrSHARegs->HASH512_MODE, 4U, 4U, closeHashFlag);
+    CSL_FINSR (ptrSHARegs->HASH512_MODE, 4U, 4U, (((uint32_t)0) | closeHashFlag));
     return;
 }
 
@@ -763,7 +763,7 @@ static void DTHE_SHA512_setCloseHash(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t clo
  */
 static void DTHE_SHA512_setHMACKeyProcessing(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t hmacKeyFlag)
 {
-    CSL_FINSR (ptrSHARegs->HASH512_MODE, 5U, 5U, hmacKeyFlag);
+    CSL_FINSR (ptrSHARegs->HASH512_MODE, 5U, 5U, (((uint32_t)0) | hmacKeyFlag));
     return;
 }
 
@@ -777,7 +777,7 @@ static void DTHE_SHA512_setHMACKeyProcessing(CSL_EIP57T_SHARegs* ptrSHARegs, uin
  */
 static void DTHE_SHA512_setHMACOuterHash(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t hmacOuterHash)
 {
-    CSL_FINSR (ptrSHARegs->HASH_MODE, 7U, 7U, hmacOuterHash);
+    CSL_FINSR (ptrSHARegs->HASH_MODE, 7U, 7U, (((uint32_t)0) | hmacOuterHash));
     return;
 }
 

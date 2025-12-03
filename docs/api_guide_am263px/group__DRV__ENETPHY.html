@@ -121,6 +121,8 @@ Sub Modules</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group__PHY__COMMON__H"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__PHY__COMMON__H.html">TI PHY COMMON</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group__ENETPHY__generic__phy"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENETPHY__generic__phy.html">TI generic_phy PHY</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
@@ -175,6 +177,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga67859143637d0b09b8d3249774c1c002"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__ENETPHY.html#ga67859143637d0b09b8d3249774c1c002">EnetPhy_getLinkCfg</a> (<a class="el" href="group__DRV__ENETPHY.html#ga321b990b312722b35a86cf9d09be4e48">EnetPhy_Handle</a> hPhy, <a class="el" href="structEnetPhy__LinkCfg.html">EnetPhy_LinkCfg</a> *linkCfg)</td></tr>
 <tr class="memdesc:ga67859143637d0b09b8d3249774c1c002"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get link configuration.  <a href="group__DRV__ENETPHY.html#ga67859143637d0b09b8d3249774c1c002">More...</a><br /></td></tr>
 <tr class="separator:ga67859143637d0b09b8d3249774c1c002"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6c43a066e16bc7f2aa317376c4ec87fd"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__ENETPHY.html#ga6c43a066e16bc7f2aa317376c4ec87fd">EnetPhy_getLinkStatus</a> (<a class="el" href="group__DRV__ENETPHY.html#ga321b990b312722b35a86cf9d09be4e48">EnetPhy_Handle</a> hPhy, <a class="el" href="group__DRV__ENETPHY.html#gaedbe537f2ee305e9f6abb6b274eb905d">EnetPhy_Speed</a> *speed, <a class="el" href="group__DRV__ENETPHY.html#gac4fd32f7471b8a9061e05a99ab4ad85e">EnetPhy_Duplexity</a> *duplex)</td></tr>
+<tr class="memdesc:ga6c43a066e16bc7f2aa317376c4ec87fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get link speed, duplex from phy registers.  <a href="group__DRV__ENETPHY.html#ga6c43a066e16bc7f2aa317376c4ec87fd">More...</a><br /></td></tr>
+<tr class="separator:ga6c43a066e16bc7f2aa317376c4ec87fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga91edf30111d6ae795012514542e285d8"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__ENETPHY.html#ga91edf30111d6ae795012514542e285d8">EnetPhy_readReg</a> (void *pArgs, uint32_t reg, uint16_t *val)</td></tr>
 <tr class="memdesc:ga91edf30111d6ae795012514542e285d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read PHY register.  <a href="group__DRV__ENETPHY.html#ga91edf30111d6ae795012514542e285d8">More...</a><br /></td></tr>
 <tr class="separator:ga91edf30111d6ae795012514542e285d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -247,6 +252,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga6a5b68a158188d891346fb6b74096b31"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__ENETPHY.html#ga6a5b68a158188d891346fb6b74096b31">EnetPhy_getEventTs</a> (<a class="el" href="group__DRV__ENETPHY.html#ga321b990b312722b35a86cf9d09be4e48">EnetPhy_Handle</a> hPhy, uint32_t *eventIdx, uint32_t *seqId, uint64_t *ts64)</td></tr>
 <tr class="memdesc:ga6a5b68a158188d891346fb6b74096b31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get event timestamp.  <a href="group__DRV__ENETPHY.html#ga6a5b68a158188d891346fb6b74096b31">More...</a><br /></td></tr>
 <tr class="separator:ga6a5b68a158188d891346fb6b74096b31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab3ff4a61a3baece654a738afa369cd4a"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__ENETPHY.html#gab3ff4a61a3baece654a738afa369cd4a">EnetPhy_configMediaClock</a> (<a class="el" href="group__DRV__ENETPHY.html#ga321b990b312722b35a86cf9d09be4e48">EnetPhy_Handle</a> hPhy, bool isMaster, uint8_t *streamIDMatchValue, bool enTrigOut)</td></tr>
+<tr class="memdesc:gab3ff4a61a3baece654a738afa369cd4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">config Media Clock  <a href="group__DRV__ENETPHY.html#gab3ff4a61a3baece654a738afa369cd4a">More...</a><br /></td></tr>
+<tr class="separator:gab3ff4a61a3baece654a738afa369cd4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9535e9ca77ebdba36a29c48ee1481bf5"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__ENETPHY.html#ga9535e9ca77ebdba36a29c48ee1481bf5">EnetPhy_nudgeCodecClock</a> (<a class="el" href="group__DRV__ENETPHY.html#ga321b990b312722b35a86cf9d09be4e48">EnetPhy_Handle</a> hPhy, int8_t nudgeValue)</td></tr>
+<tr class="memdesc:ga9535e9ca77ebdba36a29c48ee1481bf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nudge Codec Clock.  <a href="group__DRV__ENETPHY.html#ga9535e9ca77ebdba36a29c48ee1481bf5">More...</a><br /></td></tr>
+<tr class="separator:ga9535e9ca77ebdba36a29c48ee1481bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -1449,6 +1460,52 @@ Ethernet PHY link capability masks</h2></td></tr>
 
 </div>
 </div>
+<a id="ga6c43a066e16bc7f2aa317376c4ec87fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6c43a066e16bc7f2aa317376c4ec87fd">&#9670;&nbsp;</a></span>EnetPhy_getLinkStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t EnetPhy_getLinkStatus </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__DRV__ENETPHY.html#ga321b990b312722b35a86cf9d09be4e48">EnetPhy_Handle</a>&#160;</td>
+          <td class="paramname"><em>hPhy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__DRV__ENETPHY.html#gaedbe537f2ee305e9f6abb6b274eb905d">EnetPhy_Speed</a> *&#160;</td>
+          <td class="paramname"><em>speed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__DRV__ENETPHY.html#gac4fd32f7471b8a9061e05a99ab4ad85e">EnetPhy_Duplexity</a> *&#160;</td>
+          <td class="paramname"><em>duplex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get link speed, duplex from phy registers. </p>
+<p>Gets the link speed and duplexity from phy registers. This API will not have longterm support and it will eventually be merged to <a class="el" href="group__DRV__ENETPHY.html#ga67859143637d0b09b8d3249774c1c002" title="Get link configuration.">EnetPhy_getLinkCfg()</a> in upcoming release. So <a class="el" href="group__DRV__ENETPHY.html#ga67859143637d0b09b8d3249774c1c002" title="Get link configuration.">EnetPhy_getLinkCfg()</a> API can be continued to use to get the phy link speed, duplexity</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hPhy</td><td>PHY device handle </td></tr>
+    <tr><td class="paramname">speed</td><td>Link speed read from phy register </td></tr>
+    <tr><td class="paramname">duplex</td><td>Link duplexity read from phy register</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__DRV__ENETPHY.html#EnetPhy_ErrorCodes">EnetPhy_ErrorCodes</a> </dd></dl>
+
+</div>
+</div>
 <a id="ga91edf30111d6ae795012514542e285d8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga91edf30111d6ae795012514542e285d8">&#9670;&nbsp;</a></span>EnetPhy_readReg()</h2>
 
@@ -2593,6 +2650,98 @@ Ethernet PHY link capability masks</h2></td></tr>
     <tr><td class="paramname">eventIdx</td><td>Output event index </td></tr>
     <tr><td class="paramname">seqId</td><td>Output event sequence identifier </td></tr>
     <tr><td class="paramname">ts64</td><td>Output event timestamp</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__DRV__ENETPHY.html#EnetPhy_ErrorCodes">EnetPhy_ErrorCodes</a> </dd></dl>
+
+</div>
+</div>
+<a id="gab3ff4a61a3baece654a738afa369cd4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab3ff4a61a3baece654a738afa369cd4a">&#9670;&nbsp;</a></span>EnetPhy_configMediaClock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t EnetPhy_configMediaClock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__DRV__ENETPHY.html#ga321b990b312722b35a86cf9d09be4e48">EnetPhy_Handle</a>&#160;</td>
+          <td class="paramname"><em>hPhy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isMaster</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>streamIDMatchValue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enTrigOut</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>config Media Clock </p>
+<p>config Media Clock</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hPhy</td><td>PHY device handle </td></tr>
+    <tr><td class="paramname">isMaster</td><td>Media Clock Master/Slave Mode </td></tr>
+    <tr><td class="paramname">streamIDMatchValue</td><td>Stream ID Match Value for CRF Parsing </td></tr>
+    <tr><td class="paramname">enTrigOut</td><td>If true, starts 100Hz phase aligned signal to the media clock at LED0</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__DRV__ENETPHY.html#EnetPhy_ErrorCodes">EnetPhy_ErrorCodes</a> </dd></dl>
+
+</div>
+</div>
+<a id="ga9535e9ca77ebdba36a29c48ee1481bf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9535e9ca77ebdba36a29c48ee1481bf5">&#9670;&nbsp;</a></span>EnetPhy_nudgeCodecClock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t EnetPhy_nudgeCodecClock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__DRV__ENETPHY.html#ga321b990b312722b35a86cf9d09be4e48">EnetPhy_Handle</a>&#160;</td>
+          <td class="paramname"><em>hPhy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int8_t&#160;</td>
+          <td class="paramname"><em>nudgeValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Nudge Codec Clock. </p>
+<p>Nudge Codec Clock</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hPhy</td><td>PHY device handle </td></tr>
+    <tr><td class="paramname">nudgeValue</td><td>int8_t value to nudge Codec clock.</td></tr>
   </table>
   </dd>
 </dl>

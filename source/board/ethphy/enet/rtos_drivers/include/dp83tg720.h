@@ -92,17 +92,17 @@ typedef enum Dp83tg720_MasterSlaveMode_e
  */
 typedef struct Dp83tg720_Cfg_s
 {
-	/*! Enable TX clock shift */
-	bool txClkShiftEn;
+    /*! Enable TX clock shift */
+    bool txClkShiftEn;
 
-	/*! Enable RX clock shift */
-	bool rxClkShiftEn;
+    /*! Enable RX clock shift */
+    bool rxClkShiftEn;
 
-	/*! Enable PHY interrupts */
-	bool interruptEn;
+    /*! Enable PHY interrupts */
+    bool interruptEn;
 
-	/*! Enable SGMII auto negotiation */
-	bool sgmiiAutoNegEn;
+    /*! Enable SGMII auto negotiation */
+    bool sgmiiAutoNegEn;
 
     /*! Master/Slave configuration */
     Dp83tg720_MasterSlaveMode MasterSlaveMode;
@@ -127,27 +127,27 @@ typedef struct Dp83tg720_Cfg_s
  */
 void Dp83tg720_initCfg(Dp83tg720_Cfg *cfg);
 
-void Dp83tg720_bind(EthPhyDrv_Handle* hPhy, 
-                    uint8_t phyAddr, 
+void Dp83tg720_bind(EthPhyDrv_Handle* hPhy,
+                    uint8_t phyAddr,
                     Phy_RegAccessCb_t* pRegAccessCb);
 
 bool Dp83tg720_isPhyDevSupported(EthPhyDrv_Handle hPhy,
                                 const void *pversion);
 
-bool Dp83tg720_isMacModeSupported(EthPhyDrv_Handle hPhy, 
+bool Dp83tg720_isMacModeSupported(EthPhyDrv_Handle hPhy,
                                     Phy_Mii mii);
 
 int32_t Dp83tg720_config(EthPhyDrv_Handle hPhy,
                         const void *pExtCfg,
                         const uint32_t extCfgSize,
-						Phy_Mii mii, 
-						bool loopbackEn);
+                        Phy_Mii mii,
+                        bool loopbackEn);
 
 void Dp83tg720_reset(EthPhyDrv_Handle hPhy);
 
 bool Dp83tg720_isResetComplete(EthPhyDrv_Handle hPhy);
 
-void Dp83tg720_printRegs(EthPhyDrv_Handle hPhy);                              
+void Dp83tg720_printRegs(EthPhyDrv_Handle hPhy);
 /* ========================================================================== */
 /*                        Deprecated Function Declarations                    */
 /* ========================================================================== */

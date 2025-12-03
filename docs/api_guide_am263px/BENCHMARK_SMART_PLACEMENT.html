@@ -93,9 +93,9 @@ $(document).ready(function(){initNavTree('BENCHMARK_SMART_PLACEMENT.html',''); i
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
 <ul><li class="level1"><a href="#BENCHMARK_SMART_PLACEMENT_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3603">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md3604">Building benchmark application</a></li>
-<li class="level1"><a href="#autotoc_md3605">Running benchmark application</a></li>
+<li class="level1"><a href="#autotoc_md3676">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3677">Building benchmark application</a></li>
+<li class="level1"><a href="#autotoc_md3678">Running benchmark application</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_benchmarks_benchmark_smart_placement"></a></p>
@@ -113,7 +113,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/benchmarks/ocmc_benchmarking   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3603"></a>
+<h1><a class="anchor" id="autotoc_md3676"></a>
 Introduction</h1>
 <ul>
 <li>This demo provides a means of measuring the performance of a realistic application where the text of the application is sitting in various memory locations and the data is sitting in On-Chip-Memory RAM (referred to as OCM, OCMC or OCMRAM).</li>
@@ -148,10 +148,10 @@ Introduction</h1>
 <p>Please read more on smart placement at <a class="el" href="SMART_PLACEMENT.html">Smart Placement</a>, before moving further ahead.</p>
 <p><code>annotations.S</code> has a macro named <code>ENABLE_SMART_PLACEMENT_ANNOTATION</code> which can be used to enable and disable annotations which will effectively enable and disable smart placement.</p>
 <p>Here it will be shown how code performance (or CPI) is improved with smart placement.</p>
-<h1><a class="anchor" id="autotoc_md3604"></a>
+<h1><a class="anchor" id="autotoc_md3677"></a>
 Building benchmark application</h1>
 <p>To build this application, compiler ti-cgt-armllvm &gt;= 3.2.0 LTS or later is required. Application can be compiled using make command.</p>
-<h1><a class="anchor" id="autotoc_md3605"></a>
+<h1><a class="anchor" id="autotoc_md3678"></a>
 Running benchmark application</h1>
 <p>This particular application is used to show the effect of smart placement. To do this, we first remove <code>ENABLE_SMART_PLACEMENT_ANNOTATION</code> macro (which is in <code>annotations.S</code> file.) and compile it. To know how <code>annotations.S</code> has been generated then please refer to <a class="el" href="SW_INSTRUMENT_SMART_PLACEMENT.html">Software Instrument Smart Placement</a></p>
 <p>Flash this application using uart_uniflash. For this please go through <a class="el" href="TOOLS_FLASH.html#TOOLS_FLASH_UART_UNIFLASH">UART Uniflash</a></p>

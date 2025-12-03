@@ -378,6 +378,21 @@ typedef struct SecCfgValidate_t_
                              */
 } SecCfgValidate_t;
 
+/**
+* @brief
+* This is active bank to dormant bank copy request structure 
+* passed to HSM core via SIPC as argument, these parameters 
+* are required by the service handler.
+* Valid only for F29x family of devices
+*
+* @param cpuFlashBankType          C29 CPU1, C29 CPU3 or HSM CPU image that is to be copied 
+*                                  to dormant bank from current active bank
+*/
+typedef struct FlashBankCopy_t_
+{
+    uint8_t cpuFlashBankType;  /** CPU for which this service is invoked */
+} FlashBankCopy_t;
+
     /**
      * @brief
      * This API waits for HSMRT load if requested
@@ -950,6 +965,23 @@ int32_t HsmClient_readOTFARegions(HsmClient_t* HsmClient,
 int32_t HsmClient_secCfgValidate(HsmClient_t *HsmClient,
                                  SecCfgValidate_t *pSecCfgParams,
                                  uint32_t timeout);
+
+/**
+ *  @brief  Client request to copy active flash bank contents 
+ *          to dormant flash bank
+ *  Valid only for F29x family of devices
+ *
+ *  @param  HsmClient               [IN] HsmClient object
+ *  @param  pFlashBankCopyObject    [IN] Flash Bank copy object
+ *  @param  timeout                 [IN] timeout
+ * 
+ * @return
+ * 1. SystemP_SUCCESS if copy done successfully
+ * 2. SystemP_FAILURE if NACK message is received or client id not registered.
+ */
+int32_t HsmClient_activeToDormantBankCopy(HsmClient_t *HsmClient, 
+                                          FlashBankCopy_t *pFlashBankCopyObject, 
+                                          uint32_t timeout);
 
 /** @} */
 

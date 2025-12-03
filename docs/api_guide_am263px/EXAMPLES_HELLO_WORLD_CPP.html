@@ -92,19 +92,19 @@ $(document).ready(function(){initNavTree('EXAMPLES_HELLO_WORLD_CPP.html',''); in
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1563">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md1634">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_HELLO_WORLD_CPP_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md1564">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md1565">Sample Output</a></li>
-<li class="level1"><a href="#autotoc_md1566">C++ Build Details</a><ul><li class="level2"><a href="#autotoc_md1567">Flags used for C++ build</a></li>
-<li class="level2"><a href="#autotoc_md1568">Building the mcu sdk libs with C++ flsgs.</a></li>
-<li class="level2"><a href="#autotoc_md1569">Building an application using c++ flags</a></li>
+<li class="level1"><a href="#autotoc_md1635">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md1636">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md1637">C++ Build Details</a><ul><li class="level2"><a href="#autotoc_md1638">Flags used for C++ build</a></li>
+<li class="level2"><a href="#autotoc_md1639">Building the mcu sdk libs with C++ flsgs.</a></li>
+<li class="level2"><a href="#autotoc_md1640">Building an application using c++ flags</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_examples_hello_world_cpp"></a></p>
-<h1><a class="anchor" id="autotoc_md1563"></a>
+<h1><a class="anchor" id="autotoc_md1634"></a>
 Introduction</h1>
 <p>This example is compiled with the C++ compiler options. It does driver and board initialization and prints the string, Hello World! on UART console.</p>
 <h1><a class="anchor" id="EXAMPLES_HELLO_WORLD_CPP_COMBOS"></a>
@@ -123,21 +123,21 @@ Supported Combinations</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/hello_world_cpp   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1564"></a>
+<h1><a class="anchor" id="autotoc_md1635"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1565"></a>
+<h1><a class="anchor" id="autotoc_md1636"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">Hello World!</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1566"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1637"></a>
 C++ Build Details</h1>
 <p>In this example the "hello_world.cpp" and "main.cpp" files are built with the c++ compiler flags. The example will link with the prebuilt mcu sdk libs.</p>
-<h2><a class="anchor" id="autotoc_md1567"></a>
+<h2><a class="anchor" id="autotoc_md1638"></a>
 Flags used for C++ build</h2>
 <p>Below are the flags used for the files to build with c++ flags along with the other flags used for c files.</p><ul>
 <li>-x c++</li>
@@ -151,13 +151,13 @@ Flags used for C++ build</h2>
 <li>-Wno-reserved-user-defined-literal</li>
 <li>-Wno-unused-const-variable</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1568"></a>
+<h2><a class="anchor" id="autotoc_md1639"></a>
 Building the mcu sdk libs with C++ flsgs.</h2>
 <p>The pre built libs provided in mcu sdk are built with the C flags. However the application can re build the libs using the C++ flags. The application needs to pass the below additional flag for the make commands used for building libs</p>
 <div class="fragment"><div class="line">CPLUSPLUS_BUILD=yes</div>
 </div><!-- fragment --><p>note: Before re building the libs you need to clean all the pre built libs.</p>
 <dl class="section attention"><dt>Attention</dt><dd>All the MCU+ SDK libs are written in C. So if they're built with C++ flags, it is possible that a linking error might happen during the application build because of the name mangling done for C++ linkage. In this case, unless there is a requirement, it is recommended to keep the libs built using C flags only to force the C linkage. For C++ linkage of libraries, currently only the basic libs required for this example to build are tested.</dd></dl>
-<h2><a class="anchor" id="autotoc_md1569"></a>
+<h2><a class="anchor" id="autotoc_md1640"></a>
 Building an application using c++ flags</h2>
 <p>Hello world cpp example is provided as referance to building application using c++ flags. If you want to build the application using the c++ flags please refer the makefile In the makefile the files with extn .cpp are compiled with the c++ flags and files with .c extn are compiled with c flags.</p>
 <div class="fragment"><div class="line">examples\hello_world_cpp&lt;soc&gt;&lt;core&gt;_&lt;os&gt;\ti-arm-clang\makefile</div>

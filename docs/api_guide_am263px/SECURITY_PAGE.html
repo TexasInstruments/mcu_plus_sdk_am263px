@@ -92,12 +92,12 @@ $(document).ready(function(){initNavTree('SECURITY_PAGE.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1085">Introduction</a><ul><li class="level2"><a href="#autotoc_md1086">Getting started</a><ul><li class="level3"><a href="#autotoc_md1087">Bootloader_socLoadHsmRtFw</a><ul><li class="level4"><a href="#SECURITY_HSFS_BOOTTIME_FIREWALL">HSMRt Firewall Configurations</a></li>
+<ul><li class="level1"><a href="#autotoc_md1129">Introduction</a><ul><li class="level2"><a href="#autotoc_md1130">Getting started</a><ul><li class="level3"><a href="#autotoc_md1131">Bootloader_socLoadHsmRtFw</a><ul><li class="level4"><a href="#SECURITY_HSFS_BOOTTIME_FIREWALL">HSMRt Firewall Configurations</a></li>
 </ul>
 </li>
-<li class="level3"><a href="#autotoc_md1088">Resources available</a></li>
-<li class="level3"><a href="#autotoc_md1089">Services</a></li>
-<li class="level3"><a href="#autotoc_md1090">Modules</a></li>
+<li class="level3"><a href="#autotoc_md1132">Resources available</a></li>
+<li class="level3"><a href="#autotoc_md1133">Services</a></li>
+<li class="level3"><a href="#autotoc_md1134">Modules</a></li>
 </ul>
 </li>
 </ul>
@@ -105,12 +105,12 @@ $(document).ready(function(){initNavTree('SECURITY_PAGE.html',''); initResizable
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_security_security"></a></p>
-<h1><a class="anchor" id="autotoc_md1085"></a>
+<h1><a class="anchor" id="autotoc_md1129"></a>
 Introduction</h1>
-<h2><a class="anchor" id="autotoc_md1086"></a>
+<h2><a class="anchor" id="autotoc_md1130"></a>
 Getting started</h2>
 <p>The HSM or Hardware security Module is a subsystem that acts as the secure host by offering security services to the rest of the system. TI offers HS-FS (High Security - Field Securable) as the primary device for the customers. The MCU+ SDK supports HS-FS device type for AM263x/AM263Px. It supports loading the HSM firmware (TIFS-MCU) via SBL (Secondary Boot Loader), which enables access to the hardware resources for cryptographic operations for R5FSS.</p>
-<h3><a class="anchor" id="autotoc_md1087"></a>
+<h3><a class="anchor" id="autotoc_md1131"></a>
 Bootloader_socLoadHsmRtFw</h3>
 <p>The SBL for AM263x/AM263Px/AM273x/AM261x supports for loading firmware on the HSM. The firmware is provided in an encrypted form at <code>source/security/security_common/drivers/hsmclient/soc/am263x/hsmRtImg.h</code>. The function <code>Bootloader_socLoadHsmRtFw</code> sends a message to ROM and ROM loads the HSM firmware. After the HSM firmware is loaded and has done its init time operations, it sends a message to the SBL called <code>HSM_MSG_BOOT_NOTIFY</code>.</p>
 <div class="fragment"><div class="line">int main()</div>
@@ -193,7 +193,7 @@ R5FSS1_1  </td><td class="markdownTableBodyNone">1  </td><td class="markdownTabl
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">1  </td><td class="markdownTableBodyNone">0x53802000  </td><td class="markdownTableBodyNone">0x53802300  </td><td class="markdownTableBodyNone">All AIDs access revoked except HSM  </td><td class="markdownTableBodyNone">0  </td><td class="markdownTableBodyNone">0  </td><td class="markdownTableBodyNone">0  </td><td class="markdownTableBodyNone">0  </td><td class="markdownTableBodyNone">0  </td><td class="markdownTableBodyNone">0  </td><td class="markdownTableBodyNone">0  </td><td class="markdownTableBodyNone">0  </td><td class="markdownTableBodyNone">Secure Asset and is protected during runtime   </td></tr>
 </table>
-<h3><a class="anchor" id="autotoc_md1088"></a>
+<h3><a class="anchor" id="autotoc_md1132"></a>
 Resources available</h3>
 <p>By default, the access to the crypto resources are firewalled on HS-FS devices. The HSM firmware so loaded, bypasses the firewalls and makes the following crypto modules available for the R5FSS to use.</p>
 <ul>
@@ -206,10 +206,10 @@ Resources available</h3>
 <li>SHA/HMAC hash calculation</li>
 </ul>
 <p>SBL should always wait for <code>HSM_MSG_BOOT_NOTIFY</code> before using the crypto accelerator because HSM firmware initializes these firewalls. Failing to do so, the SBL or application may run into abort exception while accessing the MMR regions for the crypto accelerator.</p>
-<h3><a class="anchor" id="autotoc_md1089"></a>
+<h3><a class="anchor" id="autotoc_md1133"></a>
 Services</h3>
 <p>The TIFS-MCU firmware that gets loaded on HSM provides the variety of services. For more information refer <a class="el" href="DRIVERS_HSMCLIENT_PAGE.html">HSM client</a></p>
-<h3><a class="anchor" id="autotoc_md1090"></a>
+<h3><a class="anchor" id="autotoc_md1134"></a>
 Modules</h3>
 <p>This page links to the HSM client used to access HSM services.</p>
 <ul>

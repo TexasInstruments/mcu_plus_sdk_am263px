@@ -1,6 +1,5 @@
 var group__DRV__OSPI__LLD__MODULE =
 [
-    [ "APIs for OSPI DMA mode", "group__OSPI__DMA.html", "group__OSPI__DMA" ],
     [ "Generic NOR Flash API for single pin mode", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE" ],
     [ "Generic Phy layer API.", "group__DRV__OSPI__LLD__PHY__API__MODULE.html", "group__DRV__OSPI__LLD__PHY__API__MODULE" ],
     [ "OSPI Callback Initialization", "group__DRV__OSPI__LLD__CALLBACK__API__MODULE.html", "group__DRV__OSPI__LLD__CALLBACK__API__MODULE" ],
@@ -52,8 +51,5 @@ var group__DRV__OSPI__LLD__MODULE =
     [ "MAX_BAUDRATE_DIVIDER", "group__DRV__OSPI__LLD__MODULE.html#ga6a1174de17525d6b8ff650a207fe0863", null ],
     [ "CSL_OSPI_BAUD_RATE_DIVISOR_DEFAULT", "group__DRV__OSPI__LLD__MODULE.html#ga57583095a9c4d74c7d6e6b7735e2c444", null ],
     [ "OSPI_DECODER_SELECT4", "group__DRV__OSPI__LLD__MODULE.html#ga9f104789738763e778992459be823072", null ],
-    [ "OSPI_DECODER_SELECT16", "group__DRV__OSPI__LLD__MODULE.html#gae589b4ecf0e83feaf138aa818f87a439", null ],
-    [ "OSPI_DmaHandle", "group__DRV__OSPI__LLD__MODULE.html#gac17f5f295276bb71eb228f998f096db9", null ],
-    [ "OSPI_DmaChConfig", "group__DRV__OSPI__LLD__MODULE.html#ga864d26872cd84abdb4ff93e5657c93b6", null ],
-    [ "OSPI_DrvHandle", "group__DRV__OSPI__LLD__MODULE.html#ga7dc3c40915b842f332dbff0b4d6e4489", null ]
+    [ "OSPI_DECODER_SELECT16", "group__DRV__OSPI__LLD__MODULE.html#gae589b4ecf0e83feaf138aa818f87a439", null ]
 ];

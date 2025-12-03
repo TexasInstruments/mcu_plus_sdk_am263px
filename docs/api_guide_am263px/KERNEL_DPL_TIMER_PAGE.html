@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('KERNEL_DPL_TIMER_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md765">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md766">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md767">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md768">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md769">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md809">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md810">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md811">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md812">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md813">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_dpl_TimerP"></a></p>
-<h1><a class="anchor" id="autotoc_md765"></a>
+<h1><a class="anchor" id="autotoc_md809"></a>
 Features Supported</h1>
 <ul>
 <li>APIs to setup timer configuration</li>
@@ -108,10 +108,10 @@ Features Supported</h1>
 <li>APIs to get the current timer count</li>
 <li>APIs to check for counter overflow and clear timer overflow interrupt</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md766"></a>
+<h1><a class="anchor" id="autotoc_md810"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md767"></a>
+<h1><a class="anchor" id="autotoc_md811"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>Support configuration for RTI timer</li>
@@ -123,7 +123,7 @@ Important Usage Guidelines</h1>
 <li>Supports continues and oneshot mode</li>
 <li>When configuring the timer period in micro second the 'periodInNsec' should be set to 0</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md768"></a>
+<h1><a class="anchor" id="autotoc_md812"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs, </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TimerP_8h.html">kernel/dpl/TimerP.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Example usage to initialize the timer </p><div class="fragment"><div class="line">    <a class="code" href="structTimerP__Params.html">TimerP_Params</a> timerParams;</div>
@@ -144,7 +144,7 @@ Example Usage</h1>
 <div class="line">    (void) count; <span class="comment">/* kill warning of variable set but not used */</span></div>
 </div><!-- fragment --><p> Example usage to stop the timer </p><div class="fragment"><div class="line">    <span class="comment">/* stop the tick timer */</span></div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__TIMER.html#ga0c3aa4924c4313976a28561e6257a747">TimerP_stop</a>(timerBaseAddr);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md769"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md813"></a>
 API</h1>
 <p><a class="el" href="group__KERNEL__DPL__TIMER.html">APIs for timer setup and control</a> </p>
 </div></div><!-- contents -->

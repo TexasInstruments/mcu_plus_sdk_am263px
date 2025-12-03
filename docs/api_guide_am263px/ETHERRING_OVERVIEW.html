@@ -92,12 +92,12 @@ $(document).ready(function(){initNavTree('ETHERRING_OVERVIEW.html',''); initResi
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1280">Software Architecture</a></li>
-<li class="level1"><a href="#autotoc_md1281">CAN to Ethernet Traffic Simulation</a></li>
-<li class="level1"><a href="#autotoc_md1282">Packet Duplication on Transmission</a></li>
-<li class="level1"><a href="#autotoc_md1283">Software Assistance on Transmission side</a></li>
-<li class="level1"><a href="#autotoc_md1284">Software Assistance on Reception side</a></li>
-<li class="level1"><a href="#autotoc_md1285">Duplicate packet Rejection on Reception side(Duplicate Packet Rejection)</a></li>
+<ul><li class="level1"><a href="#autotoc_md1324">Software Architecture</a></li>
+<li class="level1"><a href="#autotoc_md1325">CAN to Ethernet Traffic Simulation</a></li>
+<li class="level1"><a href="#autotoc_md1326">Packet Duplication on Transmission</a></li>
+<li class="level1"><a href="#autotoc_md1327">Software Assistance on Transmission side</a></li>
+<li class="level1"><a href="#autotoc_md1328">Software Assistance on Reception side</a></li>
+<li class="level1"><a href="#autotoc_md1329">Duplicate packet Rejection on Reception side(Duplicate Packet Rejection)</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_enet_lld_etherring_overview"></a> Ether-Ring functionality is achieved using hardware configuration with assistance of software. The 3 main components are</p><ul>
@@ -105,12 +105,12 @@ $(document).ready(function(){initNavTree('ETHERRING_OVERVIEW.html',''); initResi
 <li><b>Duplicate Packet Rejection</b> - Software assistance</li>
 <li><b>Ring Termination</b> - Hardware Configuration</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1280"></a>
+<h1><a class="anchor" id="autotoc_md1324"></a>
 Software Architecture</h1>
 <div class="image">
 <img src="etherring_sof_arch.png" alt="" width="50%"/>
 </div>
-<h1><a class="anchor" id="autotoc_md1281"></a>
+<h1><a class="anchor" id="autotoc_md1325"></a>
 CAN to Ethernet Traffic Simulation</h1>
 <div style="display: flex; align-items: center;"> <div style="flex: 1; text-align: left; max-width: 60%;"> <h2>Software Assistance:</h2>
 </div></div><div style="display: flex; align-items: center;"><div style="flex: 1; text-align: left; max-width: 60%;"> <ul>
@@ -121,7 +121,7 @@ CAN to Ethernet Traffic Simulation</h1>
 <li>
 <b>Pulse Generation Configuration</b>: Configured pulse generation to start before the 802.1Qbv gate opens to ensure accurate and timely pulse generation. </li>
 </ul>
-</div> <div style="flex: 1; text-align: right; max-width: 40%;"> <img src="etherring_can_to_eth.png" alt="CAN to Ethernet" style="width: 80%;" class="inline"/> </div> </div><h1><a class="anchor" id="autotoc_md1282"></a>
+</div> <div style="flex: 1; text-align: right; max-width: 40%;"> <img src="etherring_can_to_eth.png" alt="CAN to Ethernet" style="width: 80%;" class="inline"/> </div> </div><h1><a class="anchor" id="autotoc_md1326"></a>
 Packet Duplication on Transmission</h1>
 <div style="display: flex; align-items: center;"> <div style="flex: 1; text-align: left; max-width: 70%;"> <ul>
 <li>
@@ -135,7 +135,7 @@ Packet Duplication on Transmission</h1>
 <li>
 <b>Classifier/Policer configuration</b>: Configured for the route to modify VLAN tags and duplicate Ethernet packet on both MAC ports. </li>
 </ul>
-</div> <div style="flex: 1; text-align: right; max-width: 30%;"> <img src="etherring_pkt_duplication.png" alt="CAN to Ethernet" style="width: 80%;" class="inline"/> </div> </div><h1><a class="anchor" id="autotoc_md1283"></a>
+</div> <div style="flex: 1; text-align: right; max-width: 30%;"> <img src="etherring_pkt_duplication.png" alt="CAN to Ethernet" style="width: 80%;" class="inline"/> </div> </div><h1><a class="anchor" id="autotoc_md1327"></a>
 Software Assistance on Transmission side</h1>
 <div style="display: flex; align-items: center;"> <div style="flex: 1; text-align: left; max-width: 65%;"> <ul>
 <li>
@@ -143,7 +143,7 @@ Adds custom header using Zero-copy which helps to reject the duplicate packets o
 <li>
 Generating Ethernet packet with non continuous buffers for Header addition. </li>
 </ul>
-</div> <div style="flex: 1; text-align: right; max-width: 75%;"> <img src="etherring_tx_assistance.png" alt="CAN to Ethernet" style="width: 90%;" class="inline"/> </div> </div><h1><a class="anchor" id="autotoc_md1284"></a>
+</div> <div style="flex: 1; text-align: right; max-width: 75%;"> <img src="etherring_tx_assistance.png" alt="CAN to Ethernet" style="width: 90%;" class="inline"/> </div> </div><h1><a class="anchor" id="autotoc_md1328"></a>
 Software Assistance on Reception side</h1>
 <div style="display: flex; align-items: center;"> <div style="flex: 1; text-align: left; max-width: 65%;"> <ul>
 <li>
@@ -151,7 +151,7 @@ Removes Custom Header on the receiver end after detecting and deleting duplicate
 <li>
 Generating Ethernet packet with non continuous buffers for Header addition. </li>
 </ul>
-</div> <div style="flex: 1; text-align: right; max-width: 75%;"> <img src="etherring_rx_assistance.png" alt="CAN to Ethernet" style="width: 90%;" class="inline"/> </div> </div><h1><a class="anchor" id="autotoc_md1285"></a>
+</div> <div style="flex: 1; text-align: right; max-width: 75%;"> <img src="etherring_rx_assistance.png" alt="CAN to Ethernet" style="width: 90%;" class="inline"/> </div> </div><h1><a class="anchor" id="autotoc_md1329"></a>
 Duplicate packet Rejection on Reception side(Duplicate Packet Rejection)</h1>
 <div style="display: flex; align-items: center;"> <div style="flex: 1; text-align: left; max-width: 65%;"> <ul>
 <li>

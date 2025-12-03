@@ -92,25 +92,25 @@ $(document).ready(function(){initNavTree('EXAMPLES_ENET_LWIP_CPSW_HTTPSERVER.htm
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2980">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2981">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2982">Packet pool configuration</a></li>
-<li class="level1"><a href="#autotoc_md2983">Configuring Syscfg</a></li>
-<li class="level1"><a href="#autotoc_md2984">To Configure Static IP</a></li>
-<li class="level1"><a href="#autotoc_md2985">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md2986">Build the example</a></li>
-<li class="level2"><a href="#autotoc_md2987">HW Setup</a></li>
-<li class="level2"><a href="#autotoc_md2988">Create a network between EVM and host PC</a></li>
-<li class="level2"><a href="#autotoc_md2989">Run the example</a></li>
-<li class="level2"><a href="#autotoc_md2990">Sample output for CPSW example</a></li>
-<li class="level2"><a href="#autotoc_md2991">Steps to execute</a></li>
-<li class="level2"><a href="#autotoc_md2992">Troubleshooting issues</a></li>
+<ul><li class="level1"><a href="#autotoc_md3053">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3054">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md3055">Packet pool configuration</a></li>
+<li class="level1"><a href="#autotoc_md3056">Configuring Syscfg</a></li>
+<li class="level1"><a href="#autotoc_md3057">To Configure Static IP</a></li>
+<li class="level1"><a href="#autotoc_md3058">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3059">Build the example</a></li>
+<li class="level2"><a href="#autotoc_md3060">HW Setup</a></li>
+<li class="level2"><a href="#autotoc_md3061">Create a network between EVM and host PC</a></li>
+<li class="level2"><a href="#autotoc_md3062">Run the example</a></li>
+<li class="level2"><a href="#autotoc_md3063">Sample output for CPSW example</a></li>
+<li class="level2"><a href="#autotoc_md3064">Steps to execute</a></li>
+<li class="level2"><a href="#autotoc_md3065">Troubleshooting issues</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2993">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3066">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_enet_lwip_httpserver"></a></p>
-<h1><a class="anchor" id="autotoc_md2980"></a>
+<h1><a class="anchor" id="autotoc_md3053"></a>
 Introduction</h1>
 <dl class="section note"><dt>Note</dt><dd>LwIP features are made available as is from public lwIP project. SDK configuration may only enable and exercise a subset of these features.</dd></dl>
 <p>This example shows about how to implement a simple HTTP web Server on LwIP networking stack using LwIP raw APIs on bare metal (No-RTOS) using no-rtos LwIP stack, no-rtos lwip-if and enet driver.</p>
@@ -125,7 +125,7 @@ Introduction</h1>
 <li>Start polling for events such as Receive packets, timer event, transmit done, stack event etc.</li>
 <li>Web server waits for any HTTP client to send HTTP GET request on default HTTP port and sends the HTML page as a HTTP GET response</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2981"></a>
+<h1><a class="anchor" id="autotoc_md3054"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -139,10 +139,10 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/lwip/enet_cpsw_rawhttpserver   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2982"></a>
+<h1><a class="anchor" id="autotoc_md3055"></a>
 Packet pool configuration</h1>
 <p>To change packet pool configuration from syscfg, please refer to <a class="el" href="PACKETPOOL_CONFIG_TOP.html">Ethernet Packet Pool Allocation Guidelines</a></p>
-<h1><a class="anchor" id="autotoc_md2983"></a>
+<h1><a class="anchor" id="autotoc_md3056"></a>
 Configuring Syscfg</h1>
 <ul>
 <li>Select NoRTOS in 'TI Networking' -&gt; 'CPSW' -&gt; 'System Integration Config' -&gt; 'RTOS Variant'  <style>div.image img[src="enet_nortos.png"]{width:45%}</style> <div class="image">
@@ -189,22 +189,22 @@ NoRTOS selection</div></div>
 <td>Netif instance </td><td>TI Networking / Enet (CPSW) / LWIP Interface config </td><td>No of netifs allocated by the example.<br  />
  Only one netif should be set to default when more than one netif is allocated.  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2984"></a>
+<h1><a class="anchor" id="autotoc_md3057"></a>
 To Configure Static IP</h1>
 <p>Please refer to <a class="el" href="NETWORKING_LWIP_STATIC_IP.html">Ethernet LwIP TCP/IP Static IP</a>.</p>
-<h1><a class="anchor" id="autotoc_md2985"></a>
+<h1><a class="anchor" id="autotoc_md3058"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md2986"></a>
+<h2><a class="anchor" id="autotoc_md3059"></a>
 Build the example</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Note to use the no-rtos variants of libraries for lwipif, lwip, notos (dpl).</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2987"></a>
+<h2><a class="anchor" id="autotoc_md3060"></a>
 HW Setup</h2>
 <dl class="section note"><dt>Note</dt><dd>Make sure you have setup the EVM with cable connections as shown here, <a class="el" href="EVM_SETUP_PAGE.html">EVM Setup</a>. In addition do below steps.</dd></dl>
-<h2><a class="anchor" id="autotoc_md2988"></a>
+<h2><a class="anchor" id="autotoc_md3061"></a>
 Create a network between EVM and host PC</h2>
 <ul>
 <li>The EVM will get an IP address using DHCP, so make sure to connect the other end of the cable to a network which has a DHCP server running.</li>
@@ -218,7 +218,7 @@ Local network between PC and EVM</div></div>
 <li>To check the router connection with host PC, recommend to disconnect all other networking connections on the PC, sometimes you may need to disable firewall SW, and make sure the router is able to assign a IP address to your host PC</li>
 <li>After we run the example on the EVM (next step), the EVM will similarly be assigned a IP address, and then host can communicate with the EVM using the assigned IP address.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2989"></a>
+<h2><a class="anchor" id="autotoc_md3062"></a>
 Run the example</h2>
 <dl class="section attention"><dt>Attention</dt><dd>If you need to reload and run again, a CPU power-cycle is MUST</dd></dl>
 <ul>
@@ -226,7 +226,7 @@ Run the example</h2>
 <li>You will see logs in the UART terminal as shown in the next section.</li>
 <li>Note the IP address seen in the log, this is what we will use to communicate with the EVM.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2990"></a>
+<h2><a class="anchor" id="autotoc_md3063"></a>
 Sample output for CPSW example</h2>
 <div class="fragment"><div class="line">  CPSW LWIP HTTP WEB SERVER</div>
 <div class="line">==========================</div>
@@ -241,7 +241,7 @@ Sample output for CPSW example</h2>
 <div class="line">Network Link UP Event</div>
 <div class="line">Enet IF UP Event. Local interface IP:192.168.1.10</div>
 <div class="line">Network is UP ...</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2991"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3064"></a>
 Steps to execute</h2>
 <ol type="1">
 <li>Run example on EVM</li>
@@ -249,7 +249,7 @@ Steps to execute</h2>
 </div><!-- fragment --> "192.168.1.10" should be replaced with IP of EVM.</li>
 <li>Open web browser in host PC that is on the network. Type <a href="http://192.168.1.10/index.html">http://192.168.1.10/index.html</a> ("192.168.1.10" should be replaced with IP of EVM) and observe that page loads successfully, with HTTP 200 response code.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md2992"></a>
+<h2><a class="anchor" id="autotoc_md3065"></a>
 Troubleshooting issues</h2>
 <ul>
 <li>To ensure compatibility with CPSW RGMII2 port on am263px-cc board, make sure that SW-15(switch) should be set to <code>LOW</code> for board versions(E2/A/B versions). This configuration ensures seamless out-of-box support and functionality with the CPSW RGMII2 port on the specified versions.</li>
@@ -260,7 +260,7 @@ Troubleshooting issues</h2>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2993"></a>
+<h1><a class="anchor" id="autotoc_md3066"></a>
 See Also</h1>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

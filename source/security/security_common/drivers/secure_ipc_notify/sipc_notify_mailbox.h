@@ -61,8 +61,8 @@ extern "C" {
  */
 typedef struct SIPC_SwQueue_
 {
-    uint32_t rdIdx; /**<queue element will be read from this index.*/
-    uint32_t wrIdx; /**<queue element will be written to this index.*/
+    volatile uint32_t rdIdx; /**<queue element will be read from this index.*/
+    volatile uint32_t wrIdx; /**<queue element will be written to this index.*/
     uint16_t EleSize ; /**<Element size in words this will be a fixed parameter */
     uint16_t Qlength ; /**<total number of elements */
     uint8_t *Qfifo; /**Pointer to the FIFO queue in HSM MBOX memory */
@@ -85,8 +85,8 @@ static inline int32_t SIPC_mailboxRead(SIPC_SwQueue *swQ, uint8_t *Buff)
 {
     int32_t status = SystemP_FAILURE;
 
-    volatile uint32_t rdIdx = swQ->rdIdx;
-    volatile uint32_t wrIdx = swQ->wrIdx;
+    uint32_t rdIdx = swQ->rdIdx;
+    uint32_t wrIdx = swQ->wrIdx;
 
     if((rdIdx < swQ->Qlength) && (wrIdx < swQ->Qlength))
     {
@@ -94,14 +94,18 @@ static inline int32_t SIPC_mailboxRead(SIPC_SwQueue *swQ, uint8_t *Buff)
         if( rdIdx != wrIdx)
         {
             /* Copy EleSize bytes from Queue memory to the buffer */
-            memcpy(Buff, SOC_phyToVirt((uint64_t)(swQ->Qfifo + (swQ->EleSize*rdIdx))),swQ->EleSize);
+            (void)memcpy(Buff, SOC_phyToVirt((uint64_t)(swQ->Qfifo + (swQ->EleSize*rdIdx))),swQ->EleSize);
 
-            rdIdx = (rdIdx+1)%swQ->Qlength;
+            rdIdx = (rdIdx+1U)%swQ->Qlength;
 
             swQ->rdIdx = rdIdx;
 
             rdIdx = swQ->rdIdx; /* read back to ensure the update has reached the memory */
 
+            if (rdIdx < swQ->rdIdx) /*To suppress MISRA warning*/
+            {
+                /*Do nothing*/
+            }
             #if defined(__aarch64__) || defined(__arm__)
             asm_dsb_memory();
             asm_isb_memory();
@@ -124,15 +128,15 @@ static inline int32_t SIPC_mailboxWrite(uint32_t mailboxBaseAddr, uint32_t wrInt
 
     if((rdIdx < swQ->Qlength) && (wrIdx < swQ->Qlength))
     {
-        if( ( (wrIdx+1)%swQ->Qlength ) != rdIdx )
+        if( ( (wrIdx+1U)%swQ->Qlength ) != rdIdx )
         {
             volatile uint32_t *addr = (uint32_t *)mailboxBaseAddr;
 
             /* There is some space in the FIFO */
 
-            memcpy(SOC_phyToVirt((uint64_t)(swQ->Qfifo + (swQ->EleSize*wrIdx))),Buff,swQ->EleSize);
+            (void)memcpy(SOC_phyToVirt((uint64_t)(swQ->Qfifo + (swQ->EleSize*wrIdx))),Buff,swQ->EleSize);
 
-            wrIdx = (wrIdx+1)%swQ->Qlength;
+            wrIdx = (wrIdx+1U)%swQ->Qlength;
 
             swQ->wrIdx = wrIdx;
 
@@ -176,7 +180,7 @@ static inline uint32_t SIPC_mailboxIsPendingIntr(uint32_t pendingIntr, uint32_t 
     extern uint32_t gSIPCCoreIntrBitPos[];
 
     uint32_t isPending = 0;
-    isPending = pendingIntr & (1 << gSIPCCoreIntrBitPos[coreId]);
+    isPending = pendingIntr & (1U << gSIPCCoreIntrBitPos[coreId]);
     return isPending;
 }
 

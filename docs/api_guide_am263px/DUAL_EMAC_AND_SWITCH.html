@@ -92,16 +92,16 @@ $(document).ready(function(){initNavTree('DUAL_EMAC_AND_SWITCH.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1333">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md1334">DUAL_EMAC</a></li>
-<li class="level1"><a href="#autotoc_md1335">SWITCH</a></li>
+<ul><li class="level1"><a href="#autotoc_md1404">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md1405">DUAL_EMAC</a></li>
+<li class="level1"><a href="#autotoc_md1406">SWITCH</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_icss_emac_icss_emac_firmwares"></a></p>
-<h1><a class="anchor" id="autotoc_md1333"></a>
+<h1><a class="anchor" id="autotoc_md1404"></a>
 Introduction</h1>
 <p>The ICSS FIRMWARES serves as example to implement various network functionalities. Package includes source release for DUAL EMAC and basic Switch firmwares.</p>
-<h1><a class="anchor" id="autotoc_md1334"></a>
+<h1><a class="anchor" id="autotoc_md1405"></a>
 DUAL_EMAC</h1>
 <p>ICSS DUAL EMAC FIRMWARE is a single port Ethernet MAC (Media Access Control) i.e. Layer 2 of OSI Model. It implements a 2 port ethernet mac supporting 10/100 Mbps. DUAL EMAC FIRMWARE is standardized to IEEE 802.1 Ethernet Standards. Primary use case of the protocol is to demonstrate basic ethernet functionality via both PRU cores on 10/100 Mbit Ethernet cable. ICSS DUAL EMAC FIRMWARE can be used independently on two PRU’s to implement two independent MAC’s with two different MAC addresses and two different IP addresses. To provide an analogy, this is somewhat similar to a two port Ethernet PCIe NIC card on a PC.Ethernet interface in this case is available along with Host processor on a single SoC. Following are high level features:</p>
 <table class="doxtable">
@@ -128,7 +128,7 @@ DUAL_EMAC</h1>
 <tr>
 <td>VLAN filtering </td><td>Experimental Feature which is to be tested extensively  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1335"></a>
+<h1><a class="anchor" id="autotoc_md1406"></a>
 SWITCH</h1>
 <p>ICSS SWITCH FIRMWARE is a three port learning Ethernet switch i.e. Layer 2 of OSI Model. It implements a 2 port cut through ethernet switch supporting at 100 Mbps. SWITCH FIRMWARE is standardized to IEEE 802.1 Ethernet Standards. The primary use case of the protocol is to use Ethernet to automate applications which require short cut-through latency and low hardware costs. ICSS SWITCH FIRMWARE uses two PRU to implement three port Ethernet switch with one single MAC and IP address. To provide an analogy, this is somewhat standard network switch only here the network functionality is available to the host core within the single SOC. The following are the high level features it supports:</p>
 <table class="doxtable">

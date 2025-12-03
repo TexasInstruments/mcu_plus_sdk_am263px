@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('DRIVERS_MMCSD_V1_HLD_PAGE.html',''); i
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md987">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md988">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md989">Features not Supported</a></li>
-<li class="level1"><a href="#autotoc_md990">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md991">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1031">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1032">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1033">Features not Supported</a></li>
+<li class="level1"><a href="#autotoc_md1034">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1035">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_mmcsd_v1_hld"></a></p>
 <dl class="section note"><dt>Note</dt><dd>EMMC Flash card is not available in AM263PX board.</dd></dl>
 <p>Multi-Media Card Secure Digital (MMCSD) peripheral is a driver which provides an interface with storage devices which follows MMC/SD/SDIO protocol. The driver supports single bit, four bit data lines to communicate with the connected media. The MMCSD controller provides accessibility to external MMC/SD/SDIO devices using a programmed IO method. There is only one MMCSD module inside the SOC - MMCSD0.</p>
-<h1><a class="anchor" id="autotoc_md987"></a>
+<h1><a class="anchor" id="autotoc_md1031"></a>
 Features Supported</h1>
 <ul>
 <li>64-bit data, address width System Bus Interface</li>
@@ -110,16 +110,16 @@ Features Supported</h1>
 <li>Operating voltage range VCC = 3.3 V</li>
 <li>Default-speed &amp; High-speed MMCSD protocol.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md988"></a>
+<h1><a class="anchor" id="autotoc_md1032"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
-<h1><a class="anchor" id="autotoc_md989"></a>
+<h1><a class="anchor" id="autotoc_md1033"></a>
 Features not Supported</h1>
 <ul>
 <li>No integrated DMA Controller support</li>
 <li>MMCSD instance does not support DDR mode</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md990"></a>
+<h1><a class="anchor" id="autotoc_md1034"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;drivers/mmcsd.h&gt;</span></div>
@@ -129,7 +129,7 @@ Example Usage</h1>
 <div class="line">    gMmcsdHandle = <a class="code" href="group__DRV__MMCSD__HLD__MODULE.html#gad5f98ef137b21134e08ef8be86dd0652">MMCSD_open</a>(0, &amp;mmcsdParams);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(gMmcsdHandle != NULL);</div>
 </div><!-- fragment --><p> Instance Close Example </p><div class="fragment"><div class="line">    <a class="code" href="group__DRV__MMCSD__HLD__MODULE.html#ga2a14bd2ef488ca43506e7f93706a7682">MMCSD_close</a>(gMmcsdHandle);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md991"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1035"></a>
 API</h1>
 <p><a class="el" href="group__DRV__MMCSD__HLD__MODULE.html">APIs for MMCSD HLD</a> </p>
 </div></div><!-- contents -->

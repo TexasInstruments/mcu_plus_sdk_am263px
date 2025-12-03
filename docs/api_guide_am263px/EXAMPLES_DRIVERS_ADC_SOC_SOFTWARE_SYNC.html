@@ -92,37 +92,37 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_SOC_SOFTWARE_SYNC
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2069">Introduction</a><ul><li class="level2"><a href="#autotoc_md2070">Example Description</a></li>
-<li class="level2"><a href="#autotoc_md2071">SOC Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2072">Interrupt Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2073">ISR</a></li>
+<ul><li class="level1"><a href="#autotoc_md2142">Introduction</a><ul><li class="level2"><a href="#autotoc_md2143">Example Description</a></li>
+<li class="level2"><a href="#autotoc_md2144">SOC Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2145">Interrupt Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2146">ISR</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2074">External Connections</a><ul><li class="level2"><a href="#autotoc_md2075">AM263Px-CC E2 or AM263x-CC E2</a></li>
-<li class="level2"><a href="#autotoc_md2076">AM263x-CC E1</a></li>
-<li class="level2"><a href="#autotoc_md2077">AM263Px-LP or AM263x-LP</a></li>
-<li class="level2"><a href="#autotoc_md2078">AM261x-LP</a></li>
-<li class="level2"><a href="#autotoc_md2079">AM261x-SOM E1</a></li>
+<li class="level1"><a href="#autotoc_md2147">External Connections</a><ul><li class="level2"><a href="#autotoc_md2148">AM263Px-CC E2 or AM263x-CC E2</a></li>
+<li class="level2"><a href="#autotoc_md2149">AM263x-CC E1</a></li>
+<li class="level2"><a href="#autotoc_md2150">AM263Px-LP or AM263x-LP</a></li>
+<li class="level2"><a href="#autotoc_md2151">AM261x-LP</a></li>
+<li class="level2"><a href="#autotoc_md2152">AM261x-SOM E1</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2080">Watch Variables</a></li>
+<li class="level1"><a href="#autotoc_md2153">Watch Variables</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_SOC_SOFTWARE_SYNC_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2081">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2082">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2083">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2154">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2155">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2156">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_soc_software_sync"></a></p>
-<h1><a class="anchor" id="autotoc_md2069"></a>
+<h1><a class="anchor" id="autotoc_md2142"></a>
 Introduction</h1>
-<h2><a class="anchor" id="autotoc_md2070"></a>
+<h2><a class="anchor" id="autotoc_md2143"></a>
 Example Description</h2>
 <p>This example shows synchronous operation on ADC1 and ADC2 trigger by a software forced by toggling a GPIO. The example uses a GPIO into the INPUTBAR[5] as trigger for the SOC in the given ADC and uses software to toggle to the loopback GPIO trigger the conversions.</p>
 <p> <style>div.image img[src="am263_adc_soc_software_sync.png"]{width:50%}</style> </p><div class="image">
 <img src="am263_adc_soc_software_sync.png" alt=""/>
 <div class="caption">
 Example Block diagram</div></div>
- <h2><a class="anchor" id="autotoc_md2071"></a>
+ <h2><a class="anchor" id="autotoc_md2144"></a>
 SOC Configurations</h2>
 <ul>
 <li>ADC 1<ul>
@@ -138,20 +138,20 @@ SOC Configurations</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2072"></a>
+<h2><a class="anchor" id="autotoc_md2145"></a>
 Interrupt Configurations</h2>
 <ul>
 <li>ADC1INT1 source is set to EOC/SOC1</li>
 <li>INTXbar[0] is configured for ADC1INT1 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2073"></a>
+<h2><a class="anchor" id="autotoc_md2146"></a>
 ISR</h2>
 <ul>
 <li>App_adcISR read the results stored by SOC0,1 in ADC1,2. </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2074"></a>
+<h1><a class="anchor" id="autotoc_md2147"></a>
 External Connections</h1>
-<h2><a class="anchor" id="autotoc_md2075"></a>
+<h2><a class="anchor" id="autotoc_md2148"></a>
 AM263Px-CC E2 or AM263x-CC E2</h2>
 <ul>
 <li>Connect loopback on GPIO 24, GPIO 23, i.e., HSEC PINS 87, 85</li>
@@ -163,7 +163,7 @@ AM263Px-CC E2 or AM263x-CC E2</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2076"></a>
+<h2><a class="anchor" id="autotoc_md2149"></a>
 AM263x-CC E1</h2>
 <ul>
 <li>Connect loopback on GPIO 24, GPIO 23, i.e., HSEC PINS 87, 85.</li>
@@ -175,7 +175,7 @@ AM263x-CC E1</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2077"></a>
+<h2><a class="anchor" id="autotoc_md2150"></a>
 AM263Px-LP or AM263x-LP</h2>
 <ul>
 <li>Connect loopback on GPIO 24, GPIO 23, i.e., J5/7 PINS 49,50.</li>
@@ -187,7 +187,7 @@ AM263Px-LP or AM263x-LP</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2078"></a>
+<h2><a class="anchor" id="autotoc_md2151"></a>
 AM261x-LP</h2>
 <ul>
 <li>Connect loopback on GPIO 24, GPIO 23, i.e., J5/7 PINS 49,50.</li>
@@ -199,7 +199,7 @@ AM261x-LP</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2079"></a>
+<h2><a class="anchor" id="autotoc_md2152"></a>
 AM261x-SOM E1</h2>
 <ul>
 <li>Connect loopback on on GPIO 69 (configured as input) - HSEC connecter pin - 162 or connect it to GPIO 70 (Configured as output) - HSEC Connecter pin - 160</li>
@@ -211,7 +211,7 @@ AM261x-SOM E1</h2>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2080"></a>
+<h1><a class="anchor" id="autotoc_md2153"></a>
 Watch Variables</h1>
 <ul>
 <li>gAdc1Result0 : Digital representation of Voltages on ADC 1 Channel 0</li>
@@ -233,7 +233,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_soc_software_sync/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2081"></a>
+<h1><a class="anchor" id="autotoc_md2154"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -242,10 +242,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>View the ADC conversion results in UART console logs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2082"></a>
+<h1><a class="anchor" id="autotoc_md2155"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md2083"></a>
+<h1><a class="anchor" id="autotoc_md2156"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ADC Synchronous Software Triggered Conversion Test Started ...</div>

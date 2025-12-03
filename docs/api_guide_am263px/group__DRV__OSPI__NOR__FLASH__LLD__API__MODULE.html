@@ -137,6 +137,33 @@ Functions</h2></td></tr>
 <tr class="memitem:ga920390d96c2c42e0a7b9068cdf5bbfa3"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga920390d96c2c42e0a7b9068cdf5bbfa3">OSPI_lld_setResetPinStatus</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> hOspi, uint32_t pinStatus)</td></tr>
 <tr class="memdesc:ga920390d96c2c42e0a7b9068cdf5bbfa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function activates the RESET pin feature.  <a href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga920390d96c2c42e0a7b9068cdf5bbfa3">More...</a><br /></td></tr>
 <tr class="separator:ga920390d96c2c42e0a7b9068cdf5bbfa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga70d926629bc722fdf5250d15bd67adde"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga70d926629bc722fdf5250d15bd67adde">OSPI_dmaOpen</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> hOspi)</td></tr>
+<tr class="memdesc:ga70d926629bc722fdf5250d15bd67adde"><td class="mdescLeft">&#160;</td><td class="mdescRight">API to open an OSPI DMA channel.  <a href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga70d926629bc722fdf5250d15bd67adde">More...</a><br /></td></tr>
+<tr class="separator:ga70d926629bc722fdf5250d15bd67adde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3617d3e1c4b7d80f6a043a096d1a5528"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga3617d3e1c4b7d80f6a043a096d1a5528">OSPI_dmaClose</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> handle)</td></tr>
+<tr class="memdesc:ga3617d3e1c4b7d80f6a043a096d1a5528"><td class="mdescLeft">&#160;</td><td class="mdescRight">API to close an OSPI DMA channel.  <a href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga3617d3e1c4b7d80f6a043a096d1a5528">More...</a><br /></td></tr>
+<tr class="separator:ga3617d3e1c4b7d80f6a043a096d1a5528"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf89b41aacae520a35ca2c318d7c6c6ac"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gaf89b41aacae520a35ca2c318d7c6c6ac">OSPI_dmaCopy</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> handle, void *dst, void *src, uint32_t length, uint32_t timeout)</td></tr>
+<tr class="memdesc:gaf89b41aacae520a35ca2c318d7c6c6ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">API to do a DMA Copy using appropriate DMA Channel opened.  <a href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gaf89b41aacae520a35ca2c318d7c6c6ac">More...</a><br /></td></tr>
+<tr class="separator:gaf89b41aacae520a35ca2c318d7c6c6ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac3f643327af7948039a5bdaa4359a0e6"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gac3f643327af7948039a5bdaa4359a0e6">OSPI_isDmaInterruptEnabled</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> handle)</td></tr>
+<tr class="memdesc:gac3f643327af7948039a5bdaa4359a0e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">API to get the DMA Interrupt status.  <a href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gac3f643327af7948039a5bdaa4359a0e6">More...</a><br /></td></tr>
+<tr class="separator:gac3f643327af7948039a5bdaa4359a0e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1a3e97d489fd7dad034aa786de115466"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga1a3e97d489fd7dad034aa786de115466">OSPI_lld_phyValidateTuningPoint</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> hOspi, uint32_t flashOffset)</td></tr>
+<tr class="memdesc:ga1a3e97d489fd7dad034aa786de115466"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates a tuning point for the OSPI physical interface.  <a href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga1a3e97d489fd7dad034aa786de115466">More...</a><br /></td></tr>
+<tr class="separator:ga1a3e97d489fd7dad034aa786de115466"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga016b4802e71f603a163c409035eaec2c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga016b4802e71f603a163c409035eaec2c">OSPI_lld_isValidateOtpEnable</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> hOspi)</td></tr>
+<tr class="memdesc:ga016b4802e71f603a163c409035eaec2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if OTP validation is enabled for the OSPI controller.  <a href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga016b4802e71f603a163c409035eaec2c">More...</a><br /></td></tr>
+<tr class="separator:ga016b4802e71f603a163c409035eaec2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaea64faff981b9a81edadbc7c3d60d384"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gaea64faff981b9a81edadbc7c3d60d384">OSPI_lld_setFrequency</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> hOspi, uint64_t inputClkFreq)</td></tr>
+<tr class="memdesc:gaea64faff981b9a81edadbc7c3d60d384"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the operating frequency for the OSPI peripheral.  <a href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gaea64faff981b9a81edadbc7c3d60d384">More...</a><br /></td></tr>
+<tr class="separator:gaea64faff981b9a81edadbc7c3d60d384"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4344e2f746fbd1a7d7bfc352d065dc3c"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga4344e2f746fbd1a7d7bfc352d065dc3c">OSPI_lld_setDelays</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> hOspi, uint32_t inputClkFreq)</td></tr>
+<tr class="memdesc:ga4344e2f746fbd1a7d7bfc352d065dc3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets timing delays for the OSPI interface based on input clock frequency.  <a href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga4344e2f746fbd1a7d7bfc352d065dc3c">More...</a><br /></td></tr>
+<tr class="separator:ga4344e2f746fbd1a7d7bfc352d065dc3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae0f6320ae6158bf639a53d885e622e92"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gae0f6320ae6158bf639a53d885e622e92">OSPI_lld_setBaudRateDiv</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> hOspi, uint32_t baudRateDiv)</td></tr>
+<tr class="memdesc:gae0f6320ae6158bf639a53d885e622e92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the baud rate divider for OSPI communication.  <a href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gae0f6320ae6158bf639a53d885e622e92">More...</a><br /></td></tr>
+<tr class="separator:gae0f6320ae6158bf639a53d885e622e92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga941559f676595d9563a47cc5942f9798"></a>
@@ -539,7 +566,7 @@ Functions</h2></td></tr>
 <dl class="section pre"><dt>Precondition</dt><dd>OSPI controller has been opened using <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
+    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
     <tr><td class="paramname">config</td><td>reset config</td></tr>
   </table>
   </dd>
@@ -578,7 +605,7 @@ Functions</h2></td></tr>
 <dl class="section pre"><dt>Precondition</dt><dd>OSPI controller has been opened using <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
+    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
     <tr><td class="paramname">baud</td><td>baudrate from 2 to 32 and divisible by 2</td></tr>
   </table>
   </dd>
@@ -617,7 +644,7 @@ Functions</h2></td></tr>
 <dl class="section pre"><dt>Precondition</dt><dd>OSPI controller has been opened using <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
+    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
     <tr><td class="paramname">baudDiv</td><td>pointer to memory into which baudrate will be written</td></tr>
   </table>
   </dd>
@@ -701,6 +728,334 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f" title="Return status when the API execution was successful.">SystemP_SUCCESS</a> on success, <a class="el" href="group__KERNEL__DPL__SYSTEM.html#gac64497676d49ad4e51a1d9513e3570d9" title="Return status when the API execution was not successful due to a failure.">SystemP_FAILURE</a> otherwise </dd></dl>
+
+</div>
+</div>
+<a id="ga70d926629bc722fdf5250d15bd67adde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga70d926629bc722fdf5250d15bd67adde">&#9670;&nbsp;</a></span>OSPI_dmaOpen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t OSPI_dmaOpen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a>&#160;</td>
+          <td class="paramname"><em>hOspi</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>API to open an OSPI DMA channel. </p>
+<p>This API will open a DMA Channel using the appropriate DMA driver callbacks and the registered via Sysconfig</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hOspi</td><td>An <a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on success, else failure </dd></dl>
+
+</div>
+</div>
+<a id="ga3617d3e1c4b7d80f6a043a096d1a5528"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3617d3e1c4b7d80f6a043a096d1a5528">&#9670;&nbsp;</a></span>OSPI_dmaClose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t OSPI_dmaClose </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a>&#160;</td>
+          <td class="paramname"><em>handle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>API to close an OSPI DMA channel. </p>
+<p>This API will open a DMA Channel using the appropriate DMA driver callbacks registered via Sysconfig</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>[in] An <a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on success, else failure </dd></dl>
+
+</div>
+</div>
+<a id="gaf89b41aacae520a35ca2c318d7c6c6ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf89b41aacae520a35ca2c318d7c6c6ac">&#9670;&nbsp;</a></span>OSPI_dmaCopy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t OSPI_dmaCopy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a>&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>API to do a DMA Copy using appropriate DMA Channel opened. </p>
+<p>This API will open a DMA Channel using the appropriate DMA driver callbacks registered via Sysconfig</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>[in] An <a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
+    <tr><td class="paramname">dst</td><td>[in] Destination address to which the data is to be copied </td></tr>
+    <tr><td class="paramname">src</td><td>[in] Source address from which the data is to be copied </td></tr>
+    <tr><td class="paramname">length</td><td>[in] Data length </td></tr>
+    <tr><td class="paramname">timeout</td><td>[in] Timeout for the transaction</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on success, else failure </dd></dl>
+
+</div>
+</div>
+<a id="gac3f643327af7948039a5bdaa4359a0e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac3f643327af7948039a5bdaa4359a0e6">&#9670;&nbsp;</a></span>OSPI_isDmaInterruptEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t OSPI_isDmaInterruptEnabled </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a>&#160;</td>
+          <td class="paramname"><em>handle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>API to get the DMA Interrupt status. </p>
+<p>This API will retrieve the interrrupt status of the DMA Channel</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>[in] An <a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on success, else failure </dd></dl>
+
+</div>
+</div>
+<a id="ga1a3e97d489fd7dad034aa786de115466"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1a3e97d489fd7dad034aa786de115466">&#9670;&nbsp;</a></span>OSPI_lld_phyValidateTuningPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t OSPI_lld_phyValidateTuningPoint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a>&#160;</td>
+          <td class="paramname"><em>hOspi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>flashOffset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Validates a tuning point for the OSPI physical interface. </p>
+<p>This function verifies if the current OSPI physical interface configuration (tuning point) is valid by performing a read operation at the specified flash offset.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hOspi</td><td>OSPI LLD handle </td></tr>
+    <tr><td class="paramname">flashOffset</td><td>Flash memory offset to use for the validation read operation</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f" title="Return status when the API execution was successful.">SystemP_SUCCESS</a> on success, <a class="el" href="group__KERNEL__DPL__SYSTEM.html#gac64497676d49ad4e51a1d9513e3570d9" title="Return status when the API execution was not successful due to a failure.">SystemP_FAILURE</a> otherwise </dd></dl>
+
+</div>
+</div>
+<a id="ga016b4802e71f603a163c409035eaec2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga016b4802e71f603a163c409035eaec2c">&#9670;&nbsp;</a></span>OSPI_lld_isValidateOtpEnable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t OSPI_lld_isValidateOtpEnable </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a>&#160;</td>
+          <td class="paramname"><em>hOspi</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if OTP validation is enabled for the OSPI controller. </p>
+<p>This function determines whether the OTP (One-Time Programmable) validation feature is currently enabled in the OSPI controller.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hOspi</td><td>Handle to the OSPI controller instance</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>uint32_t Returns 1 if OTP validation is enabled, 0 otherwise </dd></dl>
+
+</div>
+</div>
+<a id="gaea64faff981b9a81edadbc7c3d60d384"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaea64faff981b9a81edadbc7c3d60d384">&#9670;&nbsp;</a></span>OSPI_lld_setFrequency()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t OSPI_lld_setFrequency </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a>&#160;</td>
+          <td class="paramname"><em>hOspi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>inputClkFreq</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the operating frequency for the OSPI peripheral. </p>
+<p>This function configures the OSPI controller to operate at the specified frequency based on the input clock frequency provided.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hOspi</td><td>OSPI LLD handle </td></tr>
+    <tr><td class="paramname">inputClkFreq</td><td>Input clock frequency in Hz</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on success, error code on failure </dd></dl>
+
+</div>
+</div>
+<a id="ga4344e2f746fbd1a7d7bfc352d065dc3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4344e2f746fbd1a7d7bfc352d065dc3c">&#9670;&nbsp;</a></span>OSPI_lld_setDelays()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t OSPI_lld_setDelays </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a>&#160;</td>
+          <td class="paramname"><em>hOspi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>inputClkFreq</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets timing delays for the OSPI interface based on input clock frequency. </p>
+<p>This function configures the appropriate timing delays for the OSPI interface to ensure reliable communication with external memory devices. The delays are calculated based on the provided input clock frequency.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hOspi</td><td>OSPI LLD handle </td></tr>
+    <tr><td class="paramname">inputClkFreq</td><td>Input clock frequency in Hz</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on success, error code on failure </dd></dl>
+
+</div>
+</div>
+<a id="gae0f6320ae6158bf639a53d885e622e92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae0f6320ae6158bf639a53d885e622e92">&#9670;&nbsp;</a></span>OSPI_lld_setBaudRateDiv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t OSPI_lld_setBaudRateDiv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a>&#160;</td>
+          <td class="paramname"><em>hOspi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baudRateDiv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the baud rate divider for OSPI communication. </p>
+<p>This function configures the baud rate divider to control the OSPI clock frequency. The actual OSPI clock frequency is determined by dividing the input clock frequency by the specified baud rate divider.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hOspi</td><td>OSPI LLD handle </td></tr>
+    <tr><td class="paramname">baudRateDiv</td><td>Baud rate divider value</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on success, error code on failure </dd></dl>
 
 </div>
 </div>

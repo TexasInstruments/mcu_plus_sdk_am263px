@@ -92,20 +92,20 @@ $(document).ready(function(){initNavTree('KERNEL_NORTOS_PAGE.html',''); initResi
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md698">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md699">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md700">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md701">Features Not Supported</a></li>
-<li class="level1"><a href="#autotoc_md702">Important files and directory structure</a></li>
+<ul><li class="level1"><a href="#autotoc_md742">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md743">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md744">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md745">Features Not Supported</a></li>
+<li class="level1"><a href="#autotoc_md746">Important files and directory structure</a></li>
 <li class="level1"><a href="#NORTOS_ADDITIONAL_REFERENCES">Additional References</a></li>
-<li class="level1"><a href="#autotoc_md703">See also</a></li>
+<li class="level1"><a href="#autotoc_md747">See also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_os_nortos"></a></p>
-<h1><a class="anchor" id="autotoc_md698"></a>
+<h1><a class="anchor" id="autotoc_md742"></a>
 Introduction</h1>
 <p>NORTOS is a SW module that implements APIs which allow the upper layers of SW to run in no-RTOS mode. i.e without any RTOS. The NO RTOS APIs are implemented underneath the <a class="el" href="KERNEL_DPL_PAGE.html">Driver Porting Layer (DPL)</a> APIs. This allows the device drivers to run either in no-RTOS mode or with a RTOS.</p>
-<h1><a class="anchor" id="autotoc_md699"></a>
+<h1><a class="anchor" id="autotoc_md743"></a>
 Features Supported</h1>
 <p>Common across all CPUs,</p><ul>
 <li>Clock APIs to initialize a system tick ISR and allow SW to create multiple SW timers using a single underlying HW timer.</li>
@@ -143,7 +143,7 @@ Features Supported</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md700"></a>
+<h1><a class="anchor" id="autotoc_md744"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <p>SysConfig can be used to configure below modules with NORTOS</p><ul>
@@ -153,7 +153,7 @@ SysConfig Features</h1>
 <li>RAT to setup address translation regions, needed for M4F</li>
 <li>Timer to setup HW timer available on the SOC, including enabling timer interrupt and ISR registration</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md701"></a>
+<h1><a class="anchor" id="autotoc_md745"></a>
 Features Not Supported</h1>
 <ul>
 <li>Task APIs are not supported in NORTOS mode. Task APIs necessarily need a RTOS and cannot be used in no-RTOS mode</li>
@@ -170,7 +170,7 @@ Features Not Supported</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md702"></a>
+<h1><a class="anchor" id="autotoc_md746"></a>
 Important files and directory structure</h1>
 <table class="doxtable">
 <tr>
@@ -222,7 +222,7 @@ Additional References</h1>
 <p class="endtd"></p>
 </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md703"></a>
+<h1><a class="anchor" id="autotoc_md747"></a>
 See also</h1>
 <p><a class="el" href="KERNEL_DPL_PAGE.html">Driver Porting Layer (DPL)</a> </p>
 </div></div><!-- contents -->

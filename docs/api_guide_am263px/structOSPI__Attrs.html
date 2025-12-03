@@ -102,6 +102,10 @@ Data Fields</h2></td></tr>
 <tr class="separator:a712bae2c500bef1f5d04c6a15b4457ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2758e32ddbddeb1e3127f545aecfbcbc"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPI__Attrs.html#a2758e32ddbddeb1e3127f545aecfbcbc">dataBaseAddr</a></td></tr>
 <tr class="separator:a2758e32ddbddeb1e3127f545aecfbcbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24bdc7cf61b005ceeb002b689bcb26d5"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPI__Attrs.html#a24bdc7cf61b005ceeb002b689bcb26d5">moduleId</a></td></tr>
+<tr class="separator:a24bdc7cf61b005ceeb002b689bcb26d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a3160e9cf4411544760f39970bb42eb"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPI__Attrs.html#a3a3160e9cf4411544760f39970bb42eb">clkId</a></td></tr>
+<tr class="separator:a3a3160e9cf4411544760f39970bb42eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a899a378953a89c69645e3598f40da22c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPI__Attrs.html#a899a378953a89c69645e3598f40da22c">inputClkFreq</a></td></tr>
 <tr class="separator:a899a378953a89c69645e3598f40da22c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b510ab68c9354ac6c26290bb2adb9ab"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPI__Attrs.html#a3b510ab68c9354ac6c26290bb2adb9ab">protocol</a></td></tr>
@@ -128,6 +132,8 @@ Data Fields</h2></td></tr>
 <tr class="separator:a6663207c76e3abe9f8013d9cd26859f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae957c3b4d924a730b7006f920b904060"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPI__Attrs.html#ae957c3b4d924a730b7006f920b904060">baudRateDiv</a></td></tr>
 <tr class="separator:ae957c3b4d924a730b7006f920b904060"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af85d19d34e88ea54cda7fecd8e00717c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPI__Attrs.html#af85d19d34e88ea54cda7fecd8e00717c">validateOtp</a></td></tr>
+<tr class="separator:af85d19d34e88ea54cda7fecd8e00717c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2335c7d39e1e96078e2e6392b07b4b1d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structOSPI__AddrRegion.html">OSPI_AddrRegion</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPI__Attrs.html#a2335c7d39e1e96078e2e6392b07b4b1d">dmaRestrictedRegions</a></td></tr>
 <tr class="separator:a2335c7d39e1e96078e2e6392b07b4b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65a17ba9b21d45bb1c1fe71da8050094"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structOSPI__PhyConfiguration.html">OSPI_PhyConfiguration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPI__Attrs.html#a65a17ba9b21d45bb1c1fe71da8050094">phyConfiguration</a></td></tr>
@@ -161,6 +167,36 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Base address of the OSPI flash </p>
+
+</div>
+</div>
+<a id="a24bdc7cf61b005ceeb002b689bcb26d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24bdc7cf61b005ceeb002b689bcb26d5">&#9670;&nbsp;</a></span>moduleId</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t OSPI_Attrs::moduleId</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>OSPI Module Id </p>
+
+</div>
+</div>
+<a id="a3a3160e9cf4411544760f39970bb42eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a3160e9cf4411544760f39970bb42eb">&#9670;&nbsp;</a></span>clkId</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t OSPI_Attrs::clkId</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>OSPI Clock Id </p>
 
 </div>
 </div>
@@ -356,6 +392,21 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Baud-rate divisor to derive DQS and other output clks </p>
+
+</div>
+</div>
+<a id="af85d19d34e88ea54cda7fecd8e00717c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af85d19d34e88ea54cda7fecd8e00717c">&#9670;&nbsp;</a></span>validateOtp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t OSPI_Attrs::validateOtp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Enable Phy Tuning Point validatation </p>
 
 </div>
 </div>

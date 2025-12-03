@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('SDL_DPL_PAGE.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1391">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1392">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1393">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1394">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1395">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1396">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1462">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1463">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1464">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1465">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1466">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1467">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_sdl_dpl"></a></p>
 <p>The SDL requires the application to provide an DPL implementation for various functionalities in order to keep SDL as OS-agnostic. Primarily, the SDL requires DPL implementations for interrupt registration and enable/disable, and also for a delay mechanism needed for POK programming.</p>
-<h1><a class="anchor" id="autotoc_md1391"></a>
+<h1><a class="anchor" id="autotoc_md1462"></a>
 Features Supported</h1>
 <p>The SDL DPL layer provides support for the application to define the following functionalities to be used by SDL:</p>
 <ul>
@@ -112,22 +112,22 @@ Features Supported</h1>
 <li>Delay</li>
 </ul>
 <p>These features are provided by the application by calling <a class="el" href="group__SDL__DPL__MODULE.html#ga4538516a80bcb6c5af394a68e7b91fbb" title="DPL init.">SDL_DPL_init()</a> with the appropriate function pointers.</p>
-<h1><a class="anchor" id="autotoc_md1392"></a>
+<h1><a class="anchor" id="autotoc_md1463"></a>
 SysConfig Features</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1393"></a>
+<h1><a class="anchor" id="autotoc_md1464"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1394"></a>
+<h1><a class="anchor" id="autotoc_md1465"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li><a class="el" href="group__SDL__DPL__MODULE.html#ga4538516a80bcb6c5af394a68e7b91fbb" title="DPL init.">SDL_DPL_init()</a> must be called before using any SDL module that utilizes the SDL DPL APIs.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1395"></a>
+<h1><a class="anchor" id="autotoc_md1466"></a>
 Example Usage</h1>
 <p>The SDL provides a sample implementation of these APIs as part of the SDL examples. The sample implementation re-uses PDK DPL APIs from the SDK in order to provide the services. This is verified with the following Operating Systems:</p>
 <ul>
@@ -202,7 +202,7 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> ret;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1396"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1467"></a>
 API</h1>
 <p><a class="el" href="group__SDL__DPL__MODULE.html">APIs for SDL DPL</a> </p>
 </div></div><!-- contents -->

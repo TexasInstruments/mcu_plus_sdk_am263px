@@ -92,29 +92,29 @@ $(document).ready(function(){initNavTree('SECURE_BOOT.html',''); initResizable()
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md370">Secure Devices and Secure Boot: An Introduction</a></li>
-<li class="level1"><a href="#autotoc_md371">Secure Boot Process</a></li>
-<li class="level1"><a href="#autotoc_md372">Keyring Support</a></li>
-<li class="level1"><a href="#autotoc_md373">Secure Boot Support in SDK</a><ul><li class="level2"><a href="#autotoc_md374">Device configuration file</a></li>
-<li class="level2"><a href="#autotoc_md375">Signing tool</a></li>
-<li class="level2"><a href="#autotoc_md376">Generating Secure Boot Image</a><ul><li class="level3"><a href="#autotoc_md377">HSMRt Image Generation</a></li>
+<ul><li class="level1"><a href="#autotoc_md414">Secure Devices and Secure Boot: An Introduction</a></li>
+<li class="level1"><a href="#autotoc_md415">Secure Boot Process</a></li>
+<li class="level1"><a href="#autotoc_md416">Keyring Support</a></li>
+<li class="level1"><a href="#autotoc_md417">Secure Boot Support in SDK</a><ul><li class="level2"><a href="#autotoc_md418">Device configuration file</a></li>
+<li class="level2"><a href="#autotoc_md419">Signing tool</a></li>
+<li class="level2"><a href="#autotoc_md420">Generating Secure Boot Image</a><ul><li class="level3"><a href="#autotoc_md421">HSMRt Image Generation</a></li>
 <li class="level3"><a href="#SBL_SECURE_IMAGE">SBL Image Generation</a></li>
-<li class="level3"><a href="#APPLICATION_SECURE_IMAGE">Secure application image Generation</a><ul><li class="level4"><a href="#autotoc_md378">RSASSA-PSS Support</a></li>
-<li class="level4"><a href="#autotoc_md379">Auxiliary Keys Support</a></li>
+<li class="level3"><a href="#APPLICATION_SECURE_IMAGE">Secure application image Generation</a><ul><li class="level4"><a href="#autotoc_md422">RSASSA-PSS Support</a></li>
+<li class="level4"><a href="#autotoc_md423">Auxiliary Keys Support</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md380">Encryption support for application images</a><ul><li class="level3"><a href="#autotoc_md381">Encryption support for application images using auxiliary keys</a></li>
+<li class="level2"><a href="#autotoc_md424">Encryption support for application images</a><ul><li class="level3"><a href="#autotoc_md425">Encryption support for application images using auxiliary keys</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md382">Limitations in Secure Boot</a></li>
+<li class="level1"><a href="#autotoc_md426">Limitations in Secure Boot</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_secure_boot"></a></p>
-<h1><a class="anchor" id="autotoc_md370"></a>
+<h1><a class="anchor" id="autotoc_md414"></a>
 Secure Devices and Secure Boot: An Introduction</h1>
 <p>To put it simply, <b>secure boot</b> refers to booting application images in a secure way. Secure boot is a feature/service available in <b>secure devices</b>.</p>
 <p>In secure device types (HS) there are two subtypes:</p>
@@ -123,14 +123,14 @@ Secure Devices and Secure Boot: An Introduction</h1>
 <li>Security Enforced (SE)</li>
 </ol>
 <p>HS device type have FS and SE subtypes. Out of the two subtypes, FS and SE, this guide talks about secure boot in an <b>HS-SE</b> device. If the secure device received is an <b>HS-FS</b> subtype, it needs to be converted to an HS-SE variant with the customer keys burnt into the device eFUSEs. This is done using a special piece of software called an OTP keywriter. Keywriter documentation is out of scope for this guide.</p>
-<h1><a class="anchor" id="autotoc_md371"></a>
+<h1><a class="anchor" id="autotoc_md415"></a>
 Secure Boot Process</h1>
 <p>Secure boot process, like the normal boot, consists of two stages - ROM loading and SBL loading. ROM loading is when the boot ROM loads the HSM runtime binary onto the HSM core, and the signed SBL binary into the primary boot core, which in most cases is an ARM Cortex R5F. SBL loading is when the SBL reads the signed application image from a boot media, authenticates it, decrypts it, and boots it. Here we describe how the secure process takes place in an HS-SE device.</p>
 <p> <style>div.image img[src="boot_flow_am263x.png"]{width:60%}</style> </p><div class="image">
 <img src="boot_flow_am263x.png" alt=""/>
 <div class="caption">
 HIGH LEVEL BOOTFLOW</div></div>
-<h1><a class="anchor" id="autotoc_md372"></a>
+<h1><a class="anchor" id="autotoc_md416"></a>
 Keyring Support</h1>
 <p>The keyring is a set of keys which can be imported by SBL after importing the HSM runtime binary on an <b>HS-SE</b> device. For importing keyring TIFS-MCU expects an X.509 certificate signed by customer active root of trust (MPK). If X.509 certificate is containing symmetric keyring extension, the symmetric keyring blob must be encrypted with active root key. For certificate generation script usage, see <a class="el" href="TOOLS_SECURITY.html#KEYRING_CERT_GEN_PYTHON_SCRIPT">Keyring Cert Generation Python Script</a>.</p>
 <p>TIFS-MCU supports application authentication using the following algorithms with Keyring.</p>
@@ -145,9 +145,9 @@ Keyring Support</h1>
 <td>ECDSA </td><td>P-256, P-384, P-521, BrainpoolP512t1 </td><td>SHA256, SHA384, SHA512  </td></tr>
 </table>
 <p>For more information, please refer TIFS-MCU documentation</p>
-<h1><a class="anchor" id="autotoc_md373"></a>
+<h1><a class="anchor" id="autotoc_md417"></a>
 Secure Boot Support in SDK</h1>
-<h2><a class="anchor" id="autotoc_md374"></a>
+<h2><a class="anchor" id="autotoc_md418"></a>
 Device configuration file</h2>
 <p>To make the secure/non-secure differences seamless for the user, a configuration file is provided at <code>${SDK_INSTALL_PATH}/devconfig/devconfig.mak</code>. In this configuration file, you can set certain options like the device type, keys to be used for signing and encryption etc. By default they will point to the dummy customer MPKs and MEKs but if you're using a production device with your own keys, please change the paths here to point to the right key files. Configuration of this file is currently manual, this will be made configurable by a GUI in an upcoming release.</p>
 <p>The devconfig.mak file looks something like this:</p>
@@ -205,7 +205,7 @@ Device configuration file</h2>
 <div class="line">APP_SIGNING_KEY_KEYRING_ID?=0</div>
 <div class="line">APP_ENCRYPTION_KEY_KEYRING_ID?=0</div>
 </div><!-- fragment --><p>This file will be included in all example makefiles</p>
-<h2><a class="anchor" id="autotoc_md375"></a>
+<h2><a class="anchor" id="autotoc_md419"></a>
 Signing tool</h2>
 <p>For signing the binaries, two different scripts are used:</p>
 <ol type="1">
@@ -214,9 +214,9 @@ Signing tool</h2>
 <p class="startli">For more details on the usage of the script, see <a class="el" href="TOOLS_SECURITY.html#TOOLS_BOOT_SIGNING">Signing Scripts</a></p>
 </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md376"></a>
+<h2><a class="anchor" id="autotoc_md420"></a>
 Generating Secure Boot Image</h2>
-<h3><a class="anchor" id="autotoc_md377"></a>
+<h3><a class="anchor" id="autotoc_md421"></a>
 HSMRt Image Generation</h3>
 <dl class="section note"><dt>Note</dt><dd>The out of box HSMRt image that is provided, is for HSFS device. In order to do a complete secure boot, HSMRt needs to be rebuilt with TIFS-MCU package for HSSE device. For more information please follow the build steps for HSMRt image in TIFS-MCU documentation.</dd></dl>
 <h3><a class="anchor" id="SBL_SECURE_IMAGE"></a>
@@ -339,12 +339,12 @@ Secure application image Generation</h3>
 <div class="line">enc_key_id  = INTEGER:0</div>
 </div><!-- fragment --><p>The application images can be built with the following flags for appending the X509 certificate for HS-SE devices:</p>
 <div class="fragment"><div class="line">make -s -C examples/hello_world/am263x-cc/r5fss0-0_nortos/ti-arm-clang all DEVICE=am263x DEVICE_TYPE=HS</div>
-</div><!-- fragment --><h4><a class="anchor" id="autotoc_md378"></a>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md422"></a>
 RSASSA-PSS Support</h4>
 <p>The RSASSA-PSS algorithm can be used instead of the default RSA PKCS#1v1.5 signature algorithm by specifying RSASSAPSS_ENABLED=yes and APP_SIGNING_SALT_LENGTH. Maximum supported salt length value for RSASSA-PSS is <b>255</b>.</p>
 <p>See the command below for reference.</p>
 <div class="fragment"><div class="line">make -s -C examples/hello_world/am263x-cc/r5fss0-0_nortos/ti-arm-clang all DEVICE=am263x DEVICE_TYPE=HS RSASSAPSS_ENABLED=yes APP_SIGNING_SALT_LENGTH=64</div>
-</div><!-- fragment --><h4><a class="anchor" id="autotoc_md379"></a>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md423"></a>
 Auxiliary Keys Support</h4>
 <dl class="section note"><dt>Note</dt><dd>Sample auxiliary keys are present at location <code>${SDK_INSTALL_PATH}/tools/keyring_cert/aux_keys</code>. </dd>
 <dd>
@@ -393,7 +393,7 @@ RSASSA-PSS algorithm can be used with RSA auxiliary keys.</dd></dl>
 <div class="line">[ keyring_index ]</div>
 <div class="line">sign_key_id = INTEGER:38</div>
 <div class="line">enc_key_id  = INTEGER:0</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md380"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md424"></a>
 Encryption support for application images</h2>
 <dl class="section note"><dt>Note</dt><dd><ul>
 <li>Encrypted MCELF application images retain header informations which allows them to be parsed by tools like readelf.</li>
@@ -451,7 +451,7 @@ Encryption support for application images</h2>
 <div class="line">randomString =  FORMAT:HEX,OCT:347c0707c36290697d294770da607d43d02d41242eadcd718bb825589d437f22</div>
 <div class="line">iterationCnt =  INTEGER:1</div>
 <div class="line">salt         =  FORMAT:HEX,OCT:acca65ded29296fea498ab8a9a15aaa27445ab7c75757c99125254619e4a513b</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md381"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md425"></a>
 Encryption support for application images using auxiliary keys</h3>
 <p>If imported aes key is available at index 32 in keyring, the application images can be encrypted with the following flags using auxiliary keys support:</p>
 <div class="fragment"><div class="line">make -s -C examples/hello_world/am263x-cc/r5fss0-0_nortos/ti-arm-clang all DEVICE=am263x DEVICE_TYPE=HS ENC_ENABLED=yes APP_ENCRYPTION_KEY_KEYRING_ID=32 APP_ENCRYPTION_KEY=/home/fargo/ti/mcu_plus_sdk/source/security/security_common/tools/keyring_cert/aux_keys/aes128.key</div>
@@ -503,7 +503,7 @@ Encryption support for application images using auxiliary keys</h3>
 <div class="line">randomString =  FORMAT:HEX,OCT:cfdcd84bddbc1ecfdb74bfa6abddb3f6bdb329d99f223fd938c9eaf3b84aacb3</div>
 <div class="line">iterationCnt =  INTEGER:1</div>
 <div class="line">salt         =  FORMAT:HEX,OCT:acca65ded29296fea498ab8a9a15aaa27445ab7c75757c99125254619e4a513b</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md382"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md426"></a>
 Limitations in Secure Boot</h1>
 <ul>
 <li><b>Authentication of application image directly from flash in SBL QSPI</b> : Only authentication of application image from flash is supported in SBL QSPI. This is susceptible to Man-in-The-Middle (MiTM) attacks if Flash is overwritten post-auth.</li>

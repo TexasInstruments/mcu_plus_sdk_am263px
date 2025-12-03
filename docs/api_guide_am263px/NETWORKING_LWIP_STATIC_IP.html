@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('NETWORKING_LWIP_STATIC_IP.html',''); i
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md286">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md287">Details</a><ul><ul><ul><li class="level4"><a href="#autotoc_md288">To Configure DHCP</a></li>
-<li class="level4"><a href="#autotoc_md289">To Configure Static IP</a></li>
+<ul><li class="level1"><a href="#autotoc_md330">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md331">Details</a><ul><ul><ul><li class="level4"><a href="#autotoc_md332">To Configure DHCP</a></li>
+<li class="level4"><a href="#autotoc_md333">To Configure Static IP</a></li>
 </ul>
 </ul>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md290">See Also</a></li>
+<li class="level1"><a href="#autotoc_md334">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_enet_lwip_static_ip"></a></p>
-<h1><a class="anchor" id="autotoc_md286"></a>
+<h1><a class="anchor" id="autotoc_md330"></a>
 Introduction</h1>
 <p>A network interface (NettIf) in LwIP can only have one IP address assigned to it. There are three methods supported by lwIP for assigning the proper IP address to an interface:</p>
 <p>Static IP: The IP address for the netif can be set either at initialization or afterwards. DHCP: <a href="https://lwip.fandom.com/wiki/DHCP">DHCP</a> is an optional protocol to obtain an IP address from a DHCP server. AUTOIP: <a href="https://lwip.fandom.com/wiki/AUTOIP">AUTOIP</a> is an optional protocol to pick an IP address on a local subnet without needing a server to assign addresses.</p>
@@ -113,9 +113,9 @@ Introduction</h1>
 <li>Disable AUTOIP, by removing calls to <code>autoip_start</code> in the appliction.</li>
 <li>Call <code>netif_set_addr()</code> instead of <code>dhcp_start</code> call. in <code>App_allocateIPAddress</code> , as shown below.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md287"></a>
+<h1><a class="anchor" id="autotoc_md331"></a>
 Details</h1>
-<h4><a class="anchor" id="autotoc_md288"></a>
+<h4><a class="anchor" id="autotoc_md332"></a>
 To Configure DHCP</h4>
 <div class="fragment"><div class="line">static void App_allocateIPAddress()</div>
 <div class="line">{</div>
@@ -130,7 +130,7 @@ To Configure DHCP</h4>
 <div class="line">    sys_unlock_tcpip_core();</div>
 <div class="line">    return;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h4><a class="anchor" id="autotoc_md289"></a>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md333"></a>
 To Configure Static IP</h4>
 <div class="fragment"><div class="line">#define IP_ADDR_POOL_COUNT  (2U)</div>
 <div class="line"> </div>
@@ -155,7 +155,7 @@ To Configure Static IP</h4>
 <div class="line">    sys_unlock_tcpip_core();</div>
 <div class="line">    return;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md290"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md334"></a>
 See Also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> </p>
 </div></div><!-- contents -->

@@ -202,6 +202,8 @@ OSPI_Handle OSPI_open(uint32_t index, const OSPI_Params *openParams)
 
         ospilldInitHandle->dataBaseAddr          = attrs->dataBaseAddr;
         ospilldInitHandle->inputClkFreq          = attrs->inputClkFreq;
+        ospilldInitHandle->moduleId              = attrs->moduleId;
+        ospilldInitHandle->clkId                 = attrs->clkId;
         ospilldInitHandle->intrNum               = attrs->intrNum;
         ospilldInitHandle->intrEnable            = attrs->intrEnable;
         ospilldInitHandle->intrPriority          = attrs->intrPriority;
@@ -214,6 +216,7 @@ OSPI_Handle OSPI_open(uint32_t index, const OSPI_Params *openParams)
         ospilldInitHandle->baudRateDiv           = attrs->baudRateDiv;
         ospilldInitHandle->dmaRestrictedRegions  = attrs->dmaRestrictedRegions;
         ospilldInitHandle->phyConfiguration      = attrs->phyConfiguration;
+        ospilldInitHandle->validateOtp           = attrs->validateOtp;
 
         memcpy(ospilldInitHandle->devDelays,attrs->devDelays, resMemoryCount * sizeof(uint32_t));       
 
@@ -222,14 +225,13 @@ OSPI_Handle OSPI_open(uint32_t index, const OSPI_Params *openParams)
         {
             ospilldInitHandle->ospiDmaHandle    = (OSPI_DmaHandle) dmaConfig;
             ospilldInitHandle->ospiDmaChConfig  = (OSPI_DmaChConfig) dmaConfig->ospiDmaArgs;
-            dmaConfig->ospiDrvHandle            = (OSPI_DrvHandle) ospilldHandle;
 
             if (NULL != ospilldInitHandle->ospiDmaHandle)
             {
                 /* Program OSPI instance according the user config */
                 status += OSPI_lld_initDma(ospilldHandle);
 
-                dmaInterrupt = OSPI_isDmaInterruptEnabled(ospilldInitHandle->ospiDmaHandle);
+                dmaInterrupt = OSPI_isDmaInterruptEnabled(ospilldHandle);
                 if (dmaInterrupt == OSPI_TRUE)
                 {
                     ospilldHandle->readCompleteCallback = &OSPI_dmaInterruptCallback;
@@ -865,7 +867,7 @@ int32_t OSPI_readDirect(OSPI_Handle handle, OSPI_Transaction *trans)
         hOspi = &obj->ospilldObject;
         if (hOspi->hOspiInit->dmaEnable == OSPI_TRUE)
         {
-            dmaInterruptStatus = OSPI_isDmaInterruptEnabled(hOspi->hOspiInit->ospiDmaHandle);
+            dmaInterruptStatus = OSPI_isDmaInterruptEnabled(hOspi);
 
             status = OSPI_lld_readDirectDma(hOspi, trans);
 
@@ -1115,4 +1117,68 @@ static void OSPI_interruptCallback(void *args)
     OSPILLD_Handle handle = (OSPILLD_Handle)args;
     OSPI_Object *obj    = ((OSPI_Config *)handle->args)->object;
     (void) SemaphoreP_post(&obj->transferSemObj);
+}
+
+uint32_t OSPI_isValidateOtpEnable(OSPI_Handle handle)
+{
+    uint32_t retVal = 0U;
+    OSPILLD_Handle hOspi;
+    if((OSPI_Handle) NULL != handle)
+    {
+        OSPI_Object *obj = ((OSPI_Config *)handle)->object;
+        hOspi = &obj->ospilldObject;
+        retVal = OSPI_lld_isValidateOtpEnable(hOspi);
+    }
+    return retVal;
+}
+
+int32_t OSPI_setFrequency(OSPI_Handle handle, uint64_t inputClkFreq)
+{
+    int32_t status = SystemP_SUCCESS;
+    OSPILLD_Handle hOspi;
+    if((OSPI_Handle) NULL != handle)
+    {
+        OSPI_Object *obj = ((OSPI_Config *)handle)->object;
+        hOspi = &obj->ospilldObject;
+        status = OSPI_lld_setFrequency(hOspi, inputClkFreq);
+    }
+    else
+    {
+        status = SystemP_FAILURE;
+    }
+    return status;
+}
+
+int32_t OSPI_setDelays(OSPI_Handle handle, uint32_t inputClkFreq)
+{
+    int32_t status = SystemP_SUCCESS;
+    OSPILLD_Handle hOspi;
+    if((OSPI_Handle) NULL != handle)
+    {
+        OSPI_Object *obj = ((OSPI_Config *)handle)->object;
+        hOspi = &obj->ospilldObject;
+        status = OSPI_lld_setDelays(hOspi, inputClkFreq);
+    }
+    else
+    {
+        status = SystemP_FAILURE;
+    }
+    return status;
+}
+
+int32_t OSPI_setBaudRateDiv(OSPI_Handle handle, uint32_t baudRateDiv)
+{
+    int32_t status = SystemP_SUCCESS;
+    OSPILLD_Handle hOspi;
+    if((OSPI_Handle) NULL != handle)
+    {
+        OSPI_Object *obj = ((OSPI_Config *)handle)->object;
+        hOspi = &obj->ospilldObject;
+        status = OSPI_lld_setBaudRateDiv(hOspi, baudRateDiv);
+    }
+    else
+    {
+        status = SystemP_FAILURE;
+    }
+    return status;
 }

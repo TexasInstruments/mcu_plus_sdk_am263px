@@ -36,30 +36,30 @@ int cri_pke_get_true_random(void *buf, size_t len)
 	size_t i;
 	uint32_t rand_val[4U];
 
-	for(i = 0; i < len; i=i+16)
+	for(i = 0; i < len; i=i+16U)
 	{
-		if((len-i)<16)
+		if((len-i)<16U)
 		{
 			(void)RNG_read(pke_rng_handle, &rand_val[0]);
-			if((len-i)%4U == 0)
+			if((len-i)%4U == 0U)
 			{
-				memcpy((uint8_t *)buf + i, rand_val, (len-i));
+				(void)memcpy((uint8_t *)buf + i, rand_val, (len-i));
 			}
 			else
 			{
-				if((len-i)/4U > 0)
+				if((len-i)/4U > 0U)
 				{
 					((uint32_t *)buf + (i/sizeof(uint32_t)))[0U] = rand_val[0U];
 				}
-				if((len-i)/4U > 1)
+				if((len-i)/4U > 1U)
 				{
 					((uint32_t *)buf + (i/sizeof(uint32_t)))[1U] = rand_val[1U];
 				}
-				if((len-i)/4U > 2)
+				if((len-i)/4U > 2U)
 				{
 					((uint32_t *)buf + (i/sizeof(uint32_t)))[2U] = rand_val[2U];
 				}
-				if((len-i)/4U > 3)
+				if((len-i)/4U > 3U)
 				{
 					((uint32_t *)buf + (i/sizeof(uint32_t)))[3U] = rand_val[3U];
 				}
@@ -97,9 +97,9 @@ int cri_pke_get_pseudo_random(void *buf, size_t len, int32_t slot, uint32_t slot
 	if (len < MAU_READ_REG(R_MAU_MIN_LEN) * sizeof(uint64_t)) {
 		length = MAU_READ_REG(R_MAU_MIN_LEN);
 	} else {
-		length = ((len - 1) / sizeof(uint64_t)) + 1;
+		length = ((len - 1U) / sizeof(uint64_t)) + 1U;
 	}
-	bits = length * 64;
+	bits = length * 64U;
 #endif
 
 	if (slot_length < MAU_READ_REG(R_MAU_MIN_LEN)) {
@@ -121,9 +121,9 @@ int cri_pke_get_pseudo_random(void *buf, size_t len, int32_t slot, uint32_t slot
 
 	if (buf != NULL) {
 		if (slot == CRI_PKE_NO_SLOT) {
-			memcpy(buf, pke_addr(0, NULL, bits), len);
+			(void)memcpy(buf, pke_addr(0, NULL, bits), len);
 		} else {
-			memcpy(buf, pke_addr(slot, NULL, bits), len);
+			(void)memcpy(buf, pke_addr(slot, NULL, bits), len);
 		}
 	}
 err:

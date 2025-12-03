@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('SDL_DCC_PAGE.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1416">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1417">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1418">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1419">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1420">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1421">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1487">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1488">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1489">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1490">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1491">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1492">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_dcc"></a></p>
 <p>The Dual Clock Comparator (DCC) is used to determine the accuracy of a clock signal during the time executaion of an application. The DCC measure the frequency of a selectable clock sources using another input clock as a reference. The clock sources as well as the accuracy are programmed by the application.</p>
 <p>The DCC can also be configured to operate in single-shot or continuous mode. In single-shot mode, DCC performs a one-time countdown where DCC stops operation when the counters reach 0. A completion interrupt is raised and the status can be checked. In continuous mode, DCC reloads both counts with the seed value upon completion without error. In case of an error, an ESM error event is raised.</p>
-<h1><a class="anchor" id="autotoc_md1416"></a>
+<h1><a class="anchor" id="autotoc_md1487"></a>
 Features Supported</h1>
 <p>The DCC module provides the following functionality:</p>
 <ul>
@@ -116,22 +116,22 @@ Features Supported</h1>
 <li>Ability to readback the DCC static registers</li>
 </ul>
 <p>Errors detected by the DCC module during operation are reported via ESM error (application will receive via ESM application callback).</p>
-<h1><a class="anchor" id="autotoc_md1417"></a>
+<h1><a class="anchor" id="autotoc_md1488"></a>
 SysConfig Features</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1418"></a>
+<h1><a class="anchor" id="autotoc_md1489"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1419"></a>
+<h1><a class="anchor" id="autotoc_md1490"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>The Input Source clock mapping for each DCC instance can be found in the DCC section of the TRM</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1420"></a>
+<h1><a class="anchor" id="autotoc_md1491"></a>
 Example Usage</h1>
 <p>The following shows an example of SDL DCC API usage by the application.</p>
 <p>Include the below file to access the APIs</p>
@@ -200,7 +200,7 @@ Example Usage</h1>
 <div class="line">}</div>
 </div><!-- fragment --><p>Enable DCC Instance</p>
 <div class="fragment"><div class="line"><a class="code" href="group__SDL__DCC__FUNCTIONS.html#gab32dcca052b2c00250dee5ce4a4d289a">SDL_DCC_enable</a>(<a class="code" href="sdl__soc__dcc_8h.html#af6a9c3ceaa132489a5d59c7f40cf0284ad269d865c8aac741bb202e9d3ad7e8a3">SDL_DCC_INST_MSS_DCCA</a>);</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1421"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1492"></a>
 API</h1>
 <p><a class="el" href="group__SDL__DCC__MODULE.html">APIs for SDL Dual Clock Comparator(DCC)</a> </p>
 </div></div><!-- contents -->

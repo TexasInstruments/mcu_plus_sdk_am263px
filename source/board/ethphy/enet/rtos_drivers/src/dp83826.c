@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) Texas Instruments Incorporated 2020
+ *  Copyright (c) Texas Instruments Incorporated 2020 - 2025
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions
@@ -64,7 +64,10 @@ static void Dp83826_enableAutoMdix(EthPhyDrv_Handle hPhy,
 static void Dp83826_rmwExtReg(EthPhyDrv_Handle hPhy,
                               uint32_t reg,
                               uint16_t mask,
-                              uint16_t val);                                   
+                              uint16_t val);
+
+static int32_t Dp83826_getSpeedDuplex (EthPhyDrv_Handle hPhy,
+                                       Phy_Link_SpeedDuplex* pConfig);                              
 
 /* ========================================================================== */
 /*                          Function Declarations                             */
@@ -90,20 +93,24 @@ Phy_DrvObj_t gEnetPhyDrvDp83826 =
         .readExtReg         = GenericPhy_readExtReg,
         .writeExtReg        = GenericPhy_writeExtReg,
         .printRegs          = Dp83826_printRegs,
-    	.adjPtpFreq              = NULL,
-    	.adjPtpPhase             = NULL,
-    	.getPtpTime              = NULL,
-    	.setPtpTime              = NULL,
-    	.getPtpTxTime            = NULL,
-    	.getPtpRxTime            = NULL,
-    	.waitPtpTxTime           = NULL,
-    	.procStatusFrame         = NULL,
-    	.getStatusFrameEthHeader = NULL,
-    	.enablePtp               = NULL,
-    	.tickDriver              = NULL,
-    	.enableEventCapture      = NULL,
-    	.enableTriggerOutput     = NULL,
-    	.getEventTs              = NULL,        
+        .adjPtpFreq              = NULL,
+        .adjPtpPhase             = NULL,
+        .getPtpTime              = NULL,
+        .setPtpTime              = NULL,
+        .getPtpTxTime            = NULL,
+        .getPtpRxTime            = NULL,
+        .waitPtpTxTime           = NULL,
+        .procStatusFrame         = NULL,
+        .getStatusFrameEthHeader = NULL,
+        .enablePtp               = NULL,
+        .tickDriver              = NULL,
+        .enableEventCapture      = NULL,
+        .enableTriggerOutput     = NULL,
+        .getEventTs              = NULL,
+        .configMediaClock        = NULL,
+        .nudgeCodecClock         = NULL,
+        .getSpeedDuplex          = Dp83826_getSpeedDuplex,
+
     }
 };
 
@@ -116,9 +123,9 @@ void Dp83826_initCfg(Dp83826_Cfg *cfg)
     /* No extended config parameters at the moment */
 }
 
-void Dp83826_bind(EthPhyDrv_Handle* hPhy, 
-					uint8_t phyAddr, 
-					Phy_RegAccessCb_t* pRegAccessCb)
+void Dp83826_bind(EthPhyDrv_Handle* hPhy,
+                    uint8_t phyAddr,
+                    Phy_RegAccessCb_t* pRegAccessCb)
 {
     Phy_Obj_t* pObj = (Phy_Obj_t*) hPhy;
     pObj->phyAddr = phyAddr;
@@ -128,7 +135,7 @@ void Dp83826_bind(EthPhyDrv_Handle* hPhy,
 bool Dp83826_isPhyDevSupported(EthPhyDrv_Handle hPhy,
                                 const void *pVersion)
 {
-	const Phy_Version *version = (Phy_Version *)pVersion;
+    const Phy_Version *version = (Phy_Version *)pVersion;
     bool supported = false;
 
     if ((version->oui == Dp83826_OUI) &&
@@ -142,7 +149,7 @@ bool Dp83826_isPhyDevSupported(EthPhyDrv_Handle hPhy,
 }
 
 bool Dp83826_isMacModeSupported(EthPhyDrv_Handle hPhy,
-								Phy_Mii mii)
+                                Phy_Mii mii)
 {
     bool supported;
 
@@ -167,11 +174,11 @@ bool Dp83826_isMacModeSupported(EthPhyDrv_Handle hPhy,
 int32_t Dp83826_config(EthPhyDrv_Handle hPhy,
                         const void *pExtCfg,
                         const uint32_t extCfgSize,
-                        Phy_Mii mii, 
+                        Phy_Mii mii,
                         bool loopbackEn)
 {
     uint8_t phyAddr = PhyPriv_getPhyAddr(hPhy);
-	
+
     const Dp83826_Cfg *extendedCfg = (const Dp83826_Cfg *)pExtCfg;
     uint32_t extendedCfgSize = extCfgSize;
     bool enableAutoMdix;
@@ -211,7 +218,7 @@ static void Dp83826_enableAutoMdix(EthPhyDrv_Handle hPhy,
                                    bool enable)
 {
     Phy_RegAccessCb_t* pRegAccessApi = PhyPriv_getRegAccessApi(hPhy);
-	
+
     PHYTRACE_DBG("PHY %u: %s automatic cross-over\n",
                  PhyPriv_getPhyAddr(hPhy), enable ? "enable" : "disable");
                   pRegAccessApi->EnetPhy_rmwReg(pRegAccessApi->pArgs, Dp83826_PHYCR,
@@ -294,4 +301,61 @@ static void Dp83826_rmwExtReg(EthPhyDrv_Handle hPhy,
         pRegAccessApi->EnetPhy_writeReg(pRegAccessApi->pArgs, PHY_MMD_CR, devad | MMD_CR_DATA_NOPOSTINC);
         pRegAccessApi->EnetPhy_writeReg(pRegAccessApi->pArgs, PHY_MMD_DR, data);
     }
+}
+
+int32_t Dp83826_getSpeedDuplex (EthPhyDrv_Handle hPhy, Phy_Link_SpeedDuplex* pConfig)
+{
+    int32_t  status;
+    uint32_t speed;
+    uint16_t tmp;
+    uint16_t val;
+
+    Phy_RegAccessCb_t* pRegAccessApi = PhyPriv_getRegAccessApi(hPhy);
+
+    /* Restart is complete when RESET bit has self-cleared */
+    status = pRegAccessApi->EnetPhy_readReg(pRegAccessApi->pArgs, DP83826_PHYSTS, &val);
+    if (status == PHY_SOK)
+    {
+        if (val & DP83826_PHYSTS_LINK)
+        {
+            tmp = (val & PHYST_SPEEDSEL_MASK);
+
+            switch(tmp)
+            {
+                case PHYST_SPEEDSEL_10_MBPS:
+                    speed = 10;
+
+                    *pConfig = PHY_LINK_HD10;
+                    if (val & PHYST_DUPLEXMODEENV_FD)
+                    {
+                        *pConfig = PHY_LINK_FD10;
+                    }
+                    break;
+                case PHYST_SPEEDSEL_100_MBPS:
+                    speed = 100;
+
+                    *pConfig = PHY_LINK_HD100;
+                    if (val & PHYST_DUPLEXMODEENV_FD)
+                    {
+                        *pConfig = PHY_LINK_FD100;
+                    }
+                    break;
+                default:
+                    speed = 0;
+
+                    *pConfig = PHY_LINK_INVALID;
+                    break;
+            }
+        }
+        else
+        {
+            *pConfig = PHY_LINK_INVALID;
+        }
+    }
+
+    PHYTRACE_DBG("PHY %u: selected speed is %d Mbps with %s-duplex\n", PhyPriv_getPhyAddr(hPhy), speed, (val & PHYST_DUPLEXMODEENV_FD) ? "full" : "half");
+
+    (void)speed;
+
+    return status;
 }

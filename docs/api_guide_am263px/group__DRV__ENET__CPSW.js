@@ -86,6 +86,8 @@ var group__DRV__ENET__CPSW =
       [ "enableQsgmii1RDC", "structCpsw__Cfg.html#a25be1c060f61b996319e45e5104484a2", null ],
       [ "disablePhyDriver", "structCpsw__Cfg.html#a3ee6b7ca2ccd697ab6b0702ffbff69d8", null ]
     ] ],
+    [ "CPSW_COMMON_TX_MTU_DEFAULT", "group__DRV__ENET__CPSW.html#ga4f84fb4c92d0f2ae8ae13d674f42a9a7", null ],
+    [ "CPSW_ESC_PRI_LD_VAL", "group__DRV__ENET__CPSW.html#ga230c0d4f968b07113f2be4f587c0cc82", null ],
     [ "CPSW_PER_PUBLIC_IOCTL", "group__DRV__ENET__CPSW.html#ga38260bffd42c0ef43ce49eee0045ef18", null ],
     [ "CPSW_MAC_PORT_NUM", "group__DRV__ENET__CPSW.html#ga3823a3b952020b15351a2dc8aa62d9c8", null ],
     [ "CPSW_INTERVLAN_INGRESSPKT_MATCH_PORT", "group__DRV__ENET__CPSW.html#gabaee4d4af7b063f71942640d6858689b", null ],

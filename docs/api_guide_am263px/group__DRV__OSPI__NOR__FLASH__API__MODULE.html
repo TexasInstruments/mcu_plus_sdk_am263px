@@ -98,42 +98,57 @@ $(document).ready(function(){initNavTree('group__DRV__OSPI__NOR__FLASH__API__MOD
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gadb0a14dcb309721542c6a56b12c4b773"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gadb0a14dcb309721542c6a56b12c4b773">OSPI_norFlashInit1s1s1s</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a> handle)</td></tr>
+<tr class="memitem:gadb0a14dcb309721542c6a56b12c4b773"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gadb0a14dcb309721542c6a56b12c4b773">OSPI_norFlashInit1s1s1s</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle)</td></tr>
 <tr class="memdesc:gadb0a14dcb309721542c6a56b12c4b773"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function initializes the NOR flash to work in 1-1-1 mode.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gadb0a14dcb309721542c6a56b12c4b773">More...</a><br /></td></tr>
 <tr class="separator:gadb0a14dcb309721542c6a56b12c4b773"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga21478324d9a1bf773a7899b6328d6396"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga21478324d9a1bf773a7899b6328d6396">OSPI_norFlashSetCmds</a> (uint8_t rdCmd, uint8_t wrCmd, uint8_t eraseCmd)</td></tr>
 <tr class="memdesc:ga21478324d9a1bf773a7899b6328d6396"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets up internal bookkeeping variables for read, write and erase commands. This API has to be called immediately before <a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gadb0a14dcb309721542c6a56b12c4b773">OSPI_norFlashInit1s1s1s</a>.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga21478324d9a1bf773a7899b6328d6396">More...</a><br /></td></tr>
 <tr class="separator:ga21478324d9a1bf773a7899b6328d6396"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga62272fc7c39a26461d2fd507fdb00262"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga62272fc7c39a26461d2fd507fdb00262">OSPI_norFlashReadId</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a> handle, uint32_t *manufacturerId, uint32_t *deviceId)</td></tr>
+<tr class="memitem:ga62272fc7c39a26461d2fd507fdb00262"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga62272fc7c39a26461d2fd507fdb00262">OSPI_norFlashReadId</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle, uint32_t *manufacturerId, uint32_t *deviceId)</td></tr>
 <tr class="memdesc:ga62272fc7c39a26461d2fd507fdb00262"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function tries to read the JEDEC ID from the NOR flash connected to the OSPI peripheral.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga62272fc7c39a26461d2fd507fdb00262">More...</a><br /></td></tr>
 <tr class="separator:ga62272fc7c39a26461d2fd507fdb00262"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad13a8cac4ae2c44098b4efb9bef7c3b9"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gad13a8cac4ae2c44098b4efb9bef7c3b9">OSPI_norFlashWrite</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a> handle, uint32_t offset, uint8_t *buf, uint32_t len)</td></tr>
+<tr class="memitem:gad13a8cac4ae2c44098b4efb9bef7c3b9"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gad13a8cac4ae2c44098b4efb9bef7c3b9">OSPI_norFlashWrite</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle, uint32_t offset, uint8_t *buf, uint32_t len)</td></tr>
 <tr class="memdesc:gad13a8cac4ae2c44098b4efb9bef7c3b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function writes data to the flash at a specified offset.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gad13a8cac4ae2c44098b4efb9bef7c3b9">More...</a><br /></td></tr>
 <tr class="separator:gad13a8cac4ae2c44098b4efb9bef7c3b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga447cebdb3a900f51d0e8530e438be42b"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga447cebdb3a900f51d0e8530e438be42b">OSPI_norFlashRead</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a> handle, uint32_t offset, uint8_t *buf, uint32_t len)</td></tr>
+<tr class="memitem:ga447cebdb3a900f51d0e8530e438be42b"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga447cebdb3a900f51d0e8530e438be42b">OSPI_norFlashRead</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle, uint32_t offset, uint8_t *buf, uint32_t len)</td></tr>
 <tr class="memdesc:ga447cebdb3a900f51d0e8530e438be42b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function reads data from the flash from a specified offset.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga447cebdb3a900f51d0e8530e438be42b">More...</a><br /></td></tr>
 <tr class="separator:ga447cebdb3a900f51d0e8530e438be42b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaec858fb13f69ddc7c12ad43c9f5d9a33"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gaec858fb13f69ddc7c12ad43c9f5d9a33">OSPI_norFlashReadSfdp</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a> handle, uint32_t offset, uint8_t *buf, uint32_t len)</td></tr>
+<tr class="memitem:gaec858fb13f69ddc7c12ad43c9f5d9a33"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gaec858fb13f69ddc7c12ad43c9f5d9a33">OSPI_norFlashReadSfdp</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle, uint32_t offset, uint8_t *buf, uint32_t len)</td></tr>
 <tr class="memdesc:gaec858fb13f69ddc7c12ad43c9f5d9a33"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function reads SFDP table from the flash from a specified offset.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gaec858fb13f69ddc7c12ad43c9f5d9a33">More...</a><br /></td></tr>
 <tr class="separator:gaec858fb13f69ddc7c12ad43c9f5d9a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga198e9b4d58875e23c205a1352784655f"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga198e9b4d58875e23c205a1352784655f">OSPI_norFlashErase</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a> handle, uint32_t address)</td></tr>
+<tr class="memitem:ga198e9b4d58875e23c205a1352784655f"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga198e9b4d58875e23c205a1352784655f">OSPI_norFlashErase</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle, uint32_t address)</td></tr>
 <tr class="memdesc:ga198e9b4d58875e23c205a1352784655f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function erases 1 block of data starting from a provided address.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga198e9b4d58875e23c205a1352784655f">More...</a><br /></td></tr>
 <tr class="separator:ga198e9b4d58875e23c205a1352784655f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga91a633ee97b2714998956532f79c3af0"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga91a633ee97b2714998956532f79c3af0">OSPI_configResetPin</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a> handle, uint32_t config)</td></tr>
+<tr class="memitem:ga91a633ee97b2714998956532f79c3af0"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga91a633ee97b2714998956532f79c3af0">OSPI_configResetPin</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle, uint32_t config)</td></tr>
 <tr class="memdesc:ga91a633ee97b2714998956532f79c3af0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function configures reset functionality.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga91a633ee97b2714998956532f79c3af0">More...</a><br /></td></tr>
 <tr class="separator:ga91a633ee97b2714998956532f79c3af0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa2e6caaca51234f8438bf183a9668371"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gaa2e6caaca51234f8438bf183a9668371">OSPI_configBaudrate</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a> handle, uint32_t baud)</td></tr>
+<tr class="memitem:gaa2e6caaca51234f8438bf183a9668371"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gaa2e6caaca51234f8438bf183a9668371">OSPI_configBaudrate</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle, uint32_t baud)</td></tr>
 <tr class="memdesc:gaa2e6caaca51234f8438bf183a9668371"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures baud divider.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gaa2e6caaca51234f8438bf183a9668371">More...</a><br /></td></tr>
 <tr class="separator:gaa2e6caaca51234f8438bf183a9668371"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacd2e47532e230e9483fd237c4483d00f"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gacd2e47532e230e9483fd237c4483d00f">OSPI_readBaudRateDivFromReg</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a> handle, uint32_t *baudDiv)</td></tr>
+<tr class="memitem:gacd2e47532e230e9483fd237c4483d00f"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gacd2e47532e230e9483fd237c4483d00f">OSPI_readBaudRateDivFromReg</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle, uint32_t *baudDiv)</td></tr>
 <tr class="memdesc:gacd2e47532e230e9483fd237c4483d00f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return value of baudrate that is programmed in IP register.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gacd2e47532e230e9483fd237c4483d00f">More...</a><br /></td></tr>
 <tr class="separator:gacd2e47532e230e9483fd237c4483d00f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9245450f7a454c847b625d16d1ca9de4"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga9245450f7a454c847b625d16d1ca9de4">OSPI_getBaudRateDivFromObj</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a> handle, uint32_t *baudDiv)</td></tr>
+<tr class="memitem:ga9245450f7a454c847b625d16d1ca9de4"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga9245450f7a454c847b625d16d1ca9de4">OSPI_getBaudRateDivFromObj</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle, uint32_t *baudDiv)</td></tr>
 <tr class="memdesc:ga9245450f7a454c847b625d16d1ca9de4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return value of baudrate that is saved in OSPI Object.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga9245450f7a454c847b625d16d1ca9de4">More...</a><br /></td></tr>
 <tr class="separator:ga9245450f7a454c847b625d16d1ca9de4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga571cf9598daae7049416eb502b493e88"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga571cf9598daae7049416eb502b493e88">OSPI_setResetPinStatus</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a> handle, uint32_t pinStatus)</td></tr>
+<tr class="memitem:ga571cf9598daae7049416eb502b493e88"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga571cf9598daae7049416eb502b493e88">OSPI_setResetPinStatus</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle, uint32_t pinStatus)</td></tr>
 <tr class="memdesc:ga571cf9598daae7049416eb502b493e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function activates the RESET pin feature.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga571cf9598daae7049416eb502b493e88">More...</a><br /></td></tr>
 <tr class="separator:ga571cf9598daae7049416eb502b493e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacdf02bfd0923a1131c2550dbff2a274b"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gacdf02bfd0923a1131c2550dbff2a274b">OSPI_phyValidateTuningPoint</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle, uint32_t flashOffset)</td></tr>
+<tr class="memdesc:gacdf02bfd0923a1131c2550dbff2a274b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates a specific tuning point for OSPI PHY.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gacdf02bfd0923a1131c2550dbff2a274b">More...</a><br /></td></tr>
+<tr class="separator:gacdf02bfd0923a1131c2550dbff2a274b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0ee9c708db4f78a7dd88a0eb68dadca0"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga0ee9c708db4f78a7dd88a0eb68dadca0">OSPI_isValidateOtpEnable</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle)</td></tr>
+<tr class="memdesc:ga0ee9c708db4f78a7dd88a0eb68dadca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if Phy tuning point validation is enabled.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga0ee9c708db4f78a7dd88a0eb68dadca0">More...</a><br /></td></tr>
+<tr class="separator:ga0ee9c708db4f78a7dd88a0eb68dadca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga12d03e24e5378860702fcd3a3ee72d12"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga12d03e24e5378860702fcd3a3ee72d12">OSPI_setFrequency</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle, uint64_t inputClkFreq)</td></tr>
+<tr class="memdesc:ga12d03e24e5378860702fcd3a3ee72d12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the operating frequency for the OSPI peripheral.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga12d03e24e5378860702fcd3a3ee72d12">More...</a><br /></td></tr>
+<tr class="separator:ga12d03e24e5378860702fcd3a3ee72d12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga55a8848488b2dddfe65b1cafa330e9d1"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga55a8848488b2dddfe65b1cafa330e9d1">OSPI_setDelays</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle, uint32_t inputClkFreq)</td></tr>
+<tr class="memdesc:ga55a8848488b2dddfe65b1cafa330e9d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets timing delays for the OSPI interface based on input clock frequency.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#ga55a8848488b2dddfe65b1cafa330e9d1">More...</a><br /></td></tr>
+<tr class="separator:ga55a8848488b2dddfe65b1cafa330e9d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacb120f1d20c835efd02acaef7dd4e545"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gacb120f1d20c835efd02acaef7dd4e545">OSPI_setBaudRateDiv</a> (<a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a> handle, uint32_t baudRateDiv)</td></tr>
+<tr class="memdesc:gacb120f1d20c835efd02acaef7dd4e545"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the baud rate divider for OSPI communication.  <a href="group__DRV__OSPI__NOR__FLASH__API__MODULE.html#gacb120f1d20c835efd02acaef7dd4e545">More...</a><br /></td></tr>
+<tr class="separator:gacb120f1d20c835efd02acaef7dd4e545"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="gadb0a14dcb309721542c6a56b12c4b773"></a>
@@ -145,7 +160,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int32_t OSPI_norFlashInit1s1s1s </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
           <td class="paramname"><em>handle</em></td><td>)</td>
           <td></td>
         </tr>
@@ -156,7 +171,7 @@ Functions</h2></td></tr>
 <dl class="section pre"><dt>Precondition</dt><dd>OSPI controller has been opened using <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></td></tr>
+    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></td></tr>
   </table>
   </dd>
 </dl>
@@ -218,7 +233,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int32_t OSPI_norFlashReadId </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
           <td class="paramname"><em>handle</em>, </td>
         </tr>
         <tr>
@@ -245,7 +260,7 @@ Functions</h2></td></tr>
 <dl class="section pre"><dt>Precondition</dt><dd>OSPI controller has been opened using <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
+    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
     <tr><td class="paramname">manufacturerId</td><td>Pointer to a uint32_t variable. This will be filled with the manufacturer ID on success </td></tr>
     <tr><td class="paramname">deviceId</td><td>Pointer to a uint32_t variable. This will be filled with the device ID on success</td></tr>
   </table>
@@ -264,7 +279,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int32_t OSPI_norFlashWrite </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
           <td class="paramname"><em>handle</em>, </td>
         </tr>
         <tr>
@@ -297,7 +312,7 @@ Functions</h2></td></tr>
 <dl class="section pre"><dt>Precondition</dt><dd>OSPI controller has been opened using <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
+    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
     <tr><td class="paramname">offset</td><td>Offset at which the data is to be written </td></tr>
     <tr><td class="paramname">buf</td><td>Buffer which has the data to be written to the flash </td></tr>
     <tr><td class="paramname">len</td><td>Number of bytes to be written to the flash</td></tr>
@@ -317,7 +332,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int32_t OSPI_norFlashRead </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
           <td class="paramname"><em>handle</em>, </td>
         </tr>
         <tr>
@@ -350,7 +365,7 @@ Functions</h2></td></tr>
 <dl class="section pre"><dt>Precondition</dt><dd>OSPI controller has been opened using <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
+    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
     <tr><td class="paramname">offset</td><td>Offset at which the data is to be read from </td></tr>
     <tr><td class="paramname">buf</td><td>Buffer to which data will be written into </td></tr>
     <tr><td class="paramname">len</td><td>Number of bytes to be read from the flash</td></tr>
@@ -370,7 +385,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int32_t OSPI_norFlashReadSfdp </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
           <td class="paramname"><em>handle</em>, </td>
         </tr>
         <tr>
@@ -403,7 +418,7 @@ Functions</h2></td></tr>
 <dl class="section pre"><dt>Precondition</dt><dd>OSPI controller has been opened using <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
+    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
     <tr><td class="paramname">offset</td><td>Offset at which the data is to be read from </td></tr>
     <tr><td class="paramname">buf</td><td>Buffer to which data will be written into </td></tr>
     <tr><td class="paramname">len</td><td>Number of bytes to be read from the flash</td></tr>
@@ -423,7 +438,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int32_t OSPI_norFlashErase </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
           <td class="paramname"><em>handle</em>, </td>
         </tr>
         <tr>
@@ -444,7 +459,7 @@ Functions</h2></td></tr>
 <dl class="section pre"><dt>Precondition</dt><dd>OSPI controller has been opened using <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
+    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
     <tr><td class="paramname">address</td><td>Address of the data block to be erased. This address should be block aligned.</td></tr>
   </table>
   </dd>
@@ -462,7 +477,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int32_t OSPI_configResetPin </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
           <td class="paramname"><em>handle</em>, </td>
         </tr>
         <tr>
@@ -483,7 +498,7 @@ Functions</h2></td></tr>
 <dl class="section pre"><dt>Precondition</dt><dd>OSPI controller has been opened using <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
+    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
     <tr><td class="paramname">config</td><td>reset config</td></tr>
   </table>
   </dd>
@@ -501,7 +516,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int32_t OSPI_configBaudrate </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
           <td class="paramname"><em>handle</em>, </td>
         </tr>
         <tr>
@@ -522,7 +537,7 @@ Functions</h2></td></tr>
 <dl class="section pre"><dt>Precondition</dt><dd>OSPI controller has been opened using <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
+    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
     <tr><td class="paramname">baud</td><td>baudrate from 2 to 32 and divisible by 2</td></tr>
   </table>
   </dd>
@@ -540,7 +555,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int32_t OSPI_readBaudRateDivFromReg </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
           <td class="paramname"><em>handle</em>, </td>
         </tr>
         <tr>
@@ -561,7 +576,7 @@ Functions</h2></td></tr>
 <dl class="section pre"><dt>Precondition</dt><dd>OSPI controller has been opened using <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
+    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
     <tr><td class="paramname">baudDiv</td><td>pointer to memory into which baudrate will be written</td></tr>
   </table>
   </dd>
@@ -579,7 +594,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int32_t OSPI_getBaudRateDivFromObj </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
           <td class="paramname"><em>handle</em>, </td>
         </tr>
         <tr>
@@ -600,7 +615,7 @@ Functions</h2></td></tr>
 <dl class="section pre"><dt>Precondition</dt><dd>OSPI controller has been opened using <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
+    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
     <tr><td class="paramname">baudDiv</td><td>pointer to memory into which baudrate will be written</td></tr>
   </table>
   </dd>
@@ -618,7 +633,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int32_t OSPI_setResetPinStatus </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188">OSPI_Handle</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
           <td class="paramname"><em>handle</em>, </td>
         </tr>
         <tr>
@@ -639,12 +654,196 @@ Functions</h2></td></tr>
 <dl class="section pre"><dt>Precondition</dt><dd>OSPI controller has been opened using <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#gaf94e42c41b084bb2f3c9cc4409213188" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
+    <tr><td class="paramname">handle</td><td>An <a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61" title="A handle that is returned from a OSPI_open() call.">OSPI_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
     <tr><td class="paramname">pinStatus</td><td>pinStatus - HIGH/LOW</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f" title="Return status when the API execution was successful.">SystemP_SUCCESS</a> on success, <a class="el" href="group__KERNEL__DPL__SYSTEM.html#gac64497676d49ad4e51a1d9513e3570d9" title="Return status when the API execution was not successful due to a failure.">SystemP_FAILURE</a> otherwise </dd></dl>
+
+</div>
+</div>
+<a id="gacdf02bfd0923a1131c2550dbff2a274b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacdf02bfd0923a1131c2550dbff2a274b">&#9670;&nbsp;</a></span>OSPI_phyValidateTuningPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t OSPI_phyValidateTuningPoint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>flashOffset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Validates a specific tuning point for OSPI PHY. </p>
+<p>This function validates whether a given tuning point can be used for reliable communication with the OSPI flash device. It performs data read operations at the specified flash offset to determine if the current PHY settings provide error-free data transfer.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>OSPI driver handle </td></tr>
+    <tr><td class="paramname">flashOffset</td><td>Flash memory offset to use for validation testing</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on success, <a class="el" href="group__KERNEL__DPL__SYSTEM.html#gac64497676d49ad4e51a1d9513e3570d9" title="Return status when the API execution was not successful due to a failure.">SystemP_FAILURE</a> otherwise </dd></dl>
+
+</div>
+</div>
+<a id="ga0ee9c708db4f78a7dd88a0eb68dadca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0ee9c708db4f78a7dd88a0eb68dadca0">&#9670;&nbsp;</a></span>OSPI_isValidateOtpEnable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t OSPI_isValidateOtpEnable </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
+          <td class="paramname"><em>handle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if Phy tuning point validation is enabled. </p>
+<p>This function verifies whether the validation for One-Time Programmable memory is currently enabled on the OSPI interface.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>Handle to the OSPI instance</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>return 1 if OTP validation is enabled, 0 otherwise </dd></dl>
+
+</div>
+</div>
+<a id="ga12d03e24e5378860702fcd3a3ee72d12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga12d03e24e5378860702fcd3a3ee72d12">&#9670;&nbsp;</a></span>OSPI_setFrequency()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t OSPI_setFrequency </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>inputClkFreq</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the operating frequency for the OSPI peripheral. </p>
+<p>This function configures the OSPI controller to operate at the specified frequency based on the input clock frequency provided.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>OSPI driver handle </td></tr>
+    <tr><td class="paramname">inputClkFreq</td><td>Input clock frequency in Hz</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on success, error code on failure </dd></dl>
+
+</div>
+</div>
+<a id="ga55a8848488b2dddfe65b1cafa330e9d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga55a8848488b2dddfe65b1cafa330e9d1">&#9670;&nbsp;</a></span>OSPI_setDelays()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t OSPI_setDelays </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>inputClkFreq</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets timing delays for the OSPI interface based on input clock frequency. </p>
+<p>This function configures the appropriate timing delays for the OSPI interface to ensure reliable communication with external memory devices. The delays are calculated based on the provided input clock frequency.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>OSPI handle to the peripheral instance </td></tr>
+    <tr><td class="paramname">inputClkFreq</td><td>Input clock frequency in Hz</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on success, error code on failure </dd></dl>
+
+</div>
+</div>
+<a id="gacb120f1d20c835efd02acaef7dd4e545"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacb120f1d20c835efd02acaef7dd4e545">&#9670;&nbsp;</a></span>OSPI_setBaudRateDiv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t OSPI_setBaudRateDiv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__DRV__OSPI__MODULE.html#ga8c2031191786535e341c5366de1e4a61">OSPI_Handle</a>&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baudRateDiv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the baud rate divider for OSPI communication. </p>
+<p>This function configures the baud rate divider to control the OSPI clock frequency. The actual OSPI clock frequency is determined by dividing the input clock frequency by the specified baud rate divider.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>OSPI handle </td></tr>
+    <tr><td class="paramname">baudRateDiv</td><td>Baud rate divider value</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on success, error code on failure </dd></dl>
 
 </div>
 </div>

@@ -92,19 +92,19 @@ $(document).ready(function(){initNavTree('EXAMPLES_KERNEL_FREERTOS_INTERRUPT_PRO
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1595">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md1596">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md1597">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md1598">See Also</a></li>
-<li class="level1"><a href="#autotoc_md1599">Sample Output</a></li>
+<ul><li class="level1"><a href="#autotoc_md1666">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md1667">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md1668">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md1669">See Also</a></li>
+<li class="level1"><a href="#autotoc_md1670">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_kernel_freertos_interrupt_profiling"></a></p>
-<h1><a class="anchor" id="autotoc_md1595"></a>
+<h1><a class="anchor" id="autotoc_md1666"></a>
 Introduction</h1>
 <p>This example demonstrates profiling of interrupts. Two tasks are created, three interrupts of different priority levels are configured. The interrupts are triggered to cause nesting &amp; the behaviour of interrupts is verified against a reference. If the behaviour of interrupts is as expected, the total ISR load and CPU load is displayed and the example is marked as passed.</p>
 <dl class="section note"><dt>Note</dt><dd>Make sure "#define INTR_PROF" is present in "/source/drivers/hw_include/am263px/soc_config.h", to enable capturing of interrupt trace. Else the displayed LOAD values will be 0.</dd></dl>
-<h1><a class="anchor" id="autotoc_md1596"></a>
+<h1><a class="anchor" id="autotoc_md1667"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -118,7 +118,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/kernel/freertos/interrupt_profiling   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1597"></a>
+<h1><a class="anchor" id="autotoc_md1668"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When the INTR_PROF macro is modified</b>, the library needs to be re-built. This can be done only using makefiles. (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>).</li>
@@ -126,10 +126,10 @@ Steps to Run the Example</h1>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1598"></a>
+<h1><a class="anchor" id="autotoc_md1669"></a>
 See Also</h1>
 <p><a class="el" href="KERNEL_FREERTOS_PAGE.html">FreeRTOS</a></p>
-<h1><a class="anchor" id="autotoc_md1599"></a>
+<h1><a class="anchor" id="autotoc_md1670"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">[FreeRTOS] profiling ... start !!!</div>

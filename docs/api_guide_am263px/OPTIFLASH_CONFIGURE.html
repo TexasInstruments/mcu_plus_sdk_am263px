@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('OPTIFLASH_CONFIGURE.html',''); initRes
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md562">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md563">How to configure RL2?</a></li>
-<li class="level1"><a href="#autotoc_md564">How to configure FLC.</a></li>
-<li class="level1"><a href="#autotoc_md565">How to configure RAT.</a></li>
+<ul><li class="level1"><a href="#autotoc_md606">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md607">How to configure RL2?</a></li>
+<li class="level1"><a href="#autotoc_md608">How to configure FLC.</a></li>
+<li class="level1"><a href="#autotoc_md609">How to configure RAT.</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_optiflash_configuration"></a></p>
-<h1><a class="anchor" id="autotoc_md562"></a>
+<h1><a class="anchor" id="autotoc_md606"></a>
 Introduction</h1>
 <p>This document gives a basic introduction to configuring different IPs, which is part of OptiFlash.</p>
-<h1><a class="anchor" id="autotoc_md563"></a>
+<h1><a class="anchor" id="autotoc_md607"></a>
 How to configure RL2?</h1>
 <p>RL2 is, basically, an L2 cache controller. Highlighting the <code>controller</code> keyword here, because, unlike the L1 cache controller, which has internal cache memory, RL2 does not have internal cache memory. RL2 needs to be configured, and a part of On-chip SRAM needs to be assigned for RL2 cache memory.</p>
 <p>There are three configurations that are largely needed:</p><ol type="1">
@@ -134,14 +134,14 @@ How to configure RL2?</h1>
 <li><code>Size of cache</code> is the size of L2 cache that is required to be configured.</li>
 <li>After this, select the memory region where the L2 cache bank should be located. This should be L2 memory (In case of am263px, L2 memory is OCRAM). The memory region that is selected is <code>L2_CACHE_BANK</code> which was configured above. Similarly, if some other cache size has to be selected then the size of the cache bank has to be changed correspondingly.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md564"></a>
+<h1><a class="anchor" id="autotoc_md608"></a>
 How to configure FLC.</h1>
 <p>FLC is a simplified DMA. To configure FLC, in syscfg, it can be done by clicking to the <code>Fast Local Copy</code> nav menu item under OptiFlash drop down menu at the bottom.</p>
 <p> <style>div.image img[src="flc_syscfg_initial.png"]{width:50%}</style> </p><div class="image">
 <img src="flc_syscfg_initial.png" alt=""/>
 </div>
 <p>Use <code>Add</code> button to to add FLC instances. For am263px case, there are a total of 4 FLC instances per R5 core. All info that needs to be given is source address, destination address and size. Make sure that all these fields are 4K aligned.</p>
-<h1><a class="anchor" id="autotoc_md565"></a>
+<h1><a class="anchor" id="autotoc_md609"></a>
 How to configure RAT.</h1>
 <p>Region base address translation or RAT can be configured using the following fields.</p>
 <p> <style>div.image img[src="rat_syscfg.png"]{width:50%}</style> </p><div class="image">

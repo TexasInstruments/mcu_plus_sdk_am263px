@@ -1,4 +1,5 @@
 {
+    "flashName": "S25FL128SA_ospi",
     "flashSize": 16777216,
     "flashPageSize": 256,
     "flashManfId": "0x01",

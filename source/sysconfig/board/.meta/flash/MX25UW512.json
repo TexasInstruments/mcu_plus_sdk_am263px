@@ -1,4 +1,5 @@
 {
+	"flashName": "MX25UW512",
 	"flashSize": 33554432,
 	"flashPageSize": 256,
 	"flashManfId": "0xC2",

@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('DRIVERS_BOOTLOADER_PAGE.html',''); ini
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md788">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md789">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md790">Features not Supported</a></li>
-<li class="level1"><a href="#autotoc_md791">R5 Dual Core Support</a></li>
-<li class="level1"><a href="#autotoc_md792">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md793">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md832">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md833">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md834">Features not Supported</a></li>
+<li class="level1"><a href="#autotoc_md835">R5 Dual Core Support</a></li>
+<li class="level1"><a href="#autotoc_md836">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md837">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_bootloader_v1"></a></p>
 <p>The Bootloader module provides APIs to write bootloader applications for various boot media like QSPI, UART, SOC memory etc.</p>
-<h1><a class="anchor" id="autotoc_md788"></a>
+<h1><a class="anchor" id="autotoc_md832"></a>
 Features Supported</h1>
 <ul>
 <li>QSPI Boot</li>
@@ -110,7 +110,7 @@ Features Supported</h1>
 <li>API to parse multicore application image</li>
 <li>Separate APIs to boot self and non-self cores</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md789"></a>
+<h1><a class="anchor" id="autotoc_md833"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -118,12 +118,12 @@ SysConfig Features</h1>
 <li>Boot Media to be used</li>
 <li>Boot Image offset</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md790"></a>
+<h1><a class="anchor" id="autotoc_md834"></a>
 Features not Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md791"></a>
+<h1><a class="anchor" id="autotoc_md835"></a>
 R5 Dual Core Support</h1>
 <ul>
 <li>With the configuration used in MCU SDK to generate the app images, the RBL brings the R5 Lock Step Mode.</li>
@@ -141,7 +141,7 @@ R5 Dual Core Support</h1>
 </li>
 <li>Refer the IPC example which configures the R5 in Dual Core mode. <a class="el" href="EXAMPLES_DRIVERS_IPC_NOTIFY_ECHO.html">IPC Notify Echo</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md792"></a>
+<h1><a class="anchor" id="autotoc_md836"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="bootloader_8h.html">drivers/bootloader.h</a>&gt;</span></div>
@@ -175,7 +175,7 @@ Example Usage</h1>
 <div class="line">    }</div>
 <div class="line"> </div>
 </div><!-- fragment --><p>Instance Close Example </p><div class="fragment"><div class="line">    <a class="code" href="group__DRV__BOOTLOADER__MODULE.html#ga021ceadeefd7c709ba42b9c23775ec92">Bootloader_close</a>(gBootloaderHandle);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md793"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md837"></a>
 API</h1>
 <p><a class="el" href="group__DRV__BOOTLOADER__MODULE.html">APIs for BOOTLOADING CPUs</a> </p>
 </div></div><!-- contents -->

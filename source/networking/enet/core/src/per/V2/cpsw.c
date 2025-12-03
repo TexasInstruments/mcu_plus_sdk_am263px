@@ -76,21 +76,8 @@
 /*                           Macros & Typedefs                                */
 /* ========================================================================== */
 
-/*! \brief Default common TX MTU. */
-#define CPSW_COMMON_TX_MTU_DEFAULT            (2024U)
-
 /*! \brief Convert Hz to Mhz */
 #define CPSW_FREQ_CONVERT_HZ_TO_MHZ           (1000000ULL)
-
-/*!
- * \brief Priority escalation value for switch scheduler.
- *
- * When a port is in escalate priority, this is the number of higher priority
- * packets sent before the next lower priority is allowed to send a packet.
- * Escalate priority allows lower priority packets to be sent at a fixed rate
- * relative to the next higher priority.  The min value of esc_pri_ld_val = 2
- */
-#define CPSW_ESC_PRI_LD_VAL                   (2U)
 
 /*! \brief Number of CPDMA RX channels required for CPSW host port */
 #define CPSW_CPDMA_NUM_RX_CH                   (1U)
@@ -1585,7 +1572,7 @@ static int32_t Cpsw_handleLinkUp(Cpsw_Handle hCpsw,
     CpswAle_SetPortStateInArgs setPortStateInArgs;
     EnetPhy_LinkCfg phyLinkCfg;
     EnetMacPort_LinkCfg macLinkCfg;
-    int32_t status;
+    int32_t status = ENET_SOK;
 
     /* Assert if port number is not correct */
     Enet_assert(portNum < EnetSoc_getMacPortMax(hCpsw->enetPer.enetType, hCpsw->enetPer.instId),
@@ -1593,9 +1580,10 @@ static int32_t Cpsw_handleLinkUp(Cpsw_Handle hCpsw,
 
     ENETTRACE_VAR(portId);
 
-    /* Get link parameters (speed/duplexity) from PHY state machine */
-    status = EnetPhy_getLinkCfg(hPhy, &phyLinkCfg);
-    ENETTRACE_ERR_IF(status != ENET_SOK, "Port %u: Failed to get PHY link config: %d\r\n", portId, status);
+    /* Get link parameters (speed/duplexity) from PHY registers */
+    status = EnetPhy_getLinkStatus(hPhy, &phyLinkCfg.speed, &phyLinkCfg.duplexity);
+
+    ENETTRACE_ERR_IF(status != ENET_SOK, "Port %u: Failed to read phy link speed, duplexity: %d\r\n", portId, status);
 
     /* Enable MAC port */
     if (status == ENET_SOK)

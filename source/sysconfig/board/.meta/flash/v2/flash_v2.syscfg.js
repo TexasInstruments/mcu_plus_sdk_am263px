@@ -1664,6 +1664,10 @@ function fillConfigs(inst, cfg) {
     {
         /* Basic Config */
         serialNorDefaultCfg = cfg;
+        if(cfg.flashName != null)
+        {
+            inst.fname = cfg.flashName;
+        }
         inst.protocol = defaultProtocols[0].name;
         inst.flashSize = cfg.flashSize;
         inst.flashPageSize = cfg.flashPageSize;
@@ -1777,6 +1781,10 @@ function fillConfigs(inst, cfg) {
     {
         /* Basic Config */
         serialNandDefaultCfg = cfg;
+        if(cfg.flashName != null)
+        {
+            inst.fname = cfg.flashName;
+        }
         inst.protocol = defaultProtocols[0].name;
         inst.flashSize = cfg.flashSize;
         inst.flashPageSize = cfg.flashPageSize;

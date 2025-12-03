@@ -9,6 +9,7 @@ var group__DRV__ENETPHY =
     [ "TI DP83TG720 PHY", "group__ENETPHY__DP83TG720.html", "group__ENETPHY__DP83TG720" ],
     [ "TI DP83TG721 PHY", "group__ENETPHY__DP83TG721.html", "group__ENETPHY__DP83TG721" ],
     [ "TI PHY COMMON", "group__PHY__COMMON__H.html", "group__PHY__COMMON__H" ],
+    [ "TI generic_phy PHY", "group__ENETPHY__generic__phy.html", "group__ENETPHY__generic__phy" ],
     [ "EnetPhy_Version", "structEnetPhy__Version.html", [
       [ "oui", "structEnetPhy__Version.html#ae508bfdc1dffd61a5dc5ac04fd9c52a1", null ],
       [ "model", "structEnetPhy__Version.html#a6761be25acfe02923d1569b74ce1a25d", null ],
@@ -165,6 +166,7 @@ var group__DRV__ENETPHY =
     [ "EnetPhy_isAlive", "group__DRV__ENETPHY.html#ga44228766624b60da80c50ec2525107e2", null ],
     [ "EnetPhy_isLinked", "group__DRV__ENETPHY.html#gae8c9df0eace5f8b6b809176a0c420cda", null ],
     [ "EnetPhy_getLinkCfg", "group__DRV__ENETPHY.html#ga67859143637d0b09b8d3249774c1c002", null ],
+    [ "EnetPhy_getLinkStatus", "group__DRV__ENETPHY.html#ga6c43a066e16bc7f2aa317376c4ec87fd", null ],
     [ "EnetPhy_readReg", "group__DRV__ENETPHY.html#ga91edf30111d6ae795012514542e285d8", null ],
     [ "EnetPhy_writeReg", "group__DRV__ENETPHY.html#ga5b7e4026319c8138985fe4801f26bc43", null ],
     [ "EnetPhy_rmwReg", "group__DRV__ENETPHY.html#ga1a8b1d84f67084d34edd9b42ceb05965", null ],
@@ -188,5 +190,7 @@ var group__DRV__ENETPHY =
     [ "EnetPhy_tickDriver", "group__DRV__ENETPHY.html#ga62ccd584b1844929926fb9554c95683d", null ],
     [ "EnetPhy_enableEventCapture", "group__DRV__ENETPHY.html#ga0dc85abb0de79855f3f8e3b26f48ffb6", null ],
     [ "EnetPhy_enableTriggerOutput", "group__DRV__ENETPHY.html#ga65171003450b027831a898c7c2dfe693", null ],
-    [ "EnetPhy_getEventTs", "group__DRV__ENETPHY.html#ga6a5b68a158188d891346fb6b74096b31", null ]
+    [ "EnetPhy_getEventTs", "group__DRV__ENETPHY.html#ga6a5b68a158188d891346fb6b74096b31", null ],
+    [ "EnetPhy_configMediaClock", "group__DRV__ENETPHY.html#gab3ff4a61a3baece654a738afa369cd4a", null ],
+    [ "EnetPhy_nudgeCodecClock", "group__DRV__ENETPHY.html#ga9535e9ca77ebdba36a29c48ee1481bf5", null ]
 ];

@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('SDL_STC_PAGE.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1509">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1510">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1511">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1512">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1513">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1514">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1580">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1581">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1582">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1583">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1584">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1585">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_stc"></a></p>
 <p>The Self-Test Controller (STC) is used to test logic cores based on the On-Product Multiple Input Signature Register (OPMISR) scan compression architecture.The self test controller facilitates complete isolation of the logical segment under test from rest of the system during the self-test run.</p>
 <p>The STC have some internal configuration.Gernally The configuration need not to be changed for running STC. For running STC The core should be in low power mode for which STC is about to run.</p>
-<h1><a class="anchor" id="autotoc_md1509"></a>
+<h1><a class="anchor" id="autotoc_md1580"></a>
 Features Supported</h1>
 <p>The STC module provides the following functionality:</p>
 <ul>
@@ -114,20 +114,20 @@ Features Supported</h1>
 <li>Ability to continue from the last executed interval(test set) as well as ability to restart from the beginning(1st interval in the ROM) or start from the 1st interval of each segment.</li>
 </ul>
 <p>Errors detected by the STC module during operation are reported via ESM error (application will receive via ESM application callback).</p>
-<h1><a class="anchor" id="autotoc_md1510"></a>
+<h1><a class="anchor" id="autotoc_md1581"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
-<h1><a class="anchor" id="autotoc_md1511"></a>
+<h1><a class="anchor" id="autotoc_md1582"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1512"></a>
+<h1><a class="anchor" id="autotoc_md1583"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>R5F STC can be tested by enabling sysconfig in SBL_NULL bootloader example only, not in standalone example.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1513"></a>
+<h1><a class="anchor" id="autotoc_md1584"></a>
 Example Usage</h1>
 <p>The following shows an example of SDL STC API usage by the application.</p>
 <p>Include the below file to access the APIs</p>
@@ -168,7 +168,7 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">if STC will be Done Successfully, it will return nothing, beacuse core reset would have been done till now.</div>
 <div class="line">if something will be going wrong, it will return something (!=SDL_PASS) value.</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1514"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1585"></a>
 API</h1>
 <p><a class="el" href="group__SDL__STC__API.html">SDL Self Test Controller(STC)</a> </p>
 </div></div><!-- contents -->

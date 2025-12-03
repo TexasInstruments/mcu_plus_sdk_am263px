@@ -34,6 +34,7 @@
 #include <board/flash/ospi/flash_nor_ospi.h>
 
 #define FLASH_OSPI_JEDEC_ID_SIZE_MAX (8U)
+#define FLASH_OSPI_TRY_TUNING        (3U)
 
 static int32_t Flash_norOspiErase(Flash_Config *config, uint32_t blkNum);
 static int32_t Flash_norOspiEraseSector(Flash_Config *config, uint32_t sectNum);
@@ -44,6 +45,10 @@ static void Flash_norOspiClose(Flash_Config *config);
 static int32_t Flash_norOspiReset(Flash_Config *config);
 static int32_t Flash_norOspiDacModeEnable(Flash_Config *config);
 static int32_t Flash_norOspiDacModeDisable(Flash_Config *config);
+static int32_t Flash_norOspiSetRdDataCaptureDelay(Flash_Config *config);
+static int32_t Flash_norOspiPhyTune(Flash_Config* config);
+static int32_t Flash_norOspiFallback(Flash_Config *config);
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -75,6 +80,7 @@ Flash_Fxns gFlashNorOspiFxns = {
     .resetFxn = Flash_norOspiReset,
     .enableDacModeFxn = Flash_norOspiDacModeEnable,
     .disableDacModeFxn = Flash_norOspiDacModeDisable,
+    .phyTuneFxn = Flash_norOspiPhyTune,
 };
 
 static int32_t Flash_norOspiCmdWrite(Flash_Config *config, uint8_t cmd, uint32_t cmdAddr,
@@ -299,7 +305,7 @@ static int32_t Flash_norOspiSet4ByteAddrMode(Flash_Config *config)
     return status;
 }
 
-static int32_t Flash_norOspiSetAddressBytes(Flash_Config *config, void *ospiHandle)
+static int32_t Flash_norOspiSetAddressBytes(Flash_Config *config, OSPI_Handle ospiHandle)
 {
     int32_t status = SystemP_SUCCESS;
     Flash_DevConfig *devCfg = config->devConfig;
@@ -504,7 +510,7 @@ static int32_t Flash_setOeBit(Flash_Config *config, uint8_t oeType)
     return status;
 }
 
-static int32_t Flash_norOspiSetModeDummy(Flash_Config *config, void *ospiHandle)
+static int32_t Flash_norOspiSetModeDummy(Flash_Config *config, OSPI_Handle ospiHandle)
 {
     int32_t status = SystemP_SUCCESS;
     Flash_DevConfig *devCfg = config->devConfig;
@@ -546,7 +552,7 @@ static int32_t Flash_norOspiSetModeDummy(Flash_Config *config, void *ospiHandle)
     return status;
 }
 
-static int32_t Flash_norOspiSetDTR(Flash_Config *config, void *ospiHandle)
+static int32_t Flash_norOspiSetDTR(Flash_Config *config, OSPI_Handle ospiHandle)
 {
     int32_t status = SystemP_SUCCESS;
 
@@ -727,11 +733,11 @@ static int32_t Flash_set888mode(Flash_Config *config, uint8_t seq)
     return status;
 }
 
-static int32_t Flash_norOspiSetProtocol(Flash_Config *config, void *ospiHandle, Flash_Params *params)
+static int32_t Flash_norOspiSetProtocol(Flash_Config *config, OSPI_Handle ospiHandle, Flash_Params *params)
 {
     int32_t status = SystemP_SUCCESS;
 
-    if((config == NULL) || (NULL == ospiHandle))
+    if((config == NULL) || (ospiHandle == NULL))
     {
         status = SystemP_FAILURE;
     }
@@ -917,33 +923,69 @@ static int32_t Flash_norOspiRead(Flash_Config *config, uint32_t offset, uint8_t 
     int32_t status = SystemP_SUCCESS;
     Flash_NorOspiObject *obj = (Flash_NorOspiObject *)(config->object);
     Flash_Attrs *attrs = config->attrs;
-
+#if defined (SOC_AM64X) || defined (SOC_AM243X)
+    int32_t phyStatus = SystemP_SUCCESS;
+    uint32_t phyTuningOffset;
+#endif
     if(obj->phyEnable)
+    {
+#if defined(SOC_AM64X) || defined(SOC_AM243X)
+    /* Validate OTP */
+    if(OSPI_isValidateOtpEnable(obj->ospiHandle))
+    {
+        phyTuningOffset = Flash_getPhyTuningOffset(config);
+        phyStatus = OSPI_phyValidateTuningPoint(obj->ospiHandle, phyTuningOffset);
+
+        if(phyStatus == SystemP_FAILURE)
+        {
+            phyStatus = Flash_norOspiPhyTune(config);
+        }
+
+        if(phyStatus == SystemP_SUCCESS) 
+        {
+            if(obj->phyEnable == (uint8_t)TRUE)
+            {
+                OSPI_enablePhy(obj->ospiHandle);
+            }
+        }
+        else
+        {
+            status = SystemP_FAILURE;
+        }
+    }
+    else
     {
         OSPI_enablePhy(obj->ospiHandle);
     }
-
-    /* Validate address input */
-    if ((offset + len) > (attrs->flashSize))
-    {
-        status = SystemP_FAILURE;
-    }
-    if (status == SystemP_SUCCESS)
-    {
-        OSPI_Transaction transaction;
-
-        OSPI_Transaction_init(&transaction);
-        transaction.addrOffset = offset;
-        transaction.buf = (void *)buf;
-        transaction.count = len;
-        status = OSPI_readDirect(obj->ospiHandle, &transaction);
+#else
+    OSPI_enablePhy(obj->ospiHandle);
+#endif
     }
 
-    if(obj->phyEnable)
+    if(status == SystemP_SUCCESS)
     {
-        OSPI_disablePhy(obj->ospiHandle);
-    }
+        /* Validate address input */
+        if ((offset + len) > (attrs->flashSize))
+        {
+            status = SystemP_FAILURE;
+        }
+        if (status == SystemP_SUCCESS)
+        {
+            OSPI_Transaction transaction;
 
+            OSPI_Transaction_init(&transaction);
+            transaction.addrOffset = offset;
+            transaction.buf = (void *)buf;
+            transaction.count = len;
+            status = OSPI_readDirect(obj->ospiHandle, &transaction);
+        }
+
+        if(obj->phyEnable)
+        {
+            OSPI_disablePhy(obj->ospiHandle);
+        }
+
+    }
     return status;
 }
 
@@ -1197,7 +1239,6 @@ static int32_t Flash_norOspiOpen(Flash_Config *config, Flash_Params *params)
     int32_t status = SystemP_SUCCESS;
     Flash_NorOspiObject *obj = (Flash_NorOspiObject *)(config->object);
     Flash_Attrs *attrs = config->attrs;
-    int32_t attackVectorStatus = SystemP_FAILURE;
 
     obj->ospiHandle = OSPI_getHandle(attrs->driverInstance);
 
@@ -1239,92 +1280,34 @@ static int32_t Flash_norOspiOpen(Flash_Config *config, Flash_Params *params)
 
         /* Set Mode Clocks and Dummy Clocks in Controller and Flash Memory */
         status += Flash_norOspiSetModeDummy(config, obj->ospiHandle);
-        
-        /* Set RD Capture Delay by reading ID */
-        uint32_t origBaudRateDiv = 0U;
-        OSPI_getBaudRateDivFromObj(obj->ospiHandle, &origBaudRateDiv);
-        uint32_t readDataCapDelay = origBaudRateDiv;
-        OSPI_setRdDataCaptureDelay(obj->ospiHandle, readDataCapDelay);
-        status = Flash_norOspiReadId(config);
 
-        while((status != SystemP_SUCCESS) && (readDataCapDelay > 0U))
+        if(obj->currentProtocol == FLASH_CFG_PROTO_4S_4D_4D)
         {
-            readDataCapDelay--;
+            uint32_t readDataCapDelay = 15U;
             OSPI_setRdDataCaptureDelay(obj->ospiHandle, readDataCapDelay);
             status = Flash_norOspiReadId(config);
-        }
-        /* Enable PHY if attack vector present and PHY mode is enabled */
-        obj->phyEnable = FALSE;
-        uint32_t phyTuningOffset = Flash_getPhyTuningOffset(config);
-        if(OSPI_isPhyEnable(obj->ospiHandle))
-        {
-#if defined (SOC_AM263PX)
-            OSPI_configBaudrate(obj->ospiHandle, MAX_BAUDRATE_DIVIDER);
-#endif
-            attackVectorStatus = OSPI_phyReadAttackVector(obj->ospiHandle, phyTuningOffset);
-#if defined (SOC_AM263PX)
-            OSPI_configBaudrate(obj->ospiHandle, origBaudRateDiv);
-#endif
-            /* Check if attack vector status is successful over the readCaptureDelay sweep */
-            if(attackVectorStatus != SystemP_SUCCESS)
-            {
-                readDataCapDelay = 8U;
-                while((attackVectorStatus != SystemP_SUCCESS) && (readDataCapDelay > 0U))
-                {
-                    OSPI_setRdDataCaptureDelay(obj->ospiHandle, readDataCapDelay);
-                    attackVectorStatus = OSPI_phyReadAttackVector(obj->ospiHandle, phyTuningOffset);
-                    readDataCapDelay--;
-                }
-            }
-            if(attackVectorStatus != SystemP_SUCCESS)
-            {
-                /* Flash the attack vector to the last block if the attack vector is not already written in the flash.
-                 * This step ensures that the PHY tuning data is available for proper operation of the OSPI interface.
-                 * Without this, the system may fail to achieve optimal performance or encounter communication issues.
-                 */
-                uint32_t sect = 0, page = 0;
-                uint32_t phyTuningData = 0,phyTuningDataSize = 0;
-                OSPI_phyGetTuningData(&phyTuningData, &phyTuningDataSize);
-                Flash_offsetToSectorPage(config, phyTuningOffset, &sect, &page);
-                Flash_norOspiEraseSector(config, sect);
-                Flash_norOspiWrite(config, phyTuningOffset, (uint8_t *)phyTuningData, phyTuningDataSize);
-                attackVectorStatus = OSPI_phyReadAttackVector(obj->ospiHandle, phyTuningOffset);
-                
-                readDataCapDelay = 8U;
-                while((attackVectorStatus != SystemP_SUCCESS) && (readDataCapDelay > 0U))
-                {
-                    OSPI_setRdDataCaptureDelay(obj->ospiHandle, readDataCapDelay);
-                    attackVectorStatus = OSPI_phyReadAttackVector(obj->ospiHandle, phyTuningOffset);
-                    readDataCapDelay--;
-                }
 
-            }
-
-            if(attackVectorStatus == SystemP_SUCCESS)
+            while((status != SystemP_SUCCESS) && (readDataCapDelay > 0U))
             {
-                status += OSPI_phyTuneDDR(obj->ospiHandle, phyTuningOffset);
-                if(status == SystemP_SUCCESS)
-                {
-                    obj->phyEnable = TRUE;
-                    OSPI_setPhyEnableSuccess(obj->ospiHandle, TRUE);
-                }
-            }
-            else
-            {
-                DebugP_logError("%s : PHY enabling failed!!! Continuing without PHY...\r\n", __func__);
-                obj->phyEnable = FALSE;
-                OSPI_setPhyEnableSuccess(obj->ospiHandle, FALSE);
-                status = SystemP_FAILURE;
+                readDataCapDelay--;
+                OSPI_setRdDataCaptureDelay(obj->ospiHandle, readDataCapDelay);
+                status = Flash_norOspiReadId(config);
             }
         }
         else
         {
-            obj->phyEnable = FALSE;
+            status += Flash_norOspiSetRdDataCaptureDelay(config);
+        }
+
+
+        if(status == SystemP_SUCCESS)
+        {
+            status = Flash_norOspiPhyTune(config);
         }
     }
 
     /* Any flash specific quirks, like hybrid sector config etc. */
-    if(params->quirksFxn != NULL)
+    if((params->quirksFxn != NULL) && (status == SystemP_SUCCESS))
     {
         params->quirksFxn(config);
     }
@@ -1407,7 +1390,193 @@ static int32_t Flash_norOspiDacModeDisable(Flash_Config *config)
     if(obj && obj->ospiHandle)
     {
         status = OSPI_disableDacMode(obj->ospiHandle);
-    }    
+    }
+
+    return status;
+}
+
+static int32_t Flash_norOspiPhyTune(Flash_Config* config)
+{
+    int32_t status = SystemP_SUCCESS;
+    Flash_NorOspiObject *obj = (Flash_NorOspiObject *)(config->object);
+    uint32_t readDataCapDelay;
+    uint32_t origBaudRateDiv = 0U;
+    uint32_t phyTuningOffset = Flash_getPhyTuningOffset(config);
+#if defined (SOC_AM64X) || defined (SOC_AM243X)
+    int32_t tryTuning = FLASH_OSPI_TRY_TUNING;
+#endif
+    uint32_t phyTuningData = 0,phyTuningDataSize = 0;
+    uint32_t page = 0;
+
+    OSPI_getBaudRateDivFromObj(obj->ospiHandle, &origBaudRateDiv);
+
+    /* Enable PHY if attack vector present and PHY mode is enabled */
+    obj->phyEnable = FALSE;
+    if(OSPI_isPhyEnable(obj->ospiHandle) == (uint32_t)TRUE)
+    {
+#if defined (SOC_AM263PX)
+        OSPI_configBaudrate(obj->ospiHandle, MAX_BAUDRATE_DIVIDER);
+#endif
+        status = OSPI_phyReadAttackVector(obj->ospiHandle, phyTuningOffset);
+#if defined (SOC_AM263PX)
+        OSPI_configBaudrate(obj->ospiHandle, origBaudRateDiv);
+#endif
+        /* Check if attack vector status is successful over the readCaptureDelay sweep */
+        if(status != SystemP_SUCCESS)
+        {
+            readDataCapDelay = 8U;
+            while((status != SystemP_SUCCESS) && (readDataCapDelay > 0U))
+            {
+                OSPI_setRdDataCaptureDelay(obj->ospiHandle, readDataCapDelay);
+                status = OSPI_phyReadAttackVector(obj->ospiHandle, phyTuningOffset);
+                readDataCapDelay--;
+            }
+        }
+
+        if(status != SystemP_SUCCESS)
+        {
+            /* Flash the attack vector to the last block if the attack vector is not already written in the flash.
+             * This step ensures that the PHY tuning data is available for proper operation of the OSPI interface.
+             * Without this, the system may fail to achieve optimal performance or encounter communication issues.
+             */
+#if defined (SOC_AM64X) || defined (SOC_AM243X)
+            uint32_t blk = 0;
+            OSPI_phyGetTuningData(&phyTuningData, &phyTuningDataSize);
+            Flash_offsetToBlkPage(config, phyTuningOffset, &blk, &page);
+            Flash_norOspiErase(config, blk);
+#else
+            uint32_t sec = 0;
+            OSPI_phyGetTuningData(&phyTuningData, &phyTuningDataSize);
+            Flash_offsetToSectorPage(config, phyTuningOffset, &sec, &page);
+            Flash_norOspiEraseSector(config, sec);
+#endif
+
+            Flash_norOspiWrite(config, phyTuningOffset, (uint8_t *)phyTuningData, phyTuningDataSize);
+            status = OSPI_phyReadAttackVector(obj->ospiHandle, phyTuningOffset);
+
+            readDataCapDelay = 8U;
+            while((status != SystemP_SUCCESS) && (readDataCapDelay > 0U))
+            {
+                OSPI_setRdDataCaptureDelay(obj->ospiHandle, readDataCapDelay);
+                status = OSPI_phyReadAttackVector(obj->ospiHandle, phyTuningOffset);
+                readDataCapDelay--;
+            }
+        }
+
+        if(status == SystemP_SUCCESS)
+        {
+#if defined(SOC_AM64X) || defined(SOC_AM243X)
+            do
+            {
+                status = OSPI_phyTuneDDR(obj->ospiHandle, phyTuningOffset);
+                tryTuning--;
+            }while((status != SystemP_SUCCESS) && (tryTuning > 0U));
+#else
+            status = OSPI_phyTuneDDR(obj->ospiHandle, phyTuningOffset);
+#endif
+        }
+
+        if(status == SystemP_SUCCESS)
+        {
+            obj->phyEnable = TRUE;
+            OSPI_setPhyEnableSuccess(obj->ospiHandle, TRUE);
+        }
+        else
+        {
+            DebugP_logError("%s : PHY enabling failed!!! Continuing without PHY...\r\n", __func__);
+            obj->phyEnable = FALSE;
+            OSPI_setPhyEnableSuccess(obj->ospiHandle, FALSE);
+
+#if defined(SOC_AM64X) || defined(SOC_AM243X)
+            if(obj->currentProtocol == FLASH_CFG_PROTO_8D_8D_8D)
+            {
+                status = Flash_norOspiFallback(config);
+            }
+#endif
+        }
+    }
+    else
+    {
+        obj->phyEnable = FALSE;
+    }
+
+    return status;
+}
+
+static int32_t Flash_norOspiFallback(Flash_Config *config)
+{
+    int32_t status = SystemP_SUCCESS;
+    Flash_DevConfig *devCfg = config->devConfig;
+    FlashCfg_ReadIDConfig *idCfg = &(devCfg->idCfg);
+    FlashCfg_ProtoEnConfig *pCfg = &(devCfg->protocolCfg);
+    Flash_NorOspiObject *obj = (Flash_NorOspiObject *)(config->object);
+    Flash_NorOspiFallBackCfg *fCfg = (Flash_NorOspiFallBackCfg *)(config->fallBackCfg);
+    uint32_t phyTuningOffset = Flash_getPhyTuningOffset(config);
+
+    /* Set OSPI frequency to 200Mhz */
+    status = OSPI_setFrequency(obj->ospiHandle, fCfg->fallBackFreq);
+
+    /* Fall back to 8d8d8d mode at 25MHz */
+    if(status == SystemP_SUCCESS)
+    {
+        /* Calculate OSPI delays for 200MHz */
+        OSPI_setDelays(obj->ospiHandle, fCfg->fallBackFreq);
+
+        OSPI_setBaudRateDiv(obj->ospiHandle, fCfg->ddrBaudRateDiv);
+
+        /* Update the dummy clocks to operate in 25Mhz */
+        idCfg->dummy8 = fCfg->idDummy8;
+        pCfg->dummyClksCmd = fCfg->dummyClksCmd8d;
+        pCfg->dummyClksRd = fCfg->dummyClksRd8d;
+
+        /* Set Mode Clocks and Dummy Clocks in Controller and Flash Memory */
+        status = Flash_norOspiSetModeDummy(config, obj->ospiHandle);
+
+        status += Flash_norOspiSetRdDataCaptureDelay(config);
+
+        status += OSPI_phyReadAttackVector(obj->ospiHandle, phyTuningOffset);
+    }
+
+    return status;
+}
+
+
+static int32_t Flash_norOspiSetRdDataCaptureDelay(Flash_Config *config)
+{
+    int32_t status = SystemP_SUCCESS;
+    Flash_NorOspiObject *obj = (Flash_NorOspiObject *)(config->object);
+    uint32_t maxReadDataCapDelay = 0, minReadDataCapDelay = 0;
+
+    /* Set RD Capture Delay by reading ID */
+    uint32_t origBaudRateDiv = 15U;
+    uint32_t readDataCapDelay = origBaudRateDiv;
+
+    while(readDataCapDelay > 0)
+    {
+        OSPI_setRdDataCaptureDelay(obj->ospiHandle, readDataCapDelay);
+        status = Flash_norOspiReadId(config);
+        if(status == SystemP_SUCCESS)
+        {
+            if(maxReadDataCapDelay == 0)
+            {
+                maxReadDataCapDelay = readDataCapDelay;
+            }
+            minReadDataCapDelay = readDataCapDelay;
+        }
+        readDataCapDelay--;
+    }
+
+    if(maxReadDataCapDelay == 0)
+    {
+        status = SystemP_FAILURE;
+    }
+    else
+    {
+        /* Picking the middle value from a region of passing read data capture delay */
+        readDataCapDelay = (minReadDataCapDelay + maxReadDataCapDelay) / 2;
+        OSPI_setRdDataCaptureDelay(obj->ospiHandle, readDataCapDelay);
+        status = SystemP_SUCCESS;
+    }
 
     return status;
 }

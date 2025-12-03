@@ -92,20 +92,20 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_IPC_NOTIFY_ECHO_OPTIS
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1692">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md1693">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md1694">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md1695">Building with Makefile</a></li>
-<li class="level2"><a href="#autotoc_md1696">Loading And Running the example using uart_uniflash tool</a></li>
-<li class="level2"><a href="#autotoc_md1697">Loading And Running the example using CCS</a></li>
-<li class="level2"><a href="#autotoc_md1698">Building using CCS</a></li>
+<ul><li class="level1"><a href="#autotoc_md1764">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md1765">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md1766">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md1767">Building with Makefile</a></li>
+<li class="level2"><a href="#autotoc_md1768">Loading And Running the example using uart_uniflash tool</a></li>
+<li class="level2"><a href="#autotoc_md1769">Loading And Running the example using CCS</a></li>
+<li class="level2"><a href="#autotoc_md1770">Building using CCS</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1699">See Also</a></li>
-<li class="level1"><a href="#autotoc_md1700">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md1771">See Also</a></li>
+<li class="level1"><a href="#autotoc_md1772">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_ipc_notify_echo_optishare"></a></p>
-<h1><a class="anchor" id="autotoc_md1692"></a>
+<h1><a class="anchor" id="autotoc_md1764"></a>
 Introduction</h1>
 <p>This example shows usage of IPC Notify APIs for exchanging 28b messages between multiple CPUs with Optishare enabled.</p>
 <p>In this example,</p><ul>
@@ -114,7 +114,7 @@ Introduction</h1>
 <li>Once all messages are echoed all the CPUs exit</li>
 <li>With the application of OptiShare, there is Shared code and data.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1693"></a>
+<h1><a class="anchor" id="autotoc_md1765"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -134,23 +134,23 @@ Supported Combinations</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/ipc/ipc_notify_echo_optishare   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1694"></a>
+<h1><a class="anchor" id="autotoc_md1766"></a>
 Steps to Run the Example</h1>
 <dl class="section note"><dt>Note</dt><dd>This is a <code>system</code> or multi-core project, so refer to system project build instructions for CCS project or makefiles when building the example.</dd></dl>
-<h2><a class="anchor" id="autotoc_md1695"></a>
+<h2><a class="anchor" id="autotoc_md1767"></a>
 Building with Makefile</h2>
 <ul>
 <li>build the system makefile using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>). This will build all the dependent CPU makefiles as well. To build with OptiShare enabled, use command <div class="fragment"><div class="line">make sso</div>
 </div><!-- fragment --> Here, it builds <code>sso</code> rule which does the normal build but also does the further OptiShare Processing.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1696"></a>
+<h2><a class="anchor" id="autotoc_md1768"></a>
 Loading And Running the example using uart_uniflash tool</h2>
 <ul>
 <li>Flash the application using uart_uniflash.py. Here Flash the binaries with extension *.optishare.mcelf and *.optishare.mcelf_xip from system_freertos_nortos folder.</li>
 <li>More on how to flash can be read at <a class="el" href="TOOLS_FLASH.html#TOOLS_FLASH_UART_UNIFLASH">UART Uniflash</a></li>
 <li>Change the boot mode to OSPI boot mode and do the board reset to see the output as shown in sample output.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1697"></a>
+<h2><a class="anchor" id="autotoc_md1769"></a>
 Loading And Running the example using CCS</h2>
 <p>Once this example has been built using Makefile, loadAll.js JavaScript can be used to load optishare example.</p>
 <ol type="1">
@@ -162,7 +162,7 @@ Loading And Running the example using CCS</h2>
 </div><!-- fragment --></li>
 </ol>
 <p>Performing the above steps will load all the binaries. All that is required is to resume the execution.</p>
-<h2><a class="anchor" id="autotoc_md1698"></a>
+<h2><a class="anchor" id="autotoc_md1770"></a>
 Building using CCS</h2>
 <ol type="1">
 <li><a class="el" href="OPTIFLASH_OPTISHARE_CCS.html">Enabling Optishare In CCS</a> to see how to enable optishare in a system project in the CCS. Perform the same steps in for this project.</li>
@@ -172,10 +172,10 @@ Building using CCS</h2>
 <li>Run all the cores. <br  />
 </li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1699"></a>
+<h1><a class="anchor" id="autotoc_md1771"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_IPC_NOTIFY_PAGE.html">IPC Notify</a></p>
-<h1><a class="anchor" id="autotoc_md1700"></a>
+<h1><a class="anchor" id="autotoc_md1772"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run.</p>
 <div class="fragment"><div class="line">[IPC NOTIFY ECHO] Message exchange started by main core !!!</div>

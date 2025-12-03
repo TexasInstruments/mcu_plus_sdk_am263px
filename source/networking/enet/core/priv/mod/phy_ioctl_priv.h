@@ -79,6 +79,7 @@ int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_GET_LOOPBACK_STATE(EnetPhy
 int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_IS_ALIVE(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms);
 int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_IS_LINKED(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms);
 int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_GET_LINK_MODE(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms);
+int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_GET_LINK_STATUS(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms);
 int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_RESET(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms);
 int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_READ_REG(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms);
 int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_WRITE_REG(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms);
@@ -100,6 +101,8 @@ int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_ENABLE_PTP(EnetPhy_Handle 
 int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_ENABLE_EVENT_CAPTURE(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms);
 int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_ENABLE_TRIGGER_OUTPUT(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms);
 int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_GET_EVENT_TIMESTAMP(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms);
+int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_CONFIG_MEDIA_CLOCK(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms);
+int32_t  EnetPhyMdioDflt_ioctl_handler_ENET_PHY_IOCTL_NUDGE_CODEC_CLOCK(EnetPhy_Handle hPhy, Enet_IoctlPrms *prms);
 
 /* ========================================================================== */
 /*                        Deprecated Function Declarations                    */

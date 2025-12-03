@@ -55,6 +55,12 @@ extern "C" {
 /*                                 Macros                                     */
 /* ========================================================================== */
 
+/*! \brief Auto-Negotiation Advertisement Register (ANAR) */
+#define DP83869_ANAR                          (0x04U)
+
+/*! \brief Configuration Register 1 (CFG1) */
+#define DP83869_CFG1                          (0x09U)
+
 /*! \brief PHY Control Register (PHYCR) */
 #define DP83869_PHYCR                         (0x10U)
 
@@ -119,10 +125,23 @@ extern "C" {
 #define DP83869_IOMUXCFG                      (0x170U)
 
 /*! \brief GPIO Mux Control Register (GPIO_MUX_CTRL). RGZ devices only */
-#define DP83869_GPIOMUXCTRL                   (0x172U)
+#define DP83869_GPIOMUXCTRL                   (0x1E0U)
 
 /*! \brief OP Mode decode Register (OP_MODE_DECODE) */
 #define DP83869_OP_MODE_DECODE                (0x1DFU)
+
+/* ANAR register definitions */
+#define ANAR_100FD                            PHY_BIT(8)
+#define ANAR_100HD                            PHY_BIT(7)
+#define ANAR_10FD                             PHY_BIT(6)
+#define ANAR_10HD                             PHY_BIT(5)
+#define ANAR_802P3                            PHY_BIT(0)
+#define ANAR_100                              (ANAR_100FD | ANAR_100HD)
+#define ANAR_10                               (ANAR_10FD | ANAR_10HD)
+
+/* CFG1 register definitions */
+#define CFG1_1000HD                           (0x0100U)
+#define CFG1_1000FD                           (0x0200U)
 
 /* PHYCR register definitions */
 #define PHYCR_TXFIFODEPTH_MASK                (0xC000U)
@@ -134,6 +153,14 @@ extern "C" {
 #define PHYCR_MDICROSSOVER_AUTO               (0x0040U)
 #define PHYCR_MDICROSSOVER_MDIX               (0x0020U)
 #define PHYCR_MDICROSSOVER_MDI                (0x0000U)
+
+/* PHYST register definitions */
+#define PHYST_SPEEDSEL_MASK                   (0xC000U)
+#define PHYST_SPEEDSEL_RESERVED               (0xC000U)
+#define PHYST_SPEEDSEL_1000_MBPS              (0x8000U)
+#define PHYST_SPEEDSEL_100_MBPS               (0x4000U)
+#define PHYST_SPEEDSEL_10_MBPS                (0x0000U)
+#define PHYST_DUPLEXMODEENV_FD                (0x2000U)
 
 /* LEDCR1 register definitions */
 #define LEDCR1_LEDGPIOSEL_MASK                (0xF000U)
@@ -172,6 +199,7 @@ extern "C" {
 
 /* CFG3 register definitions */
 #define CFG3_ROBUSTAUTOMDIX                   PHY_BIT(9)
+#define CFG3_ANEGADVFD_EN                     PHY_BIT(11)
 
 /* CTRL register definitions */
 #define CTRL_SWRESET                          PHY_BIT(15)
@@ -224,6 +252,10 @@ extern "C" {
 
 /* OPMODE DECODE register definitions */
 #define OP_MODE_DECODE_RGMII_MII_SEL          PHY_BIT(5)
+
+/*! \brief PHY STS bits */
+#define DP83869_PHYSTS_LINK	    PHY_BIT(10)
+
 
 /* ========================================================================== */
 /*                         Structures and Enums                               */

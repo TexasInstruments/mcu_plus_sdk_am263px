@@ -1,5 +1,5 @@
 {
-
+    "flashName": "IS25LX256",
     "flashSize": 33554432,
     "flashPageSize": 256,
     "flashManfId": "0x9D",

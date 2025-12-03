@@ -175,7 +175,7 @@ RNG_Return_t RNG_setup(RNG_Handle handle)
             * UID is only 256 bits long. So we cycle through the UID.
             */
             /* Not doing a verify as the register is write only */
-            if((config->attrs->seedSizeInDwords != 0) && (config->attrs->seedSizeInDwords <= RNG_DRBG_SEED_MAX_ARRY_SIZE_IN_DWORD))
+            if((config->attrs->seedSizeInDwords != 0U) && (config->attrs->seedSizeInDwords <= RNG_DRBG_SEED_MAX_ARRY_SIZE_IN_DWORD))
             {
                 for(i = 0; i< config->attrs->seedSizeInDwords; i++)
                 {

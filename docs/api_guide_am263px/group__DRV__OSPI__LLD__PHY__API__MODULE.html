@@ -104,9 +104,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gaa172ebcf9aab076b2a762df685e4756a"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__LLD__PHY__API__MODULE.html#gaa172ebcf9aab076b2a762df685e4756a">OSPI_lld_phyTuneSDR</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> handle, uint32_t flashOffset)</td></tr>
 <tr class="memdesc:gaa172ebcf9aab076b2a762df685e4756a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function tunes the OSPI PHY for SDR mode to set optimal PHY parameters.  <a href="group__DRV__OSPI__LLD__PHY__API__MODULE.html#gaa172ebcf9aab076b2a762df685e4756a">More...</a><br /></td></tr>
 <tr class="separator:gaa172ebcf9aab076b2a762df685e4756a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga939379aa90e0472c065063e4529ff372"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__LLD__PHY__API__MODULE.html#ga939379aa90e0472c065063e4529ff372">OSPI_lld_phyTuneGrapher</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> handle, uint32_t flashOffset, uint8_t arrays[4][128][128])</td></tr>
-<tr class="memdesc:ga939379aa90e0472c065063e4529ff372"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function takes a 4x128x128 array and fills it with TX RX DLL data for graphing purpose.  <a href="group__DRV__OSPI__LLD__PHY__API__MODULE.html#ga939379aa90e0472c065063e4529ff372">More...</a><br /></td></tr>
-<tr class="separator:ga939379aa90e0472c065063e4529ff372"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafd227d515282233156c11c820eecf274"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__LLD__PHY__API__MODULE.html#gafd227d515282233156c11c820eecf274">OSPI_lld_phyTuneGrapher</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> handle, uint32_t flashOffset, uint8_t arrays[5][128][128])</td></tr>
+<tr class="memdesc:gafd227d515282233156c11c820eecf274"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function takes a 4x128x128 array and fills it with TX RX DLL data for graphing purpose.  <a href="group__DRV__OSPI__LLD__PHY__API__MODULE.html#gafd227d515282233156c11c820eecf274">More...</a><br /></td></tr>
+<tr class="separator:gafd227d515282233156c11c820eecf274"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9bb7ea9af3db5dba60bee72847dc51bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__LLD__PHY__API__MODULE.html#ga9bb7ea9af3db5dba60bee72847dc51bd">OSPI_lld_phyGetTuningData</a> (uint32_t *tuningData, uint32_t *tuningDataSize)</td></tr>
 <tr class="memdesc:ga9bb7ea9af3db5dba60bee72847dc51bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the address to the attack vector buf required for tuning the PHY.  <a href="group__DRV__OSPI__LLD__PHY__API__MODULE.html#ga9bb7ea9af3db5dba60bee72847dc51bd">More...</a><br /></td></tr>
 <tr class="separator:ga9bb7ea9af3db5dba60bee72847dc51bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -205,8 +205,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga939379aa90e0472c065063e4529ff372"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga939379aa90e0472c065063e4529ff372">&#9670;&nbsp;</a></span>OSPI_lld_phyTuneGrapher()</h2>
+<a id="gafd227d515282233156c11c820eecf274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafd227d515282233156c11c820eecf274">&#9670;&nbsp;</a></span>OSPI_lld_phyTuneGrapher()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -227,7 +227,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>arrays</em>[4][128][128]&#160;</td>
+          <td class="paramname"><em>arrays</em>[5][128][128]&#160;</td>
         </tr>
         <tr>
           <td></td>

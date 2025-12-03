@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_EPWM_SYNCHRONIZATION.
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2368">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2369">Example Description</a></li>
-<li class="level1"><a href="#autotoc_md2370">External Connections</a></li>
+<ul><li class="level1"><a href="#autotoc_md2441">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2442">Example Description</a></li>
+<li class="level1"><a href="#autotoc_md2443">External Connections</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_EPWM_SYNCHRONIZATION_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2371">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2372">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2373">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2444">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2445">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2446">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_epwm_synchronization"></a></p>
-<h1><a class="anchor" id="autotoc_md2368"></a>
+<h1><a class="anchor" id="autotoc_md2441"></a>
 Introduction</h1>
 <p>This example configures 6 instances of EPWM, with EPWM0 taken as the reference and the other five EPWM instances are phase shifted with respect to it. EPWM0, EPWM1, EPWM2 and EPWM3 are configured using Sysconfig while EPWM4 and EPWM5 are configured using a function. Additionally, functions are defined that can change the phase and duty cycle of EPWMs while they are running. In this example synchronization is achieved by providing the sync-out pulse of EPWM0 as the sync-in pulse to EPWM1, EPWM2, EPWM3, EPWM4 and EPWM5. On receiving this sync-in pulse the EPWM time-base counter will start counting from the phase shift value up until period value. Further, 6 ECAP modules are integrated in capture mode to capture the waveform in order to validate the synchronization results. These ECAP modules are also synchronized wherein the sync-in pulse are provided by the sync-out pulse of EPWM0, and they are configured to detect the event of falling edge in the EPWM waveforms</p>
 <p>The sync-in options available are:</p><ol type="1">
@@ -130,7 +130,7 @@ Introduction</h1>
 <img src="am263_epwm_synchronization_timebase_waveform.png" alt=""/>
 <div class="caption">
 Waveform representation of phase shifted EPWM</div></div>
-<h1><a class="anchor" id="autotoc_md2369"></a>
+<h1><a class="anchor" id="autotoc_md2442"></a>
 Example Description</h1>
 <p>The example uses the following EPWMs to showcase the Synchronization features which includes:</p><ol type="1">
 <li>CONFIG_EPWM0 - This EPWM module is taken as the reference with 0 degree phase shift</li>
@@ -156,7 +156,7 @@ Block diagram of EPWM Synchronization</div></div>
 <img src="am263_epwm_synchronization_ecap_integration.png" alt=""/>
 <div class="caption">
 Integration of ECAP to capture EPWM waveform</div></div>
-<h1><a class="anchor" id="autotoc_md2370"></a>
+<h1><a class="anchor" id="autotoc_md2443"></a>
 External Connections</h1>
 <p>When using AM263x-CC or AM263Px-CC with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station) Probe the following on the HSEC pins</p><ul>
 <li>CONFIG_EPWM0 - EPWM 0A/0B : 49 / 51</li>
@@ -205,17 +205,17 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/epwm/epwm_synchronization   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2371"></a>
+<h1><a class="anchor" id="autotoc_md2444"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2372"></a>
+<h1><a class="anchor" id="autotoc_md2445"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_EPWM_PAGE.html">EPWM</a></p>
-<h1><a class="anchor" id="autotoc_md2373"></a>
+<h1><a class="anchor" id="autotoc_md2446"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">EPWM Synchronization Test Started ...</div>

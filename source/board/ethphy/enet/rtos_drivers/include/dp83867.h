@@ -244,20 +244,20 @@ typedef struct Dp83867_Cfg_s
  */
 void Dp83867_initCfg(Dp83867_Cfg *cfg);
 
-void Dp83867_bind(EthPhyDrv_Handle* hPhy, 
-                    uint8_t phyAddr, 
+void Dp83867_bind(EthPhyDrv_Handle* hPhy,
+                    uint8_t phyAddr,
                     Phy_RegAccessCb_t* pRegAccessCb);
 
-bool Dp83867_isPhyDevSupported(EthPhyDrv_Handle hPhy, 
+bool Dp83867_isPhyDevSupported(EthPhyDrv_Handle hPhy,
                                 const void *pVersion);
 
-bool Dp83867_isMacModeSupported(EthPhyDrv_Handle hPhy, 
+bool Dp83867_isMacModeSupported(EthPhyDrv_Handle hPhy,
                                 Phy_Mii mii);
 
 int32_t Dp83867_config(EthPhyDrv_Handle hPhy,
                         const void *pExtCfg,
                         const uint32_t extCfgSize,
-                        Phy_Mii mii, 
+                        Phy_Mii mii,
                         bool loopbackEn);
 
 void Dp83867_reset(EthPhyDrv_Handle hPhy);

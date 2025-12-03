@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) Texas Instruments Incorporated 2020
+ *  Copyright (c) Texas Instruments Incorporated 2020 - 2025
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions
@@ -61,6 +61,9 @@ extern "C" {
 /*! \brief PHY Control Register (PHYCR) */
 #define DP83822_PHYCR                         (0x19U)
 
+/*! \brief PHY Status Register (PHYSTS) */
+#define DP83822_PHYSTS                        (0x10U)
+
 /* CR1 register definitions */
 #define CR1_ROBUSTAUTOMDIX                    (0x0020U)
 
@@ -69,6 +72,16 @@ extern "C" {
 #define PHYCR_FORCEMDIX_MASK                  (0x4000U)
 #define PHYCR_FORCEMDIX_MDIX                  (0x4000U)
 #define PHYCR_FORCEMDIX_MDI                   (0x0000U)
+
+/* PHYST register definitions */
+#define PHYST_SPEEDSEL_MASK                   (0x0002U)
+#define PHYST_SPEEDSEL_100_MBPS               (0x0000U)
+#define PHYST_SPEEDSEL_10_MBPS                (0x0002U)
+#define PHYST_DUPLEXMODEENV_FD                (0x0004U)
+
+/*! \brief PHY STS bits */
+#define DP83822_PHYSTS_LINK	PHY_BIT(0)
+
 
 /* ========================================================================== */
 /*                         Structures and Enums                               */

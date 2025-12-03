@@ -92,28 +92,28 @@ $(document).ready(function(){initNavTree('EXAMPLES_ENET_CPSW_TSN_GPTP_TT.html','
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3131">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md3132">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3133">Packet pool configuration</a></li>
-<li class="level1"><a href="#autotoc_md3134">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3135">Prerequisites</a></li>
-<li class="level2"><a href="#autotoc_md3136">Build the example</a></li>
-<li class="level2"><a href="#autotoc_md3137">HW Setup</a><ul><li class="level3"><a href="#autotoc_md3138">PPS Output</a></li>
+<ul><li class="level1"><a href="#autotoc_md3204">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3205">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md3206">Packet pool configuration</a></li>
+<li class="level1"><a href="#autotoc_md3207">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3208">Prerequisites</a></li>
+<li class="level2"><a href="#autotoc_md3209">Build the example</a></li>
+<li class="level2"><a href="#autotoc_md3210">HW Setup</a><ul><li class="level3"><a href="#autotoc_md3211">PPS Output</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3139">Create a network between EVM and host PC</a></li>
-<li class="level2"><a href="#autotoc_md3140">Run the example</a></li>
-<li class="level2"><a href="#autotoc_md3141">Sample Log Output</a><ul><li class="level3"><a href="#autotoc_md3142">DUT output</a></li>
-<li class="level3"><a href="#autotoc_md3143">PC Output</a></li>
+<li class="level2"><a href="#autotoc_md3212">Create a network between EVM and host PC</a></li>
+<li class="level2"><a href="#autotoc_md3213">Run the example</a></li>
+<li class="level2"><a href="#autotoc_md3214">Sample Log Output</a><ul><li class="level3"><a href="#autotoc_md3215">DUT output</a></li>
+<li class="level3"><a href="#autotoc_md3216">PC Output</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3144">Troubleshooting issues</a></li>
+<li class="level2"><a href="#autotoc_md3217">Troubleshooting issues</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3145">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3218">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_enet_cpsw_tsn_gptp_tt"></a></p>
-<h1><a class="anchor" id="autotoc_md3131"></a>
+<h1><a class="anchor" id="autotoc_md3204"></a>
 Introduction</h1>
 <p>This ethernet TSN example illustrates the usage of gPTP IEEE 802.1AS stack with CPSW peripheral, in gPTP End-Point time_transmitter mode (i.e. master mode).</p>
 <p>However, application used here supports all the below modes-</p><ul>
@@ -124,7 +124,7 @@ Introduction</h1>
 <p>In this example, ptp4l on connected Host PC is configured to force gPTP time_receiver mode, so that the DUT becomes time_transmitter (i.e. gPTP master) mode. Yang based configuration is also supported. Currently File System is not supported, will be added in future releases.</p>
 <p>In this example, We use two Rx and two Tx DMA channel, one Rx and one Tx channel specific to gPTP traffic. Along with PTP traffic, application also handles non-PTP traffic in a separate RTOS task and DMA Channel. Received non-PTP packets are sent back by the application, by interchanging source and destination MAC address.</p>
 <p>See also :<a class="el" href="ENET_CPSW_TSN_GPTP.html">Ethernet TSN and gPTP Stack - API and Integration Guide</a></p>
-<h1><a class="anchor" id="autotoc_md3132"></a>
+<h1><a class="anchor" id="autotoc_md3205"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -138,12 +138,12 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/tsn/gptp_cpsw_app   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3133"></a>
+<h1><a class="anchor" id="autotoc_md3206"></a>
 Packet pool configuration</h1>
 <p>To change packet pool configuration from syscfg, please refer to <a class="el" href="PACKETPOOL_CONFIG_TOP.html">Ethernet Packet Pool Allocation Guidelines</a></p>
-<h1><a class="anchor" id="autotoc_md3134"></a>
+<h1><a class="anchor" id="autotoc_md3207"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md3135"></a>
+<h2><a class="anchor" id="autotoc_md3208"></a>
 Prerequisites</h2>
 <ul>
 <li>EVM Board</li>
@@ -181,16 +181,16 @@ For some network cards, there is a bug with internal propagation delay. So, in t
 </div><!-- fragment --></li>
 <li><code>priority1</code> in ~/gptp_config.cfg file can be changed to make the Linux PC master or slave. Lower the number higher the priority to become master.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3136"></a>
+<h2><a class="anchor" id="autotoc_md3209"></a>
 Build the example</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3137"></a>
+<h2><a class="anchor" id="autotoc_md3210"></a>
 HW Setup</h2>
 <dl class="section note"><dt>Note</dt><dd>Make sure you have setup the EVM with cable connections as shown here, <a class="el" href="EVM_SETUP_PAGE.html">EVM Setup</a>. In addition do below steps.</dd></dl>
-<h3><a class="anchor" id="autotoc_md3138"></a>
+<h3><a class="anchor" id="autotoc_md3211"></a>
 PPS Output</h3>
 <p>PPS output is a square wave signal generated by the device. It is used for comparison between the TT (master) and TR( slave) nodes when they are time synchronized. On the device, PPS is generated on the SYNC_OUT signal pin from CPTS (Common Platform Time Synchronization) of CPSW.</p>
 <p>Out of box configuration for PPS signal output of this example is as follow:</p>
@@ -211,6 +211,14 @@ PPS Output</h3>
 <td class="markdownTableBodyNone">am263px-CC  </td><td class="markdownTableBodyNone">SFDM0_CLK1  </td><td class="markdownTableBodyNone">A16  </td><td class="markdownTableBodyNone">3.814 KHz  </td><td class="markdownTableBodyNone">Pin1 on J18 connector   </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">am263px-LP  </td><td class="markdownTableBodyNone">SFDM0_CLK1  </td><td class="markdownTableBodyNone">A16  </td><td class="markdownTableBodyNone">3.814 KHz  </td><td class="markdownTableBodyNone">Pin4 on J8 connector   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">am261x-LP  </td><td class="markdownTableBodyNone">GPIO124  </td><td class="markdownTableBodyNone">A19  </td><td class="markdownTableBodyNone">3.814 KHz  </td><td class="markdownTableBodyNone">Pin9 on J6 connector   </td></tr>
+</table>
+<p>PPS signal output with Board modification of this example is as follow: </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">EVM  </th><th class="markdownTableHeadNone">Mapped Signal Name  </th><th class="markdownTableHeadNone">SOC Pin Name  </th><th class="markdownTableHeadNone">PPS frequency  </th><th class="markdownTableHeadNone">Output  </th><th class="markdownTableHeadNone">Board modification   </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">am261x-SOM  </td><td class="markdownTableBodyNone">GPIO124  </td><td class="markdownTableBodyNone">A16  </td><td class="markdownTableBodyNone">3.814 KHz  </td><td class="markdownTableBodyNone">24th pin on J20(101 pin) in Hsec Dock  </td><td class="markdownTableBodyNone">Remove R215 and populate R214   </td></tr>
 </table>
 <p>To set/modify configuration of PPS signal , you may follow the below steps:</p>
 <ol type="1">
@@ -226,14 +234,14 @@ Figure: Syscfg tool CPSW pinmux changes to select PPS signal pin</div></div>
 Figure: Signal captured on oscilloscope</div></div>
 </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md3139"></a>
+<h2><a class="anchor" id="autotoc_md3212"></a>
 Create a network between EVM and host PC</h2>
 <p>EVM and PC has to be connected directly as shown below using CAT6 or CAT5 cable. If there is ethernet switch placed in between, make sure the switch is gPTP capable.  <style>div.image img[src="gptp_topology_evm_pc.png"]{width:30%}</style> </p><div class="image">
 <img src="gptp_topology_evm_pc.png" alt=""/>
 <div class="caption">
 Local network between PC and EVM</div></div>
 <p>PORT1 instead of PORT0 on EVM can be used as well.</p>
-<h2><a class="anchor" id="autotoc_md3140"></a>
+<h2><a class="anchor" id="autotoc_md3213"></a>
 Run the example</h2>
 <dl class="section attention"><dt>Attention</dt><dd>If you need to reload and run again, a CPU power-cycle is MUST</dd></dl>
 <ul>
@@ -243,9 +251,9 @@ Run the example</h2>
 </div><!-- fragment --> Replace eno1 with the network interface connected to your PC.</li>
 <li>You will see logs in the UART terminal as shown in the next section. PC side logs are with Intel i210 card.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3141"></a>
+<h2><a class="anchor" id="autotoc_md3214"></a>
 Sample Log Output</h2>
-<h3><a class="anchor" id="autotoc_md3142"></a>
+<h3><a class="anchor" id="autotoc_md3215"></a>
 DUT output</h3>
 <div class="fragment"><div class="line">==========================</div>
 <div class="line">          gPTP App        </div>
@@ -318,7 +326,7 @@ DUT output</h3>
 <div class="line">     30. 65s : CPU load =   4.11 %</div>
 <div class="line">     35. 66s : CPU load =   4.11 %</div>
 <div class="line">     40. 67s : CPU load =   4.01 %</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3143"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3216"></a>
 PC Output</h3>
 <div class="fragment"><div class="line">ptp4l[8056.842]: selected /dev/ptp0 as PTP clock</div>
 <div class="line">ptp4l[8056.892]: port 1: INITIALIZING to LISTENING on INIT_COMPLETE</div>
@@ -343,12 +351,12 @@ PC Output</h3>
 <div class="line">...</div>
 <div class="line">ptp4l[8087.700]: rms    9 max   15 freq -20755 +/-   7 delay   199 +/-   0</div>
 <div class="line">ptp4l[8088.700]: rms    7 max   11 freq -20750 +/-   5 delay   200 +/-   0</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3144"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3217"></a>
 Troubleshooting issues</h2>
 <ul>
 <li>To ensure compatibility with CPSW RGMII2 port on am263px-cc board, make sure that SW-15(switch) should be set to <code>LOW</code> for board versions(E2/A/B versions). This configuration ensures seamless out-of-box support and functionality with the CPSW RGMII2 port on the specified versions.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3145"></a>
+<h1><a class="anchor" id="autotoc_md3218"></a>
 See Also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> | <a class="el" href="EXAMPLES_ENET_CPSW_TSN_GPTP_BRIDGE.html">Ethernet TSN CPSW gPTP Bridge Example</a> | <a class="el" href="EXAMPLES_ENET_CPSW_TSN_GPTP_TR.html">Ethernet TSN CPSW gPTP TimeReceiver (gPTP Slave) Example</a> | <a class="el" href="EXAMPLES_ENET_CPSW_TSN_GPTP_TT.html">Ethernet TSN CPSW gPTP TimeTransmitter (gPTP Master) Example</a> | <a class="el" href="ENET_CPSW_TSN_GPTP.html">Ethernet TSN and gPTP Stack - API and Integration Guide</a> </p>
 </div></div><!-- contents -->

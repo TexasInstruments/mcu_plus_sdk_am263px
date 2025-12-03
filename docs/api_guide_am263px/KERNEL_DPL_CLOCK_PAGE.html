@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('KERNEL_DPL_CLOCK_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md716">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md717">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md718">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md719">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md720">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md760">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md761">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md762">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md763">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md764">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_dpl_ClockP"></a></p>
-<h1><a class="anchor" id="autotoc_md716"></a>
+<h1><a class="anchor" id="autotoc_md760"></a>
 Features Supported</h1>
 <ul>
 <li>Provide system tick functionality using a single timer to periodically interrupt the CPU</li>
@@ -116,10 +116,10 @@ Features Supported</h1>
 <li>Provides APIs to convert clock ticks to time in usecs and vica versa</li>
 <li>API to get current time in units of usecs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md717"></a>
+<h1><a class="anchor" id="autotoc_md761"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md718"></a>
+<h1><a class="anchor" id="autotoc_md762"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>The user specific callback can be called in interrupt, SWI or task context depending on the underlying RTOS that is used<ul>
@@ -142,7 +142,7 @@ Important Usage Guidelines</h1>
 <li>In R5F, one of the many SOC level timer is used.</li>
 <li><a class="el" href="group__KERNEL__DPL__CLOCK.html#ga9f1e99a67f697549e08a65ccb6bcdea2">ClockP_getTimeUsec</a> shouldn't be called from an ISR with priority higher than that of Tick Interrupt. This is because Tick interrupt won't be able to preempt the current ISR and <a class="el" href="group__KERNEL__DPL__CLOCK.html#ga9f1e99a67f697549e08a65ccb6bcdea2">ClockP_getTimeUsec</a> may return incorrect value.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md719"></a>
+<h1><a class="anchor" id="autotoc_md763"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs, </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="ClockP_8h.html">kernel/dpl/ClockP.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Example callback that increments a global counter based on the clock that invoked the callback </p><div class="fragment"><div class="line">uint32_t gOneShotCount = 0;</div>
@@ -185,7 +185,7 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">    curTimeInUsecs = <a class="code" href="group__KERNEL__DPL__CLOCK.html#ga9f1e99a67f697549e08a65ccb6bcdea2">ClockP_getTimeUsec</a>() - curTimeInUsecs;</div>
 <div class="line"> </div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md720"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md764"></a>
 API</h1>
 <p><a class="el" href="group__KERNEL__DPL__CLOCK.html">APIs for Clock</a> </p>
 </div></div><!-- contents -->

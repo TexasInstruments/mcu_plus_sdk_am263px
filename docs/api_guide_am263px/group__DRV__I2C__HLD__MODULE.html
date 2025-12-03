@@ -98,11 +98,11 @@ $(document).ready(function(){initNavTree('group__DRV__I2C__HLD__MODULE.html','')
 <a name="details" id="details"></a><h2 class="groupheader">Introduction</h2>
 <p>This file containing the I2C API.</p>
 <p>The I2C header file should be included in an application as follows: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;drivers/i2c.h&gt;</span></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md877"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md921"></a>
 Operation</h1>
 <p>The I2C driver operates as a controller or a target on a single-controller I2C bus, in either I2C_MODE_BLOCKING or I2C_MODE_CALLBACK. In blocking mode, the task's execution is blocked during the I2C transaction. When the transfer has completed, code execution will resume. In callback mode, the task's execution is not blocked, allowing for other transactions to be queued up or to process some other code. When the transfer has completed, the I2C driver will call a user-specified callback function (from a HWI context).</p>
 <p>The APIs in this driver serve as an interface to a typical TI-RTOS application. The specific peripheral implementations are responsible to create all the SYS/BIOS specific primitives to allow for thread-safe operation.</p>
-<h2><a class="anchor" id="autotoc_md878"></a>
+<h2><a class="anchor" id="autotoc_md922"></a>
 Opening the driver</h2>
 <div class="fragment"><div class="line"><a class="code" href="group__DRV__I2C__HLD__MODULE.html#gadd75c22230842b00010efe1d992b8979">I2C_Handle</a>      handle;</div>
 <div class="line"><a class="code" href="structI2C__Params.html">I2C_Params</a>      params;</div>
@@ -114,7 +114,7 @@ Opening the driver</h2>
 <div class="line"><span class="keywordflow">if</span> (!handle) {</div>
 <div class="line">    System_printf(<span class="stringliteral">&quot;I2C did not open&quot;</span>);</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md879"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md923"></a>
 Transferring data</h2>
 <p>A I2C transaction with a I2C peripheral is started by calling <a class="el" href="group__DRV__I2C__HLD__MODULE.html#ga6c82327e0d17600c67b45a8616905c10" title="API to initiate a transfer from I2C Instance.">I2C_transfer()</a>. The details of the I2C transaction is specified with a <a class="el" href="structI2C__Transaction.html" title="I2C Transaction.">I2C_Transaction</a> data structure. This structure allows for any of the three types of transactions: Write, Read, or Write/Read. Each transfer is performed atomically with the I2C controller or target peripheral.</p>
 <div class="fragment"><div class="line"><a class="code" href="structI2C__Transaction.html">I2C_Transaction</a> i2cTransaction;</div>

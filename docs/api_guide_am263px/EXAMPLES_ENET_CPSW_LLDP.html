@@ -92,33 +92,33 @@ $(document).ready(function(){initNavTree('EXAMPLES_ENET_CPSW_LLDP.html',''); ini
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3180">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md3181">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3182">Packet pool configuration</a><ul><li class="level2"><a href="#autotoc_md3183">Prerequisites</a></li>
-<li class="level2"><a href="#autotoc_md3184">Build the example</a></li>
-<li class="level2"><a href="#autotoc_md3185">HW Setup</a></li>
-<li class="level2"><a href="#autotoc_md3186">Create a network between EVM and host PC</a></li>
-<li class="level2"><a href="#autotoc_md3187">Run the example</a></li>
-<li class="level2"><a href="#autotoc_md3188">LLDP verification</a><ul><li class="level3"><a href="#autotoc_md3189">Verification #1 LLDPDU Tx interval and LLDPDU content (per one dest-mac-address)</a></li>
-<li class="level3"><a href="#autotoc_md3190">Verification #2 Fast TX in case of new neighbor exist (per one dest-mac-address)</a></li>
-<li class="level3"><a href="#autotoc_md3191">Verification #3 Delete neighbor info in case of Receiving LLDP shutdown (per one dest-mac-address)</a></li>
-<li class="level3"><a href="#autotoc_md3192">Verification #4 Detected Neighbor info change (per one dest-mac-address)</a></li>
-<li class="level3"><a href="#autotoc_md3193">Verification #5 Multiple Destination MAC addresses</a></li>
+<ul><li class="level1"><a href="#autotoc_md3253">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3254">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md3255">Packet pool configuration</a><ul><li class="level2"><a href="#autotoc_md3256">Prerequisites</a></li>
+<li class="level2"><a href="#autotoc_md3257">Build the example</a></li>
+<li class="level2"><a href="#autotoc_md3258">HW Setup</a></li>
+<li class="level2"><a href="#autotoc_md3259">Create a network between EVM and host PC</a></li>
+<li class="level2"><a href="#autotoc_md3260">Run the example</a></li>
+<li class="level2"><a href="#autotoc_md3261">LLDP verification</a><ul><li class="level3"><a href="#autotoc_md3262">Verification #1 LLDPDU Tx interval and LLDPDU content (per one dest-mac-address)</a></li>
+<li class="level3"><a href="#autotoc_md3263">Verification #2 Fast TX in case of new neighbor exist (per one dest-mac-address)</a></li>
+<li class="level3"><a href="#autotoc_md3264">Verification #3 Delete neighbor info in case of Receiving LLDP shutdown (per one dest-mac-address)</a></li>
+<li class="level3"><a href="#autotoc_md3265">Verification #4 Detected Neighbor info change (per one dest-mac-address)</a></li>
+<li class="level3"><a href="#autotoc_md3266">Verification #5 Multiple Destination MAC addresses</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3194">Troubleshooting issues</a></li>
+<li class="level2"><a href="#autotoc_md3267">Troubleshooting issues</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3195">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3268">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_enet_cpsw_lldp_example"></a></p>
-<h1><a class="anchor" id="autotoc_md3180"></a>
+<h1><a class="anchor" id="autotoc_md3253"></a>
 Introduction</h1>
 <p>This ethernet LLDP example illustrates the usage of LLDP IEEE 802.1AB stack with CPSW peripheral.</p>
 <p>In this example, the DUT MAC port is connected to a neighbor PC which also have opensource lldp agent. Yang based configuration is also supported. Currently File System is not supported, will be added in future releases.</p>
 <p>See also :<a class="el" href="ENET_CPSW_LLDP.html">Ethernet LLDP Stack - API and Integration Guide</a></p>
-<h1><a class="anchor" id="autotoc_md3181"></a>
+<h1><a class="anchor" id="autotoc_md3254"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -132,10 +132,10 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/tsn/lldp_cpsw_app   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3182"></a>
+<h1><a class="anchor" id="autotoc_md3255"></a>
 Packet pool configuration</h1>
 <p>To change packet pool configuration from syscfg, please refer to <a class="el" href="PACKETPOOL_CONFIG_TOP.html">Ethernet Packet Pool Allocation Guidelines</a></p>
-<h2><a class="anchor" id="autotoc_md3183"></a>
+<h2><a class="anchor" id="autotoc_md3256"></a>
 Prerequisites</h2>
 <ul>
 <li>EVM Board</li>
@@ -148,26 +148,26 @@ Prerequisites</h2>
 <div class="line">           ghcr.io/lldpd/lldpd:latest</div>
 </div><!-- fragment --></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3184"></a>
+<h2><a class="anchor" id="autotoc_md3257"></a>
 Build the example</h2>
 <p>Refer <a class="el" href="EXAMPLES_ENET_CPSW_TSN_GPTP.html">Ethernet TSN gPTP Examples</a> to build the lldp example.</p>
-<h2><a class="anchor" id="autotoc_md3185"></a>
+<h2><a class="anchor" id="autotoc_md3258"></a>
 HW Setup</h2>
 <p>Refer <a class="el" href="EXAMPLES_ENET_CPSW_TSN_GPTP.html">Ethernet TSN gPTP Examples</a> for HW Setup.</p>
-<h2><a class="anchor" id="autotoc_md3186"></a>
+<h2><a class="anchor" id="autotoc_md3259"></a>
 Create a network between EVM and host PC</h2>
 <p>EVM and PC has to be connected directly as shown below using CAT6 or CAT5 cable  <style>div.image img[src="gptp_topology_evm_pc.png"]{width:30%}</style> </p><div class="image">
 <img src="gptp_topology_evm_pc.png" alt=""/>
 <div class="caption">
 Local network between PC and EVM</div></div>
 <p>PORT1 instead of PORT0 on EVM can be used as well.</p>
-<h2><a class="anchor" id="autotoc_md3187"></a>
+<h2><a class="anchor" id="autotoc_md3260"></a>
 Run the example</h2>
 <dl class="section attention"><dt>Attention</dt><dd>If you need to reload and run again, a CPU power-cycle is MUST</dd></dl>
 <p>Refer :<a class="el" href="ENET_CPSW_LLDP.html">Ethernet LLDP Stack - API and Integration Guide</a> for how to configure LLDP parameters.</p>
-<h2><a class="anchor" id="autotoc_md3188"></a>
+<h2><a class="anchor" id="autotoc_md3261"></a>
 LLDP verification</h2>
-<h3><a class="anchor" id="autotoc_md3189"></a>
+<h3><a class="anchor" id="autotoc_md3262"></a>
 Verification #1 LLDPDU Tx interval and LLDPDU content (per one dest-mac-address)</h3>
 <p>With default setting </p><div class="fragment"><div class="line">{&quot;message-tx-interval&quot; , &quot;30&quot;},</div>
 </div><!-- fragment --><p>Capture LLDPDU via wireshark and confirm the TX interval is around 30s  <style>div.image img[src="lldp_tx_interval.png"]{width:100%}</style> </p><div class="image">
@@ -178,7 +178,7 @@ LLDP TX Interval</div></div>
 <img src="lldpdu_content.png" alt=""/>
 <div class="caption">
 LLDPDU Content</div></div>
-<h3><a class="anchor" id="autotoc_md3190"></a>
+<h3><a class="anchor" id="autotoc_md3263"></a>
 Verification #2 Fast TX in case of new neighbor exist (per one dest-mac-address)</h3>
 <p>On Linux PC, start opensource LLDP application by: </p><div class="fragment"><div class="line">docker run --rm --net=host --uts=host \</div>
 <div class="line">           -v /etc/os-release:/etc/os-release \</div>
@@ -193,7 +193,7 @@ Verification #2 Fast TX in case of new neighbor exist (per one dest-mac-address)
 <div class="caption">
 LLDPDU Fast TX Flow</div></div>
 <p>After receive next LLDPDU from Linux PC, no more fast tx flow happened on DUT side.</p>
-<h3><a class="anchor" id="autotoc_md3191"></a>
+<h3><a class="anchor" id="autotoc_md3264"></a>
 Verification #3 Delete neighbor info in case of Receiving LLDP shutdown (per one dest-mac-address)</h3>
 <p>Continue 2nd verification, then turn OFF LLDPDU by <code>Ctrl + C</code> in Linux PC docker command. Verify DUT can detect and delete correct neighbor info include Port and Chassis ID.</p>
 <p>DUT log </p><div class="fragment"><div class="line">INF:lldp:collect_ttl_info: Recv SHUTDOWN LLDPDU TTL=[0]</div>
@@ -201,7 +201,7 @@ Verification #3 Delete neighbor info in case of Receiving LLDP shutdown (per one
 <div class="line">INF:lldp:chassis id: bc-5f-f4-73-e5-5a</div>
 <div class="line">INF:lldp:port id:    1c-fd-08-72-59-61</div>
 </div><!-- fragment --><p>User can rerun 2nd verification and confirm Fast TX flow happen again.</p>
-<h3><a class="anchor" id="autotoc_md3192"></a>
+<h3><a class="anchor" id="autotoc_md3265"></a>
 Verification #4 Detected Neighbor info change (per one dest-mac-address)</h3>
 <p>On Linux PC side, change port description of corresponding port which is connect to DUT. In this example, enp3s0 is used. </p><div class="fragment"><div class="line">docker exec lldpd lldpcli configure port enp3s0 lldp portdescription xxxxxxx</div>
 </div><!-- fragment --><p>DUT log </p><div class="fragment"><div class="line">INF:lldp:is_remote_system_data_change: Detected port desc changed</div>
@@ -209,7 +209,7 @@ Verification #4 Detected Neighbor info change (per one dest-mac-address)</h3>
 <div class="line">INF:lldp:chassis id: bc-5f-f4-73-e5-5a</div>
 <div class="line">INF:lldp:port id:    1c-fd-08-72-59-61</div>
 <div class="line">INF:lldp:update_remote_system_data: changed port_desc [enp3s0-&gt; xxxxxxx]</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3193"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3266"></a>
 Verification #5 Multiple Destination MAC addresses</h3>
 <p>Configure 3 message-tx-interval values differently each other, like below:</p>
 <div class="fragment"><div class="line">{</div>
@@ -236,12 +236,12 @@ Verification #5 Multiple Destination MAC addresses</h3>
 <div class="caption">
 LLDP Multiple Destination MAC Addresses</div></div>
 <p>Repeat verification #1 -&gt; #4 (The LLDP opensource is using Nearest bridge 01-80-C2-00-00-0E as destination MAC address) and confirm only Nearest bridge Dest MAC address in DUT takes effect.</p>
-<h2><a class="anchor" id="autotoc_md3194"></a>
+<h2><a class="anchor" id="autotoc_md3267"></a>
 Troubleshooting issues</h2>
 <ul>
 <li>To ensure compatibility with CPSW RGMII2 port on am263px-cc board, make sure that SW-15(switch) should be set to <code>LOW</code> for board versions(E2/A/B versions). This configuration ensures seamless out-of-box support and functionality with the CPSW RGMII2 port on the specified versions.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3195"></a>
+<h1><a class="anchor" id="autotoc_md3268"></a>
 See Also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> | <a class="el" href="ENET_CPSW_LLDP.html">Ethernet LLDP Stack - API and Integration Guide</a> </p>
 </div></div><!-- contents -->

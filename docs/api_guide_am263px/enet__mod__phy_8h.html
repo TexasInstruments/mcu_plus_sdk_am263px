@@ -150,6 +150,12 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structEnetPhy__GetEventTimestampOutArgs.html">EnetPhy_GetEventTimestampOutArgs</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output args for <a class="el" href="enet__mod__phy_8h.html#a2a004947c20b1574fffd19c283a5e878a8e128a654e7d324dbe9da73762490d6e" title="Get event timestamp.">ENET_PHY_IOCTL_GET_EVENT_TIMESTAMP</a> command.  <a href="structEnetPhy__GetEventTimestampOutArgs.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structEnetPhy__ConfigMediaClockInArgs.html">EnetPhy_ConfigMediaClockInArgs</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input args for <a class="el" href="enet__mod__phy_8h.html#a2a004947c20b1574fffd19c283a5e878a01e132acfcdaf498e9913366273d7f57" title="Config Media Clock.">ENET_PHY_IOCTL_CONFIG_MEDIA_CLOCK</a> command.  <a href="structEnetPhy__ConfigMediaClockInArgs.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structEnetPhy__NudgeCodecClockInArgs.html">EnetPhy_NudgeCodecClockInArgs</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input args for <a class="el" href="enet__mod__phy_8h.html#a2a004947c20b1574fffd19c283a5e878a240da5a0355de0e80900e8e0876cb44c" title="Nudge Codec Clock.">ENET_PHY_IOCTL_NUDGE_CODEC_CLOCK</a> command.  <a href="structEnetPhy__NudgeCodecClockInArgs.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -192,7 +198,11 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="enet__mod__phy_8h.html#a2a004947c20b1574fffd19c283a5e878ad50f0dfde964b3273e5681b04dd0d1ed">ENET_PHY_IOCTL_ENABLE_EVENT_CAPTURE</a> = ENET_PHY_PUBLIC_IOCTL(24U), 
 <a class="el" href="enet__mod__phy_8h.html#a2a004947c20b1574fffd19c283a5e878a0c3040428689ce90b62a82a3d3c4d36a">ENET_PHY_IOCTL_ENABLE_TRIGGER_OUTPUT</a> = ENET_PHY_PUBLIC_IOCTL(25U), 
-<a class="el" href="enet__mod__phy_8h.html#a2a004947c20b1574fffd19c283a5e878a8e128a654e7d324dbe9da73762490d6e">ENET_PHY_IOCTL_GET_EVENT_TIMESTAMP</a> = ENET_PHY_PUBLIC_IOCTL(26U)
+<a class="el" href="enet__mod__phy_8h.html#a2a004947c20b1574fffd19c283a5e878a8e128a654e7d324dbe9da73762490d6e">ENET_PHY_IOCTL_GET_EVENT_TIMESTAMP</a> = ENET_PHY_PUBLIC_IOCTL(26U), 
+<a class="el" href="enet__mod__phy_8h.html#a2a004947c20b1574fffd19c283a5e878ae49a260258fbe69ef6c50e537ae0663f">ENET_PHY_IOCTL_GET_LINK_STATUS</a> = ENET_PHY_PUBLIC_IOCTL(27U), 
+<br />
+&#160;&#160;<a class="el" href="enet__mod__phy_8h.html#a2a004947c20b1574fffd19c283a5e878a01e132acfcdaf498e9913366273d7f57">ENET_PHY_IOCTL_CONFIG_MEDIA_CLOCK</a> = ENET_PHY_PUBLIC_IOCTL(28U), 
+<a class="el" href="enet__mod__phy_8h.html#a2a004947c20b1574fffd19c283a5e878a240da5a0355de0e80900e8e0876cb44c">ENET_PHY_IOCTL_NUDGE_CODEC_CLOCK</a> = ENET_PHY_PUBLIC_IOCTL(29U)
 <br />
  }</td></tr>
 <tr class="memdesc:a2a004947c20b1574fffd19c283a5e878"><td class="mdescLeft">&#160;</td><td class="mdescRight">PHY IOCTL commands.  <a href="enet__mod__phy_8h.html#a2a004947c20b1574fffd19c283a5e878">More...</a><br /></td></tr>
@@ -397,6 +407,24 @@ Enumerations</h2></td></tr>
 <p>IOCTL parameters:</p><ul>
 <li>inArgs: <a class="el" href="structEnetPhy__GenericInArgs.html" title="Generic input args.">EnetPhy_GenericInArgs</a></li>
 <li>outArgs: <a class="el" href="structEnetPhy__GetEventTimestampOutArgs.html" title="Output args for ENET_PHY_IOCTL_GET_EVENT_TIMESTAMP command.">EnetPhy_GetEventTimestampOutArgs</a> </li>
+</ul>
+</td></tr>
+<tr><td class="fieldname"><a id="a2a004947c20b1574fffd19c283a5e878ae49a260258fbe69ef6c50e537ae0663f"></a>ENET_PHY_IOCTL_GET_LINK_STATUS&#160;</td><td class="fielddoc"><p>Get Phy Link status. This IOTCL will not have longterm support and this functionality will eventually be merged to ENET_PHY_IOCTL_GET_LINK_MODE IOCTL in upcoming release. So ENET_PHY_IOCTL_GET_LINK_MODE IOCTL can be continued to use to get the phy link speed, duplexity. </p>
+<p>IOCTL parameters:</p><ul>
+<li>inArgs: <a class="el" href="structEnetPhy__GenericInArgs.html" title="Generic input args.">EnetPhy_GenericInArgs</a></li>
+<li>outArgs: <a class="el" href="structEnetMacPort__LinkCfg.html" title="Link speed and duplexity configuration.">EnetMacPort_LinkCfg</a> </li>
+</ul>
+</td></tr>
+<tr><td class="fieldname"><a id="a2a004947c20b1574fffd19c283a5e878a01e132acfcdaf498e9913366273d7f57"></a>ENET_PHY_IOCTL_CONFIG_MEDIA_CLOCK&#160;</td><td class="fielddoc"><p>Config Media Clock. </p>
+<p>IOCTL parameters:</p><ul>
+<li>inArgs: <a class="el" href="structEnetPhy__ConfigMediaClockInArgs.html" title="Input args for ENET_PHY_IOCTL_CONFIG_MEDIA_CLOCK command.">EnetPhy_ConfigMediaClockInArgs</a></li>
+<li>outArgs: None </li>
+</ul>
+</td></tr>
+<tr><td class="fieldname"><a id="a2a004947c20b1574fffd19c283a5e878a240da5a0355de0e80900e8e0876cb44c"></a>ENET_PHY_IOCTL_NUDGE_CODEC_CLOCK&#160;</td><td class="fielddoc"><p>Nudge Codec Clock. </p>
+<p>IOCTL parameters:</p><ul>
+<li>inArgs: <a class="el" href="structEnetPhy__NudgeCodecClockInArgs.html" title="Input args for ENET_PHY_IOCTL_NUDGE_CODEC_CLOCK command.">EnetPhy_NudgeCodecClockInArgs</a></li>
+<li>outArgs: None </li>
 </ul>
 </td></tr>
 </table>

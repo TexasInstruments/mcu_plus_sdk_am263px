@@ -92,34 +92,34 @@ $(document).ready(function(){initNavTree('SW_INSTRUMENT_SMART_PLACEMENT.html',''
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md514">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md515">Short Coming of This Method</a></li>
-<li class="level1"><a href="#autotoc_md516">Tools and other requirements</a></li>
-<li class="level1"><a href="#autotoc_md517">Steps</a><ul><li class="level2"><a href="#autotoc_md518">1. Recompilation of Libraries</a></li>
-<li class="level2"><a href="#autotoc_md519">2. Recompilation of Application</a></li>
-<li class="level2"><a href="#autotoc_md520">3. Test Run / Profiling Data Generation</a></li>
-<li class="level2"><a href="#autotoc_md521">4. Profiling Data Extraction</a></li>
-<li class="level2"><a href="#autotoc_md522">5. Extracted Data Processing</a></li>
+<ul><li class="level1"><a href="#autotoc_md558">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md559">Short Coming of This Method</a></li>
+<li class="level1"><a href="#autotoc_md560">Tools and other requirements</a></li>
+<li class="level1"><a href="#autotoc_md561">Steps</a><ul><li class="level2"><a href="#autotoc_md562">1. Recompilation of Libraries</a></li>
+<li class="level2"><a href="#autotoc_md563">2. Recompilation of Application</a></li>
+<li class="level2"><a href="#autotoc_md564">3. Test Run / Profiling Data Generation</a></li>
+<li class="level2"><a href="#autotoc_md565">4. Profiling Data Extraction</a></li>
+<li class="level2"><a href="#autotoc_md566">5. Extracted Data Processing</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md523">6. Linker update related to Smart Placement</a></li>
-<li class="level1"><a href="#autotoc_md524">7. Rebuilding the Application</a></li>
-<li class="level1"><a href="#autotoc_md525">Benchmark Application</a></li>
+<li class="level1"><a href="#autotoc_md567">6. Linker update related to Smart Placement</a></li>
+<li class="level1"><a href="#autotoc_md568">7. Rebuilding the Application</a></li>
+<li class="level1"><a href="#autotoc_md569">Benchmark Application</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_tools_sw_instrument_smart_placement"></a></p>
-<h1><a class="anchor" id="autotoc_md514"></a>
+<h1><a class="anchor" id="autotoc_md558"></a>
 Introduction</h1>
 <p>This page goes over how to use software instrument smart placement.</p>
 <p>Software instrumentation implementation make use of ti-arm-clang compiler's instrumentation feature.</p>
-<h1><a class="anchor" id="autotoc_md515"></a>
+<h1><a class="anchor" id="autotoc_md559"></a>
 Short Coming of This Method</h1>
 <ol type="1">
 <li>Will not work for C++ code.</li>
 <li>All static functions are never considered.</li>
 <li>Internal memory constraint applications may not be able to use this.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md516"></a>
+<h1><a class="anchor" id="autotoc_md560"></a>
 Tools and other requirements</h1>
 <ol type="1">
 <li><code>ti-arm-clang</code> compiler version more than <code>3.1.0 STS</code> is required.</li>
@@ -128,9 +128,9 @@ Tools and other requirements</h1>
 <li>The following steps only work in terminal with <code>pwd</code> being equal to <code>MCU_PLUS_SDK_PATH</code> environment variable.</li>
 </ol>
 <dl class="section note"><dt>Note</dt><dd>Underlying scripts can be used in any build system.</dd></dl>
-<h1><a class="anchor" id="autotoc_md517"></a>
+<h1><a class="anchor" id="autotoc_md561"></a>
 Steps</h1>
-<h2><a class="anchor" id="autotoc_md518"></a>
+<h2><a class="anchor" id="autotoc_md562"></a>
 1. Recompilation of Libraries</h2>
 <p>It needs to made sure that all the source code are built using <code>-fprofile-instr-generate -fcoverage-mapping</code> flags. Therefore, it is required to recompile entire SDK with these flags. To do this, please execute the following command on SDK top level.</p>
 <blockquote class="doxtable">
@@ -142,7 +142,7 @@ Steps</h1>
 </blockquote>
 <p>The above command will compile all the SDK libraries in <code>instrumentation mode</code> and in <code>release</code> profile. If it required to build libraries in <code>debug</code> mode then <code>PROFILE=debug</code> can be added at the end of the command.</p>
 <p>Also, in Linux, <code>gmake</code> is to be replaced by <code>make</code>. The above commands assumes that current working directory is defined in <code>MCU_PLUS_SDK_PATH</code> environment variable.</p>
-<h2><a class="anchor" id="autotoc_md519"></a>
+<h2><a class="anchor" id="autotoc_md563"></a>
 2. Recompilation of Application</h2>
 <p>Application is also required to be compiled with those flags.</p>
 <dl class="section note"><dt>Note</dt><dd>The binary that is generated is an instrumented binary and its size is going to be more than the size of original application size. Therefore, it might be the case that linker.cmd file needs to be changed or if memory configurator is used then memory size needs to be changed.</dd></dl>
@@ -152,11 +152,11 @@ Steps</h1>
 <div class="fragment"><div class="line">gmake -C path/to/folder/with/application/makefile scrub</div>
 <div class="line">gmake -C path/to/folder/with/application/makefile INSTRUMENTATION_MODE=yes</div>
 </div><!-- fragment --><p>The above two commands assume that current working directory is defined in <code>MCU_PLUS_SDK_PATH</code> environment variable. Again, profile flag can be added as well to above commands.</p>
-<h2><a class="anchor" id="autotoc_md520"></a>
+<h2><a class="anchor" id="autotoc_md564"></a>
 3. Test Run / Profiling Data Generation</h2>
 <p>The instrumented binary needs to be run on the target. Make sure to run the application under correct scenario that would lead to good and complete profiling data generation. This is a very important step and quality and accuracy of the generated profiling data will determine quality of rest of the process.</p>
 <p>This can be done connecting via CCS and can be read at <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></p>
-<h2><a class="anchor" id="autotoc_md521"></a>
+<h2><a class="anchor" id="autotoc_md565"></a>
 4. Profiling Data Extraction</h2>
 <ol type="1">
 <li>Connect to target via CCS. Steps to do this can be found at <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
@@ -167,20 +167,20 @@ Steps</h1>
 </li>
 </ol>
 <p>What this will do is, make a new <code>.cnt</code> file in same place as that of location of application’s <code>.out</code> file.</p>
-<h2><a class="anchor" id="autotoc_md522"></a>
+<h2><a class="anchor" id="autotoc_md566"></a>
 5. Extracted Data Processing</h2>
 <p>All the profiling data that is extracted, is stored in <code>.cnt</code> file. This <code>.cnt</code> file has to be processed and needs to be converted into a format that compiler will understand. To do this, type the following command:</p>
 <div class="fragment"><div class="line">gmake -C path/to/folder/with/application/makefile coverage</div>
 </div><!-- fragment --><p>Again, if application is being built in debug mode, then make sure to provide <code>PROFILE</code> flag to the above command.</p>
 <p>The output of this step would an ASM file with <code>.S</code> extension.</p>
-<h1><a class="anchor" id="autotoc_md523"></a>
+<h1><a class="anchor" id="autotoc_md567"></a>
 6. Linker update related to Smart Placement</h1>
 <p>Update linker as described at <a class="el" href="SMART_PLACEMENT_LINKER_CHANGE.html">Changes in linker/Memory Configurator for Smart Placement</a>.</p>
 <dl class="section note"><dt>Note</dt><dd>Although these changes are already at-least in <a class="el" href="BENCHMARK_SMART_PLACEMENT.html">Memory Benchmark with Smart Placement</a> SDK examples. So, changes can be copied and pasted directly from it and any more changes can be done on top of that.</dd></dl>
-<h1><a class="anchor" id="autotoc_md524"></a>
+<h1><a class="anchor" id="autotoc_md568"></a>
 7. Rebuilding the Application</h1>
 <p>Recompile the application with new generated ASM file. To do this, add the file in makefile's <code>ASMFILES_common</code> variable. Note that, now INSTRUMENTATION_MODE flag is not required. So rebuild libs and application without these flags.</p>
-<h1><a class="anchor" id="autotoc_md525"></a>
+<h1><a class="anchor" id="autotoc_md569"></a>
 Benchmark Application</h1>
 <p>This demo provides a means of measuring the performance of a realistic application where the text of the application is sitting in various memory locations and the data is sitting in On-Chip-Memory RAM (referred to as OCM, OCMC or OCMRAM).</p>
 <dl class="section note"><dt>Note</dt><dd>All above steps are already done and generated ASM file has been renamed to <code>annotations.S</code>.</dd></dl>

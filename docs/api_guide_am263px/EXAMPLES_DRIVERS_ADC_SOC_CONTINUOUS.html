@@ -92,30 +92,30 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_SOC_CONTINUOUS.ht
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1987">Introduction</a><ul><li class="level2"><a href="#autotoc_md1988">SOC Configurations</a></li>
+<ul><li class="level1"><a href="#autotoc_md2059">Introduction</a><ul><li class="level2"><a href="#autotoc_md2060">SOC Configurations</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1989">External Connections</a><ul><li class="level2"><a href="#autotoc_md1990">AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</a></li>
-<li class="level2"><a href="#autotoc_md1991">AM263X-CC E1</a></li>
-<li class="level2"><a href="#autotoc_md1992">AM263PX-LP or AM263X-LP or AM261x-LP</a></li>
-<li class="level2"><a href="#autotoc_md1993">Watch Variables</a></li>
+<li class="level1"><a href="#autotoc_md2061">External Connections</a><ul><li class="level2"><a href="#autotoc_md2062">AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</a></li>
+<li class="level2"><a href="#autotoc_md2063">AM263X-CC E1</a></li>
+<li class="level2"><a href="#autotoc_md2064">AM263PX-LP or AM263X-LP or AM261x-LP</a></li>
+<li class="level2"><a href="#autotoc_md2065">Watch Variables</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_SOC_CONTINUOUS_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md1994">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md1995">See Also</a></li>
-<li class="level1"><a href="#autotoc_md1996">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2066">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2067">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2068">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_soc_continuous"></a></p>
-<h1><a class="anchor" id="autotoc_md1987"></a>
+<h1><a class="anchor" id="autotoc_md2059"></a>
 Introduction</h1>
 <p>Example Description : This example converts ADC 1 Channel 0 on all its SOC configurations, essentially achieving full sampling rate on the input signal on the given channel. The ADC clock is prescaled to a factor of 3.</p>
 <p> <style>div.image img[src="am263_adc_soc_continuous.png"]{width:50%}</style> </p><div class="image">
 <img src="am263_adc_soc_continuous.png" alt=""/>
 <div class="caption">
 Conversions Diagram</div></div>
-<h2><a class="anchor" id="autotoc_md1988"></a>
+<h2><a class="anchor" id="autotoc_md2060"></a>
 SOC Configurations</h2>
 <ol type="1">
 <li>ADC_INT1 is set to trigger SOC(0-15).</li>
@@ -124,18 +124,18 @@ SOC Configurations</h2>
 <li>EOC/SOC7 provides INT1.</li>
 <li>EOC/SOC15 provides INT2.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1989"></a>
+<h1><a class="anchor" id="autotoc_md2061"></a>
 External Connections</h1>
-<h2><a class="anchor" id="autotoc_md1990"></a>
+<h2><a class="anchor" id="autotoc_md2062"></a>
 AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</h2>
 <p>feed analog input on ADC 1 Channel 0 - HSEC connecter pin - 12 </p>
-<h2><a class="anchor" id="autotoc_md1991"></a>
+<h2><a class="anchor" id="autotoc_md2063"></a>
 AM263X-CC E1</h2>
 <p>feed analog input on ADC 1 Channel 0 - HSEC connecter pin - 18 </p>
-<h2><a class="anchor" id="autotoc_md1992"></a>
+<h2><a class="anchor" id="autotoc_md2064"></a>
 AM263PX-LP or AM263X-LP or AM261x-LP</h2>
 <p>feed analog input on ADC 1 Channel 0 - J1/J3 Pin - 24</p>
-<h2><a class="anchor" id="autotoc_md1993"></a>
+<h2><a class="anchor" id="autotoc_md2065"></a>
 Watch Variables</h2>
 <ul>
 <li>gAdc1Result0 : the array holds the sampled values of the ADC 1 Channel 0</li>
@@ -154,7 +154,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_soc_continuous/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1994"></a>
+<h1><a class="anchor" id="autotoc_md2066"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -164,10 +164,10 @@ Steps to Run the Example</h1>
 <li>Using watch variables, view the ADC conversion results.</li>
 <li>View the ADC conversion results in UART console logs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1995"></a>
+<h1><a class="anchor" id="autotoc_md2067"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md1996"></a>
+<h1><a class="anchor" id="autotoc_md2068"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ADC Soc Continuous Test Started</div>
