@@ -1,7 +1,7 @@
 {
     "name": "MCU_PLUS_SDK_AM263Px",
     "displayName": "MCU+ SDK for AM263Px",
-    "version": "11.00.00",
+    "version": "11.01.00",
     "documentationPath": "../docs",
     "includePaths": [
         "../source/sysconfig",
@@ -55,5 +55,5 @@
         "showSignals": true,
         "showUsed": true
     },
-    "minToolVersion" : "1.25.0"
+    "minToolVersion" : "1.26.0"
 }
