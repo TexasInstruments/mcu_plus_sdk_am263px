@@ -309,6 +309,14 @@ let pruicss_top_module = {
     defaultInstanceName: "CONFIG_PRU_ICSS",
     config: getConfigurables(),
     moduleInstances: moduleInstances,
+    moduleStatic: {
+        modules: function(inst) {
+            return [{
+                name: "system_common",
+                moduleName: "/system_common",
+            }]
+        },
+    },
     validate: validate,
     getInstanceConfig,
     getMdioBaseAddr,

@@ -93,9 +93,9 @@ $(document).ready(function(){initNavTree('enetlld_top.html',''); initResizable()
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
 <ul><li class="level1"><a href="#enetlld_intro">Introduction</a></li>
-<li class="level1"><a href="#enetlld_api_overview">Application Programming Interface</a><ul><li class="level2"><a href="#autotoc_md1256">Control path API</a></li>
-<li class="level2"><a href="#autotoc_md1257">Data path (DMA) API</a></li>
-<li class="level2"><a href="#autotoc_md1258">Life cycle of an Enet LLD based application</a></li>
+<li class="level1"><a href="#enetlld_api_overview">Application Programming Interface</a><ul><li class="level2"><a href="#autotoc_md1296">Control path API</a></li>
+<li class="level2"><a href="#autotoc_md1297">Data path (DMA) API</a></li>
+<li class="level2"><a href="#autotoc_md1298">Life cycle of an Enet LLD based application</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#enetlld_enetpers">Enet Peripherals</a><ul><li class="level2"><a href="#enetper_cpsw">CPSW Peripheral</a></li>
@@ -116,15 +116,15 @@ Introduction</h1>
  <h1><a class="anchor" id="enetlld_api_overview"></a>
 Application Programming Interface</h1>
 <p>The Enet LLD provides two sets of APIs: control and DMA.</p>
-<h2><a class="anchor" id="autotoc_md1256"></a>
+<h2><a class="anchor" id="autotoc_md1296"></a>
 Control path API</h2>
 <p>The control API is an IOCTL-based interface which is used by applications to control the Ethernet peripheral and its submodules.</p>
 <p>For further details on the top-level control APIs, refer to the <a class="el" href="group__ENET__MAIN__API.html">Enet Main API</a>.</p>
-<h2><a class="anchor" id="autotoc_md1257"></a>
+<h2><a class="anchor" id="autotoc_md1297"></a>
 Data path (DMA) API</h2>
 <p>The DMA API is used by applications to perform data movement related operations, such as opening and closing DMA channels, submitting and retrieving packets from the underlying DMA controller.</p>
 <p>For further details on the top-level control APIs, refer to the <a class="el" href="group__ENET__DMA__API.html">Enet Data Path (DMA)</a>.</p>
-<h2><a class="anchor" id="autotoc_md1258"></a>
+<h2><a class="anchor" id="autotoc_md1298"></a>
 Life cycle of an Enet LLD based application</h2>
 <p>The following diagram shows the usage of Enet LLD top-level APIs by local and remote clients.</p>
 <p><img src="Enet_Lifecycle.png" alt="" class="inline" title="Enet LLD life cycle"/>   </p>

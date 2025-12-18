@@ -92,20 +92,20 @@ $(document).ready(function(){initNavTree('DRIVERS_EDMA_PAGE.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md862">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md863">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md864">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md865">Usage Overview</a><ul><li class="level2"><a href="#autotoc_md866">API Sequence</a></li>
+<ul><li class="level1"><a href="#autotoc_md900">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md901">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md902">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md903">Usage Overview</a><ul><li class="level2"><a href="#autotoc_md904">API Sequence</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md867">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md868">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md869">API</a></li>
+<li class="level1"><a href="#autotoc_md905">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md906">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md907">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_edma"></a></p>
 <p>EDMA driver provides API to perform DMA tranfers.</p>
-<h1><a class="anchor" id="autotoc_md862"></a>
+<h1><a class="anchor" id="autotoc_md900"></a>
 Features Supported</h1>
 <ul>
 <li>DMA, QDMA channels</li>
@@ -115,7 +115,7 @@ Features Supported</h1>
 <li>Manual and Event triggered transfers</li>
 <li>Error Handling</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md863"></a>
+<h1><a class="anchor" id="autotoc_md901"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -127,14 +127,14 @@ SysConfig Features</h1>
 <li>TCC management</li>
 <li>PaRAM management</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md864"></a>
+<h1><a class="anchor" id="autotoc_md902"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md865"></a>
+<h1><a class="anchor" id="autotoc_md903"></a>
 Usage Overview</h1>
-<h2><a class="anchor" id="autotoc_md866"></a>
+<h2><a class="anchor" id="autotoc_md904"></a>
 API Sequence</h2>
 <p>To transfer the data using edma, application calls following APIs</p>
 <ul>
@@ -147,12 +147,12 @@ API Sequence</h2>
 <li><a class="el" href="group__DRV__EDMA__MODULE.html#ga25c7835d8f1791d16acab221d4cacaf0" title="Function to close a EDMA peripheral specified by the EDMA handle.">EDMA_close()</a>: Closes the EDMA instance.</li>
 <li><a class="el" href="group__DRV__EDMA__MODULE.html#gabd3f7b16c29e7f2125360d73edf57c66" title="This function Deinitializes the EDMA driver object and controller.">EDMA_deinit()</a>: De-Initialize the EDMA driver.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md867"></a>
+<h1><a class="anchor" id="autotoc_md905"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md868"></a>
+<h1><a class="anchor" id="autotoc_md906"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="edma_8h.html">drivers/edma.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Instance Open Example </p><div class="fragment"><div class="line">    <a class="code" href="structEDMA__Params.html">EDMA_Params</a>         params;</div>
@@ -228,7 +228,7 @@ Example Usage</h1>
 <div class="line">    testStatus = <a class="code" href="group__DRV__EDMA__MODULE.html#ga77b4c91a94789c39a0c5723b6666dee4">EDMA_freeParam</a>(gEdmaHandle, &amp;param);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(testStatus == <a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a>);</div>
 <div class="line"> </div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md869"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md907"></a>
 API</h1>
 <p><a class="el" href="group__DRV__EDMA__MODULE.html">APIs for EDMA</a> </p>
 </div></div><!-- contents -->

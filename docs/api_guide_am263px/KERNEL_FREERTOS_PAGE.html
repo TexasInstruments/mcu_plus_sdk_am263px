@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('KERNEL_FREERTOS_PAGE.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md694">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md732">Introduction</a></li>
 <li class="level1"><a href="#FREERTOS_SUPPORTED_FEATURES">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md695">Features Not Supported</a></li>
-<li class="level1"><a href="#autotoc_md696">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md697">Important files and directory structure</a></li>
-<li class="level1"><a href="#autotoc_md698">FreeRTOS usage guidelines</a></li>
-<li class="level1"><a href="#autotoc_md699">Additional references</a></li>
-<li class="level1"><a href="#autotoc_md700">See also</a></li>
+<li class="level1"><a href="#autotoc_md733">Features Not Supported</a></li>
+<li class="level1"><a href="#autotoc_md734">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md735">Important files and directory structure</a></li>
+<li class="level1"><a href="#autotoc_md736">FreeRTOS usage guidelines</a></li>
+<li class="level1"><a href="#autotoc_md737">Additional references</a></li>
+<li class="level1"><a href="#autotoc_md738">See also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_os_freertos"></a></p>
-<h1><a class="anchor" id="autotoc_md694"></a>
+<h1><a class="anchor" id="autotoc_md732"></a>
 Introduction</h1>
 <p>FreeRTOS is a market-leading real-time operating system (RTOS) for microcontrollers and small microprocessors. Distributed freely under the MIT open source license, FreeRTOS includes a kernel and a growing set of libraries suitable for use across all industry sectors. FreeRTOS is built with an emphasis on reliability and ease of use.</p>
 <p>MCU+ SDK supports FreeRTOS on below CPUS</p>
@@ -152,7 +152,7 @@ Features Supported</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md695"></a>
+<h1><a class="anchor" id="autotoc_md733"></a>
 Features Not Supported</h1>
 <ul>
 <li>Co-routines, stream buffer are not enabled and are not compiled by default. Users can add these to the FreeRTOS config and makefile if they want to use these features.</li>
@@ -179,7 +179,7 @@ Features Not Supported</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md696"></a>
+<h1><a class="anchor" id="autotoc_md734"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <p>SysConfig can be used to configure below modules with FreeRTOS</p><ul>
@@ -190,7 +190,7 @@ SysConfig Features</h1>
 <li>Address Translate module, to setup address translation regions, needed for M4F</li>
 <li>HW Timer module, to setup HW timer available on the SOC, including enabling timer interrupt and ISR registration</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md697"></a>
+<h1><a class="anchor" id="autotoc_md735"></a>
 Important files and directory structure</h1>
 <p>FreeRTOS source is distributed along with MCU+ SDK and given below are some important files and folders related to FreeRTOS.</p>
 <table class="doxtable">
@@ -230,11 +230,11 @@ Important files and directory structure</h1>
 </td></tr>
 </table>
 <p>In addition to above files, to enable features like HW interrupts, cache, MPU, the FreeRTOS library in MCU+ SDK also shares some code with NORTOS, see to makefile in the folder <code>source\kernel\freertos</code> to see the exact list of files that are included to build a freertos library.</p>
-<h1><a class="anchor" id="autotoc_md698"></a>
+<h1><a class="anchor" id="autotoc_md736"></a>
 FreeRTOS usage guidelines</h1>
 <p>See <a class="el" href="KERNEL_FREERTOS_IMPORTANT_GUIDELINES_PAGE.html">FreeRTOS usage guidelines</a> for FreeRTOS usage guidelines and comparison to SysBIOS.</p>
 <p>See <a class="el" href="KERNEL_FREERTOS_MPU_IMPORTANT_GUIDELINES_PAGE.html">FreeRTOS MPU usage guidelines</a> for FreeRTOS MPU usage guidelines.</p>
-<h1><a class="anchor" id="autotoc_md699"></a>
+<h1><a class="anchor" id="autotoc_md737"></a>
 Additional references</h1>
 <p>Given below are some references to learn more about FreeRTOS.</p>
 <table class="doxtable">
@@ -257,7 +257,7 @@ Additional references</h1>
  <a href="https://www.freertos.org/FreeRTOS-Plus/index.html">https://www.freertos.org/FreeRTOS-Plus/index.html</a> <br  />
  <a href="https://github.com/FreeRTOS">https://github.com/FreeRTOS</a>  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md700"></a>
+<h1><a class="anchor" id="autotoc_md738"></a>
 See also</h1>
 <p><a class="el" href="KERNEL_DPL_PAGE.html">Driver Porting Layer (DPL)</a>, <a class="el" href="KERNEL_NORTOS_PAGE.html">NO RTOS</a> </p>
 </div></div><!-- contents -->

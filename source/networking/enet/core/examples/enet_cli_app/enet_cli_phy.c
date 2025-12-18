@@ -81,8 +81,6 @@ static bool EnetCli_readPhyRegs(char *writeBuffer, size_t writeBufferLen,
 
 uint32_t EnetBoard_getId(void);
 
-void EnetBoard_getMiiConfig(EnetMacPort_Interface *mii);
-
 /* ========================================================================== */
 /*                            Global Variables                                */
 /* ========================================================================== */
@@ -174,7 +172,7 @@ static bool EnetCli_phyScan(char *writeBuffer, size_t writeBufferLen,
             ethPort.enetType = EnetCli_inst.enetType;
             ethPort.instId = EnetCli_inst.instId;
             ethPort.macPort = (Enet_MacPort) macPort;
-            EnetBoard_getMiiConfig(&ethPort.mii);
+            EnetBoard_getMiiConfig(&ethPort.mii, macPort);
             phyCfg = EnetBoard_getPhyCfg(&ethPort);
             snprintf(writeBuffer, writeBufferLen,
                     "\nMAC Port %d -->\r\n OUI: %d\r\n Model: %d\r\n Revision: %d\r\n MDIO Address: %d\r\n Linked: %s\r\n",

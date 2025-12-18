@@ -93,7 +93,8 @@ var group__DRV__HSMCLIENT__MODULE =
     [ "FirmwareUpdateReq_t", "structFirmwareUpdateReq__t.html", [
       [ "pStartAddress", "structFirmwareUpdateReq__t.html#a463a78b6ea9280aa15131fbc264a0bc6", null ],
       [ "dataLength", "structFirmwareUpdateReq__t.html#a1e35264b745dbd898621ac266168e101", null ],
-      [ "bankMode", "structFirmwareUpdateReq__t.html#a1585c4ce4bca3e295f35a9ffd09fece9", null ]
+      [ "pDecryptionBuffer", "structFirmwareUpdateReq__t.html#a75b8d4e2369d40662df06e5e5bbab31e", null ],
+      [ "decryptionBufferLength", "structFirmwareUpdateReq__t.html#a9a8459ba4181862ec8b706e8548adfbd", null ]
     ] ],
     [ "OTFA_Region_t", "structOTFA__Region__t.html", [
       [ "authMode", "structOTFA__Region__t.html#a236b3066e5cde785b75cf16ad3b7455c", null ],

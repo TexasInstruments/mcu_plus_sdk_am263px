@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_TMU_CONTEXTSAVE.html'
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2874">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md2920">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_TMU_CONTEXTSAVE_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2875">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2876">Sample Output</a></li>
-<li class="level1"><a href="#autotoc_md2877">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2921">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2922">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2923">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_tmu_context_save"></a></p>
-<h1><a class="anchor" id="autotoc_md2874"></a>
+<h1><a class="anchor" id="autotoc_md2920"></a>
 Introduction</h1>
 <p>This example demonstrates the Context Save and Restore functionality of TMU. We make use of a software interrupt that will get enabled while the TMU operation is being executed. On receiving this high priority interrupt, the ISR gets invoked which will use the TMU hardware. Due to the context save functionality of the TMU result registers, we can enable the use of TMU in an ISR context while simultaneously used in main function.</p>
 <p>When the interrupt is taken and the ISR starts running, the context save can be initiated by writing ‘1’ to CONTEXT_SAVE.SAVE bit. TMU result registers are saved to CSAVE_&lt;*&gt; registers. Context save will happen only after all operations initiated before writing to CONTEXT_SAVE.SAVE are complete. This is to ensure that context save happens at correct point. Even though TMU operations are multi-cycle, the TMU operation will have completed by the time context save operation is initiated in ISR. So no additional measure is needed in ISR. After saving context, the ISR can use the TMU without any restriction.</p>
@@ -123,7 +123,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/tmu/tmu_context_save/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2875"></a>
+<h1><a class="anchor" id="autotoc_md2921"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -131,7 +131,7 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>View the console log for results</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2876"></a>
+<h1><a class="anchor" id="autotoc_md2922"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">TMU Context Save and Restore Test Started ...</div>
@@ -141,7 +141,7 @@ Sample Output</h1>
 <div class="line"> </div>
 <div class="line">TMU Context Save and Restore Test Passed!!</div>
 <div class="line">All tests have passed!!</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2877"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2923"></a>
 See Also</h1>
 <ul>
 <li><a class="el" href="MATHLIB_DRIVER.html#TMU_LIBRARY">TMU library</a></li>

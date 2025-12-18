@@ -92,21 +92,21 @@ $(document).ready(function(){initNavTree('DRIVERS_FOTA_AGENT_PAGE.html',''); ini
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md882">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md883">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md884">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md920">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md921">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md922">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_fota_agent"></a></p>
 <p>The Fota Agent driver provides API to Update Firmware over The Air by scheduling the writes in chunks of smaller size while the new image is being recieved over a certain protocol(CAN for example).</p>
-<h1><a class="anchor" id="autotoc_md882"></a>
+<h1><a class="anchor" id="autotoc_md920"></a>
 Features Supported</h1>
 <ul>
 <li>Supports Writes in sector size.</li>
 <li>Only ELF image format supported</li>
 <li>Both XIP and Non-XIP files</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md883"></a>
+<h1><a class="anchor" id="autotoc_md921"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="fota__agent_8h.html">drivers/fota_agent/v0/fota_agent.h</a>&gt;</span></div>
@@ -128,7 +128,7 @@ Example Usage</h1>
 <div class="line">    }</div>
 </div><!-- fragment --><p> Write End API </p><div class="fragment"><div class="line">    status += <a class="code" href="group__DRV__FOTA__AGENT__MODULE.html#ga9b20292fd4af78e4b811fd336cc0881b">FOTAAgent_writeEnd</a>(&amp;fotaAgentHandle);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(status==<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a>);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md884"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md922"></a>
 API</h1>
 <p><a class="el" href="group__DRV__FOTA__AGENT__MODULE.html">APIs for FOTA Agent</a> </p>
 </div></div><!-- contents -->

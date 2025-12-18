@@ -302,12 +302,17 @@ extern "C"
      *
      * @param pStartAddress               Pointer to the start address of data to be programmed in flash
      * @param dataLength                  Length of data to be programmed in flash
+     * @param pDecryptionBuffer           Address of Scratchpad memory to be used to decrypt 
+     *                                    image, valid only for HsmClient_firmwareUpdate_CodeVerify API
+     * @param decryptionBufferLength      Length of Scratchpad memory to be used to decrypt image, 
+     *                                    valid only for HsmClient_firmwareUpdate_CodeVerify API 
      */
     typedef struct FirmwareUpdateReq_t_
     {
-        uint8_t *pStartAddress; /** Start address of data to be programmed in flash memory */
-        uint32_t dataLength;    /** Length of data to be programmed in flash memory */
-        uint32_t bankMode;      /** Current device bank mode */
+        uint8_t *pStartAddress;             /* Start address of data to be programmed in flash memory */
+        uint32_t dataLength;                /* Length of data to be programmed in flash memory */
+        void *pDecryptionBuffer;            /* Address of Scratchpad memory to be used to decrypt image, valid only for HsmClient_firmwareUpdate_CodeVerify API */
+        uint32_t decryptionBufferLength;    /* Length of Scratchpad memory to be used to decrypt image, valid only for HsmClient_firmwareUpdate_CodeVerify API */
     } FirmwareUpdateReq_t;
 
 

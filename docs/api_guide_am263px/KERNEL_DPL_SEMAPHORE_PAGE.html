@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('KERNEL_DPL_SEMAPHORE_PAGE.html',''); i
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md774">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md775">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md776">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md777">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md778">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md812">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md813">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md814">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md815">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md816">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_dpl_SemaphoreP"></a></p>
-<h1><a class="anchor" id="autotoc_md774"></a>
+<h1><a class="anchor" id="autotoc_md812"></a>
 Features Supported</h1>
 <ul>
 <li>APIs to create binary and counting semaphore's</li>
@@ -108,10 +108,10 @@ Features Supported</h1>
 <li>Nesting of mutual exclusion semaphores</li>
 <li>Priority inheritance when supported by the underlying OS</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md775"></a>
+<h1><a class="anchor" id="autotoc_md813"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md776"></a>
+<h1><a class="anchor" id="autotoc_md814"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li><a class="el" href="group__KERNEL__DPL__SEMAPHORE.html#ga23075425da4d8a65a53209b5fdd3fafe">SemaphoreP_post</a> can be called from ISR as well as task context</li>
@@ -124,7 +124,7 @@ Important Usage Guidelines</h1>
 </li>
 <li>There is nothing like priority inheritance in no-RTOS mode</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md777"></a>
+<h1><a class="anchor" id="autotoc_md815"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs, </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="SemaphoreP_8h.html">kernel/dpl/SemaphoreP.h</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="ClockP_8h.html">kernel/dpl/ClockP.h</a>&gt;</span></div>
@@ -188,7 +188,7 @@ Example Usage</h1>
 <div class="line">    resourceId = (resourceId+1)%NUM_RESOURCES;</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga23075425da4d8a65a53209b5fdd3fafe">SemaphoreP_post</a>(&amp;gCountingSem);</div>
 <div class="line"> </div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md778"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md816"></a>
 API</h1>
 <p><a class="el" href="group__KERNEL__DPL__SEMAPHORE.html">APIs for Semaphore</a> </p>
 </div></div><!-- contents -->

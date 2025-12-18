@@ -98,7 +98,7 @@ Signing Scripts</h1>
 <li>To run these scripts, one needs <code>openssl</code> installed as mentioned here, <a class="el" href="SDK_DOWNLOAD_PAGE.html#INSTALL_OPENSSL">OpenSSL</a></li>
 <li>Signing scripts are a collection of scripts needed to sign ROM images (image booted by ROM - mostly the SBL) and application images (image booted by the SBL)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1228"></a>
+<h2><a class="anchor" id="autotoc_md1268"></a>
 Signing SBL</h2>
 <ul>
 <li>The RBL requires the boot image (mostly SBL), to be signed always, even if we are not using secure boot.</li>
@@ -109,7 +109,7 @@ Signing SBL</h2>
 </div><!-- fragment --><p>For HS-SE devices: </p><div class="fragment"><div class="line">cd ${SDK_INSTALL_PATH}/source/security/security_common/tools/boot/signing</div>
 <div class="line">$(PYTHON) mcu_rom_image_gen.py --sbl-enc --enc-key &lt;encryption-key-configured-in-devconfig&gt; --image-bin &lt;path-to-the-binary&gt; --core R5 --swrv 1 --loadaddr $(SBL_RUN_ADDRESS) --sign-key &lt;signing-key-configured-in-devconfig&gt; --kd-salt &lt;path-to-key-derivation-salt&gt; --out-image &lt;output-image-name&gt; --debug $(DEBUG_OPTION)</div>
 </div><!-- fragment --><p>Here, we deep dive into the extension supported in SBL and HSM Runtime (TIFS-MCU) certificate by ROM. To get access to the HSM Runtime code and ability to build it for HS-SE device, please contact your TI representative to get access to the TIFS-MCU package from MySecureSW.</p>
-<h3><a class="anchor" id="autotoc_md1229"></a>
+<h3><a class="anchor" id="autotoc_md1269"></a>
 Boot Information OID (1.3.6.1.4.1.294.1.1)</h3>
 <div class="fragment"><div class="line">bootInfo ::=  SEQUENCE {</div>
 <div class="line">    cert_type:  INTEGER,        -- identifies the certificate type</div>
@@ -119,7 +119,7 @@ Boot Information OID (1.3.6.1.4.1.294.1.1)</h3>
 <div class="line">    image_size: INTEGER,        -- Image size in bytes</div>
 <div class="line">}</div>
 </div><!-- fragment --><p> The Boot Information Object identifier provides information about the image which is being loaded. This information is mandatory and needs to be present else the image boot will fail.</p>
-<h4><a class="anchor" id="autotoc_md1230"></a>
+<h4><a class="anchor" id="autotoc_md1270"></a>
 Elements of the extension:</h4>
 <p><b>Certificate Type</b>: The certificate type defines the type of the image which is being loaded by the Boot-ROM.</p>
 <p>These are the supported values:</p><ul>
@@ -140,14 +140,14 @@ Elements of the extension:</h4>
 <p>Core options are applicable only for the R5 SBL Images.</p>
 <p><b>Load Address</b>: The load address will be address in the system where the image will be loaded. This is applicable for both SBL and TIFS-MCU (HSMRt) images.</p>
 <p><b>Image Size</b>: This is the size in bytes of the R5 SBL or HSM Runtime Image to which the certificate has been attached.</p>
-<h3><a class="anchor" id="autotoc_md1231"></a>
+<h3><a class="anchor" id="autotoc_md1271"></a>
 Image Integrity OID (1.3.6.1.4.1.294.1.2)</h3>
 <div class="fragment"><div class="line">imageIntegrity ::= SEQUENCE {</div>
 <div class="line">    sha_type:   OID,            -- Identifies the SHA type</div>
 <div class="line">    hash:       OCTET STRING    -- The SHA of the boot image</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>If the X.509 certificate provides the image integrity boot extension, the Boot-ROM will perform the SHA-512 on the entire image and will verify the computed hash with the hash provided in the boot extension. In the case of a mismatch the boot will fail.</p>
-<h4><a class="anchor" id="autotoc_md1232"></a>
+<h4><a class="anchor" id="autotoc_md1272"></a>
 Elements of the extension:</h4>
 <p><b>SHA Type</b>: The Boot-ROM only supports SHA-512.</p>
 <p>The following values are supported:</p>
@@ -162,13 +162,13 @@ Elements of the extension:</h4>
 <li>HS-SE Device: Image Integrity is mandatory</li>
 <li>HS-FS Device: Image Integrity is mandatory</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1233"></a>
+<h3><a class="anchor" id="autotoc_md1273"></a>
 Software Revision OID (1.3.6.1.4.1.294.1.3)</h3>
 <div class="fragment"><div class="line">softwareRevision ::= SEQUENCE {</div>
 <div class="line">   revision:    INTEGER -- Software revision</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>The information in the software revision is used to indicate the version of the image which is being loaded.</p>
-<h4><a class="anchor" id="autotoc_md1234"></a>
+<h4><a class="anchor" id="autotoc_md1274"></a>
 Elements of the extension:</h4>
 <p><b>revision</b>: This is the version number. This will be matched to the EFUSE programmed version to indicate if the image loading should be done or not. This is applicable only for SE devices.</p>
 <table class="markdownTable">
@@ -188,7 +188,7 @@ Elements of the extension:</h4>
 <li>SWRV_HSM- This is used to perform the revision checking while loading the HSM Runtime</li>
 </ul>
 <p>For more information, about how to fuse in these values, please refer to OTP Keywriter Documentation available on MySecureSW.</p>
-<h3><a class="anchor" id="autotoc_md1235"></a>
+<h3><a class="anchor" id="autotoc_md1275"></a>
 Image Encryption OID (1.3.6.1.4.1.294.1.4)</h3>
 <div class="fragment"><div class="line">imageEncryption ::= SEQUENCE {</div>
 <div class="line">   iv:      OCTET STRING -- The initialization vector</div>
@@ -197,7 +197,7 @@ Image Encryption OID (1.3.6.1.4.1.294.1.4)</h3>
 <div class="line">   salt:        OCTET STRING -- encryption salt value</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>The Boot-ROM only supports AES-CBC mode with 256bit keys. The information in the image encryption object identifier is used to decrypt the image.</p>
-<h4><a class="anchor" id="autotoc_md1236"></a>
+<h4><a class="anchor" id="autotoc_md1276"></a>
 Elements of the extension:</h4>
 <p><b>IV</b>: The initialization vector is used during the AES-CBC decryption procedure. The initialization vector needs to be 16bytes.</p>
 <p><b>rs</b>: This is the random string which is 32bytes long and is appended by the script at the end of the image. The Boot-ROM will decrypt the image and will perform a random string comparison to determine if the decryption was successful.</p>
@@ -209,17 +209,17 @@ Elements of the extension:</h4>
 <li>HS-SE device: Image Encryption is optional</li>
 <li>HS-FS device: Image Encryption is optional</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1237"></a>
+<h3><a class="anchor" id="autotoc_md1277"></a>
 Derivation OID (1.3.6.1.4.1.294.1.5)</h3>
 <div class="fragment"><div class="line">derivationKey ::= SEQUENCE {</div>
 <div class="line">   salt:      OCTET STRING -- encryption salt value</div>
 <div class="line">}</div>
 </div><!-- fragment --><p> The Boot-ROM will leave a derived key in the assets interface for the TIFS-MCU. The key is derived using HKDF from the parameters specified here. This is useful for decrypting application images by sending request to TIFS-MCU. For recommendation on the salt, please refer to <a class="el" href="SECURE_BOOT.html">Enabling Secure Boot</a>.</p>
-<h4><a class="anchor" id="autotoc_md1238"></a>
+<h4><a class="anchor" id="autotoc_md1278"></a>
 Elements of the extension:</h4>
 <p>salt: The salt is limited to be 32bytes and is used for key derivation</p>
 <p>This OID is ignored as part of HSM Runtime certificates. This OID is ignored as part of SBL certificates if the device type is HS-FS. Key derivation is always done using the active user symmetric key.</p>
-<h3><a class="anchor" id="autotoc_md1239"></a>
+<h3><a class="anchor" id="autotoc_md1279"></a>
 Debug OID (1.3.6.1.4.1.294.1.8)</h3>
 <div class="fragment"><div class="line">Debug::= SEQUENCE {</div>
 <div class="line">      uid          OCTET STRING     -- Device unique ID</div>
@@ -228,7 +228,7 @@ Debug OID (1.3.6.1.4.1.294.1.8)</h3>
 <div class="line">      secCoreDbgEn INTEGER          -- Enable secure core debug mask</div>
 <div class="line">}</div>
 </div><!-- fragment --><p> The debug object identifier if specified allows the debug ports to be enabled for a specific device.</p>
-<h4><a class="anchor" id="autotoc_md1240"></a>
+<h4><a class="anchor" id="autotoc_md1280"></a>
 Elements of the extension:</h4>
 <p><b>UID</b>: This is the unique identifier associated with the device. Device specific unique identifiers can be retrieved using the SOC_ID Parser.</p>
 <p>The UID field of all 0s is considered to be a wildcard. This is what is supported by default in the script.</p>
@@ -264,7 +264,7 @@ Elements of the extension:</h4>
 </ul>
 <p>These scripts are invoked in makefiles, and the image generation happens automatically along with the example build. So mostly these scripts need not be manually run. If the user build-system is different from TI's makefile system, it needs to be ensured that the same is followed as part of the post build steps. The devconfig has ENC_SBL_ENABLED=yes and that is why for HS-SE devices, the SBL image is encrypted by default.</p>
 <p>The Boot Information Object identifier provides information about the image which is being loaded.</p>
-<h4><a class="anchor" id="autotoc_md1241"></a>
+<h4><a class="anchor" id="autotoc_md1281"></a>
 Elements of the extension:</h4>
 <p><b>Certificate Type</b>: The certificate type defines the type of the image which is being loaded by the Boot-ROM.</p>
 <p>These are the supported values:</p><ul>
@@ -274,14 +274,14 @@ Elements of the extension:</h4>
 <p><b>Core Options</b>: This field is reserved and should be assigned with 0.</p>
 <p><b>Load Address</b>: This field is reserved and should be assigned with 0.</p>
 <p><b>Image Size</b>: This is the size in bytes of the R5 SBL or HSM Runtime Image to which the certificate has been attached.</p>
-<h3><a class="anchor" id="autotoc_md1242"></a>
+<h3><a class="anchor" id="autotoc_md1282"></a>
 Image Integrity OID (1.3.6.1.4.1.294.1.2)</h3>
 <div class="fragment"><div class="line">imageIntegrity ::= SEQUENCE {</div>
 <div class="line">    sha_type:   OID,            -- Identifies the SHA type</div>
 <div class="line">    hash:       OCTET STRING    -- The SHA of the boot image</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>If the X.509 certificate provides the image integrity boot extension, the TIFS-MCU will perform the hash calculation on the entire image and will verify the computed hash with the hash provided in the boot extension. In the case of a mismatch the boot will fail.</p>
-<h4><a class="anchor" id="autotoc_md1243"></a>
+<h4><a class="anchor" id="autotoc_md1283"></a>
 Elements of the extension:</h4>
 <p><b>SHA Type</b>:</p>
 <p>The following values are supported:</p>
@@ -292,20 +292,20 @@ Elements of the extension:</h4>
 </ul>
 <p>Amongst these, SDK has been validated against SHA-512 OID.</p>
 <p><b>Hash</b>: This is SHA-512 hash which is calculated over the application image</p>
-<h3><a class="anchor" id="autotoc_md1244"></a>
+<h3><a class="anchor" id="autotoc_md1284"></a>
 Software Revision OID (1.3.6.1.4.1.294.1.3)</h3>
 <div class="fragment"><div class="line">softwareRevision ::= SEQUENCE {</div>
 <div class="line">   revision:    INTEGER -- Software revision</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>The information in the software revision is used to indicate the version of the image which is being loaded.</p>
-<h4><a class="anchor" id="autotoc_md1245"></a>
+<h4><a class="anchor" id="autotoc_md1285"></a>
 Elements of the extension:</h4>
 <p><b>revision</b>: This is the version number. This will be matched to the EFUSE programmed version to indicate if the image loading should be done or not.</p>
 <p>The following fields in efuse ROM help support the above feature:</p><ul>
 <li>SWRV_APP- This is used to perform the revision checking while loading the application</li>
 </ul>
 <p>For more information, about how to fuse in these values, please refer to OTP Keywriter Documentation available on MySecureSW.</p>
-<h3><a class="anchor" id="autotoc_md1246"></a>
+<h3><a class="anchor" id="autotoc_md1286"></a>
 Image Encryption OID (1.3.6.1.4.1.294.1.4)</h3>
 <div class="fragment"><div class="line">imageEncryption ::= SEQUENCE {</div>
 <div class="line">   iv:      OCTET STRING -- The initialization vector</div>
@@ -314,31 +314,31 @@ Image Encryption OID (1.3.6.1.4.1.294.1.4)</h3>
 <div class="line">   salt:    OCTET STRING -- Reserved</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>TIFS-MCU only supports AES-CBC mode with 256bit keys. The information in the image encryption object identifier is used to decrypt the image.</p>
-<h4><a class="anchor" id="autotoc_md1247"></a>
+<h4><a class="anchor" id="autotoc_md1287"></a>
 Elements of the extension:</h4>
 <p><b>IV</b>: The initialization vector is used during the AES-CBC decryption procedure. The initialization vector needs to be 16bytes.</p>
 <p><b>rs</b>: This is the random string which is 32bytes long and is appended by the script at the end of the image. TIFS-MCU will decrypt the image and will perform a random string comparison to determine if the decryption was successful.</p>
 <p><b>iter</b>: This field is unused and reserved.</p>
 <p><b>salt</b>: This field is unused and reserved.</p>
-<h3><a class="anchor" id="autotoc_md1248"></a>
+<h3><a class="anchor" id="autotoc_md1288"></a>
 Keyring Index OID (1.3.6.1.4.1.294.1.12)</h3>
 <div class="fragment"><div class="line">keyring_index ::= SEQUENCE {</div>
 <div class="line">   sign_key_id:     INTEGER -- index of public key hash in public keyring for authentication</div>
 <div class="line">   enc_key_id:      INTEGER -- index of aes key in keyring for decryption</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>TIFS-MCU only supports authentication with keyring. The information in enc_key_id is ignored and decryption is done against root of trust if Image Encryption OID is available in the certificate.</p>
-<h4><a class="anchor" id="autotoc_md1249"></a>
+<h4><a class="anchor" id="autotoc_md1289"></a>
 Elements of the extension:</h4>
 <p><b>sign_key_id</b>: This is the index used in public keyring for retrieving the public key hash for authentication.</p>
 <p><b>enc_key_id</b>: This is the index used in keyring for retrieving the aes key for decryption of application image.</p>
-<h2><a class="anchor" id="autotoc_md1250"></a>
+<h2><a class="anchor" id="autotoc_md1290"></a>
 Application Signing</h2>
 <p>For Application images, the script <code>/source/security/security_common/tools/boot/signing/mcu_appimage_x509_cert_gen.py</code>.</p>
 <p>For HS-SE devices: </p><div class="fragment"><div class="line">cd ${SDK_INSTALL_PATH}/source/security/security_common/tools/boot/signing</div>
 <div class="line">$(PYTHON) mcu_appimage_x509_cert_gen.py --bin &lt;path-to-the-binary&gt; --key &lt;signing-key-configured-in-devconfig&gt;  --enc y --enckey &lt;encryption-key-configured-in-devconfig&gt;  --kd-salt  &lt;path-to-key-derivation-salt&gt; --output &lt;output-image-name&gt;</div>
 </div><!-- fragment --><p>Signing of application images is not required for HS-FS device types.</p>
 <p>Here, we deep dive into the extension supported with certificate for Application images as processed by TIFS-MCU. To get access to the HSM Runtime code and ability to build it for HS-SE device, please contact your TI representative to get access to the TIFS-MCU package from MySecureSW.</p>
-<h3><a class="anchor" id="autotoc_md1251"></a>
+<h3><a class="anchor" id="autotoc_md1291"></a>
 Boot Information OID (1.3.6.1.4.1.294.1.1)</h3>
 <div class="fragment"><div class="line">bootInfo ::=  SEQUENCE {</div>
 <div class="line">    cert_type:  INTEGER,        -- identifies the certificate type</div>
@@ -489,7 +489,7 @@ Keyring certificate generation and import</div></div>
 <div class="line">public_key=FORMAT:HEX,OCT:b502e951a5f5ed4bc99191511b530597d3a2d356d0f83887a54253a7ec46fb2c081c7d39391f846932357a57133f8c11</div>
 </div><!-- fragment --></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1252"></a>
+<h1><a class="anchor" id="autotoc_md1292"></a>
 Boot time calculator tool</h1>
 <p>Checkout the secure boot time calculator tool <a href="../boottime_calculator/index.html">here</a>. </p>
 </div></div><!-- contents -->

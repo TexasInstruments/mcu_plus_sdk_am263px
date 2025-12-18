@@ -92,16 +92,16 @@ $(document).ready(function(){initNavTree('KERNEL_DPL_TASK_PAGE.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md799">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md800">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md801">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md802">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md803">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md837">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md838">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md839">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md840">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md841">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_dpl_TaskP"></a></p>
 <dl class="section attention"><dt>Attention</dt><dd>This module is not applicable for NO RTOS environment</dd></dl>
-<h1><a class="anchor" id="autotoc_md799"></a>
+<h1><a class="anchor" id="autotoc_md837"></a>
 Features Supported</h1>
 <ul>
 <li>APIs to create and destroy tasks</li>
@@ -109,17 +109,17 @@ Features Supported</h1>
 <li>Ability to specify task priority, task entry function, stack pointer, stack size</li>
 <li>Ability to get task and CPU load</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md800"></a>
+<h1><a class="anchor" id="autotoc_md838"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md801"></a>
+<h1><a class="anchor" id="autotoc_md839"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>On R5F, and M4F, make sure memory provided as stack is 32b aligned and size is also multiple of 32b</li>
 <li>Stack and stack size MUST be provided by application and is not allocated internally</li>
 <li><a class="el" href="group__KERNEL__DPL__TASK.html#ga4e2a069770eaee380c742f99bad3ae6a" title="Reset task load statistics.">TaskP_loadResetAll()</a> needs to be called in the application. If load counters are not reset, the accumulated load counters can lead to filtered and less steady CPU load values.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md802"></a>
+<h1><a class="anchor" id="autotoc_md840"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs, </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TaskP_8h.html">kernel/dpl/TaskP.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Example usage to define task objects and parameters </p><div class="fragment"><div class="line"><span class="comment">/* Task priority, stack, stack size and task objects, these MUST be global&#39;s */</span></div>
@@ -168,7 +168,7 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__TASK.html#gad4331e94d214fd7f63870906bddd5657">TaskP_loadGet</a>(&amp;gMyTask, &amp;taskLoad);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a>(<span class="stringliteral">&quot; LOAD: %s = %2d.%2d %%\r\n&quot;</span>, taskLoad.<a class="code" href="structTaskP__Load.html#a931070c16c2ceddfb3e7bac1668d1e1a">name</a>, taskLoad.<a class="code" href="structTaskP__Load.html#a1ece63fe72865342dacd3ee29193149c">cpuLoad</a>/100, taskLoad.<a class="code" href="structTaskP__Load.html#a1ece63fe72865342dacd3ee29193149c">cpuLoad</a>%100 );</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md803"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md841"></a>
 API</h1>
 <p><a class="el" href="group__KERNEL__DPL__TASK.html">APIs for Task</a> </p>
 </div></div><!-- contents -->

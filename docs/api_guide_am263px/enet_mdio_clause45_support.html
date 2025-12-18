@@ -92,35 +92,35 @@ $(document).ready(function(){initNavTree('enet_mdio_clause45_support.html',''); 
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1265">Overview</a></li>
-<li class="level1"><a href="#autotoc_md1266">Background</a><ul><li class="level2"><a href="#autotoc_md1267">Clause 22 v/s Clause 45</a></li>
-<li class="level2"><a href="#autotoc_md1268">MMD (Management/MDIO Manageable Device) : Required for Clause45 support</a></li>
+<ul><li class="level1"><a href="#autotoc_md1305">Overview</a></li>
+<li class="level1"><a href="#autotoc_md1306">Background</a><ul><li class="level2"><a href="#autotoc_md1307">Clause 22 v/s Clause 45</a></li>
+<li class="level2"><a href="#autotoc_md1308">MMD (Management/MDIO Manageable Device) : Required for Clause45 support</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1269">Implementation Requirements</a></li>
-<li class="level1"><a href="#autotoc_md1270">Implementation Steps</a><ul><li class="level2"><a href="#autotoc_md1271">Step-1: Modify PHY Driver code with the MMD register as an input argument</a></li>
-<li class="level2"><a href="#autotoc_md1272">Step-2: Update EnetPhy Configuration</a></li>
-<li class="level2"><a href="#autotoc_md1273">Step-3: Common PHY registers access, such as PHY alive, PHY link status, etc uses Clause 22 in order to suport backward compatibility. Replace them with Clause 45 support</a></li>
+<li class="level1"><a href="#autotoc_md1309">Implementation Requirements</a></li>
+<li class="level1"><a href="#autotoc_md1310">Implementation Steps</a><ul><li class="level2"><a href="#autotoc_md1311">Step-1: Modify PHY Driver code with the MMD register as an input argument</a></li>
+<li class="level2"><a href="#autotoc_md1312">Step-2: Update EnetPhy Configuration</a></li>
+<li class="level2"><a href="#autotoc_md1313">Step-3: Common PHY registers access, such as PHY alive, PHY link status, etc uses Clause 22 in order to suport backward compatibility. Replace them with Clause 45 support</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1274">Detailed API Reference</a><ul><li class="level2"><a href="#autotoc_md1275">Clause 45 Read Operation</a></li>
-<li class="level2"><a href="#autotoc_md1276">Clause 45 Write Operation</a></li>
-<li class="level2"><a href="#autotoc_md1277">Clause 45 Read-Modify-Write Operation</a></li>
+<li class="level1"><a href="#autotoc_md1314">Detailed API Reference</a><ul><li class="level2"><a href="#autotoc_md1315">Clause 45 Read Operation</a></li>
+<li class="level2"><a href="#autotoc_md1316">Clause 45 Write Operation</a></li>
+<li class="level2"><a href="#autotoc_md1317">Clause 45 Read-Modify-Write Operation</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1278">Key Parameters Explained</a></li>
-<li class="level1"><a href="#autotoc_md1279">Current Limitations</a></li>
-<li class="level1"><a href="#autotoc_md1280">Summary</a></li>
-<li class="level1"><a href="#autotoc_md1281">Limitations</a></li>
+<li class="level1"><a href="#autotoc_md1318">Key Parameters Explained</a></li>
+<li class="level1"><a href="#autotoc_md1319">Current Limitations</a></li>
+<li class="level1"><a href="#autotoc_md1320">Summary</a></li>
+<li class="level1"><a href="#autotoc_md1321">Limitations</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_enet_lld_mdio_clause45_support"></a></p>
-<h1><a class="anchor" id="autotoc_md1265"></a>
+<h1><a class="anchor" id="autotoc_md1305"></a>
 Overview</h1>
 <p>This document describes how to enable and utilize Clause 45 MDIO functionality for PHY register access. Clause 45 provides expanded addressing capabilities for modern PHY devices with extended register sets.</p>
-<h1><a class="anchor" id="autotoc_md1266"></a>
+<h1><a class="anchor" id="autotoc_md1306"></a>
 Background</h1>
-<h2><a class="anchor" id="autotoc_md1267"></a>
+<h2><a class="anchor" id="autotoc_md1307"></a>
 Clause 22 v/s Clause 45</h2>
 <ul>
 <li>Clause 22(IEEE802.3ah):<ul>
@@ -137,7 +137,7 @@ Clause 22 v/s Clause 45</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1268"></a>
+<h2><a class="anchor" id="autotoc_md1308"></a>
 MMD (Management/MDIO Manageable Device) : Required for Clause45 support</h2>
 <p>The MMD field identifies specific device types within a PHY:</p><ul>
 <li>MMD 1: PMA/PMD (Physical Medium Attachment/Physical Medium Dependent)</li>
@@ -146,7 +146,7 @@ MMD (Management/MDIO Manageable Device) : Required for Clause45 support</h2>
 <li>MMD 7: Auto-Negotiation</li>
 <li>MMDs 30-31: Vendor-specific functions</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1269"></a>
+<h1><a class="anchor" id="autotoc_md1309"></a>
 Implementation Requirements</h1>
 <p>To enable Clause 45 support, the following are required:</p>
 <ol type="1">
@@ -161,9 +161,9 @@ Implementation Requirements</h1>
 </ul>
 </li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1270"></a>
+<h1><a class="anchor" id="autotoc_md1310"></a>
 Implementation Steps</h1>
-<h2><a class="anchor" id="autotoc_md1271"></a>
+<h2><a class="anchor" id="autotoc_md1311"></a>
 Step-1: Modify PHY Driver code with the MMD register as an input argument</h2>
 <dl class="section note"><dt>Note</dt><dd>PHY datasheet will specify which MMD values to use for accessing specific registers. Always refer to the PHY documentation for the correct MMD values.</dd></dl>
 <div class="fragment"><div class="line">typedef struct</div>
@@ -179,7 +179,7 @@ Step-1: Modify PHY Driver code with the MMD register as an input argument</h2>
 <div class="line">    void* pArgs;</div>
 <div class="line"> </div>
 <div class="line">} Phy_RegAccessCb_t;</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1272"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1312"></a>
 Step-2: Update EnetPhy Configuration</h2>
 <p>To ensure your PHY driver properly uses Clause 45 operations, enable the following changes in <code>mcu_plus_sdk/source/networking/enet/core/src/phy/enetphy.c</code>:</p>
 <ol type="1">
@@ -204,7 +204,7 @@ Step-2: Update EnetPhy Configuration</h2>
 <div class="line">gmake -s libs PROFILE=release</div>
 </div><!-- fragment --></li>
 </ol>
-<h2><a class="anchor" id="autotoc_md1273"></a>
+<h2><a class="anchor" id="autotoc_md1313"></a>
 Step-3: Common PHY registers access, such as PHY alive, PHY link status, etc uses Clause 22 in order to suport backward compatibility. Replace them with Clause 45 support</h2>
 <div class="fragment"><div class="line">// Reading a register using Clause 45</div>
 <div class="line">int32_t status;</div>
@@ -214,23 +214,23 @@ Step-3: Common PHY registers access, such as PHY alive, PHY link status, etc use
 <div class="line">int32_t status;</div>
 <div class="line">//status = hMdio-&gt;writeC22(phyGroup, phyAddr, reg, val, hPhy-&gt;mdioArgs);</div>
 <div class="line">status = hMdio-&gt;writeC45(phyGroup, phyAddr, mmd, reg, val, hPhy-&gt;mdioArgs);</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1274"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1314"></a>
 Detailed API Reference</h1>
-<h2><a class="anchor" id="autotoc_md1275"></a>
+<h2><a class="anchor" id="autotoc_md1315"></a>
 Clause 45 Read Operation</h2>
 <div class="fragment"><div class="line"> </div>
 <div class="line">int32_t <a class="code" href="group__DRV__ENETPHY.html#gaffc3fd5abf62e9d2b0ff41869b2622ec">EnetPhy_readC45Reg</a>(<a class="code" href="group__DRV__ENETPHY.html#ga321b990b312722b35a86cf9d09be4e48">EnetPhy_Handle</a> hPhy,</div>
 <div class="line">                           uint8_t mmd,</div>
 <div class="line">                           uint32_t reg,</div>
 <div class="line">                           uint16_t *val);</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1276"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1316"></a>
 Clause 45 Write Operation</h2>
 <div class="fragment"><div class="line"> </div>
 <div class="line">int32_t <a class="code" href="group__DRV__ENETPHY.html#ga2f5294c3ffcd261efce2573c32038cbd">EnetPhy_writeC45Reg</a>(<a class="code" href="group__DRV__ENETPHY.html#ga321b990b312722b35a86cf9d09be4e48">EnetPhy_Handle</a> hPhy,</div>
 <div class="line">                            uint8_t mmd,</div>
 <div class="line">                            uint32_t reg,</div>
 <div class="line">                            uint16_t val);</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1277"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1317"></a>
 Clause 45 Read-Modify-Write Operation</h2>
 <div class="fragment"><div class="line"> </div>
 <div class="line">int32_t <a class="code" href="group__DRV__ENETPHY.html#ga0785780a87174ef9fabff8b6a49a1cb2">EnetPhy_rmwC45Reg</a>(<a class="code" href="group__DRV__ENETPHY.html#ga321b990b312722b35a86cf9d09be4e48">EnetPhy_Handle</a> hPhy,</div>
@@ -238,7 +238,7 @@ Clause 45 Read-Modify-Write Operation</h2>
 <div class="line">                          uint32_t reg,</div>
 <div class="line">                          uint16_t mask,</div>
 <div class="line">                          uint16_t val);</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1278"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1318"></a>
 Key Parameters Explained</h1>
 <p>When using the Clause 45 APIs, you'll encounter these important parameters:</p>
 <ol type="1">
@@ -255,7 +255,7 @@ Key Parameters Explained</h1>
 </ul>
 </li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1279"></a>
+<h1><a class="anchor" id="autotoc_md1319"></a>
 Current Limitations</h1>
 <ol type="1">
 <li><b>Core EnetPhy Operations</b>:<ul>
@@ -274,7 +274,7 @@ Current Limitations</h1>
 </ul>
 </li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1280"></a>
+<h1><a class="anchor" id="autotoc_md1320"></a>
 Summary</h1>
 <p>Enabling Clause 45 MDIO support provides access to the expanded register space in modern PHY devices. The primary changes involve:</p>
 <ol type="1">
@@ -283,7 +283,7 @@ Summary</h1>
 <li>Managing the expanded register address space (16-bit vs 5-bit)</li>
 </ol>
 <p>These changes enable access to advanced PHY features like Energy Efficient Ethernet, precise timing for IEEE 1588, and vendor-specific extended registers that are not accessible throughF the Clause 22 interface.</p>
-<h1><a class="anchor" id="autotoc_md1281"></a>
+<h1><a class="anchor" id="autotoc_md1321"></a>
 Limitations</h1>
 <ol type="1">
 <li>While the hardware supports MDIO Clause 45 PHY register access, the current implementation in the Ethernet driver (enetphy.c) only utilizes Clause 22 protocol for fundamental PHY operations such as link status detection and PHY aliveness checks. To enable full Clause 45 PHY driver support modifications are required in <code>source/networking/enet/core/src/phy/enetphy.c</code> to properly implement the extended register addressing capabilities of Clause 45.</li>

@@ -92,19 +92,19 @@ $(document).ready(function(){initNavTree('DRIVERS_RESOLVER_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1071">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1072">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1073">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1074">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1075">Software Programming Guide</a></li>
-<li class="level1"><a href="#autotoc_md1076">Tuning Parameters</a></li>
-<li class="level1"><a href="#autotoc_md1077">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1078">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1111">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1112">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1113">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1114">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1115">Software Programming Guide</a></li>
+<li class="level1"><a href="#autotoc_md1116">Tuning Parameters</a></li>
+<li class="level1"><a href="#autotoc_md1117">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1118">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_resolver"></a></p>
 <p>The Resolver driver provides API to configure the Resolver to Digital Converter module. Below are the high level features supported by the Resolver driver.</p>
-<h1><a class="anchor" id="autotoc_md1071"></a>
+<h1><a class="anchor" id="autotoc_md1111"></a>
 Features Supported</h1>
 <ul>
 <li>Excitation Signal configurations<ul>
@@ -127,7 +127,7 @@ Features Supported</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1072"></a>
+<h1><a class="anchor" id="autotoc_md1112"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -154,12 +154,12 @@ SysConfig Features</h1>
 </li>
 <li>Interrupt Configurations</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1073"></a>
+<h1><a class="anchor" id="autotoc_md1113"></a>
 Features NOT Supported</h1>
 <ul>
 <li>Tuning Parameters from the external memory are not supported yet.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1074"></a>
+<h1><a class="anchor" id="autotoc_md1114"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>Resolver should be disabled while configuring the blocks. Post the configurations, the Resolver may be enabled.</li>
@@ -169,7 +169,7 @@ Important Usage Guidelines</h1>
 <li>Angle from ArcTan and Track2 loops is a signed 16 bit integer, mapping values in -180 degrees to 180 degrees.</li>
 <li>Velocity from the Track2 loop is a signed 32 bit integer, and can be considered angle change from the sampling rate of the Track2 loop, which is either the exictation frequency, if the bottom sampling is turned off, or twice the excitation frequency, if the bottom sampling is turned on.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1075"></a>
+<h1><a class="anchor" id="autotoc_md1115"></a>
 Software Programming Guide</h1>
 <p>The Resolver driver contains flat APIs for individual register configurations and a top level init function, <code><a class="el" href="group__DRV__RESOLVER__MODULE.html#gadd8fc034979961c35472233f5c7e4f0b" title="Configures the RDC based on the parameter values.">RDC_init()</a></code> to be used with a <code><a class="el" href="structRDC__configParams.html" title="Struct holds the RDC configurations Can be passed to RDC_paramsInit(RDC_configParams* params); RDC_in...">RDC_configParams</a></code> params.</p>
 <ol type="1">
@@ -226,13 +226,13 @@ Software Programming Guide</h1>
 </li>
 <li>the interrupts may be read by the status APIs <code><a class="el" href="group__DRV__RESOLVER__MODULE.html#ga19358c433acb37d051a1c9e3369bb938" title="Returns Sequencer interrupt Status.">RDC_getSequencerInterruptStatus()</a></code> and <code><a class="el" href="group__DRV__RESOLVER__MODULE.html#ga5adbf8cabcf50379ec9439e94bc5b999" title="Returns Core interrupt Status.">RDC_getCoreInterruptStatus()</a></code></li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1076"></a>
+<h1><a class="anchor" id="autotoc_md1116"></a>
 Tuning Parameters</h1>
 <p>Ideal Sample, Phase/Gain correction values are identified to be the Tuning Parameters. For each there are sample(glitch) threshold and train limit achieved flags. for tuning, the software has to configure these, enable the resolver and wait for the train limit done flags. post that, the Phase Gain estimation values may be read (note for the PG estimation to run, the motor has to be in spinning.) and can be used for Manual correction values. The Ideal Sample Mode-Auto will will fill the Peak-Histogram-Buckets until the train limit done. software needs to read these buckets and identify the one with more number, use it as the ideal sample override value with the ideal sample mode set to Manual </p>
-<h1><a class="anchor" id="autotoc_md1077"></a>
+<h1><a class="anchor" id="autotoc_md1117"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="resolver_8h.html">drivers/resolver.h</a>&gt;</span></div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1078"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1118"></a>
 API</h1>
 <p><a class="el" href="group__DRV__RESOLVER__MODULE.html">APIs for RESOLVER</a> </p>
 </div></div><!-- contents -->

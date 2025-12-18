@@ -92,28 +92,28 @@ $(document).ready(function(){initNavTree('EXAMPLES_ENET_CPSW_INDUSTRIAL_APP.html
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3099">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md3100">Overview</a><ul><li class="level2"><a href="#autotoc_md3101">Raw-UDP Application</a><ul><ul><li class="level4"><a href="#autotoc_md3102">Packet Processing</a></li>
+<ul><li class="level1"><a href="#autotoc_md3145">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3146">Overview</a><ul><li class="level2"><a href="#autotoc_md3147">Raw-UDP Application</a><ul><ul><li class="level4"><a href="#autotoc_md3148">Packet Processing</a></li>
 </ul>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3103">TCP/IP server</a></li>
-<li class="level2"><a href="#autotoc_md3104">Profiling</a></li>
+<li class="level2"><a href="#autotoc_md3149">TCP/IP server</a></li>
+<li class="level2"><a href="#autotoc_md3150">Profiling</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3105">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3106">Packet pool configuration</a></li>
-<li class="level1"><a href="#autotoc_md3107">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3108">Build the example</a></li>
-<li class="level2"><a href="#autotoc_md3109">Hardware Setup</a></li>
-<li class="level2"><a href="#autotoc_md3110">Run the example</a></li>
-<li class="level2"><a href="#autotoc_md3111">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3151">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md3152">Packet pool configuration</a></li>
+<li class="level1"><a href="#autotoc_md3153">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3154">Build the example</a></li>
+<li class="level2"><a href="#autotoc_md3155">Hardware Setup</a></li>
+<li class="level2"><a href="#autotoc_md3156">Run the example</a></li>
+<li class="level2"><a href="#autotoc_md3157">Sample Output</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3112">See also</a></li>
+<li class="level1"><a href="#autotoc_md3158">See also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_enet_cpsw_industrial_example"></a></p>
-<h1><a class="anchor" id="autotoc_md3099"></a>
+<h1><a class="anchor" id="autotoc_md3145"></a>
 Introduction</h1>
 <p>This example demonstrates the effectiveness of CPSW in low-latency applications, where the device handles two types of traffic</p>
 <ul>
@@ -121,19 +121,19 @@ Introduction</h1>
 <li>TCP traffic :Other background traffic that can tolerate some delay in transmission and processing</li>
 </ul>
 <p>The application uses separate channels for each type of traffic, with real-time traffic receiving priority to guarantee low latency. The packets received in the this channel undergo modifications and are sent back to the source node. The TCP server runs on LwIP stack and echoes back packets received in the designated channel.The application uses two DMA TX channels and two DMA RX channels. Channels TX1 and RX1 are used for raw-UDP traffic; TX0 and RX0 are used for running the TCP server.</p>
-<h1><a class="anchor" id="autotoc_md3100"></a>
+<h1><a class="anchor" id="autotoc_md3146"></a>
 Overview</h1>
-<h2><a class="anchor" id="autotoc_md3101"></a>
+<h2><a class="anchor" id="autotoc_md3147"></a>
 Raw-UDP Application</h2>
 <p>The Raw-UDP channel is configured to facilitate efficient and low-latency packet processing. The setup involves:</p><ul>
 <li>Initializing DMA Channel 1: The DMA channel is opened, and Tx and Rx queues are initialized to enable data transfer.</li>
 <li>Creating a Packet Processing Task: A task is created to handle packet processing, which is triggered upon the arrival of a packet.</li>
 </ul>
-<h4><a class="anchor" id="autotoc_md3102"></a>
+<h4><a class="anchor" id="autotoc_md3148"></a>
 Packet Processing</h4>
 <p>When a packet enters either of the MAC ports, the destination IP address is compared to the real-time address of the device by the address lookup engine. If a match is found, the packet is routed to the corresponding DMA channel for transmission to the host. The IP address is configured based on the node ID</p>
 <p>After receiving a packet, the payload is modified, and the packet is echoed back to the sender. The RawUdpApp_modifyPkt() function in app_rawudp_priv.c is used for modifying the packet payload. This function can be customized to meet specific requirements, allowing for the transmission of tailored packets. By default, it provides an optimized way to transmit a packet to the sender with a minimally modified payload.</p>
-<h2><a class="anchor" id="autotoc_md3103"></a>
+<h2><a class="anchor" id="autotoc_md3149"></a>
 TCP/IP server</h2>
 <p>The application implements a TCP server using the standard LwIP stack and uses netconn APIs with cpsw as the ethernet driver</p>
 <ul>
@@ -145,10 +145,10 @@ TCP/IP server</h2>
 <img src="cpsw_industrial_application.png" alt="" width="15%"/>
 <div class="caption">
 Application Overview </div></div>
-<h2><a class="anchor" id="autotoc_md3104"></a>
+<h2><a class="anchor" id="autotoc_md3150"></a>
 Profiling</h2>
 <p>The application has the macro PROFILE_EN for profiling software latency of the raw-UDP channel. The start time is recorded in the receive ISR and the end time is recorded after the packets to be transmitted have been submitted to the DMA.The average and maximum values are printed on the console after the configured number of packets( ENETAPP_PKT_PROFILE ) are processed. Profiling is disabled by default it can be enabled in enetapp_cfg.h by uncommenting the macro PROFILE_EN.</p>
-<h1><a class="anchor" id="autotoc_md3105"></a>
+<h1><a class="anchor" id="autotoc_md3151"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -162,24 +162,24 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/enet_cpsw_industrial_app   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3106"></a>
+<h1><a class="anchor" id="autotoc_md3152"></a>
 Packet pool configuration</h1>
 <p>To change packet pool configuration from syscfg, please refer to <a class="el" href="PACKETPOOL_CONFIG_TOP.html">Ethernet Packet Pool Allocation Guidelines</a></p>
-<h1><a class="anchor" id="autotoc_md3107"></a>
+<h1><a class="anchor" id="autotoc_md3153"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md3108"></a>
+<h2><a class="anchor" id="autotoc_md3154"></a>
 Build the example</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3109"></a>
+<h2><a class="anchor" id="autotoc_md3155"></a>
 Hardware Setup</h2>
 <p>The EVM must be setup with cable connections as shown in the figure below </p><div class="image">
 <img src="cpsw_industrial_setup.png" alt="" width="60%"/>
 <div class="caption">
 EVM Setup </div></div>
-<h2><a class="anchor" id="autotoc_md3110"></a>
+<h2><a class="anchor" id="autotoc_md3156"></a>
 Run the example</h2>
 <ol type="1">
 <li>Connect the MAC port as described in <b>Hardware Setup</b> section.</li>
@@ -190,7 +190,7 @@ Run the example</h2>
 <li>Echoed packets from the destination node should be received at the source node with modified payloads.</li>
 </ol>
 <p>For using tcp channel please refer to <a class="el" href="enet__lwip__tcpserver_8md.html">enet_lwip_tcpserver.md</a></p>
-<h2><a class="anchor" id="autotoc_md3111"></a>
+<h2><a class="anchor" id="autotoc_md3157"></a>
 Sample Output</h2>
 <div class="fragment"><div class="line">=======================================================</div>
 <div class="line">           CPSW Industrial Application</div>
@@ -238,7 +238,7 @@ Sample Output</h2>
 <div class="line">Average Profile Time: 17.021572</div>
 <div class="line">Max Profile Time: 43.902500</div>
 <div class="line">======================================================</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3112"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3158"></a>
 See also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> </p>
 </div></div><!-- contents -->

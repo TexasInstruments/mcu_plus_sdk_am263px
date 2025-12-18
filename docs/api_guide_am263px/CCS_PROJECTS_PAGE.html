@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('CCS_PROJECTS_PAGE.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md399">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md400">CCS Projectspec and CCS Projects</a></li>
-<li class="level1"><a href="#autotoc_md401">Import a Project in CCS</a></li>
-<li class="level1"><a href="#autotoc_md402">Browse a Project in CCS</a></li>
-<li class="level1"><a href="#autotoc_md403">Build a Project in CCS</a></li>
-<li class="level1"><a href="#autotoc_md404">Build System Projects in CCS</a></li>
+<ul><li class="level1"><a href="#autotoc_md437">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md438">CCS Projectspec and CCS Projects</a></li>
+<li class="level1"><a href="#autotoc_md439">Import a Project in CCS</a></li>
+<li class="level1"><a href="#autotoc_md440">Browse a Project in CCS</a></li>
+<li class="level1"><a href="#autotoc_md441">Build a Project in CCS</a></li>
+<li class="level1"><a href="#autotoc_md442">Build System Projects in CCS</a></li>
 <li class="level1"><a href="#CCS_PROJECTS_1CLICK_DEBUG">1 Click Debug with CCS Projects</a></li>
-<li class="level1"><a href="#autotoc_md405">Load and Run Executables Built with CCS Projects</a></li>
-<li class="level1"><a href="#autotoc_md406">Delete a Project in CCS</a></li>
+<li class="level1"><a href="#autotoc_md443">Load and Run Executables Built with CCS Projects</a></li>
+<li class="level1"><a href="#autotoc_md444">Delete a Project in CCS</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_ccs_projects"></a></p>
@@ -111,11 +111,11 @@ By default, CCS import of SDK example projects performs a copy of example files 
 Deleting the CCS project, deletes the project files from CCS workspace. User should be careful especially when the copied example files are modified by user.</dd>
 <dd>
 The screen shots shown on this page are for AM64x MCU+ SDK v7.3.0. You would see your specific SOC and SDK version that is installed. However the instructions and steps mentioned remain the same, unless mentioned otherwise.</dd></dl>
-<h1><a class="anchor" id="autotoc_md399"></a>
+<h1><a class="anchor" id="autotoc_md437"></a>
 Introduction</h1>
 <p>All SDK examples can be built using CCS projects. Using CCS projects one can also open SysConfig from within CCS itself to configure the example. This section provides basic instructions and tips on using CCS projects.</p>
 <dl class="section note"><dt>Note</dt><dd>To re-build libraries you need to use makefiles, see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a></dd></dl>
-<h1><a class="anchor" id="autotoc_md400"></a>
+<h1><a class="anchor" id="autotoc_md438"></a>
 CCS Projectspec and CCS Projects</h1>
 <ul>
 <li>When a example project is imported into CCS, what is really getting imported is a <code>projectspec</code> file.</li>
@@ -125,7 +125,7 @@ CCS Projectspec and CCS Projects</h1>
 </div><!-- fragment --></li>
 <li>The <code>projectspec</code> is also human readable, i.e you can open it in a text editor to see all the different options for that project.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md401"></a>
+<h1><a class="anchor" id="autotoc_md439"></a>
 Import a Project in CCS</h1>
 <ul>
 <li>First open the "project explorer" as shown below</li>
@@ -165,7 +165,7 @@ Select Project</div></div>
 <div class="line">                                                            + -- example.projectspec  --&gt; This is the file that CCS imports.</div>
 </div><!-- fragment --></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md402"></a>
+<h1><a class="anchor" id="autotoc_md440"></a>
 Browse a Project in CCS</h1>
 <ul>
 <li>Once a example project is imported, you can learn more about the example, by clicking the "README.html" file</li>
@@ -184,7 +184,7 @@ Example SysConfig</div></div>
 <ul>
 <li>You can explore other project files by clicking on them.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md403"></a>
+<h1><a class="anchor" id="autotoc_md441"></a>
 Build a Project in CCS</h1>
 <ul>
 <li>To build a project "right-click" on the project name and select "Build Project" to build it</li>
@@ -197,7 +197,7 @@ Build a Project</div></div>
 <ul>
 <li>You can explore additional project options in the same menu.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md404"></a>
+<h1><a class="anchor" id="autotoc_md442"></a>
 Build System Projects in CCS</h1>
 <ul>
 <li>Some examples, to run correctly, need multiple binaries on different CPUs to be built, loaded and run. Such examples have "system projects" associated with them. One such example is inter-processor communication example, which shows multiple CPUs communicating among each other.</li>
@@ -268,13 +268,13 @@ Example run</div></div>
 <div class="caption">
 Run the Program</div></div>
 <dl class="section note"><dt>Note</dt><dd>Power Cycle the device everytime before launching 1 click debug session</dd></dl>
-<h1><a class="anchor" id="autotoc_md405"></a>
+<h1><a class="anchor" id="autotoc_md443"></a>
 Load and Run Executables Built with CCS Projects</h1>
 <ul>
 <li>Simply load and run binary .out on EVM using CCS (see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a>)</li>
 <li>In case of "system" examples, you need to load the binaries for each CPU one by one in CCS and then run each CPU. Typically the order of load and run of different CPUs is not important.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md406"></a>
+<h1><a class="anchor" id="autotoc_md444"></a>
 Delete a Project in CCS</h1>
 <ul>
 <li>To delete a imported project "right-click" on the project name and select "Delete" to delete it.</li>

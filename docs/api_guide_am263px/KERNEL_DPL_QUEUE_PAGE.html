@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('KERNEL_DPL_QUEUE_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md804">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md805">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md806">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md807">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md808">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md842">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md843">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md844">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md845">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md846">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_dpl_QueueP"></a></p>
-<h1><a class="anchor" id="autotoc_md804"></a>
+<h1><a class="anchor" id="autotoc_md842"></a>
 Features Supported</h1>
 <ul>
 <li>APIs to create and destroy Queues</li>
@@ -108,17 +108,17 @@ Features Supported</h1>
 <li>APIs to Get element from Queue</li>
 <li>APIs to Check if Queue is Empty</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md805"></a>
+<h1><a class="anchor" id="autotoc_md843"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md806"></a>
+<h1><a class="anchor" id="autotoc_md844"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>For creating the Queue application needs to provide the <a class="el" href="structQueueP__Object.html" title="Opaque task object used with the task APIs.">QueueP_Object</a> and it should not be modified by the applicaion.</li>
 <li>A field of type <a class="el" href="structQueueP__Elem.html" title="Opaque QueueP element.">QueueP_Elem</a> should be placed at the head of client structs passed as Queue Elements to function <a class="el" href="group__KERNEL__DPL__QUEUE.html#gaea83e8cbff7a26da09a7d0daa07f6642" title="Function to Put an element at end of queue.">QueueP_put</a>.</li>
 <li>It is recommended not to place the QueueP Object and QueueP Element objects in stack as they will be accessed by the driver till they are released.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md807"></a>
+<h1><a class="anchor" id="autotoc_md845"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs, </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="QueueP_8h.html">kernel/dpl/QueueP.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Example usage define Queue Object and Elements </p><div class="fragment"><div class="line"><span class="comment">/* Define a client structure for the queue elements.</span></div>
@@ -150,7 +150,7 @@ Example Usage</h1>
 <div class="line">    (void) pElem;</div>
 <div class="line"> </div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__QUEUE.html#ga706c699c3b0f6acfeb4d33a93b0c30fc">QueueP_delete</a>(handle);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md808"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md846"></a>
 API</h1>
 <p><a class="el" href="group__KERNEL__DPL__QUEUE.html">APIs for Queue</a> </p>
 </div></div><!-- contents -->

@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('DRIVERS_I2C_LLD_PAGE.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_i2c_v1_lld"></a> </p>
-<h1><a class="anchor" id="autotoc_md912"></a>
+<h1><a class="anchor" id="autotoc_md950"></a>
 Features Supported</h1>
 <ul>
 <li>Controller and Target mode of Operation.</li>
@@ -100,7 +100,7 @@ Features Supported</h1>
 <li>Non-blocking (Callback) Transfer.</li>
 <li>I2C Bus Recovery.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md913"></a>
+<h1><a class="anchor" id="autotoc_md951"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <p>SysConfig can be used to configure below parameters apart from common configuration like Clock,MPU,RAT and others.</p><ul>
@@ -111,14 +111,14 @@ SysConfig Features</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md914"></a>
+<h1><a class="anchor" id="autotoc_md952"></a>
 Features NOT Supported</h1>
 <ul>
 <li>DMA Mode Operation.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md915"></a>
+<h1><a class="anchor" id="autotoc_md953"></a>
 Usage Overview</h1>
-<h2><a class="anchor" id="autotoc_md916"></a>
+<h2><a class="anchor" id="autotoc_md954"></a>
 API Sequence</h2>
 <p>To use the I2C LLD driver to transmit/receive data over the I2C bus, probe target and set bus frequency the application may call the following APIs:</p>
 <ul>
@@ -137,17 +137,17 @@ API Sequence</h2>
 <li><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gaa0e1657e8b07917503d14fdd4d590bf5" title="API to probe I2C.">I2C_lld_probe()</a>: Probe I2C Target.</li>
 <li><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gaef63ff2cdbd6453f4a57c29a15d1852c" title="API to set the bus frequency.">I2C_lld_setBusFrequency()</a>: Set Bus frequency.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md917"></a>
+<h2><a class="anchor" id="autotoc_md955"></a>
 Initializing the I2C LLD Driver</h2>
 <p><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gafd8a5d2ee0d890a8559ab73c161fac16" title="API to Initializes the I2C instance.">I2C_lld_init()</a> must be called before any other I2C APIs. This function uses I2C LLD handle to initialize each instance.</p>
 <p>Calling <a class="el" href="group__DRV__I2C__LLD__MODULE.html#gafd8a5d2ee0d890a8559ab73c161fac16" title="API to Initializes the I2C instance.">I2C_lld_init()</a> a second time with the same handle previously passed to <a class="el" href="group__DRV__I2C__LLD__MODULE.html#gafd8a5d2ee0d890a8559ab73c161fac16" title="API to Initializes the I2C instance.">I2C_lld_init()</a> will result in an error. Though, handle can be re-used the instance is closed using <a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga937d7e6dff3cdadb02df1daeb8280e52" title="API to De-Initializes the I2C instance.">I2C_lld_deInit()</a>.</p>
 <p>Please note that the initialization of I2C LLD instances is taken care by the SysConfig generated code.</p>
-<h2><a class="anchor" id="autotoc_md918"></a>
+<h2><a class="anchor" id="autotoc_md956"></a>
 I2C Transfer Mode</h2>
 <p>The I2C driver supports two transfer modes of operation: Polling and Interrupt Mode.</p>
 <p>In Polling mode transfer can be initiated with all the polling mode APIs.</p>
 <p>In Interrupt mode Users have to register the appropriate ISR and assign a Callback function before calling the interrupt mode APIs.</p>
-<h1><a class="anchor" id="autotoc_md919"></a>
+<h1><a class="anchor" id="autotoc_md957"></a>
 Example Usage</h1>
 <p>Include the below files to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="DebugP_8h.html">kernel/dpl/DebugP.h</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="HwiP_8h.html">kernel/dpl/HwiP.h</a>&gt;</span></div>
@@ -237,7 +237,7 @@ Example Usage</h1>
 <div class="line">                                      gI2cVimStsClrMask,</div>
 <div class="line">                                      intcBaseAddr);</div>
 <div class="line">}</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md920"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md958"></a>
 API</h1>
 <p><a class="el" href="group__DRV__I2C__LLD__MODULE.html">APIs for I2C LLD</a> </p>
 </div></div><!-- contents -->

@@ -92,12 +92,12 @@ $(document).ready(function(){initNavTree('FAST_SECURE_BOOT.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_fast_secure_boot"></a> </p>
-<h1><a class="anchor" id="autotoc_md427"></a>
+<h1><a class="anchor" id="autotoc_md465"></a>
 Achieving Fast Secure Boot</h1>
-<h2><a class="anchor" id="autotoc_md428"></a>
+<h2><a class="anchor" id="autotoc_md466"></a>
 Introduction</h2>
 <p>This document is intended for the users who want to achieve the least secure boot time for a signed (optionally encrypted) application through Flash interface</p>
-<h2><a class="anchor" id="autotoc_md429"></a>
+<h2><a class="anchor" id="autotoc_md467"></a>
 Steps to build, flash, load and run secure applications</h2>
 <ul>
 <li>Make sure <b>pyelftools</b>, <b>construct</b> and <b>cryptography</b> is installed from pip. This package is required for encrypting MCELF application images.</li>
@@ -141,7 +141,7 @@ HSM Runtime Flash Offset</div></div>
 <li>Set the board to OSPI bootmode and reset the device.</li>
 </ul>
 <p>No logs are expected in sbl_ospi_fastboot since UART logging is disabled.</p>
-<h1><a class="anchor" id="autotoc_md430"></a>
+<h1><a class="anchor" id="autotoc_md468"></a>
 Component wise secure boot time measurement</h1>
 <p>Secure Boot time can be measured by using GPIOs at various points of execution.</p>
 <p>The points of interest for Secure Boot are:</p><ol type="1">
@@ -158,7 +158,7 @@ Component wise secure boot time measurement</h1>
 </ul>
 </li>
 </ol>
-<h1><a class="anchor" id="autotoc_md431"></a>
+<h1><a class="anchor" id="autotoc_md469"></a>
 Boot time calculator</h1>
 <p>The boot time calculator can be used get an idea of the secure boot time values which can be achieved with fast boot sbls and tifs mcu. The numbers are as per SDK 10.00 version.</p>
 <p>Checkout the secure boot time calculator tool <a href="../boottime_calculator/index.html">here</a> . </p>

@@ -92,66 +92,66 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_SOC_EPWM.html',''
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2109">Introduction</a><ul><li class="level2"><a href="#autotoc_md2110">SOC Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2111">Interrupt Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2112">ISR App_adcISR</a></li>
+<ul><li class="level1"><a href="#autotoc_md2155">Introduction</a><ul><li class="level2"><a href="#autotoc_md2156">SOC Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2157">Interrupt Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2158">ISR App_adcISR</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2113">External Connections</a><ul><li class="level2"><a href="#autotoc_md2114">AM263Px-CC E2 or AM263x-CC E2 or AM261x-SOM E1</a></li>
-<li class="level2"><a href="#autotoc_md2115">AM263x-CC E1</a></li>
-<li class="level2"><a href="#autotoc_md2116">AM263Px-LP or AM263x-LP or AM261x-LP</a></li>
+<li class="level1"><a href="#autotoc_md2159">External Connections</a><ul><li class="level2"><a href="#autotoc_md2160">AM263Px-CC E2 or AM263x-CC E2 or AM261x-SOM E1</a></li>
+<li class="level2"><a href="#autotoc_md2161">AM263x-CC E1</a></li>
+<li class="level2"><a href="#autotoc_md2162">AM263Px-LP or AM263x-LP or AM261x-LP</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2117">Watch Variables</a></li>
+<li class="level1"><a href="#autotoc_md2163">Watch Variables</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_SOC_EPWM_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2118">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2119">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2120">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2164">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2165">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2166">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_soc_epwm"></a></p>
-<h1><a class="anchor" id="autotoc_md2109"></a>
+<h1><a class="anchor" id="autotoc_md2155"></a>
 Introduction</h1>
 <p>This examples demonstrates periodical triggering of conversion on ADC1 by EPWM0  <style>div.image img[src="am263_adc_soc_epwm.png"]{width:50%}</style> </p><div class="image">
 <img src="am263_adc_soc_epwm.png" alt=""/>
 <div class="caption">
 Example Block diagram</div></div>
- <h2><a class="anchor" id="autotoc_md2110"></a>
+ <h2><a class="anchor" id="autotoc_md2156"></a>
 SOC Configurations</h2>
 <ul>
 <li>SOC 0 trigger is set by EPWM0SOCA</li>
 <li>Samples on ADC1 Channel 0 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2111"></a>
+<h2><a class="anchor" id="autotoc_md2157"></a>
 Interrupt Configurations</h2>
 <ul>
 <li>ADC1INT1 source is set to EOC/SOC0</li>
 <li>INTXBAR0 is set to ADC1INT1. </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2112"></a>
+<h2><a class="anchor" id="autotoc_md2158"></a>
 ISR App_adcISR</h2>
 <ul>
 <li>Reads the SOC0 result.</li>
 <li>Clears ADC1INT1 flag </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2113"></a>
+<h1><a class="anchor" id="autotoc_md2159"></a>
 External Connections</h1>
-<h2><a class="anchor" id="autotoc_md2114"></a>
+<h2><a class="anchor" id="autotoc_md2160"></a>
 AM263Px-CC E2 or AM263x-CC E2 or AM261x-SOM E1</h2>
 <ul>
 <li>feed analog input on ADC 1 Channel 0 - HSEC connecter pin - 12 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2115"></a>
+<h2><a class="anchor" id="autotoc_md2161"></a>
 AM263x-CC E1</h2>
 <ul>
 <li>feed analog input on ADC 1 Channel 0 - HSEC connecter pin - 18 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2116"></a>
+<h2><a class="anchor" id="autotoc_md2162"></a>
 AM263Px-LP or AM263x-LP or AM261x-LP</h2>
 <ul>
 <li>feed analog input on ADC 1 Channel 0 - J1/J3 Pin - 24 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2117"></a>
+<h1><a class="anchor" id="autotoc_md2163"></a>
 Watch Variables</h1>
 <ul>
 <li>gAdc1Result0 : the array holds the sampled values of the ADC 1 Channel 0</li>
@@ -170,7 +170,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_soc_epwm/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2118"></a>
+<h1><a class="anchor" id="autotoc_md2164"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -180,10 +180,10 @@ Steps to Run the Example</h1>
 <li>Using watch variables, view the ADC conversion results.</li>
 <li>View the ADC conversion results in UART console logs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2119"></a>
+<h1><a class="anchor" id="autotoc_md2165"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md2120"></a>
+<h1><a class="anchor" id="autotoc_md2166"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ADC Soc EPWM Test Started</div>

@@ -92,16 +92,16 @@ $(document).ready(function(){initNavTree('SDL_CCM_PAGE.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1572">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1573">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1574">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1575">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1576">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1577">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1618">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1619">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1620">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1621">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1622">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1623">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_ccm"></a></p>
-<h1><a class="anchor" id="autotoc_md1572"></a>
+<h1><a class="anchor" id="autotoc_md1618"></a>
 Features Supported</h1>
 <p>The Compute Compare Module (CCM) is the R5F sub-system’s implementation for the lockstep error detection logic. The R5F sub-system, when bootstrapped to lockstep mode, has a logic that compares the outputs of the two cores and asserts an interrupt whenever an error is detected. There is also a logic to test the comparison logic.</p>
 <p>The CCM module provides APIs to:</p>
@@ -112,22 +112,22 @@ Features Supported</h1>
 <li>Read back the static config registers</li>
 <li>Clear errors that have occurred due to error injection or actual fault</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1573"></a>
+<h1><a class="anchor" id="autotoc_md1619"></a>
 SysConfig Features</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1574"></a>
+<h1><a class="anchor" id="autotoc_md1620"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1575"></a>
+<h1><a class="anchor" id="autotoc_md1621"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1576"></a>
+<h1><a class="anchor" id="autotoc_md1622"></a>
 Example Usage</h1>
 <p>The following shows an example of SDL R5F CCM API usage by the application.</p>
 <p>Initialize the R5F CCM instance </p><div class="fragment"><div class="line">retVal = <a class="code" href="group__SDL__IP__CCM__API.html#ga9095d19a45c92adf95fcd9a269a0d445">SDL_CCM_init</a>(<a class="code" href="group__SDL__CCM__MODULE.html#ga2b0a86935845dc94efa86c9f1e96ba05">SDL_R5SS0_CCM</a>);</div>
@@ -172,7 +172,7 @@ Example Usage</h1>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a>(<span class="stringliteral">&quot;\n R5F-CPU example application CCM inject Test complete&quot;</span>);</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1577"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1623"></a>
 API</h1>
 <p><a class="el" href="group__SDL__CCM__MODULE.html">APIs for CCM MODULE</a> </p>
 </div></div><!-- contents -->

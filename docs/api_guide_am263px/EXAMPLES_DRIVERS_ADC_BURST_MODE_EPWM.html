@@ -92,37 +92,37 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_BURST_MODE_EPWM.h
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1930">Introduction</a><ul><li class="level2"><a href="#autotoc_md1931">Example Description</a></li>
-<li class="level2"><a href="#autotoc_md1932">SOC Configurations</a></li>
-<li class="level2"><a href="#autotoc_md1933">Interrupt Configurations</a></li>
-<li class="level2"><a href="#autotoc_md1934">ISR</a></li>
+<ul><li class="level1"><a href="#autotoc_md1976">Introduction</a><ul><li class="level2"><a href="#autotoc_md1977">Example Description</a></li>
+<li class="level2"><a href="#autotoc_md1978">SOC Configurations</a></li>
+<li class="level2"><a href="#autotoc_md1979">Interrupt Configurations</a></li>
+<li class="level2"><a href="#autotoc_md1980">ISR</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1935">Watch Variables</a></li>
-<li class="level1"><a href="#autotoc_md1936">External Connections :</a><ul><li class="level2"><a href="#autotoc_md1937">AM263Px-CC E2 or AM263x-CC E2 or AM261X-SOM</a></li>
-<li class="level2"><a href="#autotoc_md1938">AM263x-CC E1</a></li>
-<li class="level2"><a href="#autotoc_md1939">AM263Px-LP or AM263x-LP</a></li>
-<li class="level2"><a href="#autotoc_md1940">AM261X-LP</a></li>
+<li class="level1"><a href="#autotoc_md1981">Watch Variables</a></li>
+<li class="level1"><a href="#autotoc_md1982">External Connections :</a><ul><li class="level2"><a href="#autotoc_md1983">AM263Px-CC E2 or AM263x-CC E2 or AM261X-SOM</a></li>
+<li class="level2"><a href="#autotoc_md1984">AM263x-CC E1</a></li>
+<li class="level2"><a href="#autotoc_md1985">AM263Px-LP or AM263x-LP</a></li>
+<li class="level2"><a href="#autotoc_md1986">AM261X-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_BURST_MODE_EPWM_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md1941">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md1942">See Also</a></li>
-<li class="level1"><a href="#autotoc_md1943">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md1987">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md1988">See Also</a></li>
+<li class="level1"><a href="#autotoc_md1989">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_burst_mode_epwm"></a></p>
-<h1><a class="anchor" id="autotoc_md1930"></a>
+<h1><a class="anchor" id="autotoc_md1976"></a>
 Introduction</h1>
 <p>This example sets up ePWM0 to periodically trigger a burst mode conversions of burst size 3 on ADC1 for conversion of inputs on ADC_AIN0, ADC_AIN1, ADC_AIN2, ADC_AIN3 and burst mode conversion on ADC_AIN3. This demonstrates a batch of conversion on ADC0 (inputs on ADC_AIN0 and ADC_AIN1) and burst mode conversion on ADC0 (input ADC_AIN3). ADC0 Interrupt ISR is used to read results of ADC0 (i.e. digital representations of inputs ADC_AIN0, ADC_AIN1 and average of oversampled ADC_AIN3)</p>
 <p> <style>div.image img[src="am263_adc_burst_mode_epwm.png"]{width:50%}</style> </p><div class="image">
 <img src="am263_adc_burst_mode_epwm.png" alt=""/>
 <div class="caption">
 Example Block diagram</div></div>
- <h2><a class="anchor" id="autotoc_md1931"></a>
+ <h2><a class="anchor" id="autotoc_md1977"></a>
 Example Description</h2>
 <p>The example demonstrates Burst mode of ADC periodically triggered by trigger from EPWM0.</p>
-<h2><a class="anchor" id="autotoc_md1932"></a>
+<h2><a class="anchor" id="autotoc_md1978"></a>
 SOC Configurations</h2>
 <ul>
 <li>SOC0 - SOC6 are configured High priority</li>
@@ -133,20 +133,20 @@ SOC Configurations</h2>
 <li>SOC(9,12) sample on ADC 1 Channel 2</li>
 <li>SOC(15) sample on ADC 1 Channel 3</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1933"></a>
+<h2><a class="anchor" id="autotoc_md1979"></a>
 Interrupt Configurations</h2>
 <ul>
 <li>ADC1 INT 1 is generated at the EOC/SOC9</li>
 <li>ADC1 INT 2 is generated at the EOC/SOC12</li>
 <li>ADC1 INT 3 is generated at the EOC/SOC15</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1934"></a>
+<h2><a class="anchor" id="autotoc_md1980"></a>
 ISR</h2>
 <ul>
 <li>ADC INT 1,2,3 are configured to same ISR, App_adcISR.</li>
 <li>reads which EOC generated Interrupt and reads the respective result registers.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1935"></a>
+<h1><a class="anchor" id="autotoc_md1981"></a>
 Watch Variables</h1>
 <ul>
 <li>gAdc1Result0[] : Digital representation of the voltage, averaged on burst sample on pin ADC1_AIN0</li>
@@ -154,9 +154,9 @@ Watch Variables</h1>
 <li>gAdc1Result2[] : Digital representation of the voltage sampled on pin ADC1_AIN2</li>
 <li>gAdc1Result3[] : Digital representation of the voltage sampled on pin ADC1_AIN3</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1936"></a>
+<h1><a class="anchor" id="autotoc_md1982"></a>
 External Connections :</h1>
-<h2><a class="anchor" id="autotoc_md1937"></a>
+<h2><a class="anchor" id="autotoc_md1983"></a>
 AM263Px-CC E2 or AM263x-CC E2 or AM261X-SOM</h2>
 <p>Feed analog voltages on</p><ul>
 <li>ADC1_AIN0, i.e., HSEC PIN 12</li>
@@ -164,7 +164,7 @@ AM263Px-CC E2 or AM263x-CC E2 or AM261X-SOM</h2>
 <li>ADC1_AIN2, i.e., HSEC PIN 18</li>
 <li>ADC1_AIN3, i.e., HSEC PIN 20 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1938"></a>
+<h2><a class="anchor" id="autotoc_md1984"></a>
 AM263x-CC E1</h2>
 <p>Feed analog voltages on</p><ul>
 <li>ADC1_AIN0, i.e., HSEC PIN 18</li>
@@ -172,7 +172,7 @@ AM263x-CC E1</h2>
 <li>ADC1_AIN2, i.e., HSEC PIN 21</li>
 <li>ADC1_AIN3, i.e., HSEC PIN 23 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1939"></a>
+<h2><a class="anchor" id="autotoc_md1985"></a>
 AM263Px-LP or AM263x-LP</h2>
 <p>Feed analog voltages on</p><ul>
 <li>ADC1_AIN0, i.e., J1/3 PIN 24</li>
@@ -180,7 +180,7 @@ AM263Px-LP or AM263x-LP</h2>
 <li>ADC1_AIN2, i.e., J5/7 PIN 67</li>
 <li>ADC1_AIN3, i.e., J1/3 PIN 6</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1940"></a>
+<h2><a class="anchor" id="autotoc_md1986"></a>
 AM261X-LP</h2>
 <p>When using AM261x-LP Feed Analog Inputs to the Boosterpack Headers at the following</p><ul>
 <li>ADC1_AIN0 - J5 pin 24</li>
@@ -202,7 +202,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_burst_mode_epwm/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1941"></a>
+<h1><a class="anchor" id="autotoc_md1987"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -212,10 +212,10 @@ Steps to Run the Example</h1>
 <li>Using the watch variables, view the ADC conversion results.</li>
 <li>View the ADC conversion results in UART console logs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1942"></a>
+<h1><a class="anchor" id="autotoc_md1988"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md1943"></a>
+<h1><a class="anchor" id="autotoc_md1989"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ADC Burst Mode EPWM Test Started ...</div>

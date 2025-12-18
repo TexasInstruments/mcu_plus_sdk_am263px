@@ -92,29 +92,29 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_SOC_CONTINUOUS_DM
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2050">Introduction</a><ul><li class="level2"><a href="#autotoc_md2051">Errata i2355</a></li>
+<ul><li class="level1"><a href="#autotoc_md2096">Introduction</a><ul><li class="level2"><a href="#autotoc_md2097">Errata i2355</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2052">External Connections</a><ul><li class="level2"><a href="#autotoc_md2053">AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</a></li>
-<li class="level2"><a href="#autotoc_md2054">AM263X-CC E1</a></li>
-<li class="level2"><a href="#autotoc_md2055">AM263PX-LP or AM263X-LP or AM261x-LP</a></li>
+<li class="level1"><a href="#autotoc_md2098">External Connections</a><ul><li class="level2"><a href="#autotoc_md2099">AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</a></li>
+<li class="level2"><a href="#autotoc_md2100">AM263X-CC E1</a></li>
+<li class="level2"><a href="#autotoc_md2101">AM263PX-LP or AM263X-LP or AM261x-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_SOC_CONTINUOUS_DMA_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2056">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2057">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2058">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2102">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2103">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2104">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_soc_continuous_dma"></a></p>
-<h1><a class="anchor" id="autotoc_md2050"></a>
+<h1><a class="anchor" id="autotoc_md2096"></a>
 Introduction</h1>
 <p>This example sets up two ADC channels to convert simultaneously. The results will be transferred by DMA into a buffer in RAM.</p>
 <p> <style>div.image img[src="am263_adc_soc_continuous_dma.png"]{width:75%}</style> </p><div class="image">
 <img src="am263_adc_soc_continuous_dma.png" alt=""/>
 <div class="caption">
 Module Block diagram</div></div>
-<h2><a class="anchor" id="autotoc_md2051"></a>
+<h2><a class="anchor" id="autotoc_md2097"></a>
 Errata i2355</h2>
 <p>errata i2355 for AM263x</p><ul>
 <li>DMA trigger from the ADC INT (Late) occurs just before the Result space updation, as a result of which the stale data from the result space will be transferred by DMA.</li>
@@ -132,12 +132,12 @@ Errata i2355</h2>
 <p>Watch Variables</p><ul>
 <li>gAdc0DataBuffer, gAdc1DataBuffer - Digital representation of the voltage on pin ADC0_AIN0 and ADC1_AIN0</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2052"></a>
+<h1><a class="anchor" id="autotoc_md2098"></a>
 External Connections</h1>
 <ul>
 <li>ADC1_AIN0 and ADC2_AIN0 pin should be connected to the signals to be converted. </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2053"></a>
+<h2><a class="anchor" id="autotoc_md2099"></a>
 AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</h2>
 <ul>
 <li>Feed the External Volatage to the following<ul>
@@ -146,7 +146,7 @@ AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2054"></a>
+<h2><a class="anchor" id="autotoc_md2100"></a>
 AM263X-CC E1</h2>
 <ul>
 <li>Feed the External Volatage to the following<ul>
@@ -155,7 +155,7 @@ AM263X-CC E1</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2055"></a>
+<h2><a class="anchor" id="autotoc_md2101"></a>
 AM263PX-LP or AM263X-LP or AM261x-LP</h2>
 <ul>
 <li>Feed the External Volatage to the following<ul>
@@ -178,7 +178,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_soc_continuous_dma/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2056"></a>
+<h1><a class="anchor" id="autotoc_md2102"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -188,10 +188,10 @@ Steps to Run the Example</h1>
 <li>Using watch variables, view the ADC conversion results.</li>
 <li>View the ADC conversion results in UART console logs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2057"></a>
+<h1><a class="anchor" id="autotoc_md2103"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md2058"></a>
+<h1><a class="anchor" id="autotoc_md2104"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ADC Continuous DMA transfer Test Started ...</div>

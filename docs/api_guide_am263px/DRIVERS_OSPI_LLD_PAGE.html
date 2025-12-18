@@ -92,17 +92,20 @@ $(document).ready(function(){initNavTree('DRIVERS_OSPI_LLD_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1065">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1066">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1067">OSPI Phy Tuning Algorithm</a></li>
-<li class="level1"><a href="#autotoc_md1068">Features not Supported</a></li>
-<li class="level1"><a href="#autotoc_md1069">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1070">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1104">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1105">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1106">OSPI Phy Tuning Algorithm</a></li>
+<li class="level1"><a href="#OSPI_LLD_MIGRATION_GUIDE">OSPI LLD Migration Guide</a><ul><li class="level2"><a href="#autotoc_md1107">11.02.00 Changes</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#autotoc_md1108">Features not Supported</a></li>
+<li class="level1"><a href="#autotoc_md1109">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1110">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_ospi_lld"></a></p>
 <p>The Octal Serial Peripheral Interface (OSPI) module is a kind of Serial Peripheral Interface (SPI) module which allows single, dual, quad or octal read and write access to external flash devices. The OSPI module is used to transfer data, either in a memory mapped direct mode (for example a processor wishing to execute code directly from external flash memory), or in an indirect mode where the module is set-up to silently perform some requested operation, signaling its completion via interrupts or status registers.</p>
-<h1><a class="anchor" id="autotoc_md1065"></a>
+<h1><a class="anchor" id="autotoc_md1104"></a>
 Features Supported</h1>
 <ul>
 <li>Support for single, dual, quad (QSPI mode) or octal I/O instructions.</li>
@@ -117,7 +120,7 @@ Features Supported</h1>
 <li>Support DMA Read.</li>
 <li>Interrupt mode is supported.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1066"></a>
+<h1><a class="anchor" id="autotoc_md1105"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -165,7 +168,7 @@ OSPI WINDOW PARAMS</div></div>
 <li>In advanced config, you can choose various parameters like frame format, decoder chip select, read dummy cycles etc.</li>
 <li>Pinmux configurations for the OSPI instance</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1067"></a>
+<h1><a class="anchor" id="autotoc_md1106"></a>
 OSPI Phy Tuning Algorithm</h1>
 <p>The OSPI tuning algorithm works as follows:</p><ul>
 <li><b>Step 1 Find Golden Primary RxLow</b><br  />
@@ -490,9 +493,19 @@ and Rx_Low  │     ++│++++++++++++
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1068"></a>
+<h1><a class="anchor" id="OSPI_LLD_MIGRATION_GUIDE"></a>
+OSPI LLD Migration Guide</h1>
+<h2><a class="anchor" id="autotoc_md1107"></a>
+11.02.00 Changes</h2>
+<table class="doxtable">
+<tr>
+<th>API </th><th>Remarks  </th></tr>
+<tr>
+<td><a class="el" href="group__DRV__OSPI__LLD__PHY__API__MODULE.html#gafd227d515282233156c11c820eecf274">OSPI_lld_phyTuneGrapher</a> </td><td>Param arrays[4][128][128] updated to arrays[5][128][128]  </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md1108"></a>
 Features not Supported</h1>
-<h1><a class="anchor" id="autotoc_md1069"></a>
+<h1><a class="anchor" id="autotoc_md1109"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="ospi_8h.html">drivers/ospi.h</a>&gt;</span></div>
@@ -568,7 +581,7 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">    status = <a class="code" href="ospi__lld_8h.html#a1e216aee614427d4b927084c0ee55e5f">OSPI_lld_deInit</a>(gOspiHandle);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(status == <a class="code" href="ospi__lld_8h.html#a55d0de1852596151ea5221adf3930c55">OSPI_SYSTEM_SUCCESS</a>);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1070"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1110"></a>
 API</h1>
 <p><a class="el" href="group__DRV__OSPI__LLD__MODULE.html">APIs for OSPI LLD</a> </p>
 </div></div><!-- contents -->

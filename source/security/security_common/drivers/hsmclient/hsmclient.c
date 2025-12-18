@@ -1993,8 +1993,10 @@ int32_t HsmClient_firmwareUpdate_CodeVerify(HsmClient_t *HsmClient,
     /* Proceed only if address and size check falls within bounds */
     if (SystemP_SUCCESS == status)
     {
+        /* Convert pDecryptionBuffer address to HSM memory space */   
+        pFirmwareUpdateObject->pDecryptionBuffer = (void *)(uintptr_t)SOC_virtToPhy(pFirmwareUpdateObject->pDecryptionBuffer);
         /* Add arg crc */
-        HsmClient->ReqMsg.crcArgs = crc16_ccit((uint8_t *)pFirmwareUpdateObject, 0);
+        HsmClient->ReqMsg.crcArgs = crc16_ccit((uint8_t *)pFirmwareUpdateObject, sizeof(FirmwareUpdateReq_t));
         /* Change the Arguments Address in Physical Address */
         HsmClient->ReqMsg.args = (void *)(uintptr_t)SOC_virtToPhy(pFirmwareUpdateObject);
 

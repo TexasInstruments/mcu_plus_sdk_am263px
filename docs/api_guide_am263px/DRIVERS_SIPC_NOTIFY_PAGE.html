@@ -92,19 +92,19 @@ $(document).ready(function(){initNavTree('DRIVERS_SIPC_NOTIFY_PAGE.html',''); in
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md935">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md936">Secure IPC design description</a><ul><li class="level2"><a href="#Mailbox-mechanism-for-sipc">Mailbox mechanism for SIPC</a></li>
-<li class="level2"><a href="#autotoc_md937">SIPC initialization</a></li>
-<li class="level2"><a href="#autotoc_md938">Message format.</a></li>
+<ul><li class="level1"><a href="#autotoc_md973">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md974">Secure IPC design description</a><ul><li class="level2"><a href="#Mailbox-mechanism-for-sipc">Mailbox mechanism for SIPC</a></li>
+<li class="level2"><a href="#autotoc_md975">SIPC initialization</a></li>
+<li class="level2"><a href="#autotoc_md976">Message format.</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md939">Example usage.</a></li>
-<li class="level1"><a href="#autotoc_md940">API</a></li>
+<li class="level1"><a href="#autotoc_md977">Example usage.</a></li>
+<li class="level1"><a href="#autotoc_md978">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_sipc_notify"></a></p>
 <dl class="section note"><dt>Note</dt><dd>Secure IPC Notify driver enables IPC communication between R5F cores and HSM M4 core. This driver cannot be used without encrypted HSMRt binary for HS-FS devices (will be available in 8.4) and TIFS-MCU for HS-SE devices (available on mySecureSW).</dd></dl>
-<h1><a class="anchor" id="autotoc_md935"></a>
+<h1><a class="anchor" id="autotoc_md973"></a>
 Introduction</h1>
 <ul>
 <li>The <b>secure IPC notify(SIPC Notify)</b> driver enables IPC communication between R5FSSx-x cores and HSM M4 core for <b>HS-SE</b> devices.</li>
@@ -112,7 +112,7 @@ Introduction</h1>
 <li>The trusted R5FSSx-x which can post a request for services from HSM are termed as <b>secure hosts</b>. A non-secure host cannot communicate with HSM, moreover, the shared memory used in SIPC communication is not accessible to non-secure hosts. The cores that are going to be secure hosts are defined via <b>sysconfig</b> and this will be a static configuration at compile time. At a time there can only be atmost two secure hosts which can talk to HSM via SIPC, thus the name <b>secure IPC</b>.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>Sysconfig initialization has to be handled by <b>HSM client</b>. For Secure IPC, Sysconfig is not supported in this release. It will be available with upcoming SDK releases along with <b>HSM client</b> </dd></dl>
-<h1><a class="anchor" id="autotoc_md936"></a>
+<h1><a class="anchor" id="autotoc_md974"></a>
 Secure IPC design description</h1>
 <ul>
 <li>SIPC supports RTOS-based implementation on the R5F side. The concept of <b>CLIENT IDs</b> is borrowed from <a class="el" href="DRIVERS_IPC_NOTIFY_PAGE.html">IPC Notify</a>, where in the RTOS scenario each task has a callback registered of type <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gaff91d2f85a004ae8509bff4429426e39">SIPC_FxnCallback</a>. This function will be called when a message is received for a respective CLIENT ID. Refer to <a class="el" href="IPC_GUIDE.html">Understanding inter-processor communication (IPC)</a> to know more about CLIENT IDs.</li>
@@ -138,7 +138,7 @@ SIPC shared memory configuration</div></div>
 <li>The swQx is a struct holding pointer to actual queue location in HSM MBOX. There can be atmost 2 secure hosts at a time, so the total number of queues will be 4. If R5F wants to send a message to HSM then R5F writes into R5F -&gt; HSM queue and sends an interrupt to HSM M4, once acknowledged HSM will read the message from the same queue. Similarly, If HSM wants to send a message then HSM will write into HSM --&gt; R5 queues and sends an interrupt to R5F.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>The entire HSM MBOX memory must be read and write protected for non-secure hosts. setting up this firewall configuration is the responsibility of the HSM server running on M4.</dd></dl>
-<h2><a class="anchor" id="autotoc_md937"></a>
+<h2><a class="anchor" id="autotoc_md975"></a>
 SIPC initialization</h2>
 <ul>
 <li>Following parameters are user-configurable.<ol type="1">
@@ -254,7 +254,7 @@ SIPC initialization</h2>
 </div><!-- fragment --></li>
 <li>In order to inherit the HSM services, the application must comply the uses of IPC via shared memory i.e. a memory region should be designated to both the CPUs. Make sure to mark this section as non-cached in the R5F MPU. However if the cache is enabled, for the shared region its application responsibility to bypass cache or invalidate the cache.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md938"></a>
+<h2><a class="anchor" id="autotoc_md976"></a>
 Message format.</h2>
 <p>Unlike <a class="el" href="DRIVERS_IPC_NOTIFY_PAGE.html">IPC Notify</a> the message size of SIPC can be in the range of 3 to 100 bytes.</p><ul>
 <li>The minimum message size is 3 bytes i.e [ <b>Dest ClientId</b> ][ <b>Src ClientId</b> ][<b>data</b>]. Users can change <a class="el" href="sipc__notify__cfg_8h.html#ac2fdfb0ed32bb14a82ca144071714220">SIPC_MSG_SIZE</a> based on a protocol that is implemented on top of SIPC.</li>
@@ -265,7 +265,7 @@ Message format.</h2>
 <div class="caption">
 message format used by HSM client</div></div>
 <dl class="section note"><dt>Note</dt><dd>It is recommended to use 13 bytes message format as mentioned above for optimal latency.</dd></dl>
-<h1><a class="anchor" id="autotoc_md939"></a>
+<h1><a class="anchor" id="autotoc_md977"></a>
 Example usage.</h1>
 <ul>
 <li>Consider a use case where R5F sends a message to HSM and HSM echoes back the same message.<ol type="1">
@@ -330,7 +330,7 @@ Example usage.</h1>
 <li>Refer <b>Secure IPC example</b> for more info.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>The secure IPC example project is a part of <b>TIFS</b> package for <b>HS-SE</b> devices. To use this example user needs to sign an NDA(non disclosure agreement). <b>TIFS</b> package can installed via mysecure software. </dd></dl>
-<h1><a class="anchor" id="autotoc_md940"></a>
+<h1><a class="anchor" id="autotoc_md978"></a>
 API</h1>
 <p><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html">APIs for Secure IPC Notify</a> </p>
 </div></div><!-- contents -->

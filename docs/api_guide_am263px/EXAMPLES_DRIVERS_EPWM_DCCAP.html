@@ -92,33 +92,33 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_EPWM_DCCAP.html','');
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2459">Introduction:</a></li>
-<li class="level1"><a href="#autotoc_md2460">Example Description</a></li>
-<li class="level1"><a href="#autotoc_md2461">Configurations</a></li>
-<li class="level1"><a href="#autotoc_md2462">External Connections</a><ul><li class="level2"><a href="#autotoc_md2463">AM263Px-CC or AM261x-SOM</a></li>
-<li class="level2"><a href="#autotoc_md2464">AM263Px-LP</a></li>
-<li class="level2"><a href="#autotoc_md2465">AM261x-LP</a></li>
+<ul><li class="level1"><a href="#autotoc_md2505">Introduction:</a></li>
+<li class="level1"><a href="#autotoc_md2506">Example Description</a></li>
+<li class="level1"><a href="#autotoc_md2507">Configurations</a></li>
+<li class="level1"><a href="#autotoc_md2508">External Connections</a><ul><li class="level2"><a href="#autotoc_md2509">AM263Px-CC or AM261x-SOM</a></li>
+<li class="level2"><a href="#autotoc_md2510">AM263Px-LP</a></li>
+<li class="level2"><a href="#autotoc_md2511">AM261x-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_EPWM_DCCAP_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2466">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2467">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2468">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2512">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2513">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2514">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_epwm_dccap"></a></p>
-<h1><a class="anchor" id="autotoc_md2459"></a>
+<h1><a class="anchor" id="autotoc_md2505"></a>
 Introduction:</h1>
 <p>The EPWM Edge Detection in DCCAP is a feature to monitor the trip input to be present in a given window. A typical usecase would when the EPWMs are used for controlling a motor, then the expected high current pushes in the initial switching time is expected and if they are not present, then, there is some issue with system and the EPWMs need to to be tripped.</p>
 <p> <style>div.image img[src="am263_epwm_dccap_flow.png"]{ width:60%}</style> </p><div class="image">
 <img src="am263_epwm_dccap_example_flow.png" alt=""/>
 <div class="caption">
 Flow Chart</div></div>
-<h1><a class="anchor" id="autotoc_md2460"></a>
+<h1><a class="anchor" id="autotoc_md2506"></a>
 Example Description</h1>
 <p>This example showcases the configurations needed to use the Edge Detection feature in the DCCAP to detect occurrence of a trip event in a configured time window. The window is configured by MIN and MAX values configured in MINMAX register set. Purpose of this window is to detect the occurrence of such edge. If no such edge occurs, this module will generate a trip event as well as interrupt configurable by user.</p>
 <p>EPMW0_A (EPWM2_A in case of AM261x-LP) to detect the trip within a MINMAX window and trip its EPWMxA output EPMW1_A waveform is used as a trip input.</p>
-<h1><a class="anchor" id="autotoc_md2461"></a>
+<h1><a class="anchor" id="autotoc_md2507"></a>
 Configurations</h1>
 <ol type="1">
 <li>EPWM0 (EPWM2 in case of AM261x-LP)<ul>
@@ -142,24 +142,24 @@ Configurations</h1>
 </li>
 </ol>
 </dd></dl>
-<h1><a class="anchor" id="autotoc_md2462"></a>
+<h1><a class="anchor" id="autotoc_md2508"></a>
 External Connections</h1>
 <p>EPWM0_A/B (EPWM2_A/B in case of AM261x-LP) and EPWM1_A pin can be connected to an oscilloscope to view the waveform.</p>
-<h2><a class="anchor" id="autotoc_md2463"></a>
+<h2><a class="anchor" id="autotoc_md2509"></a>
 AM263Px-CC or AM261x-SOM</h2>
 <p>When using AM263Px-CC or AM261x-SOM with MDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>EPWM0A can be observed on HSEC PIN 49</li>
 <li>EPWM0B can be observed on HSEC PIN 51</li>
 <li>EPWM1A (Trip Input) can be observed on HSEC PIN 53.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2464"></a>
+<h2><a class="anchor" id="autotoc_md2510"></a>
 AM263Px-LP</h2>
 <p>Probe the following on boosterpack</p><ul>
 <li>EPWM0A can be observed on J2/J4 pin 11</li>
 <li>EPWM0B can be observed on J6/J8 pin 59</li>
 <li>EPWM1A (Trip Input) can be observed on J2/J4 pin 37</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2465"></a>
+<h2><a class="anchor" id="autotoc_md2511"></a>
 AM261x-LP</h2>
 <p>Probe the following on boosterpack</p><ul>
 <li>EPWM2A can be observed on J2/J4 pin 40</li>
@@ -180,7 +180,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/epwm/epwm_dccap   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2466"></a>
+<h1><a class="anchor" id="autotoc_md2512"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -188,10 +188,10 @@ Steps to Run the Example</h1>
 <li>Establish connections as mentioned in External Connections section</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2467"></a>
+<h1><a class="anchor" id="autotoc_md2513"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_EPWM_PAGE.html">EPWM</a></p>
-<h1><a class="anchor" id="autotoc_md2468"></a>
+<h1><a class="anchor" id="autotoc_md2514"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">EPWM Capture Logic Test Started ...</div>

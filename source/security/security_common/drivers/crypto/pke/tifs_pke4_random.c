@@ -31,7 +31,7 @@
 
 extern RNG_Handle     pke_rng_handle;
 
-int cri_pke_get_true_random(void *buf, size_t len)
+int32_t cri_pke_get_true_random(void *buf, size_t len)
 {
 	size_t i;
 	uint32_t rand_val[4U];
@@ -78,9 +78,9 @@ int cri_pke_get_true_random(void *buf, size_t len)
 	return 0;
 }
 
-int cri_pke_get_pseudo_random(void *buf, size_t len, int32_t slot, uint32_t slot_length)
+int32_t cri_pke_get_pseudo_random(void *buf, size_t len, int32_t slot, uint32_t slot_length)
 {
-	int ret = 0;
+	int32_t ret = 0;  
 
 	uint32_t length = 0;
 	uint32_t bits;

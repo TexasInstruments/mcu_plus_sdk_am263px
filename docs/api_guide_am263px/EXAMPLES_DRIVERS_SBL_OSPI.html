@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_SBL_OSPI.html',''); i
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2784">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md2830">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_SBL_OSPI_MCELF">SBL OSPI Multicore ELF</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_SBL_OSPI_FASTBOOT_MCELF">SBL OSPI FASTBOOT</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_SBL_OSPI_SWAP">SBL OSPI SWAP</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_SBL_OSPI_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2785">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2786">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2787">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2831">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2832">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2833">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_sbl_ospi"></a></p>
-<h1><a class="anchor" id="autotoc_md2784"></a>
+<h1><a class="anchor" id="autotoc_md2830"></a>
 Introduction</h1>
 <p>This bootloader does SOC initializations and attempts to boot a multicore application image present at 0x81000 location in the OSPI Flash. To flash a multicore application image at this location, follow the steps mentioned in <a class="el" href="TOOLS_FLASH.html#BASIC_STEPS_TO_FLASH_FILES">Basic steps to flash files</a>.</p>
 <p>If a multicore application image is found at the location, the SBL parses it. Each core is then initialized, application image is loaded, entry points are set and the core is released from reset. For more on bootflow/bootloaders, please refer <a class="el" href="BOOTFLOW_GUIDE.html">Understanding the bootflow and bootloaders</a></p>
@@ -140,7 +140,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/boot/sbl_ospi_multicore_elf   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2785"></a>
+<h1><a class="anchor" id="autotoc_md2831"></a>
 Steps to Run the Example</h1>
 <p>Since this is a bootloader, the example will be run every time you boot an application using this example. It is run from a OSPI boot media unlike other examples which are usually loaded with CCS. Nevertheless, you can build this example like you do for the others using makefile or build it via CCS by importing as a project.</p>
 <ul>
@@ -148,10 +148,10 @@ Steps to Run the Example</h1>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Refer to the page <a class="el" href="TOOLS_FLASH.html#BASIC_STEPS_TO_FLASH_FILES">Basic steps to flash files</a> to flash this bootloader along with the application to boot.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2786"></a>
+<h1><a class="anchor" id="autotoc_md2832"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_BOOTLOADER_PAGE.html">BOOTLOADER</a></p>
-<h1><a class="anchor" id="autotoc_md2787"></a>
+<h1><a class="anchor" id="autotoc_md2833"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">Starting OSPI Bootloader ...</div>
 <div class="line">[BOOTLOADER_PROFILE] Boot Media       : NOR SPI FLASH</div>

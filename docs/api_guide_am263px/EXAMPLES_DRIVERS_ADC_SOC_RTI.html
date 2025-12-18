@@ -92,58 +92,58 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_SOC_RTI.html','')
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2081">Introduction</a><ul><li class="level2"><a href="#autotoc_md2082">Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2083">ISRs</a></li>
+<ul><li class="level1"><a href="#autotoc_md2127">Introduction</a><ul><li class="level2"><a href="#autotoc_md2128">Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2129">ISRs</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2084">External Connections</a><ul><li class="level2"><a href="#autotoc_md2085">AM263x-CC E2 or AM263Px-CC E2 or AM261X-SOM E1</a></li>
-<li class="level2"><a href="#autotoc_md2086">AM263x-LP or AM263Px-LP</a></li>
-<li class="level2"><a href="#autotoc_md2087">AM261x-LP</a></li>
+<li class="level1"><a href="#autotoc_md2130">External Connections</a><ul><li class="level2"><a href="#autotoc_md2131">AM263x-CC E2 or AM263Px-CC E2 or AM261X-SOM E1</a></li>
+<li class="level2"><a href="#autotoc_md2132">AM263x-LP or AM263Px-LP</a></li>
+<li class="level2"><a href="#autotoc_md2133">AM261x-LP</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2088">Watch Variables</a></li>
+<li class="level1"><a href="#autotoc_md2134">Watch Variables</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_SOC_RTI_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2089">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2090">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2091">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2135">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2136">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2137">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_soc_rti"></a></p>
-<h1><a class="anchor" id="autotoc_md2081"></a>
+<h1><a class="anchor" id="autotoc_md2127"></a>
 Introduction</h1>
 <p>This example demostrates how the RTI and ADC to be configured so that the ADC SOC can be triggered from the RTI Events.</p>
-<h2><a class="anchor" id="autotoc_md2082"></a>
+<h2><a class="anchor" id="autotoc_md2128"></a>
 Configurations</h2>
 <ul>
 <li>RTI is configured to generate trigger every 5uS. Refer to the syscfg of the RTI for the configurational details</li>
 <li>ADC SOC0 is configured for RTI trigger and generate interrupt at EOC0</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2083"></a>
+<h2><a class="anchor" id="autotoc_md2129"></a>
 ISRs</h2>
 <p>App_adcISR</p><ul>
 <li>ISR to read ADC SOC0 result and service the interrupt generated at EOC0. App_rtiISR</li>
 <li>ISR callback to service RTI interrupt.</li>
 </ul>
 <p>Both ISR have a counter to increment on each call. these counters are compared for the validation of the ADC triggers from RTI.</p>
-<h1><a class="anchor" id="autotoc_md2084"></a>
+<h1><a class="anchor" id="autotoc_md2130"></a>
 External Connections</h1>
 <p>Feed Analog voltages on ADC0_AIN2 </p>
-<h2><a class="anchor" id="autotoc_md2085"></a>
+<h2><a class="anchor" id="autotoc_md2131"></a>
 AM263x-CC E2 or AM263Px-CC E2 or AM261X-SOM E1</h2>
 <ul>
 <li>ADC0_AIN2, i.e., HSEC PIN 15 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2086"></a>
+<h2><a class="anchor" id="autotoc_md2132"></a>
 AM263x-LP or AM263Px-LP</h2>
 <ul>
 <li>ADC0_AIN2, i.e., J5/7 PIN 66 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2087"></a>
+<h2><a class="anchor" id="autotoc_md2133"></a>
 AM261x-LP</h2>
 <ul>
 <li>ADC0_AIN2, i.e., J5/7 PIN 64, this needs IO Expander Configurations, Check Syscfg and/or schematics</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2088"></a>
+<h1><a class="anchor" id="autotoc_md2134"></a>
 Watch Variables</h1>
 <p>The below watch variables can be used to view ADC conversion results.</p><ul>
 <li>gAdcResults[] : Digital representation of the voltage sample on pin AIN2 of ADC0, triggered by RTI</li>
@@ -164,7 +164,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_soc_rti/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2089"></a>
+<h1><a class="anchor" id="autotoc_md2135"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -174,10 +174,10 @@ Steps to Run the Example</h1>
 <li>Using watch variables, view the ADC conversion results.</li>
 <li>View the ADC conversion results in UART console logs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2090"></a>
+<h1><a class="anchor" id="autotoc_md2136"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md2091"></a>
+<h1><a class="anchor" id="autotoc_md2137"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ADC Triggered by RTI Test Started ...</div>

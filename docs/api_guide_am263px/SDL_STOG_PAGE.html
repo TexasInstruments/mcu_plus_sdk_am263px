@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('SDL_STOG_PAGE.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1606">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1607">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1608">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1609">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1610">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1611">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1652">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1653">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1654">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1655">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1656">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1657">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_stog"></a></p>
 <p>The Interconnect Isolation Gasket is a TI proprietary IP that is used to prevent a hang caused by target, which can hold up the interconnect and terminate such a transaction safely. It tracks transactions, and times out if outstanding too long, and reports the error via interrupt that can be monitored.</p>
 <p>The TOGs help to achieve Freedom From Interference by monitoring the various VBUS transactions and providing a way to detect any errors, and helping to avoid the bus to be locked up due to a transaction error.</p>
-<h1><a class="anchor" id="autotoc_md1606"></a>
+<h1><a class="anchor" id="autotoc_md1652"></a>
 Features Supported</h1>
 <p>These TOGs have the following functions, to avoid these concerns:</p>
 <ol type="1">
@@ -119,22 +119,22 @@ Features Supported</h1>
 <li>Read the static registers</li>
 <li>Verify the written configuration</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1607"></a>
+<h1><a class="anchor" id="autotoc_md1653"></a>
 SysConfig Features</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1608"></a>
+<h1><a class="anchor" id="autotoc_md1654"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1609"></a>
+<h1><a class="anchor" id="autotoc_md1655"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1610"></a>
+<h1><a class="anchor" id="autotoc_md1656"></a>
 Example Usage</h1>
 <p>The following shows an example of SDL TOG API usage by the application to set up the TOG for monitoring for events. Events can be monitored by enabling the events in the associated ESM instance.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="sdlr__tog_8h.html">sdl/sdlr_tog.h</a>&gt;</span></div>
@@ -197,7 +197,7 @@ Example Usage</h1>
 <div class="fragment"><div class="line"><a class="code" href="group__SDL__STOG__ENUM.html#gab2e057748f6aab6fbae301c0d2530e9c">SDL_TOG_Inst</a> instance;</div>
 <div class="line"> </div>
 <div class="line">status = <a class="code" href="group__SDL__STOG__API.html#gaebe110f9b9693e7078f962864eab482b">SDL_TOG_clrIntrPending</a>(instance, <a class="code" href="group__SDL__TOG__IP__API.html#ga23876c31334febdfb7d0db01fb8d40ed">SDL_TOG_INTRSRC_TRANSACTION_TIMEOUT</a>);</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1611"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1657"></a>
 API</h1>
 <p><a class="el" href="group__SDL__STOG__API.html">Slave Timeout Gasket(STOG)</a> </p>
 </div></div><!-- contents -->

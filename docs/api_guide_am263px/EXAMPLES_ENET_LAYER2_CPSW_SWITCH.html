@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('EXAMPLES_ENET_LAYER2_CPSW_SWITCH.html'
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3067">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md3068">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3069">Packet pool configuration</a></li>
-<li class="level1"><a href="#autotoc_md3070">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3071">Build the example</a></li>
-<li class="level2"><a href="#autotoc_md3072">HW Setup</a></li>
-<li class="level2"><a href="#autotoc_md3073">Run the example</a></li>
-<li class="level2"><a href="#autotoc_md3074">Sample output for Multiport example</a></li>
-<li class="level2"><a href="#autotoc_md3075">Testing Switch Policer configuration</a></li>
-<li class="level2"><a href="#autotoc_md3076">Troubleshooting issues</a></li>
+<ul><li class="level1"><a href="#autotoc_md3113">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3114">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md3115">Packet pool configuration</a></li>
+<li class="level1"><a href="#autotoc_md3116">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3117">Build the example</a></li>
+<li class="level2"><a href="#autotoc_md3118">HW Setup</a></li>
+<li class="level2"><a href="#autotoc_md3119">Run the example</a></li>
+<li class="level2"><a href="#autotoc_md3120">Sample output for Multiport example</a></li>
+<li class="level2"><a href="#autotoc_md3121">Testing Switch Policer configuration</a></li>
+<li class="level2"><a href="#autotoc_md3122">Troubleshooting issues</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3077">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3123">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_enet_layer2_cpsw_switch"></a></p>
-<h1><a class="anchor" id="autotoc_md3067"></a>
+<h1><a class="anchor" id="autotoc_md3113"></a>
 Introduction</h1>
 <p>The layer 2 cpsw switch example is dedicated to demonstrate usage of Enet CPSW3G peripheral operation as a basic switch.</p>
 <p>On AM263PX, we can do ethernet based communication using CPSW HW mechanism</p>
@@ -132,7 +132,7 @@ Introduction</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3068"></a>
+<h1><a class="anchor" id="autotoc_md3114"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -146,21 +146,21 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/enet_layer2_cpsw_switch/V1   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3069"></a>
+<h1><a class="anchor" id="autotoc_md3115"></a>
 Packet pool configuration</h1>
 <p>To change packet pool configuration from syscfg, please refer to <a class="el" href="PACKETPOOL_CONFIG_TOP.html">Ethernet Packet Pool Allocation Guidelines</a></p>
-<h1><a class="anchor" id="autotoc_md3070"></a>
+<h1><a class="anchor" id="autotoc_md3116"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md3071"></a>
+<h2><a class="anchor" id="autotoc_md3117"></a>
 Build the example</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3072"></a>
+<h2><a class="anchor" id="autotoc_md3118"></a>
 HW Setup</h2>
 <dl class="section note"><dt>Note</dt><dd>Make sure you have setup the EVM with cable connections as shown here, <a class="el" href="EVM_SETUP_PAGE.html">EVM Setup</a>. In addition do below steps.</dd></dl>
-<h2><a class="anchor" id="autotoc_md3073"></a>
+<h2><a class="anchor" id="autotoc_md3119"></a>
 Run the example</h2>
 <dl class="section attention"><dt>Attention</dt><dd>If you need to reload and run again, a CPU power-cycle is MUST</dd></dl>
 <ul>
@@ -181,7 +181,7 @@ Run the example</h2>
 <img src="layer2_cpsw_example_packet_builder.png" alt=""/>
 <div class="caption">
 Colasoft Pkt Builder to generate and send packets.</div></div>
-<h2><a class="anchor" id="autotoc_md3074"></a>
+<h2><a class="anchor" id="autotoc_md3120"></a>
 Sample output for Multiport example</h2>
 <div class="fragment"><div class="line">==========================</div>
 <div class="line"> Layer 2 CPSW SWITCH Test</div>
@@ -428,7 +428,7 @@ Sample output for Multiport example</h2>
 <img src="layer2_cpsw_example_wireshark_log.png" alt=""/>
 <div class="caption">
 Wireshark log for Layer 2 CPSW Example</div></div>
-<h2><a class="anchor" id="autotoc_md3075"></a>
+<h2><a class="anchor" id="autotoc_md3121"></a>
 Testing Switch Policer configuration</h2>
 <ul>
 <li>Enable the policer using 'p' option in target UART terminal menu option.</li>
@@ -443,12 +443,12 @@ Testing Switch Policer configuration</h2>
 <li>Observe that packets are switched by limiting data rate to 25 mpbs.</li>
 <li>Observe that the dropped packets are marked with 'alePolicyMatchRed' in CPSW statistics print.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3076"></a>
+<h2><a class="anchor" id="autotoc_md3122"></a>
 Troubleshooting issues</h2>
 <ul>
 <li>To ensure compatibility with CPSW RGMII2 port on am263px-cc board, make sure that SW-15(switch) should be set to <code>LOW</code> for board versions(E2/A/B versions). This configuration ensures seamless out-of-box support and functionality with the CPSW RGMII2 port on the specified versions.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3077"></a>
+<h1><a class="anchor" id="autotoc_md3123"></a>
 See Also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> </p>
 </div></div><!-- contents -->

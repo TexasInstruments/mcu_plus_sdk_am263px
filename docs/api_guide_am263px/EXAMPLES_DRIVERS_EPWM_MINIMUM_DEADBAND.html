@@ -92,31 +92,31 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_EPWM_MINIMUM_DEADBAND
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2395">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2396">Various MDL configurations</a><ul><li class="level2"><a href="#autotoc_md2397">Add falling edge delay on same channel</a></li>
-<li class="level2"><a href="#autotoc_md2398">Add rising edge delay on same channel</a></li>
-<li class="level2"><a href="#autotoc_md2399">Add rising edge delay wrt falling edge of other channel of same instance</a></li>
-<li class="level2"><a href="#autotoc_md2400">Add rising edge wrt rising edge of other channel  of same instance</a></li>
-<li class="level2"><a href="#autotoc_md2401">Add delay wrt other channel of other instance</a></li>
+<ul><li class="level1"><a href="#autotoc_md2441">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2442">Various MDL configurations</a><ul><li class="level2"><a href="#autotoc_md2443">Add falling edge delay on same channel</a></li>
+<li class="level2"><a href="#autotoc_md2444">Add rising edge delay on same channel</a></li>
+<li class="level2"><a href="#autotoc_md2445">Add rising edge delay wrt falling edge of other channel of same instance</a></li>
+<li class="level2"><a href="#autotoc_md2446">Add rising edge wrt rising edge of other channel  of same instance</a></li>
+<li class="level2"><a href="#autotoc_md2447">Add delay wrt other channel of other instance</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2402">External Connections</a><ul><li class="level2"><a href="#autotoc_md2403">AM263X-CC or AM263PX-CC or AM261X-SOM</a></li>
-<li class="level2"><a href="#autotoc_md2404">AM263X-LP or AM263PX-LP</a></li>
-<li class="level2"><a href="#autotoc_md2405">AM261X-LP</a></li>
+<li class="level1"><a href="#autotoc_md2448">External Connections</a><ul><li class="level2"><a href="#autotoc_md2449">AM263X-CC or AM263PX-CC or AM261X-SOM</a></li>
+<li class="level2"><a href="#autotoc_md2450">AM263X-LP or AM263PX-LP</a></li>
+<li class="level2"><a href="#autotoc_md2451">AM261X-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_EPWM_MINIMUM_DEADBAND_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2406">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2407">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2408">Sample Output</a></li>
-<li class="level1"><a href="#autotoc_md2409">References</a></li>
+<li class="level1"><a href="#autotoc_md2452">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2453">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2454">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2455">References</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_epwm_minimum_deadband"></a></p>
-<h1><a class="anchor" id="autotoc_md2395"></a>
+<h1><a class="anchor" id="autotoc_md2441"></a>
 Introduction</h1>
 <p>In this example ePWM uses Minimum Deadband to do various operations on the signal coming to the MDL block.</p>
-<h1><a class="anchor" id="autotoc_md2396"></a>
+<h1><a class="anchor" id="autotoc_md2442"></a>
 Various MDL configurations</h1>
 <p>We will be using some terminologies like EPWMxA_DE.sclk and EPWMxA_DE. The reference diagrams at the end can be referred for understanding. Note that DEPWMA(B).sclk and EPWMxA(B)_DE.sclk are used interchangeably. Same for DEPWMA(B) and EPWMxA(B)_DE.</p>
 <p>The screenshots attached in the documentation are as per the results obtained by executing the example on CC. Please note that there are some instance differences between CC and LP.</p>
@@ -128,7 +128,7 @@ EPWM3A(B) on CC &lt;--&gt; EPWM3A(B) on LP <br  />
 EPWM4A(B) on CC &lt;--&gt; EPWM9A(B) on LP (EPWM4A(B) in case of AM261x-LP) <br  />
 EPWM6A(B) on CC &lt;--&gt; EPWM12A(B) on LP (EPWM6A(B) in case of AM261x-LP) <br  />
  </p>
-<h2><a class="anchor" id="autotoc_md2397"></a>
+<h2><a class="anchor" id="autotoc_md2443"></a>
 Add falling edge delay on same channel</h2>
 <p>We can introduce a falling edge delay on the same signal.</p>
 <p> <style>div.image img[src="am263_epwm_mdl_fed.PNG"]{width:60%}</style> </p><div class="image">
@@ -146,7 +146,7 @@ Figure 1.a EPWM showing falling edge delay on same channel</div></div>
 </ol>
 <p>The first waveform shows the signal before entering into the MINDB logic block. The second one shows the BLOCK signal which is falling edge stretched version of the reference signal. The third shows OR-ed result of BLOCK and the original signal that comes out of the MDL block. The shift in the falling edge (marked in red) is 10 Us (8 Us in case of AM261X-LP).</p>
 <p>Note that there's no way to tap the first 2 waveforms from inside the block. We have configured one ePWM instance with same configuration other than the MDL enabled just for reference.</p>
-<h2><a class="anchor" id="autotoc_md2398"></a>
+<h2><a class="anchor" id="autotoc_md2444"></a>
 Add rising edge delay on same channel</h2>
 <p>We can introduce a rising edge delay on the same signal.</p>
 <p> <style>div.image img[src="am263_epwm_mdl_red.PNG"]{width:60%}</style> </p><div class="image">
@@ -163,7 +163,7 @@ Figure 2.a EPWM showing rising edge delay on same channel</div></div>
 <li>MINDBCFG[POLSELB] = 0 i.e. AND EPWMxA_DE with the inverted selected block signal (BLOCKB)</li>
 </ol>
 <p>The first waveform shows the signal before entering into the MINDB logic block. The second one shows the BLOCK signal which is the falling edge stretched and inverted version of the reference signal. The third shows inverted BLOCK signal AND-ed with the original signal to get a shift in the rising edge (marked in green). The value of it is 15 Us (12 Us in case of AM261X-LP).</p>
-<h2><a class="anchor" id="autotoc_md2399"></a>
+<h2><a class="anchor" id="autotoc_md2445"></a>
 Add rising edge delay wrt falling edge of other channel of same instance</h2>
 <p>We can delay the occurrence of rising edge of one signal wrt the falling edge of another signal.</p>
 <p> <style>div.image img[src="am263_epwm_mdl_red_wrt_falling.PNG"]{width:60%}</style> </p><div class="image">
@@ -193,7 +193,7 @@ Figure 3.a EPWM showing rising edge delay wrt other channel of same instance</di
 <div class="caption">
 Figure 3.b EPWM showing how block signal is applied</div></div>
 <p>The second waveform shows the block signal: which is the falling edge stretched of reference signal i.e. EPWM0A before entering MDL and then inverting it. This is then AND-ed with EPWM0B to get the forth waveform i.e. EPWM0B after MDL.</p>
-<h2><a class="anchor" id="autotoc_md2400"></a>
+<h2><a class="anchor" id="autotoc_md2446"></a>
 Add rising edge wrt rising edge of other channel  of same instance</h2>
 <p>Delay the rising edge wrt the rising edge of the other channel.</p>
 <p> <style>div.image img[src="am263_epwm_mdl_red_wrt_rising.PNG"]{width:60%}</style> </p><div class="image">
@@ -202,7 +202,7 @@ Add rising edge wrt rising edge of other channel  of same instance</h2>
 Figure 4.a EPWM showing rising edge delay wrt other channel of same instance</div></div>
 <p>In our example, EPWM3A/B are used as the references for comparing with EPWM4A/B. EPWM3A/B have all configurations same as EPWM4A/B but with MDL disabled.</p>
 <p>This is similar to Case 2 where the Block signal is applied on itself but here EPWMxB can use the BLOCKA as its blocking signal.</p>
-<h2><a class="anchor" id="autotoc_md2401"></a>
+<h2><a class="anchor" id="autotoc_md2447"></a>
 Add delay wrt other channel of other instance</h2>
 <p>Till now all cases were based on channel A and B of the same epwm instance. This case shows that we can even add delay wrt to signal of some other output channel belonging to some other instance.</p>
 <p> <style>div.image img[src="am263_epwm_mdl_delay_wrt_instance_connection.PNG"]{width:60%}</style> </p><div class="image">
@@ -222,7 +222,7 @@ Figure 5.b EPWM showing delay wrt channel of other instance</div></div>
 <li>Select Block A as the blocking signal. MINDBCFG[SELBLOCKA] = 0</li>
 <li>MINDBCFG[POLSELA] = 0 i.e. AND EPWMxA_DE with the inverted selected block signal (BLOCKB)</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md2402"></a>
+<h1><a class="anchor" id="autotoc_md2448"></a>
 External Connections</h1>
 <ul>
 <li>EPWM0_A/B pin can be connected to an oscilloscope to view the waveform.</li>
@@ -232,7 +232,7 @@ External Connections</h1>
 <li>EPWM4_A/B, pin can be connected to an oscilloscope to view the waveform.</li>
 <li>EPWM6_A/B, pin can be connected to an oscilloscope to view the waveform.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2403"></a>
+<h2><a class="anchor" id="autotoc_md2449"></a>
 AM263X-CC or AM263PX-CC or AM261X-SOM</h2>
 <p>When using AM263x-CC, AM263Px-CC or AM261x-SOM with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Connect HSEC pin 49, 51 to scope for EPWM0A(B)</li>
@@ -242,7 +242,7 @@ AM263X-CC or AM263PX-CC or AM261X-SOM</h2>
 <li>Connect HSEC pin 57, 59 to scope for EPWM4A(B)</li>
 <li>Connect HSEC pin 58, 60 to scope for EPWM6A(B)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2404"></a>
+<h2><a class="anchor" id="autotoc_md2450"></a>
 AM263X-LP or AM263PX-LP</h2>
 <ul>
 <li>Connect J2/J4 pin 11, J6/J8 pin 59 to scope for EPWM0A(B)</li>
@@ -252,7 +252,7 @@ AM263X-LP or AM263PX-LP</h2>
 <li>Connect J6/J8 pin 75, 76 to scope for EPWM9A(B)</li>
 <li>Connect J6/J8 pin 53, 57 to scope for EPWM12A(B)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2405"></a>
+<h2><a class="anchor" id="autotoc_md2451"></a>
 AM261X-LP</h2>
 <ul>
 <li>Connect J6/J8 pin 76, 75 to scope for EPWM7A(B)</li>
@@ -276,7 +276,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/epwm/epwm_minimum_deadband/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2406"></a>
+<h1><a class="anchor" id="autotoc_md2452"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -284,17 +284,17 @@ Steps to Run the Example</h1>
 <li>Establish connections as mentioned in External Connections section</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2407"></a>
+<h1><a class="anchor" id="autotoc_md2453"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_EPWM_PAGE.html">EPWM</a></p>
-<h1><a class="anchor" id="autotoc_md2408"></a>
+<h1><a class="anchor" id="autotoc_md2454"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">EPWM Minimum Deadband Test Started ...</div>
 <div class="line">App will wait for 60 seconds</div>
 <div class="line">EPWM Minimum Deadband Test Passed!!</div>
 <div class="line">All tests have passed!!</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2409"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2455"></a>
 References</h1>
 <p> <style>div.image img[src="am263_epwm_mdl_icl_blockdiagram.PNG"]{width:60%}</style> </p><div class="image">
 <img src="am263_epwm_mdl_icl_blockdiagram.PNG" alt=""/>

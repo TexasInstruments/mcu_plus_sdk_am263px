@@ -458,12 +458,13 @@ AsymCrypt_Return_t AsymCrypt_RSAKeyGenPublic(AsymCrypt_Handle handle,
  * \brief ECDSA sign primitive function
  *
  * \param  handle  #AsymCrypt_Handle returned from #AsymCrypt_open()
- * 
- * \param cp      EC curve parameters
+ *
+ * \param cp      EC curve parameters (used only if curveId == 0xFFFFFFFFU)
  * \param priv    EC private key
  * \param k       Random number for each signing
  * \param h       Hash value of message to sign in bigint format
  * \param sig     ECDSA Signature - 'r' and 's' values
+ * \param curveId Curve ID (if != 0xFFFFFFFFU, cp parameter is ignored and curveId is used)
  * \return        #ASYM_CRYPT_RETURN_SUCCESS if requested operation completed.
  *                #ASYM_CRYPT_RETURN_FAILURE if requested operation not completed.
  */
@@ -472,17 +473,19 @@ AsymCrypt_Return_t AsymCrypt_ECDSASign(AsymCrypt_Handle handle,
                     const uint32_t priv[ECDSA_MAX_LENGTH],
                     const uint32_t k[ECDSA_MAX_LENGTH],
                     const uint32_t h[ECDSA_MAX_LENGTH],
-                    struct AsymCrypt_ECDSASig *sig);
+                    struct AsymCrypt_ECDSASig *sig,
+                    uint32_t curveId);
 
 /**
  * \brief ECDSA verify primitive function
  *
  * \param  handle  #AsymCrypt_Handle returned from #AsymCrypt_open()
- * 
- * \param cp      EC curve parameters
+ *
+ * \param cp      EC curve parameters (used only if curveId == 0xFF)
  * \param pub     EC Public key
  * \param sig     ECDSA Signature - 'r' & 's' value in bigint format
  * \param h       Hash value of message to verify in bigint format
+ * \param curveId Curve ID (if != 0xFF, cp parameter is ignored and curveId is used)
  *
  * \return        #ASYM_CRYPT_RETURN_SUCCESS if requested operation completed.
  *                #ASYM_CRYPT_RETURN_FAILURE if requested operation not completed.
@@ -491,7 +494,8 @@ AsymCrypt_Return_t AsymCrypt_ECDSAVerify(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
                         const struct AsymCrypt_ECPoint *pub,
                         const struct AsymCrypt_ECDSASig *sig,
-                        const uint32_t h[ECDSA_MAX_LENGTH]);
+                        const uint32_t h[ECDSA_MAX_LENGTH],
+                        uint32_t curveId);
 
 /**
  * \brief ECDSA KeyGen Private Key function
@@ -499,21 +503,24 @@ AsymCrypt_Return_t AsymCrypt_ECDSAVerify(AsymCrypt_Handle handle,
  * \param handle  #AsymCrypt_Handle returned from #AsymCrypt_open()
  * \param cp      EC curve parameters
  * \param priv    EC Generated Private Key
+ * \param curveType Curve type identifier
  *
  * \return        #ASYM_CRYPT_RETURN_SUCCESS if requested operation completed.
  *                #ASYM_CRYPT_RETURN_FAILURE if requested operation not completed.
  */
 AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPrivate(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
-                        uint32_t priv[ECDSA_MAX_LENGTH]);
+                        uint32_t priv[ECDSA_MAX_LENGTH],
+                        uint32_t curveType);
 
 /**
  * \brief ECDSA KeyGen Public Key function
  *
  * \param handle  #AsymCrypt_Handle returned from #AsymCrypt_open()
  * \param cp      EC curve parameters
+ * \param pub     EC Generated Public Key
  * \param priv    EC Private Key as input
- * \param pub     EC Generated Private Key
+ * \param curveType Curve type identifier
  *
  * \return        #ASYM_CRYPT_RETURN_SUCCESS if requested operation completed.
  *                #ASYM_CRYPT_RETURN_FAILURE if requested operation not completed.
@@ -521,7 +528,8 @@ AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPrivate(AsymCrypt_Handle handle,
 AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPublic(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
                         struct AsymCrypt_ECPoint *pub,
-                        const uint32_t priv[ECDSA_MAX_LENGTH]);
+                        const uint32_t priv[ECDSA_MAX_LENGTH],
+                        uint32_t curveType);
 
 /**
  * \brief ECDSA KeyGen Public Key function
@@ -589,14 +597,15 @@ AsymCrypt_Return_t AsymCrypt_EddsaVerify(AsymCrypt_Handle handle,
                             AsymCrypt_EdCurveType_t input_curve);
 
 /**
- * \brief ECDSA verify primitive function
+ * \brief ECDH shared secret generation function
  *
  * \param handle  			        [in]  #AsymCrypt_Handle returned from #AsymCrypt_open()
  * \param cp                        [in]  EC curve parameters
  * \param priv                      [in]  EC Private key
  * \param pubKey                    [in]  EC Public key
  * \param ecShSecret                [out] EC Shared Secret key
- * 
+ * \param curveType                 [in]  Curve type identifier
+ *
  * \return                  #ASYM_CRYPT_RETURN_SUCCESS if requested operation completed.
  *                          #ASYM_CRYPT_RETURN_FAILURE if requested operation not completed.
  */
@@ -604,7 +613,8 @@ AsymCrypt_Return_t AsymCrypt_EcdhGenSharedSecret(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
                         const uint32_t priv[ECDSA_MAX_LENGTH],
                         const struct AsymCrypt_ECPoint *pubKey,
-                        struct AsymCrypt_ECPoint *ecShSecret);
+                        struct AsymCrypt_ECPoint *ecShSecret,
+                        uint32_t curveType);
 
 /**
  * \brief SM2DSA sign primitive function

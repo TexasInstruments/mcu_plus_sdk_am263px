@@ -92,20 +92,20 @@ $(document).ready(function(){initNavTree('EXAMPLES_ENET_CPSW_LOOPBACK.html','');
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2956">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2957">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2958">Packet pool configuration</a></li>
-<li class="level1"><a href="#autotoc_md2959">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md2960">Build the example</a></li>
-<li class="level2"><a href="#autotoc_md2961">Sample output for MAC Loopback</a></li>
-<li class="level2"><a href="#autotoc_md2962">Sample output for PHY Loopback</a></li>
-<li class="level2"><a href="#autotoc_md2963">Troubleshooting issues</a></li>
+<ul><li class="level1"><a href="#autotoc_md3002">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3003">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md3004">Packet pool configuration</a></li>
+<li class="level1"><a href="#autotoc_md3005">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3006">Build the example</a></li>
+<li class="level2"><a href="#autotoc_md3007">Sample output for MAC Loopback</a></li>
+<li class="level2"><a href="#autotoc_md3008">Sample output for PHY Loopback</a></li>
+<li class="level2"><a href="#autotoc_md3009">Troubleshooting issues</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2964">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3010">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_enet_cpsw_loopback_example"></a></p>
-<h1><a class="anchor" id="autotoc_md2956"></a>
+<h1><a class="anchor" id="autotoc_md3002"></a>
 Introduction</h1>
 <p>This example exercises the MAC loopback and PHY loopback functionality of the hardware. The CPSW hardware is opened with default initialization parameters and either the MAC loopback or PHY loopback is enabled based on the user input.</p>
 <p>On AM263PX, we can do ethernet based communication using CPSW as HW mechanism</p><ul>
@@ -117,7 +117,7 @@ Introduction</h1>
  by the Rx flow and the application is notified.</li>
 <li>The Tx and Rx functions in the example are set to transmit and receive 5000 packets. After reaching the count of 5000, the application closes the Tx channel, Rx flow, CPSW and restarts the application for a configurable number of times. Restarting the loopback test application ensures that there aren’t any memory leaks, and the hardware is closed properly and can be reopened at any time.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2957"></a>
+<h1><a class="anchor" id="autotoc_md3003"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -132,18 +132,18 @@ Supported Combinations</h1>
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/enet_loopback/enet_cpsw_loopback   </td></tr>
 </table>
 <p>For support on am263px-cc-addon-auto, please refer <a class="el" href="ETHERNET_ADDON_BOARDS_TOP.html">Ethernet Add-on Boards</a></p>
-<h1><a class="anchor" id="autotoc_md2958"></a>
+<h1><a class="anchor" id="autotoc_md3004"></a>
 Packet pool configuration</h1>
 <p>To change packet pool configuration from syscfg, please refer to <a class="el" href="PACKETPOOL_CONFIG_TOP.html">Ethernet Packet Pool Allocation Guidelines</a></p>
-<h1><a class="anchor" id="autotoc_md2959"></a>
+<h1><a class="anchor" id="autotoc_md3005"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md2960"></a>
+<h2><a class="anchor" id="autotoc_md3006"></a>
 Build the example</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2961"></a>
+<h2><a class="anchor" id="autotoc_md3007"></a>
 Sample output for MAC Loopback</h2>
 <div class="fragment"><div class="line">=============================</div>
 <div class="line"> Enet Loopback: Iteration 1 </div>
@@ -366,7 +366,7 @@ Sample output for MAC Loopback</h2>
 <div class="line">Test complete: PASS</div>
 <div class="line">Loopback application completed</div>
 <div class="line">All tests have passed!!</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2962"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3008"></a>
 Sample output for PHY Loopback</h2>
 <div class="fragment"><div class="line">=============================</div>
 <div class="line"> Enet Loopback: Iteration 1 </div>
@@ -594,12 +594,12 @@ Sample output for PHY Loopback</h2>
 <div class="line">Test complete: PASS</div>
 <div class="line">Loopback application completed</div>
 <div class="line">All tests have passed!!</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2963"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3009"></a>
 Troubleshooting issues</h2>
 <ul>
 <li>To ensure compatibility with CPSW RGMII2 port on am263px-cc board, make sure that SW-15(switch) should be set to <code>LOW</code> for board versions(E2/A/B versions). This configuration ensures seamless out-of-box support and functionality with the CPSW RGMII2 port on the specified versions.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2964"></a>
+<h1><a class="anchor" id="autotoc_md3010"></a>
 See Also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> </p>
 </div></div><!-- contents -->

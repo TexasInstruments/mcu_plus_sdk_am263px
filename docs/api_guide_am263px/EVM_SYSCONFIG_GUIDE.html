@@ -92,24 +92,24 @@ $(document).ready(function(){initNavTree('EVM_SYSCONFIG_GUIDE.html',''); initRes
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md368">Introduction</a><ul><li class="level2"><a href="#autotoc_md369">EVM Features Enabled by SysConfig</a></li>
+<ul><li class="level1"><a href="#autotoc_md406">Introduction</a><ul><li class="level2"><a href="#autotoc_md407">EVM Features Enabled by SysConfig</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md370">Enabling EVM Support in SysConfig - Standalone</a><ul><li class="level2"><a href="#autotoc_md371">Configuring on-board Peripheral Hardware</a></li>
-<li class="level2"><a href="#autotoc_md372">Enabling External Header Signals</a></li>
-<li class="level2"><a href="#autotoc_md373">Enabling Header Signals via PinMux</a></li>
+<li class="level1"><a href="#autotoc_md408">Enabling EVM Support in SysConfig - Standalone</a><ul><li class="level2"><a href="#autotoc_md409">Configuring on-board Peripheral Hardware</a></li>
+<li class="level2"><a href="#autotoc_md410">Enabling External Header Signals</a></li>
+<li class="level2"><a href="#autotoc_md411">Enabling Header Signals via PinMux</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md374">Non-Configurable Interfaces</a></li>
-<li class="level1"><a href="#autotoc_md375">SDK Example</a></li>
+<li class="level1"><a href="#autotoc_md412">Non-Configurable Interfaces</a></li>
+<li class="level1"><a href="#autotoc_md413">SDK Example</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_am26x_evm_sysconfig"></a></p>
-<h1><a class="anchor" id="autotoc_md368"></a>
+<h1><a class="anchor" id="autotoc_md406"></a>
 Introduction</h1>
 <p>The SysConfig GUI tool is used to configure SDK examples at the device level, and can now be used to configure SDK examples at the board level. By using SysConfig with TI AM26x EVMs, external header signals and on-board peripheral hardware can be configured in real-time and initialized through generated SysConfig code. AM26x EVM support in SysConfig aims to reduce bring-up and development time using TI AM26x EVMs by including many of the details typically found in the online User Guide directly in the SysConfig GUI. This guide walks through how to enable the AM26x EVM support within SysConfig.</p>
 <dl class="section note"><dt>Note</dt><dd>AM26x EVM support in SysConfig requires the MCU+ SDK v11.0 and SysConfig 1.24.2 or later.</dd></dl>
-<h2><a class="anchor" id="autotoc_md369"></a>
+<h2><a class="anchor" id="autotoc_md407"></a>
 EVM Features Enabled by SysConfig</h2>
 <p>In this SDK, SysConfig is used to configure the following on EVMs:</p><ul>
 <li>On-board peripheral hardware such as I2C Buses, Headers, Transceivers, LEDs</li>
@@ -126,7 +126,7 @@ EVM Features Enabled by SysConfig</h2>
 <li>Push button functionality</li>
 <li>On-board hardware specifications</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md370"></a>
+<h1><a class="anchor" id="autotoc_md408"></a>
 Enabling EVM Support in SysConfig - Standalone</h1>
 <dl class="section note"><dt>Note</dt><dd>To view the EVM in SysConfig, the MCU+ SDK v11.0 and SysConfig 1.24.2 or later are required.</dd></dl>
 <p>Start by opening SysConfig. Once the Software Product is selected, an additional 'Board' tab will appear.</p>
@@ -134,7 +134,7 @@ Enabling EVM Support in SysConfig - Standalone</h1>
 <div class="image">
 <img src="sysconfig_start_screen.png" alt=""/>
 </div>
-<h2><a class="anchor" id="autotoc_md371"></a>
+<h2><a class="anchor" id="autotoc_md409"></a>
 Configuring on-board Peripheral Hardware</h2>
 <p>Once inside SysConfig, navigate to the Hardware tab to view all on-board configurable hardware.</p>
 <div class="image">
@@ -153,7 +153,7 @@ Configuring on-board Peripheral Hardware</h2>
 <div class="image">
 <img src="generating_code.png" alt=""/>
 </div>
-<h2><a class="anchor" id="autotoc_md372"></a>
+<h2><a class="anchor" id="autotoc_md410"></a>
 Enabling External Header Signals</h2>
 <p>SysConfig can be used to add specific signals to their designated external header pin. Standard TI EVMs, such as LaunchPads, controlCARDs, and SOMs have standard locations on their external header interfaces for typical MCU signals, allowing for universal support of accessory boards and docking hardware.</p>
 <p>In SysConfig, locate the external header interface drop-down (BoosterPack, HSEC, SOM) to see all available signals on the external header.</p>
@@ -164,7 +164,7 @@ Enabling External Header Signals</h2>
 <div class="image">
 <img src="header_signal_add.png" alt=""/>
 </div>
-<h2><a class="anchor" id="autotoc_md373"></a>
+<h2><a class="anchor" id="autotoc_md411"></a>
 Enabling Header Signals via PinMux</h2>
 <p>Peripheral components not defined in the Hardware tab can still be added to an EVM project design. In the Reserve Peripherals or Software tab, signals can be added to a design to be brought out to external headers on an EVM.</p>
 <p>Hovering over any pin in the GUI shows all available signals via the device PinMux on any given external header. For example, hovering over BoosterPack pin 3 in the GUI for AM261x LaunchPad shows that while the pin is defined for UART3_RXD, several other signals can be accessed on this pin through the device PinMux.</p>
@@ -183,7 +183,7 @@ Enabling Header Signals via PinMux</h2>
 <div class="image">
 <img src="gpio_selected_gui.png" alt=""/>
 </div>
-<h1><a class="anchor" id="autotoc_md374"></a>
+<h1><a class="anchor" id="autotoc_md412"></a>
 Non-Configurable Interfaces</h1>
 <p>As previously mentioned, there are some on-board interfaces that cannot be configured directly in the Hardware tab of SysConfig:</p><ul>
 <li>Physical switches</li>
@@ -192,7 +192,7 @@ Non-Configurable Interfaces</h1>
 <li>Flash memory devices (configurable in Software tab)</li>
 <li>PMICs (configurable in Software tab)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md375"></a>
+<h1><a class="anchor" id="autotoc_md413"></a>
 SDK Example</h1>
 <ul>
 <li>Please refer to the example <a class="el" href="EXAMPLES_HELLO_WORLD_BOARD_SYSCFG.html">Hello World Board Sysconfig Project</a> that has the EVM Config support feature enabled. </li>

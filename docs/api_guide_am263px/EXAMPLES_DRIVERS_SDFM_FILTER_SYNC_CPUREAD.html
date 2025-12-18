@@ -92,19 +92,19 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_SDFM_FILTER_SYNC_CPUR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2849">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2850">External Connections</a><ul><li class="level2"><a href="#autotoc_md2851">AM263X-CC or AM263Px-CC or AM261x-SOM E1</a></li>
-<li class="level2"><a href="#autotoc_md2852">AM263X-LP</a></li>
+<ul><li class="level1"><a href="#autotoc_md2895">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2896">External Connections</a><ul><li class="level2"><a href="#autotoc_md2897">AM263X-CC or AM263Px-CC or AM261x-SOM E1</a></li>
+<li class="level2"><a href="#autotoc_md2898">AM263X-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_SDFM_FILTER_SYNC_CPUREAD_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2853">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2854">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2855">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2899">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2900">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2901">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_sdfm_filter_sync_cpuread"></a></p>
-<h1><a class="anchor" id="autotoc_md2849"></a>
+<h1><a class="anchor" id="autotoc_md2895"></a>
 Introduction</h1>
 <p>A SDFM example that reads filter data from CPU</p>
 <p>In this example, SDFM filter data is read by CPU in SDFM ISR routine. The SDFM configuration is shown below:</p><ul>
@@ -140,12 +140,12 @@ Introduction</h1>
 <li>filter3Result - Output of filter 3</li>
 <li>filter4Result - Output of filter 4</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2850"></a>
+<h1><a class="anchor" id="autotoc_md2896"></a>
 External Connections</h1>
 <ul>
 <li>Connect Sigma-Delta streams to SDFM0_CLK0, SDFM0_D0, SDFM0_CLK1, SDFM0_D1, SDFM0_CLK2, SDFM0_D2, SDFM0_CLK3, SDFM0_D3</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2851"></a>
+<h2><a class="anchor" id="autotoc_md2897"></a>
 AM263X-CC or AM263Px-CC or AM261x-SOM E1</h2>
 <p>When using with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Connect Sigma-Delta streams to HSEC Pin 91, HSEC Pin 72, HSEC Pin 99, HSEC Pin 101, HSEC Pin 103, HSEC Pin 105, HSEC Pin 107, HSEC Pin 109</li>
@@ -154,7 +154,7 @@ AM263X-CC or AM263Px-CC or AM261x-SOM E1</h2>
 <li>Connect HSEC Pin 51 to HSEC Pin 91/99/103/107</li>
 <li>Connect HSEC Pin 49 to HSEC Pin 72/101/105/109</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2852"></a>
+<h2><a class="anchor" id="autotoc_md2898"></a>
 AM263X-LP</h2>
 <p>This example is not supported on AM263X-LP</p>
 <h1><a class="anchor" id="EXAMPLES_DRIVERS_SDFM_FILTER_SYNC_CPUREAD_COMBOS"></a>
@@ -171,7 +171,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/sdfm/sdfm_filter_sync_cpuread/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2853"></a>
+<h1><a class="anchor" id="autotoc_md2899"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -180,10 +180,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>View the UART console logs for results</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2854"></a>
+<h1><a class="anchor" id="autotoc_md2900"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_SDFM_PAGE.html">SDFM</a></p>
-<h1><a class="anchor" id="autotoc_md2855"></a>
+<h1><a class="anchor" id="autotoc_md2901"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">[Cortex_R5_0] SDFM filter sync CPU read Test Started ...</div>

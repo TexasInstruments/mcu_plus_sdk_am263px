@@ -92,29 +92,29 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_OPEN_SHORTS_DETEC
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1984">Example Description</a><ul><li class="level2"><a href="#autotoc_md1985">Assumptions for the OSD Usage</a></li>
-<li class="level2"><a href="#autotoc_md1986">OSD Circuit configurations</a></li>
-<li class="level2"><a href="#autotoc_md1987">Qualification process</a></li>
-<li class="level2"><a href="#autotoc_md1988">Configurations</a></li>
-<li class="level2"><a href="#autotoc_md1989">External Connections</a></li>
-<li class="level2"><a href="#autotoc_md1990">Watch Variables</a></li>
+<ul><li class="level1"><a href="#autotoc_md2030">Example Description</a><ul><li class="level2"><a href="#autotoc_md2031">Assumptions for the OSD Usage</a></li>
+<li class="level2"><a href="#autotoc_md2032">OSD Circuit configurations</a></li>
+<li class="level2"><a href="#autotoc_md2033">Qualification process</a></li>
+<li class="level2"><a href="#autotoc_md2034">Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2035">External Connections</a></li>
+<li class="level2"><a href="#autotoc_md2036">Watch Variables</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_OPEN_SHORTS_DETECTION_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md1991">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md1992">See Also</a></li>
-<li class="level1"><a href="#autotoc_md1993">Sample Output</a><ul><li class="level2"><a href="#autotoc_md1994">An Open Pin sample result</a></li>
-<li class="level2"><a href="#autotoc_md1995">A Pin Shorted to VREFLO sample result</a></li>
-<li class="level2"><a href="#autotoc_md1996">A Pin Shorted to VREFHI sample result</a></li>
+<li class="level1"><a href="#autotoc_md2037">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2038">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2039">Sample Output</a><ul><li class="level2"><a href="#autotoc_md2040">An Open Pin sample result</a></li>
+<li class="level2"><a href="#autotoc_md2041">A Pin Shorted to VREFLO sample result</a></li>
+<li class="level2"><a href="#autotoc_md2042">A Pin Shorted to VREFHI sample result</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_open_shorts_detection"></a></p>
-<h1><a class="anchor" id="autotoc_md1984"></a>
+<h1><a class="anchor" id="autotoc_md2030"></a>
 Example Description</h1>
 <p>This example demonstrates the Open Shorts Detection circuit on the ADC channels for detecting the pin faults in the system. the example enables the OSD circuit along with the mandatory ADC configurations (see Assumptions below) and diagnoses ADC0-Channel 0 input pin. The open short detection circuit connects a resistor between an analog input pad and either supply or ground. These resistors can be used to estimate the input impedance of the circuit driving the analog input pad thereby detecting if the pad is shorted or open.</p>
-<h2><a class="anchor" id="autotoc_md1985"></a>
+<h2><a class="anchor" id="autotoc_md2031"></a>
 Assumptions for the OSD Usage</h2>
 <ol type="1">
 <li>ADC is in Single Ended Mode</li>
@@ -123,7 +123,7 @@ Assumptions for the OSD Usage</h2>
 <li>OSD is not implemented on the CAL 1,2 inputs.</li>
 <li>Divider Resistence tolerances vary widely and are not used for accuracy checks</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md1986"></a>
+<h2><a class="anchor" id="autotoc_md2032"></a>
 OSD Circuit configurations</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -145,7 +145,7 @@ OSD Circuit configurations</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">7  </td><td class="markdownTableBodyNone">5/12 Scale  </td><td class="markdownTableBodyNone">5K // 7K  </td><td class="markdownTableBodyNone">VDD  </td><td class="markdownTableBodyNone">VSSA   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md1987"></a>
+<h2><a class="anchor" id="autotoc_md2033"></a>
 Qualification process</h2>
 <p>In the example, ADCA A0 channel is configured and following algorithm is used to check the A0 pin status:</p><ol type="1">
 <li>Configure full scale OSDETECT mode &amp; capture ADC results(resultHi)</li>
@@ -181,7 +181,7 @@ Qualification process</h2>
 </ol>
 </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md1988"></a>
+<h2><a class="anchor" id="autotoc_md2034"></a>
 Configurations</h2>
 <ol type="1">
 <li>The ADC0 SOC0 is configured sample on the Channel 2.</li>
@@ -190,7 +190,7 @@ Configurations</h2>
 <li>SOC0 is triggered by Software.</li>
 <li>OSD circuit is enabeld for ADC0, Channel 2 (see below execution) </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md1989"></a>
+<h2><a class="anchor" id="autotoc_md2035"></a>
 External Connections</h2>
 <p>ADC0-SOC0 Samples on Channel 2.</p><ul>
 <li>on AM263Px CC E2 or AM261x-SOM E1, with HSEC Dock<ul>
@@ -206,7 +206,7 @@ External Connections</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1990"></a>
+<h2><a class="anchor" id="autotoc_md2036"></a>
 Watch Variables</h2>
 <p>osDetectStatusVal - OS detection status of voltage on ADC Channel. adcResult - a digital representation of the voltage on ADC Channel. */</p>
 <h1><a class="anchor" id="EXAMPLES_DRIVERS_ADC_OPEN_SHORTS_DETECTION_COMBOS"></a>
@@ -223,7 +223,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_open_shorts_detection/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1991"></a>
+<h1><a class="anchor" id="autotoc_md2037"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -233,13 +233,13 @@ Steps to Run the Example</h1>
 <li>Using watch variables, view the ADC conversion results.</li>
 <li>View the ADC conversion results in UART console logs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1992"></a>
+<h1><a class="anchor" id="autotoc_md2038"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md1993"></a>
+<h1><a class="anchor" id="autotoc_md2039"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run, </p>
-<h2><a class="anchor" id="autotoc_md1994"></a>
+<h2><a class="anchor" id="autotoc_md2040"></a>
 An Open Pin sample result</h2>
 <div class="fragment"><div class="line">ADC Open Shorts Detection Test Started ...</div>
 <div class="line">config  |   Result  |   Mean Result |Result without OSD on</div>
@@ -252,7 +252,7 @@ An Open Pin sample result</h2>
 <div class="line">status : APP_ADC_OSDETECT_STATUS_OPEN</div>
 <div class="line">ADC Open Shorts Detection Test Passed</div>
 <div class="line">All tests have passed!!</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1995"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2041"></a>
 A Pin Shorted to VREFLO sample result</h2>
 <div class="fragment"><div class="line">ADC Open Shorts Detection Test Started ...</div>
 <div class="line">config  |   Result  |   Mean Result |Result without OSD on</div>
@@ -265,7 +265,7 @@ A Pin Shorted to VREFLO sample result</h2>
 <div class="line">status : APP_ADC_OSDETECT_STATUS_SHORTED_TO_VREFLO</div>
 <div class="line">ADC Open Shorts Detection Test Passed</div>
 <div class="line">All tests have passed!!</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1996"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2042"></a>
 A Pin Shorted to VREFHI sample result</h2>
 <div class="fragment"><div class="line">ADC Open Shorts Detection Test Started ...</div>
 <div class="line">config  |   Result  |   Mean Result |Result without OSD on</div>

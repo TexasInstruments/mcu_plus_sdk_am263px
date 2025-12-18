@@ -92,35 +92,35 @@ $(document).ready(function(){initNavTree('EXAMPLES_ENET_CPSW_EST.html',''); init
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3078">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md3079">Configuration Parameters</a></li>
-<li class="level1"><a href="#autotoc_md3080">Application Functionality</a><ul><li class="level2"><a href="#autotoc_md3081">EST Schedule</a></li>
-<li class="level2"><a href="#autotoc_md3082">Transmit Test</a></li>
-<li class="level2"><a href="#autotoc_md3083">EST Packet Timestamping</a></li>
-<li class="level2"><a href="#autotoc_md3084">Other Test Options</a><ul><li class="level3"><a href="#autotoc_md3085">EST State Control</a></li>
-<li class="level3"><a href="#autotoc_md3086">Additional EST Schedules</a></li>
+<ul><li class="level1"><a href="#autotoc_md3124">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3125">Configuration Parameters</a></li>
+<li class="level1"><a href="#autotoc_md3126">Application Functionality</a><ul><li class="level2"><a href="#autotoc_md3127">EST Schedule</a></li>
+<li class="level2"><a href="#autotoc_md3128">Transmit Test</a></li>
+<li class="level2"><a href="#autotoc_md3129">EST Packet Timestamping</a></li>
+<li class="level2"><a href="#autotoc_md3130">Other Test Options</a><ul><li class="level3"><a href="#autotoc_md3131">EST State Control</a></li>
+<li class="level3"><a href="#autotoc_md3132">Additional EST Schedules</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3087">Miscellaneous Options</a></li>
+<li class="level2"><a href="#autotoc_md3133">Miscellaneous Options</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3088">Application Flow</a></li>
-<li class="level1"><a href="#autotoc_md3089">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3090">Packet pool configuration</a></li>
-<li class="level1"><a href="#autotoc_md3091">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3092">Build the example</a></li>
-<li class="level2"><a href="#autotoc_md3093">HW Setup</a></li>
-<li class="level2"><a href="#autotoc_md3094">Run the example</a><ul><li class="level3"><a href="#autotoc_md3095">Basic Test</a></li>
+<li class="level1"><a href="#autotoc_md3134">Application Flow</a></li>
+<li class="level1"><a href="#autotoc_md3135">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md3136">Packet pool configuration</a></li>
+<li class="level1"><a href="#autotoc_md3137">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3138">Build the example</a></li>
+<li class="level2"><a href="#autotoc_md3139">HW Setup</a></li>
+<li class="level2"><a href="#autotoc_md3140">Run the example</a><ul><li class="level3"><a href="#autotoc_md3141">Basic Test</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3096">Sample output</a></li>
-<li class="level2"><a href="#autotoc_md3097">Troubleshooting issues</a></li>
+<li class="level2"><a href="#autotoc_md3142">Sample output</a></li>
+<li class="level2"><a href="#autotoc_md3143">Troubleshooting issues</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3098">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3144">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_enet_cpsw_est"></a></p>
-<h1><a class="anchor" id="autotoc_md3078"></a>
+<h1><a class="anchor" id="autotoc_md3124"></a>
 Introduction</h1>
 <p>This example application illustrates the configuration and usage of 802.1Qbv Enhanced Scheduled Traffic (EST) with CPSW through Enet LLD. The example application enables MAC port 1 by default, but it supports up to two MAC ports available in CPSW3G on SoC.</p>
 <div class="image">
@@ -131,7 +131,7 @@ CPSW EST example on device</div></div>
 <p>The application will also open the MAC port and will wait until the port gets link up with a remote partner (i.e. PC). The application then configures the same default EST schedule on the enabled MAC port.</p>
 <p>The application uses <a class="el" href="group__ENET__MOD__TAS.html">Enet Time Aware Shaper</a> API for EST configuration and <a class="el" href="group__ENET__DMA__API.html">Enet Data Path (DMA)</a> API for packet transmission.</p>
 <p>It's worth noting that this example application does not integrate time synchronization. This is relevant when both MAC ports are enabled and an external device (i.e. PC) is used to verify if the transmitted packets are meeting the programmed EST schedule (cycle time and time intervals), as CPSW CPTS internal clock might be off with respect to the external device's clock.</p>
-<h1><a class="anchor" id="autotoc_md3079"></a>
+<h1><a class="anchor" id="autotoc_md3125"></a>
 Configuration Parameters</h1>
 <p>Typically, the application's parameters that a developer may want to change are:</p>
 <ul>
@@ -141,9 +141,9 @@ Configuration Parameters</h1>
  Note: The EST schedule can be different for each MAC port.</li>
 <li><b>CPTS event pool size</b>. User can increase the pool size to 32 or larger via <code>ENET_CFG_CPSW_CPTS_EVENTS_POOL_SIZE</code> in <a class="el" href="enet__cfg_8h.html" title="This file contains the Enet configuration parameters.">enet_cfg.h</a> if interested in verifying all timestamps generated for all TX test packets.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3080"></a>
+<h1><a class="anchor" id="autotoc_md3126"></a>
 Application Functionality</h1>
-<h2><a class="anchor" id="autotoc_md3081"></a>
+<h2><a class="anchor" id="autotoc_md3127"></a>
 EST Schedule</h2>
 <p>The EST schedule programmed by this example application is shown below:</p>
 <div class="image">
@@ -193,7 +193,7 @@ Default EST schedule in CPSW EST example application</div></div>
 <li><a class="el" href="group__ENET__MOD__TAS.html#ggada0ad2c0a7a0c6530e49a3dd78c09ab2a792ce6f703556d008a381d336b10dd4a">ENET_TAS_IOCTL_GET_ADMIN_LIST</a> to get the driver's version of the administrative list after one has been programmed. The admin list is then printed to serial console.</li>
 <li><a class="el" href="group__ENET__MOD__TAS.html#ggada0ad2c0a7a0c6530e49a3dd78c09ab2ac1c01d208f449eed17246c96cb2bcde1">ENET_TAS_IOCTL_GET_OPER_LIST</a> to get the driver's version of the operational list after one has been programmed. The oper list is then printed to serial console.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3082"></a>
+<h2><a class="anchor" id="autotoc_md3128"></a>
 Transmit Test</h2>
 <p>The example application provides an option to send <code>ENETAPP_TEST_TX_PKT_CNT</code> (16) test packets through the single TX channel opened by the driver at initialization time.</p>
 <p>Each test frame is a broadcast packet, 64 bytes long, VLAN tagged with VLAN Id 100 and PCP values from 0 through 7. The test packet content is shown below:</p>
@@ -325,7 +325,7 @@ Transmit Test</h2>
 <div class="line">EtherType: 0x88b5</div>
 <div class="line">Payload  : 0x0f 0x0f 0x0f 0x0f 0x0f 0x0f 0x0f 0x0f 0x0f 0x0f 0x0f 0x0f 0x0f 0x0f 0x0f ...</div>
 </div><!-- fragment --><p>Packets are transmitted using regular Enet LLD's <a class="el" href="group__ENET__DMA__API.html#gac80790c3fbf88c40ce547c41c6164ae6">EnetDma_submitTxPktQ()</a> API.</p>
-<h2><a class="anchor" id="autotoc_md3083"></a>
+<h2><a class="anchor" id="autotoc_md3129"></a>
 EST Packet Timestamping</h2>
 <p>The example application configures the EST <em>administrative base time</em> to be equal to the current time + <code>ENET_APP_EST_ADMIN_LIST_DELAY</code> (100 msecs). This is useful to normalize the timestamps of the transmitted packets and verify that they are being sent on the appropriate time intervals.</p>
 <p>When enabled via serial console menu (option '<code>t</code>'), CPSW ESTF will be configured to generate timestamps on every <em>express packet</em>. Each timestamp generates a CPTS interrupt which the Enet LLD driver services, the driver copies the timestamp event information into a software pool where the application can then retrieve. This CPTS event pool is shared among all MAC ports.</p>
@@ -336,10 +336,10 @@ EST Packet Timestamping</h2>
 <li><a class="el" href="group__CPSW__MACPORT__MOD.html#gga9f78d0e84102d48a7c5097bd27620d6faa68211d9809d6aa5fca41f07e3c3f97b">CPSW_MACPORT_IOCTL_EST_DISABLE_TIMESTAMP</a> to disable timestamping on a given MAC port.</li>
 <li><a class="el" href="group__CPSW__CPTS__MOD.html#ggab788726fe114cfc32a32011edfa724ffac0a8dd0957cbe423b3b64dfea807c34d">CPSW_CPTS_IOCTL_LOOKUP_EST_EVENT</a> to retrieve timestamp events from the driver's internal event pool. The application must specify the MAC port for which the events must be looked up in the event pool.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3084"></a>
+<h2><a class="anchor" id="autotoc_md3130"></a>
 Other Test Options</h2>
 <p>Additional test options are provided if the user wants to exercise the EST functionality beyond the basic usage described in earlier sections. The user can enter '<code>h</code>' at any time in the application's menu to display the test options.</p>
-<h3><a class="anchor" id="autotoc_md3085"></a>
+<h3><a class="anchor" id="autotoc_md3131"></a>
 EST State Control</h3>
 <p>The following options are provided by the application to change the EST state on all enabled MAC ports:</p>
 <ul>
@@ -347,7 +347,7 @@ EST State Control</h3>
 <li>Set EST state to <em>DISABLE</em>.</li>
 <li>Set EST state to <em>RESET</em>.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md3086"></a>
+<h3><a class="anchor" id="autotoc_md3132"></a>
 Additional EST Schedules</h3>
 <p>In additional the default EST schedule, the example application also provides 9 different test schedules which the user can optionally try.</p>
 <ol type="1">
@@ -361,7 +361,7 @@ Additional EST Schedules</h3>
 <li>Administrative list with cycle time of zero. This is an invalid configuration and shall be rejected by the driver.</li>
 <li>Administrative list with a zero interval followed by non-zero intervals. This is an invalid configuration and shall be rejected by the driver.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md3087"></a>
+<h2><a class="anchor" id="autotoc_md3133"></a>
 Miscellaneous Options</h2>
 <p>The following helper options are also provided in the application's test menu:</p>
 <ol type="1">
@@ -370,14 +370,14 @@ Miscellaneous Options</h2>
 <li>Reset (clear) network statistics.</li>
 <li>Stop the test.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md3088"></a>
+<h1><a class="anchor" id="autotoc_md3134"></a>
 Application Flow</h1>
 <p>The most important steps related to the EST configuration performed by the application are shown in the following sequence diagram:</p>
 <div class="image">
 <img src="CpswEst_ExampleApp.png" alt=""/>
 <div class="caption">
 Application Flow</div></div>
-<h1><a class="anchor" id="autotoc_md3089"></a>
+<h1><a class="anchor" id="autotoc_md3135"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -392,24 +392,24 @@ Supported Combinations</h1>
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/enet_cpsw_est/V1   </td></tr>
 </table>
 <p>For support on am263px-cc-addon-auto, please refer <a class="el" href="ETHERNET_ADDON_BOARDS_TOP.html">Ethernet Add-on Boards</a></p>
-<h1><a class="anchor" id="autotoc_md3090"></a>
+<h1><a class="anchor" id="autotoc_md3136"></a>
 Packet pool configuration</h1>
 <p>To change packet pool configuration from syscfg, please refer to <a class="el" href="PACKETPOOL_CONFIG_TOP.html">Ethernet Packet Pool Allocation Guidelines</a></p>
-<h1><a class="anchor" id="autotoc_md3091"></a>
+<h1><a class="anchor" id="autotoc_md3137"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md3092"></a>
+<h2><a class="anchor" id="autotoc_md3138"></a>
 Build the example</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3093"></a>
+<h2><a class="anchor" id="autotoc_md3139"></a>
 HW Setup</h2>
 <p>Make sure you have setup the EVM with cable connections as shown in <a class="el" href="EVM_SETUP_PAGE.html">EVM Setup</a>. In addition, follow the steps in the next section.</p>
 <dl class="section note"><dt>Note</dt><dd>Ethernet cable must be connected and link must be up in order for the example application to continue execution.</dd></dl>
-<h2><a class="anchor" id="autotoc_md3094"></a>
+<h2><a class="anchor" id="autotoc_md3140"></a>
 Run the example</h2>
-<h3><a class="anchor" id="autotoc_md3095"></a>
+<h3><a class="anchor" id="autotoc_md3141"></a>
 Basic Test</h3>
 <p>The simplest test that one can run with the CPSW EST example consists of:</p><ul>
 <li>Enabling EST and programming a default EST schedule on the selected MAC port.</li>
@@ -426,7 +426,7 @@ Basic Test</h3>
 <li>Run TX test by entering '<code>T</code>' on the serial console. Test status will be printed in the serial console.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd><a class="el" href="structTimestamp.html" title="The Timestamp type represents a positive time with respect to the epoch.">Timestamp</a> check mechanism used to determined test status is enabled only with the default EST schedule. The timestamp check will be disabled automatically when EST is disabled (option <code>D</code> or <code>R</code> is entered, or when link is lost).</dd></dl>
-<h2><a class="anchor" id="autotoc_md3096"></a>
+<h2><a class="anchor" id="autotoc_md3142"></a>
 Sample output</h2>
 <div class="fragment"><div class="line">==========================</div>
 <div class="line">       CPSW EST Test      </div>
@@ -507,12 +507,12 @@ Sample output</h2>
 <div class="line">MAC Port 1: packet with priority 0 timestamp 9359370283 (norm 189315) interval (187512, 250000) : PASS</div>
 <div class="line">MAC Port 1: packet with priority 0 timestamp 9359370988 (norm 190020) interval (187512, 250000) : PASS</div>
 </div><!-- fragment --><p><em>Note</em>: Although all packets are timestamped by CPTS, some timestamps will be overwritten in driver's event pool depending on the pool size. The timestamps that are printed in the serial terminal will vary as the packet transmission via option '<code>T</code>' happens asynchronously of the EST cycle.</p>
-<h2><a class="anchor" id="autotoc_md3097"></a>
+<h2><a class="anchor" id="autotoc_md3143"></a>
 Troubleshooting issues</h2>
 <ul>
 <li>To ensure compatibility with CPSW RGMII2 port on am263px-cc board, make sure that SW-15(switch) should be set to <code>LOW</code> for board versions(E2/A/B versions). This configuration ensures seamless out-of-box support and functionality with the CPSW RGMII2 port on the specified versions.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3098"></a>
+<h1><a class="anchor" id="autotoc_md3144"></a>
 See Also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> </p>
 </div></div><!-- contents -->

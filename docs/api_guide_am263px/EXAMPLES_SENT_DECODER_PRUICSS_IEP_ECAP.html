@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('EXAMPLES_SENT_DECODER_PRUICSS_IEP_ECAP
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md263">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md264">Supported Combinations</a><ul><li class="level2"><a href="#autotoc_md265">HW Setup</a></li>
+<ul><li class="level1"><a href="#autotoc_md299">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md300">Supported Combinations</a><ul><li class="level2"><a href="#autotoc_md301">HW Setup</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#EXAMPLES_SENT_DECODER_PRUICSS_IEP_ECAP_STEPS_TO_RUN">Steps to Run the Example</a><ul><ul><li class="level3"><a href="#autotoc_md266">Sample Output</a></li>
+<li class="level1"><a href="#EXAMPLES_SENT_DECODER_PRUICSS_IEP_ECAP_STEPS_TO_RUN">Steps to Run the Example</a><ul><ul><li class="level3"><a href="#autotoc_md302">Sample Output</a></li>
 </ul>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md267">Steps to modify SENT decoder PRU Firmware</a><ul><li class="level2"><a href="#autotoc_md268">Modifying Tick Period</a></li>
-<li class="level2"><a href="#autotoc_md269">Modifying the pins used</a></li>
+<li class="level1"><a href="#autotoc_md303">Steps to modify SENT decoder PRU Firmware</a><ul><li class="level2"><a href="#autotoc_md304">Modifying Tick Period</a></li>
+<li class="level2"><a href="#autotoc_md305">Modifying the pins used</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_pru_io_sent_decoder_using_iep_ecap"></a></p>
-<h1><a class="anchor" id="autotoc_md263"></a>
+<h1><a class="anchor" id="autotoc_md299"></a>
 Introduction</h1>
 <p>The Single Edge Nibble Transmission protocol is a unidirectional communications method that connects the sensor/transmitting device and the controller/receiving device without the use of a coordination signal from the controller/receiving device. It is intended for usage in situations where high-resolution data must be transferred from a sensor to an engine control unit (ECU). It serves as a simpler, less expensive alternative to CAN, LIN, or PSI5 as well as a replacement for lesser resolution techniques such as traditional sensors that provide analog output voltage and PWM. Automotive applications for SENT-compatible sensor devices include applications for pedal sensing, mass airflow sensing, pressure sensing, temperature sensing, humidity sensing, and many others.</p>
 <p> <style>div.image img[src="SENT_Intro.png"]{width:60%}</style> </p><div class="image">
@@ -116,7 +116,7 @@ Introduction</h1>
 SENT Signal</div></div>
 <p><b>The SENT decoder Example is a reference for software based implementation of SAE J2716. PRU ICSS firmware enables SENT decoder interface on TI Sitara AM263Px processor.</b></p>
 <p>This example does following: configures pin mux, sets soc mux to enable gpio mode for ICSS, initializes PRU, DMEM and PRU INTC module, downloads crc look up table in PRU Data RAM, and extracts sent decoded signal to UART terminal.</p>
-<h1><a class="anchor" id="autotoc_md264"></a>
+<h1><a class="anchor" id="autotoc_md300"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -142,7 +142,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/pru_io/sent/decoder_pruicss_iep_ecap/firmware   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md265"></a>
+<h2><a class="anchor" id="autotoc_md301"></a>
 HW Setup</h2>
 <p> <style>div.image img[src="sent_hw_setup1.jpg"]{width:60%}</style> </p><div class="image">
 <img src="sent_hw_setup1.jpg" alt=""/>
@@ -190,7 +190,7 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>Open a UART terminal as per <a class="el" href="EVM_SETUP_PAGE.html#CCS_UART_TERMINAL">Setup UART Terminal</a> and view received SENT frames </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md266"></a>
+<h3><a class="anchor" id="autotoc_md302"></a>
 Sample Output</h3>
 <div class="fragment"><div class="line">******************SENT DECODER Application**********************</div>
 <div class="line"> </div>
@@ -257,9 +257,9 @@ Sample Output</h3>
 <li>See list supported firmware design and list of supported feature : <a class="el" href="SENT.html">SENT</a></li>
 </ul>
 </dd></dl>
-<h1><a class="anchor" id="autotoc_md267"></a>
+<h1><a class="anchor" id="autotoc_md303"></a>
 Steps to modify SENT decoder PRU Firmware</h1>
-<h2><a class="anchor" id="autotoc_md268"></a>
+<h2><a class="anchor" id="autotoc_md304"></a>
 Modifying Tick Period</h2>
 <p>Modification supported: Change hardcoded tick period in firmware. Current release supports only 1us tick period support in firmware. In order to modify it:</p>
 <ul>
@@ -270,7 +270,7 @@ Modifying Tick Period</h2>
 <div class="fragment"><div class="line">ch0_ticktime                .set   500</div>
 <div class="line">ch0_syncpulse_min_dur       .set   400*56</div>
 <div class="line">ch0_syncpulse_max_dur       .set   600*56</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md269"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md305"></a>
 Modifying the pins used</h2>
 <p>When implementing the SENT decoder using iep-ecap application on the SOC, proper configuration of the Sysconfig is essential to ensure correct signal routing. This configuration must align with the specific hardware schematic of your AM263PX-based/AM261X-based system.</p>
 <p>Required SysConfig Modifications To properly configure these for SENT decoding:</p>

@@ -16,6 +16,7 @@ ifeq ($(OS),Windows_NT)
     PATHSEP=\\
     CHMOD=$(CYGWIN_PATH)/echo
     SHELL=cmd.exe
+    SCRIPT_EXT=bat
 else
     UNAME_S := $(shell uname -s)
     ifneq (,$(filter $(UNAME_S),Linux Darwin))
@@ -32,6 +33,7 @@ else
         export TOUCH=touch
         export PATHSEP=/
         export CHMOD=chmod
+        export SCRIPT_EXT=sh
     endif
 endif
 
@@ -46,5 +48,6 @@ SYSCFG_CLI_PATH ?= $(SYSCFG_PATH)
 SYSCFG_NODE = $(SYSCFG_PATH)/nodejs/node
 SYSCFG_NWJS = $(SYSCFG_PATH)/nw/nw
 SYSCFG_SDKPRODUCT=$(MCU_PLUS_SDK_PATH)/.metadata/product.json
+SYSCFG_GUI_SCRIPT=$(SYSCFG_PATH)/sysconfig_gui.$(SCRIPT_EXT)
 OPTISHARE = $(CCS_NODE) $(CGT_TI_ARM_CLANG_PATH)/opti-share/opti-share.js
 OPTISAVE = $(CCS_NODE) $(CGT_TI_ARM_CLANG_PATH)/opti-share/utils/opti-save.js

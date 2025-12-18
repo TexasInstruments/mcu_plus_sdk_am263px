@@ -92,25 +92,25 @@ $(document).ready(function(){initNavTree('EXAMPLES_SENT_ENCODER.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md248">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md249">SENT Signal</a></li>
-<li class="level1"><a href="#autotoc_md250">Supported Combinations</a></li>
-<li class="level1"><a href="#EXAMPLES_SENT_ENCODER_STEPS_TO_RUN">Steps to Run the Example</a><ul><ul><li class="level3"><a href="#autotoc_md251">Sample Output</a></li>
+<ul><li class="level1"><a href="#autotoc_md284">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md285">SENT Signal</a></li>
+<li class="level1"><a href="#autotoc_md286">Supported Combinations</a></li>
+<li class="level1"><a href="#EXAMPLES_SENT_ENCODER_STEPS_TO_RUN">Steps to Run the Example</a><ul><ul><li class="level3"><a href="#autotoc_md287">Sample Output</a></li>
 </ul>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md252">Steps to modify SENT encoder example</a><ul><li class="level2"><a href="#autotoc_md253">Modifying Tick Period</a></li>
-<li class="level2"><a href="#autotoc_md254">Modifying the pins used</a></li>
+<li class="level1"><a href="#autotoc_md288">Steps to modify SENT encoder example</a><ul><li class="level2"><a href="#autotoc_md289">Modifying Tick Period</a></li>
+<li class="level2"><a href="#autotoc_md290">Modifying the pins used</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_pru_io_sent_encoder"></a></p>
-<h1><a class="anchor" id="autotoc_md248"></a>
+<h1><a class="anchor" id="autotoc_md284"></a>
 Introduction</h1>
 <p>This example emulates SENT sensor using PRU ICSS.</p>
 <p>**The SENT encoder Example is a reference for software based implementation of sent sensor. It is meant for only validating <a class="el" href="EXAMPLES_SENT_DECODER.html">SENT Decoder Example</a> .**</p>
-<h1><a class="anchor" id="autotoc_md249"></a>
+<h1><a class="anchor" id="autotoc_md285"></a>
 SENT Signal</h1>
 <p>The sensor sends out a signal that is made up of a string of pulses with data encoded as falling to falling edge periods. It happens independently of any receiver module activity and takes place without the receiver module sending a synchronization signal. The modulated signal with a constant amplitude voltage and an evaluation of the time interval between two falling edges (a single edge) is delivered in units of 4 bits (1 nibble), which can represent values ranging from 0 to 15. According to the SAE J2716 specification, a transmitter-specific nominal clock period that is used to quantify the pulse period (tick time) can be between 3-90 ms. The sensor device can use low-cost RC oscillators because the maximum permitted clock deviation is 20% from the normal tick time. The specified tick time, the sent data value, and the message time of a SENT message determine its duration. The following pulses (all with nominal timings) make up the transmitting sequence:</p>
 <ol type="1">
@@ -124,7 +124,7 @@ SENT Signal</h1>
 <img src="sent_signal.png" alt=""/>
 <div class="caption">
 SENT Signal</div></div>
- <h1><a class="anchor" id="autotoc_md250"></a>
+ <h1><a class="anchor" id="autotoc_md286"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -170,7 +170,7 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>Open a UART terminal as per <a class="el" href="EVM_SETUP_PAGE.html#CCS_UART_TERMINAL">Setup UART Terminal</a> and use config menu to send SENT frames</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md251"></a>
+<h3><a class="anchor" id="autotoc_md287"></a>
 Sample Output</h3>
 <div class="fragment"><div class="line">******************SENT ENCODER Application**********************</div>
 <div class="line"> </div>
@@ -197,9 +197,9 @@ Sample Output</h3>
 <li>See list supported firmware design and list of supported feature : <a class="el" href="SENT.html">SENT</a> </li>
 </ul>
 </dd></dl>
-<h1><a class="anchor" id="autotoc_md252"></a>
+<h1><a class="anchor" id="autotoc_md288"></a>
 Steps to modify SENT encoder example</h1>
-<h2><a class="anchor" id="autotoc_md253"></a>
+<h2><a class="anchor" id="autotoc_md289"></a>
 Modifying Tick Period</h2>
 <p>Modification supported: Change hardcoded tick period in fw. Current release supports only 500ns tick period support in firmware. In order to modify it:</p>
 <ul>
@@ -208,7 +208,7 @@ Modifying Tick Period</h2>
 </div><!-- fragment --></li>
 <li>Refer the following section for running the example after altering the firmware <a class="el" href="EXAMPLES_SENT_ENCODER.html#EXAMPLES_SENT_ENCODER_STEPS_TO_RUN">Steps to Run the Example</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md254"></a>
+<h2><a class="anchor" id="autotoc_md290"></a>
 Modifying the pins used</h2>
 <p>The user would need to change the R30 value (r30_value) in the defines.inc file located in examples\pru_io\sent\encoder\firmware according to the value of the GPIO that they need to use. For example, if GPIO0,1,2,3,4,5,6,8 are used then those bits need to be set high which would be 0x17F in hex.</p>
 <p>Refer the following section for running the example after altering the firmware <a class="el" href="EXAMPLES_SENT_ENCODER.html#EXAMPLES_SENT_ENCODER_STEPS_TO_RUN">Steps to Run the Example</a> </p>

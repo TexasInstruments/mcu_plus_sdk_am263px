@@ -92,25 +92,25 @@ $(document).ready(function(){initNavTree('SMART_PLACEMENT.html',''); initResizab
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md542">What is Smart Placement?</a></li>
-<li class="level1"><a href="#autotoc_md543">Theory of Smart Placement.</a><ul><li class="level2"><a href="#autotoc_md544">How is identify critical code?</a></li>
-<li class="level2"><a href="#autotoc_md545">Why CPI of a function increases?</a></li>
-<li class="level2"><a href="#autotoc_md546">How smart placement helps in improving performance</a><ul><li class="level3"><a href="#autotoc_md547">Providing variety of tools/method to determine critical functions</a></li>
-<li class="level3"><a href="#autotoc_md548">Using TCM</a></li>
-<li class="level3"><a href="#autotoc_md549">Removing unnecessary trampolines</a></li>
+<ul><li class="level1"><a href="#autotoc_md580">What is Smart Placement?</a></li>
+<li class="level1"><a href="#autotoc_md581">Theory of Smart Placement.</a><ul><li class="level2"><a href="#autotoc_md582">How is identify critical code?</a></li>
+<li class="level2"><a href="#autotoc_md583">Why CPI of a function increases?</a></li>
+<li class="level2"><a href="#autotoc_md584">How smart placement helps in improving performance</a><ul><li class="level3"><a href="#autotoc_md585">Providing variety of tools/method to determine critical functions</a></li>
+<li class="level3"><a href="#autotoc_md586">Using TCM</a></li>
+<li class="level3"><a href="#autotoc_md587">Removing unnecessary trampolines</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md550">Getting started with Smart Placement</a></li>
+<li class="level2"><a href="#autotoc_md588">Getting started with Smart Placement</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_tools_smart_placement"></a></p>
-<h1><a class="anchor" id="autotoc_md542"></a>
+<h1><a class="anchor" id="autotoc_md580"></a>
 What is Smart Placement?</h1>
 <p>TI Sitara MCU have many different levels of memories with varying latency from CPU and peripherals, and while developing an application, it is required to place sections in different memories. Those sections whose destination memory is already known are placed in the targeted memory, however, other sections' destination memory may not be known. For example, in a control loop application, there would an ISRs/functions which would be there in the control path. Since these functions/ISRs are already known to be critical therefore, they are placed in the fastest memory to have maximum performance.</p>
 <p>Smart placement is a name given to a process, using which functions and other linker-placed objects are distributed across different memories, while accounting for their criticality, directly from the source code.</p>
-<h1><a class="anchor" id="autotoc_md543"></a>
+<h1><a class="anchor" id="autotoc_md581"></a>
 Theory of Smart Placement.</h1>
 <p>Following table list down memories in ascending order of access latency (not an exhaustive list of memories). Memory with minimum latency is the fastest memory.</p>
 <table class="markdownTable">
@@ -126,7 +126,7 @@ Theory of Smart Placement.</h1>
 <td class="markdownTableBodyNone">FLASH  </td><td class="markdownTableBodyNone">0x60000000  </td><td class="markdownTableBodyNone">External Flash   </td></tr>
 </table>
 <p>From the above table, this device has various memories which can store both code and data. Each memory differs from each other in terms of size and access latency therefore the placement of code and data will determine the performance of code.</p>
-<h2><a class="anchor" id="autotoc_md544"></a>
+<h2><a class="anchor" id="autotoc_md582"></a>
 How is identify critical code?</h2>
 <p>This performance penalty is high in case code or data has to be placed in external memory (or FLASH). In this case, it is beneficial to not place data or code in the external flash that is not critical. Now the criticality of the code can be determined by various factors such as number of times a particular code or data is being accessed or based on the design decision.</p>
 <p>Frequency of a function is number of times a function is called. A frequent function would be called a lot of times.</p>
@@ -138,27 +138,27 @@ How is identify critical code?</h2>
 <p>Red region is a region contains all the functions which are frequent and have high CPI. These functions are bottleneck. Green region contains functions which are frequent functions and have low CPI in a given system (without any optimizations). Yellow region contains functions whose performance improvement won't bring any significant improvement as they are not very frequent functions.</p>
 <p>Optimization based on profiling should be done such that the result of optimization would bring functions from red regions to green region.</p>
 <p>This can be achieved by placing function in red region in faster memory. However, because of limited size of faster memory, not all functions can move to green area. Because of this constraint, functions at top right corner of red region needs to be given more priority over function that is at bottom-left of red region. This priority number will indicative of how critical a function/code is.</p>
-<h2><a class="anchor" id="autotoc_md545"></a>
+<h2><a class="anchor" id="autotoc_md583"></a>
 Why CPI of a function increases?</h2>
 <p>Memory latencies of a memory in which a function is stored is one of the main reason.</p>
 <p>Whenever a cache miss happens, instruction/data corresponding to that cache miss would be fetched from a slower memory. If that function is not a cache friendly code, this would lead to high CPI number.</p>
 <p>However, sometimes, a badly cached function can still perform better because pre-fetch hardware is able to prefetch most of the instructions. However, these cases are rare and still branch miss-prediction will always increase CPI number.</p>
 <p>Therefore, in most cases, increased CPI numbers indicates high cache miss rate as well.</p>
-<h2><a class="anchor" id="autotoc_md546"></a>
+<h2><a class="anchor" id="autotoc_md584"></a>
 How smart placement helps in improving performance</h2>
-<h3><a class="anchor" id="autotoc_md547"></a>
+<h3><a class="anchor" id="autotoc_md585"></a>
 Providing variety of tools/method to determine critical functions</h3>
 <p>There are many ways to determine critical function. They are provided and can be read at <a class="el" href="SMART_PLACEMENT_GETTING_STARTED.html">Getting Started With Smart Placement</a>. Reason of providing this is to make smart placement more usable.</p>
-<h3><a class="anchor" id="autotoc_md548"></a>
+<h3><a class="anchor" id="autotoc_md586"></a>
 Using TCM</h3>
 <p>TCM is tightly coupled memory and is fastest. This memory is also non-cached. Therefore, after identifying priority critical functions, those functions can be placed in TCM. This would not only improve function's CPI but would also lead to reduced cached miss rate.</p>
-<h3><a class="anchor" id="autotoc_md549"></a>
+<h3><a class="anchor" id="autotoc_md587"></a>
 Removing unnecessary trampolines</h3>
 <div class="image">
 <img src="smart_placement_am263x_0.png" alt=""/>
 </div>
 <p>In above diagram, F1 is a critical function which internally calls F2, F3 and F4. However, because F2, F3 and F4 are placed far away in memory, they cannot be called directly but rather trampolines has be inserted in order to call them. This further reduces the performance. Applying smart placement, not only placed F1 function in faster memory, but also its internally called function, which are also critical function in this case. This also removed trampolines.</p>
-<h2><a class="anchor" id="autotoc_md550"></a>
+<h2><a class="anchor" id="autotoc_md588"></a>
 Getting started with Smart Placement</h2>
 <p>To get started with smart placement, please go through <a class="el" href="SMART_PLACEMENT_GETTING_STARTED.html">Getting Started With Smart Placement</a> </p>
 </div></div><!-- contents -->

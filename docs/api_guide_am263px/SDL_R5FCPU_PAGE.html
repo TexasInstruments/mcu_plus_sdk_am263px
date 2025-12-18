@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('SDL_R5FCPU_PAGE.html',''); initResizab
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1592">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1593">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1594">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1595">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1596">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1597">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1638">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1639">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1640">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1641">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1642">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1643">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_r5f_cpu"></a></p>
 <p>The R5F CPU utils is having some Cortex R5F CORE functionality like reading the CPU Static Registers of ARM CORTEX R5F CORE.</p>
-<h1><a class="anchor" id="autotoc_md1592"></a>
+<h1><a class="anchor" id="autotoc_md1638"></a>
 Features Supported</h1>
 <p>The system control coprocessor, CP15, controls and provides status information for the functions implemented in the processor. The main functions of the system control coprocessor are:</p><ul>
 <li>overall system control and configuration</li>
@@ -113,22 +113,22 @@ Features Supported</h1>
 <p>In this section, all the resisters are being read of the System control coprocessor.</p><ul>
 <li>NOTE-&gt; For detail description of these register, one can refer <a href="https://developer.arm.com/documentation/ddi0460/c/System-Control/Register-descriptions?lang=en">ARM CORTEX R5F TRM</a>.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1593"></a>
+<h1><a class="anchor" id="autotoc_md1639"></a>
 SysConfig Features</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1594"></a>
+<h1><a class="anchor" id="autotoc_md1640"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1595"></a>
+<h1><a class="anchor" id="autotoc_md1641"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>None </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1596"></a>
+<h1><a class="anchor" id="autotoc_md1642"></a>
 Example Usage</h1>
 <p>The following shows an example of SDL R5F CPU UTILS API usage by the application.</p>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="sdl__r5__utils_8h.html">sdl/r5/v0/sdl_r5_utils.h</a>&gt;</span></div>
@@ -140,7 +140,7 @@ Example Usage</h1>
 <div class="line">    sdlResult = <a class="code" href="group__SDL__R5FCPU__StaticRegisterRead__FUNCTIONS.html#ga4766f5a79a2412f3a3227a7b3f2b1c3a">SDL_CPU_staticRegisterRead</a>(&amp;pCPUStaticRegs);</div>
 <div class="line"> </div>
 <div class="line">After calling the above API, All <span class="keyword">register</span> values can be found into the structure.</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1597"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1643"></a>
 API</h1>
 <p><a class="el" href="group__SDL__R5FCPU__API.html">SDL R5F CPU UTILS</a> </p>
 </div></div><!-- contents -->

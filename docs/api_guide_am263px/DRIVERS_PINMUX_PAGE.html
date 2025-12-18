@@ -92,33 +92,33 @@ $(document).ready(function(){initNavTree('DRIVERS_PINMUX_PAGE.html',''); initRes
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1045">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1046">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1047">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1048">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1049">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1050">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1083">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1084">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1085">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1086">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1087">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1088">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_pinmux"></a></p>
 <p>The Pinmux driver provides API to cofigure the pinmux for a particular device</p>
-<h1><a class="anchor" id="autotoc_md1045"></a>
+<h1><a class="anchor" id="autotoc_md1083"></a>
 Features Supported</h1>
 <ul>
 <li>API to set pinmux for various domains present in the device</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1046"></a>
+<h1><a class="anchor" id="autotoc_md1084"></a>
 SysConfig Features</h1>
 <ul>
 <li>Pinmux driver is integrated with each of the peripheral drivers. User need not perform any explicit configuration for this driver</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1047"></a>
+<h1><a class="anchor" id="autotoc_md1085"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md1048"></a>
+<h1><a class="anchor" id="autotoc_md1086"></a>
 Important Usage Guidelines</h1>
 <p>In the <a class="el" href="group__DRV__PINMUX__MODULE.html#ga416b7b8c652a8c2abc8a5ce6510f7b4d">Pinmux_config</a> API, the last entry should be initialized with <a class="el" href="group__DRV__PINMUX__MODULE.html#ga6bb91cdc76844477330cb98ae0f84481" title="Macro to mark end of pinmux config array.">PINMUX_END</a> so that this function knows the end of configuration.</p>
-<h1><a class="anchor" id="autotoc_md1049"></a>
+<h1><a class="anchor" id="autotoc_md1087"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="pinmux_8h.html">drivers/pinmux.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Pinmux configuration </p><div class="fragment"><div class="line"><span class="keyword">static</span> <a class="code" href="structPinmux__PerCfg__t.html">Pinmux_PerCfg_t</a> gMainPinmuxData[] =</div>
@@ -134,7 +134,7 @@ Example Usage</h1>
 <div class="line">{</div>
 <div class="line">    <a class="code" href="group__DRV__PINMUX__MODULE.html#ga416b7b8c652a8c2abc8a5ce6510f7b4d">Pinmux_config</a>(gMainPinmuxData, <a class="code" href="group__DRV__PINMUX__MODULE.html#ga4568054d663e9874af0088f1e965df1b">PINMUX_DOMAIN_ID_MAIN</a>);</div>
 <div class="line">}</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1050"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1088"></a>
 API</h1>
 <p><a class="el" href="group__DRV__PINMUX__MODULE.html">APIs for PINMUX</a> </p>
 </div></div><!-- contents -->

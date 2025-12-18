@@ -92,21 +92,21 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_EQEP_POSITION_SPEED.h
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2546">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2547">External connections</a><ul><li class="level2"><a href="#autotoc_md2548">AM263X-CC or AM263PX-CC</a></li>
-<li class="level2"><a href="#autotoc_md2549">AM261X-SOM</a></li>
-<li class="level2"><a href="#autotoc_md2550">AM263X-LP or AM263PX-LP</a></li>
-<li class="level2"><a href="#autotoc_md2551">AM261X-LP</a></li>
+<ul><li class="level1"><a href="#autotoc_md2592">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2593">External connections</a><ul><li class="level2"><a href="#autotoc_md2594">AM263X-CC or AM263PX-CC</a></li>
+<li class="level2"><a href="#autotoc_md2595">AM261X-SOM</a></li>
+<li class="level2"><a href="#autotoc_md2596">AM263X-LP or AM263PX-LP</a></li>
+<li class="level2"><a href="#autotoc_md2597">AM261X-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_EQEP_POSITION_SPEED_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2552">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2553">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2554">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2598">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2599">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2600">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_eqep_position_speed"></a></p>
-<h1><a class="anchor" id="autotoc_md2546"></a>
+<h1><a class="anchor" id="autotoc_md2592"></a>
 Introduction</h1>
 <p>Position and Speed Measurement Using eQEP</p>
 <p>This example provides position and speed measurement using the capture unit and speed measurement using unit time out of the eQEP module. ePWM and a GPIO are configured to generate simulated eQEP signals. The ePWM module will interrupt once every period and call the position/speed calculation function. This example uses the IQMath library to simplify high-precision calculations.</p>
@@ -133,35 +133,35 @@ Figure 1a. Block diagram</div></div>
 <li>posSpeed.thetaMech - Motor mechanical angle (Q15)</li>
 <li>posSpeed.thetaElec - Motor electrical angle (Q15)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2547"></a>
+<h1><a class="anchor" id="autotoc_md2593"></a>
 External connections</h1>
 <ul>
 <li>Connect ePWM0A to eQEP0A (EPWM_A simulates eQEP Phase A signal)</li>
 <li>Connect ePWM0B to eQEP0B (EPWM_B simulates eQEP Phase B signal)</li>
 <li>Connect GPIO48 to eQEP0I (GPIO simulates eQEP Index Signal)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2548"></a>
+<h2><a class="anchor" id="autotoc_md2594"></a>
 AM263X-CC or AM263PX-CC</h2>
 <p>When using AM263x-CC with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Connect HSEC Pin 49 (ePWM0A) to HSEC Pin 102 (eQEP0A)</li>
 <li>Connect HSEC Pin 51 (ePWM0B) to HSEC Pin 100 (eQEP0B)</li>
 <li>Connect HSEC Pin 52 (GPIO48) to HSEC Pin 106 (eQEP0I)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2549"></a>
+<h2><a class="anchor" id="autotoc_md2595"></a>
 AM261X-SOM</h2>
 <p>When using AM261x-SOM with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Connect HSEC Pin 49 (ePWM0A) to HSEC Pin 100 (eQEP0A)</li>
 <li>Connect HSEC Pin 51 (ePWM0B) to HSEC Pin 102 (eQEP0B)</li>
 <li>Connect HSEC Pin 52 (GPIO48) to HSEC Pin 106 (eQEP0I)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2550"></a>
+<h2><a class="anchor" id="autotoc_md2596"></a>
 AM263X-LP or AM263PX-LP</h2>
 <ul>
 <li>Connect J2 Pin 11 (ePWM0A) to J25 Pin 1 (eQEP2A)</li>
 <li>Connect J6 Pin 59 (ePWM0B) to J25 Pin 2 (eQEP2B)</li>
 <li>Connect J2 Pin 40 (GPIO48) to J25 Pin 3 (eQEP2I)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2551"></a>
+<h2><a class="anchor" id="autotoc_md2597"></a>
 AM261X-LP</h2>
 <p>No external connection is required.</p><ul>
 <li>The PWM signal is passed internally via input XBAR to PWMXBAR to EQEPA/B</li>
@@ -181,7 +181,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/eqep/eqep_position_speed/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2552"></a>
+<h1><a class="anchor" id="autotoc_md2598"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -190,10 +190,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>View the UART console logs for results</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2553"></a>
+<h1><a class="anchor" id="autotoc_md2599"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_EQEP_PAGE.html">EQEP</a></p>
-<h1><a class="anchor" id="autotoc_md2554"></a>
+<h1><a class="anchor" id="autotoc_md2600"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">EQEP Position Speed Test Started ...</div>

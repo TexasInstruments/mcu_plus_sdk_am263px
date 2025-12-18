@@ -98,8 +98,8 @@ $(document).ready(function(){initNavTree('enet_integration_guide_top.html',''); 
 </li>
 <li class="level1"><a href="#enet_integration_in_app">Integrating Enet LLD into User&#39;s Application</a><ul><li class="level2"><a href="#enet_init_sequence">Init Sequence</a></li>
 <li class="level2"><a href="#enet_open_sequence">Peripheral Open Sequence</a></li>
-<li class="level2"><a href="#enet_openport_sequence">Port Open Sequence</a><ul><li class="level3"><a href="#autotoc_md1259">MAC-PHY link</a></li>
-<li class="level3"><a href="#autotoc_md1260">MAC-to-MAC link</a></li>
+<li class="level2"><a href="#enet_openport_sequence">Port Open Sequence</a><ul><li class="level3"><a href="#autotoc_md1299">MAC-PHY link</a></li>
+<li class="level3"><a href="#autotoc_md1300">MAC-to-MAC link</a></li>
 </ul>
 </li>
 <li class="level2"><a href="#enet_pktrxtx_sequence">Packet Send/Receive Sequence</a></li>
@@ -230,7 +230,7 @@ Port Open Sequence</h2>
 <p>The MAC ports can be opened in MAC-to-PHY or MAC-to-MAC mode. In MAC-to-PHY mode, Enet LLD's PHY driver state machine will be used to configure the Ethernet PHY. In MAC-to-MAC mode, the PHY driver will be bypassed entirely.</p>
 <p>The link speed and duplexity in MAC-to-PHY can be fixed or auto-negotiated, while in MAC-to-MAC, both link speed and duplexity can be fixed only and must be provided by application.</p>
 <p>The steps to open and configure ports in either MAC-to-PHY or MAC-to-MAC modes are shown below.</p>
-<h3><a class="anchor" id="autotoc_md1259"></a>
+<h3><a class="anchor" id="autotoc_md1299"></a>
 MAC-PHY link</h3>
 <ol type="1">
 <li>Set the port number in <a class="el" href="structEnetPer__PortLinkCfg.html">EnetPer_PortLinkCfg</a> structure.</li>
@@ -309,7 +309,7 @@ MAC-PHY link</h3>
 <div class="line"><span class="comment">/* Step 6 - Open port link */</span></div>
 <div class="line"><a class="code" href="group__ENET__MAIN__API.html#ga4244317c67802020a93c2ed38c9dd797">ENET_IOCTL_SET_IN_ARGS</a>(&amp;prms, &amp;portLinkCfg);</div>
 <div class="line">status = Enet_ioctl(hEnet, coreId, <a class="code" href="enet__per_8h.html#a5e37e31ddf40acdd06e84bbf2cf413c0ad5684ee47181741d4c11d9de6bd5fbe1">ENET_PER_IOCTL_OPEN_PORT_LINK</a>, &amp;prms);</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md1260"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md1300"></a>
 MAC-to-MAC link</h3>
 <ol type="1">
 <li>Set the port number in <a class="el" href="structEnetPer__PortLinkCfg.html#a2c02466c17327b6963355acdeb3722a0">EnetPer_PortLinkCfg::macPort</a>.</li>

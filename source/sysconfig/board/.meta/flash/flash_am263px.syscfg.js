@@ -25,6 +25,10 @@ function getDefaultDriver()
 function getDefaultFlashName()
 {
     if(system.deviceData.device == "AM263Px") {
+        if(system.deviceData.package == "ZCZ_F")
+            {
+                return "IS25LX064";
+            }
         return "IS25LX256";
     } else {
         return "IS25LX256";

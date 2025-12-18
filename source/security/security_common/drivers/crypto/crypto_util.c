@@ -183,7 +183,7 @@ void Crypto_PKCSPaddingForMessage(const uint8_t *message, uint32_t msgLengthInBy
     psLen = keyLengthInBytes - msgLengthInBytes - 3U;
 
     /* Initializes random number generator */
-       srand((unsigned) time(NULL));
+       srand((uint32_t) time(NULL));
 
        /* n random numbers from 0 to 99 */
        for( i = 0 ; i < psLen ; i++ )

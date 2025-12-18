@@ -97,23 +97,23 @@ $(document).ready(function(){initNavTree('enet_migration_guide_top.html',''); in
 <li class="level1"><a href="#EnetInitSeqChange">Enet Driver Initialization Sequence Change</a></li>
 <li class="level1"><a href="#EnetDmaChOpenChange">Enet DMA channel open changes</a></li>
 <li class="level1"><a href="#EnetIoctlChange">Runtime Control API (Enet_ioctl) change</a></li>
-<li class="level1"><a href="#PacketTxRxChange">Packet Transmit/Receive API related changes</a><ul><ul><li class="level3"><a href="#autotoc_md1302">Scatter Gather list related change</a></li>
-<li class="level3"><a href="#autotoc_md1303">DisableCacheOps related change</a></li>
-<li class="level3"><a href="#autotoc_md1304">Checksum offload related change</a></li>
+<li class="level1"><a href="#PacketTxRxChange">Packet Transmit/Receive API related changes</a><ul><ul><li class="level3"><a href="#autotoc_md1348">Scatter Gather list related change</a></li>
+<li class="level3"><a href="#autotoc_md1349">DisableCacheOps related change</a></li>
+<li class="level3"><a href="#autotoc_md1350">Checksum offload related change</a></li>
 </ul>
 </ul>
 </li>
-<li class="level1"><a href="#CustomBoardSupport">Custom Board Support</a><ul><ul><li class="level3"><a href="#autotoc_md1305">Board config C file</a></li>
-<li class="level3"><a href="#autotoc_md1306">Ethernet MAC address Management</a></li>
-<li class="level3"><a href="#autotoc_md1307">1. Using Syscfg GUI tool</a></li>
-<li class="level3"><a href="#autotoc_md1308">2. Using Custom Board Option</a></li>
+<li class="level1"><a href="#CustomBoardSupport">Custom Board Support</a><ul><ul><li class="level3"><a href="#autotoc_md1351">Board config C file</a></li>
+<li class="level3"><a href="#autotoc_md1352">Ethernet MAC address Management</a></li>
+<li class="level3"><a href="#autotoc_md1353">1. Using Syscfg GUI tool</a></li>
+<li class="level3"><a href="#autotoc_md1354">2. Using Custom Board Option</a></li>
 </ul>
 </ul>
 </li>
 <li class="level1"><a href="#ExternalPhyManagement">External PHY management</a></li>
 <li class="level1"><a href="#MemoryTuningNonLwip">Tuning memory usage of enet driver for non-lwip apps</a></li>
 <li class="level1"><a href="#MemoryTuningLwip">Tuning memory usage of enet driver for lwip apps</a></li>
-<li class="level1"><a href="#autotoc_md1309">Compatibilty Breaks During MCU+ SDK Version Update</a><ul><li class="level2"><a href="#autotoc_md1310">Updating to version 10.00</a></li>
+<li class="level1"><a href="#autotoc_md1355">Compatibilty Breaks During MCU+ SDK Version Update</a><ul><li class="level2"><a href="#autotoc_md1356">Updating to version 10.00</a></li>
 </ul>
 </li>
 </ul>
@@ -301,7 +301,7 @@ This allows linker to link in only IOCTLs used by application into the executabl
 <h1><a class="anchor" id="PacketTxRxChange"></a>
 Packet Transmit/Receive API related changes</h1>
 <hr  />
-<h3><a class="anchor" id="autotoc_md1302"></a>
+<h3><a class="anchor" id="autotoc_md1348"></a>
 Scatter Gather list related change</h3>
 <p>Impact: The Scatter Gather list change impacts CPSW peripherals on AM263x/AM273x/AWR294x</p><ul>
 <li>Only applications directly invoke Enet driver packet <a class="el" href="group__ENET__DMA__API.html#gac80790c3fbf88c40ce547c41c6164ae6" title="Submit a queue of ready (full) packets to TX channel.">EnetDma_submitTxPktQ()</a> transmit APIs are impacted<ul>
@@ -324,7 +324,7 @@ Scatter Gather list related change</h3>
 </li>
 <li>If application uses the tx scatter gather feature please refer API documentation of EnetDma_Pkt and refer mcu_plus_sdk/source/networking/enet/core/examples/enet_tx_scatter_gather/txsg_test.c for example usage</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1303"></a>
+<h3><a class="anchor" id="autotoc_md1349"></a>
 DisableCacheOps related change</h3>
 <p>Impact: The disableCacheOps change impacts CPSW peripherals on AM263x/AM273x/AWR294x</p><ul>
 <li>Applications directly invoke Enet driver packet <a class="el" href="group__ENET__DMA__API.html#gac80790c3fbf88c40ce547c41c6164ae6" title="Submit a queue of ready (full) packets to TX channel.">EnetDma_submitTxPktQ()</a> transmit APIs are impacted</li>
@@ -338,7 +338,7 @@ DisableCacheOps related change</h3>
 <p>If application is lwip based based and UDP packets are transmitted, application should perform cache coherency operation on payload before submitting the packet for transmission. This is because zero copy is enabled for UDP packet transmission and cache operation in driver are disabled for UDP payload portions.</p><ul>
 <li>Refer mcu_plus_sdk/source/networking/enet/core/examples/lwip/enet_lwip_cpsw/udp_iperf.c: CacheP_wbInv function call for illustrative usage</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1304"></a>
+<h3><a class="anchor" id="autotoc_md1350"></a>
 Checksum offload related change</h3>
 <p>Impact: The checksum offload change impacts CPSW peripheral based applications on AM263x</p><ul>
 <li>Only applications directly invoke Enet driver packet <a class="el" href="group__ENET__DMA__API.html#gac80790c3fbf88c40ce547c41c6164ae6" title="Submit a queue of ready (full) packets to TX channel.">EnetDma_submitTxPktQ()</a> transmit APIs are impacted<ul>
@@ -366,7 +366,7 @@ Custom Board Support</h1>
 <li>Enabling “Custom Board” will prevent auto generation of board specific code.</li>
 <li>A C file will have to be then written that is specific to the board.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1305"></a>
+<h3><a class="anchor" id="autotoc_md1351"></a>
 Board config C file</h3>
 <p>The board specific file should contain the following</p><ul>
 <li><b>const EnetPhy_DrvInfoTbl gEnetPhyDrvTbl</b>: This is a table of ENET PHY drivers supported on the board. Refer Enet custom PHY integration guide for details on how to populate this table <a class="el" href="enetphy_guide_top.html">Ethernet PHY Driver User Guide</a></li>
@@ -385,11 +385,11 @@ Board config C file</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1306"></a>
+<h3><a class="anchor" id="autotoc_md1352"></a>
 Ethernet MAC address Management</h3>
 <p>Typically, one unique MAC address in burnt into efuse during device fabrication. Furthermore, additional MAC addresses are programmed in EEPROM on evaluation boards (EVM and launchpads) that are supported by TI.</p>
 <p>There are two ways by which you can set the custom MAC address.</p>
-<h3><a class="anchor" id="autotoc_md1307"></a>
+<h3><a class="anchor" id="autotoc_md1353"></a>
 1. Using Syscfg GUI tool</h3>
 <p>An option is provided in Syscfg GUI tool to force custom MAC address instead of taking from EEPROM/EFUSE.</p>
 <p>To use this option:</p><ul>
@@ -403,7 +403,7 @@ Ethernet MAC address Management</h3>
 </ul>
 <p><img src="enet_mac_addr_config_auto.png" alt="" class="inline" title="MACAddressAuto Assign"/>   </p>
 <p>Please note that"Auto Assign" is not supported on AM273x and AWR294x due to EVM limitation.</p>
-<h3><a class="anchor" id="autotoc_md1308"></a>
+<h3><a class="anchor" id="autotoc_md1354"></a>
 2. Using Custom Board Option</h3>
 <p>On your custom board EEPROM may not be available or it is not used to keep MAC address, then please follow below steps to set MAC address- <br  />
 </p><ol type="1">
@@ -505,9 +505,9 @@ Tuning memory usage of enet driver for lwip apps</h1>
 </li>
 </ul>
 <p><a class="el" href="enet_migration_guide_top.html">Back To Top</a></p>
-<h1><a class="anchor" id="autotoc_md1309"></a>
+<h1><a class="anchor" id="autotoc_md1355"></a>
 Compatibilty Breaks During MCU+ SDK Version Update</h1>
-<h2><a class="anchor" id="autotoc_md1310"></a>
+<h2><a class="anchor" id="autotoc_md1356"></a>
 Updating to version 10.00</h2>
 <p><a class="el" href="enet_mcupsdk_10_00_update.html">Version Updates from earlier SDKs to Latest</a> </p>
 </div></div><!-- contents -->

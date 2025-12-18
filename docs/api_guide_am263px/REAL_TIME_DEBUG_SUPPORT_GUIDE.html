@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('REAL_TIME_DEBUG_SUPPORT_GUIDE.html',''
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md505">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md506">Confirm CCS Features</a></li>
-<li class="level1"><a href="#autotoc_md507">Create Target Configuration File</a></li>
-<li class="level1"><a href="#autotoc_md508">Add Serial Command Monitor Software</a></li>
-<li class="level1"><a href="#autotoc_md509">Launch Real Time Debug</a></li>
+<ul><li class="level1"><a href="#autotoc_md543">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md544">Confirm CCS Features</a></li>
+<li class="level1"><a href="#autotoc_md545">Create Target Configuration File</a></li>
+<li class="level1"><a href="#autotoc_md546">Add Serial Command Monitor Software</a></li>
+<li class="level1"><a href="#autotoc_md547">Launch Real Time Debug</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_real_time_debug"></a></p>
-<h1><a class="anchor" id="autotoc_md505"></a>
+<h1><a class="anchor" id="autotoc_md543"></a>
 Introduction</h1>
 <p>With Real time debug, global variables can be added to expression window in CCS and read/written during continuous run of the program. It is enabled by UART connection between CCS and SOC. The connection is built by debug program in the listed files.</p>
 <ul>
@@ -110,7 +110,7 @@ Introduction</h1>
 <li>Serial_Cmd_HAL.h</li>
 </ul>
 <p>Even though there are four files listed here, there are only two functions required in application program. One is "SerialCmd_init()" called in initialization and the other is "SerialCmd_read()" called in background loop of BareMetal or low priority task of RTOS. This section focus on how to create the UART connection and how to launch real time debug in CCS.</p>
-<h1><a class="anchor" id="autotoc_md506"></a>
+<h1><a class="anchor" id="autotoc_md544"></a>
 Confirm CCS Features</h1>
 <p>It is recommended to check the following CCS driver file if the CCS version is older than 11.1. The configuration of Cortex_R5 should be similar to below figure. If any line is missing, it is necessary to add the line showing in Figure. As for content of the lines, COM Port and Baud Rate need to be updated in target configuration file, which is included in the next step.</p>
 <ul>
@@ -128,7 +128,7 @@ Confirm CCS Features</h1>
 <div class="line">        &lt;connectionType Type=&quot;UARTConnection&quot;/&gt;</div>
 <div class="line">    &lt;/driver&gt;</div>
 <div class="line">&lt;/isa&gt;</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md507"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md545"></a>
 Create Target Configuration File</h1>
 <p>For a control card in below Figure, it offers both JTAG and UART ports in one USB port. Details on hardware connection can be found in AM263PX Control Card User's Guide. It is necessary to create a target configuration file for the debug ports. A step-to-step guide is given below. A target configuration file is created and then configured with both JTAG and UART. The UART COM Port in target configuration should match PC Device Manager COM Port for JTAG probe Application/User UART. The Baud Rate in target configuration should be consistent with SoC UART Baud Rate configured in next step.</p>
 <p> <style>div.image img[src="evm_overview_3.png"]{width:80%}</style> </p><div class="image">
@@ -181,7 +181,7 @@ Select CPU Properties</div></div>
 <img src="uart_com_port.png" alt=""/>
 <div class="caption">
 Find XDS110 UART COM Port</div></div>
-<h1><a class="anchor" id="autotoc_md508"></a>
+<h1><a class="anchor" id="autotoc_md546"></a>
 Add Serial Command Monitor Software</h1>
 <p>There are multiple ways to use UART0 as a debug interface. They are Debug Log and Serial Command Monitor. Debug Log is a built-in tool located at Driver Porting Layer of SDK. Like Serial Cmd Monitor, its function must be located out of interrupt callback. It is a handy tool enabling string input and output. But, input and output go through UART console only. There is no built-in GUI like Expression Window and Graph in CCS. It is recommended to disable UART0 in Debug Log SysCfg as shown below and configure UART0 instance for Serial Command Monitor. As the name of UART instance in Sysconfig "CONFIG_UART_CONSOLE", matches the instance name in "Serial_Cmd_HAL.c", it not necessary to modify the two functions required by initialization and background loop. They can be simply inserted into any application.</p>
 <p> <style>div.image img[src="disable_uart_log.png"]{width:40%}</style> </p><div class="image">
@@ -192,7 +192,7 @@ Disable UART Log in Debug Log</div></div>
 <img src="configure_uart_instance.png" alt=""/>
 <div class="caption">
 Configure UART0 Instance</div></div>
-<h1><a class="anchor" id="autotoc_md509"></a>
+<h1><a class="anchor" id="autotoc_md547"></a>
 Launch Real Time Debug</h1>
 <p>After building the program, debug window should be opened with the target configuration file created above. If the created target configuration file is not already opened, it can be located by following figure and looking into "User Defined" folder of the "Target Configuration" window.</p>
 <p> <style>div.image img[src="locate_target_config.png"]{width:20%}</style> </p><div class="image">

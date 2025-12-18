@@ -237,6 +237,14 @@ let pruicss_top_module = {
         },
     ],
     validate: validate,
+    moduleStatic: {
+        modules: function(inst) {
+            return [{
+                name: "system_common",
+                moduleName: "/system_common",
+            }]
+        },
+    },
     moduleInstances: moduleInstances,
     getInstanceConfig,
     getClockFrequencies,

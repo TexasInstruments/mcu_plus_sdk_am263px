@@ -92,40 +92,169 @@ $(document).ready(function(){initNavTree('enet_mcupsdk_10_00_update.html',''); i
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1282">While upgrading from 11.00 SDK to 11.01 SDK</a></li>
-<li class="level1"><a href="#autotoc_md1283">Change Set</a><ul><li class="level2"><a href="#autotoc_md1284">Change-1 Description</a></li>
+<ul><li class="level1"><a href="#autotoc_md1322">While upgrading from 11.01 or earlier to latest SDK</a><ul><li class="level2"><a href="#autotoc_md1323">Change Set</a><ul><li class="level3"><a href="#autotoc_md1324">Change-1 Description</a></li>
+<li class="level3"><a href="#autotoc_md1325">Change-1 Impact</a></li>
+<li class="level3"><a href="#autotoc_md1326">Change-2 Description</a></li>
+<li class="level3"><a href="#autotoc_md1327">Change-2 Impact</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1285">While upgrading from 10.00 SDK</a></li>
-<li class="level1"><a href="#autotoc_md1286">Change Set</a><ul><li class="level2"><a href="#autotoc_md1287">Change-1 Description</a></li>
-<li class="level2"><a href="#autotoc_md1288">Change-1 Impact</a></li>
-<li class="level2"><a href="#autotoc_md1289">Change-1 Solution</a></li>
-<li class="level2"><a href="#autotoc_md1290">Change-2 Description</a></li>
-<li class="level2"><a href="#autotoc_md1291">Change-2 Impact</a></li>
-<li class="level2"><a href="#autotoc_md1292">Change-2 Solution</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1293">While upgrading from 09.02 SDK or earlier</a><ul><li class="level2"><a href="#autotoc_md1294">Change-1 Description</a></li>
-<li class="level2"><a href="#autotoc_md1295">Change-1 Impact</a></li>
-<li class="level2"><a href="#autotoc_md1296">Change-1 Solution</a><ul><li class="level3"><a href="#autotoc_md1297">Option 1:</a></li>
-<li class="level3"><a href="#autotoc_md1298">Option 2:</a></li>
+<li class="level1"><a href="#autotoc_md1328">While upgrading from 11.00 SDK to 11.01 SDK</a><ul><li class="level2"><a href="#autotoc_md1329">Change Set</a><ul><li class="level3"><a href="#autotoc_md1330">Change-1 Description</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md1299">Change-2 Description</a></li>
-<li class="level2"><a href="#autotoc_md1300">Change-2 Impact</a></li>
-<li class="level2"><a href="#autotoc_md1301">Change-2 Solution</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#autotoc_md1331">While upgrading from 10.00 SDK</a><ul><li class="level2"><a href="#autotoc_md1332">Change Set</a><ul><li class="level3"><a href="#autotoc_md1333">Change-1 Description</a></li>
+<li class="level3"><a href="#autotoc_md1334">Change-1 Impact</a></li>
+<li class="level3"><a href="#autotoc_md1335">Change-1 Solution</a></li>
+<li class="level3"><a href="#autotoc_md1336">Change-2 Description</a></li>
+<li class="level3"><a href="#autotoc_md1337">Change-2 Impact</a></li>
+<li class="level3"><a href="#autotoc_md1338">Change-2 Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level1"><a href="#autotoc_md1339">While upgrading from 09.02 SDK or earlier</a><ul><li class="level2"><a href="#autotoc_md1340">Change-1 Description</a></li>
+<li class="level2"><a href="#autotoc_md1341">Change-1 Impact</a></li>
+<li class="level2"><a href="#autotoc_md1342">Change-1 Solution</a><ul><li class="level3"><a href="#autotoc_md1343">Option 1:</a></li>
+<li class="level3"><a href="#autotoc_md1344">Option 2:</a></li>
+</ul>
+</li>
+<li class="level2"><a href="#autotoc_md1345">Change-2 Description</a></li>
+<li class="level2"><a href="#autotoc_md1346">Change-2 Impact</a></li>
+<li class="level2"><a href="#autotoc_md1347">Change-2 Solution</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="textblock"><p><a class="anchor" id="md_components_networking_enet_lld_mcupsdk_update_migration_guide_mcupsdk_10_00_onwards"></a> </p>
-<h1><a class="anchor" id="autotoc_md1282"></a>
+<div class="textblock"><p><a class="anchor" id="md_components_networking_enet_lld_mcupsdk_update_migration_guide_mcupsdk_10_00_onwards"></a></p>
+<h1><a class="anchor" id="autotoc_md1322"></a>
+While upgrading from 11.01 or earlier to latest SDK</h1>
+<h2><a class="anchor" id="autotoc_md1323"></a>
+Change Set</h2>
+<p><b>Change-1</b>: Sysconfig generated file changes<br  />
+ <b>Change-2</b>: Enet Module interface removed</p>
+<h3><a class="anchor" id="autotoc_md1324"></a>
+Change-1 Description</h3>
+<p>Enet-LLD sysconfig layer has been cleaned up to improve code readability by removing sysconfig API abstractions and statically initializing CPSW/ICSSG configurations and calling driver APIs directly.</p>
+<p>The following new files are generated from sysconfig. Example makefiles have been updated to include these files:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Generated File  </th><th class="markdownTableHeadLeft">Description   </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">ti_enet_dma_init.h  </td><td class="markdownTableBodyLeft">Contains DMA structures and API definitions   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">ti_enet_dma_init.c  </td><td class="markdownTableBodyLeft">Contains DMA object initialization based on the DMA channel config settings in Sysconfig GUI   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">ti_enet_init.c  </td><td class="markdownTableBodyLeft">Contains global CPSW config and RM resource config initialization along with helper functions:<br  />
+- Global RM resource config is populated from an array defined in device specific .js files<br  />
+- Global CPSW config is populated from the Sysconfig GUI settings   </td></tr>
+</table>
+<p>The following APIs have been removed from syscfg generated files:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Removed API  </th><th class="markdownTableHeadLeft">Description   </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">EnetApp_enablePorts()  </td><td class="markdownTableBodyLeft">Replaced by separate host/mac functions   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">EnetApp_openDmaChannels()  </td><td class="markdownTableBodyLeft">Inlined into main flow   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">EnetApp_openAllRxDmaChannels()  </td><td class="markdownTableBodyLeft">Inlined into main flow   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">EnetApp_openAllTxDmaChannels()  </td><td class="markdownTableBodyLeft">Inlined into main flow   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">EnetApp_doCpswOpen()  </td><td class="markdownTableBodyLeft">No longer needed, replaced with direct call to <a class="el" href="group__ENET__MAIN__API.html#ga40325ec5d06d5d7788ec71609edd7ac0" title="Open and initializes the Enet driver for a peripheral.">Enet_open()</a>   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">EnetAppUtils_initResourceConfig()  </td><td class="markdownTableBodyLeft">Replaced with static config   </td></tr>
+</table>
+<p>The following APIs have been added in syscfg generated files:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">New API  </th><th class="markdownTableHeadLeft">Description   </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">EnetApp_enableHostPort()  </td><td class="markdownTableBodyLeft">Separate host port enable   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">EnetApp_enableMacPort()  </td><td class="markdownTableBodyLeft">Separate MAC port enable   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">EnetApp_getPhyAliveStatus()  </td><td class="markdownTableBodyLeft">Direct PHY status check   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">EnetApp_updateTxChInitCfg()  </td><td class="markdownTableBodyLeft">Direct TX channel config update   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">EnetApp_updateRxChInitCfg()  </td><td class="markdownTableBodyLeft">Direct RX channel config update   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">EnetApp_getCpswCfg()  </td><td class="markdownTableBodyLeft">Returns static CPSW config pointer   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">EnetApp_cpswInitMacAddr()  </td><td class="markdownTableBodyLeft">Static MAC address init   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">getAleModeFlags(), getAlePortMask()  </td><td class="markdownTableBodyLeft">Template helper functions   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">getIpNxtWhitelistCount(), getIpNxtWhitelistInitArray()  </td><td class="markdownTableBodyLeft">Template helper functions   </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md1325"></a>
+Change-1 Impact</h3>
+<ul>
+<li>All networking examples now generate additional files that are included in makefiles - ti_enet_dma_init.c/h and ti_enet_init.c.</li>
+<li>Enet driver initialization has been internally refactored to reduce abstraction. Users need to rebuild their projects to get the modified template changes.</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md1326"></a>
+Change-2 Description</h3>
+<p>Enet module abstraction layer has been removed to meet functional safety standards by replacing generic <code>EnetMod_Handle</code> with specific typed handles (e.g., <code>CpswAle_Handle</code>, <code>Mdio_Handle</code>), eliminating function pointers and void pointers.</p><ul>
+<li>The <code>void *arg</code> argument used in the function pointer of <code><a class="el" href="structEnetPhy__Mdio.html" title="MDIO driver.">EnetPhy_Mdio</a></code> structure has been changed to <code>Mdio_Obj*</code></li>
+<li>The <code>EnetMod_Obj enetMod</code> member in all module structures has been removed and its individual members have been expanded inline</li>
+<li>Module APIs now use module-specific handles instead of the generic <code>EnetMod_Handle</code> as below:</li>
+</ul>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Module  </th><th class="markdownTableHeadLeft">Impacted APIs  </th><th class="markdownTableHeadLeft">Old parameters  </th><th class="markdownTableHeadLeft">New parameters   </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">CPSW ALE  </td><td class="markdownTableBodyLeft">CpswAle_open, CpswAle_rejoin, CpswAle_ioctl,<br  />
+ CpswAle_close, CpswAle_saveCtxt, CpswAle_restoreCtxt  </td><td class="markdownTableBodyLeft"><code>EnetMod_Handle hMod, ...</code>  </td><td class="markdownTableBodyLeft"><code>CpswAle_Handle hAle, ...</code>   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">CPSW CPTS  </td><td class="markdownTableBodyLeft">CpswCpts_open, CpswCpts_rejoin, CpswCpts_ioctl,<br  />
+ CpswCpts_close, CpswCpts_saveCtxt, CpswCpts_restoreCtxt  </td><td class="markdownTableBodyLeft"><code>EnetMod_Handle hMod, ...</code>  </td><td class="markdownTableBodyLeft"><code>CpswCpts_Handle hCpts, ...</code>   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">CPSW HostPort  </td><td class="markdownTableBodyLeft">CpswHostPort_open, CpswHostPort_rejoin, CpswHostPort_ioctl,<br  />
+ CpswHostPort_close, CpswHostPort_saveCtxt, CpswHostPort_restoreCtxt  </td><td class="markdownTableBodyLeft"><code>EnetMod_Handle hMod, ...</code>  </td><td class="markdownTableBodyLeft"><code>CpswHostPort_Handle hPort, ...</code>   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">CPSW MacPort  </td><td class="markdownTableBodyLeft">CpswMacPort_open, CpswMacPort_rejoin, CpswMacPort_ioctl,<br  />
+ CpswMacPort_close, CpswMacPort_saveCtxt, CpswMacPort_restoreCtxt  </td><td class="markdownTableBodyLeft"><code>EnetMod_Handle hMod, ...</code>  </td><td class="markdownTableBodyLeft"><code>CpswMacPort_Handle hPort, ...</code>   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">CPSW Stats  </td><td class="markdownTableBodyLeft">CpswStats_open, CpswStats_rejoin, CpswStats_ioctl,<br  />
+ CpswStats_close, CpswStats_saveCtxt, CpswStats_restoreCtxt  </td><td class="markdownTableBodyLeft"><code>EnetMod_Handle hMod, ...</code>  </td><td class="markdownTableBodyLeft"><code>CpswStats_Handle hStats, ...</code>   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">MDIO  </td><td class="markdownTableBodyLeft">Mdio_open, Mdio_rejoin, Mdio_ioctl, Mdio_close, Mdio_saveCtxt, Mdio_restoreCtxt  </td><td class="markdownTableBodyLeft"><code>EnetMod_Handle hMod, ...</code>  </td><td class="markdownTableBodyLeft"><code>Mdio_Handle hMdio, ...</code>   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">ICSSG Stats  </td><td class="markdownTableBodyLeft">IcssgStats_open, IcssgStats_rejoin, IcssgStats_ioctl, IcssgStats_close  </td><td class="markdownTableBodyLeft"><code>EnetMod_Handle hMod, ...</code>  </td><td class="markdownTableBodyLeft"><code>IcssgStats_Handle hStats, ...</code>   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">ICSSG TAS  </td><td class="markdownTableBodyLeft">IcssgTas_open, IcssgTas_rejoin, IcssgTas_ioctl, IcssgTas_close  </td><td class="markdownTableBodyLeft"><code>EnetMod_Handle hMod, ...</code>  </td><td class="markdownTableBodyLeft"><code>IcssgTas_Handle hTas, ...</code>   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">ICSSG TimeSync  </td><td class="markdownTableBodyLeft">IcssgTimeSync_open, IcssgTimeSync_rejoin, IcssgTimeSync_ioctl, IcssgTimeSync_close  </td><td class="markdownTableBodyLeft"><code>EnetMod_Handle hMod, ...</code>  </td><td class="markdownTableBodyLeft"><code>IcssgTimeSync_Handle hTimeSync, ...</code>   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft" rowspan="2">NullMod  </td><td class="markdownTableBodyLeft">NullMod_open  </td><td class="markdownTableBodyLeft"><code>EnetMod_Handle hMod, ... , const void *cfg</code>  </td><td class="markdownTableBodyLeft"><code>NullMod_Handle hNull, ... , const <a class="el" href="structNullMod__Cfg.html" title="Null Module configuration parameters.">NullMod_Cfg</a> *nullModCfg</code>   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">NullMod_rejoin, NullMod_ioctl, NullMod_close  </td><td class="markdownTableBodyLeft"><code>EnetMod_Handle hMod, ...</code>  </td><td class="markdownTableBodyLeft"><code>NullMod_Handle hNull, ...</code>   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyLeft">EnetPhyMdioDflt  </td><td class="markdownTableBodyLeft">EnetPhyMdioDflt_isAlive, EnetPhyMdioDflt_isLinked, EnetPhyMdioDflt_readC22,<br  />
+ EnetPhyMdioDflt_writeC22, EnetPhyMdioDflt_readC45, EnetPhyMdioDflt_writeC45  </td><td class="markdownTableBodyLeft"><code>..., void *args</code>  </td><td class="markdownTableBodyLeft"><code>..., Mdio_Obj *hMdio</code>   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">EnetPhy  </td><td class="markdownTableBodyLeft">EnetPhy_open  </td><td class="markdownTableBodyLeft"><code>..., void *mdioArgs</code>  </td><td class="markdownTableBodyLeft"><code>..., Mdio_Obj *mdioArgs</code>   </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md1327"></a>
+Change-2 Impact</h3>
+<ol type="1">
+<li>All code using <code>EnetMod_Handle</code> has been replaced with module specific handle type (e.g., <code>CpswAle_Handle</code>, <code>Mdio_Handle</code>)</li>
+<li>All code using the <code>ENET_MOD()</code> macro has been removed</li>
+<li>All generic wrapper calls for module IOCTLs have been replaced with module-specific functions</li>
+<li>PHY code that passes <code>void*</code> pointers has been updated to use <code>Mdio_Obj*</code> instead</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md1328"></a>
 While upgrading from 11.00 SDK to 11.01 SDK</h1>
-<h1><a class="anchor" id="autotoc_md1283"></a>
-Change Set</h1>
+<h2><a class="anchor" id="autotoc_md1329"></a>
+Change Set</h2>
 <p>Change-1 : ENET UDMA API changes</p>
-<h2><a class="anchor" id="autotoc_md1284"></a>
-Change-1 Description</h2>
+<h3><a class="anchor" id="autotoc_md1330"></a>
+Change-1 Description</h3>
 <p>The ENET UDMA API has undergone some changes, with the primary goal of enhancing overall code quality and adhering to functional safety standards. These changes aim to minimize the use of error-prone constructs and eliminate the utilization of void pointers.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -143,45 +272,49 @@ Change-1 Description</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">6. Enet DMA close TX channel: EnetDma_closeTxCh(EnetDma_TxChHandle hTxCh, EnetDma_PktQ *fq, EnetDma_PktQ *cq)  </td><td class="markdownTableBodyLeft">EnetUdma_closeTxCh(EnetDma_TxChHandle hTxCh, EnetDma_PktQ *fq, EnetDma_PktQ *cq)   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1285"></a>
+<h1><a class="anchor" id="autotoc_md1331"></a>
 While upgrading from 10.00 SDK</h1>
-<h1><a class="anchor" id="autotoc_md1286"></a>
-Change Set</h1>
-<p>Change-1 : ENET(CPSW) and ENET(ICSS) pinmux configuration. Change-2 : Support to configure link parameters in Sysconfig GUI tool. Change-3 : ENET(CPSW) and ENET(ICSS) Example paths have been changed. Change-4 : Support to add and configure Ethernet PHY module through sysconfig-GUI tool.</p>
-<h2><a class="anchor" id="autotoc_md1287"></a>
-Change-1 Description</h2>
+<h2><a class="anchor" id="autotoc_md1332"></a>
+Change Set</h2>
+<p>Change-1 : ENET(CPSW) and ENET(ICSS) pinmux configuration.<br  />
+ Change-2 : Support to configure link parameters in Sysconfig GUI tool.<br  />
+ Change-3 : ENET(CPSW) and ENET(ICSS) Example paths have been changed.<br  />
+ Change-4 : Support to add and configure Ethernet PHY module through sysconfig-GUI tool.<br  />
+</p>
+<h3><a class="anchor" id="autotoc_md1333"></a>
+Change-1 Description</h3>
 <p>In MCU+ SDK version of 10.01, ENET(CPSW) and ENET(ICSS) related examples showcasing various features have been moved from ${MCU_PLUS_SDK_PATH}/examples/networking to ${MCU_PLUS_SDK_PATH}/source/networking/enet/core/examples</p>
-<h2><a class="anchor" id="autotoc_md1288"></a>
-Change-1 Impact</h2>
+<h3><a class="anchor" id="autotoc_md1334"></a>
+Change-1 Impact</h3>
 <p>The above change makes older build commands to build Networking examples no longer supported, and it has to be updated with correct path.</p>
-<h2><a class="anchor" id="autotoc_md1289"></a>
-Change-1 Solution</h2>
+<h3><a class="anchor" id="autotoc_md1335"></a>
+Change-1 Solution</h3>
 <p>Please use "make help DEVICE=&lt;dev_name&gt;" to get the correct location and build commands for the examples. </p><dl class="section note"><dt>Note</dt><dd>For Windows , please use "gmake" instead of "make"</dd></dl>
-<h2><a class="anchor" id="autotoc_md1290"></a>
-Change-2 Description</h2>
+<h3><a class="anchor" id="autotoc_md1336"></a>
+Change-2 Description</h3>
 <p>In MCU+ SDK version of 10.01, support to add custom PHY and configure it through sysconfig tool has been added, and this needs updates in corresponding example.syscfg file to be compatible with latest changes</p>
-<h2><a class="anchor" id="autotoc_md1291"></a>
-Change-2 Impact</h2>
+<h3><a class="anchor" id="autotoc_md1337"></a>
+Change-2 Impact</h3>
 <p>This will need addition of the corresponding sysconfig tool changes to add the ethernet phy module and configure it.</p>
-<h2><a class="anchor" id="autotoc_md1292"></a>
-Change-2 Solution</h2>
+<h3><a class="anchor" id="autotoc_md1338"></a>
+Change-2 Solution</h3>
 <ul>
 <li>Refer <a class="el" href="phy_integration_guide_top.html">Ethernet PHY Integration Guide</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1293"></a>
+<h1><a class="anchor" id="autotoc_md1339"></a>
 While upgrading from 09.02 SDK or earlier</h1>
-<h2><a class="anchor" id="autotoc_md1294"></a>
+<h2><a class="anchor" id="autotoc_md1340"></a>
 Change-1 Description</h2>
-<p>In MCU+ SDK version of 10.00, ENET(CPSW) and ENET(ICSS) component in Sysconfig GUI has been updated with fixes to correct MII/RMII mode for ICSSG and CPSW Resp.. Additonally support added to release unused pins based on number of ports were enabled in CPSW.</p>
-<h2><a class="anchor" id="autotoc_md1295"></a>
+<p>In MCU+ SDK version of 10.00, ENET(CPSW) and ENET(ICSS) component in Sysconfig GUI has been updated with fixes to correct MII/RMII mode for ICSSG and CPSW Resp.. Additionally support added to release unused pins based on number of ports were enabled in CPSW.</p>
+<h2><a class="anchor" id="autotoc_md1341"></a>
 Change-1 Impact</h2>
 <p>The above described change makes any older 'example.syscfg' generated using SDK version of 09.00 or earlier not compatible with SDK version 10.00 or later. This incompatibility is seen only when either ENET(CPSW) or ENET(ICSS) is added in your application/example.If neither of the components are added, you may ignore this change and there is no impact. User will see the error in sysconfig gui tool when the old example.syscfg file is opened in updated version of mcu plus sdk.</p>
-<h2><a class="anchor" id="autotoc_md1296"></a>
+<h2><a class="anchor" id="autotoc_md1342"></a>
 Change-1 Solution</h2>
-<h3><a class="anchor" id="autotoc_md1297"></a>
+<h3><a class="anchor" id="autotoc_md1343"></a>
 Option 1:</h3>
-<p>If is possible to create a example.syscfg as per user configurations, please generate a new example.syscfg from any SDK example and change the configration as per your need. This is the safest option.</p>
-<h3><a class="anchor" id="autotoc_md1298"></a>
+<p>If it is possible to create an example.syscfg as per user configurations, please generate a new example.syscfg from any SDK example and change the configuration as per your need. This is the safest option.</p>
+<h3><a class="anchor" id="autotoc_md1344"></a>
 Option 2:</h3>
 <p>Sometimes, it is not easy to get a new example.syscfg that matches the older example.syscfg. In those case, please follow the below steps</p>
 <ul>
@@ -191,13 +324,13 @@ Option 2:</h3>
 <li>Find and replace 'enet_cpsw1.macport1LoopbackEn = true;' with 'enet_cpsw1.macport1LoopbackMode = "LOOPBACK_MODE_MAC";'</li>
 </ul>
 <p>Save the modifications. Then open sysconfig GUI tool with the modifications, save and close the tool.</p>
-<h2><a class="anchor" id="autotoc_md1299"></a>
+<h2><a class="anchor" id="autotoc_md1345"></a>
 Change-2 Description</h2>
 <p>In MCU+ SDK version of 10.00, parameters that configures link capabilities for auto negotiation such as speed and duplexity is added into syscfg GUI.</p>
-<h2><a class="anchor" id="autotoc_md1300"></a>
+<h2><a class="anchor" id="autotoc_md1346"></a>
 Change-2 Impact</h2>
 <p>'EnetApp_initLinkArgs' function that is defined in the user applicaiton code is no longer called. Instead, a new function EnetApp_initLinkArgs is defined.</p>
-<h2><a class="anchor" id="autotoc_md1301"></a>
+<h2><a class="anchor" id="autotoc_md1347"></a>
 Change-2 Solution</h2>
 <ul>
 <li>User shall open delete their locally defined 'EnetApp_initLinkArgs' and instead let sysconfig tool handle it via generated code.</li>

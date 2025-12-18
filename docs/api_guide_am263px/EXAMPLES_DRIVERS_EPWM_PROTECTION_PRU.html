@@ -92,31 +92,31 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_EPWM_PROTECTION_PRU.h
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2379">Introduction</a><ul><li class="level2"><a href="#autotoc_md2380">Inputs</a></li>
-<li class="level2"><a href="#autotoc_md2381">Outputs</a></li>
-<li class="level2"><a href="#autotoc_md2382">Implementation</a></li>
+<ul><li class="level1"><a href="#autotoc_md2425">Introduction</a><ul><li class="level2"><a href="#autotoc_md2426">Inputs</a></li>
+<li class="level2"><a href="#autotoc_md2427">Outputs</a></li>
+<li class="level2"><a href="#autotoc_md2428">Implementation</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2383">External Connections</a><ul><li class="level2"><a href="#autotoc_md2384">AM263X-CC or AM263PX-CC or AM261X-SOM</a></li>
-<li class="level2"><a href="#autotoc_md2385">AM263X-LP or AM263PX-LP or AM261X-LP</a></li>
+<li class="level1"><a href="#autotoc_md2429">External Connections</a><ul><li class="level2"><a href="#autotoc_md2430">AM263X-CC or AM263PX-CC or AM261X-SOM</a></li>
+<li class="level2"><a href="#autotoc_md2431">AM263X-LP or AM263PX-LP or AM261X-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_EPWM_PROTECTION_PRU_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2386">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2387">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2388">Sample Output</a><ul><li class="level2"><a href="#autotoc_md2389">Waveforms</a></li>
-<li class="level2"><a href="#autotoc_md2390">Benchmarks</a></li>
+<li class="level1"><a href="#autotoc_md2432">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2433">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2434">Sample Output</a><ul><li class="level2"><a href="#autotoc_md2435">Waveforms</a></li>
+<li class="level2"><a href="#autotoc_md2436">Benchmarks</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2391">References</a><ul><li class="level2"><a href="#autotoc_md2392">ICSS connectivity</a></li>
-<li class="level2"><a href="#autotoc_md2393">AM263x XBARs</a></li>
-<li class="level2"><a href="#autotoc_md2394">AM263x EPWM Digital Compare and Trip Zone module</a></li>
+<li class="level1"><a href="#autotoc_md2437">References</a><ul><li class="level2"><a href="#autotoc_md2438">ICSS connectivity</a></li>
+<li class="level2"><a href="#autotoc_md2439">AM263x XBARs</a></li>
+<li class="level2"><a href="#autotoc_md2440">AM263x EPWM Digital Compare and Trip Zone module</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_epwm_protection_pru"></a></p>
-<h1><a class="anchor" id="autotoc_md2379"></a>
+<h1><a class="anchor" id="autotoc_md2425"></a>
 Introduction</h1>
 <p>This example shows:</p><ul>
 <li>Support for PWM protection solution using PRU ICSS<ul>
@@ -135,7 +135,7 @@ Introduction</h1>
 <img src="am263_epwm_protection_pru_fig1a.png" alt=""/>
 <div class="caption">
 Figure 1a. PWM protection example - Block Diagram</div></div>
-<h2><a class="anchor" id="autotoc_md2380"></a>
+<h2><a class="anchor" id="autotoc_md2426"></a>
 Inputs</h2>
 <ul>
 <li>IGBT Fault signal<ul>
@@ -156,7 +156,7 @@ Inputs</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2381"></a>
+<h2><a class="anchor" id="autotoc_md2427"></a>
 Outputs</h2>
 <p>Flowchart for expected output/PWM protection behavior</p>
 <p> <style>div.image img[src="am263_epwm_protection_pru_fig2a.png"]{width:40%}</style> </p><div class="image">
@@ -225,7 +225,7 @@ Figure 2b. Normal PWM output to Low side ASC, Normal PWM output to High side ASC
 <img src="am263_epwm_protection_pru_fig2c.png" alt=""/>
 <div class="caption">
 Figure 2c. Normal PWM output to shut down</div></div>
-<h2><a class="anchor" id="autotoc_md2382"></a>
+<h2><a class="anchor" id="autotoc_md2428"></a>
 Implementation</h2>
 <p> <style>div.image img[src="am263_epwm_protection_pru_fig3a.png"]{width:100%}</style> </p><div class="image">
 <img src="am263_epwm_protection_pru_fig3a.png" alt=""/>
@@ -380,9 +380,9 @@ Figure 3b. Implementation flow chart</div></div>
 </ul>
 <p>ICSS PRU Firmware latency:</p>
 <p>Execution time - from detection of input fault signal to generation of trip output signal : 8 cycles * 5ns. 40ns</p>
-<h1><a class="anchor" id="autotoc_md2383"></a>
+<h1><a class="anchor" id="autotoc_md2429"></a>
 External Connections</h1>
-<h2><a class="anchor" id="autotoc_md2384"></a>
+<h2><a class="anchor" id="autotoc_md2430"></a>
 AM263X-CC or AM263PX-CC or AM261X-SOM</h2>
 <p>Connect AM263x-CC or AM263Px-CC or AM261x-SOM to TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p>
 <p> <style>div.image img[src="am263_epwm_protection_pru_fig4a.png"]{width:91%}</style> </p><div class="image">
@@ -439,7 +439,7 @@ Figure 4a. External connections required</div></div>
 <li>Capture EPWM2_A waveform at HSEC Pin 50</li>
 <li>Capture EPWM2_B waveform at HSEC Pin 52</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2385"></a>
+<h2><a class="anchor" id="autotoc_md2431"></a>
 AM263X-LP or AM263PX-LP or AM261X-LP</h2>
 <p>Connect IGBT, OCP, OVP and Speed Signals as below:</p><ul>
 <li>Provide 'IGBT Fault signal' input to GPIO51<ul>
@@ -505,7 +505,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/epwm/epwm_protection_pru   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2386"></a>
+<h1><a class="anchor" id="autotoc_md2432"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -513,10 +513,10 @@ Steps to Run the Example</h1>
 <li>Establish connections as mentioned in External Connections section</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2387"></a>
+<h1><a class="anchor" id="autotoc_md2433"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_EPWM_PAGE.html">EPWM</a></p>
-<h1><a class="anchor" id="autotoc_md2388"></a>
+<h1><a class="anchor" id="autotoc_md2434"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">[Cortex_R5_0] EPWM Protection PRU Test Started ...</div>
@@ -660,7 +660,7 @@ Sample Output</h1>
 <img src="am263_epwm_protection_pru_fig4h.png" alt=""/>
 <div class="caption">
 Figure 4h. Waveform: Expected waveform from example</div></div>
-<h2><a class="anchor" id="autotoc_md2389"></a>
+<h2><a class="anchor" id="autotoc_md2435"></a>
 Waveforms</h2>
 <p> <style>div.image img[src="am263_epwm_protection_pru_fig4b.png"]{width:100%}</style> </p><div class="image">
 <img src="am263_epwm_protection_pru_fig4b.png" alt=""/>
@@ -682,7 +682,7 @@ Figure 4e. Waveform: Deadband</div></div>
 <img src="am263_epwm_protection_pru_fig4f.png" alt=""/>
 <div class="caption">
 Figure 4f. Waveform: freewheeling</div></div>
-<h2><a class="anchor" id="autotoc_md2390"></a>
+<h2><a class="anchor" id="autotoc_md2436"></a>
 Benchmarks</h2>
 <p>OCP high to PWM shut down: Approx 105ns</p>
 <p>This is the latency of following path: GPIO52 (receives OCP rising edge) -&gt; INPUTXBAR1 -&gt; PWMXBAR1 -&gt; GPI1 ICSS (PRU firmware reads GPI reg, process, writes to GPO reg) GPO0/1/2/3 (0101) -&gt; INPUTXBAR4/5/6/7 -&gt; PWMXBAR4/5/6/7 -&gt; EPWM0+1+2 Trip5/6/7/8 -&gt; PWM0/1/2 A/B(Falling edge)</p>
@@ -690,15 +690,15 @@ Benchmarks</h2>
 <img src="am263_epwm_protection_pru_fig4g.png" alt=""/>
 <div class="caption">
 Figure 4g. Benchmark: time from trip signal to PWM output entering protection status</div></div>
-<h1><a class="anchor" id="autotoc_md2391"></a>
+<h1><a class="anchor" id="autotoc_md2437"></a>
 References</h1>
-<h2><a class="anchor" id="autotoc_md2392"></a>
+<h2><a class="anchor" id="autotoc_md2438"></a>
 ICSS connectivity</h2>
 <p> <style>div.image img[src="am263_epwm_protection_pru_fig5a.png"]{width:60%}</style> </p><div class="image">
 <img src="am263_epwm_protection_pru_fig5a.png" alt=""/>
 <div class="caption">
 Figure 5a. ICSS connectivity</div></div>
-<h2><a class="anchor" id="autotoc_md2393"></a>
+<h2><a class="anchor" id="autotoc_md2439"></a>
 AM263x XBARs</h2>
 <p>InputXbar, PWMXbar</p>
 <p> <style>div.image img[src="am263_epwm_protection_pru_fig6a.png"]{width:60%}</style> </p><div class="image">
@@ -709,7 +709,7 @@ Figure 6a. Input XBAR</div></div>
 <img src="am263_epwm_protection_pru_fig6b.png" alt=""/>
 <div class="caption">
 Figure 6b. PWM XBAR</div></div>
-<h2><a class="anchor" id="autotoc_md2394"></a>
+<h2><a class="anchor" id="autotoc_md2440"></a>
 AM263x EPWM Digital Compare and Trip Zone module</h2>
 <p> <style>div.image img[src="am263_epwm_protection_pru_fig6c.png"]{width:60%}</style> </p><div class="image">
 <img src="am263_epwm_protection_pru_fig6c.png" alt=""/>

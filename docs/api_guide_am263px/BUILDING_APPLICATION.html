@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('BUILDING_APPLICATION.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md629">Tools</a></li>
-<li class="level1"><a href="#autotoc_md630">Creation of application binary</a><ul><li class="level2"><a href="#autotoc_md631">Generating .out binary</a></li>
-<li class="level2"><a href="#autotoc_md632">Generating .mcelf binary</a></li>
-<li class="level2"><a href="#autotoc_md633">Generating HEX binary</a><ul><li class="level3"><a href="#autotoc_md634">Installing SRecord on Windows</a></li>
-<li class="level3"><a href="#autotoc_md635">Installing SRecord on Linux</a></li>
-<li class="level3"><a href="#autotoc_md636">Converting .mcelf to Intel hex:</a></li>
+<ul><li class="level1"><a href="#autotoc_md667">Tools</a></li>
+<li class="level1"><a href="#autotoc_md668">Creation of application binary</a><ul><li class="level2"><a href="#autotoc_md669">Generating .out binary</a></li>
+<li class="level2"><a href="#autotoc_md670">Generating .mcelf binary</a></li>
+<li class="level2"><a href="#autotoc_md671">Generating HEX binary</a><ul><li class="level3"><a href="#autotoc_md672">Installing SRecord on Windows</a></li>
+<li class="level3"><a href="#autotoc_md673">Installing SRecord on Linux</a></li>
+<li class="level3"><a href="#autotoc_md674">Converting .mcelf to Intel hex:</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md637">Signing the binary</a><ul><li class="level3"><a href="#SBL_SIGNING">SBL Signing</a></li>
-<li class="level3"><a href="#autotoc_md638">Application signing</a></li>
+<li class="level2"><a href="#autotoc_md675">Signing the binary</a><ul><li class="level3"><a href="#SBL_SIGNING">SBL Signing</a></li>
+<li class="level3"><a href="#autotoc_md676">Application signing</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md639">Building a Hello world example</a></li>
-<li class="level1"><a href="#autotoc_md640">Next step - Loading the application</a></li>
+<li class="level1"><a href="#autotoc_md677">Building a Hello world example</a></li>
+<li class="level1"><a href="#autotoc_md678">Next step - Loading the application</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_getting_started_building_application"></a></p>
@@ -123,7 +123,7 @@ $(document).ready(function(){initNavTree('BUILDING_APPLICATION.html',''); initRe
 <li>These files are not yet linked into an executable.</li>
 <li>A linker.cmd file specifies memory layout and sections placement information. The linker then combines the multiple object files into a single executable.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md629"></a>
+<h1><a class="anchor" id="autotoc_md667"></a>
 Tools</h1>
 <table class="doxtable">
 <tr>
@@ -143,13 +143,13 @@ Tools</h1>
 <tr>
 <td>Clocktree </td><td><a class="el" href="CLOCKTREE.html">Clocktree</a> </td><td>Configure the Clock settings for all peripherals from the Clocktree view.  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md630"></a>
+<h1><a class="anchor" id="autotoc_md668"></a>
 Creation of application binary</h1>
 <dl class="section note"><dt>Note</dt><dd>To see the exact sequence of steps in which applications and secondary bootloader (SBL) are converted from compiler generated .out files to boot images, see the makefile <code>makefile_ccs_bootimage_gen</code> that is included in every example and secondary bootloader (SBL) CCS project.</dd>
 <dd>
 If you are using makefile based build, then see the file named <code>makefile</code> in the example folder.</dd></dl>
 <p>Shown below are the different steps that are done to convert the compiler+linker generated application <code>.out</code> into a format suitable for flashing and booting.</p>
-<h2><a class="anchor" id="autotoc_md631"></a>
+<h2><a class="anchor" id="autotoc_md669"></a>
 Generating .out binary</h2>
 <ul>
 <li>For each CPU, the compiler + linker toolchain is used to create a .out file.</li>
@@ -163,7 +163,7 @@ Generating .out file</div></div>
 <ul>
 <li>This .out file can be loaded and run via CCS. Refer <a class="el" href="CCS_LAUNCH_PAGE.html#CCS_LOAD_RUN">Load and run example binaries in CCS</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md632"></a>
+<h2><a class="anchor" id="autotoc_md670"></a>
 Generating .mcelf binary</h2>
 <ul>
 <li>Refer <a class="el" href="MCELF_LANDING.html">Understanding Multicore ELF image format</a> for information on MCELF</li>
@@ -175,12 +175,12 @@ Generating .mcelf binary</h2>
 <img src="mcelf_bootflow_post_build_steps_no_xip.png" alt=""/>
 <div class="caption">
 Post build steps MCELF</div></div>
-<h2><a class="anchor" id="autotoc_md633"></a>
+<h2><a class="anchor" id="autotoc_md671"></a>
 Generating HEX binary</h2>
 <ul>
 <li>TI does not provide a proprietary tool for hex conversion of binaries. Instead use available tools like SRecord that is compatible with both Windows and Linux platforms. It supports conversion of binaries to Intel hex, Motorola S-record and other commonly used formats.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md634"></a>
+<h3><a class="anchor" id="autotoc_md672"></a>
 Installing SRecord on Windows</h3>
 <ul>
 <li>Start on this page <a href="https://srecord.sourceforge.net">SRecord 1.65</a>. Click on Download.</li>
@@ -188,7 +188,7 @@ Installing SRecord on Windows</h3>
 <li>On the page that comes up, click on the green box that contains the text <b>Download Latest Version</b>.</li>
 <li>The file downloaded is named srecord-1.65.0-win64.exe. Run it to install the software.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md635"></a>
+<h3><a class="anchor" id="autotoc_md673"></a>
 Installing SRecord on Linux</h3>
 <ul>
 <li>Start on this page <a href="https://srecord.sourceforge.net">SRecord 1.65</a>. Click on Download.</li>
@@ -196,7 +196,7 @@ Installing SRecord on Linux</h3>
 <li>Click on the green box that contains the text <b>Download Latest Version</b>.</li>
 <li>The file downloaded is named srecord-1.65.0-Linux.tar.gz. Extract the package.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md636"></a>
+<h3><a class="anchor" id="autotoc_md674"></a>
 Converting .mcelf to Intel hex:</h3>
 <ul>
 <li>Order of invocation: <div class="fragment"><div class="line">{Path to srecord folder}\bin\srec_cat {Path to input binary} -{Type of input file} -offset {application offset from flash} -o {Path to output binary} -{Type of hex file}</div>
@@ -206,7 +206,7 @@ Converting .mcelf to Intel hex:</h3>
 <li>This generated file can be flashed using your custom flashwriter (not Uniflash).</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>This process treats the .mcelf file as a raw binary and converts it as it is to hex. The contents after writing to flash will still be of mcelf format so that TI Bootloader can parse, load and boot the application. TI Bootloader cannot understand HEX format in flash.</dd></dl>
-<h2><a class="anchor" id="autotoc_md637"></a>
+<h2><a class="anchor" id="autotoc_md675"></a>
 Signing the binary</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -253,16 +253,16 @@ TIIMAGE</div></div>
 <ul>
 <li>For detailed information refer <a class="el" href="SECURE_BOOT.html#SBL_SECURE_IMAGE">SBL Image Generation</a></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md638"></a>
+<h3><a class="anchor" id="autotoc_md676"></a>
 Application signing</h3>
 <ul>
 <li>Application image is signed only for HSSE secure boot.</li>
 <li>Refer <a class="el" href="SECURE_BOOT.html#APPLICATION_SECURE_IMAGE">Secure application image Generation</a> for detailed information.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md639"></a>
+<h1><a class="anchor" id="autotoc_md677"></a>
 Building a Hello world example</h1>
 <p>Steps to build the hello world example from SDK is mentioned here <a class="el" href="GETTING_STARTED_BUILD.html">Build a Hello World example</a></p>
-<h1><a class="anchor" id="autotoc_md640"></a>
+<h1><a class="anchor" id="autotoc_md678"></a>
 Next step - Loading the application</h1>
 <p>Go to <a class="el" href="LOADING_APPLICATION.html">Loading an Application</a> </p>
 </div></div><!-- contents -->

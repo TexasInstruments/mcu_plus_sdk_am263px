@@ -92,16 +92,16 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_LIN_EXTERNAL_COMMANDE
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2651">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md2697">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_LIN_EXTERNAL_COMMANDER_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2652">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2653">Overridding the default configurations</a></li>
-<li class="level1"><a href="#autotoc_md2654">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2655">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2698">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2699">Overridding the default configurations</a></li>
+<li class="level1"><a href="#autotoc_md2700">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2701">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_lin_external"></a></p>
-<h1><a class="anchor" id="autotoc_md2651"></a>
+<h1><a class="anchor" id="autotoc_md2697"></a>
 Introduction</h1>
 <p>This example is a application which demonstrates the LIN message communication to external PC via PLIN-USB (from PEAK Systems -&gt; IPEH-004052) Instance LIN1 is set as a Commander in Transmit Mode.</p>
 <p>The LIN1 instance initiates the transmission by sending LINID followed by message. The size of the message is also increased with increasing id.</p>
@@ -122,7 +122,7 @@ Supported Combinations</h1>
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/lin/lin_external   </td></tr>
 </table>
 <dl class="section note"><dt>Note</dt><dd>This example is not supported on am263px-lp. For support on these boards, please reach out to your TI representative. This example is only functional on Windows setup due to limited availibility of PLIN-View Pro.</dd></dl>
-<h1><a class="anchor" id="autotoc_md2652"></a>
+<h1><a class="anchor" id="autotoc_md2698"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>Board Configuration</b>, change the SW5 to ON mode, and change the SW4 to 1-2.  <style>div.image img[src="am263p_lin_external_connections_config.png"]{width:20%}</style> <div class="image">
@@ -150,7 +150,7 @@ PLIN Connectivity status.</div></div>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2653"></a>
+<h1><a class="anchor" id="autotoc_md2699"></a>
 Overridding the default configurations</h1>
 <ul>
 <li>To override the default configurations or initializations, uncheck the box of Default Configuration and rebuild the example. The same example will work without any other changes.</li>
@@ -159,10 +159,10 @@ Overridding the default configurations</h1>
 <img src="lin_override_default_config.png" alt=""/>
 <div class="caption">
 Bypassing Default Configuration.</div></div>
-<h1><a class="anchor" id="autotoc_md2654"></a>
+<h1><a class="anchor" id="autotoc_md2700"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_LIN_PAGE.html">LIN</a></p>
-<h1><a class="anchor" id="autotoc_md2655"></a>
+<h1><a class="anchor" id="autotoc_md2701"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">[LIN] LIN mode external, application started ...</div>

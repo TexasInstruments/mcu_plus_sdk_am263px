@@ -92,32 +92,32 @@ $(document).ready(function(){initNavTree('DRIVERS_SPINLOCK_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1090">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1091">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1092">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1093">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1094">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1095">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1130">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1131">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1132">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1133">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1134">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1135">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_spinlock"></a></p>
 <p>The Spinlock driver provides API to program the Spinlock module to synchronize processes running on multiple processors in the device.</p>
-<h1><a class="anchor" id="autotoc_md1090"></a>
+<h1><a class="anchor" id="autotoc_md1130"></a>
 Features Supported</h1>
 <ul>
 <li>256 spinlocks</li>
 <li>Lock and unlock API</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1091"></a>
+<h1><a class="anchor" id="autotoc_md1131"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
 <li>Not applicable/supported</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1092"></a>
+<h1><a class="anchor" id="autotoc_md1132"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md1093"></a>
+<h1><a class="anchor" id="autotoc_md1133"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>The Spinlock driver doesn't enforce below limitation as defined in device manual. It is the responsibility of the application to take care of below recommendations</li>
@@ -128,7 +128,7 @@ Important Usage Guidelines</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1094"></a>
+<h1><a class="anchor" id="autotoc_md1134"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="spinlock_8h.html">drivers/spinlock.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Lock API </p><div class="fragment"><div class="line">    int32_t  status;</div>
@@ -147,7 +147,7 @@ Example Usage</h1>
 <div class="line"><span class="comment">     * enter critical section</span></div>
 <div class="line"><span class="comment">     */</span></div>
 </div><!-- fragment --><p> Unlock API </p><div class="fragment"><div class="line">    <a class="code" href="group__DRV__SPINLOCK__MODULE.html#ga087cba22301176f92bd374a9fcedcdc6">Spinlock_unlock</a>(spinlockBaseAddr, lockNum);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1095"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1135"></a>
 API</h1>
 <p><a class="el" href="group__DRV__SPINLOCK__MODULE.html">APIs for SPINLOCK</a> </p>
 </div></div><!-- contents -->

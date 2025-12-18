@@ -99,6 +99,7 @@ LIBS_PATH_common = \
 	-Wl,-i${MCU_PLUS_SDK_PATH}/source/kernel/nortos/lib \
 	-Wl,-i${MCU_PLUS_SDK_PATH}/source/drivers/lib \
 	-Wl,-i${MCU_PLUS_SDK_PATH}/source/board/lib \
+	-Wl,-i${MCU_PLUS_SDK_PATH}/source/sdl/lib \
 	-Wl,-i${MCU_PLUS_SDK_PATH}/source/security/lib \
 	-Wl,-i${CG_TOOL_ROOT}/lib \
 
@@ -106,6 +107,7 @@ LIBS_common = \
 	-lnortos.am263px.r5f.ti-arm-clang.${ConfigName}.lib \
 	-ldrivers.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
 	-lboard.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
+	-lsdl.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
 	-lsecurity.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
 	-llibc.a \
 	-llibsysbm.a \
@@ -121,6 +123,7 @@ LIBS_NAME = \
 	nortos.am263px.r5f.ti-arm-clang.${ConfigName}.lib \
 	drivers.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
 	board.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
+	sdl.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
 	security.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
 	libc.a \
 	libsysbm.a \
@@ -129,6 +132,7 @@ LIBS_PATH_NAME = \
 	${MCU_PLUS_SDK_PATH}/source/kernel/nortos/lib \
 	${MCU_PLUS_SDK_PATH}/source/drivers/lib \
 	${MCU_PLUS_SDK_PATH}/source/board/lib \
+	${MCU_PLUS_SDK_PATH}/source/sdl/lib \
 	${MCU_PLUS_SDK_PATH}/source/security/lib \
 	${CG_TOOL_ROOT}/lib \
 
@@ -249,7 +253,7 @@ syscfg: ../example.syscfg
 endif
 
 syscfg-gui:
-	$(SYSCFG_NWJS) $(SYSCFG_PATH) --product $(SYSCFG_SDKPRODUCT) --device AM263Px --context r5fss0-0 --part AM263P4 --package ZCZ_C --output generated/  ../example.syscfg
+	$(SYSCFG_GUI_SCRIPT) --product $(SYSCFG_SDKPRODUCT) --device AM263Px --context r5fss0-0 --part AM263P4 --package ZCZ_C --output generated/  ../example.syscfg
 
 #
 # Generation of boot image which can be loaded by ROM Boot Loader (RBL)

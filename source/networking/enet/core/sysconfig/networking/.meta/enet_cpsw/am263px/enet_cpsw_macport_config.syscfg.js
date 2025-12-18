@@ -192,9 +192,9 @@ const enet_cpsw_macport_config = {
             hidden: false,
         },
         {
-            name: "disableRgmiiIntDelay#",
-            description: "Set for disabling RGMII port internal delay mode",
-            displayName: "Disable RGMII Internal Delay",
+            name: "enableRgmiiIntDelay#",
+            description: "Set for Enabling RGMII port internal delay mode",
+            displayName: "Enable RGMII Internal Delay",
             default: false,
         },
         {

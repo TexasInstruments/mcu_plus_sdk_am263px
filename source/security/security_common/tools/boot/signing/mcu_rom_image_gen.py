@@ -67,9 +67,11 @@ basicConstraints = CA:true
 1.3.6.1.4.1.294.1.3=ASN1:SEQUENCE:swrv
 {IMG_INT_SEQ}
 {EXT_ENC_SEQ}
+{EXT_FW_ENC_SEQ}
 {DBG_EXT}
 {KD_EXT}
 {CRYPTO_UNLOCK_EXT}
+{FW_ENC_IMG_INT_SEQ}
 
 [ boot_seq ]
 certType     =  INTEGER:{CERT_TYPE}
@@ -87,6 +89,12 @@ g_img_integ_seq = '''
 shaType = OID:{SHA_OID}
 shaValue = FORMAT:HEX,OCT:{SHA_VAL}
 '''
+g_fw_enc_img_integ_seq = '''
+[ fw_enc_image_integrity ]
+shaType = OID:{FW_ENC_SHA_OID}
+shaValue = FORMAT:HEX,OCT:{FW_ENC_SHA_VAL}
+imageSize    =  INTEGER:{FW_ENC_IMAGE_LENGTH}
+'''
 
 g_ext_enc_seq = '''
 [ encryption ]
@@ -94,6 +102,13 @@ Iv =FORMAT:HEX,OCT:{ENC_IV}
 Rstring = FORMAT:HEX,OCT:{ENC_RS}
 Icount = INTEGER:{ENC_ITER_CNT}
 Salt = FORMAT:HEX,OCT:{ENC_SALT}
+'''
+
+g_ext_fw_enc_seq = '''
+[ fw_encryption ]
+Iv =FORMAT:HEX,OCT:{FW_ENC_IV}
+Icount = INTEGER:{FW_ENC_ITER_CNT}
+Salt = FORMAT:HEX,OCT:{FW_ENC_SALT}
 '''
 
 g_dbg_seq = '''
@@ -138,9 +153,11 @@ subjectKeyIdentifier = none
 1.3.6.1.4.1.294.1.3=ASN1:SEQUENCE:swrv
 {IMG_INT_SEQ}
 {EXT_ENC_SEQ}
+{EXT_FW_ENC_SEQ}
 {DBG_EXT}
 {KD_EXT}
 {CRYPTO_UNLOCK_EXT}
+{FW_ENC_IMG_INT_SEQ}
 
 [ boot_seq ]
 certType     =  INTEGER:{CERT_TYPE}
@@ -158,12 +175,26 @@ shaType = OID:{SHA_OID}
 shaValue = FORMAT:HEX,OCT:{SHA_VAL}
 '''
 
+g_fw_enc_img_integ_seq = '''
+[ fw_enc_image_integrity ]
+shaType = OID:{FW_ENC_SHA_OID}
+shaValue = FORMAT:HEX,OCT:{FW_ENC_SHA_VAL}
+imageSize    =  INTEGER:{FW_ENC_IMAGE_LENGTH}
+'''
+
 g_ext_enc_seq = '''
 [ encryption ]
 Iv =FORMAT:HEX,OCT:{ENC_IV}
 Rstring = FORMAT:HEX,OCT:{ENC_RS}
 Icount = INTEGER:{ENC_ITER_CNT}
 Salt = FORMAT:HEX,OCT:{ENC_SALT}
+'''
+
+g_ext_fw_enc_seq = '''
+[ fw_encryption ]
+Iv =FORMAT:HEX,OCT:{FW_ENC_IV}
+Icount = INTEGER:{FW_ENC_ITER_CNT}
+Salt = FORMAT:HEX,OCT:{FW_ENC_SALT}
 '''
 
 g_dbg_seq = '''
@@ -231,7 +262,7 @@ def get_cert(args):
             bootCore_id = 16
             certType = 4
             bootCoreOptions = 0
-        elif((args.device == 'f29h85x') and (args.core == 'C29') and (args.fw_type == 'CPU1_APP')):
+        elif(((args.device == 'f29h85x') or (args.device == 'f29p32x')) and (args.core == 'C29') and (args.fw_type == 'CPU1_APP')):
             bootAddress = 0
             bootCore_id = 16
             certType = 7
@@ -249,6 +280,8 @@ def get_cert(args):
     kd_seq = ''
     ext_crypto_unlock_seq = ''
     crypto_unlock_seq = ''
+    ext_fw_enc_seq = ''
+    ext_fw_enc_integ_seq = ''
 
     if(args.debug is not None):
         if(args.debug in g_dbg_types):
@@ -281,6 +314,22 @@ def get_cert(args):
         else:
             enc_iter_count = 0
             enc_salt = '0000'
+        
+    if (args.fw_type == 'SEC_CFG_CPU1' or args.fw_type == 'SEC_CFG_CPU2' or args.fw_type == 'SEC_CFG_CPU3'):
+        args.fw_enc = False
+        args.fw_enc_key = ''
+
+    if (args.fw_enc and (args.device == 'f29h85x' or args.device == 'f29p32x') and args.boot == 'FLASH'):
+        ext_fw_enc_integ_seq = "1.3.6.1.4.1.294.1.14=ASN1:SEQUENCE:fw_enc_image_integrity"
+        fw_enc_iter_count = ''
+        fw_enc_salt = ''
+        if args.kd_salt:
+            fw_enc_iter_count = 1
+            fw_enc_salt = get_key_derivation_salt(args.kd_salt)
+        else:
+            fw_enc_iter_count = 0
+            fw_enc_salt = '0000'
+
     if ((args.img_integ.lower()) == 'yes'):
         ext_integ_seq = "1.3.6.1.4.1.294.1.2=ASN1:SEQUENCE:image_integrity"
 
@@ -315,12 +364,16 @@ def get_cert(args):
         )
         image_bin_name = enctifs_name
 
-    if args.kd_salt and args.sbl_enc:
+    if (args.kd_salt and (args.sbl_enc or (args.fw_enc and args.boot == 'FLASH'))):
         ext_kd_seq = "1.3.6.1.4.1.294.1.5=ASN1:SEQUENCE:key_derivation"
         kd_salt = get_key_derivation_salt(args.kd_salt)
         kd_seq = g_kd_seq.format(
             KDSALT_VAL=kd_salt
         )
+    
+    if (args.fw_enc and (args.device == 'f29h85x' or args.device == 'f29p32x') and args.boot == 'FLASH'):
+        ext_fw_enc_seq = "1.3.6.1.4.1.294.1.13=ASN1:SEQUENCE:fw_encryption"
+        
     ret_cert = ""
 
     openssl_version: str = str(
@@ -331,9 +384,11 @@ def get_cert(args):
             f"WARNING: OpenSSL version {openssl_version.split()[1]} found is not recommended due to EOL. Please install version 3.x .")
         ret_cert = g_openssl111_x509_template.format(
             IMG_INT_SEQ=ext_integ_seq,
+            FW_ENC_IMG_INT_SEQ=ext_fw_enc_integ_seq,
             DBG_EXT=dbg_seq,
             SWRV=swrev,
             EXT_ENC_SEQ=ext_enc_seq,
+            EXT_FW_ENC_SEQ=ext_fw_enc_seq,
             KD_EXT=ext_kd_seq,
             BOOT_CORE_ID=bootCore_id,
             CERT_TYPE=certType,
@@ -347,9 +402,11 @@ def get_cert(args):
         print(f"INFO: OpenSSL version {openssl_version.split()[1]} found.")
         ret_cert = g_openssl3_x509_template.format(
             IMG_INT_SEQ=ext_integ_seq,
+            FW_ENC_IMG_INT_SEQ=ext_fw_enc_integ_seq,
             DBG_EXT=dbg_seq,
             SWRV=swrev,
             EXT_ENC_SEQ=ext_enc_seq,
+            EXT_FW_ENC_SEQ=ext_fw_enc_seq,
             KD_EXT=ext_kd_seq,
             BOOT_CORE_ID=bootCore_id,
             CERT_TYPE=certType,
@@ -371,7 +428,7 @@ def get_cert(args):
     if(args.core == 'R5' and device != 'am263x'):
         ret_cert += ext_enc_keylock
 
-    if(args.kd_salt and args.sbl_enc):
+    if(args.kd_salt and (args.sbl_enc or args.fw_enc)):
         ret_cert += kd_seq
     
     if((args.crypto_unlock.lower()) == 'yes'):
@@ -387,6 +444,23 @@ def get_cert(args):
         ret_cert += g_img_integ_seq.format(
             SHA_OID=g_sha_oids[g_sha_to_use],
             SHA_VAL=get_sha_val(image_bin_name, g_sha_to_use),
+        )
+    
+    if (args.fw_enc and (args.device == 'f29h85x' or args.device == 'f29p32x') and args.boot == 'FLASH'):
+        # Image encryption is enabled
+        encfw_name, encfw_iv = get_encrypted_file_iv(
+            args.image_bin, args.fw_enc_key)
+        image_bin_name = encfw_name
+        ret_cert += g_ext_fw_enc_seq.format(
+            NUM_COMP=1,
+            FW_ENC_IV=encfw_iv,
+            FW_ENC_ITER_CNT=fw_enc_iter_count,
+            FW_ENC_SALT=fw_enc_salt,
+        )
+        ret_cert += g_fw_enc_img_integ_seq.format(
+            FW_ENC_SHA_OID=g_sha_oids[g_sha_to_use],
+            FW_ENC_SHA_VAL=get_sha_val(image_bin_name, g_sha_to_use),
+            FW_ENC_IMAGE_LENGTH=os.path.getsize(image_bin_name),
         )
     
     return dedent(ret_cert)
@@ -444,6 +518,49 @@ def get_encrypted_file_iv_rs(bin_file_name, enc_key):
 
         return encbin_name, v_TEST_IMAGE_ENC_IV, v_TEST_IMAGE_ENC_RS
 
+def get_encrypted_file_iv(bin_file_name, enc_key):
+    if((enc_key is None) or (not os.path.exists(enc_key))):
+        # Error, enc key has to be given
+        print("Please give the key to be used for firmware encryption. It's either missing or file not found!")
+        exit(1)
+    else:
+        enckey = None
+        with open(enc_key, "rb") as f:
+            enckey = f.read()
+            if(args.kd_salt is not None):
+                isalt = get_key_derivation_salt(args.kd_salt)
+                isalt = bytearray(binascii.unhexlify(isalt))
+                d_key = hkdf(32, enckey, isalt)
+                enckey = binascii.hexlify(d_key).decode('utf-8')
+            else:
+                enckey = binascii.hexlify(enckey).decode('ascii')
+
+        # we need the value of enc_iv as hex, so convert the bytes output to hex
+        enc_iv = subprocess.check_output('openssl rand 16', shell=True)
+        enc_iv = binascii.hexlify(enc_iv).decode('ascii')
+        v_TEST_IMAGE_ENC_IV = enc_iv
+
+        # Pad with 0xFF to a temporary binary to make the size multiple of 16
+        if((os.path.getsize(bin_file_name) % 16)!=0):
+            padding = bytearray([0xFF] * (16 - (os.path.getsize(bin_file_name) % 16)))
+        tempfile_name = "tmpfile" + str(randint(1111, 9999))
+        encbin_name = get_enc_filename(bin_file_name)
+
+        shutil.copy(bin_file_name, tempfile_name)
+
+        # append zeros to tempfile
+        if((os.path.getsize(bin_file_name) % 16)!=0):
+            with open(tempfile_name, "ab") as f:
+                f.write(padding)
+
+        # Finally generate the encrypted image
+        subprocess.check_output('openssl aes-256-cbc -e -K {} -iv {} -in {} -out {} -nopad'.format(
+            enckey, enc_iv, tempfile_name, encbin_name), shell=True)
+
+        # Delete the tempfile
+        os.remove(tempfile_name)
+
+        return encbin_name, v_TEST_IMAGE_ENC_IV
 
 def get_key_derivation_salt(kd_salt_file_name):
     if(not os.path.exists(kd_salt_file_name)):
@@ -496,6 +613,10 @@ my_parser.add_argument('--img_integ',       type=str,
 my_parser.add_argument('--crypto_unlock',       type=str,
                        help='Crypto engine unlock extension', default='no', 
                        required=False)
+my_parser.add_argument('--fw-enc',    action='store_true',
+                       required=False, help='Encrypt firmware or not')
+my_parser.add_argument('--fw-enc-key',     type=str,
+                       required=False, help='Path to the firmware encryption key')
 
 args = my_parser.parse_args()
 
@@ -527,7 +648,7 @@ if os.path.getsize(args.image_bin) >= g_sbl_hsm_max_size and (args.boot != 'FLAS
     except_msg = f'SBL/HSM size should be less than {g_sbl_hsm_max_size}'
     raise Exception(except_msg)
 
-if args.sbl_enc or args.tifs_enc:
+if args.sbl_enc or args.tifs_enc or args.fw_enc:
     bin_fh = open(get_enc_filename(args.image_bin), 'rb')
 else:
     bin_fh = open(args.image_bin, 'rb')
@@ -565,5 +686,5 @@ os.remove(cert_name)
 if((args.device != 'f29h85x') and (args.device != 'f29p32x')):
     os.remove(cert_name_final)
 
-if args.sbl_enc or args.tifs_enc:
+if args.sbl_enc or args.tifs_enc or args.fw_enc:
     os.remove(get_enc_filename(args.image_bin))

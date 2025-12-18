@@ -92,11 +92,11 @@ $(document).ready(function(){initNavTree('SDL_VTM_PAGE.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1613">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1614">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1615">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1616">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1617">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1659">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1660">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1661">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1662">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1663">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_vtm1"></a></p>
@@ -113,22 +113,22 @@ $(document).ready(function(){initNavTree('SDL_VTM_PAGE.html',''); initResizable(
 <li>Ability to check the status of the temperature sensor based on alert temperature</li>
 <li>Ability to clear and contorl the VTM event inerrupts</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1613"></a>
+<h1><a class="anchor" id="autotoc_md1659"></a>
 SysConfig Features</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1614"></a>
+<h1><a class="anchor" id="autotoc_md1660"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1615"></a>
+<h1><a class="anchor" id="autotoc_md1661"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1616"></a>
+<h1><a class="anchor" id="autotoc_md1662"></a>
 Example Usage</h1>
 <p>The following shows an example of SDL VTM API usage by the application to set up the VTM for monitoring for events. Events can be monitored by enabling the events in the associated ESM instance.</p>
 <p>Configure the VTM Thresholds and enable events </p><div class="fragment"><div class="line">int32_t retValue;</div>
@@ -184,7 +184,7 @@ Example Usage</h1>
 <div class="line"><span class="comment">/* Get current temperature value */</span></div>
 <div class="line"><a class="code" href="group__SDL__VTM__FUNCTION.html#gad33fa583d435c37ac29c24b82772373f">SDL_VTM_getTemp</a>(<a class="code" href="sdl__soc__vtm_8h.html#ad1764a56fd7ca1ae485dd8b509dc5289ae65e931925ae4ea782ff1394870f2327">SDL_VTM_INSTANCE_TS_0</a>, &amp;temp0);</div>
 </div><!-- fragment --><p>Acknowledge and Disable an interrupt </p><div class="fragment"><div class="line"><a class="code" href="group__SDL__VTM__FUNCTION.html#gab692fbfc5d1639e5b3b4d195ed32d427">SDL_VTM_setClearInterrupts</a>(<a class="code" href="sdl__soc__vtm_8h.html#ad1764a56fd7ca1ae485dd8b509dc5289ae65e931925ae4ea782ff1394870f2327">SDL_VTM_INSTANCE_TS_0</a>, <a class="code" href="group__SDL__IP__VTM__Enum.html#gaba2d46994418372f291e4e4836c07559">SDL_VTM_MASK_HOT</a>, <a class="code" href="group__SDL__IP__VTM__Enum.html#gad5652e75fdd70cbfed017df1590a50e7">SDL_VTM_MASK_COLD</a>, <a class="code" href="group__SDL__IP__VTM__Enum.html#ga08124d36194143a5f8facbb0bdf90a0c">SDL_VTM_MASK_LOW_TH</a>);</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1617"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1663"></a>
 API</h1>
 <p><a class="el" href="group__SDL__VTM__API.html">APIs for VTM</a> </p>
 </div></div><!-- contents -->

@@ -92,16 +92,16 @@ $(document).ready(function(){initNavTree('DRIVERS_PMU_PAGE.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1051">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1052">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1053">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1054">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1089">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1090">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1091">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1092">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_pmu"></a></p>
 <p>The ARM Cortex R5F core includes logic to detect various events that can occur, for example a cache miss, cache access, etc. These events provide useful information about the behaviour of the processor that you can use when debugging or profiling code. The events are made visible on an output event bus and can be counted using registers in the Performance Monitoring Unit (PMU) of the core. This SW library is an abstraction to the PMU with APIs to profile code blocks.</p>
 <p>The PMU consists of three event counting registers, one cycle counting register and 12 CP15 registers, for controlling and interrogating the counters. So in total four profiling metrics are possible for each profile point. Out of this one is fixed, the cycle counter. The other three are programmable to any of the events supported by the R5 core. For details of the events, please refer to the ARM Cortex R5F technical reference manual under section "Events and Performance Monitor"</p>
-<h1><a class="anchor" id="autotoc_md1051"></a>
+<h1><a class="anchor" id="autotoc_md1089"></a>
 Features Supported</h1>
 <p>The driver consists of a high-level interface offering the following features:</p>
 <ul>
@@ -109,13 +109,13 @@ Features Supported</h1>
 <li>APIs to start and end profiling</li>
 <li>APIs to print stats of a specific profile point or the all the profile points</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1052"></a>
+<h1><a class="anchor" id="autotoc_md1090"></a>
 Features NOT Supported</h1>
 <ul>
 <li>Sysconfig configurability of counters is not supported</li>
 <li>Counter overflow is not handled (counters are reset for each profile point)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1053"></a>
+<h1><a class="anchor" id="autotoc_md1091"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;drivers/pmu.h&gt;</span></div>
@@ -156,7 +156,7 @@ Example Usage</h1>
 <div class="line">    }</div>
 <div class="line">    <a class="code" href="group__DRV__PMU__MODULE.html#gaae6643d07f4e8e8119bae7177d0b5de5">PMU_profileEnd</a>(<span class="stringliteral">&quot;Block1&quot;</span>);</div>
 </div><!-- fragment --><p> For more details on usage, please refer <a class="el" href="EXAMPLES_DRIVERS_PMU_MULTIEVENT.html">PMU Multievent</a></p>
-<h1><a class="anchor" id="autotoc_md1054"></a>
+<h1><a class="anchor" id="autotoc_md1092"></a>
 API</h1>
 <p><a class="el" href="group__DRV__PMU__MODULE.html">APIs for PMU</a> </p>
 </div></div><!-- contents -->

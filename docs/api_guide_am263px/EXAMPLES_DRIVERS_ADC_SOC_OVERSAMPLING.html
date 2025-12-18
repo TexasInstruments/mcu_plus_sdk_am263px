@@ -92,28 +92,28 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_SOC_OVERSAMPLING.
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2121">Example Description :</a></li>
-<li class="level1"><a href="#autotoc_md2122">SOC Configurations :</a></li>
-<li class="level1"><a href="#autotoc_md2123">INT Configurations</a></li>
-<li class="level1"><a href="#autotoc_md2124">ISR Configurations</a></li>
-<li class="level1"><a href="#autotoc_md2125">External Connections</a><ul><li class="level2"><a href="#autotoc_md2126">AM263Px-CC or AM263X-CC E2 or AM261X-SOM E1</a></li>
-<li class="level2"><a href="#autotoc_md2127">AM263X-CC E1</a></li>
-<li class="level2"><a href="#autotoc_md2128">AM263PX-LP or AM263X-LP</a></li>
-<li class="level2"><a href="#autotoc_md2129">AM261X-LP</a></li>
+<ul><li class="level1"><a href="#autotoc_md2167">Example Description :</a></li>
+<li class="level1"><a href="#autotoc_md2168">SOC Configurations :</a></li>
+<li class="level1"><a href="#autotoc_md2169">INT Configurations</a></li>
+<li class="level1"><a href="#autotoc_md2170">ISR Configurations</a></li>
+<li class="level1"><a href="#autotoc_md2171">External Connections</a><ul><li class="level2"><a href="#autotoc_md2172">AM263Px-CC or AM263X-CC E2 or AM261X-SOM E1</a></li>
+<li class="level2"><a href="#autotoc_md2173">AM263X-CC E1</a></li>
+<li class="level2"><a href="#autotoc_md2174">AM263PX-LP or AM263X-LP</a></li>
+<li class="level2"><a href="#autotoc_md2175">AM261X-LP</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2130">Watch Variables</a></li>
+<li class="level1"><a href="#autotoc_md2176">Watch Variables</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_SOC_OVERSAMPLING_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2131">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2132">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2133">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2177">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2178">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2179">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_soc_oversampling"></a></p>
-<h1><a class="anchor" id="autotoc_md2121"></a>
+<h1><a class="anchor" id="autotoc_md2167"></a>
 Example Description :</h1>
 <p>This example shows oversamping on a given ADC channel, periodically triggered by EPWM. ADC1 Channel 2 is sampled by SOC (2-5) and are triggered by EPWMSOCA along with SOC 0 (sampling channel 0) and SOC 1 (sampling Channel 1).</p>
-<h1><a class="anchor" id="autotoc_md2122"></a>
+<h1><a class="anchor" id="autotoc_md2168"></a>
 SOC Configurations :</h1>
 <ul>
 <li>SOC(0-5) are triggered by EPWMSOCA. Sample window is set at 16.</li>
@@ -121,12 +121,12 @@ SOC Configurations :</h1>
 <li>SOC 1 samples on channel 1</li>
 <li>SOC (2-5) sample on channel 2</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2123"></a>
+<h1><a class="anchor" id="autotoc_md2169"></a>
 INT Configurations</h1>
 <ul>
 <li>ADC1INT1 is set for EOC/SOC5</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2124"></a>
+<h1><a class="anchor" id="autotoc_md2170"></a>
 ISR Configurations</h1>
 <ul>
 <li>INTXbar0 is set for ADC1INT1.</li>
@@ -136,37 +136,37 @@ ISR Configurations</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2125"></a>
+<h1><a class="anchor" id="autotoc_md2171"></a>
 External Connections</h1>
-<h2><a class="anchor" id="autotoc_md2126"></a>
+<h2><a class="anchor" id="autotoc_md2172"></a>
 AM263Px-CC or AM263X-CC E2 or AM261X-SOM E1</h2>
 <ul>
 <li>Feed Analog Voltages on ADC 1 Channel 0 - HSEC PIN 12</li>
 <li>Feed Analog Voltages on ADC 1 Channel 1 - HSEC PIN 14</li>
 <li>Feed Analog Voltages on ADC 1 Channel 2 - HSEC PIN 18</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2127"></a>
+<h2><a class="anchor" id="autotoc_md2173"></a>
 AM263X-CC E1</h2>
 <ul>
 <li>Feed Analog Voltages on ADC 1 Channel 0 - HSEC PIN 18</li>
 <li>Feed Analog Voltages on ADC 1 Channel 1 - HSEC PIN 20</li>
 <li>Feed Analog Voltages on ADC 1 Channel 2 - HSEC PIN 21</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2128"></a>
+<h2><a class="anchor" id="autotoc_md2174"></a>
 AM263PX-LP or AM263X-LP</h2>
 <ul>
 <li>Feed Analog Voltages on ADC 1 Channel 0 - J1/3 PIN 24</li>
 <li>Feed Analog Voltages on ADC 1 Channel 1 - J1/3 PIN 29</li>
 <li>Feed Analog Voltages on ADC 1 Channel 2 - J5/7 PIN 67</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2129"></a>
+<h2><a class="anchor" id="autotoc_md2175"></a>
 AM261X-LP</h2>
 <ul>
 <li>Feed Analog Voltages on ADC 1 Channel 0 - J1/3 PIN 24</li>
 <li>Feed Analog Voltages on ADC 1 Channel 1 - J5/7 PIN 42</li>
 <li>Feed Analog Voltages on ADC 1 Channel 2 - J5/7 PIN 64, this needs IO expander Configurations check Syscfg and Schematics</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2130"></a>
+<h1><a class="anchor" id="autotoc_md2176"></a>
 Watch Variables</h1>
 <ul>
 <li>gAdc1Channel0Result - array of digital represented voltages on ADC1 channel 0</li>
@@ -187,7 +187,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_soc_oversampling/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2131"></a>
+<h1><a class="anchor" id="autotoc_md2177"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -197,10 +197,10 @@ Steps to Run the Example</h1>
 <li>Using watch variables, view the ADC conversion results.</li>
 <li>View the ADC conversion results in UART console logs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2132"></a>
+<h1><a class="anchor" id="autotoc_md2178"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md2133"></a>
+<h1><a class="anchor" id="autotoc_md2179"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ADC SOC Oversampling Test Started ...</div>

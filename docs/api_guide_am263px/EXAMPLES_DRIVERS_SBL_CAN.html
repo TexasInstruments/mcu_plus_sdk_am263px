@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_SBL_CAN.html',''); in
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2803">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md2849">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_SBL_CAN_MCELF">SBL CAN Multicore ELF</a></li>
-<li class="level1"><a href="#autotoc_md2804">Protocol</a></li>
-<li class="level1"><a href="#autotoc_md2805">Settings Used in this Application</a></li>
+<li class="level1"><a href="#autotoc_md2850">Protocol</a></li>
+<li class="level1"><a href="#autotoc_md2851">Settings Used in this Application</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_SBL_CAN_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2806">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2807">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2808">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2852">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2853">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2854">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_sbl_can"></a></p>
-<h1><a class="anchor" id="autotoc_md2803"></a>
+<h1><a class="anchor" id="autotoc_md2849"></a>
 Introduction</h1>
 <p>This bootloader does SOC initializations and attempts to boot a multicore application file received over CAN via custom-made protocol (see below). The image file is sent using a python script (See <a class="el" href="TOOLS_BOOT.html#CAN_BOOTLOADER_PYTHON_SCRIPT">CAN Bootloader Python Script</a>). Once image is received, the SBL parses it. Each core is then initialized, application image is loaded, entry points are set and the core is released from reset. For more on bootflow/bootloaders, please refer <a class="el" href="BOOTFLOW_GUIDE.html">Understanding the bootflow and bootloaders</a></p>
 <p> <style>div.image img[src="sbl_can_uniflash_process.PNG"]{width:60%}</style> </p><div class="image">
@@ -124,7 +124,7 @@ SBL CAN Multicore ELF</h1>
 <li>For AM26xx devices, use the Multicore ELF project of SBL CAN Uniflash</li>
 <li>To flash an <b>mcelf</b> file via CAN uniflash, use the project <b>examples/drivers/boot/sbl_can_multicore_elf</b></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2804"></a>
+<h1><a class="anchor" id="autotoc_md2850"></a>
 Protocol</h1>
 <p>A simple custom made protocol is created for communication between the Host Machine and the Board. Messages between a CAN bootloader host and the target use a simple command and acknowledge (ACK) protocol. The host sends a command and within a timeout period the target responds with an ACK.</p>
 <p>The CAN Uniflash provides a short list of commands that are used during the flashing operation.</p>
@@ -151,7 +151,7 @@ Protocol</h1>
 <img src="sbl_can_custom_protocol.png" alt=""/>
 <div class="caption">
 SBL CAN Communication Protocol between Host Machine and the Board</div></div>
-<h1><a class="anchor" id="autotoc_md2805"></a>
+<h1><a class="anchor" id="autotoc_md2851"></a>
 Settings Used in this Application</h1>
 <p>In this application, the CAN settings are:</p><ul>
 <li>Extended Identifier used</li>
@@ -177,7 +177,7 @@ Supported Combinations</h1>
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/boot/sbl_can_multicore_elf   </td></tr>
 </table>
 <p><b>NOTE: Tested on Windows, using PCAN-USB Peripheral.</b></p>
-<h1><a class="anchor" id="autotoc_md2806"></a>
+<h1><a class="anchor" id="autotoc_md2852"></a>
 Steps to Run the Example</h1>
 <p>Since this is a bootloader, the example will be run every time you boot an application using this example. It is run from a QSPI boot media unlike other examples which are usually loaded with CCS. Nevertheless, you can build this example like you do for the others using makefile or build it via CCS by importing as a project.</p>
 <ul>
@@ -229,10 +229,10 @@ MCAN Hardware Connectivity with PCAN USB.</div></div>
 <li>Refer to the page <a class="el" href="TOOLS_FLASH.html#BASIC_STEPS_TO_FLASH_FILES">Basic steps to flash files</a> for more information</li>
 <li>After flashing the bootloader, the application image file is sent using a python script (see <a class="el" href="TOOLS_BOOT.html#CAN_BOOTLOADER_PYTHON_SCRIPT">CAN Bootloader Python Script</a>).</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2807"></a>
+<h1><a class="anchor" id="autotoc_md2853"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_BOOTLOADER_PAGE.html">BOOTLOADER</a></p>
-<h1><a class="anchor" id="autotoc_md2808"></a>
+<h1><a class="anchor" id="autotoc_md2854"></a>
 Sample Output</h1>
 <p>After sending the application image over CAN, logs can be seen on the UART terminal </p>
 </div></div><!-- contents -->

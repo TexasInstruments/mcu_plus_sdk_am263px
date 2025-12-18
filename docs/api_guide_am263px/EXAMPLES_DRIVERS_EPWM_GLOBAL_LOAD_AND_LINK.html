@@ -92,28 +92,28 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_EPWM_GLOBAL_LOAD_AND_
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2420">Introduction</a><ul><li class="level2"><a href="#autotoc_md2421">Global Load Feature</a></li>
-<li class="level2"><a href="#autotoc_md2422">Link Feature</a></li>
+<ul><li class="level1"><a href="#autotoc_md2466">Introduction</a><ul><li class="level2"><a href="#autotoc_md2467">Global Load Feature</a></li>
+<li class="level2"><a href="#autotoc_md2468">Link Feature</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2423">Example Description</a><ul><li class="level2"><a href="#autotoc_md2424">Configurations</a></li>
+<li class="level1"><a href="#autotoc_md2469">Example Description</a><ul><li class="level2"><a href="#autotoc_md2470">Configurations</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2425">External Connections.</a><ul><li class="level2"><a href="#autotoc_md2426">AM263Px or AM263x or AM261x Control Card with HSEC 180 Pin out</a></li>
-<li class="level2"><a href="#autotoc_md2427">AM263Px or AM263x Launch Pad</a></li>
-<li class="level2"><a href="#autotoc_md2428">AM261x Launch Pad</a></li>
+<li class="level1"><a href="#autotoc_md2471">External Connections.</a><ul><li class="level2"><a href="#autotoc_md2472">AM263Px or AM263x or AM261x Control Card with HSEC 180 Pin out</a></li>
+<li class="level2"><a href="#autotoc_md2473">AM263Px or AM263x Launch Pad</a></li>
+<li class="level2"><a href="#autotoc_md2474">AM261x Launch Pad</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_EPWM_GLOBAL_LOAD_AND_LINK_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2429">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2430">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2431">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2475">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2476">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2477">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_epwm_global_load_and_link"></a></p>
-<h1><a class="anchor" id="autotoc_md2420"></a>
+<h1><a class="anchor" id="autotoc_md2466"></a>
 Introduction</h1>
-<h2><a class="anchor" id="autotoc_md2421"></a>
+<h2><a class="anchor" id="autotoc_md2467"></a>
 Global Load Feature</h2>
 <p>Many Applications will have EPWMs with runtime updates to their CMP/TBPRD/Action Qualifier/ DeadBand Registers etc, that affect the EPWM Outputs. Care needs to be taken while updating these registers so that there wouldn't be any incorrect/unexpected/corrupted waveforms while these updates happen. To tackle with such issues, the EPWMs have been equipped with a Global Load feature. Along with the Shadow to Active load strobe for individual register sets, there is optional Global load strobe, if enabled, overwrites the local load strobe. The global load strobe can be used for activating all shadow to active transfers, this will result in retaining the older EPWM outputs untill all the shadow registers are updated, resulting in no currupted waveforms in between.</p>
 <p> <style>div.image img[src="am263_epwm_global_load_and_link_without_global_load.png"]{width:50%}</style> </p><div class="image">
@@ -124,17 +124,17 @@ EPWM Without Global Load Feature</div></div>
 <img src="am263_epwm_global_load_and_link_with_global_load.png" alt=""/>
 <div class="caption">
 EPWM With Global Load Feature</div></div>
-<h2><a class="anchor" id="autotoc_md2422"></a>
+<h2><a class="anchor" id="autotoc_md2468"></a>
 Link Feature</h2>
 <p>Link Feature helps link the EPWMs to have simultaneous updates to the link enabled registers like TBPRD/CMP(A/B/C/D)/DBFED/DBRED/GLDCTL2, when these registers in the linked EPWMs are written to.</p>
 <p> <style>div.image img[src="am263_epwm_global_load_and_link_link_feature.pngout"]{width:50%}</style> </p><div class="image">
 <img src="am263_epwm_global_load_and_link_link_feature.png" alt=""/>
 <div class="caption">
 EPWMs With Link Feature</div></div>
-<h1><a class="anchor" id="autotoc_md2423"></a>
+<h1><a class="anchor" id="autotoc_md2469"></a>
 Example Description</h1>
 <p>This Example aims to showcase the Global Load and Link features usage. </p>
-<h2><a class="anchor" id="autotoc_md2424"></a>
+<h2><a class="anchor" id="autotoc_md2470"></a>
 Configurations</h2>
 <p>4 EPWMs..,</p><ul>
 <li>CONFIG_EPWM_NO_GLD : no Global Load is configured</li>
@@ -144,10 +144,10 @@ Configurations</h2>
 </ul>
 <p>Apart from the Global load or Link configurations, all EPWMs are configured similarly. Check the Syscfg for the Global Load Configurations and differences.</p>
 <dl class="section note"><dt>Note</dt><dd>Shadow registers are used for CMP, TBPRD regs, while global load is only used on the CMP regs and Link is used for CMP and GLD controls.</dd></dl>
-<h1><a class="anchor" id="autotoc_md2425"></a>
+<h1><a class="anchor" id="autotoc_md2471"></a>
 External Connections.</h1>
 <p>Probe the EPWM outputs for the above EPWMs and Status pin.</p>
-<h2><a class="anchor" id="autotoc_md2426"></a>
+<h2><a class="anchor" id="autotoc_md2472"></a>
 AM263Px or AM263x or AM261x Control Card with HSEC 180 Pin out</h2>
 <ul>
 <li>CONFIG_EPWM_NO_GLD : EPWM 0A/0B on HSEC pins 49/51</li>
@@ -156,7 +156,7 @@ AM263Px or AM263x or AM261x Control Card with HSEC 180 Pin out</h2>
 <li>CONFIG_EPWM3_GLD_LINK_EPWM2 : EPWM 3A/3B on HSEC pins 61/63</li>
 <li>Status Pin : GPIO on HSEC pin 57</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2427"></a>
+<h2><a class="anchor" id="autotoc_md2473"></a>
 AM263Px or AM263x Launch Pad</h2>
 <ul>
 <li>CONFIG_EPWM_NO_GLD : EPWM 0A/0B on BoosterPack J4 11 / J8 59</li>
@@ -165,7 +165,7 @@ AM263Px or AM263x Launch Pad</h2>
 <li>CONFIG_EPWM3_GLD_LINK_EPWM2 : EPWM 3A/3B on BoosterPack J8 77 / J8 78</li>
 <li>Status Pin : GPIO on J8 52</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2428"></a>
+<h2><a class="anchor" id="autotoc_md2474"></a>
 AM261x Launch Pad</h2>
 <ul>
 <li>CONFIG_EPWM_NO_GLD : EPWM 2A/2B on BoosterPack J4 40 / J4 39</li>
@@ -188,7 +188,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/epwm/epwm_global_load_and_link/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2429"></a>
+<h1><a class="anchor" id="autotoc_md2475"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -196,10 +196,10 @@ Steps to Run the Example</h1>
 <li>Establish connections as mentioned in External Connections section</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2430"></a>
+<h1><a class="anchor" id="autotoc_md2476"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_EPWM_PAGE.html">EPWM</a></p>
-<h1><a class="anchor" id="autotoc_md2431"></a>
+<h1><a class="anchor" id="autotoc_md2477"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">EPWM Global Load and Link Test Started ...</div>

@@ -99,6 +99,8 @@ $(document).ready(function(){initNavTree('structFirmwareUpdateReq__t.html',''); 
   <table class="params">
     <tr><td class="paramname">pStartAddress</td><td>Pointer to the start address of data to be programmed in flash </td></tr>
     <tr><td class="paramname">dataLength</td><td>Length of data to be programmed in flash </td></tr>
+    <tr><td class="paramname">pDecryptionBuffer</td><td>Address of Scratchpad memory to be used to decrypt image, valid only for HsmClient_firmwareUpdate_CodeVerify API </td></tr>
+    <tr><td class="paramname">decryptionBufferLength</td><td>Length of Scratchpad memory to be used to decrypt image, valid only for HsmClient_firmwareUpdate_CodeVerify API </td></tr>
   </table>
   </dd>
 </dl>
@@ -109,8 +111,10 @@ Data Fields</h2></td></tr>
 <tr class="separator:a463a78b6ea9280aa15131fbc264a0bc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e35264b745dbd898621ac266168e101"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFirmwareUpdateReq__t.html#a1e35264b745dbd898621ac266168e101">dataLength</a></td></tr>
 <tr class="separator:a1e35264b745dbd898621ac266168e101"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1585c4ce4bca3e295f35a9ffd09fece9"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFirmwareUpdateReq__t.html#a1585c4ce4bca3e295f35a9ffd09fece9">bankMode</a></td></tr>
-<tr class="separator:a1585c4ce4bca3e295f35a9ffd09fece9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75b8d4e2369d40662df06e5e5bbab31e"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFirmwareUpdateReq__t.html#a75b8d4e2369d40662df06e5e5bbab31e">pDecryptionBuffer</a></td></tr>
+<tr class="separator:a75b8d4e2369d40662df06e5e5bbab31e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a8459ba4181862ec8b706e8548adfbd"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFirmwareUpdateReq__t.html#a9a8459ba4181862ec8b706e8548adfbd">decryptionBufferLength</a></td></tr>
+<tr class="separator:a9a8459ba4181862ec8b706e8548adfbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Field Documentation</h2>
 <a id="a463a78b6ea9280aa15131fbc264a0bc6"></a>
@@ -138,22 +142,34 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Start address of data to be programmed in flash memory </p>
 
 </div>
 </div>
-<a id="a1585c4ce4bca3e295f35a9ffd09fece9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1585c4ce4bca3e295f35a9ffd09fece9">&#9670;&nbsp;</a></span>bankMode</h2>
+<a id="a75b8d4e2369d40662df06e5e5bbab31e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75b8d4e2369d40662df06e5e5bbab31e">&#9670;&nbsp;</a></span>pDecryptionBuffer</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t FirmwareUpdateReq_t::bankMode</td>
+          <td class="memname">void* FirmwareUpdateReq_t::pDecryptionBuffer</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Length of data to be programmed in flash memory </p>
+
+</div>
+</div>
+<a id="a9a8459ba4181862ec8b706e8548adfbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a8459ba4181862ec8b706e8548adfbd">&#9670;&nbsp;</a></span>decryptionBufferLength</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t FirmwareUpdateReq_t::decryptionBufferLength</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

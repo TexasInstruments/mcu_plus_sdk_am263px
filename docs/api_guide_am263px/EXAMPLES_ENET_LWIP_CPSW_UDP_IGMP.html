@@ -92,26 +92,26 @@ $(document).ready(function(){initNavTree('EXAMPLES_ENET_LWIP_CPSW_UDP_IGMP.html'
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3023">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md3024">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3025">Packet pool configuration</a></li>
-<li class="level1"><a href="#autotoc_md3026">Configuring Syscfg</a></li>
-<li class="level1"><a href="#autotoc_md3027">UDP Client using ncat tool</a></li>
-<li class="level1"><a href="#autotoc_md3028">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3029">To Configure Static IP</a></li>
-<li class="level2"><a href="#autotoc_md3030">Build the example</a></li>
-<li class="level2"><a href="#autotoc_md3031">HW Setup</a></li>
-<li class="level2"><a href="#autotoc_md3032">Create a network between EVM and host PC</a></li>
-<li class="level2"><a href="#autotoc_md3033">Run the example</a></li>
-<li class="level2"><a href="#autotoc_md3034">Sample output for CPSW example</a></li>
-<li class="level2"><a href="#autotoc_md3035">Steps to execute</a></li>
-<li class="level2"><a href="#autotoc_md3036">Troubleshooting issues</a></li>
+<ul><li class="level1"><a href="#autotoc_md3069">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3070">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md3071">Packet pool configuration</a></li>
+<li class="level1"><a href="#autotoc_md3072">Configuring Syscfg</a></li>
+<li class="level1"><a href="#autotoc_md3073">UDP Client using ncat tool</a></li>
+<li class="level1"><a href="#autotoc_md3074">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3075">To Configure Static IP</a></li>
+<li class="level2"><a href="#autotoc_md3076">Build the example</a></li>
+<li class="level2"><a href="#autotoc_md3077">HW Setup</a></li>
+<li class="level2"><a href="#autotoc_md3078">Create a network between EVM and host PC</a></li>
+<li class="level2"><a href="#autotoc_md3079">Run the example</a></li>
+<li class="level2"><a href="#autotoc_md3080">Sample output for CPSW example</a></li>
+<li class="level2"><a href="#autotoc_md3081">Steps to execute</a></li>
+<li class="level2"><a href="#autotoc_md3082">Troubleshooting issues</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3037">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3083">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_enet_lwip_udp_igmp"></a></p>
-<h1><a class="anchor" id="autotoc_md3023"></a>
+<h1><a class="anchor" id="autotoc_md3069"></a>
 Introduction</h1>
 <dl class="section note"><dt>Note</dt><dd>LwIP features are made available as is from public lwIP project. SDK configuration may only enable and exercise a subset of these features.</dd></dl>
 <p>This example shows about how to implement a simple UDP IGMP-Server on LwIP networking stack using BSD-Socket API coupled with ethernet driver (ENET)</p>
@@ -126,7 +126,7 @@ Introduction</h1>
 <li>UDP Server task waits for a msg to the multicast IP address from client on port 2638 and echoes back the same message.</li>
 </ul>
 <p>NOTE: DSCP priority mapping is configured in the example but for the host port to recieve different priority pkts on the same dma channel, user needs to enable channel override (enChOverrideFlag) flag in dmacfg. Refer enet_lwip_cpsw example.</p>
-<h1><a class="anchor" id="autotoc_md3024"></a>
+<h1><a class="anchor" id="autotoc_md3070"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -140,10 +140,10 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/lwip/enet_cpsw_udp_igmp   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3025"></a>
+<h1><a class="anchor" id="autotoc_md3071"></a>
 Packet pool configuration</h1>
 <p>To change packet pool configuration from syscfg, please refer to <a class="el" href="PACKETPOOL_CONFIG_TOP.html">Ethernet Packet Pool Allocation Guidelines</a></p>
-<h1><a class="anchor" id="autotoc_md3026"></a>
+<h1><a class="anchor" id="autotoc_md3072"></a>
 Configuring Syscfg</h1>
 <ul>
 <li>Following Syscfg option allows flexibility to configure memory footprint based on the required use case like: Number of DMA descriptors and buffering.</li>
@@ -189,28 +189,28 @@ Configuring Syscfg</h1>
 <td>Netif instance </td><td>TI Networking / Enet (CPSW) / LWIP Interface config </td><td>No of netifs allocated by the example.<br  />
  Only one netif should be set to default when more than one netif is allocated.  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3027"></a>
+<h1><a class="anchor" id="autotoc_md3073"></a>
 UDP Client using ncat tool</h1>
 <p>Ncat is a general-purpose command-line tool for reading, writing, redirecting, and encrypting data across a network. It aims to be your network Swiss Army knife, handling a wide variety of security testing and administration tasks. Ncat is suitable for interactive use or as a network-connected back end for other tools.</p><ul>
 <li>Ncat is started as server to which EVM connects.</li>
 <li>Version used for this example Version 7+ ( <a href="https://nmap.org/ncat">https://nmap.org/ncat</a> )</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3028"></a>
+<h1><a class="anchor" id="autotoc_md3074"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md3029"></a>
+<h2><a class="anchor" id="autotoc_md3075"></a>
 To Configure Static IP</h2>
 <p>Please refer to <a class="el" href="NETWORKING_LWIP_STATIC_IP.html">Ethernet LwIP TCP/IP Static IP</a>.</p>
-<h2><a class="anchor" id="autotoc_md3030"></a>
+<h2><a class="anchor" id="autotoc_md3076"></a>
 Build the example</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 </ul>
 <p>Note: For UDP transmission on LwIP based application, application should perform cache coherency operation on payload before submitting the packet for transmission. This is because zero copy is enabled for UDP packet transmission and cache operation in driver are disabled for UDP payload portions. This example application does this using CacheP_wbInv. </p>
-<h2><a class="anchor" id="autotoc_md3031"></a>
+<h2><a class="anchor" id="autotoc_md3077"></a>
 HW Setup</h2>
 <dl class="section note"><dt>Note</dt><dd>Make sure you have setup the EVM with cable connections as shown here, <a class="el" href="EVM_SETUP_PAGE.html">EVM Setup</a>. In addition do below steps.</dd></dl>
-<h2><a class="anchor" id="autotoc_md3032"></a>
+<h2><a class="anchor" id="autotoc_md3078"></a>
 Create a network between EVM and host PC</h2>
 <ul>
 <li>The EVM will get an IP address using DHCP, so make sure to connect the other end of the cable to a network which has a DHCP server running.</li>
@@ -225,7 +225,7 @@ Local network between PC and EVM</div></div>
 <li>After we run the example on the EVM (next step), the EVM will similarly be assigned a IP address, and then host can communicate with the EVM using the assigned IP address.</li>
 <li>To enable static IP, set the static IP in the ipAddr variable in the App_setupNetif() before passing it as arguement to initiate the netif, and stop the dhcp from starting in the App_allocateIPAddress() function.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3033"></a>
+<h2><a class="anchor" id="autotoc_md3079"></a>
 Run the example</h2>
 <dl class="section attention"><dt>Attention</dt><dd>If you need to reload and run again, a CPU power-cycle is MUST</dd></dl>
 <ul>
@@ -233,7 +233,7 @@ Run the example</h2>
 <li>You will see logs in the UART terminal as shown in the next section.</li>
 <li>Note the IP address seen in the log, this is what we will use to communicate with the EVM.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3034"></a>
+<h2><a class="anchor" id="autotoc_md3080"></a>
 Sample output for CPSW example</h2>
 <div class="fragment"><div class="line">============================</div>
 <div class="line">  CPSW LWIP IGMP UDP SERVER</div>
@@ -351,7 +351,7 @@ Sample output for CPSW example</h2>
 <div class="line">    440.193s : CPU load =   1.69 %</div>
 <div class="line">    445.194s : CPU load =   1.69 %</div>
 <div class="line">    450.195s : CPU load =   1.68 %</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3035"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3081"></a>
 Steps to execute</h2>
 <ol type="1">
 <li>Run example on EVM</li>
@@ -365,7 +365,7 @@ Steps to execute</h2>
 <li>Send any msg in ncat terminal and observe that it is recieved in EVM</li>
 <li>Close the ncat using Ctrl + C.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md3036"></a>
+<h2><a class="anchor" id="autotoc_md3082"></a>
 Troubleshooting issues</h2>
 <ul>
 <li>To ensure compatibility with CPSW RGMII2 port on am263px-cc board, make sure that SW-15(switch) should be set to <code>LOW</code> for board versions(E2/A/B versions). This configuration ensures seamless out-of-box support and functionality with the CPSW RGMII2 port on the specified versions.</li>
@@ -376,7 +376,7 @@ Troubleshooting issues</h2>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3037"></a>
+<h1><a class="anchor" id="autotoc_md3083"></a>
 See Also</h1>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

@@ -93,12 +93,12 @@ $(document).ready(function(){initNavTree('EXAMPLES_SRAM_OVERLAY.html',''); initR
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
 <ul><li class="level1"><a href="#EXAMPLES_SRAM_OVERLAY_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3716">Introduction</a><ul><li class="level2"><a href="#autotoc_md3717">Performance optimization for overlay</a></li>
+<li class="level1"><a href="#autotoc_md3762">Introduction</a><ul><li class="level2"><a href="#autotoc_md3763">Performance optimization for overlay</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3718">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3719">Building SRAM Overlay application</a></li>
-<li class="level2"><a href="#autotoc_md3720">Running the SRAM Overlay application</a></li>
-<li class="level2"><a href="#autotoc_md3721">Sample output for SRAM Overlay example</a></li>
+<li class="level1"><a href="#autotoc_md3764">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3765">Building SRAM Overlay application</a></li>
+<li class="level2"><a href="#autotoc_md3766">Running the SRAM Overlay application</a></li>
+<li class="level2"><a href="#autotoc_md3767">Sample output for SRAM Overlay example</a></li>
 </ul>
 </li>
 </ul>
@@ -118,7 +118,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/benchmarks/sram_overlay_benchmark   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3716"></a>
+<h1><a class="anchor" id="autotoc_md3762"></a>
 Introduction</h1>
 <ul>
 <li>This demo provides a rough measurement of the CPU cycles taken for a given code execution (Measured in CPI) which is located in different memory regions (L2OCRAM and Flash memory) and also shows the performance when utilizing the overlay feature.</li>
@@ -131,22 +131,22 @@ Introduction</h1>
 </ol>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3717"></a>
+<h2><a class="anchor" id="autotoc_md3763"></a>
 Performance optimization for overlay</h2>
 <dl class="section note"><dt>Note</dt><dd>Here, code does not wait for function to be copied entirely in the internal RAM.</dd></dl>
 <p>Looking at the sample output shows that, in case, when CPI of a function is less than 5, then, code should wait for function to get copied else it is really not required to wait for copy to complete and execution of the function can be done right away.</p>
-<h1><a class="anchor" id="autotoc_md3718"></a>
+<h1><a class="anchor" id="autotoc_md3764"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md3719"></a>
+<h2><a class="anchor" id="autotoc_md3765"></a>
 Building SRAM Overlay application</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3720"></a>
+<h2><a class="anchor" id="autotoc_md3766"></a>
 Running the SRAM Overlay application</h2>
 <p>Flash the application binary to the device, follow the steps mentioned here (see <a class="el" href="GETTING_STARTED_FLASH.html">Flash a Hello World example</a>).</p>
-<h2><a class="anchor" id="autotoc_md3721"></a>
+<h2><a class="anchor" id="autotoc_md3767"></a>
 Sample output for SRAM Overlay example</h2>
 <div class="fragment"><div class="line">Starting OSPI Bootloader ... </div>
 <div class="line">KPI_DATA: [BOOTLOADER_PROFILE] Boot Media       : NOR SPI FLASH </div>

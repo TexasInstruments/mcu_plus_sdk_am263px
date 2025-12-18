@@ -92,11 +92,11 @@ $(document).ready(function(){initNavTree('DRIVERS_DTHE_AES_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_components_security_crypto_aes"></a> </p>
-<h2><a class="anchor" id="autotoc_md1141"></a>
+<h2><a class="anchor" id="autotoc_md1181"></a>
 Access Protection Scheme</h2>
 <p>AES and SHA IP in DTHE support two contexts, namely Public and Secure.</p>
 <dl class="section note"><dt>Note</dt><dd>Dma functionality is not yet added in dthe R5f, it will be added in the future.</dd></dl>
-<h2><a class="anchor" id="autotoc_md1142"></a>
+<h2><a class="anchor" id="autotoc_md1182"></a>
 AES</h2>
 <ul>
 <li>The AES IP is an efficient implementation of the Rijndael cipher (the AES algorithm) and a 128-bit polynomial multiplication. Rijndael is a block cipher with each data block consisting of 128-bits.</li>
@@ -106,7 +106,7 @@ AES</h2>
 AES functional diagram</div></div>
  </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1143"></a>
+<h3><a class="anchor" id="autotoc_md1183"></a>
 AES-ECB</h3>
 <p> <style>div.image img[src="ecb_feedback_mode.png"]{width:80%}</style> </p><div class="image">
 <img src="ecb_feedback_mode.png" alt=""/>
@@ -115,7 +115,7 @@ AES ECB feedback mode</div></div>
 <ul>
 <li>Above figure illustrates the basic Electronic Code Book (ECB) feedback mode of operation, where the input data is passed directly to the basic crypto core and the output of the crypto core is passed directly to the output buffer. For decryption the crypto core operates in reverse, thus, the decrypt datapath is used for the data processing, where encryption uses the encrypt datapath. </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1144"></a>
+<h3><a class="anchor" id="autotoc_md1184"></a>
 AES-CBC</h3>
 <p> <style>div.image img[src="cbc_feedback_mode.png"]{width:80%}</style> </p><div class="image">
 <img src="cbc_feedback_mode.png" alt=""/>
@@ -124,7 +124,7 @@ AES CBC feedback mode</div></div>
 <ul>
 <li>Above figure illustrates the Cipher Block Chaining (CBC) feedback mode of operation, where the input data is XOR-ed with the initialization vector (IV) before it is passed to the basic crypto core. The output of the crypto core passes directly to the output buffer and becomes the next IV. For decryption, the operation is reversed, resulting in an XOR at the output of the crypto core. The input cipher text of the current operation is the IV for the next operation. </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1145"></a>
+<h3><a class="anchor" id="autotoc_md1185"></a>
 AES-CTR</h3>
 <p> <style>div.image img[src="aes_ctr_mode.png"]{width:80%}</style> </p><div class="image">
 <img src="aes_ctr_mode.png" alt=""/>
@@ -133,7 +133,7 @@ AES CTR mode</div></div>
 <ul>
 <li>Above figure illustrates the Counter(CTR) mode of operation, where the operation encrypts the IV. The output of the crypto core (encrypted IV) is XOR-ed with the data, creating the output result. The IV is built out of two components, one fixed part and a counter part. The counter part is incremented with each block. The counter width is variable per context and can be 16, 32, 64, 96 or 128-bit wide. Note that in this mode, encryption and decryption use the same operation. </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1146"></a>
+<h3><a class="anchor" id="autotoc_md1186"></a>
 AES-CFB</h3>
 <p> <style>div.image img[src="aes_cfb_mode.png"]{width:80%}</style> </p><div class="image">
 <img src="aes_cfb_mode.png" alt=""/>
@@ -142,7 +142,7 @@ AES CFB mode</div></div>
 <ul>
 <li>Above figure illustrates the full block (128-bit) Cipher Feedback (CFB) mode of operation for both encryption and decryption. The input for the crypto core is the IV; the result is XOR-ed with the data. The result is fed back via the IV register, as the next input for the crypto core. The decrypt operation is reversed, but the crypto core is still performing an encryption.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1147"></a>
+<h3><a class="anchor" id="autotoc_md1187"></a>
 AES-CMAC</h3>
 <p> <style>div.image img[src="aes_cmac_mode.png"]{width:80%}</style> </p><div class="image">
 <img src="aes_cmac_mode.png" alt=""/>
@@ -151,7 +151,7 @@ AES CMAC mode</div></div>
 <ul>
 <li>Above figure illustrates the One Key Mac mode of operation, where the input to the crypto core is XOR-ed with the IV. The crypto core output is then fed back as IV for the next block. The last data input block is XOR-ed with an additional input value stored in the Temporary Buffer; this can be any precalculated value and is dependent on the alignment of the last input block. For CMAC mode, the tweak value (in temporary buffer) is calculated via K1 and K2 which is dervied from Key value from software.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1148"></a>
+<h3><a class="anchor" id="autotoc_md1188"></a>
 AES-GCM</h3>
 <ul>
 <li>Galois/Counter Mode (GCM) is an authenticated encryption mode that provides both data confidentiality and authentication. GCM combines the Counter (CTR) mode of encryption with the Galois mode of authentication.</li>
@@ -166,7 +166,7 @@ AES-GCM</h3>
 </ol>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1149"></a>
+<h3><a class="anchor" id="autotoc_md1189"></a>
 AES-XTS</h3>
 <ul>
 <li>XEX-based tweaked-codebook mode with ciphertext stealing (XTS) is a mode of operation designed specifically for disk encryption and other storage encryption applications.</li>
@@ -176,7 +176,7 @@ AES-XTS</h3>
 <li>The ciphertext stealing mechanism allows for encryption of data that is not a multiple of the block size without requiring additional storage.</li>
 <li>XTS is particularly resistant to manipulation attacks and copy-and-paste attacks that might be possible with simpler modes like ECB or CBC.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1150"></a>
+<h2><a class="anchor" id="autotoc_md1190"></a>
 API Sequence for ECB, CBC, CTR, CMAC Algorithms (Single Shot Mechanism)</h2>
 <p>This sequence performs Encryption and decryption operations for AES-ECB/CBC/CTR algorithms. Supported key lengths are 128, 192, 256 bit.</p>
 <ul>
@@ -186,7 +186,7 @@ API Sequence for ECB, CBC, CTR, CMAC Algorithms (Single Shot Mechanism)</h2>
 <li><a class="el" href="group__SECURITY__DTHE__AES__MODULE.html#gab31fc9bc617c3476a66448d196e79923" title="Function to close DTHE AES Driver.">DTHE_AES_close()</a>: Function to close DTHE AES driver.</li>
 <li><a class="el" href="group__SECURITY__DTHE__MODULE.html#ga2a700d92ae7a4eddae0a7cea569e5fab" title="Function to close a DTHE module specified by the DTHE handle.">DTHE_close()</a>: Function to De-initialize the DTHE instance.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1151"></a>
+<h2><a class="anchor" id="autotoc_md1191"></a>
 API Sequence for ECB, CBC, CTR, CMAC Algorithms (Multi Shot Mechanism)</h2>
 <p>This sequence performs Encryption and decryption operations for AES-ECB/CBC/CTR algorithms. Supported key lengths are 128, 192, 256 bit.</p>
 <ul>
@@ -198,7 +198,7 @@ API Sequence for ECB, CBC, CTR, CMAC Algorithms (Multi Shot Mechanism)</h2>
 <li><a class="el" href="group__SECURITY__DTHE__AES__MODULE.html#gab31fc9bc617c3476a66448d196e79923" title="Function to close DTHE AES Driver.">DTHE_AES_close()</a>: Function to close DTHE AES driver.</li>
 <li><a class="el" href="group__SECURITY__DTHE__MODULE.html#ga2a700d92ae7a4eddae0a7cea569e5fab" title="Function to close a DTHE module specified by the DTHE handle.">DTHE_close()</a>: Function to De-initialize the DTHE instance.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1152"></a>
+<h2><a class="anchor" id="autotoc_md1192"></a>
 API Sequence for GCM Algorithm (Single Shot Mechanism)</h2>
 <p>This sequence performs authenticated encryption and decryption operations for AES-GCM algorithm. Supported key lengths are 128, 192, 256 bit.</p>
 <ul>
@@ -208,7 +208,7 @@ API Sequence for GCM Algorithm (Single Shot Mechanism)</h2>
 <li><a class="el" href="group__SECURITY__DTHE__AES__MODULE.html#gab31fc9bc617c3476a66448d196e79923" title="Function to close DTHE AES Driver.">DTHE_AES_close()</a>: Function to close DTHE AES driver.</li>
 <li><a class="el" href="group__SECURITY__DTHE__MODULE.html#ga2a700d92ae7a4eddae0a7cea569e5fab" title="Function to close a DTHE module specified by the DTHE handle.">DTHE_close()</a>: Function to De-initialize the DTHE instance.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1153"></a>
+<h2><a class="anchor" id="autotoc_md1193"></a>
 API Sequence for GCM Algorithm (Multi Shot Mechanism)</h2>
 <p>This sequence performs authenticated encryption and decryption operations for AES-GCM algorithm. Supported key lengths are 128, 192, 256 bit.</p>
 <ul>
@@ -220,7 +220,7 @@ API Sequence for GCM Algorithm (Multi Shot Mechanism)</h2>
 <li><a class="el" href="group__SECURITY__DTHE__AES__MODULE.html#gab31fc9bc617c3476a66448d196e79923" title="Function to close DTHE AES Driver.">DTHE_AES_close()</a>: Function to close DTHE AES driver.</li>
 <li><a class="el" href="group__SECURITY__DTHE__MODULE.html#ga2a700d92ae7a4eddae0a7cea569e5fab" title="Function to close a DTHE module specified by the DTHE handle.">DTHE_close()</a>: Function to De-initialize the DTHE instance.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1154"></a>
+<h2><a class="anchor" id="autotoc_md1194"></a>
 API Sequence for XTS Algorithm (Single Shot Mechanism)</h2>
 <p>This sequence performs encryption and decryption operations for AES-XTS algorithm. Supported key lengths are 256 and 512 bit (two 128-bit or 256-bit keys).</p>
 <ul>
@@ -230,7 +230,7 @@ API Sequence for XTS Algorithm (Single Shot Mechanism)</h2>
 <li><a class="el" href="group__SECURITY__DTHE__AES__MODULE.html#gab31fc9bc617c3476a66448d196e79923" title="Function to close DTHE AES Driver.">DTHE_AES_close()</a>: Function to close DTHE AES driver.</li>
 <li><a class="el" href="group__SECURITY__DTHE__MODULE.html#ga2a700d92ae7a4eddae0a7cea569e5fab" title="Function to close a DTHE module specified by the DTHE handle.">DTHE_close()</a>: Function to De-initialize the DTHE instance.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1155"></a>
+<h2><a class="anchor" id="autotoc_md1195"></a>
 API Sequence for XTS Algorithm (Multi Shot Mechanism)</h2>
 <p>This sequence performs encryption and decryption operations for AES-XTS algorithm. Supported key lengths are 256 and 512 bit (two 128-bit or 256-bit keys).</p>
 <ul>
@@ -255,7 +255,7 @@ API Sequence for XTS Algorithm (Multi Shot Mechanism)</h2>
 <li><a class="el" href="group__SECURITY__DTHE__AES__MODULE.html#gab31fc9bc617c3476a66448d196e79923" title="Function to close DTHE AES Driver.">DTHE_AES_close()</a>: Function to close DTHE AES driver.</li>
 <li><a class="el" href="group__SECURITY__DTHE__MODULE.html#ga2a700d92ae7a4eddae0a7cea569e5fab" title="Function to close a DTHE module specified by the DTHE handle.">DTHE_close()</a>: Function to De-initialize the DTHE instance.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1156"></a>
+<h1><a class="anchor" id="autotoc_md1196"></a>
 API</h1>
 <ul>
 <li><a class="el" href="group__SECURITY__DTHE__AES__MODULE.html">APIs for DTHE AES</a> </li>

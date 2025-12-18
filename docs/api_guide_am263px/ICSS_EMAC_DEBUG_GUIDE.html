@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('ICSS_EMAC_DEBUG_GUIDE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1354">Assumption</a></li>
-<li class="level1"><a href="#autotoc_md1355">Scope</a></li>
-<li class="level1"><a href="#autotoc_md1356">Common Debugging Tasks</a><ul><li class="level2"><a href="#autotoc_md1357">Loading and running on CCS</a></li>
+<ul><li class="level1"><a href="#autotoc_md1400">Assumption</a></li>
+<li class="level1"><a href="#autotoc_md1401">Scope</a></li>
+<li class="level1"><a href="#autotoc_md1402">Common Debugging Tasks</a><ul><li class="level2"><a href="#autotoc_md1403">Loading and running on CCS</a></li>
 <li class="level2"><a href="#ICSS_EMAC_DEBUG_GUIDE_CHECKING_LINK_STATUS">Checking Link Status</a></li>
-<li class="level2"><a href="#autotoc_md1358">Checking if Receive is working</a></li>
-<li class="level2"><a href="#autotoc_md1359">Checking if Transmit is working</a></li>
+<li class="level2"><a href="#autotoc_md1404">Checking if Receive is working</a></li>
+<li class="level2"><a href="#autotoc_md1405">Checking if Transmit is working</a></li>
 <li class="level2"><a href="#ICSS_EMAC_DEBUG_GUIDE_CHECKING_STATISTICS">Checking Statistics</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#ICSS_EMAC_DEBUG_GUIDE_ACCESSING_MEMORY">Accessing Memory</a></li>
-<li class="level1"><a href="#autotoc_md1360">Using ROV to Debug RTOS</a></li>
+<li class="level1"><a href="#autotoc_md1406">Using ROV to Debug RTOS</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_icss_emac_icss_emac_debug_guide"></a></p>
 <p>It is highly recommended to go through <a class="el" href="ICSS_EMAC_DESIGN.html">ICSS-EMAC Design</a> page before proceeding with this page.</p>
-<h1><a class="anchor" id="autotoc_md1354"></a>
+<h1><a class="anchor" id="autotoc_md1400"></a>
 Assumption</h1>
 <ul>
 <li>A basic understanding of ICSS Architecture and SoC</li>
@@ -120,15 +120,15 @@ Assumption</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1355"></a>
+<h1><a class="anchor" id="autotoc_md1401"></a>
 Scope</h1>
 <p>This page is meant to help the developer in</p><ul>
 <li>Familiarizing with common debugging tools and techniques</li>
 <li>Identifying and resolving frequently faced issues</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1356"></a>
+<h1><a class="anchor" id="autotoc_md1402"></a>
 Common Debugging Tasks</h1>
-<h2><a class="anchor" id="autotoc_md1357"></a>
+<h2><a class="anchor" id="autotoc_md1403"></a>
 Loading and running on CCS</h2>
 <p>See <a href="@VAR_MCU_SDK_DOCS_PATH/CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a> page for details on how to load and run binaries on EVM using CCS. Also, see <a href="@VAR_MCU_SDK_DOCS_PATH/EVM_SETUP_PAGE.html#CCS_UART_TERMINAL">Setup UART Terminal</a> section for information on how to open a UART terminal inside CCS.</p>
 <h2><a class="anchor" id="ICSS_EMAC_DEBUG_GUIDE_CHECKING_LINK_STATUS"></a>
@@ -136,7 +136,7 @@ Checking Link Status</h2>
 <p>Link Status is available as an array <code>linkStatus</code> in <code>ICSS_EMAC_Object</code>. The status is updated in the Link ISR function (<code>ICSS_EMAC_linkISR</code>). It can be read by putting <code>"((ICSS_EMAC_Object *)(icssEmacHandle-&gt;object))-&gt;linkStatus"</code> in the "Expressions" window of CCS (It can be opened in CCS from View-&gt;Expressions).</p>
 <p>It is possible that the link interrupt is configured incorrectly or MDIO is not triggering the interrupts. In which case one needs to put a breakpoint in the ISR <code>ICSS_EMAC_linkISR</code> and disconnect or connect the cable on any one port. The breakpoint should get hit, if it does not then there is some issue with the interrupt configuration.</p>
 <p>In case different PHYs (compared to those on EVM) are used that, the PHY status registers may be read incorrectly and that might lead to some issues. Please consult the porting guide and reference manual for the specific PHY to figure out where the issue could be.</p>
-<h2><a class="anchor" id="autotoc_md1358"></a>
+<h2><a class="anchor" id="autotoc_md1404"></a>
 Checking if Receive is working</h2>
 <p>The receive path has been explained in <a class="el" href="ICSS_EMAC_DESIGN.html#ICSS_EMAC_DESIGN_DATA_PATH_RX">Rx Data Path</a> section. Rx issues can manifest themselves in several ways, the following table covers most of them (not exhaustively).</p>
 <table class="doxtable">
@@ -195,7 +195,7 @@ Checking if Receive is working</h2>
 </li>
 <li>More on Throughput : If throughput is low then try to find out how the Rx processing on Host can be sped up or if any other high priority task is blocking the execution of <code>RxTask</code>.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md1359"></a>
+<h2><a class="anchor" id="autotoc_md1405"></a>
 Checking if Transmit is working</h2>
 <p>Tx is much more reliable and there are far fewer issues related to it when compared to Rx. The transmit path has been explained in <a class="el" href="ICSS_EMAC_DESIGN.html#ICSS_EMAC_DESIGN_DATA_PATH_TX">Tx Data Path</a> section.</p>
 <p>Transmit issues can be classified into two types:</p>
@@ -243,7 +243,7 @@ Accessing Memory</h1>
 </div>
   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1360"></a>
+<h1><a class="anchor" id="autotoc_md1406"></a>
 Using ROV to Debug RTOS</h1>
 <p>For more details, see <a href="@VAR_MCU_SDK_DOCS_PATH/ROV_INTRO_PAGE.html#PRUICSS_INTC">Using SDK with Real-time Object View (ROV)</a>. </p>
 </div></div><!-- contents -->

@@ -92,26 +92,26 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_EPWM_UP_AQ.html','');
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2500">Introduction</a><ul><li class="level2"><a href="#autotoc_md2501">ISR Configuration</a></li>
+<ul><li class="level1"><a href="#autotoc_md2546">Introduction</a><ul><li class="level2"><a href="#autotoc_md2547">ISR Configuration</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2502">External Connections</a><ul><li class="level2"><a href="#autotoc_md2503">AM263X-CC or AM263PX-CC or AM261X-SOM</a></li>
-<li class="level2"><a href="#autotoc_md2504">AM263X-LP or AM263PX-LP</a></li>
-<li class="level2"><a href="#autotoc_md2505">AM261X-LP</a></li>
+<li class="level1"><a href="#autotoc_md2548">External Connections</a><ul><li class="level2"><a href="#autotoc_md2549">AM263X-CC or AM263PX-CC or AM261X-SOM</a></li>
+<li class="level2"><a href="#autotoc_md2550">AM263X-LP or AM263PX-LP</a></li>
+<li class="level2"><a href="#autotoc_md2551">AM261X-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_EPWM_UP_AQ_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2506">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2507">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2508">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2552">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2553">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2554">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_epwm_up_aq"></a></p>
-<h1><a class="anchor" id="autotoc_md2500"></a>
+<h1><a class="anchor" id="autotoc_md2546"></a>
 Introduction</h1>
 <p>This example configures ePWM0, ePWM1 and ePWM2 (ePWM2, ePWM3 and ePWM4 in case of AM261x-LP) to produce an waveform with independent modulation on ePWMxA and ePWMxB. The TB counter is in up count mode for this example.</p>
 <p>The compare values CMPA and CMPB are modified within the ePWM's ISR.</p>
-<h2><a class="anchor" id="autotoc_md2501"></a>
+<h2><a class="anchor" id="autotoc_md2547"></a>
 ISR Configuration</h2>
 <ol type="1">
 <li>INTXbar0, INTXbar1 and INTXbar2 are set for EPWM0INT, EPWM1INT and EPWM2INT (EPWM2INT, EPWM3INT and EPWM4INT in case of AM261x-LP)</li>
@@ -128,14 +128,14 @@ ISR Configuration</h2>
 <img src="am263_epwm_up_aq.png" alt=""/>
 <div class="caption">
 EPWM Asymetric Waveform with Independent Modulation using UP-Count mode</div></div>
-<h1><a class="anchor" id="autotoc_md2502"></a>
+<h1><a class="anchor" id="autotoc_md2548"></a>
 External Connections</h1>
 <ul>
 <li>EPWM0_A and EPWM0_B pin can be connected to an oscilloscope to view the waveform.</li>
 <li>EPWM1_A and EPWM1_B pin can be connected to an oscilloscope to view the waveform.</li>
 <li>EPWM2_A and EPWM2_B pin can be connected to an oscilloscope to view the waveform.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2503"></a>
+<h2><a class="anchor" id="autotoc_md2549"></a>
 AM263X-CC or AM263PX-CC or AM261X-SOM</h2>
 <p>When using AM263X-CC, AM263PX-CC or AM261X-SOM with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Capture waveform on HSEC Pin 49 for epwm0_A</li>
@@ -145,7 +145,7 @@ AM263X-CC or AM263PX-CC or AM261X-SOM</h2>
 <li>Capture waveform on HSEC Pin 50 for epwm2_A</li>
 <li>Capture waveform on HSEC Pin 52 for epwm2_B</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2504"></a>
+<h2><a class="anchor" id="autotoc_md2550"></a>
 AM263X-LP or AM263PX-LP</h2>
 <ul>
 <li>Capture waveform on boosterpack header J6/J8 Pin 11 for epwm0_A</li>
@@ -155,7 +155,7 @@ AM263X-LP or AM263PX-LP</h2>
 <li>Capture waveform on boosterpack header J2/J4 Pin 39 for epwm2_A</li>
 <li>Capture waveform on boosterpack header J2/J4 Pin 40 for epwm2_B</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2505"></a>
+<h2><a class="anchor" id="autotoc_md2551"></a>
 AM261X-LP</h2>
 <ul>
 <li>Capture waveform on boosterpack header J2/J4 Pin 40 for epwm2_A</li>
@@ -179,7 +179,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/epwm/epwm_up_aq   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2506"></a>
+<h1><a class="anchor" id="autotoc_md2552"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -187,10 +187,10 @@ Steps to Run the Example</h1>
 <li>Establish connections as mentioned in External Connections section</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2507"></a>
+<h1><a class="anchor" id="autotoc_md2553"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_EPWM_PAGE.html">EPWM</a></p>
-<h1><a class="anchor" id="autotoc_md2508"></a>
+<h1><a class="anchor" id="autotoc_md2554"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">EPWM Action Qualifier Module Test Started ...</div>

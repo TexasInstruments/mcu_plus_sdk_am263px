@@ -93,10 +93,10 @@
 #define PKE_ECDSA_SIGN_TIMEOUT                     (10000U)
 
 /** \brief device type HSSE */
-#define DEVTYPE_HSSE         (0x0AU)
+#define DEVTYPE_HSSE                                (0x0AU)
 
 /** \brief NULL handle for AsymCrypt */
-#define ASYM_CRYPT_NULL_HANDLE ((AsymCrypt_Handle)NULL)
+#define ASYM_CRYPT_NULL_HANDLE                      ((AsymCrypt_Handle)NULL)
 
 /** \brief PKE NO ERROR */
 #define PKE_NO_ERROR_STATUS                        (0)
@@ -115,7 +115,6 @@
 static uint32_t PKE_countLeadingZeros(uint32_t x);
 static uint32_t PKE_bigIntBitLen(const uint32_t bn[ECDSA_MAX_LENGTH]);
 static AsymCrypt_Return_t PKE_isBigIntZero(const uint32_t bn[RSA_MAX_LENGTH]);
-static AsymCrypt_Return_t PKE_getPrimeCurveId (const struct AsymCrypt_ECPrimeCurveP *curveParams, uint32_t *pkeCurveType);
 
 cri_pke_context_t 	gPKEContext;
 cri_pke_t 			gPKE;
@@ -184,7 +183,7 @@ AsymCrypt_Return_t AsymCrypt_RSAPrivate(AsymCrypt_Handle handle,
                     uint32_t result[RSA_MAX_LENGTH])
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
-    int pkeStatus = PKE_FAULT_STATUS;
+    int32_t pkeStatus = PKE_FAULT_STATUS;
     uint32_t pubmod_bitsize = k->n[0U]*4U;
     uint32_t exp_size = k->e[0U]*4U;
     uint32_t size = (k->d[0U])/2U;
@@ -235,7 +234,7 @@ AsymCrypt_Return_t AsymCrypt_RSAPublic(AsymCrypt_Handle handle,
                     uint32_t result[RSA_MAX_LENGTH])
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
-    int pkeStatus = PKE_FAULT_STATUS;
+    int32_t pkeStatus = PKE_FAULT_STATUS;
     uint32_t pubmod_bitsize = k->n[0U]*4U;
     uint32_t exp_size = k->e[0U]*4U;
     uint32_t size = k->n[0U];
@@ -285,7 +284,7 @@ AsymCrypt_Return_t AsymCrypt_RSAKeyGenPrivate(AsymCrypt_Handle handle,
                     uint32_t keybitsize)
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
-    int pkeStatus = PKE_FAULT_STATUS;
+    int32_t pkeStatus = PKE_FAULT_STATUS;
     uint32_t pubmod_bitsize = keybitsize;
     uint32_t exp_size = k->e[0U]*4U;
     uint32_t size = (keybitsize/(8U*4U));
@@ -367,35 +366,51 @@ AsymCrypt_Return_t AsymCrypt_ECDSASign(AsymCrypt_Handle handle,
                     const uint32_t priv[ECDSA_MAX_LENGTH],
                     const uint32_t k[ECDSA_MAX_LENGTH],
                     const uint32_t h[ECDSA_MAX_LENGTH],
-                    struct AsymCrypt_ECDSASig *sig)
+                    struct AsymCrypt_ECDSASig *sig,
+                    uint32_t curveType)
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
-    int pkeStatus = PKE_FAULT_STATUS;
-    uint32_t curveType = 0U;
+    int32_t pkeStatus = PKE_FAULT_STATUS;
     cri_ecc_curve_t curve;
-    uint32_t bigEndianHash[ECDSA_MAX_LENGTH];
-    uint8_t littleEndianHash[ECDSA_MAX_LENGTH*4U];
-    uint32_t size = cp->prime[0U];
+    uint32_t size = 0U;
+    uint32_t hashSize = 0U;
     uint32_t nonce[ECDSA_MAX_LENGTH*2U];
     uint32_t* noncePtr = NULL;
+    const uint8_t *pHashData;
 
-    /* check sizes */
-    if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
-           (size != cp->order[0U]) || (size < cp->a[0U]) ||
-           (size < cp->b[0U]) || (size < cp->g.x[0U]) ||
-           (size < cp->g.y[0U]) || (size < priv[0U]) ||
-           (size < k[0U]))))
+    /* Checking handle is opened or not */
+    if(ASYM_CRYPT_NULL_HANDLE != handle)
     {
-        /* Checking handle is opened or not */
-        if(ASYM_CRYPT_NULL_HANDLE != handle)
+        /* Check if using curveId or curve parameters */
+        if(curveType != 0xFFFFFFFFU)
         {
-            status = ASYM_CRYPT_RETURN_SUCCESS;
+            /* Using curveId - get curve and validate using curve length */
+            curve = cri_pke_get_curve(curveType);
+            if(curve != NULL)
+            {
+                size = cri_pke_get_curve_length(curve);
+                if(size == 66U)//special case for ECDSA-SECP521
+                {
+                    size = size >> 2U; // store total number of words
+                    size++;
+                }
+                else
+                {
+                    size = size >> 2U; // store total number of words
+                }
+                    
+                /* Validate signature and public key parameters against curve length */
+                if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
+                    (size < k[0U]))))
+                {
+                    status = ASYM_CRYPT_RETURN_SUCCESS;
+                }
+            }
         }
     }
 
     if(ASYM_CRYPT_RETURN_SUCCESS == status)
     {
-
         if((k == NULL) || (PKE_isBigIntZero(&k[0U]) == ASYM_CRYPT_RETURN_SUCCESS))
         {
             /* Signing operation will generate random nonce, if random 'k' is not provided or set to 0*/
@@ -413,38 +428,22 @@ AsymCrypt_Return_t AsymCrypt_ECDSASign(AsymCrypt_Handle handle,
         }
 
         /* Get the size of input hash */
-        size = h[0U];
+        hashSize = h[0U] * 4U;
+        pHashData = (const uint8_t *)(uintptr_t)&h[1U];
 
-        /* PKE only supports Hash as a BigEndian input */
-        Crypto_bigIntToUint32((uint32_t *)&h[0U], size, (uint32_t *)&bigEndianHash[0U]);
-        
-        /* PKE only supports Hash as a BigEndian input */
-        Crypto_Uint32ToUint8((uint32_t *)&bigEndianHash[0U], size*4U, (uint8_t *)&littleEndianHash[0U]);
+        /* Get signature */
+        pkeStatus = cri_pke_ecdsa_sign_extended(gPKE, curve, &priv[1U], NULL, noncePtr, pHashData, hashSize, &sig->r[1U], &sig->s[1U]);
 
-        /* Mapping the curve parameters as input to curve type */
-        status = PKE_getPrimeCurveId(cp, &curveType);
-        if(ASYM_CRYPT_RETURN_SUCCESS == status)
+        if (pkeStatus == PKE_NO_ERROR_STATUS)
         {
-            /* Get curve id based on the cri_ecc_curve_t param set */
-            curve = cri_pke_get_curve(curveType);
+            status  = ASYM_CRYPT_RETURN_SUCCESS;
 
-            /* Get signature */
-            pkeStatus = cri_pke_ecdsa_sign_extended(gPKE, curve, &priv[1U], NULL, noncePtr, &littleEndianHash[0U], size*4U, &sig->r[1U], &sig->s[1U]);
-
-            sig->r[0U] = cp->prime[0U];
-            sig->s[0U] = cp->prime[0U];
-
-            /* Revert the input back to original state */
-            Crypto_Uint32ToBigInt((uint32_t *)&bigEndianHash[0U], size, (uint32_t *)&h[0U]);
-
-            if (pkeStatus == PKE_NO_ERROR_STATUS)
-            {
-                status  = ASYM_CRYPT_RETURN_SUCCESS;
-            }
-            else
-            {
-                status  = ASYM_CRYPT_RETURN_FAILURE;
-            }
+            sig->r[0U] = size;
+            sig->s[0U] = size;
+        }
+        else
+        {
+            status  = ASYM_CRYPT_RETURN_FAILURE;
         }
     }
 
@@ -455,65 +454,66 @@ AsymCrypt_Return_t AsymCrypt_ECDSAVerify(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
                         const struct AsymCrypt_ECPoint *pub,
                         const struct AsymCrypt_ECDSASig *sig,
-                        const uint32_t h[ECDSA_MAX_LENGTH])
+                        const uint32_t h[ECDSA_MAX_LENGTH],
+                        uint32_t curveType)
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
-    int pkeStatus = PKE_FAULT_STATUS;
-    uint32_t curveType = 0;
+    int32_t pkeStatus = PKE_FAULT_STATUS;
     cri_ecc_curve_t curve;
-    uint32_t bigEndianHash[ECDSA_MAX_LENGTH];
-    uint8_t littleEndianHash[ECDSA_MAX_LENGTH*4U];
-    uint32_t size = cp->prime[0U];
+    uint32_t size = 0U;
+    uint32_t hashSize = 0U;
+    const uint8_t *pHashData;
 
-    /* check sizes */
-    if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
-           (size != cp->order[0U]) || (size < cp->a[0U]) ||
-           (size < cp->b[0U]) || (size < cp->g.x[0U]) ||
-           (size < cp->g.y[0U]) || (size < pub->x[0U]) ||
-           (size < pub->y[0U]) || (size < sig->r[0U]) ||
-           (size < sig->s[0U]))) &&
-            (PKE_isBigIntZero(sig->r) != ASYM_CRYPT_RETURN_SUCCESS) &&
-            (PKE_isBigIntZero(sig->s) != ASYM_CRYPT_RETURN_SUCCESS))
+    /* Checking handle is opened or not */
+    if(ASYM_CRYPT_NULL_HANDLE != handle)
     {
-        /* Checking handle is opened or not */
-        if(ASYM_CRYPT_NULL_HANDLE != handle)
+        /* Check if using curveId or curve parameters */
+        if(curveType != 0xFFFFFFFFU)
         {
-            status = ASYM_CRYPT_RETURN_SUCCESS;
+            /* Using curveId - get curve and validate using curve length */
+            curve = cri_pke_get_curve(curveType);
+            if(curve != NULL)
+            {
+                size = cri_pke_get_curve_length(curve);
+                if(size == 66U)
+                {
+                    size = size >> 2U; // store total number of words
+                    size++;
+                }
+                else
+                {
+                    size = size >> 2U; // store total number of words
+                }
+                
+                /* Validate signature and public key parameters against curve length */
+                if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
+                       (size < pub->x[0U]) || (size < pub->y[0U]) ||
+                       (size < sig->r[0U]) || (size < sig->s[0U]))) &&
+                        (PKE_isBigIntZero(sig->r) != ASYM_CRYPT_RETURN_SUCCESS) &&
+                        (PKE_isBigIntZero(sig->s) != ASYM_CRYPT_RETURN_SUCCESS))
+                {
+                    status = ASYM_CRYPT_RETURN_SUCCESS;
+                }
+            }
         }
     }
 
     if(ASYM_CRYPT_RETURN_SUCCESS == status)
     {
         /* Get the size of input hash */
-        size = h[0U];
+        hashSize = h[0U]*4U;
+        pHashData = (const uint8_t *)(uintptr_t)&h[1U];
+        
+        /* Call the ECDSA Verify function */
+        pkeStatus = cri_pke_ecdsa_verify_hash(gPKE, curve, &pub->x[1U], &pub->y[1U], pHashData, hashSize, &sig->r[1U], &sig->s[1U], &signatureRPrime);
 
-        /* PKE only supports Hash as a BigEndian input */
-        Crypto_bigIntToUint32((uint32_t *)&h[0U], size, (uint32_t *)&bigEndianHash[0U]);
-        
-        /* PKE only supports Hash as a BigEndian input */
-        Crypto_Uint32ToUint8((uint32_t *)&bigEndianHash[0U], size*4U, (uint8_t *)&littleEndianHash[0U]);
-        
-        /* Mapping the curve parameters as input to curve type */
-        status = PKE_getPrimeCurveId(cp, &curveType);
-        if(ASYM_CRYPT_RETURN_SUCCESS == status)
+        if (pkeStatus == PKE_NO_ERROR_STATUS)
         {
-            /* Get curve id based on the cri_ecc_curve_t param set */
-            curve = cri_pke_get_curve(curveType);
-
-            /* Call the ECDSA Verify function */
-            pkeStatus = cri_pke_ecdsa_verify_hash(gPKE, curve, &pub->x[1U], &pub->y[1U], &littleEndianHash[0U], size*4U, &sig->r[1U], &sig->s[1U], &signatureRPrime);
-
-            /* Revert the input back to original state */
-            Crypto_Uint32ToBigInt((uint32_t *)&bigEndianHash[0U], size, (uint32_t *)&h[0U]);
-
-            if (pkeStatus == PKE_NO_ERROR_STATUS)
-            {
-                status  = ASYM_CRYPT_RETURN_SUCCESS;
-            }
-            else
-            {
-                status  = ASYM_CRYPT_RETURN_FAILURE;
-            }
+            status  = ASYM_CRYPT_RETURN_SUCCESS;
+        }
+        else
+        {
+            status  = ASYM_CRYPT_RETURN_FAILURE;
         }
     }
 
@@ -522,19 +522,37 @@ AsymCrypt_Return_t AsymCrypt_ECDSAVerify(AsymCrypt_Handle handle,
 
 AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPrivate(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
-                        uint32_t priv[ECDSA_MAX_LENGTH])
+                        uint32_t priv[ECDSA_MAX_LENGTH],
+                        uint32_t curveType)
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
-    int pkeStatus = PKE_FAULT_STATUS;
-    uint32_t curveType = 0;
-    cri_ecc_curve_t curve;
-    uint32_t size = cp->prime[0U];
+    int32_t pkeStatus = PKE_FAULT_STATUS;
+    cri_ecc_curve_t curve = NULL;
+    uint32_t size = 0U;
+
+    /* Check if using curveId or curve parameters */
+    if(curveType != 0xFFFFFFFFU)
+    {
+        /* Using curveId - get curve and validate using curve length */
+        curve = cri_pke_get_curve(curveType);
+
+        if(curve != NULL)
+        {
+            size = cri_pke_get_curve_length(curve);
+            if(size == 66U)
+            {
+                size = size >> 2U; // store total number of words
+                size++;
+            }
+            else
+            {
+                size = size >> 2U; // store total number of words
+            }
+        }
+    }
 
     /* check sizes */
-    if (!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
-           (size != cp->order[0U]) || (size < cp->a[0U]) ||
-           (size < cp->b[0U]) || (size < cp->g.x[0U]) ||
-           (size < cp->g.y[0U])))
+    if (!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U))))
     {
         /* Checking handle is opened or not */
         if(ASYM_CRYPT_NULL_HANDLE != handle)
@@ -544,26 +562,18 @@ AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPrivate(AsymCrypt_Handle handle,
     }
 
     if(ASYM_CRYPT_RETURN_SUCCESS == status)
-    {      
-        /* Mapping the curve parameters as input to curve type */
-        status = PKE_getPrimeCurveId(cp, &curveType);
-        if(ASYM_CRYPT_RETURN_SUCCESS == status)
+    {
+        /* Call the ECDSA KeyGen function to generate private key */
+        pkeStatus = cri_pke_ecc_private_keygen(gPKE, curve, &priv[1U]);
+
+        if (pkeStatus == PKE_NO_ERROR_STATUS)
         {
-            /* Get curve id based on the cri_ecc_curve_t param set */
-            curve = cri_pke_get_curve(curveType);
-
-            /* Call the ECDSA KeyGen function to generate private key */
-            pkeStatus = cri_pke_ecc_private_keygen(gPKE, curve, &priv[1U]);
-
-            if (pkeStatus == PKE_NO_ERROR_STATUS)
-            {
-                status  = ASYM_CRYPT_RETURN_SUCCESS;
-                priv[0U] = size;
-            }
-            else
-            {
-                status  = ASYM_CRYPT_RETURN_FAILURE;
-            }
+            status  = ASYM_CRYPT_RETURN_SUCCESS;
+            priv[0U] = size;
+        }
+        else
+        {
+            status  = ASYM_CRYPT_RETURN_FAILURE;
         }
     }
 
@@ -573,19 +583,36 @@ AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPrivate(AsymCrypt_Handle handle,
 AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPublic(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
                         struct AsymCrypt_ECPoint *pub,
-                        const uint32_t priv[ECDSA_MAX_LENGTH])
+                        const uint32_t priv[ECDSA_MAX_LENGTH],
+                        uint32_t curveType)
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
-    int pkeStatus = PKE_FAULT_STATUS;
-    uint32_t curveType = 0;
+    int32_t pkeStatus = PKE_FAULT_STATUS;
     cri_ecc_curve_t curve;
-    uint32_t size = cp->prime[0U];
+    uint32_t size = 0U;
+
+    /* Check if using curveId or curve parameters */
+    if(curveType != 0xFFFFFFFFU)
+    {
+        /* Using curveId - get curve and validate using curve length */
+        curve = cri_pke_get_curve(curveType);
+        if(curve != NULL)
+        {
+            size = cri_pke_get_curve_length(curve);
+            if(size == 66U)
+            {
+                size = size >> 2U; // store total number of words
+                size++;
+            }
+            else
+            {
+                size = size >> 2U; // store total number of words
+            }
+        }
+    }
 
     /* check sizes */
-    if (!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
-           (size != cp->order[0U]) || (size < cp->a[0U]) ||
-           (size < cp->b[0U]) || (size < cp->g.x[0U]) ||
-           (size < cp->g.y[0U]) || (size < priv[0U])))
+    if (!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U))))
     {
         /* Checking handle is opened or not */
         if(ASYM_CRYPT_NULL_HANDLE != handle)
@@ -596,26 +623,18 @@ AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPublic(AsymCrypt_Handle handle,
 
     if(ASYM_CRYPT_RETURN_SUCCESS == status)
     {      
-        /* Mapping the curve parameters as input to curve type */
-        status = PKE_getPrimeCurveId(cp, &curveType);
-        if(ASYM_CRYPT_RETURN_SUCCESS == status)
+        /* Call the ECDSA KeyGen function to generate private key */
+        pkeStatus = cri_pke_ecdsa_keygen(gPKE, curve, &priv[1U], &pub->x[1U], &pub->y[1U]);
+
+        if (pkeStatus == PKE_NO_ERROR_STATUS)
         {
-            /* Get curve id based on the cri_ecc_curve_t param set */
-            curve = cri_pke_get_curve(curveType);
-
-            /* Call the ECDSA KeyGen function to generate private key */
-            pkeStatus = cri_pke_ecdsa_keygen(gPKE, curve, &priv[1U], &pub->x[1U], &pub->y[1U]);
-
-            if (pkeStatus == PKE_NO_ERROR_STATUS)
-            {
-                status  = ASYM_CRYPT_RETURN_SUCCESS;
-                pub->x[0U] = size;
-                pub->y[0U] = size;
-            }
-            else
-            {
-                status  = ASYM_CRYPT_RETURN_FAILURE;
-            }
+            status  = ASYM_CRYPT_RETURN_SUCCESS;
+            pub->x[0U] = size;
+            pub->y[0U] = size;
+        }
+        else
+        {
+            status  = ASYM_CRYPT_RETURN_FAILURE;
         }
     }
 
@@ -631,7 +650,7 @@ AsymCrypt_Return_t AsymCrypt_EddsaSign(AsymCrypt_Handle handle,
                              AsymCrypt_EdCurveType_t input_curve)
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
-    int pkeStatus = PKE_FAULT_STATUS;
+    int32_t pkeStatus = PKE_FAULT_STATUS;
     cri_ecc_curve_t curve = NULL;
     uint8_t r[EDDSA_ED448_HASH_LEN];
     uint8_t hash[EDDSA_ED448_HASH_LEN];
@@ -747,7 +766,7 @@ AsymCrypt_Return_t AsymCrypt_EddsaVerify(AsymCrypt_Handle handle,
     uint8_t    *ptrdataInput = NULL;
     uint8_t tempBuff[EDDSA_ED448_HASH_LEN];
     uint8_t hash[EDDSA_ED448_HASH_LEN];
-    int pkeStatus = PKE_FAULT_STATUS;
+    int32_t pkeStatus = PKE_FAULT_STATUS;
     uint32_t hash_len;
     uint32_t key_len;
 
@@ -814,7 +833,7 @@ AsymCrypt_Return_t AsymCrypt_EddsaGetPubKey(AsymCrypt_Handle handle,
                                    AsymCrypt_EdCurveType_t input_curve)
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
-    int pkeStatus = PKE_FAULT_STATUS;
+    int32_t pkeStatus = PKE_FAULT_STATUS;
     cri_ecc_curve_t curve = NULL;
     uint8_t privKeyHash[64];
     const uint8_t *privKeyPtr = &privKey[0U];
@@ -880,20 +899,38 @@ AsymCrypt_Return_t AsymCrypt_EcdhGenSharedSecret(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
                         const uint32_t priv[ECDSA_MAX_LENGTH],
                         const struct AsymCrypt_ECPoint *pubKey,
-                        struct AsymCrypt_ECPoint *ecShSecret)
+                        struct AsymCrypt_ECPoint *ecShSecret,
+                        uint32_t curveType)
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
-    int pkeStatus = PKE_FAULT_STATUS;
-    uint32_t curveType = 0;
+    int32_t pkeStatus = PKE_FAULT_STATUS;
     cri_ecc_curve_t curve;
-    uint32_t size = cp->prime[0U];
+    uint32_t size = 0U;
+
+    /* Check if using curveId or curve parameters */
+    if(curveType != 0xFFFFFFFFU)
+    {
+        /* Using curveId - get curve and validate using curve length */
+        curve = cri_pke_get_curve(curveType);
+        if(curve != NULL)
+        {
+            size = cri_pke_get_curve_length(curve);
+            if(size == 66U)
+            {
+                size = size >> 2U; // store total number of words
+                size++;
+            }
+            else
+            {
+                size = size >> 2U; // store total number of words
+            }
+        }
+    }
 
     /* check sizes */
-    if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
-           (size != cp->order[0U]) || (size < cp->a[0U]) ||
-           (size < cp->b[0U]) || (size < cp->g.x[0U]) ||
-           (size < cp->g.y[0U])  || (size < pubKey->x[0U]) ||
-           (size < pubKey->y[0U]) || (size < priv[0U])))) {
+    if (!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
+           (size < pubKey->x[0U]) || (size < pubKey->y[0U]) ||
+           (size < priv[0U]))) {
         /* Checking handle is opened or not */
         if (NULL != handle) {
             status = ASYM_CRYPT_RETURN_SUCCESS;
@@ -901,21 +938,17 @@ AsymCrypt_Return_t AsymCrypt_EcdhGenSharedSecret(AsymCrypt_Handle handle,
     }
 
     if (ASYM_CRYPT_RETURN_SUCCESS == status) {
-        /* Mapping the curve parameters as input to curve type */
-        status = PKE_getPrimeCurveId(cp, &curveType);
-        if (ASYM_CRYPT_RETURN_SUCCESS == status) {
-            /* Get curve id based on the cri_ecc_curve_t param set */
-            curve = cri_pke_get_curve(curveType);
+        /* Get curve id based on the cri_ecc_curve_t param set */
+        curve = cri_pke_get_curve(curveType);
 
-            /* Get signature */
-            pkeStatus = cri_pke_ecdh(gPKE, curve, &priv[1U], &pubKey->x[1U], &ecShSecret->x[1U]);
-            ecShSecret->x[0U] = pubKey->x[0U];
+        /* Get signature */
+        pkeStatus = cri_pke_ecdh(gPKE, curve, &priv[1U], &pubKey->x[1U], &ecShSecret->x[1U]);
+        ecShSecret->x[0U] = pubKey->x[0U];
 
-            if (0 == pkeStatus) {
-                status  = ASYM_CRYPT_RETURN_SUCCESS;
-            } else {
-                status  = ASYM_CRYPT_RETURN_FAILURE;
-            }
+        if (0 == pkeStatus) {
+            status  = ASYM_CRYPT_RETURN_SUCCESS;
+        } else {
+            status  = ASYM_CRYPT_RETURN_FAILURE;
         }
     }
 
@@ -929,13 +962,11 @@ AsymCrypt_Return_t AsymCrypt_SM2DSASign(AsymCrypt_Handle handle,
                     struct AsymCrypt_SM2DSASig *sig)
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
-    int pkeStatus = PKE_FAULT_STATUS;
+    int32_t pkeStatus = PKE_FAULT_STATUS;
     cri_ecc_curve_t curve;
-    uint32_t bigEndianHash[ECDSA_MAX_LENGTH];
-    uint8_t littleEndianHash[ECDSA_MAX_LENGTH*4U];
     uint32_t nonce[ECDSA_MAX_LENGTH*2U];
     uint32_t* noncePtr = NULL;
-    uint32_t size = 8U;
+    uint32_t size = 8U; /* 256bit (8words) is the size of SM2 */
     uint32_t curvelen = 0;
 
     /* check sizes */
@@ -966,29 +997,20 @@ AsymCrypt_Return_t AsymCrypt_SM2DSASign(AsymCrypt_Handle handle,
             noncePtr = &nonce[0U];
         }
 
-        /* PKE only supports Hash as a BigEndian input */
-        Crypto_bigIntToUint32((uint32_t *)&h[0U], size, (uint32_t *)&bigEndianHash[0U]);
-        
-        /* PKE only supports Hash as a BigEndian input */
-        Crypto_Uint32ToUint8((uint32_t *)&bigEndianHash[0U], size*4U, (uint8_t *)&littleEndianHash[0U]);
-
         /* Get SM2 curve */
         curve = cri_pke_get_curve(CRI_ECC_CURVE_SM2);
         /* Get curve length of SM2 */
         curvelen = cri_pke_get_curve_length(curve);
 
         /* Get signature */
-        pkeStatus = cri_pke_ecdsa_sign_extended(gPKE, curve, &priv[1U], NULL, noncePtr,  &littleEndianHash[0U], curvelen, &sig->r[1U], &sig->s[1U]);
-
-        sig->r[0U] = size;
-        sig->s[0U] = size;
-
-        /* Revert the input back to original state */
-        Crypto_Uint32ToBigInt((uint32_t *)&bigEndianHash[0U], size, (uint32_t *)&h[0U]);
+        pkeStatus = cri_pke_ecdsa_sign_extended(gPKE, curve, &priv[1U], NULL, noncePtr,  &h[1U], curvelen, &sig->r[1U], &sig->s[1U]);
 
         if (pkeStatus == PKE_NO_ERROR_STATUS)
         {
             status  = ASYM_CRYPT_RETURN_SUCCESS;
+
+            sig->r[0U] = size;
+            sig->s[0U] = size;
         }
         else
         {
@@ -1005,11 +1027,9 @@ AsymCrypt_Return_t AsymCrypt_SM2DSAVerify(AsymCrypt_Handle handle,
                         const uint32_t h[ECDSA_MAX_LENGTH])
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
-    int pkeStatus = PKE_FAULT_STATUS;
+    int32_t pkeStatus = PKE_FAULT_STATUS;
     cri_ecc_curve_t curve;
-    uint32_t bigEndianHash[ECDSA_MAX_LENGTH];
-    uint8_t littleEndianHash[ECDSA_MAX_LENGTH*4U];
-    uint32_t size = 8U;
+    uint32_t size = 8U; /* 256bit (8words) is the size of SM2 */
     uint32_t curvelen = 0;
 
     /* check sizes */
@@ -1027,22 +1047,13 @@ AsymCrypt_Return_t AsymCrypt_SM2DSAVerify(AsymCrypt_Handle handle,
 
     if(status == ASYM_CRYPT_RETURN_SUCCESS)
     {
-        /* PKE only supports Hash as a BigEndian input */
-        Crypto_bigIntToUint32((uint32_t *)&h[0U], size, (uint32_t *)&bigEndianHash[0U]);
-        
-        /* PKE only supports Hash as a BigEndian input */
-        Crypto_Uint32ToUint8((uint32_t *)&bigEndianHash[0U], size*4U, (uint8_t *)&littleEndianHash[0U]);
-
         /* Get SM2 curve */
         curve = cri_pke_get_curve(CRI_ECC_CURVE_SM2);
         /* Get curve length of SM2 */
         curvelen = cri_pke_get_curve_length(curve);
 
         /* Verify signature */
-        pkeStatus = cri_pke_ecdsa_verify_hash(gPKE, curve, &pub->x[1U], &pub->y[1U], &littleEndianHash[0U], curvelen, &sig->r[1U], &sig->s[1U], &signatureRPrime);
-
-        /* Revert the input back to original state */
-        Crypto_Uint32ToBigInt((uint32_t *)&bigEndianHash, size, (uint32_t *)&h[0U]);
+        pkeStatus = cri_pke_ecdsa_verify_hash(gPKE, curve, &pub->x[1U], &pub->y[1U], &h[1U], curvelen, &sig->r[1U], &sig->s[1U], &signatureRPrime);
 
         if (pkeStatus == PKE_NO_ERROR_STATUS)
         {
@@ -1061,7 +1072,7 @@ AsymCrypt_Return_t AsymCrypt_SM2DSAKeyGenPrivate(AsymCrypt_Handle handle,
                         uint32_t priv[ECDSA_MAX_LENGTH])
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
-    int pkeStatus = PKE_FAULT_STATUS;
+    int32_t pkeStatus = PKE_FAULT_STATUS;
     uint32_t size = 8U;
     cri_ecc_curve_t curve;
 
@@ -1098,7 +1109,7 @@ AsymCrypt_Return_t AsymCrypt_SM2DSAKeyGenPublic(AsymCrypt_Handle handle,
                         const uint32_t priv[ECDSA_MAX_LENGTH])
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
-    int pkeStatus = PKE_FAULT_STATUS;
+    int32_t pkeStatus = PKE_FAULT_STATUS;
     uint32_t size = 8U;
     cri_ecc_curve_t curve;
 
@@ -1201,47 +1212,4 @@ static AsymCrypt_Return_t PKE_isBigIntZero(const uint32_t bn[RSA_MAX_LENGTH])
         }
     }
     return (ret);
-}
-
-static AsymCrypt_Return_t PKE_getPrimeCurveId (const struct AsymCrypt_ECPrimeCurveP *curveParams, uint32_t *pkeCurveType)
-{
-    AsymCrypt_Return_t retVal = ASYM_CRYPT_RETURN_SUCCESS;
-    uint32_t i = 0U;
-
-    if(ASYM_CRYPT_RETURN_SUCCESS == retVal)
-    {
-        /* Check if the curveId is supported */
-        for (i = 0; i < numPrimeCurves; i++) {
-            if (memcmp(&curveParams->prime[0U], primeCurves[i].prime, 4U*curveParams->prime[0U]) != 0)
-            {
-                retVal = ASYM_CRYPT_RETURN_FAILURE;
-            }
-            else
-            {
-                /* Check if the curveId is supported */
-                if (memcmp(&curveParams->a[0U], primeCurves[i].A, 4U*curveParams->a[0U]) != 0)
-                {
-                    retVal = ASYM_CRYPT_RETURN_FAILURE;
-                }
-
-                if (memcmp(&curveParams->b[0U], primeCurves[i].B, 4U*curveParams->b[0U]) != 0)
-                {
-                    retVal = ASYM_CRYPT_RETURN_FAILURE;
-                }
-
-                if (memcmp(&curveParams->order[0U], primeCurves[i].order, 4U*curveParams->order[0U]) != 0)
-                {
-                    retVal = ASYM_CRYPT_RETURN_FAILURE;
-                }
-                else
-                {
-                    retVal = ASYM_CRYPT_RETURN_SUCCESS;
-                    *pkeCurveType = primeCurves[i].curveType;
-                    break;
-                }
-            }
-        }
-    }
-
-    return retVal;
 }

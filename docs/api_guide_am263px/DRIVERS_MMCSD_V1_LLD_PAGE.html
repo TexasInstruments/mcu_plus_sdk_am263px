@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('DRIVERS_MMCSD_V1_LLD_PAGE.html',''); i
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1036">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1037">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1038">Features not Supported</a></li>
-<li class="level1"><a href="#autotoc_md1039">Usage Overview</a><ul><li class="level2"><a href="#autotoc_md1040">API Sequence</a></li>
-<li class="level2"><a href="#autotoc_md1041">Initializing the MMCSD LLD Driver</a></li>
-<li class="level2"><a href="#autotoc_md1042">MMCSD Transfer Mode</a></li>
+<ul><li class="level1"><a href="#autotoc_md1074">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1075">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1076">Features not Supported</a></li>
+<li class="level1"><a href="#autotoc_md1077">Usage Overview</a><ul><li class="level2"><a href="#autotoc_md1078">API Sequence</a></li>
+<li class="level2"><a href="#autotoc_md1079">Initializing the MMCSD LLD Driver</a></li>
+<li class="level2"><a href="#autotoc_md1080">MMCSD Transfer Mode</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1043">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1044">API</a></li>
+<li class="level1"><a href="#autotoc_md1081">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1082">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_mmcsd_v1_lld"></a></p>
 <dl class="section note"><dt>Note</dt><dd>EMMC Flash card is not available in AM263PX board.</dd></dl>
 <p>Multi-Media Card Secure Digital (MMCSD) peripheral is a driver which provides an interface with storage devices which follows MMC/SD/SDIO protocol. The driver supports single bit and four bit data lines to communicate with the connected media. The MMCSD controller provides accessibility to external MMC/SD/SDIO devices using a programmed IO method. There is only one MMCSD module inside the SOC - MMCSD0.</p>
-<h1><a class="anchor" id="autotoc_md1036"></a>
+<h1><a class="anchor" id="autotoc_md1074"></a>
 Features Supported</h1>
 <ul>
 <li>64-bit data, address width System Bus Interface</li>
@@ -115,18 +115,18 @@ Features Supported</h1>
 <li>Operating voltage range VCC = 3.3 V</li>
 <li>Default-speed &amp; High-speed MMCSD protocol.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1037"></a>
+<h1><a class="anchor" id="autotoc_md1075"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
-<h1><a class="anchor" id="autotoc_md1038"></a>
+<h1><a class="anchor" id="autotoc_md1076"></a>
 Features not Supported</h1>
 <ul>
 <li>No integrated DMA Controller Support.</li>
 <li>MMCSD instance does not support DDR mode.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1039"></a>
+<h1><a class="anchor" id="autotoc_md1077"></a>
 Usage Overview</h1>
-<h2><a class="anchor" id="autotoc_md1040"></a>
+<h2><a class="anchor" id="autotoc_md1078"></a>
 API Sequence</h2>
 <p>To use the MMCSD LLD driver to write/read data to or from a MMC/SD Device, the application calls the following APIs:</p>
 <ul>
@@ -136,18 +136,18 @@ API Sequence</h2>
 <li><a class="el" href="group__DRV__MMCSD__LLD__MODULE.html#gab64302137e256b3ca40da91464127e26" title="Function to perform block writes to the SD media in Polling Mode.">MMCSD_lld_write_SD_Poll()</a> / <a class="el" href="group__DRV__MMCSD__LLD__MODULE.html#gad303139dda7a2fb373d56dc7ddc144dd" title="Function to perform block writes to the SD media in Interrupt Mode.">MMCSD_lld_write_SD_Intr()</a>: Write data to SD device in polling and interrupt mode respectively.</li>
 <li><a class="el" href="group__DRV__MMCSD__LLD__MODULE.html#gadd564bcc00eee67a08df0195148b68cc" title="Function to perform block reads from the SD media in Polling Mode.">MMCSD_lld_read_SD_Poll()</a> / <a class="el" href="group__DRV__MMCSD__LLD__MODULE.html#gaad542f5aafd9f19a946771e3602c0ee1" title="Function to perform block reads from the SD media in Interrupt Mode.">MMCSD_lld_read_SD_Intr()</a>: Read data from SD device in polling and interrupt mode respectively.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1041"></a>
+<h2><a class="anchor" id="autotoc_md1079"></a>
 Initializing the MMCSD LLD Driver</h2>
 <p><a class="el" href="group__DRV__MMCSD__LLD__MODULE.html#ga4f1c15f532e47f5134970e6a48b9731a" title="This API Initializes the MMCSD instance.">MMCSD_lld_init()</a> must be called before any other MMCSD APIs. This function uses mmcsd lld handle to initialize each instance.</p>
 <p>Calling <a class="el" href="group__DRV__MMCSD__LLD__MODULE.html#ga4f1c15f532e47f5134970e6a48b9731a" title="This API Initializes the MMCSD instance.">MMCSD_lld_init()</a> a second time with the same handle previously passed to <a class="el" href="group__DRV__MMCSD__LLD__MODULE.html#ga4f1c15f532e47f5134970e6a48b9731a" title="This API Initializes the MMCSD instance.">MMCSD_lld_init()</a> will result in an error. You can, though, re-use the handle if the instance is closed via <a class="el" href="group__DRV__MMCSD__LLD__MODULE.html#ga0817ca97010ed4f5391c8128dd4d3d1b" title="This API De-Initializes the MMCSD instance.">MMCSD_lld_deInit()</a>.</p>
 <p>Please note that initializing MMCSD LLD driver is taken care by the SysConfig generated code.</p>
-<h2><a class="anchor" id="autotoc_md1042"></a>
+<h2><a class="anchor" id="autotoc_md1080"></a>
 MMCSD Transfer Mode</h2>
 <p>The MMCSD driver supports two transfer modes of operation: Polling and Interrupt Mode.</p>
 <p>In Polling mode transfer can be initiated with all the polling mode APIs.</p>
 <p>In Interrupt mode Users have to register the appropriate ISR and assign a callback function before calling the interrupt mode APIs.</p>
 <p>DMA can enabled in any mode of operation if enabled.</p>
-<h1><a class="anchor" id="autotoc_md1043"></a>
+<h1><a class="anchor" id="autotoc_md1081"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="DebugP_8h.html">kernel/dpl/DebugP.h</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;string.h&gt;</span></div>
@@ -212,7 +212,7 @@ Example Usage</h1>
 <div class="line">                                      gMmcsdVimStsClrMask,</div>
 <div class="line">                                      intcBaseAddr);</div>
 <div class="line">}</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1044"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1082"></a>
 API</h1>
 <p><a class="el" href="group__DRV__MMCSD__LLD__MODULE.html">APIs for MMCSD LLD</a> </p>
 </div></div><!-- contents -->

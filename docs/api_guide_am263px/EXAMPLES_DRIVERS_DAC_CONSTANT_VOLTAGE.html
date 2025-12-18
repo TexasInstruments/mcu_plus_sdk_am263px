@@ -92,19 +92,19 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_DAC_CONSTANT_VOLTAGE.
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2236">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2237">External Connections</a><ul><li class="level2"><a href="#autotoc_md2238">AM263X-CC or AM263PX-CC or AM261X-SOM E1</a></li>
-<li class="level2"><a href="#autotoc_md2239">AM263X-LP or AM263PX-LP or AM261X-LP</a></li>
+<ul><li class="level1"><a href="#autotoc_md2282">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2283">External Connections</a><ul><li class="level2"><a href="#autotoc_md2284">AM263X-CC or AM263PX-CC or AM261X-SOM E1</a></li>
+<li class="level2"><a href="#autotoc_md2285">AM263X-LP or AM263PX-LP or AM261X-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_DAC_CONSTANT_VOLTAGE_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2240">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2241">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2242">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2286">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2287">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2288">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_dac_constant_voltage"></a></p>
-<h1><a class="anchor" id="autotoc_md2236"></a>
+<h1><a class="anchor" id="autotoc_md2282"></a>
 Introduction</h1>
 <p>This example uses the DAC to generate a constant voltage on the DAC output.</p>
 <p>The example does the below</p><ul>
@@ -112,18 +112,18 @@ Introduction</h1>
 <li>Waits for the specified time.</li>
 <li>Sets the output voltage back to 0.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2237"></a>
+<h1><a class="anchor" id="autotoc_md2283"></a>
 External Connections</h1>
 <ul>
 <li>DAC output pin can be connected to an oscilloscope to view the constant voltage output.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2238"></a>
+<h2><a class="anchor" id="autotoc_md2284"></a>
 AM263X-CC or AM263PX-CC or AM261X-SOM E1</h2>
 <p>Note: To use the reference voltage generated on ControlCard, make sure that the System VREF source select switch on ControlCard is set to position 1-2</p>
 <p>When using with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Capture waveform on HSEC Pin 9 (in case of AM261x and AM263Px please take care of IO expander)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2239"></a>
+<h2><a class="anchor" id="autotoc_md2285"></a>
 AM263X-LP or AM263PX-LP or AM261X-LP</h2>
 <p>Note: To use the reference voltage generated on LaunchPad, make sure that the DAC_VREF source select switch S1 on LaunchPad is set to position 1-2</p>
 <p>With AM263X-LP or AM263Px-LP or AM261x-LP</p><ul>
@@ -143,7 +143,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/dac/dac_constant_voltage/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2240"></a>
+<h1><a class="anchor" id="autotoc_md2286"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -152,10 +152,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>Use an Oscilloscope to view the constant voltage on DAC output pin.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2241"></a>
+<h1><a class="anchor" id="autotoc_md2287"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_DAC_PAGE.html">DAC</a></p>
-<h1><a class="anchor" id="autotoc_md2242"></a>
+<h1><a class="anchor" id="autotoc_md2288"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">DAC Constant Voltage Test Started ...</div>

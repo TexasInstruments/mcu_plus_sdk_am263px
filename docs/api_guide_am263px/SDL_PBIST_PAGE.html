@@ -92,12 +92,12 @@ $(document).ready(function(){initNavTree('SDL_PBIST_PAGE.html',''); initResizabl
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1566">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1567">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1568">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1569">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1570">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1571">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1612">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1613">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1614">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1615">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1616">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1617">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_sdl_pbist"></a></p>
@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('SDL_PBIST_PAGE.html',''); initResizabl
 <li>PBIST must be run from a different core than is being tested. This is because the test is destructive in nature. For this reason also, after BIST test it is necessary to reset the module.</li>
 <li>If SW-initiated PBIST is executed after the IP under test is already in use in the system, it is the application's responsibility to perform any necessary context save/restore necessary for the core/IP.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1566"></a>
+<h1><a class="anchor" id="autotoc_md1612"></a>
 Features Supported</h1>
 <p>The PBIST Module of the SDL supports execution of the software-initiated PBIST for the various supported instances. It provides the following services:</p>
 <ul>
@@ -124,22 +124,22 @@ Features Supported</h1>
 <img src="am263px_pbist.png" alt=""/>
 <div class="caption">
 PBIST memory coverage</div></div>
-<h1><a class="anchor" id="autotoc_md1567"></a>
+<h1><a class="anchor" id="autotoc_md1613"></a>
 SysConfig Features</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1568"></a>
+<h1><a class="anchor" id="autotoc_md1614"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1569"></a>
+<h1><a class="anchor" id="autotoc_md1615"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>Execution of the PBIST tests requires preparation of the IPs under test by bringing them to a certain power and reset state before executing the test. It will be required that the application bring the cores/IPs to the proper state before executing the PBIST. Additionally, there is an "exit sequence" that is required to bring the cores/IPs back to the system control after the PBIST test is executed. This will also be the responsibility of the application. The PBIST examples provided with SDL will give the necessary sequences, which can be used by the application for implementing the sequence.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1570"></a>
+<h1><a class="anchor" id="autotoc_md1616"></a>
 Example Usage</h1>
 <p>The following shows an example of SDL PBIST API usage by the application to execute the PBIST test and test-for-diagnostic.</p>
 <p>Include the below file to access the APIs</p>
@@ -162,7 +162,7 @@ Example Usage</h1>
 <div class="line">{</div>
 <div class="line">    <span class="comment">// test failed</span></div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1571"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1617"></a>
 API</h1>
 <p><a class="el" href="group__SDL__PBIST__MODULE.html">APIs for PBIST (Memory Built-In Self Test)</a> </p>
 </div></div><!-- contents -->

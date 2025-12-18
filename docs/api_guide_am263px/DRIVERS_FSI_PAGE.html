@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('DRIVERS_FSI_PAGE.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md892">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md893">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md894">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md895">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md896">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md897">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md930">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md931">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md932">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md933">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md934">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md935">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_fsi"></a></p>
 <p>The Fast Serial Interface (FSI) driver provides API to program the FSI module. FSI is a serial communication peripheral capable of reliable and robust high-speed communications. FSI is used to transfer/receive data frame with several available configurations e.g frame size, bandwidth etc, signaling events completion via interrupts or status registers.</p>
-<h1><a class="anchor" id="autotoc_md892"></a>
+<h1><a class="anchor" id="autotoc_md930"></a>
 Features Supported</h1>
 <ul>
 <li>Supports programmable packet data length of 1-to-16 words where each word consists of 16-bits</li>
@@ -113,13 +113,13 @@ Features Supported</h1>
 <li>Supports DMA mode. The DMA event will only be generated for data frames.</li>
 <li>Supports programmable TX delay line control</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md893"></a>
+<h1><a class="anchor" id="autotoc_md931"></a>
 Features NOT Supported</h1>
 <ul>
 <li>Multi-Peripheral configuration</li>
 <li>clkstop_req/ack functionality. Software must ensure that the FSI IP's on both host and remote device are idle before triggering clkstop_req.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md894"></a>
+<h1><a class="anchor" id="autotoc_md932"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -127,13 +127,13 @@ SysConfig Features</h1>
 <li>Configuring pinmux based on selected instance and pin configuration</li>
 <li>Interrupt Crossbar configuration for FSI RX and TX.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md895"></a>
+<h1><a class="anchor" id="autotoc_md933"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>Note: FSI-RX and FSI-TX are completely independent and separate module. For communication, both needs to be configured separately.</li>
 <li>Interrupt Crossbar configuration should be done to route FSI RX and TX interrupts if SysCfg is not used.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md896"></a>
+<h1><a class="anchor" id="autotoc_md934"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="fsi_8h.html">drivers/fsi.h</a>&gt;</span></div>
 </div><!-- fragment --><p> FSI tx config </p><div class="fragment"><div class="line">    int32_t     status;</div>
@@ -243,7 +243,7 @@ Example Usage</h1>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga983b3b10c5d00c08d5caa9bcd3c0e9b2">SemaphoreP_destruct</a>(&amp;gFsiRxSemObject);</div>
 <div class="line">    <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md897"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md935"></a>
 API</h1>
 <p><a class="el" href="group__DRV__FSI__MODULE.html">APIs for FSI</a> </p>
 </div></div><!-- contents -->

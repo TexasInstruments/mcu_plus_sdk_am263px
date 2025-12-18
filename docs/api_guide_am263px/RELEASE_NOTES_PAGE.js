@@ -1,5 +1,46 @@
 var RELEASE_NOTES_PAGE =
 [
+    [ "Release Notes 11.01.00", "RELEASE_NOTES_11_01_00_PAGE.html", [
+      [ "New in this Release", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md234", null ],
+      [ "Modules Not tested/supported in this release", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md235", [
+        [ "Device and Validation Information", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md236", null ],
+        [ "Dependent Tools and Compiler Information", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md237", null ],
+        [ "Key Features", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md238", [
+          [ "Experimental Features", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md239", null ],
+          [ "OS Kernel", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md240", null ],
+          [ "Driver Porting Layer (DPL)", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md241", null ],
+          [ "Secondary Bootloader (SBL)", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md242", null ],
+          [ "SOC Device Drivers", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md243", null ],
+          [ "Trigonometric Operations", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md244", null ],
+          [ "Board Device Drivers", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md245", null ],
+          [ "Networking", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md246", null ],
+          [ "Safety Diagnostic Library", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md247", null ],
+          [ "PRU IO", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md248", null ]
+        ] ],
+        [ "Fixed Issues", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md249", null ],
+        [ "Known Issues", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md250", null ],
+        [ "Errata", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md251", null ],
+        [ "Limitations", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md252", null ],
+        [ "Upgrade and Compatibility Information", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md253", [
+          [ "How to run FOTA examples on AM263PX-SIP board", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md254", null ],
+          [ "Compiling examples in MacOS machines", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md255", null ],
+          [ "RPRC Image format is Deprecated and Corresponding SBL's are also removed from SDK", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md256", null ],
+          [ "Flash Reset moved to SysCfg", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md257", null ],
+          [ "Module clock configuration through Clock Tree", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md258", null ],
+          [ "Migrating back from CCS Theia to CCS Eclipse", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md259", [
+            [ "Importing and Building in Eclipse", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md260", null ],
+            [ "CCS SBL Loading", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md261", null ]
+          ] ],
+          [ "Migrating examples to 11.00.00 from older versions", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md262", [
+            [ "Makefile Changes", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md263", null ]
+          ] ],
+          [ "SDL PBIST Self test", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md266", null ],
+          [ "Compiler Options", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md267", null ],
+          [ "SOC Device Drivers", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md268", null ],
+          [ "Ethernet and Networking", "RELEASE_NOTES_11_01_00_PAGE.html#autotoc_md269", null ]
+        ] ]
+      ] ]
+    ] ],
     [ "Release Notes 11.00.00", "RELEASE_NOTES_11_00_00_PAGE.html", [
       [ "New in this Release", "RELEASE_NOTES_11_00_00_PAGE.html#autotoc_md198", null ],
       [ "Modules Not tested/supported in this release", "RELEASE_NOTES_11_00_00_PAGE.html#autotoc_md199", [

@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('DRIVERS_UART_LLD_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_uart_lld"></a> </p>
-<h1><a class="anchor" id="autotoc_md1107"></a>
+<h1><a class="anchor" id="autotoc_md1147"></a>
 Features Supported</h1>
 <ul>
 <li>Write and Read mode of operation</li>
@@ -100,16 +100,16 @@ Features Supported</h1>
 <li>DMA mode of operation</li>
 <li>Non-blocking (Callback) transfers</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1108"></a>
+<h1><a class="anchor" id="autotoc_md1148"></a>
 Features NOT Supported</h1>
 <ul>
 <li><a class="el" href="group__DRV__UART__LLD__MODULE.html#ga1b64d34e7816aec0224528707619fef8" title="Unblock/callback when no new data comes in.">UART_READ_RETURN_MODE_PARTIAL</a> is not supported in DMA mode of operation</li>
 <li>MODEM control functions</li>
 <li>IrDA(Infrared Data Association) and CIR(Consumer Infrared) features</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1109"></a>
+<h1><a class="anchor" id="autotoc_md1149"></a>
 Usage Overview</h1>
-<h2><a class="anchor" id="autotoc_md1110"></a>
+<h2><a class="anchor" id="autotoc_md1150"></a>
 API Sequence</h2>
 <p>To use the UART driver to send data or receive, the application calls the following APIs:</p>
 <ul>
@@ -118,25 +118,25 @@ API Sequence</h2>
 <li><a class="el" href="group__DRV__UART__LLD__MODULE.html#ga64062c82c7f2c2fdd7623a315c91899f" title="This API writes data to the UART instance in Polling mode.">UART_lld_write()</a> / <a class="el" href="group__DRV__UART__LLD__MODULE.html#ga41b75eb5bd755c69d656db641bf8221b" title="This API writes data to the UART instance in Interrupt mode.">UART_lld_writeIntr()</a> / <a class="el" href="group__DRV__UART__LLD__MODULE.html#ga68dffb4278ba6e1f3b143d32df024120" title="This API writes data to the UART instance in DMA mode.">UART_lld_writeDma()</a>: Write data in polling, interrupt, and Dma mode respectively..</li>
 <li><a class="el" href="group__DRV__UART__LLD__MODULE.html#gacd29a4c2892e3ff05499f77d353e2553" title="This API De-Initializes the UART instance.">UART_lld_deInit()</a>: De-initialize the UART instance.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1111"></a>
+<h2><a class="anchor" id="autotoc_md1151"></a>
 Initializing the UART Driver</h2>
 <p><a class="el" href="group__DRV__UART__LLD__MODULE.html#gad935c8ea716cdab74235982cc8feca0d" title="This API Initializes the UART instance.">UART_lld_init()</a> must be called before any other UART APIs. This function uses uart handle to initialize each instance. Calling <a class="el" href="group__DRV__UART__LLD__MODULE.html#gad935c8ea716cdab74235982cc8feca0d" title="This API Initializes the UART instance.">UART_lld_init()</a> a second time with the same handle previously passed to <a class="el" href="group__DRV__UART__LLD__MODULE.html#gad935c8ea716cdab74235982cc8feca0d" title="This API Initializes the UART instance.">UART_lld_init()</a> will result in an error. You can, though, re-use the handle if the instance is closed via <a class="el" href="group__DRV__UART__LLD__MODULE.html#gacd29a4c2892e3ff05499f77d353e2553" title="This API De-Initializes the UART instance.">UART_lld_deInit()</a>. In DMA mode, <a class="el" href="group__DRV__UART__LLD__MODULE.html#gaef35c9ebf741e0ba4fd0416f517c58a9" title="This API Initializes the UART instance in DMA mode.">UART_lld_initDma()</a> needs to be called instead of <a class="el" href="group__DRV__UART__LLD__MODULE.html#gad935c8ea716cdab74235982cc8feca0d" title="This API Initializes the UART instance.">UART_lld_init()</a> to acquire and initialize uart instance. Please note that initializing UART driver is taken care by the SysConfig generated code.</p>
-<h2><a class="anchor" id="autotoc_md1112"></a>
+<h2><a class="anchor" id="autotoc_md1152"></a>
 UART Write Mode</h2>
 <p>The UART driver supports two transfer modes of operation: interrupt and polling mode. In polling mode a task's code execution is blocked until a UART transaction has completed or a timeout has occurred.</p>
 <p>In interrupt mode, again there are two modes blocking and callback. The UART driver defaults to blocking mode, if the application does not set it. Once a UART driver is opened, the only way to change the operation mode is to close and re-open the UART instance with the new write mode.</p>
 <p>In callback mode, a UART transaction functions asynchronously, which means that it does not block code execution. After a UART transaction has been completed, the UART driver calls a user-provided callback function. Callback mode is supported in the execution context of tasks and hardware interrupt routines.</p>
-<h2><a class="anchor" id="autotoc_md1113"></a>
+<h2><a class="anchor" id="autotoc_md1153"></a>
 UART Read Mode</h2>
 <p>The UART driver supports two read modes of operation: interrupt and polling mode. In polling mode a task's code execution is blocked until a UART transaction has completed or a timeout has occurred.</p>
 <p>In interrupt mode, again there are two modes blocking and callback. The UART driver defaults to blocking mode, if the application does not set it. Once a UART driver is opened, the only way to change the operation mode is to close and re-open the UART instance with the new read mode.</p>
 <p>In callback mode, a UART transaction functions asynchronously, which means that it does not block code execution. After a UART transaction has been completed, the UART driver calls a user-provided callback function. Callback mode is supported in the execution context of tasks and hardware interrupt routines.</p>
-<h1><a class="anchor" id="autotoc_md1114"></a>
+<h1><a class="anchor" id="autotoc_md1154"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>In case of DMA mode, as R5F core is not Cache Coherent, Cache Writeback is required if R5F writes to the buffers. And before reading the buffers, application needs to invalidate those. Please refer <a class="el" href="EXAMPLES_DRIVERS_UART_ECHO_DMA_LLD.html">UART Echo DMA LLD</a>.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1115"></a>
+<h1><a class="anchor" id="autotoc_md1155"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;string.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="DebugP_8h.html">kernel/dpl/DebugP.h</a>&gt;</span></div>
@@ -219,7 +219,7 @@ Example Usage</h1>
 <div class="line">                                      gUartVimStsClrMask,</div>
 <div class="line">                                      gVimBaseAddr);</div>
 <div class="line">}</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1116"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1156"></a>
 API</h1>
 <p><a class="el" href="group__DRV__UART__MODULE.html">APIs for UART</a> </p>
 </div></div><!-- contents -->

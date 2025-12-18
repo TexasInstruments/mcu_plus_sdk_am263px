@@ -92,31 +92,31 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_OSPI_FLASH_XIP.html',
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1853">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md1899">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_OSPI_FLASH_XIP_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md1854">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md1855">See Also</a></li>
-<li class="level1"><a href="#autotoc_md1856">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md1900">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md1901">See Also</a></li>
+<li class="level1"><a href="#autotoc_md1902">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_ospi_flash_xip"></a></p>
-<h1><a class="anchor" id="autotoc_md1853"></a>
+<h1><a class="anchor" id="autotoc_md1899"></a>
 Introduction</h1>
 <p>This example demonstrates basic read write to the OSPI flash configured in polled mode of operation along with an XIP component. APIs from flash driver are used to read and write to the flash. The underlying OSPI reads and writes are taken care by the flash APIs.</p>
 <p>The example writes known data to a particular offset in the flash and then reads it back. Before and after this, a CRC calculation using an LUT which is in flash.</p>
 <p>When both the comparisons match, test result is passed otherwise failed.</p>
 <h1><a class="anchor" id="EXAMPLES_DRIVERS_OSPI_FLASH_XIP_COMBOS"></a>
 Supported Combinations</h1>
-<h1><a class="anchor" id="autotoc_md1854"></a>
+<h1><a class="anchor" id="autotoc_md1900"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Flash the application binary to the device, follow the steps mentioned here (see <a class="el" href="GETTING_STARTED_FLASH.html">Flash a Hello World example</a>).</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1855"></a>
+<h1><a class="anchor" id="autotoc_md1901"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_OSPI_PAGE.html">OSPI</a></p>
-<h1><a class="anchor" id="autotoc_md1856"></a>
+<h1><a class="anchor" id="autotoc_md1902"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">CRC Value: 37090</div>
 <div class="line">Flash read-write test passed!!</div>
