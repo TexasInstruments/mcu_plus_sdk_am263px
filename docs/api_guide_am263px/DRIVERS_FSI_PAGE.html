@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('DRIVERS_FSI_PAGE.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md930">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md931">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md932">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md933">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md934">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md935">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md932">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md933">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md934">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md935">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md936">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md937">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_fsi"></a></p>
 <p>The Fast Serial Interface (FSI) driver provides API to program the FSI module. FSI is a serial communication peripheral capable of reliable and robust high-speed communications. FSI is used to transfer/receive data frame with several available configurations e.g frame size, bandwidth etc, signaling events completion via interrupts or status registers.</p>
-<h1><a class="anchor" id="autotoc_md930"></a>
+<h1><a class="anchor" id="autotoc_md932"></a>
 Features Supported</h1>
 <ul>
 <li>Supports programmable packet data length of 1-to-16 words where each word consists of 16-bits</li>
@@ -113,13 +113,13 @@ Features Supported</h1>
 <li>Supports DMA mode. The DMA event will only be generated for data frames.</li>
 <li>Supports programmable TX delay line control</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md931"></a>
+<h1><a class="anchor" id="autotoc_md933"></a>
 Features NOT Supported</h1>
 <ul>
 <li>Multi-Peripheral configuration</li>
 <li>clkstop_req/ack functionality. Software must ensure that the FSI IP's on both host and remote device are idle before triggering clkstop_req.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md932"></a>
+<h1><a class="anchor" id="autotoc_md934"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -127,13 +127,13 @@ SysConfig Features</h1>
 <li>Configuring pinmux based on selected instance and pin configuration</li>
 <li>Interrupt Crossbar configuration for FSI RX and TX.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md933"></a>
+<h1><a class="anchor" id="autotoc_md935"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>Note: FSI-RX and FSI-TX are completely independent and separate module. For communication, both needs to be configured separately.</li>
 <li>Interrupt Crossbar configuration should be done to route FSI RX and TX interrupts if SysCfg is not used.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md934"></a>
+<h1><a class="anchor" id="autotoc_md936"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="fsi_8h.html">drivers/fsi.h</a>&gt;</span></div>
 </div><!-- fragment --><p> FSI tx config </p><div class="fragment"><div class="line">    int32_t     status;</div>
@@ -243,7 +243,7 @@ Example Usage</h1>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga983b3b10c5d00c08d5caa9bcd3c0e9b2">SemaphoreP_destruct</a>(&amp;gFsiRxSemObject);</div>
 <div class="line">    <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md935"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md937"></a>
 API</h1>
 <p><a class="el" href="group__DRV__FSI__MODULE.html">APIs for FSI</a> </p>
 </div></div><!-- contents -->
@@ -286,7 +286,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__FSI__TX__MODULE_html_ga00ded17f9d497a3c626741483f8da779"><div class="ttname"><a href="group__DRV__FSI__TX__MODULE.html#ga00ded17f9d497a3c626741483f8da779">FSI_setTxDataWidth</a></div><div class="ttdeci">int32_t FSI_setTxDataWidth(uint32_t base, FSI_DataWidth dataWidth)</div><div class="ttdoc">This API sets Data width for transmission.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SEMAPHORE_html_ga2de8d925b9ae035fd8a749927463aef5"><div class="ttname"><a href="group__KERNEL__DPL__SEMAPHORE.html#ga2de8d925b9ae035fd8a749927463aef5">SemaphoreP_constructBinary</a></div><div class="ttdeci">int32_t SemaphoreP_constructBinary(SemaphoreP_Object *obj, uint32_t initValue)</div><div class="ttdoc">Create a binary semaphore object.</div></div>
 <div class="ttc" id="agroup__DRV__FSI__RX__MODULE_html_ga1d9d8f05d9476fe75cbd83e5529db856"><div class="ttname"><a href="group__DRV__FSI__RX__MODULE.html#ga1d9d8f05d9476fe75cbd83e5529db856">FSI_RX_MAIN_CORE_RESET</a></div><div class="ttdeci">#define FSI_RX_MAIN_CORE_RESET</div><div class="ttdef"><b>Definition:</b> fsi_rx.h:148</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="astructHwiP__Params_html_a943b3d55a5aaa669f8bcb04017fdf2a1"><div class="ttname"><a href="structHwiP__Params.html#a943b3d55a5aaa669f8bcb04017fdf2a1">HwiP_Params::intNum</a></div><div class="ttdeci">uint32_t intNum</div><div class="ttdef"><b>Definition:</b> HwiP.h:129</div></div>
 <div class="ttc" id="agroup__DRV__FSI__TX__MODULE_html_ga3d2add9c6ceca89ae90f1006c952cca8"><div class="ttname"><a href="group__DRV__FSI__TX__MODULE.html#ga3d2add9c6ceca89ae90f1006c952cca8">FSI_clearTxModuleReset</a></div><div class="ttdeci">int32_t FSI_clearTxModuleReset(uint32_t base, FSI_TxSubmoduleInReset submodule)</div><div class="ttdoc">This API clears reset on clock or ping timeout counter or entire TX module.</div></div>
 <div class="ttc" id="agroup__DRV__FSI__TX__MODULE_html_gaa80e44d32baf2476cd603b130f793f59"><div class="ttname"><a href="group__DRV__FSI__TX__MODULE.html#gaa80e44d32baf2476cd603b130f793f59">FSI_TX_EVT_FRAME_DONE</a></div><div class="ttdeci">#define FSI_TX_EVT_FRAME_DONE</div><div class="ttdef"><b>Definition:</b> fsi_tx.h:96</div></div>

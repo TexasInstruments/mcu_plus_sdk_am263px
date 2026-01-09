@@ -92,28 +92,28 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_PPB_OFFSET.html',
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2073">Introduction</a><ul><li class="level2"><a href="#autotoc_md2074">Example Description</a></li>
-<li class="level2"><a href="#autotoc_md2075">SOC Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2076">PPB Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2077">Interrupt Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2078">External Connections</a><ul><li class="level3"><a href="#autotoc_md2079">AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</a></li>
-<li class="level3"><a href="#autotoc_md2080">AM263X-CC E1</a></li>
-<li class="level3"><a href="#autotoc_md2081">AM263PX-LP or AM263X-LP or AM261X-LP</a></li>
+<ul><li class="level1"><a href="#autotoc_md2075">Introduction</a><ul><li class="level2"><a href="#autotoc_md2076">Example Description</a></li>
+<li class="level2"><a href="#autotoc_md2077">SOC Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2078">PPB Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2079">Interrupt Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2080">External Connections</a><ul><li class="level3"><a href="#autotoc_md2081">AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</a></li>
+<li class="level3"><a href="#autotoc_md2082">AM263X-CC E1</a></li>
+<li class="level3"><a href="#autotoc_md2083">AM263PX-LP or AM263X-LP or AM261X-LP</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2082">Watch Variables</a></li>
+<li class="level1"><a href="#autotoc_md2084">Watch Variables</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_PPB_OFFSET_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2083">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2084">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2085">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2085">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2086">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2087">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_ppb_offset"></a></p>
-<h1><a class="anchor" id="autotoc_md2073"></a>
+<h1><a class="anchor" id="autotoc_md2075"></a>
 Introduction</h1>
-<h2><a class="anchor" id="autotoc_md2074"></a>
+<h2><a class="anchor" id="autotoc_md2076"></a>
 Example Description</h2>
 <p>This example demonstrates the PPB offset features of Post Processing Blocks of ADC. The PPB offset features are the following,</p><ol type="1">
 <li>PPB Calibration Offset<ul>
@@ -130,10 +130,10 @@ Example Description</h2>
 </ul>
 </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md2075"></a>
+<h2><a class="anchor" id="autotoc_md2077"></a>
 SOC Configurations</h2>
 <p>ADC SOC0 and SOC1 are set for Channel 0, with sample window 17 each and are triggered by only software.</p>
-<h2><a class="anchor" id="autotoc_md2076"></a>
+<h2><a class="anchor" id="autotoc_md2078"></a>
 PPB Configurations</h2>
 <ol type="1">
 <li>PPB1<ul>
@@ -162,29 +162,29 @@ PPB Configurations</h2>
 </ul>
 </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md2077"></a>
+<h2><a class="anchor" id="autotoc_md2079"></a>
 Interrupt Configurations</h2>
 <ul>
 <li>ADC1_INT1 is set to EOC/SOC1.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2078"></a>
+<h2><a class="anchor" id="autotoc_md2080"></a>
 External Connections</h2>
-<h3><a class="anchor" id="autotoc_md2079"></a>
+<h3><a class="anchor" id="autotoc_md2081"></a>
 AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</h3>
 <ul>
 <li>Feed Analog Input to ADC1_AIN0, HSEC Pin 12 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md2080"></a>
+<h3><a class="anchor" id="autotoc_md2082"></a>
 AM263X-CC E1</h3>
 <ul>
 <li>Feed Analog Input to ADC1_AIN0, HSEC Pin 18 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md2081"></a>
+<h3><a class="anchor" id="autotoc_md2083"></a>
 AM263PX-LP or AM263X-LP or AM261X-LP</h3>
 <ul>
 <li>Feed Analog Input to ADC1_AIN0, J1/3 Pin 24</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2082"></a>
+<h1><a class="anchor" id="autotoc_md2084"></a>
 Watch Variables</h1>
 <ul>
 <li>gAdc1Soc0Result[] holds the digital representation of the Analog signal on ADC1_AIN0</li>
@@ -207,7 +207,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_ppb_offset/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2083"></a>
+<h1><a class="anchor" id="autotoc_md2085"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -217,10 +217,10 @@ Steps to Run the Example</h1>
 <li>Using the watch variables, view the ADC conversion results.</li>
 <li>Observe 6 EPWM waveforms. After ADC input voltage exceeds the PPB limit, PWMs get tripped.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2084"></a>
+<h1><a class="anchor" id="autotoc_md2086"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md2085"></a>
+<h1><a class="anchor" id="autotoc_md2087"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ADC PPB Offset Test Started</div>

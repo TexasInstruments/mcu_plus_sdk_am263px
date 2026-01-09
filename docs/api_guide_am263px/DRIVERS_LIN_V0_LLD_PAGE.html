@@ -92,27 +92,27 @@ $(document).ready(function(){initNavTree('DRIVERS_LIN_V0_LLD_PAGE.html',''); ini
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md987">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md988">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md989">Usage</a><ul><li class="level2"><a href="#autotoc_md990">DMA Support</a></li>
-<li class="level2"><a href="#autotoc_md991">Interrupt Management</a></li>
-<li class="level2"><a href="#autotoc_md992">Message filtering</a><ul><li class="level3"><a href="#autotoc_md993">Filter Example</a></li>
+<ul><li class="level1"><a href="#autotoc_md989">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md990">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md991">Usage</a><ul><li class="level2"><a href="#autotoc_md992">DMA Support</a></li>
+<li class="level2"><a href="#autotoc_md993">Interrupt Management</a></li>
+<li class="level2"><a href="#autotoc_md994">Message filtering</a><ul><li class="level3"><a href="#autotoc_md995">Filter Example</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md994">Low Power Mode</a><ul><li class="level3"><a href="#autotoc_md995">Global Low Power Mode</a></li>
-<li class="level3"><a href="#autotoc_md996">Local Low Power Mode</a></li>
-<li class="level3"><a href="#autotoc_md997">Wakeup</a></li>
+<li class="level2"><a href="#autotoc_md996">Low Power Mode</a><ul><li class="level3"><a href="#autotoc_md997">Global Low Power Mode</a></li>
+<li class="level3"><a href="#autotoc_md998">Local Low Power Mode</a></li>
+<li class="level3"><a href="#autotoc_md999">Wakeup</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="level1"><a href="#MLIN_EXAMPLE_USAGE">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md998">API</a></li>
+<li class="level1"><a href="#autotoc_md1000">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_lin_v0_lld"></a></p>
 <p>The Local Interconnect Network (LIN) is a serial communication protocol which is a low cost alternative of CAN (Controller Area Network) where bandwidth and fault tolerence is not required. The communication concept is single-commander/multiple-responder with a message identification for multi-cast transmission between any network nodes.</p>
-<h1><a class="anchor" id="autotoc_md987"></a>
+<h1><a class="anchor" id="autotoc_md989"></a>
 Features Supported</h1>
 <ul>
 <li>Compatible to LIN 1.3, 2.0 and 2.1 protocols</li>
@@ -122,7 +122,7 @@ Features Supported</h1>
 <li>2 Interrupt lines with priority encoding</li>
 <li>Automatic Bus Idle Detection</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md988"></a>
+<h1><a class="anchor" id="autotoc_md990"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <p>SysConfig can be used to configure below parameters apart from common configuration like Clock, MPU, RAT and others.</p><ul>
@@ -131,42 +131,42 @@ SysConfig Features</h1>
 <li>Enable Interrupts with different lines and triggers.</li>
 <li>Different LIN Modes, Communication Modes, Debug Mode, Checksum Type, Message Filter, Enable Parity Check.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md989"></a>
+<h1><a class="anchor" id="autotoc_md991"></a>
 Usage</h1>
-<h2><a class="anchor" id="autotoc_md990"></a>
+<h2><a class="anchor" id="autotoc_md992"></a>
 DMA Support</h2>
 <p>To reduce CPU load when receiving a LIN N-byte (with N from 1 to 8) response in interrupt mode or DMA mode the SCI/LIN module has receive buffers to able to store a whole LIN response in receive buffers.</p>
 <p>A recieve interrupt (RX Interrupt), a receive ready RXRDY flag in SCIFLR (9th bit) as well as a DMA request could occur after receiving a response.</p>
 <p>A transmit interrupt (TX Interrupt), a Transmit ready TXRDY flag as well as a DMA request (TXDMA) could occur after transmitting a response. A DMA request can be generated for each transmitted byte or for the entire response depending if the multibuffer is enabled or not.</p>
 <p>For Buffered SCI Mode, the TX DMA request is initiated as the SET_TX_DMA (16th bit) in SCISETINT is set. The RX DMA request is initiated if the SET_RX_DMA (17th bit) is set and the data is received in RDy (LIN Receive buffers).</p>
 <p>For LIN Mode, the TX DMA request is initiated if the SET_TX_DMA (16th bit) is already set and ID BYTE in LINID is not written. The RX DMA request is initiated if the if the SET_RX_DMA (17th bit) is set and the data is received in RDy (LIN Receive buffers) only after LINID is recieved on the RX Line.</p>
-<h2><a class="anchor" id="autotoc_md991"></a>
+<h2><a class="anchor" id="autotoc_md993"></a>
 Interrupt Management</h2>
 <p>The LIN module has 2 interrupt lines : level 0 and level 1 to VIM (Vector Interrupt Manager) module.</p>
 <p>Each interrupt has a bit to enable/disable the interrupt in the SCISETINT and SCICLRINT registers. This can also be done via SYSCFG.</p>
 <p>Each interrupt has to be set via interrupt level 0 or to be set as interrupt level 1. By default interrupts are in line level 0.</p>
 <p>Please refer table "SCI/BLIN Interrupts" in technical reference manual for more details.</p>
-<h2><a class="anchor" id="autotoc_md992"></a>
+<h2><a class="anchor" id="autotoc_md994"></a>
 Message filtering</h2>
 <p>Message filtering uses the entire identified to determine which nodes will participate in a response. The participation could be to either recieve or transmit response. All nodes use the RX-ID mask and the TX-ID mask (in LINMASK) to filter the bits of the identifier that should not be compared. The masked bits become don't care for the comparison.</p>
-<h3><a class="anchor" id="autotoc_md993"></a>
+<h3><a class="anchor" id="autotoc_md995"></a>
 Filter Example</h3>
 <p>To build a mask to accept IDs 0x26 and 0x25, compare 5MSBs and filter 3 LSBs the configuration to be done is :</p><ul>
 <li>Configure LINID[7:0]=0x20.</li>
 <li>The TX ID MASK and the RX ID MASK to be configured as 0xFC.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md994"></a>
+<h2><a class="anchor" id="autotoc_md996"></a>
 Low Power Mode</h2>
 <p>The LIN module may enter low power mode either when there was no activity on LINRX for more than 4s or when a Sleep Command frame was received.</p>
-<h3><a class="anchor" id="autotoc_md995"></a>
+<h3><a class="anchor" id="autotoc_md997"></a>
 Global Low Power Mode</h3>
 <p>Global low-power mode is asserted by the system and is not controlled by the BLIN module. During global low-power mode, all clocks to the SCI/BLIN are turned off so module is completely inactive.</p>
 <dl class="section note"><dt>Note</dt><dd>Global Low power mode can be acheived through CLKSTOP_REQ/CLKSTOP_ACK interface.</dd></dl>
-<h3><a class="anchor" id="autotoc_md996"></a>
+<h3><a class="anchor" id="autotoc_md998"></a>
 Local Low Power Mode</h3>
 <p>If the POWERDOWN bit is set and then the module receives a Sleep Command, it will enter local low-power mode.</p>
 <p>The Sleep Command consists of a diagnostic commander request fram with identifier 0x3C (60) with first data field as 0x00.</p>
-<h3><a class="anchor" id="autotoc_md997"></a>
+<h3><a class="anchor" id="autotoc_md999"></a>
 Wakeup</h3>
 <p>The wake-up interrupt is used to allow the LIN module to automatically exit low-power mode. A wakeup is triggered when a falling edge is detected on the receive RX pin, and this clears the POWDERDOWN bit.</p>
 <p> <style>div.image img[src="drivers/lin_wakeup_signal.PNG"]{width:50%}</style></p>
@@ -267,7 +267,7 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Exit LIN reset state */</span></div>
 <div class="line">    <a class="code" href="group__DRV__LIN__MODULE.html#ga63fe8cac48f88a6c134dfff3bdd4241e">LIN_exitSoftwareReset</a>(APP_LIN_BASE_ADDR);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md998"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1000"></a>
 API</h1>
 <p><a class="el" href="group__DRV__LIN__MODULE.html">APIs for LIN LLD</a> </p>
 </div></div><!-- contents -->
@@ -304,7 +304,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__LIN__MODULE_html_ga6cb632f622f9694b297cb58eeec17335"><div class="ttname"><a href="group__DRV__LIN__MODULE.html#ga6cb632f622f9694b297cb58eeec17335">LIN_setIDByte</a></div><div class="ttdeci">static void LIN_setIDByte(uint32_t base, uint16_t identifier)</div><div class="ttdoc">Set ID Byte.</div><div class="ttdef"><b>Definition:</b> lin/v0/lin.h:574</div></div>
 <div class="ttc" id="agroup__DRV__LIN__MODULE_html_gga8390fc305b53e1d9e400f8c42bdc298dadfdfee320f732b0fa83b142c847fe61d"><div class="ttname"><a href="group__DRV__LIN__MODULE.html#gga8390fc305b53e1d9e400f8c42bdc298dadfdfee320f732b0fa83b142c847fe61d">LIN_SCI_STOP_ONE</a></div><div class="ttdeci">@ LIN_SCI_STOP_ONE</div><div class="ttdef"><b>Definition:</b> lin/v0/lin.h:338</div></div>
 <div class="ttc" id="agroup__DRV__LIN__MODULE_html_ga63fe8cac48f88a6c134dfff3bdd4241e"><div class="ttname"><a href="group__DRV__LIN__MODULE.html#ga63fe8cac48f88a6c134dfff3bdd4241e">LIN_exitSoftwareReset</a></div><div class="ttdeci">static void LIN_exitSoftwareReset(uint32_t base)</div><div class="ttdoc">Put LIN into its ready state.</div><div class="ttdef"><b>Definition:</b> lin/v0/lin.h:2349</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="astructHwiP__Params_html_a943b3d55a5aaa669f8bcb04017fdf2a1"><div class="ttname"><a href="structHwiP__Params.html#a943b3d55a5aaa669f8bcb04017fdf2a1">HwiP_Params::intNum</a></div><div class="ttdeci">uint32_t intNum</div><div class="ttdef"><b>Definition:</b> HwiP.h:129</div></div>
 <div class="ttc" id="agroup__DRV__LIN__MODULE_html_ga43664d4c27b9147dc141d5279b249f2f"><div class="ttname"><a href="group__DRV__LIN__MODULE.html#ga43664d4c27b9147dc141d5279b249f2f">LIN_setDebugSuspendMode</a></div><div class="ttdeci">static void LIN_setDebugSuspendMode(uint32_t base, LIN_DebugMode mode)</div><div class="ttdoc">Set the Debug Suspended Mode.</div><div class="ttdef"><b>Definition:</b> lin/v0/lin.h:2765</div></div>
 <div class="ttc" id="alin_8h_html"><div class="ttname"><a href="lin_8h.html">lin.h</a></div></div>

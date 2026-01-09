@@ -92,46 +92,46 @@ $(document).ready(function(){initNavTree('MEMORY_CONFIGURATOR.html',''); initRes
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md619">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md620">Enhanced Significance in Multi-Core Environments</a></li>
-<li class="level1"><a href="#autotoc_md621">Handling Violations and Common Configuration Errors</a></li>
-<li class="level1"><a href="#autotoc_md622">Getting Started with the Tool</a><ul><li class="level2"><a href="#autotoc_md623">General</a></li>
-<li class="level2"><a href="#autotoc_md624">Memory Region</a><ul><li class="level3"><a href="#autotoc_md625">Shared Memory Region Configuration</a></li>
-<li class="level3"><a href="#autotoc_md626">Impact of Automate MPU Setting</a></li>
+<ul><li class="level1"><a href="#autotoc_md621">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md622">Enhanced Significance in Multi-Core Environments</a></li>
+<li class="level1"><a href="#autotoc_md623">Handling Violations and Common Configuration Errors</a></li>
+<li class="level1"><a href="#autotoc_md624">Getting Started with the Tool</a><ul><li class="level2"><a href="#autotoc_md625">General</a></li>
+<li class="level2"><a href="#autotoc_md626">Memory Region</a><ul><li class="level3"><a href="#autotoc_md627">Shared Memory Region Configuration</a></li>
+<li class="level3"><a href="#autotoc_md628">Impact of Automate MPU Setting</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md627">Section</a></li>
-<li class="level2"><a href="#autotoc_md628">Default Linker Configuration</a></li>
-<li class="level2"><a href="#autotoc_md629">MPU Settings</a></li>
-<li class="level2"><a href="#autotoc_md630">Enhanced Visualization View</a></li>
-<li class="level2"><a href="#autotoc_md631">By-passing Sysconfig generated Linker</a></li>
+<li class="level2"><a href="#autotoc_md629">Section</a></li>
+<li class="level2"><a href="#autotoc_md630">Default Linker Configuration</a></li>
+<li class="level2"><a href="#autotoc_md631">MPU Settings</a></li>
+<li class="level2"><a href="#autotoc_md632">Enhanced Visualization View</a></li>
+<li class="level2"><a href="#autotoc_md633">By-passing Sysconfig generated Linker</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_tools_memory_configurator"></a></p>
-<h1><a class="anchor" id="autotoc_md619"></a>
+<h1><a class="anchor" id="autotoc_md621"></a>
 Introduction</h1>
 <p>In the prior versions of the SDK, linker files presented challenges in terms of ease of maintenance. Linker files were generated from templates, meaning that any alterations to parameters such as stack size, heap size, memory regions, or sections necessitated direct edits to the linker files. This process proved to be cumbersome and difficult to manage.</p>
 <p>The Memory Configurator tool seamlessly integrated into sysconfig empowers users to configure critical parameters. By utilizing this tool, corresponding linker files are automatically generated. This feature significantly streamlines the process, eliminating the need for manual adjustments to the linker files and providing users with a hassle-free experience.</p>
 <p>Please refer to the section "By-passing Sysconfig generated Linker" to use hand written linker file.</p>
-<h1><a class="anchor" id="autotoc_md620"></a>
+<h1><a class="anchor" id="autotoc_md622"></a>
 Enhanced Significance in Multi-Core Environments</h1>
 <p> <style>div.image img[src="multi_core.png"]{width:50%}</style> </p><div class="image">
 <img src="multi_core.png" alt=""/>
 <div class="caption">
 Demonstrating a multi core scenario</div></div>
 <p>Suppose core 0 has a memory region named MEM0 with a start address of 0x0 and a length of 16KB. Core 1, on the other hand, possesses a memory region named MEM1 with a start address of 0x4000 and a length of 64 KB. Now, in the event that the user wishes to expand the size of MEM0, this action would necessitate an adjustment in the start address of MEM1 while ensuring its size remains unchanged. Furthermore, if there are any other memory regions defined immediately after MEM1, all corresponding adjustments would need to be made. The integration of this tool facilitates these modifications, sparing the user the need to manually edit each individual configuration.</p>
-<h1><a class="anchor" id="autotoc_md621"></a>
+<h1><a class="anchor" id="autotoc_md623"></a>
 Handling Violations and Common Configuration Errors</h1>
 <p>There are scenarios where a core attempts to configure the Memory Protection Unit (MPU) for a memory region that hasn't been assigned to it. This constitutes a violation that requires proper handling.</p>
 <p>Another common error involves designating a shared memory region as cached. This tool serves as a safeguard against such mistakes, ensuring that these violations and configuration errors are prevented.</p>
-<h1><a class="anchor" id="autotoc_md622"></a>
+<h1><a class="anchor" id="autotoc_md624"></a>
 Getting Started with the Tool</h1>
 <p>Within the tool interface, the user will find a section labeled "MEMORY" on the left pane. This section encompasses three key components: "General," "Memory Region," and "Sections."</p>
 <p>In the forthcoming discussion, each of these components will be explored in detail. This will equip users with the knowledge and guidance required to configure the tool in alignment with their specific requirements.</p>
 <dl class="section note"><dt>Note</dt><dd>The tool doesn't support GCC compilers.</dd></dl>
-<h2><a class="anchor" id="autotoc_md623"></a>
+<h2><a class="anchor" id="autotoc_md625"></a>
 General</h2>
 <p>Within this section, the user will have the option to configure essential parameters such as stack size, heap size, IRQ (Interrupt Request), FIQ (Fast Interrupt Request), SVC (Supervisor Call), Abort Stack and Undefined Stack sizes.</p>
 <p>Upon adding an instance, these parameters will be automatically populated with their default values.</p>
@@ -140,7 +140,7 @@ General</h2>
 <img src="general.png" alt=""/>
 <div class="caption">
 Sysconfig view of General and the corresponding Linker File generation</div></div>
-<h2><a class="anchor" id="autotoc_md624"></a>
+<h2><a class="anchor" id="autotoc_md626"></a>
 Memory Region</h2>
 <p> <style>div.image img[src="memory_region_start.png"]{width:50%}</style> </p><div class="image">
 <img src="memory_region_start.png" alt=""/>
@@ -209,7 +209,7 @@ Rename Shared Region: After renaming</div></div>
 </ul>
 </li>
 </ol>
-<h3><a class="anchor" id="autotoc_md625"></a>
+<h3><a class="anchor" id="autotoc_md627"></a>
 Shared Memory Region Configuration</h3>
 <p>It's important to note that if a memory region is designated as "Shared," the user will have the option to select the cores with which it will be shared. As a result, this region will automatically be included in the linker files of all the chosen core. Therefore, there is no need for the user to manually add the same region to the other cores. In fact, doing so would not be possible. For shared memory regions, it's essential to ensure that the size is a power of 2 else an error will be triggered. Also, the start address has to be aligned with the size of the memory region.</p>
 <dl class="section note"><dt>Note</dt><dd>The same shared region instances will not appear in the GUI for the selected cores but will get reflected in their linker files.<br  />
@@ -218,7 +218,7 @@ Additionally, system projects should not be built at individual core level if th
 <p>Eg: </p><div class="fragment"><div class="line">make -sC examples/empty/{device_name}/{core_name_os}/{compiler}/ syscfg-gui</div>
 </div><!-- fragment --><p>And not, </p><div class="fragment"><div class="line">make -sC examples/empty/{device_name}/system_nortos/ syscfg-gui</div>
 </div><!-- fragment --><p>But the thing to note here is that now when you build system project, there will be conflict coming from the independent core sharing these regions and your current core under test as it will have the same regions added twice (once by the independent and other by itself). Then we will have to remove those from the dependent ones.</p>
-<h3><a class="anchor" id="autotoc_md626"></a>
+<h3><a class="anchor" id="autotoc_md628"></a>
 Impact of Automate MPU Setting</h3>
 <p>When the "Automate MPU Setting" option is selected, the tool's behavior is adjusted to align with MPU setting rules. Specifically, memory regions cannot be placed anywhere within a hole; they must be situated at an address that starts at a multiple of their size. The size must be a power of 2 starting from 32 B through 4 GB.</p>
 <p>MEM0 and MEM1, both 32B regions of the same type, are arranged as depicted. However, MEM2, which is 128B in size, cannot be positioned immediately after MEM1 due to alignment constraints. Placing it there would result in a start address that is not a multiple of its size. Consequently, the region is relocated to an address where the start aligns with its size, thereby generating a gap between MEM1 and MEM2.</p>
@@ -232,7 +232,7 @@ Memory Region Start Address Alignment</div></div>
 <div class="caption">
 Sysconfig view of Memory Region with Automate MPU Setting</div></div>
 <dl class="section note"><dt>Note</dt><dd>All cores should follow the same MPU setting i.e. either it should be enabled for all or disabled for all.</dd></dl>
-<h2><a class="anchor" id="autotoc_md627"></a>
+<h2><a class="anchor" id="autotoc_md629"></a>
 Section</h2>
 <p> <style>div.image img[src="section_load_memory.png"]{width:60%}</style> </p><div class="image">
 <img src="section_load_memory.png" alt=""/>
@@ -292,7 +292,7 @@ Sysconfig view of Section with Split across Memories</div></div>
 <img src="section.png" alt=""/>
 <div class="caption">
 Sysconfig view of Section and the corresponding Linker File generation</div></div>
-<h2><a class="anchor" id="autotoc_md628"></a>
+<h2><a class="anchor" id="autotoc_md630"></a>
 Default Linker Configuration</h2>
 <p> <style>div.image img[src="before_default_config.png"]{width:60%}</style> </p><div class="image">
 <img src="before_default_config.png" alt=""/>
@@ -304,7 +304,7 @@ Sysconfig view of Linker: Before button Click</div></div>
 <div class="caption">
 Sysconfig view of Linker: After button Click</div></div>
 <dl class="section note"><dt>Note</dt><dd>When user opens a multi core project and clicks this button in each core, he/she will get conflicts in the Memory Region module because of the shared regions being added in sysconfig of all the cores. Here, user has to manually delete the conflicting regions.</dd></dl>
-<h2><a class="anchor" id="autotoc_md629"></a>
+<h2><a class="anchor" id="autotoc_md631"></a>
 MPU Settings</h2>
 <p>As discussed earlier, let's revisit the functionality of MPU settings with the Automate option.</p>
 <p>When the user selects the "Automate MPU Settings" option within the Memory Region, they will have the opportunity to configure the MPU settings specific to that memory region. Note that in this scenario, the start and size parameters are fixed and cannot be altered. This enhancement aims to streamline the configuration process, alleviating the need for separate MPU adjustments.</p>
@@ -322,7 +322,7 @@ MPU Settings</h2>
 <div class="caption">
 Sysconfig view of MPU configuration integrated with Memory Region attributes</div></div>
 <p>This approach ensures that users have a clear understanding of how the manually configured MPU settings relate to the broader memory regions and their usage across different cores.</p>
-<h2><a class="anchor" id="autotoc_md630"></a>
+<h2><a class="anchor" id="autotoc_md632"></a>
 Enhanced Visualization View</h2>
 <p>To facilitate user understanding and ease of navigation, a specialized view has been incorporated. This view provides a visual representation of the memory types available in this device, displaying crucial details such as start address, size, accessibility across cores, and direct links to the respective memory regions for seamless navigation.</p>
 <p> <style>div.image img[src="memory_region_summary.png"]{width:70%}</style> </p><div class="image">
@@ -334,7 +334,7 @@ Consolidated view of Memory Regions</div></div>
 <img src="mpu_setting_summary.png" alt=""/>
 <div class="caption">
 Consolidated view of MPU Settings</div></div>
-<h2><a class="anchor" id="autotoc_md631"></a>
+<h2><a class="anchor" id="autotoc_md633"></a>
 By-passing Sysconfig generated Linker</h2>
 <p>In case user wants to write their own linker file instead of the sysconfig generated one (as earlier versions of SDK), they can achieve that by following some simple steps:</p>
 <ol type="1">

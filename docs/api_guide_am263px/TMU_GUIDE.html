@@ -92,23 +92,23 @@ $(document).ready(function(){initNavTree('TMU_GUIDE.html',''); initResizable(); 
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md557">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md558">Support for Trigonometric Operations</a><ul><li class="level2"><a href="#autotoc_md559">SIN Operation</a></li>
-<li class="level2"><a href="#autotoc_md560">COS Operation</a></li>
-<li class="level2"><a href="#autotoc_md561">ATAN Operation</a></li>
-<li class="level2"><a href="#autotoc_md562">IEXP Operation</a></li>
-<li class="level2"><a href="#autotoc_md563">LOG Operation</a></li>
-<li class="level2"><a href="#autotoc_md564">QUADF Operation</a></li>
+<ul><li class="level1"><a href="#autotoc_md559">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md560">Support for Trigonometric Operations</a><ul><li class="level2"><a href="#autotoc_md561">SIN Operation</a></li>
+<li class="level2"><a href="#autotoc_md562">COS Operation</a></li>
+<li class="level2"><a href="#autotoc_md563">ATAN Operation</a></li>
+<li class="level2"><a href="#autotoc_md564">IEXP Operation</a></li>
+<li class="level2"><a href="#autotoc_md565">LOG Operation</a></li>
+<li class="level2"><a href="#autotoc_md566">QUADF Operation</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md565">Context Save and Restore</a></li>
-<li class="level1"><a href="#autotoc_md566">Compiler Support</a></li>
-<li class="level1"><a href="#autotoc_md567">Steps to use TMU APIs</a></li>
-<li class="level1"><a href="#autotoc_md568">See Also</a></li>
+<li class="level1"><a href="#autotoc_md567">Context Save and Restore</a></li>
+<li class="level1"><a href="#autotoc_md568">Compiler Support</a></li>
+<li class="level1"><a href="#autotoc_md569">Steps to use TMU APIs</a></li>
+<li class="level1"><a href="#autotoc_md570">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_tmu_guide"></a></p>
-<h1><a class="anchor" id="autotoc_md557"></a>
+<h1><a class="anchor" id="autotoc_md559"></a>
 Introduction</h1>
 <p>MCU PLUS SDK integrates a software library to use the TMU (Trigonometric Math Unit) hardware in AM263Px. This TMU library provides efficient (assembly level functions) and MATHLIB compatible API interface for performing trigonometric calculations, a critical component in many real-time applications such as Motor Control and Digital Power. TMU is used to efficiently execute commonly used Trigonometric and Arithmetic Operations by accelerating these math functions, and providing a performance boost to the user application.</p>
 <p><a class="el" href="EXAMPLES_DRIVERS_TMU_CORES_SUPPORT.html#TMU_TCMA_ERRATA">Errata : TCM Memory Corruption on R5SS0_CORE1 and R5SS1_CORE1 when writing to TMU Registers</a></p>
@@ -133,14 +133,14 @@ TMU supported operations</div></div>
 <li>Single cycle context save and restore operations. This feature is essential in scenarios where if a TMU operation running in the main program gets interrupted, and the TMU operation that uses the same result register as the operation present in the main program is being used within the ISR. This case will lead to losing the value that gets stored in the result register after the main program's TMU operation gets completed, as now the ISR is also using the same result register and overwriting will take place</li>
 <li>Generation of Underflow and Overflow interrupts to show errors in mathematical operations</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md558"></a>
+<h1><a class="anchor" id="autotoc_md560"></a>
 Support for Trigonometric Operations</h1>
 <p>TMU supports a mapping between the Operand registers and the result registers. There are different 8 operand1 registers(R0, R1, R2, R3, R4, R5, R6, R7) for each operation and these registers are sitting at different memory locations. So in total there are 48 operand1 registers available. Users need to perform a write to these registers with the input value, in order to trigger a TMU operation. Based on which address the write happens, TMU gets three key details for performing TMU operation:</p><ul>
 <li>The operation that the user wants to perform</li>
 <li>The result register into which the result will get stored</li>
 <li>The input value that needs to be taken for the operations</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md559"></a>
+<h2><a class="anchor" id="autotoc_md561"></a>
 SIN Operation</h2>
 <p>The eight operand1 registers for SIN are as folows:</p>
 <ul>
@@ -153,7 +153,7 @@ SIN Operation</h2>
 <li>SIN_R6 - SIN operation's seventh operand1 register present at memory location 0x60070. Write to this register with the input value will trigger a SIN operation and the result will be present in R6 result register</li>
 <li>SIN_R7 - SIN operation's eigth operand1 register present at memory location 0x60078. Write to this register with the input value will trigger a SIN operation and the result will be present in R7 result register</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md560"></a>
+<h2><a class="anchor" id="autotoc_md562"></a>
 COS Operation</h2>
 <p>The eight operand1 registers for COS are as folows:</p>
 <ul>
@@ -166,7 +166,7 @@ COS Operation</h2>
 <li>COS_R6 - COS operation's seventh operand1 register present at memory location 0x600B0. Write to this register with the input value will trigger a COS operation and the result will be present in R6 result register</li>
 <li>COS_R7 - COS operation's eigth operand1 register present at memory location 0x600B8. Write to this register with the input value will trigger a COS operation and the result will be present in R7 result register</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md561"></a>
+<h2><a class="anchor" id="autotoc_md563"></a>
 ATAN Operation</h2>
 <p>The eight operand1 registers for ATAN are as folows:</p>
 <ul>
@@ -179,7 +179,7 @@ ATAN Operation</h2>
 <li>ATAN_R6 - ATAN operation's seventh operand1 register present at memory location 0x600F0. Write to this register with the input value will trigger a ATAN operation and the result will be present in R6 result register</li>
 <li>ATAN_R7 - ATAN operation's eigth operand1 register present at memory location 0x600F8. Write to this register with the input value will trigger a ATAN operation and the result will be present in R7 result register</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md562"></a>
+<h2><a class="anchor" id="autotoc_md564"></a>
 IEXP Operation</h2>
 <p>The eight operand1 registers for IEXP are as folows:</p>
 <ul>
@@ -192,7 +192,7 @@ IEXP Operation</h2>
 <li>IEXP_R6 - IEXP operation's seventh operand1 register present at memory location 0x60170. Write to this register with the input value will trigger a IEXP operation and the result will be present in R6 result register</li>
 <li>IEXP_R7 - IEXP operation's eigth operand1 register present at memory location 0x60178. Write to this register with the input value will trigger a IEXP operation and the result will be present in R7 result register</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md563"></a>
+<h2><a class="anchor" id="autotoc_md565"></a>
 LOG Operation</h2>
 <p>The eight operand1 registers for LOG are as folows:</p>
 <ul>
@@ -205,7 +205,7 @@ LOG Operation</h2>
 <li>LOG_R6 - LOG operation's seventh operand1 register present at memory location 0x601B0. Write to this register with the input value will trigger a LOG operation and the result will be present in R6 result register</li>
 <li>LOG_R7 - LOG operation's eigth operand1 register present at memory location 0x601B8. Write to this register with the input value will trigger a LOG operation and the result will be present in R7 result register</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md564"></a>
+<h2><a class="anchor" id="autotoc_md566"></a>
 QUADF Operation</h2>
 <p>The eight operand1 registers for QUADF are as folows:</p>
 <ul>
@@ -218,7 +218,7 @@ QUADF Operation</h2>
 <li>QUADF_R6_R7 - QUADF operation's seventh operand1 register present at memory location 0x601F0. Write to this register with the input value will trigger a QUADF operation and the result will be present in R6 and R7 result register</li>
 </ul>
 <p>In use cases where the Operation takes in two inputs for instance QUAD operation, the second input value needs to be put into QUADF32_DIVF32_OP2 operand register present at memory location 0x60240. This needs to be done first before writing the first input value into the operand1 register.</p>
-<h1><a class="anchor" id="autotoc_md565"></a>
+<h1><a class="anchor" id="autotoc_md567"></a>
 Context Save and Restore</h1>
 <p>TMU result registers supports context save functionality, which can enable the use of TMU in an ISR context while simultaneously used in main function</p>
 <p>When an interrupt occurs and ISR starts running, the context save can be initiated by writing ‘1’ to the SAVE bit of CONTEXT_SAVE register present at memory location 0x60308. TMU result register values are saved in the corresponding Context Save register. There are 8 Context save registers, and there is a mapping between the result registers and context save registers. The R0 result register value gets stored in Context Save r0 register, R1 result register value gets stored into Context Save r1 register and so on. This context save of result registers will only happen once all the TMU operations initiated before writing to CONTEXT_SAVE register is complete, this ensures context save happens at correct point. After saving the context, ISR can use TMU without any restriction</p>
@@ -227,10 +227,10 @@ Context Save and Restore</h1>
 <img src="tmu_context_save_dev.png" alt=""/>
 <div class="caption">
 TMU Context Save and Restore workflow</div></div>
-<h1><a class="anchor" id="autotoc_md566"></a>
+<h1><a class="anchor" id="autotoc_md568"></a>
 Compiler Support</h1>
 <p>There is no compiler support for TMU, the users will have to use SDK for TMU operations</p>
-<h1><a class="anchor" id="autotoc_md567"></a>
+<h1><a class="anchor" id="autotoc_md569"></a>
 Steps to use TMU APIs</h1>
 <p>In SDK we have integrated TMU support using register independent inline assembly code for each of the functions that is supported by TMU. The SDK contains support for writing into one of the OPERAND 1 register supported by an operation. The TMU functionalities supported by SDK includes:</p>
 <ul>
@@ -248,7 +248,7 @@ Steps to use TMU APIs</h1>
 <li><b>SINCOSPUF</b> - The TMU source file supports API **'ti_tmu_sincos_pu'** which takes in three inputs, the input value is per unit form, address of a variable that stores result of sin operation and address of a variable that will store result of cos operation. This function will first write the input value into the sin's first operand1 register(0x60040) and then write the input value into cos's second operand1 register(0x60080), so the sin result will get generated in R0 result register and cos result will get generated in R1 result register. A delay of 4 NOP's to ensure the computation is complete before result is read, post this the value present in R0 result register is assigned to sin result variable and the value present in the R1 result register is assigned to cos result variable. User's can make a direct call to this API in their application code to initiate a SINCOS back-to-back operation using TMU. To generate the result in other result registers, user's can add API calls in the TMU source file that takes in the input value and does the write to another sin or cos Operand 1 register which will generate the result to a different result register supported by TMU.</li>
 <li><b>SINCOS</b> - The TMU source file supports API <b>ti_tmu_sincos</b> which takes in three inputs, the input value is radiant form, address of a variable that stores result of sin operation and address of a variable that will store result of cos operation. This function will first convert the input value from radians to per unit by multiplying with 1/2PI. This value is written into sin's first operand1 register(0x60040) and then cos's second operand1 register(0x60080), so the sin result will get generated in R0 result register and cos result will get generated in R1 result register. A delay of 4 NOP's is added to ensure the computation is complete before result is read, post this the value present in R0 result register is assigned to sin result variable and the value present in the R1 result register is assigned to cos result variable. User's can make a direct call to this API in their application code to initiate a SINCOS back-to-back operation using TMU. To generate the result in other result registers, user's can add API calls in the TMU source file that takes in the input value and does the write to another sin or cos Operand 1 register which will generate the result to a different result register supported by TMU.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md568"></a>
+<h1><a class="anchor" id="autotoc_md570"></a>
 See Also</h1>
 <p>See also the TMU examples code and documentation for more information on how TMU can be used.</p>
 <ul>

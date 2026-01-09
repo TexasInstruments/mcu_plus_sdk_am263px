@@ -92,26 +92,26 @@ $(document).ready(function(){initNavTree('KERNEL_DPL_CYCLE_COUNTER_PAGE.html',''
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md832">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md833">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md834">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md835">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md836">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md834">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md835">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md836">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md837">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md838">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_dpl_CycleCountP"></a></p>
-<h1><a class="anchor" id="autotoc_md832"></a>
+<h1><a class="anchor" id="autotoc_md834"></a>
 Features Supported</h1>
 <ul>
 <li>API to return CPU cycles executed so far</li>
 <li>API to reset the CPU cycle counter</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md833"></a>
+<h1><a class="anchor" id="autotoc_md835"></a>
 Features NOT Supported</h1>
 <ul>
 <li>Additional event counters in the CPU are not supported via this API. Refer to CPU architecture specific technical and architecture reference manuals, to access additional CPU architecture specific counter features.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md834"></a>
+<h1><a class="anchor" id="autotoc_md836"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>Make sure to call <a class="el" href="group__KERNEL__DPL__CYCLE__COUNTER.html#gab11f36bc81cd4e4394012c4ed2cb500c" title="Enable, reset, clear overflow for CPU cycle counter.">CycleCounterP_reset()</a> to enable and reset the CPU cycle counter before using it</li>
@@ -119,7 +119,7 @@ Important Usage Guidelines</h1>
 <li>Application can have logic to handle one wraparound of the counter, as shown in the example usage below. i.e max time duration that can be measured will be limited to 0xFFFFFFFF CPU cycles, i.e few seconds only.</li>
 <li>This API is meant to used for very fine, short duration measurements. To measure longer durations use <a class="el" href="group__KERNEL__DPL__CLOCK.html#ga9f1e99a67f697549e08a65ccb6bcdea2">ClockP_getTimeUsec()</a> from <a class="el" href="KERNEL_DPL_CLOCK_PAGE.html">Clock</a> module.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md835"></a>
+<h1><a class="anchor" id="autotoc_md837"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs, </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="CycleCounterP_8h.html">kernel/dpl/CycleCounterP.h</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="DebugP_8h.html">kernel/dpl/DebugP.h</a>&gt;</span></div>
@@ -149,13 +149,13 @@ Example Usage</h1>
 <div class="line">            cpuCycles = (0xFFFFFFFFU - cycleCountBefore) + cycleCountAfter;</div>
 <div class="line">        }</div>
 <div class="line">        <a class="code" href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a>(<span class="stringliteral">&quot;CPU cycles:%u\n&quot;</span>, cpuCycles);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md836"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md838"></a>
 API</h1>
 <p><a class="el" href="group__KERNEL__DPL__CYCLE__COUNTER.html">APIs for Counting CPU Cycles</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:225</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:235</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__CYCLE__COUNTER_html_gab11f36bc81cd4e4394012c4ed2cb500c"><div class="ttname"><a href="group__KERNEL__DPL__CYCLE__COUNTER.html#gab11f36bc81cd4e4394012c4ed2cb500c">CycleCounterP_reset</a></div><div class="ttdeci">void CycleCounterP_reset(void)</div><div class="ttdoc">Enable, reset, clear overflow for CPU cycle counter.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__CYCLE__COUNTER_html_ga4b1cc718dca6caf0810a25aec867ae7f"><div class="ttname"><a href="group__KERNEL__DPL__CYCLE__COUNTER.html#ga4b1cc718dca6caf0810a25aec867ae7f">CycleCounterP_getCount32</a></div><div class="ttdeci">uint32_t CycleCounterP_getCount32(void)</div><div class="ttdoc">Get 32b CPU cycle counter value.</div></div>
 <div class="ttc" id="aCycleCounterP_8h_html"><div class="ttname"><a href="CycleCounterP_8h.html">CycleCounterP.h</a></div></div>

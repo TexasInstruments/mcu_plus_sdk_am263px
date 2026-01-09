@@ -92,50 +92,50 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_DAC_EPWM_SYNC.html','
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2289">Introduction</a><ul><li class="level2"><a href="#autotoc_md2290">Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2291">External connections</a><ul><li class="level3"><a href="#autotoc_md2292">On AM263x-CC or AM263Px-CC with HSEC dock</a></li>
-<li class="level3"><a href="#autotoc_md2293">On AM263x-LP or AM263Px-LP,</a></li>
-<li class="level3"><a href="#autotoc_md2294">On AM261x-LP,</a></li>
+<ul><li class="level1"><a href="#autotoc_md2291">Introduction</a><ul><li class="level2"><a href="#autotoc_md2292">Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2293">External connections</a><ul><li class="level3"><a href="#autotoc_md2294">On AM263x-CC or AM263Px-CC with HSEC dock</a></li>
+<li class="level3"><a href="#autotoc_md2295">On AM263x-LP or AM263Px-LP,</a></li>
+<li class="level3"><a href="#autotoc_md2296">On AM261x-LP,</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_DAC_EPWM_SYNC_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2295">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2296">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2297">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2297">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2298">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2299">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_dac_epwm_sync"></a></p>
-<h1><a class="anchor" id="autotoc_md2289"></a>
+<h1><a class="anchor" id="autotoc_md2291"></a>
 Introduction</h1>
 <p>The DAC Shadow value syncs to DAC Active Value from EPWM Event. The EPWM Peripheral can send out a EPWMSYNCPER signal, on certain events,(check syscfg, under timebase submodule for more details on events) which may be used by the DAC peripheral to sync its shadow to active register transfers. The example showcases this in the EPWM ISR, where the event for sync signal and the event for the interrupt are same. now, if there is a new shadow value set, it wouldn't reflect in the active until the next ISR iteration. and similarly, the last set shadow value would appear in the active register of the DAC.</p>
 <p>Note that, the events for EPWMSYNCPER signal and the Interrupt signal from EPWM are not dependant, in other words, the EPWMSYNCPER may be configured without the need to configure the INT signal from the EPWM.</p>
-<h2><a class="anchor" id="autotoc_md2290"></a>
+<h2><a class="anchor" id="autotoc_md2292"></a>
 Configurations</h2>
 <ul>
 <li>DAC loadmode is set to the EPWM SYNC PER signal.</li>
 <li>EPWM SYNCPER signal is generated at its counter equals to period event</li>
 <li>EPWM INT is generated at its counter equals to period event. routed via INT Xbar 0</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2291"></a>
+<h2><a class="anchor" id="autotoc_md2293"></a>
 External connections</h2>
 <p>The status Pin, EPWM output A, DAC output may be probed to view the waveforms </p>
-<h3><a class="anchor" id="autotoc_md2292"></a>
+<h3><a class="anchor" id="autotoc_md2294"></a>
 On AM263x-CC or AM263Px-CC with HSEC dock</h3>
 <ul>
 <li>Probe the HSEC Pin 9 for DAC output.</li>
 <li>Probe the HSEC Pin 49 for EPWM A output.</li>
 <li>Probe the HSEC Pin 51 for STATUS (GPIO 44) output. </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md2293"></a>
+<h3><a class="anchor" id="autotoc_md2295"></a>
 On AM263x-LP or AM263Px-LP,</h3>
 <ul>
 <li>Probe the J3 Pin 30</li>
 <li>Probe the J4 Pin 11 for EPWM A output.</li>
 <li>Probe the J8 Pin 59 for STATUS (GPIO 44) output.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md2294"></a>
+<h3><a class="anchor" id="autotoc_md2296"></a>
 On AM261x-LP,</h3>
 <ul>
 <li>Probe the J3 Pin 30</li>
@@ -156,7 +156,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/dac/dac_epwm_sync/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2295"></a>
+<h1><a class="anchor" id="autotoc_md2297"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -165,10 +165,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>Use an Oscilloscope to view the ramp wave on DAC output pin.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2296"></a>
+<h1><a class="anchor" id="autotoc_md2298"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_DAC_PAGE.html">DAC</a></p>
-<h1><a class="anchor" id="autotoc_md2297"></a>
+<h1><a class="anchor" id="autotoc_md2299"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">EPWM synced DAC Test Started ...</div>

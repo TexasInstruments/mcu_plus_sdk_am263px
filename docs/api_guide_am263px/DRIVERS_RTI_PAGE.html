@@ -92,16 +92,16 @@ $(document).ready(function(){initNavTree('DRIVERS_RTI_PAGE.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1119">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1120">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1121">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1122">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1123">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1121">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1122">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1123">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1124">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1125">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_rti"></a></p>
 <p>The Real Time Interrupt module provides timer functionality and is used to generate periodic interrupts. The counters also allow you to benchmark certain areas of code by reading their values at the beginning and the end of the desired code range and calculating the difference between the values.</p>
-<h1><a class="anchor" id="autotoc_md1119"></a>
+<h1><a class="anchor" id="autotoc_md1121"></a>
 Features Supported</h1>
 <ul>
 <li>Support for two independent counter blocks.</li>
@@ -110,7 +110,7 @@ Features Supported</h1>
 <li>Two Capture functions, one for each counter block.</li>
 <li>Support to enable/disable continue on debug/emulation suspend. If enabled, the counters countinue to work in debug mode.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1120"></a>
+<h1><a class="anchor" id="autotoc_md1122"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -122,19 +122,19 @@ SysConfig Features</h1>
 <li>Support to attach callback functions to each of the compare events</li>
 <li>Enabling/Disable DMA trigger generation in each compare block</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1121"></a>
+<h1><a class="anchor" id="autotoc_md1123"></a>
 Features NOT Supported</h1>
 <ul>
 <li>NTU input to FRC0</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1122"></a>
+<h1><a class="anchor" id="autotoc_md1124"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="rti_8h.html">drivers/rti.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Example usage to start the timer </p><div class="fragment"><div class="line">    <span class="comment">/* start the rti counter */</span></div>
 <div class="line">    <a class="code" href="group__DRV__RTI__MODULE.html#ga95b22b6f339052ad4542a05d51c8e530">RTI_counterEnable</a>(rtiBaseAddr, <a class="code" href="group__DRV__RTI__MODULE.html#gaffb3cc3fc0223a466d2b88762ed3c706">RTI_TMR_CNT_BLK_INDEX_0</a>);</div>
 </div><!-- fragment --><p> Example usage to stop the timer </p><div class="fragment"><div class="line">    <span class="comment">/* stop the rti counter */</span></div>
 <div class="line">    <a class="code" href="group__DRV__RTI__MODULE.html#ga6661f0e1f950c6e50585fdb2f2dcde1f">RTI_counterDisable</a>(rtiBaseAddr, <a class="code" href="group__DRV__RTI__MODULE.html#gaffb3cc3fc0223a466d2b88762ed3c706">RTI_TMR_CNT_BLK_INDEX_0</a>);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1123"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1125"></a>
 API</h1>
 <p><a class="el" href="group__DRV__RTI__MODULE.html">APIs for RTI</a> </p>
 </div></div><!-- contents -->

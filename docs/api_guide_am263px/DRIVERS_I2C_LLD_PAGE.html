@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('DRIVERS_I2C_LLD_PAGE.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_i2c_v1_lld"></a> </p>
-<h1><a class="anchor" id="autotoc_md950"></a>
+<h1><a class="anchor" id="autotoc_md952"></a>
 Features Supported</h1>
 <ul>
 <li>Controller and Target mode of Operation.</li>
@@ -100,7 +100,7 @@ Features Supported</h1>
 <li>Non-blocking (Callback) Transfer.</li>
 <li>I2C Bus Recovery.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md951"></a>
+<h1><a class="anchor" id="autotoc_md953"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <p>SysConfig can be used to configure below parameters apart from common configuration like Clock,MPU,RAT and others.</p><ul>
@@ -111,14 +111,14 @@ SysConfig Features</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md952"></a>
+<h1><a class="anchor" id="autotoc_md954"></a>
 Features NOT Supported</h1>
 <ul>
 <li>DMA Mode Operation.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md953"></a>
+<h1><a class="anchor" id="autotoc_md955"></a>
 Usage Overview</h1>
-<h2><a class="anchor" id="autotoc_md954"></a>
+<h2><a class="anchor" id="autotoc_md956"></a>
 API Sequence</h2>
 <p>To use the I2C LLD driver to transmit/receive data over the I2C bus, probe target and set bus frequency the application may call the following APIs:</p>
 <ul>
@@ -137,17 +137,17 @@ API Sequence</h2>
 <li><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gaa0e1657e8b07917503d14fdd4d590bf5" title="API to probe I2C.">I2C_lld_probe()</a>: Probe I2C Target.</li>
 <li><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gaef63ff2cdbd6453f4a57c29a15d1852c" title="API to set the bus frequency.">I2C_lld_setBusFrequency()</a>: Set Bus frequency.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md955"></a>
+<h2><a class="anchor" id="autotoc_md957"></a>
 Initializing the I2C LLD Driver</h2>
 <p><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gafd8a5d2ee0d890a8559ab73c161fac16" title="API to Initializes the I2C instance.">I2C_lld_init()</a> must be called before any other I2C APIs. This function uses I2C LLD handle to initialize each instance.</p>
 <p>Calling <a class="el" href="group__DRV__I2C__LLD__MODULE.html#gafd8a5d2ee0d890a8559ab73c161fac16" title="API to Initializes the I2C instance.">I2C_lld_init()</a> a second time with the same handle previously passed to <a class="el" href="group__DRV__I2C__LLD__MODULE.html#gafd8a5d2ee0d890a8559ab73c161fac16" title="API to Initializes the I2C instance.">I2C_lld_init()</a> will result in an error. Though, handle can be re-used the instance is closed using <a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga937d7e6dff3cdadb02df1daeb8280e52" title="API to De-Initializes the I2C instance.">I2C_lld_deInit()</a>.</p>
 <p>Please note that the initialization of I2C LLD instances is taken care by the SysConfig generated code.</p>
-<h2><a class="anchor" id="autotoc_md956"></a>
+<h2><a class="anchor" id="autotoc_md958"></a>
 I2C Transfer Mode</h2>
 <p>The I2C driver supports two transfer modes of operation: Polling and Interrupt Mode.</p>
 <p>In Polling mode transfer can be initiated with all the polling mode APIs.</p>
 <p>In Interrupt mode Users have to register the appropriate ISR and assign a Callback function before calling the interrupt mode APIs.</p>
-<h1><a class="anchor" id="autotoc_md957"></a>
+<h1><a class="anchor" id="autotoc_md959"></a>
 Example Usage</h1>
 <p>Include the below files to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="DebugP_8h.html">kernel/dpl/DebugP.h</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="HwiP_8h.html">kernel/dpl/HwiP.h</a>&gt;</span></div>
@@ -237,7 +237,7 @@ Example Usage</h1>
 <div class="line">                                      gI2cVimStsClrMask,</div>
 <div class="line">                                      intcBaseAddr);</div>
 <div class="line">}</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md958"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md960"></a>
 API</h1>
 <p><a class="el" href="group__DRV__I2C__LLD__MODULE.html">APIs for I2C LLD</a> </p>
 </div></div><!-- contents -->
@@ -251,7 +251,7 @@ API</h1>
 <div class="ttc" id="astructI2C__Transaction_html_a3a80191f72d53c793b58c17cf2361da6"><div class="ttname"><a href="structI2C__Transaction.html#a3a80191f72d53c793b58c17cf2361da6">I2C_Transaction::writeBuf</a></div><div class="ttdeci">const void * writeBuf</div><div class="ttdef"><b>Definition:</b> i2c.h:233</div></div>
 <div class="ttc" id="astructI2CLLD__Message_html"><div class="ttname"><a href="structI2CLLD__Message.html">I2CLLD_Message</a></div><div class="ttdoc">I2C Message.</div><div class="ttdef"><b>Definition:</b> i2c_lld.h:220</div></div>
 <div class="ttc" id="astructI2C__Transaction_html_a56940dfa9a256cfd16144d4e61d64188"><div class="ttname"><a href="structI2C__Transaction.html#a56940dfa9a256cfd16144d4e61d64188">I2C_Transaction::targetAddress</a></div><div class="ttdeci">uint32_t targetAddress</div><div class="ttdef"><b>Definition:</b> i2c.h:247</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:225</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:235</div></div>
 <div class="ttc" id="agroup__lld__ethernet_html_ga8c1dfc1ccf00a08192611433ee7f17b4"><div class="ttname"><a href="group__lld__ethernet.html#ga8c1dfc1ccf00a08192611433ee7f17b4">__attribute__</a></div><div class="ttdeci">struct lld_sockaddr __attribute__</div><div class="ttdoc">This is the SecureBoot Stream type which holds the data for a specific bootloader to HSM call....</div></div>
 <div class="ttc" id="aHwiP_8h_html"><div class="ttname"><a href="HwiP_8h.html">HwiP.h</a></div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__HWI_html_gaccf47c6fb95111f0fbba1b86705d5907"><div class="ttname"><a href="group__KERNEL__DPL__HWI.html#gaccf47c6fb95111f0fbba1b86705d5907">HwiP_enableInt</a></div><div class="ttdeci">void HwiP_enableInt(uint32_t intNum)</div><div class="ttdoc">Enable a specific interrupt.</div></div>
@@ -260,7 +260,7 @@ API</h1>
 <div class="ttc" id="aDebugP_8h_html"><div class="ttname"><a href="DebugP_8h.html">DebugP.h</a></div></div>
 <div class="ttc" id="astructI2C__Transaction_html_a08959a9f098163d02d6002e73b3a4606"><div class="ttname"><a href="structI2C__Transaction.html#a08959a9f098163d02d6002e73b3a4606">I2C_Transaction::writeCount</a></div><div class="ttdeci">size_t writeCount</div><div class="ttdef"><b>Definition:</b> i2c.h:236</div></div>
 <div class="ttc" id="agroup__DRV__I2C__LLD__MODULE_html_ga464b9f86c155bbc7725e98d54dbc80ed"><div class="ttname"><a href="group__DRV__I2C__LLD__MODULE.html#ga464b9f86c155bbc7725e98d54dbc80ed">I2C_lld_controllerIsr</a></div><div class="ttdeci">void I2C_lld_controllerIsr(void *args)</div><div class="ttdoc">I2C Controller ISR, can be used as IRQ handler in Controller mode.</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="agroup__DRV__I2C__LLD__MODULE_html_ga436bc81547d25cbe81ce05723f52b07d"><div class="ttname"><a href="group__DRV__I2C__LLD__MODULE.html#ga436bc81547d25cbe81ce05723f52b07d">I2C_STS_SUCCESS</a></div><div class="ttdeci">#define I2C_STS_SUCCESS</div><div class="ttdoc">Return status when the API execution was successful.</div><div class="ttdef"><b>Definition:</b> i2c_lld.h:84</div></div>
 <div class="ttc" id="agroup__DRV__I2C__LLD__MODULE_html_ga937d7e6dff3cdadb02df1daeb8280e52"><div class="ttname"><a href="group__DRV__I2C__LLD__MODULE.html#ga937d7e6dff3cdadb02df1daeb8280e52">I2C_lld_deInit</a></div><div class="ttdeci">int32_t I2C_lld_deInit(I2CLLD_Handle handle)</div><div class="ttdoc">API to De-Initializes the I2C instance.</div></div>
 <div class="ttc" id="agroup__DRV__I2C__LLD__MODULE_html_gae22ed23487028cfde657ceab7de377fc"><div class="ttname"><a href="group__DRV__I2C__LLD__MODULE.html#gae22ed23487028cfde657ceab7de377fc">I2CLLD_Handle</a></div><div class="ttdeci">struct I2CLLD_Object * I2CLLD_Handle</div></div>

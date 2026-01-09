@@ -93,10 +93,10 @@ $(document).ready(function(){initNavTree('EXAMPLES_FLSOPSKD_BENCHMARK.html','');
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
 <ul><li class="level1"><a href="#EXAMPLES_FLSOPSKD_BENCHMARK_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3725">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md3726">Building benchmark application</a></li>
-<li class="level1"><a href="#autotoc_md3727">Running benchmark application</a></li>
-<li class="level1"><a href="#autotoc_md3728">Results</a></li>
+<li class="level1"><a href="#autotoc_md3727">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3728">Building benchmark application</a></li>
+<li class="level1"><a href="#autotoc_md3729">Running benchmark application</a></li>
+<li class="level1"><a href="#autotoc_md3730">Results</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_benchmarks_benchmark_flsopskd"></a></p>
@@ -116,17 +116,17 @@ Supported Combinations</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/benchmarks/flsopskd_benchmark   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3725"></a>
+<h1><a class="anchor" id="autotoc_md3727"></a>
 Introduction</h1>
 <dl class="section note"><dt>Note</dt><dd>Number in this example is for illustration and will vary from flash to flash and age of flash.</dd></dl>
 <p>One of the key KPI of FLSOPSKD is the worst case XIP downtime. This application does the following:</p><ol type="1">
 <li>Core r5fss0-1 performs flash writes and erase while r5fss0-0 is performing XIP.</li>
 <li>Core r5fss0-1 reads the worst case XIP downtime, measued by FLSOPSKD, and prints it.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md3726"></a>
+<h1><a class="anchor" id="autotoc_md3728"></a>
 Building benchmark application</h1>
 <p>building normally with make command will build the application.</p>
-<h1><a class="anchor" id="autotoc_md3727"></a>
+<h1><a class="anchor" id="autotoc_md3729"></a>
 Running benchmark application</h1>
 <p>After running the application, the following is the expected output:</p>
 <div class="fragment"><div class="line">Starting OSPI Bootloader ...</div>
@@ -154,7 +154,7 @@ Running benchmark application</h1>
 <div class="line">[r5f0-1]    24.409348s : Status Polls Sent: 550</div>
 <div class="line">[r5f0-1]    24.409373s : Worst Case XIP Downtime Measured: 2772780 ns</div>
 <div class="line">[r5f0-1]    24.409406s : All tests have passed!!</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3728"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3730"></a>
 Results</h1>
 <p>From core R5F01, total time to flash to external flash was 27sec and of which 28ms was total XIP downtime, while other core was performing XIP. </p>
 </div></div><!-- contents -->

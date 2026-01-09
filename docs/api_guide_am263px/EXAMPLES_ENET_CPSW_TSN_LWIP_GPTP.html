@@ -92,29 +92,29 @@ $(document).ready(function(){initNavTree('EXAMPLES_ENET_CPSW_TSN_LWIP_GPTP.html'
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3283">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md3284">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3285">Packet pool configuration</a></li>
-<li class="level1"><a href="#autotoc_md3286">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3287">Prerequisites</a></li>
-<li class="level2"><a href="#autotoc_md3288">To Configure Static IP</a></li>
-<li class="level2"><a href="#autotoc_md3289">Build the example</a></li>
-<li class="level2"><a href="#autotoc_md3290">HW Setup</a><ul><li class="level3"><a href="#autotoc_md3291">PPS Output</a></li>
+<ul><li class="level1"><a href="#autotoc_md3285">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3286">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md3287">Packet pool configuration</a></li>
+<li class="level1"><a href="#autotoc_md3288">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3289">Prerequisites</a></li>
+<li class="level2"><a href="#autotoc_md3290">To Configure Static IP</a></li>
+<li class="level2"><a href="#autotoc_md3291">Build the example</a></li>
+<li class="level2"><a href="#autotoc_md3292">HW Setup</a><ul><li class="level3"><a href="#autotoc_md3293">PPS Output</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3292">Create a network between EVM and host PC</a></li>
-<li class="level2"><a href="#autotoc_md3293">Run the example</a></li>
-<li class="level2"><a href="#autotoc_md3294">Sample Log Output</a><ul><li class="level3"><a href="#autotoc_md3295">PC Output</a></li>
-<li class="level3"><a href="#autotoc_md3296">DUT output</a></li>
+<li class="level2"><a href="#autotoc_md3294">Create a network between EVM and host PC</a></li>
+<li class="level2"><a href="#autotoc_md3295">Run the example</a></li>
+<li class="level2"><a href="#autotoc_md3296">Sample Log Output</a><ul><li class="level3"><a href="#autotoc_md3297">PC Output</a></li>
+<li class="level3"><a href="#autotoc_md3298">DUT output</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3297">Troubleshooting issues</a></li>
+<li class="level2"><a href="#autotoc_md3299">Troubleshooting issues</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3298">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3300">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_enet_cpsw_gptp_lwip"></a></p>
-<h1><a class="anchor" id="autotoc_md3283"></a>
+<h1><a class="anchor" id="autotoc_md3285"></a>
 Introduction</h1>
 <p>This ethernet TSN example illustrates the usage of gPTP IEEE 802.1AS stack with CPSW peripheral with LwIP network stack running in parallel. Here we demonstrate a simple TCP echo server using netconn APIs with the LwIP stack. On the gPTP front, the application used here supports all the below modes:</p><ul>
 <li>gPTP End-Point time_transmitter mode (i.e. master mode)</li>
@@ -128,7 +128,7 @@ Introduction</h1>
 <p>Please refer to the <a class="el" href="EXAMPLES_ENET_LWIP_CPSW_TCPSERVER.html">Enet Lwip TCP Server Example on CPSW</a> page for LwIP TCP echo server documentation.</p>
 <p>Please refer to the <a class="el" href="EXAMPLES_ENET_CPSW_TSN_GPTP.html">Ethernet TSN gPTP Examples</a> page for the above gPTP mode specific documentation.</p>
 <p>See also :<a class="el" href="ENET_CPSW_TSN_GPTP.html">Ethernet TSN and gPTP Stack - API and Integration Guide</a> for gPTP stack documentation.</p>
-<h1><a class="anchor" id="autotoc_md3284"></a>
+<h1><a class="anchor" id="autotoc_md3286"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -142,12 +142,12 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/tsn/gptp_lwip_cpsw   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3285"></a>
+<h1><a class="anchor" id="autotoc_md3287"></a>
 Packet pool configuration</h1>
 <p>To change packet pool configuration from syscfg, please refer to <a class="el" href="PACKETPOOL_CONFIG_TOP.html">Ethernet Packet Pool Allocation Guidelines</a></p>
-<h1><a class="anchor" id="autotoc_md3286"></a>
+<h1><a class="anchor" id="autotoc_md3288"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md3287"></a>
+<h2><a class="anchor" id="autotoc_md3289"></a>
 Prerequisites</h2>
 <ul>
 <li>EVM Board</li>
@@ -186,19 +186,19 @@ For some network cards, there is a bug with internal propagation delay. So, in t
 <li><code>priority1</code> in ~/gptp_config.cfg file can be changed to make the Linux PC master or slave. Lower the number higher the priority to become master.</li>
 </ul>
 <p>Please refer to the <a class="el" href="EXAMPLES_ENET_LWIP_CPSW_TCPSERVER.html">Enet Lwip TCP Server Example on CPSW</a> page to start a TCP client on PC.</p>
-<h2><a class="anchor" id="autotoc_md3288"></a>
+<h2><a class="anchor" id="autotoc_md3290"></a>
 To Configure Static IP</h2>
 <p>Please refer to <a class="el" href="NETWORKING_LWIP_STATIC_IP.html">Ethernet LwIP TCP/IP Static IP</a>.</p>
-<h2><a class="anchor" id="autotoc_md3289"></a>
+<h2><a class="anchor" id="autotoc_md3291"></a>
 Build the example</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3290"></a>
+<h2><a class="anchor" id="autotoc_md3292"></a>
 HW Setup</h2>
 <dl class="section note"><dt>Note</dt><dd>Make sure you have setup the EVM with cable connections as shown here, <a class="el" href="EVM_SETUP_PAGE.html">EVM Setup</a>. In addition do below steps.</dd></dl>
-<h3><a class="anchor" id="autotoc_md3291"></a>
+<h3><a class="anchor" id="autotoc_md3293"></a>
 PPS Output</h3>
 <p>PPS output is a square wave signal generated by the device. It is used for comparison between the TT (master) and TR( slave) nodes when they are time synchronized. On the device, PPS is generated on the SYNC_OUT signal pin from CPTS (Common Platform Time Synchronization) of CPSW.</p>
 <p>Out of box configuration for PPS signal output of this example is as follow:</p>
@@ -242,14 +242,14 @@ Figure: Syscfg tool CPSW pinmux changes to select PPS signal pin</div></div>
 Figure: Signal captured on oscilloscope</div></div>
 </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md3292"></a>
+<h2><a class="anchor" id="autotoc_md3294"></a>
 Create a network between EVM and host PC</h2>
 <p>EVM and PC has to be connected directly as shown below using CAT6 or CAT5 cable. If there is an ethernet switch placed in between, make sure the switch is gPTP capable. Connect both EVM and PC to a DHCP server to get the IP addresses.  <style>div.image img[src="Lwip-gPTP-setup.png"]{width:30%}</style> </p><div class="image">
 <img src="Lwip-gPTP-setup.png" alt=""/>
 <div class="caption">
 Local network between PC and EVM</div></div>
 <p>PORT1 instead of PORT0 on EVM can be used as well.</p>
-<h2><a class="anchor" id="autotoc_md3293"></a>
+<h2><a class="anchor" id="autotoc_md3295"></a>
 Run the example</h2>
 <dl class="section attention"><dt>Attention</dt><dd>If you need to reload and run again, a CPU power-cycle is MUST</dd></dl>
 <ul>
@@ -262,9 +262,9 @@ Run the example</h2>
 <li>Launch a CCS debug session and run the example executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>Connect board and PC as mentioned in "HW Setup" above.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3294"></a>
+<h2><a class="anchor" id="autotoc_md3296"></a>
 Sample Log Output</h2>
-<h3><a class="anchor" id="autotoc_md3295"></a>
+<h3><a class="anchor" id="autotoc_md3297"></a>
 PC Output</h3>
 <div class="fragment"><div class="line">$ sudo ptp4l -i eno1 -m -l 6 -q -f ~/gptp_config.cfg</div>
 <div class="line">ptp4l[7727.045]: selected /dev/ptp0 as PTP clock</div>
@@ -280,7 +280,7 @@ PC Output</h3>
 <div class="line">ptp4l[7732.354]: port 1: LISTENING to MASTER on ANNOUNCE_RECEIPT_TIMEOUT_EXPIRES</div>
 <div class="line">ptp4l[7732.354]: selected local clock 6805ca.fffe.c87ac2 as best master</div>
 <div class="line">ptp4l[7732.354]: assuming the grand master role</div>
-</div><!-- fragment --> <h3><a class="anchor" id="autotoc_md3296"></a>
+</div><!-- fragment --> <h3><a class="anchor" id="autotoc_md3298"></a>
 DUT output</h3>
 <div class="fragment"><div class="line">==================================</div>
 <div class="line">  CPSW GPTP LWIP TCP ECHO SERVER </div>
@@ -391,12 +391,12 @@ DUT output</h3>
 <div class="line">IFV:gptp:domainIndex=0, clock_master_sync_receive:the master clock rate to 4264ppb, GMdiff=-2nsec</div>
 <div class="line">IFV:gptp:domainIndex=0, clock_master_sync_receive:the master clock rate to 4222ppb, GMdiff=-21nsec</div>
 <div class="line">IFV:gptp:domainIndex=0, clock_master_sync_receive:the master clock rate to 4189ppb, GMdiff=-34nsec</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3297"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3299"></a>
 Troubleshooting issues</h2>
 <ul>
 <li>To ensure compatibility with CPSW RGMII2 port on am263px-cc board, make sure that SW-15(switch) should be set to <code>LOW</code> for board versions(E2/A/B versions). This configuration ensures seamless out-of-box support and functionality with the CPSW RGMII2 port on the specified versions.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3298"></a>
+<h1><a class="anchor" id="autotoc_md3300"></a>
 See Also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> | <a class="el" href="EXAMPLES_ENET_CPSW_TSN_GPTP_BRIDGE.html">Ethernet TSN CPSW gPTP Bridge Example</a> | <a class="el" href="EXAMPLES_ENET_CPSW_TSN_GPTP_TR.html">Ethernet TSN CPSW gPTP TimeReceiver (gPTP Slave) Example</a> | <a class="el" href="EXAMPLES_ENET_CPSW_TSN_GPTP_TT.html">Ethernet TSN CPSW gPTP TimeTransmitter (gPTP Master) Example</a> | <a class="el" href="ENET_CPSW_TSN_GPTP.html">Ethernet TSN and gPTP Stack - API and Integration Guide</a> </p>
 </div></div><!-- contents -->

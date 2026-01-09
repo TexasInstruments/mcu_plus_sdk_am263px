@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('SYSCONFIG_INTRO_PAGE.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md470">Introduction</a><ul><li class="level2"><a href="#autotoc_md471">SysConfig Features used in the SDK</a></li>
+<ul><li class="level1"><a href="#autotoc_md472">Introduction</a><ul><li class="level2"><a href="#autotoc_md473">SysConfig Features used in the SDK</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md472">Opening SysConfig GUI from CCS</a></li>
-<li class="level1"><a href="#autotoc_md473">Opening SysConfig GUI from command line and makefiles</a></li>
-<li class="level1"><a href="#autotoc_md474">Using the SysConfig GUI</a></li>
-<li class="level1"><a href="#autotoc_md475">Generating Files using SysConfig</a></li>
-<li class="level1"><a href="#autotoc_md476">Understanding Generated Files</a></li>
-<li class="level1"><a href="#autotoc_md477">Tips and Tricks for SysConfig</a></li>
+<li class="level1"><a href="#autotoc_md474">Opening SysConfig GUI from CCS</a></li>
+<li class="level1"><a href="#autotoc_md475">Opening SysConfig GUI from command line and makefiles</a></li>
+<li class="level1"><a href="#autotoc_md476">Using the SysConfig GUI</a></li>
+<li class="level1"><a href="#autotoc_md477">Generating Files using SysConfig</a></li>
+<li class="level1"><a href="#autotoc_md478">Understanding Generated Files</a></li>
+<li class="level1"><a href="#autotoc_md479">Tips and Tricks for SysConfig</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_syscfg_intro"></a></p>
@@ -109,17 +109,17 @@ $(document).ready(function(){initNavTree('SYSCONFIG_INTRO_PAGE.html',''); initRe
 In Linux, use <code>make</code> instead of <code>gmake</code></dd>
 <dd>
 The screen shots shown on this page are for AM64x MCU+ SDK v7.3.0. You would see your specific SOC and SDK version that is installed. However the instructions and steps mentioned remain the same, unless mentioned otherwise.</dd></dl>
-<h1><a class="anchor" id="autotoc_md470"></a>
+<h1><a class="anchor" id="autotoc_md472"></a>
 Introduction</h1>
 <p>All the SDK examples can be configured using a GUI tool called SysConfig. Users can choose and configure various modules using this tool. The SysConfig tool will generate the boilerplate code for initializing these modules. Each example will have an example.syscfg file to which the configuration will be saved to. When creating an example for the first time, this can be an empty file.</p>
-<h2><a class="anchor" id="autotoc_md471"></a>
+<h2><a class="anchor" id="autotoc_md473"></a>
 SysConfig Features used in the SDK</h2>
 <p>In this SDK, SysConfig is used to:</p><ul>
 <li>Generate configurations for driver modules, board modules and networking modules</li>
 <li>Generate clock and power configurations</li>
 <li>Generate pinmux for various peripherals</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md472"></a>
+<h1><a class="anchor" id="autotoc_md474"></a>
 Opening SysConfig GUI from CCS</h1>
 <ul>
 <li>To open the Sysconfig GUI from CCS, import the CCS project for the example and simply double click on the example.syscfg in the project explorer window  <style>div.image img[src="sysconfig_ccs_invoke.png"]{ width:30%}</style> <div class="image">
@@ -133,7 +133,7 @@ Opening SysConfig GUI from CCS</div></div>
 SysConfig GUI when opened from command line</div></div>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md473"></a>
+<h1><a class="anchor" id="autotoc_md475"></a>
 Opening SysConfig GUI from command line and makefiles</h1>
 <ul>
 <li>You can also open the Syscfg GUI from the command line. You can refer to <a class="el" href="MAKEFILE_BUILD_PAGE.html#MAKEFILE_EXAMPLE_BUILD">Building examples with makefiles</a> to do this.</li>
@@ -146,7 +146,7 @@ Opening SysConfig GUI from command line and makefiles</h1>
 SysConfig GUI when opened from command line</div></div>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md474"></a>
+<h1><a class="anchor" id="autotoc_md476"></a>
 Using the SysConfig GUI</h1>
 <ul>
 <li>The SysConfig GUI is majorly divided into three parts<ul>
@@ -214,7 +214,7 @@ Pinmux in SysConfig</div></div>
 <ul>
 <li>Once all the changes has been done, you can choose File-&gt;Save or Ctrl-S if the GUI was invoked from the command line or simply save the example.syscfg file if opened via CCS.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md475"></a>
+<h1><a class="anchor" id="autotoc_md477"></a>
 Generating Files using SysConfig</h1>
 <ul>
 <li>The files are generated using SysConfig whenever we build the example using command line and makefiles or from CCS.<ul>
@@ -227,7 +227,7 @@ Building from CCS</div></div>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md476"></a>
+<h1><a class="anchor" id="autotoc_md478"></a>
 Understanding Generated Files</h1>
 <table class="doxtable">
 <tr>
@@ -259,7 +259,7 @@ Understanding Generated Files</h1>
 <tr>
 <td>example.syscfg </td><td>Configuration file to which all the changes made in the GUI is saved  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md477"></a>
+<h1><a class="anchor" id="autotoc_md479"></a>
 Tips and Tricks for SysConfig</h1>
 <ul>
 <li>Changes made on SysConfig GUI will be saved in the example.syscfg file. If you need to quickly check what was the value configured for some parameter, you can open this file in an editor instead of opening the GUI. </li>

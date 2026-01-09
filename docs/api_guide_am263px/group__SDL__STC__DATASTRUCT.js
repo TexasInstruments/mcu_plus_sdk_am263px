@@ -12,8 +12,6 @@ var group__SDL__STC__DATASTRUCT =
       [ "clkDiv", "structSDL__STC__Config.html#a33ec9ea633423cbf1508250415d93a6b", null ],
       [ "romStartAddress", "structSDL__STC__Config.html#aa0e4ca80417a6e6186039961eefc7f4d", null ],
       [ "pRomStartAdd", "structSDL__STC__Config.html#ab1a4abd307e7d2c5716e05f785936c6b", null ],
-      [ "faultInsert", "structSDL__STC__Config.html#aedb4b864640fe05ef437031f113608f8", null ],
-      [ "stcDiagnostic", "structSDL__STC__Config.html#a25b4ba9aa1cad1595a01a1280660985d", null ],
       [ "modeConfig", "structSDL__STC__Config.html#a65b5c2d3b6a6aefceb9f32721762cdc4", null ]
     ] ]
 ];

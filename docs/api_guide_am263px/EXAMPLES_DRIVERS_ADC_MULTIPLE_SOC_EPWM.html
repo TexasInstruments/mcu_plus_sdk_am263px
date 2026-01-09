@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_MULTIPLE_SOC_EPWM
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2020">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2021">Watch Variables</a></li>
-<li class="level1"><a href="#autotoc_md2022">External Connections</a><ul><li class="level2"><a href="#autotoc_md2023">AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</a></li>
-<li class="level2"><a href="#autotoc_md2024">AM263X-CC E1</a></li>
-<li class="level2"><a href="#autotoc_md2025">AM263X-LP or AM263X-LP</a></li>
-<li class="level2"><a href="#autotoc_md2026">AM261X-LP</a></li>
+<ul><li class="level1"><a href="#autotoc_md2022">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2023">Watch Variables</a></li>
+<li class="level1"><a href="#autotoc_md2024">External Connections</a><ul><li class="level2"><a href="#autotoc_md2025">AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</a></li>
+<li class="level2"><a href="#autotoc_md2026">AM263X-CC E1</a></li>
+<li class="level2"><a href="#autotoc_md2027">AM263X-LP or AM263X-LP</a></li>
+<li class="level2"><a href="#autotoc_md2028">AM261X-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_MULTIPLE_SOC_EPWM_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2027">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2028">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2029">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2029">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2030">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2031">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_multiple_soc_epwm"></a></p>
-<h1><a class="anchor" id="autotoc_md2020"></a>
+<h1><a class="anchor" id="autotoc_md2022"></a>
 Introduction</h1>
 <p>This example sets up ePWM0 to periodically trigger a set of conversions(SOC 0,1,2) on ADC2 and ADC1. This example demonstrates multiple ADCs working together to process of a batch of conversions using the available parallelism across multiple ADCs.</p>
 <p> <style>div.image img[src="am263_adc_multiple_soc_epwm.png"]{width:50%}</style> </p><div class="image">
@@ -119,17 +119,17 @@ Module Block diagram</div></div>
 <li>Configures ADC interrupt 0 to be generated at end of conversion of SOC0.</li>
 <li>ADC2 Interrupt ISR is used to read results of both ADC2 and ADC1.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2021"></a>
+<h1><a class="anchor" id="autotoc_md2023"></a>
 Watch Variables</h1>
 <ul>
 <li>The watch variables gAdc2Result0, gAdc2Result1, gAdc2Result2, gAdc1Result0, gAdc1Result1, gAdc1Result2 storing ADC conversion outputs can be used to view the results.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2022"></a>
+<h1><a class="anchor" id="autotoc_md2024"></a>
 External Connections</h1>
 <ul>
 <li>ADC2_AIN0, ADC2_AIN1, ADC2_AIN2 and ADC1_AIN0, ADC1_AIN1, ADC1_AIN2 pins should be connected to signals to be converted.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2023"></a>
+<h2><a class="anchor" id="autotoc_md2025"></a>
 AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</h2>
 <p>When using AM263Px-CC E2 or AM263x-CC E2 with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Feed analog inputs to the following.<ul>
@@ -142,7 +142,7 @@ AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2024"></a>
+<h2><a class="anchor" id="autotoc_md2026"></a>
 AM263X-CC E1</h2>
 <p>When using AM263x-CC E1 with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Feed analog inputs to the following.<ul>
@@ -155,7 +155,7 @@ AM263X-CC E1</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2025"></a>
+<h2><a class="anchor" id="autotoc_md2027"></a>
 AM263X-LP or AM263X-LP</h2>
 <p>When using LP</p><ul>
 <li>Feed analog inputs to the following.<ul>
@@ -168,7 +168,7 @@ AM263X-LP or AM263X-LP</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2026"></a>
+<h2><a class="anchor" id="autotoc_md2028"></a>
 AM261X-LP</h2>
 <p>When using LP</p><ul>
 <li>Feed analog inputs to the following.<ul>
@@ -195,7 +195,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_multiple_soc_epwm/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2027"></a>
+<h1><a class="anchor" id="autotoc_md2029"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -205,10 +205,10 @@ Steps to Run the Example</h1>
 <li>Using the watch variables, view the ADC conversion results.</li>
 <li>View the ADC conversion results in UART console logs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2028"></a>
+<h1><a class="anchor" id="autotoc_md2030"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md2029"></a>
+<h1><a class="anchor" id="autotoc_md2031"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ADC EPWM Triggered Conversion Test Started ...</div>

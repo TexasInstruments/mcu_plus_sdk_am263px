@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('DRIVERS_IPC_NOTIFY_PAGE.html',''); ini
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md962">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md963">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md964">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md965">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md966">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md964">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md965">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md966">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md967">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md968">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_ipc_notify"></a></p>
 <p>This module define's APIs for low latency IPC between different core's on a CPU. These low latency IPC APIs are constrained in features but offer extermely fast transfer of message values between two cores.</p>
 <p>Underlying implementation will use HW mechanisms to interrupt the receiving cores, it will also use HW FIFOs (when available) or shared memory based SW FIFOs in fast internal RAM's to transport the message values.</p>
-<h1><a class="anchor" id="autotoc_md962"></a>
+<h1><a class="anchor" id="autotoc_md964"></a>
 Features Supported</h1>
 <ul>
 <li>Low latency message send and receive between any to any CPUs running no-RTOS or RTOS</li>
@@ -120,7 +120,7 @@ Features Supported</h1>
 <li>Callback based mechnism to recieve messages</li>
 <li>Ability to block on message send for ever OR return with error, if the underlying IPC HW/SW FIFO is full.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md963"></a>
+<h1><a class="anchor" id="autotoc_md965"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle. </dd>
 <dd>
@@ -130,7 +130,7 @@ IPC Examples should be build as System Projects. Single core build will fail sin
 <li>Enable/Disable SafeIPC. If Enabled, the Shared memory is organized in a way that allows Firewalling. Only Sender and Receiver core will have access to the Queue. Firewall configuration is not part of IPC SysCfg module. It has to be done separately. The SysCfg generated code has comments on the Start and End addresses and the involved cores. This can be used during the firewall configuration. Data Integrity Check has to be handled in application. CRC can be sent as a part of Payload and decoded in the receiver end.</li>
 <li>Enable/Disable CRC. If Enabled, Data Integrity Check is enabled for IPC Notify Data. The calculated CRC is sent as a part of Payload (ClientID + CRC + Data) and decoded in the receiver end. Application has to define a hook function which will be used by driver for CRC calculation. 8 Bit CRC is used by IPC Notify.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md964"></a>
+<h1><a class="anchor" id="autotoc_md966"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>To balance low latency performance vs flexiblility to end user, below contraints are introduced in the API<ul>
@@ -145,7 +145,7 @@ Important Usage Guidelines</h1>
 </li>
 <li>Internally the implementation will combine client ID and message value as one 32b integer.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md965"></a>
+<h1><a class="anchor" id="autotoc_md967"></a>
 Example Usage</h1>
 <p>Include the below files to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="ipc__notify_8h.html">drivers/ipc_notify.h</a>&gt;</span></div>
@@ -243,7 +243,7 @@ Example Usage</h1>
 <div class="line">        }</div>
 <div class="line">    }</div>
 <div class="line">}</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md966"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md968"></a>
 API</h1>
 <p><a class="el" href="group__DRV__IPC__NOTIFY__MODULE.html">APIs for IPC Notify</a> </p>
 </div></div><!-- contents -->
@@ -264,7 +264,7 @@ API</h1>
 <div class="ttc" id="astructIpcNotify__Params_html_a2db7da54e9c2922c17b86be93f6823f0"><div class="ttname"><a href="structIpcNotify__Params.html#a2db7da54e9c2922c17b86be93f6823f0">IpcNotify_Params::numCores</a></div><div class="ttdeci">uint32_t numCores</div><div class="ttdef"><b>Definition:</b> ipc_notify.h:156</div></div>
 <div class="ttc" id="aDebugP_8h_html"><div class="ttname"><a href="DebugP_8h.html">DebugP.h</a></div></div>
 <div class="ttc" id="acslr__soc__defines_8h_html_a2a5b4840c743a891534e4d7f6d2699f3"><div class="ttname"><a href="cslr__soc__defines_8h.html#a2a5b4840c743a891534e4d7f6d2699f3">CSL_CORE_ID_R5FSS0_1</a></div><div class="ttdeci">#define CSL_CORE_ID_R5FSS0_1</div><div class="ttdef"><b>Definition:</b> cslr_soc_defines.h:147</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="agroup__DRV__IPC__NOTIFY__MODULE_html_gac49b987e1c035467dd1da6e860e04d45"><div class="ttname"><a href="group__DRV__IPC__NOTIFY__MODULE.html#gac49b987e1c035467dd1da6e860e04d45">IpcNotify_init</a></div><div class="ttdeci">int32_t IpcNotify_init(const IpcNotify_Params *params)</div><div class="ttdoc">Initialize IPC Notify module.</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->

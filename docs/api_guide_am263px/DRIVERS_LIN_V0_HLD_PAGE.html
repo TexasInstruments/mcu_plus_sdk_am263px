@@ -92,20 +92,20 @@ $(document).ready(function(){initNavTree('DRIVERS_LIN_V0_HLD_PAGE.html',''); ini
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md979">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md980">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md981">Features not Supported</a></li>
-<li class="level1"><a href="#autotoc_md982">Usage Overview</a><ul><li class="level2"><a href="#autotoc_md983">API Sequence</a></li>
-<li class="level2"><a href="#autotoc_md984">Initializing the LIN HLD Driver</a></li>
+<ul><li class="level1"><a href="#autotoc_md981">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md982">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md983">Features not Supported</a></li>
+<li class="level1"><a href="#autotoc_md984">Usage Overview</a><ul><li class="level2"><a href="#autotoc_md985">API Sequence</a></li>
+<li class="level2"><a href="#autotoc_md986">Initializing the LIN HLD Driver</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md985">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md986">API</a></li>
+<li class="level1"><a href="#autotoc_md987">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md988">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_lin_v0_hld"></a></p>
 <p>The General-Purpose LIN/SCI driver provides APIs to configure the available LIN modules in multiple modes.</p>
-<h1><a class="anchor" id="autotoc_md979"></a>
+<h1><a class="anchor" id="autotoc_md981"></a>
 Features Supported</h1>
 <ul>
 <li>Compatibility with LIN 1.3 , 2.0, and 2.1 protocols.</li>
@@ -149,7 +149,7 @@ Features Supported</h1>
 <li>Enhanced handling of extended frames.</li>
 <li>Enhanced baud rate generator.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md980"></a>
+<h1><a class="anchor" id="autotoc_md982"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <p>SysConfig can be used to configure below parameters apart from common configurations like Clock,MPU,RAT and others.</p>
@@ -163,16 +163,16 @@ SysConfig Features</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md981"></a>
+<h1><a class="anchor" id="autotoc_md983"></a>
 Features not Supported</h1>
 <ul>
 <li>Extended Frames.</li>
 <li>Wake-Up on LINRX active level from transceiver.</li>
 <li>Automatic Wake-Up.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md982"></a>
+<h1><a class="anchor" id="autotoc_md984"></a>
 Usage Overview</h1>
-<h2><a class="anchor" id="autotoc_md983"></a>
+<h2><a class="anchor" id="autotoc_md985"></a>
 API Sequence</h2>
 <ul>
 <li><a class="el" href="group__DRV__LIN__HLD__MODULE.html#gac602e11cb5e3dcf7ebd44a7d45fe9a10" title="API to initialize the LIN_OpenParams struct to its defaults.">LIN_Params_init()</a>: Fill Default Value in <a class="el" href="structLIN__OpenParams.html">LIN_OpenParams</a> Structure.</li>
@@ -182,13 +182,13 @@ API Sequence</h2>
 <li><a class="el" href="group__DRV__LIN__HLD__MODULE.html#ga7b7ee26200bc35058069788a2de93199" title="API to initiate a LIN/SCI frame transfer.">LIN_SCI_transferFrame()</a>: Initiate a LIN Transaction.</li>
 <li><a class="el" href="group__DRV__LIN__HLD__MODULE.html#ga06bdedee1ba51e133886c75068349a13" title="API to get the handle of an open LIN instance from the instance index.">LIN_getHandle()</a>: Get LIN Handle from index.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md984"></a>
+<h2><a class="anchor" id="autotoc_md986"></a>
 Initializing the LIN HLD Driver</h2>
 <p><a class="el" href="group__DRV__LIN__HLD__MODULE.html#gacfcf77a9e16f937b34f9961a9a148bdf" title="Initialize each driver instance object and create driver lock.">LIN_init()</a> must be called before any other LIN Open is called.</p>
 <p><a class="el" href="group__DRV__LIN__HLD__MODULE.html#ga3ef5405fe115a697caa2961e9e423288" title="API to Open a given LIN Instance.">LIN_open()</a> must be called before calling any LIN APIs. This function takes index and params to initialize an instance and returns the handle to the LIN instance.</p>
 <p>Calling <a class="el" href="group__DRV__LIN__HLD__MODULE.html#ga31e5d0d27e525b49358153457ac1a454" title="API to Close the LIN Instance specified by the handle.">LIN_close()</a> closes the instance passed.</p>
 <p>Please note that the initialization of LIN HLD instances is taken care by the SysConfig generated code.</p>
-<h1><a class="anchor" id="autotoc_md985"></a>
+<h1><a class="anchor" id="autotoc_md987"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="lin_8h.html">drivers/lin.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Instance Open Example </p><div class="fragment"><div class="line">    <span class="comment">/* Open Params Structure */</span></div>
@@ -221,7 +221,7 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">    status = <a class="code" href="group__DRV__LIN__HLD__MODULE.html#ga7b7ee26200bc35058069788a2de93199">LIN_SCI_transferFrame</a>(gLinHandle, &amp;linFrame);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a> (<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> == status);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md986"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md988"></a>
 API</h1>
 <p><a class="el" href="group__DRV__LIN__HLD__MODULE.html">APIs for LIN HLD</a> </p>
 </div></div><!-- contents -->
@@ -237,7 +237,7 @@ API</h1>
 <div class="ttc" id="astructLIN__SCI__Frame_html"><div class="ttname"><a href="structLIN__SCI__Frame.html">LIN_SCI_Frame</a></div><div class="ttdoc">LIN Frame Structure.</div><div class="ttdef"><b>Definition:</b> sci_lin.h:552</div></div>
 <div class="ttc" id="astructLIN__SCI__Frame_html_a68c2a5f3b10baf39914f61dda31d90a8"><div class="ttname"><a href="structLIN__SCI__Frame.html#a68c2a5f3b10baf39914f61dda31d90a8">LIN_SCI_Frame::id</a></div><div class="ttdeci">uint8_t id</div><div class="ttdef"><b>Definition:</b> sci_lin.h:556</div></div>
 <div class="ttc" id="agroup__DRV__LIN__HLD__MODULE_html_ga31e5d0d27e525b49358153457ac1a454"><div class="ttname"><a href="group__DRV__LIN__HLD__MODULE.html#ga31e5d0d27e525b49358153457ac1a454">LIN_close</a></div><div class="ttdeci">void LIN_close(LIN_Handle handle)</div><div class="ttdoc">API to Close the LIN Instance specified by the handle.</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="agroup__DRV__LIN__HLD__MODULE_html_ga3ef5405fe115a697caa2961e9e423288"><div class="ttname"><a href="group__DRV__LIN__HLD__MODULE.html#ga3ef5405fe115a697caa2961e9e423288">LIN_open</a></div><div class="ttdeci">LIN_Handle LIN_open(uint32_t index, LIN_OpenParams *openParams)</div><div class="ttdoc">API to Open a given LIN Instance.</div></div>
 <div class="ttc" id="alin_8h_html"><div class="ttname"><a href="lin_8h.html">lin.h</a></div></div>
 <div class="ttc" id="astructLIN__SCI__Frame_html_a4f515fd9eb9f75b1eae3ac9d4a0388f5"><div class="ttname"><a href="structLIN__SCI__Frame.html#a4f515fd9eb9f75b1eae3ac9d4a0388f5">LIN_SCI_Frame::dataBuf</a></div><div class="ttdeci">void * dataBuf</div><div class="ttdef"><b>Definition:</b> sci_lin.h:560</div></div>

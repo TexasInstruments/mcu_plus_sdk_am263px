@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('SDL_RTI_PAGE.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1539">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1540">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1541">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1542">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1543">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1544">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1545">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1541">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1542">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1543">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1544">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1545">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1546">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1547">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_rti"></a></p>
 <p>The Windowed Watchdog Timer (WWDT) generates reset after a programmable period, if not serviced within that period. This time-out boundary is configurable, and the windowed feature allows the start time boundary to be configurable. The WWDT can generate an Interrupt, if not serviced within window (Open Window) defined by start time and time-out boundary. Also the WWDT can generate an Interrupt if serviced outside Open Window (within Closed Window). Generation of Interrupt depends on the WWDT Reaction configuration. SDL supports configuration of the watchdog timers. It also supports notification of the error via ESM interrupt. Additionally, APIs for checking the status of the watchdog timer is provided.</p>
-<h1><a class="anchor" id="autotoc_md1539"></a>
+<h1><a class="anchor" id="autotoc_md1541"></a>
 Features Supported</h1>
 <p>The RTI modules include the following main features:</p><ul>
 <li>Ability to to initialize the RTI -DWWD module.</li>
@@ -120,24 +120,24 @@ Features Supported</h1>
 <li>WWDT3 is dedicated to the fourth R5F CPU core (R5FSS1_CORE1)</li>
 </ul>
 <p>All WWDT instances that are provisioned for a particular CPU core should not be used by any other CPU cores.</p>
-<h1><a class="anchor" id="autotoc_md1540"></a>
+<h1><a class="anchor" id="autotoc_md1542"></a>
 SysConfig Features</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1541"></a>
-Features NOT Supported</h1>
-<ul>
-<li>None</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md1542"></a>
-Features NOT Supported</h1>
 <h1><a class="anchor" id="autotoc_md1543"></a>
-Important Usage Guidelines</h1>
+Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md1544"></a>
+Features NOT Supported</h1>
+<h1><a class="anchor" id="autotoc_md1545"></a>
+Important Usage Guidelines</h1>
+<ul>
+<li>None</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md1546"></a>
 Example Usage</h1>
 <p>The following shows an example of SDL RTI API.</p>
 <p>Include the below file to access the APIs</p>
@@ -168,7 +168,7 @@ Example Usage</h1>
 </div><!-- fragment --><p>Start an RTI Instance </p><div class="fragment"><div class="line"><a class="code" href="group__SDL__RTI__FUNCTION.html#ga9d0a7581878f65bb8ed3f3c4846a9ced">SDL_RTI_start</a>(SDL_WDT0_U_BASE);</div>
 </div><!-- fragment --><p>Start an RTI Instance </p><div class="fragment"><div class="line"><span class="comment">/* Servicing of the watchdog is done by the core that is being monitored with the watchdg */</span></div>
 <div class="line"><a class="code" href="group__SDL__RTI__FUNCTION.html#ga0e3f1dc0d83e79da9d5d91f1e213f6e0">SDL_RTI_service</a>(SDL_WDT0_U_BASE);</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1545"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1547"></a>
 API</h1>
 <p><a class="el" href="group__SDL__RTI__API.html">APIs for SDL RTI</a> </p>
 </div></div><!-- contents -->

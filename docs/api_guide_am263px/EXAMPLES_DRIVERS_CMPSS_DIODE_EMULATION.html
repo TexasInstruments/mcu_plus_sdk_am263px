@@ -92,39 +92,39 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_CMPSS_DIODE_EMULATION
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2266">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2267">EPWM Configuration</a></li>
-<li class="level1"><a href="#autotoc_md2268">DAC Configuration</a></li>
-<li class="level1"><a href="#autotoc_md2269">CMPSS Configuration</a></li>
-<li class="level1"><a href="#autotoc_md2270">Various DE configuration</a><ul><li class="level2"><a href="#autotoc_md2271">EPWM in CBC mode</a></li>
-<li class="level2"><a href="#autotoc_md2272">EPWM in CBC mode with Re-entry delay</a></li>
+<ul><li class="level1"><a href="#autotoc_md2268">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2269">EPWM Configuration</a></li>
+<li class="level1"><a href="#autotoc_md2270">DAC Configuration</a></li>
+<li class="level1"><a href="#autotoc_md2271">CMPSS Configuration</a></li>
+<li class="level1"><a href="#autotoc_md2272">Various DE configuration</a><ul><li class="level2"><a href="#autotoc_md2273">EPWM in CBC mode</a></li>
+<li class="level2"><a href="#autotoc_md2274">EPWM in CBC mode with Re-entry delay</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2273">External Connections</a><ul><li class="level2"><a href="#autotoc_md2274">AM263PX-CC</a></li>
-<li class="level2"><a href="#autotoc_md2275">AM261X-SOM</a></li>
-<li class="level2"><a href="#autotoc_md2276">AM263PX-LP</a></li>
-<li class="level2"><a href="#autotoc_md2277">AM261X-LP REV A</a></li>
+<li class="level1"><a href="#autotoc_md2275">External Connections</a><ul><li class="level2"><a href="#autotoc_md2276">AM263PX-CC</a></li>
+<li class="level2"><a href="#autotoc_md2277">AM261X-SOM</a></li>
+<li class="level2"><a href="#autotoc_md2278">AM263PX-LP</a></li>
+<li class="level2"><a href="#autotoc_md2279">AM261X-LP REV A</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_CMPSS_DIODE_EMULATION_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2278">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2279">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2280">Sample Output</a></li>
-<li class="level1"><a href="#autotoc_md2281">References</a></li>
+<li class="level1"><a href="#autotoc_md2280">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2281">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2282">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2283">References</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_cmpss_diode_emulation"></a></p>
-<h1><a class="anchor" id="autotoc_md2266"></a>
+<h1><a class="anchor" id="autotoc_md2268"></a>
 Introduction</h1>
 <p>This example showcases the Diode Emulation features using CMPSS where the trip inputs are sourced from CMPSS. At CMPSS, there are 2 shadow values for the CMPSS DACs (high and low comparator's), namely "Shadow" and "Shadow 2". when the DE mode is enabled, and DEACTIVE signal high, the "shadow 2" value is used for updating the active register (see image below).</p>
-<h1><a class="anchor" id="autotoc_md2267"></a>
+<h1><a class="anchor" id="autotoc_md2269"></a>
 EPWM Configuration</h1>
 <p>EPWM0, EPWM1 and EPWM2 are configured to generate a 25KHz signal with 50% duty cycle.</p>
-<h1><a class="anchor" id="autotoc_md2268"></a>
+<h1><a class="anchor" id="autotoc_md2270"></a>
 DAC Configuration</h1>
 <p>DAC0 is used as positive input to CMPSSA1 High and Low: (CMPSSA0 in case of LP).</p>
 <p>Reference voltage source = external.</p>
-<h1><a class="anchor" id="autotoc_md2269"></a>
+<h1><a class="anchor" id="autotoc_md2271"></a>
 CMPSS Configuration</h1>
 <p>CMPSSA1 (CMPSSA0 in case of LP) configuration for TRIPH/TRIPL signal inputs to enter DE mode:</p><ul>
 <li>Positive input = DAC_OUT for both CMPSSA1 High and Low. A ramp wave is generated in the example for showcasing.</li>
@@ -147,9 +147,9 @@ CMPSS Configuration</h1>
 <div class="caption">
 Basic diode emulation configuration with trip inputs from CMPSS</div></div>
 <p>OutputXbar 13 and 14 is used to route the CTRIPOUTH and CTRIPOUTL signal. OutputXbar 7 and 8 (5 and 6 in case of AM261x-SOM) is used to route DEActive0 from EPWM0 and DEActive1 from EPWM1.</p>
-<h1><a class="anchor" id="autotoc_md2270"></a>
+<h1><a class="anchor" id="autotoc_md2272"></a>
 Various DE configuration</h1>
-<h2><a class="anchor" id="autotoc_md2271"></a>
+<h2><a class="anchor" id="autotoc_md2273"></a>
 EPWM in CBC mode</h2>
 <p>EPWM0 is configured in CBC mode where on occurrence of every PWMSYNC it evaluates if TRIPH_OR_TRIPL condition is present and if not then DEACTIVE flag is cleared.</p>
 <p>Channel A:</p>
@@ -158,7 +158,7 @@ EPWM in CBC mode</h2>
 <div class="caption">
 EPWM in CBC mode with DEACTIVE for channel A</div></div>
 <p>Initially when TRIPH_OR_TRIPL was 0 as marked by the blue marker, EPWM0A was following the normal action configured in the AQ. We can compare with EPWM2A. Once TRIPH_OR_TRIPL gets High as marked by the red marker, it enters into the DEACTIVE mode and now EPWM0A is driven by TRIPH as per the configuration.On occurrence of the PWMSYNC, since TripHorTripL goes low, DEACTIVE flag will get cleared and EPWM0A starts following the normal AQ actions (take EPWM2A as reference)</p>
-<h2><a class="anchor" id="autotoc_md2272"></a>
+<h2><a class="anchor" id="autotoc_md2274"></a>
 EPWM in CBC mode with Re-entry delay</h2>
 <p>EPWM1 is configured in CBC mode but with Re-entry delay = 10. This means once EPWM1 exits the DEACTIVE mode, for next 10 PWMSYNCs it won’t enter into DEACTIVE mode even if TRIPH_OR_TRIPL is High. EPWM1A are also shown for comparison.</p>
 <p> <style>div.image img[src="am263px_cmpss_diode_emulation_reentry.png"]{width:50%}</style> </p><div class="image">
@@ -166,14 +166,14 @@ EPWM in CBC mode with Re-entry delay</h2>
 <div class="caption">
 EPWM in CBC mode with Re-entry = 10 for channel A</div></div>
 <p>The green marker marks the exit of DEACTIVE because that’s the point where PWMSYNC comes and TRIPH_OR_TRIPL is low. At this point, the Re-entry counter will get loaded with the Re-entry value i.e. 10 in our case. It will decrement by one on every PWMSYNC. The trip signals are blocked as long as counter value is greater than 0. The counter reaches 0 on occurrence of PWMSYNC. If we see carefully, the EPWM1A now is driven by TripH from this point.</p>
-<h1><a class="anchor" id="autotoc_md2273"></a>
+<h1><a class="anchor" id="autotoc_md2275"></a>
 External Connections</h1>
 <ul>
 <li>Connect DAC output to CMPIN1P and CMPIN1N for AM263Px CC (CMPIN0P and CMPIN0N in case of AM263PX LP)</li>
 <li>Probe EPWM2A for reference waveform</li>
 <li>Probe EPWM0A and 1A for the diode emulation waveforms on non-reentry delay and re-entry delay DE EPWMs respectively</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2274"></a>
+<h2><a class="anchor" id="autotoc_md2276"></a>
 AM263PX-CC</h2>
 <p>When using AM263Px-CC with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Connect HSEC Pin 9 (DAC_OUT) to HSEC Pin 15 and 17 (CMPSSA1H/L)</li>
@@ -188,7 +188,7 @@ AM263PX-CC</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2275"></a>
+<h2><a class="anchor" id="autotoc_md2277"></a>
 AM261X-SOM</h2>
 <p>When using AM261x-SOM with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Connect HSEC Pin 9 (DAC_OUT) to HSEC Pin 15 and 17 (CMPSSA1H/L)</li>
@@ -203,7 +203,7 @@ AM261X-SOM</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2276"></a>
+<h2><a class="anchor" id="autotoc_md2278"></a>
 AM263PX-LP</h2>
 <ul>
 <li>Connect J1/J3 Pin 30 (DAC_OUT) to J1/J3 Pin 23 and J1/J3 28 (CMPSSA0H/L)</li>
@@ -218,7 +218,7 @@ AM263PX-LP</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2277"></a>
+<h2><a class="anchor" id="autotoc_md2279"></a>
 AM261X-LP REV A</h2>
 <ul>
 <li>Connect J1/J3 Pin 30 (DAC_OUT) to J1/J3 Pin 26 and J1/J3 2 (CMPSSA0H/L)</li>
@@ -245,7 +245,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/cmpss/cmpss_diode_emulation/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2278"></a>
+<h1><a class="anchor" id="autotoc_md2280"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -255,16 +255,16 @@ Steps to Run the Example</h1>
 <li>When a low input is provided, Trip signal output is low and EPWM gives a PWM waveform</li>
 <li>When a high input(higher than VDD/2) is provided, Trip signal output turns high and EPWM gets tripped</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2279"></a>
+<h1><a class="anchor" id="autotoc_md2281"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_CMPSS_PAGE.html">CMPSS</a></p>
-<h1><a class="anchor" id="autotoc_md2280"></a>
+<h1><a class="anchor" id="autotoc_md2282"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">CMPSS Diode Emulation Logic Test Started ...</div>
 <div class="line">CMPSS Diode Emulation Logic Test Passed!!</div>
 <div class="line">All tests have passed!!</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2281"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2283"></a>
 References</h1>
 <p> <style>div.image img[src="am263_epwm_de_reference_1.PNG"]{width:60%}</style> </p><div class="image">
 <img src="am263_epwm_de_reference_1.PNG" alt=""/>

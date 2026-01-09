@@ -1,5 +1,10 @@
 var NAVTREEINDEX73 =
 {
+"struct____attribute____.html#a4836b311265d279ba31fed89018ae58b":[19,7,6,1,4],
+"struct____attribute____.html#a8321420bd78021231438b0a3fbb52d18":[19,7,6,1,3],
+"struct____attribute____.html#a90c157780a83dfc485cb409237792f1c":[19,7,6,1,1],
+"struct____attribute____.html#ab9d2e63ea0896bf923026b09cc1fce42":[19,7,6,1,2],
+"struct____attribute____.html#accdf9e557e42d2771794ba3619c0d070":[19,7,6,1,12],
 "struct____attribute____.html#ad80dafb98a52657e199176eec42e29a9":[19,7,6,1,5],
 "struct____attribute____.html#aeeb50d6fc31f2781f4b680cfc7ec3e4a":[19,7,6,1,8],
 "struct____attribute____.html#af75f0b2337ae015cde9695a5f39070c6":[19,7,6,1,13],

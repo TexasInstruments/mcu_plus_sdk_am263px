@@ -28,7 +28,7 @@ var group__DRV__I2C__LLD__MODULE =
       [ "memAddrSize", "structI2C__Memory__ExtendedParams.html#a50692bdab4669cfad7e5743d9f7890ff", null ]
     ] ],
     [ "I2CLLD_targetTransaction", "structI2CLLD__targetTransaction.html", [
-      [ "writeBuf", "structI2CLLD__targetTransaction.html#a103d3f191c65f5cfc95e37f3b2519310", null ],
+      [ "writeBuf", "structI2CLLD__targetTransaction.html#a8892571f456d76e84108da1c22ac7e75", null ],
       [ "writeCount", "structI2CLLD__targetTransaction.html#a69efce8cb62381eac486144fb6876c5e", null ],
       [ "readBuf", "structI2CLLD__targetTransaction.html#a14cae78c3f330f42ea7e03f0fef67c16", null ],
       [ "readCount", "structI2CLLD__targetTransaction.html#a8a212a830b435c3e60fdd7d81b6fa3d3", null ],
@@ -90,7 +90,7 @@ var group__DRV__I2C__LLD__MODULE =
     [ "I2C_Clock_usecToTicks", "group__DRV__I2C__LLD__MODULE.html#gaa1f9fba8c71f6b3ff6536f23f5157c94", null ],
     [ "I2C_Clock_uSleep", "group__DRV__I2C__LLD__MODULE.html#ga23ab42a4486d35a68a52504690660b1a", null ],
     [ "I2C_lld_transferCompleteCallback", "group__DRV__I2C__LLD__MODULE.html#ga23324d9710da262795d83316f4bf0099", null ],
-    [ "I2C_lld_targetTransferCompleteCallback", "group__DRV__I2C__LLD__MODULE.html#gac22c76ced9ab30d26b0b4eb3659b9cc2", null ],
+    [ "I2C_lld_targetTransferCompleteCallback", "group__DRV__I2C__LLD__MODULE.html#ga7ca6d2d5c8c4ffc90673b823e3befd36", null ],
     [ "I2CLLD_Handle", "group__DRV__I2C__LLD__MODULE.html#gae22ed23487028cfde657ceab7de377fc", null ],
     [ "I2C_lld_init", "group__DRV__I2C__LLD__MODULE.html#gafd8a5d2ee0d890a8559ab73c161fac16", null ],
     [ "I2C_lld_deInit", "group__DRV__I2C__LLD__MODULE.html#ga937d7e6dff3cdadb02df1daeb8280e52", null ],

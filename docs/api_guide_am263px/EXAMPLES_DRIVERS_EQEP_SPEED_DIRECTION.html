@@ -92,16 +92,16 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_EQEP_SPEED_DIRECTION.
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2601">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2602">Internal connections</a></li>
+<ul><li class="level1"><a href="#autotoc_md2603">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2604">Internal connections</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_EQEP_SPEED_DIRECTION_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2603">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2604">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2605">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2605">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2606">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2607">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_eqep_speed_direction"></a></p>
-<h1><a class="anchor" id="autotoc_md2601"></a>
+<h1><a class="anchor" id="autotoc_md2603"></a>
 Introduction</h1>
 <p>Speed and Direction Measurement Using eQEP</p>
 <p>This example can be used to sense the speed and direction of motor using eQEP in quadrature encoder mode. ePWM1A is configured to simulate motor encoder signals with frequency of 5 kHz on both A and B pins with 90 degree phase shift (so as to run this example without motor). EQEP unit timeout is set which will generate an interrupt every UNIT_PERIOD microseconds and speed calculation occurs continuously based on the direction of motor. The PWM signal is passed internally via input XBAR to PWMXBAR to EQEPA/B</p>
@@ -118,7 +118,7 @@ Introduction</h1>
 </ul>
 <p>The example does the below</p>
 <p>Configures EPWM to generate a signal and EQEP to measure speed and direction of this generated signal (a loopback connection is done internally). The application runs for the specified time and the speed and direction calculation is done using the EQEP ISR. After the specified time, the application checks if the measured speed was within range of the generated speed.</p>
-<h1><a class="anchor" id="autotoc_md2602"></a>
+<h1><a class="anchor" id="autotoc_md2604"></a>
 Internal connections</h1>
 <ul>
 <li>ePWM1A to eQEP0A (EPWM_A simulates eQEP Phase A signal)</li>
@@ -138,7 +138,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/eqep/eqep_speed_direction/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2603"></a>
+<h1><a class="anchor" id="autotoc_md2605"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -147,10 +147,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>View the UART console logs for results</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2604"></a>
+<h1><a class="anchor" id="autotoc_md2606"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_EQEP_PAGE.html">EQEP</a></p>
-<h1><a class="anchor" id="autotoc_md2605"></a>
+<h1><a class="anchor" id="autotoc_md2607"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">EQEP Speed Direction Test Started ...</div>

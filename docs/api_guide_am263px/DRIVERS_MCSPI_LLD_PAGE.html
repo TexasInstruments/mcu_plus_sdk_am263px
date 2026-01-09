@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('DRIVERS_MCSPI_LLD_PAGE.html',''); init
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_mcspi_lld"></a> </p>
-<h1><a class="anchor" id="autotoc_md1051"></a>
+<h1><a class="anchor" id="autotoc_md1053"></a>
 Features Supported</h1>
 <ul>
 <li>Controller and Peripheral mode of operation</li>
@@ -108,15 +108,15 @@ Features Supported</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1052"></a>
+<h1><a class="anchor" id="autotoc_md1054"></a>
 Features NOT Supported</h1>
 <ul>
 <li>Default TX data feature is not supported in DMA mode.</li>
 <li>In DMA mode, FIFO is not enabled.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1053"></a>
+<h1><a class="anchor" id="autotoc_md1055"></a>
 Usage Overview</h1>
-<h2><a class="anchor" id="autotoc_md1054"></a>
+<h2><a class="anchor" id="autotoc_md1056"></a>
 API Sequence</h2>
 <p>To use the MCSPI driver to send data over the SPI bus, the application calls the following APIs:</p>
 <ul>
@@ -126,16 +126,16 @@ API Sequence</h2>
 <li><a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#ga3dda2e27f59455e8f026a9e879fd2530" title="This API writes data to the McSPI instance in Polling mode.">MCSPI_lld_write()</a> / <a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#ga10b4f7a1cd024c5173f90d29a01c979d" title="This API writes data to the McSPI instance in Interrupt mode.">MCSPI_lld_writeIntr()</a> / <a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#gab3e0972265038d40e593247560f0130d" title="This API writes data to the McSPI instance in DMA mode.">MCSPI_lld_writeDma()</a>: Write data in polling, interrupt, and Dma mode respectively.</li>
 <li><a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#ga451aba2b1ca0c8ccb3547f7598129a3f" title="This API De-Initializes the McSPI instance.">MCSPI_lld_deInit()</a>: De-initialize the MCSPI instance.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1055"></a>
+<h2><a class="anchor" id="autotoc_md1057"></a>
 Initializing the MCSPI Driver</h2>
 <p><a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#gabfecd1b6519b00bd0a6fff7e88bdf6aa" title="This API Initializes the McSPI instance.">MCSPI_lld_init()</a> must be called before any other MCSPI APIs. This function iterates till the channel count. This function uses mcspi handle to initialize each instance. Calling <a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#gabfecd1b6519b00bd0a6fff7e88bdf6aa" title="This API Initializes the McSPI instance.">MCSPI_lld_init()</a> a second time with the same handle previously passed to <a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#gabfecd1b6519b00bd0a6fff7e88bdf6aa" title="This API Initializes the McSPI instance.">MCSPI_lld_init()</a> will result in an error. You can, though, re-use the handle if the instance is closed via <a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#ga451aba2b1ca0c8ccb3547f7598129a3f" title="This API De-Initializes the McSPI instance.">MCSPI_lld_deInit()</a>. In DMA mode, <a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#gaea24ce76bb749be2cbf07a5e361322a7" title="This API Initializes the McSPI instance in DMA Mode.">MCSPI_lld_initDma()</a> needs to be called instead of <a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#gabfecd1b6519b00bd0a6fff7e88bdf6aa" title="This API Initializes the McSPI instance.">MCSPI_lld_init()</a> to acquire and initialize mcspi instance. Please note that initializing MCSPI driver is taken care by the SysConfig generated code.</p>
-<h2><a class="anchor" id="autotoc_md1056"></a>
+<h2><a class="anchor" id="autotoc_md1058"></a>
 MCSPI Transfer Mode</h2>
 <p>The MCSPI driver supports three transfer modes of operation: Interrupt, Polling and DMA Mode. Interrupt and DMA mode, it supports only callback mode. Once a MCSPI driver is opened, the only way to change the operation mode is to close and re-open the MCSPI instance with the new transfer mode.</p>
 <p>In callback mode, a MCSPI transaction functions asynchronously, which means that it does not block code execution. After a MCSPI transaction has been completed, the MCSPI driver calls a user-provided hook function. Callback mode is supported in the execution context of tasks and hardware interrupt routines.</p>
 <p>In multichannel mode connected to multiple external devices, the MCSPI exchanges data with one MCSPI device at a time and FIFO is enabled per each channel at a time.</p>
 <p>NOTE: The size of txBuf and RxBuf must be greater than the data size bits, if data size is not a multiple of 8 bits. Mask the data size bits in txBuf and rxBuf as the remaining bits will be discarded. For example, consider datasize = 18 bits then txBuf and rxBuf size should be uint32_t and the mask bits should be 0x3FFFF.</p>
-<h1><a class="anchor" id="autotoc_md1057"></a>
+<h1><a class="anchor" id="autotoc_md1059"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>The MCSPI protocol does not account for a built-in handshaking mechanism and neither does this driver. Therefore, when operating in <a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#ga1447ffe86b17d95258dcad6594a3f0a9" title="The module receives the clock and CS.">MCSPI_MS_MODE_PERIPHERAL</a> mode, the application must provide such a mechanism to ensure that the MCSPI peripheral is ready for the MCSPI controller. The MCSPI peripheral must call <a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#ga88c80bbad2d6a7c56afe2831076d6291" title="This API reads writes data from the McSPI instance in polling mode.">MCSPI_lld_readWrite()</a> / <a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#gaae53dbc6ef93d5d1bb5bd20bd7117e95" title="This API reads writes data from the McSPI instance in Interrupt mode.">MCSPI_lld_readWriteIntr()</a> / <a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#gaae2d0e9af00185a61a45e225c733270c" title="This API reads writes data from the McSPI instance in DMA mode.">MCSPI_lld_readWriteDma()</a> <em>before</em> the controller starts transmitting. Some example application mechanisms could include:<ul>
@@ -145,7 +145,7 @@ Important Usage Guidelines</h1>
 </li>
 <li>In case of DMA mode, as R5F core is not Cache Coherent, Cache Writeback is required if R5F writes to the buffers. And before reading the buffers, application needs to invalidate those. Please refer <a class="el" href="EXAMPLES_DRIVERS_MCSPI_LOOPBACK_DMA_LLD.html">MCSPI Loopback DMA LLD</a>.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1058"></a>
+<h1><a class="anchor" id="autotoc_md1060"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="DebugP_8h.html">kernel/dpl/DebugP.h</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="SystemP_8h.html">kernel/dpl/SystemP.h</a>&gt;</span></div>
@@ -251,7 +251,7 @@ Example Usage</h1>
 <div class="line">                                      gMcspiVimStsClrMask,</div>
 <div class="line">                                      gVimBaseAddr);</div>
 <div class="line">}</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1059"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1061"></a>
 API</h1>
 <p><a class="el" href="group__DRV__MCSPI__LLD__MODULE.html">APIs for MCSPI LLD</a> </p>
 </div></div><!-- contents -->
@@ -265,7 +265,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__MCSPI__LLD__MODULE_html_gaae53dbc6ef93d5d1bb5bd20bd7117e95"><div class="ttname"><a href="group__DRV__MCSPI__LLD__MODULE.html#gaae53dbc6ef93d5d1bb5bd20bd7117e95">MCSPI_lld_readWriteIntr</a></div><div class="ttdeci">int32_t MCSPI_lld_readWriteIntr(MCSPILLD_Handle hMcspi, void *txBuf, void *rxBuf, uint32_t count, uint32_t timeout, const MCSPI_ExtendedParams *extendedParams)</div><div class="ttdoc">This API reads writes data from the McSPI instance in Interrupt mode.</div></div>
 <div class="ttc" id="aSemaphoreP_8h_html"><div class="ttname"><a href="SemaphoreP_8h.html">SemaphoreP.h</a></div></div>
 <div class="ttc" id="agroup__DRV__MCSPI__LLD__MODULE_html_gaeb7c93069850e87483265149069539d1"><div class="ttname"><a href="group__DRV__MCSPI__LLD__MODULE.html#gaeb7c93069850e87483265149069539d1">MCSPI_TRANSFER_COMPLETED</a></div><div class="ttdeci">#define MCSPI_TRANSFER_COMPLETED</div><div class="ttdef"><b>Definition:</b> mcspi_lld.h:188</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:225</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:235</div></div>
 <div class="ttc" id="agroup__lld__ethernet_html_ga8c1dfc1ccf00a08192611433ee7f17b4"><div class="ttname"><a href="group__lld__ethernet.html#ga8c1dfc1ccf00a08192611433ee7f17b4">__attribute__</a></div><div class="ttdeci">struct lld_sockaddr __attribute__</div><div class="ttdoc">This is the SecureBoot Stream type which holds the data for a specific bootloader to HSM call....</div></div>
 <div class="ttc" id="agroup__DRV__MCSPI__LLD__MODULE_html_gabfecd1b6519b00bd0a6fff7e88bdf6aa"><div class="ttname"><a href="group__DRV__MCSPI__LLD__MODULE.html#gabfecd1b6519b00bd0a6fff7e88bdf6aa">MCSPI_lld_init</a></div><div class="ttdeci">int32_t MCSPI_lld_init(MCSPILLD_Handle hMcspi)</div><div class="ttdoc">This API Initializes the McSPI instance.</div></div>
 <div class="ttc" id="aHwiP_8h_html"><div class="ttname"><a href="HwiP_8h.html">HwiP.h</a></div></div>
@@ -274,7 +274,7 @@ API</h1>
 <div class="ttc" id="amcspi__lld_8h_html"><div class="ttname"><a href="mcspi__lld_8h.html">mcspi_lld.h</a></div><div class="ttdoc">MCSPI LLD Driver API/interface file.</div></div>
 <div class="ttc" id="agroup__DRV__MCSPI__LLD__MODULE_html_ga451aba2b1ca0c8ccb3547f7598129a3f"><div class="ttname"><a href="group__DRV__MCSPI__LLD__MODULE.html#ga451aba2b1ca0c8ccb3547f7598129a3f">MCSPI_lld_deInit</a></div><div class="ttdeci">int32_t MCSPI_lld_deInit(MCSPILLD_Handle hMcspi)</div><div class="ttdoc">This API De-Initializes the McSPI instance.</div></div>
 <div class="ttc" id="aDebugP_8h_html"><div class="ttname"><a href="DebugP_8h.html">DebugP.h</a></div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="agroup__DRV__MCSPI__LLD__MODULE_html_ga18a0f0705c041e22f8abcdf77cd6e3dd"><div class="ttname"><a href="group__DRV__MCSPI__LLD__MODULE.html#ga18a0f0705c041e22f8abcdf77cd6e3dd">MCSPI_STATUS_FAILURE</a></div><div class="ttdeci">#define MCSPI_STATUS_FAILURE</div><div class="ttdoc">Return status when the API execution was not successful due to a failure.</div><div class="ttdef"><b>Definition:</b> mcspi_lld.h:87</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->

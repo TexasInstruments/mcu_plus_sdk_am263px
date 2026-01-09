@@ -92,36 +92,36 @@ $(document).ready(function(){initNavTree('OPTIFLASH_OPTISHARE.html',''); initRes
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md709">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md710">Optishare (Summary)</a></li>
-<li class="level1"><a href="#autotoc_md711">Problem Statement</a></li>
-<li class="level1"><a href="#autotoc_md712">OptiShare as a solution</a><ul><li class="level2"><a href="#autotoc_md713">Implementation</a><ul><li class="level3"><a href="#autotoc_md714">Compile time</a><ul><li class="level4"><a href="#autotoc_md715">To enable optishare in SDK example:</a></li>
-<li class="level4"><a href="#autotoc_md716">To enable optishare in CCS</a></li>
+<ul><li class="level1"><a href="#autotoc_md711">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md712">Optishare (Summary)</a></li>
+<li class="level1"><a href="#autotoc_md713">Problem Statement</a></li>
+<li class="level1"><a href="#autotoc_md714">OptiShare as a solution</a><ul><li class="level2"><a href="#autotoc_md715">Implementation</a><ul><li class="level3"><a href="#autotoc_md716">Compile time</a><ul><li class="level4"><a href="#autotoc_md717">To enable optishare in SDK example:</a></li>
+<li class="level4"><a href="#autotoc_md718">To enable optishare in CCS</a></li>
 </ul>
 </li>
-<li class="level3"><a href="#autotoc_md717">Runtime</a></li>
+<li class="level3"><a href="#autotoc_md719">Runtime</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md718">How to Implement in a project</a><ul><li class="level2"><a href="#autotoc_md719">Build System Changes</a></li>
-<li class="level2"><a href="#autotoc_md720">Memory Map Changes</a></li>
-<li class="level2"><a href="#autotoc_md721">MPU settings</a></li>
-<li class="level2"><a href="#autotoc_md722">Shared Memory Specification File (mem_spec.json)</a></li>
-<li class="level2"><a href="#autotoc_md723">Code Changes</a></li>
+<li class="level1"><a href="#autotoc_md720">How to Implement in a project</a><ul><li class="level2"><a href="#autotoc_md721">Build System Changes</a></li>
+<li class="level2"><a href="#autotoc_md722">Memory Map Changes</a></li>
+<li class="level2"><a href="#autotoc_md723">MPU settings</a></li>
+<li class="level2"><a href="#autotoc_md724">Shared Memory Specification File (mem_spec.json)</a></li>
+<li class="level2"><a href="#autotoc_md725">Code Changes</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md724">Performance Of OptiShare</a><ul><li class="level2"><a href="#autotoc_md725">Building MulticoreELF Binaries with Optishare</a></li>
+<li class="level1"><a href="#autotoc_md726">Performance Of OptiShare</a><ul><li class="level2"><a href="#autotoc_md727">Building MulticoreELF Binaries with Optishare</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md726">Final Remark</a></li>
+<li class="level1"><a href="#autotoc_md728">Final Remark</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_optishare_optishare"></a></p>
-<h1><a class="anchor" id="autotoc_md709"></a>
+<h1><a class="anchor" id="autotoc_md711"></a>
 Introduction</h1>
 <p>This document goes over what is optishare and how it can be enabled in any project.</p>
-<h1><a class="anchor" id="autotoc_md710"></a>
+<h1><a class="anchor" id="autotoc_md712"></a>
 Optishare (Summary)</h1>
 <p>The following image shows what optishare does at a very high level.</p>
 <p> <style>div.image img[src="optishare_summary_1.png"]{width:40%}</style> </p><div class="image">
@@ -130,7 +130,7 @@ Optishare (Summary)</h1>
 OptiShare Summary</div></div>
 <p>As shown, optishare tool takes in input the application binary (ELF Format) for different cores and the output is binaries corresponding to each core and one additional binary called <code>shared object</code>. In the output, all the common function (text) and read-only data is removed each CPU binary and is placed in the <code>shared object</code>.</p>
 <p><a class="el" href="EXAMPLES_DRIVERS_IPC_NOTIFY_ECHO_OPTISHARE.html">IPC Notify Echo Example With OptiShare</a> is an example in SDK which implements OptiShare.</p>
-<h1><a class="anchor" id="autotoc_md711"></a>
+<h1><a class="anchor" id="autotoc_md713"></a>
 Problem Statement</h1>
 <ol type="1">
 <li>AM2x devices are multicore devices.</li>
@@ -138,7 +138,7 @@ Problem Statement</h1>
 <li>Libraries are being linked statically in projects.</li>
 </ol>
 <p>In case when more than 2 core's projects are using same library, that library is kept more than once in memory and this cause wastage of memory.</p>
-<h1><a class="anchor" id="autotoc_md712"></a>
+<h1><a class="anchor" id="autotoc_md714"></a>
 OptiShare as a solution</h1>
 <p>The solution here is to have a concept of "Shared" code/data.</p>
 <p> <style>div.image img[src="optishare_solution_1.png"]{width:60%}</style> </p><div class="image">
@@ -174,11 +174,11 @@ Space Saving with Optishare</div></div>
 <li>if CycleCounterP_initis placed just once and all 4 cores are accessing the same function then how does the function know which gCounterFreqHz variable to access? Should it access to gCounterFreqHz at 0x7005cc78 or 0x700ca1c0?</li>
 <li>When CycleCounterP_init calls CycleCounterP_reset function, which core's CycleCounterP_reset function should be called?</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md713"></a>
+<h2><a class="anchor" id="autotoc_md715"></a>
 Implementation</h2>
 <p>In ti-arm-clang, like GCC, basic units if layout are called "sections". Sections is a bytearray which cannot be split. Because sections are atomic units, therefore, if common functions are needed to be identified as shared functions, then a new section is required for each function (in GCC, -ffunction-section and -fdata-section are the flags that does this.). However, ti-arm-clang is by default making sections for each function and data, no extra function is required to be done.</p>
 <p>There are 2 parts of optishare viz compile time and run time.</p>
-<h3><a class="anchor" id="autotoc_md714"></a>
+<h3><a class="anchor" id="autotoc_md716"></a>
 Compile time</h3>
 <p>In this implementation, special flags are provided to the linker that makes it generate a .xml file. This XML file has</p>
 <ol type="1">
@@ -215,17 +215,17 @@ RAT Hardware being used for Optishare</div></div>
 <li>for all potentially_shared functions, if all function in callgraph of a potentially_shared function are also potentially_shared then mark that function as shared</li>
 <li>To see the above algo in action, take example 1. That example calls <code>CycleCounterP_reset</code> function. This function is in the call graph of <code>CycleCounterP_init</code> function. So, from the above algo, <code>CycleCounterP_init</code> will only be marked as shared if <code>CycleCounterP_reset</code> is also shared across all cores. However, if <code>CycleCounterP_reset</code> itself is calling another function which is not being shared, then neither <code>CycleCounterP_reset</code> nor <code>CycleCounterP_init</code> will be shared. This basically means that entire call-graph of a function should be shared among all the cores to make a function shared.</li>
 </ol>
-<h4><a class="anchor" id="autotoc_md715"></a>
+<h4><a class="anchor" id="autotoc_md717"></a>
 To enable optishare in SDK example:</h4>
 <ol type="1">
 <li><b>compilation with new flag</b>: If optishare is required to be applied, all cores are required to be built with -Wl,&ndash;gen_xml_func_hash and -Wl,&ndash;xml_link_info.</li>
 <li><b>Run Optishare script</b>: Once there is linkxml file for all the cores, then optishare script will run on these linkxml files.</li>
 <li><b>Relink example</b>: relink all the cores with the SSO file and this is done with a new linker flag -Wl,&ndash;import_sso.</li>
 </ol>
-<h4><a class="anchor" id="autotoc_md716"></a>
+<h4><a class="anchor" id="autotoc_md718"></a>
 To enable optishare in CCS</h4>
 <p>in .projectspec -Wl,&ndash;gen_xml_func_hash and -Wl,–xml_link_info flags should be present so that CCS is able to compile without any issues.</p>
-<h3><a class="anchor" id="autotoc_md717"></a>
+<h3><a class="anchor" id="autotoc_md719"></a>
 Runtime</h3>
 <p>At runtime, optishare needs special hardware features.</p>
 <p>The technical challenges that were previously highlighted is solved using virtual memory region. What this mean is that all the functions that are in sso.out will access <code>.data</code> and <code>.bss</code> from a virtual memory region. Now each core has its own RAT hardware. This RAT hardware will map this virtual memory region to a physical memory region that contains core specific data.</p>
@@ -249,10 +249,10 @@ Optishare Runtime (Note that 0x100 is only taken as an example)</div></div>
 </table>
 <p>Now because RAT hardware is simply translating the address, each core should have same offset of var1 to var4. <br  />
 </p>
-<h1><a class="anchor" id="autotoc_md718"></a>
+<h1><a class="anchor" id="autotoc_md720"></a>
 How to Implement in a project</h1>
 <p>Here <a class="el" href="EXAMPLES_DRIVERS_IPC_NOTIFY_ECHO_OPTISHARE.html">IPC Notify Echo Example With OptiShare</a> example is being used.</p>
-<h2><a class="anchor" id="autotoc_md719"></a>
+<h2><a class="anchor" id="autotoc_md721"></a>
 Build System Changes</h2>
 <p>As previously written, add new flags to generate xml file. The following images shows the additional linker flag that is be added for each core compilation.</p>
 <p> <style>div.image img[src="optishare_link_flags.png"]{width:40%}</style> </p><div class="image">
@@ -265,7 +265,7 @@ Optishare link time flags</div></div>
 <img src="coreout_rule.png" alt=""/>
 <div class="caption">
 Relinking of binary</div></div>
-<h2><a class="anchor" id="autotoc_md720"></a>
+<h2><a class="anchor" id="autotoc_md722"></a>
 Memory Map Changes</h2>
 <p>Each core's linker file needs to be changed.</p>
 <p>For AM263Px, last 512KB of the memory is being used as the shared memory of Optishare.</p>
@@ -303,7 +303,7 @@ Memory Map of Shared Region</div></div>
 <div class="line">.shared.bss  : {</div>
 <div class="line">} &gt; C0_SSO_LCL   , palign(4096) </div>
 </div><!-- fragment --><p>For core 1, memory section would be <code>C1_SSO_LCL</code> and so on.</p>
-<h2><a class="anchor" id="autotoc_md721"></a>
+<h2><a class="anchor" id="autotoc_md723"></a>
 MPU settings</h2>
 <p>For this memory region, make sure that each core is marking this 512KB of L2 memory as shared in MPU.</p>
 <p>The following images shows the same:</p>
@@ -313,7 +313,7 @@ MPU settings</h2>
 MPU Of Shared Region</div></div>
 <p>Selecting <code>Non-Cached</code> will make that region as the <code>shared</code>.</p>
 <p>The reason why Cx_SSO_LCL needs to be non-cached is because, the data that is in this region is mostly some global variables. When Shared code updates that global variable, it sends out a virtual address and then RAT in effects updates the physical memory address. However, if caches are on, then, this would cause in-coherency issue.</p>
-<h2><a class="anchor" id="autotoc_md722"></a>
+<h2><a class="anchor" id="autotoc_md724"></a>
 Shared Memory Specification File (mem_spec.json)</h2>
 <p>Optishare script runs, in this example, its cmd is:</p>
 <div class="fragment"><div class="line">node &lt;compiler path&gt;/opti-share/opti-share.js </div>
@@ -403,7 +403,7 @@ Shared Memory Specification File (mem_spec.json)</h2>
 </p>
 <p><code>shared_os_placement_instrs</code> is specifying the section placement. This should not be changed and kept as is.</p>
 <p>The only change is required for <code>shared_mem_regions</code>.</p>
-<h2><a class="anchor" id="autotoc_md723"></a>
+<h2><a class="anchor" id="autotoc_md725"></a>
 Code Changes</h2>
 <p>C Code needs to be changed as presented as follows:</p>
 <p> <style>div.image img[src="runtime_code_changes_blockdiagram.png"]{width:40%}</style> </p><div class="image">
@@ -481,7 +481,7 @@ Run time code changes block diagram</div></div>
 <div class="line">    return AppStart();</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>In the above code, it programs the RAT before starting the application.</p>
-<h1><a class="anchor" id="autotoc_md724"></a>
+<h1><a class="anchor" id="autotoc_md726"></a>
 Performance Of OptiShare</h1>
 <p>Compiler comes with another program that does the shows the saving of memory that is able to be achieved. <br  />
 </p>
@@ -516,7 +516,7 @@ Performance Of OptiShare</h1>
 <td class="markdownTableBodyNone">.shared.bss  </td><td class="markdownTableBodyNone">0  </td><td class="markdownTableBodyNone">12288  </td><td class="markdownTableBodyNone">-12288   </td></tr>
 </table>
 <p>The above is for core R5F0-0. Run the above script for each core to get the total savings for each core.</p>
-<h2><a class="anchor" id="autotoc_md725"></a>
+<h2><a class="anchor" id="autotoc_md727"></a>
 Building MulticoreELF Binaries with Optishare</h2>
 <p>MulticcoreELF (<a class="el" href="MCELF_LANDING.html">Understanding Multicore ELF image format</a>) is image format that SDK use to boot from flash. tools/boot/multicore-elf/genimage.py is the python script that takes in input <code>.out</code> file of cores and then provides <code>.mcelf</code> and <code>.mcelf_xip</code> as the output. The command looks like the follwing when optishare is not enabled:</p>
 <div class="fragment"><div class="line">python3 /home/sanmveg/ti/workarea/mcu_plus_sdk/tools/boot/multicore-elf/genimage.py  </div>
@@ -538,7 +538,7 @@ Building MulticoreELF Binaries with Optishare</h2>
 <div class="line">--max_segment_size=8192 </div>
 <div class="line">--sso=sso.out</div>
 </div><!-- fragment --><p><code>sso.out</code> contains the shared code and data.</p>
-<h1><a class="anchor" id="autotoc_md726"></a>
+<h1><a class="anchor" id="autotoc_md728"></a>
 Final Remark</h1>
 <p>Implementation of optishare is bit complex as it requires some understanding of linkers, ARM Memory Protection Unit (MPU), ARM Assembly Addressing Model , SOC level address translation using RAT, Caches etc. However, if implemented correctly, it can lead of a lot of memory savings. In usecase, where there are 2 OS running on different cores, this would make almost all the OS code as shared and leaving more space for user application. </p>
 </div></div><!-- contents -->

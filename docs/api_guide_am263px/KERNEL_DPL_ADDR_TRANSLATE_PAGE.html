@@ -92,30 +92,30 @@ $(document).ready(function(){initNavTree('KERNEL_DPL_ADDR_TRANSLATE_PAGE.html','
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md827">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md828">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md829">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md830">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md831">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md829">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md830">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md831">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md832">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md833">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_dpl_AddrTranslateP"></a></p>
-<h1><a class="anchor" id="autotoc_md827"></a>
+<h1><a class="anchor" id="autotoc_md829"></a>
 Features Supported</h1>
 <ul>
 <li>APIs to setup region based address translation using RAT HW on supported SOCs</li>
 <li>APIs to translate SOC view <code>system address</code> (or virtual address in OptiShare context) to CPU view <code>local address</code> (or physical address in context of OptiShare).</li>
 <li>When no address mapping is specified, no translation is done.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md828"></a>
+<h1><a class="anchor" id="autotoc_md830"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md829"></a>
+<h1><a class="anchor" id="autotoc_md831"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>The translation API <a class="el" href="group__KERNEL__DPL__ADDR__TRANSLATE.html#ga1769ebed3fd7df26bb09d95a3149ba78">AddrTranslateP_getLocalAddr</a> is meant to be used to translate SOC specified peripheral MMR base addresses to local CPU accesible addresses, within device drivers. The API internally searches through a small array to find the address translations, hence to be efficient, this API should typically be called once during driver init to find the local address that CPU should use.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md830"></a>
+<h1><a class="anchor" id="autotoc_md832"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs, </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="AddrTranslateP_8h.html">kernel/dpl/AddrTranslateP.h</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="DebugP_8h.html">kernel/dpl/DebugP.h</a>&gt;</span></div>
@@ -125,13 +125,13 @@ Example Usage</h1>
 <div class="line">    localAddr = <a class="code" href="group__KERNEL__DPL__ADDR__TRANSLATE.html#ga1769ebed3fd7df26bb09d95a3149ba78">AddrTranslateP_getLocalAddr</a>(systemAddr);</div>
 <div class="line"> </div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a>(<span class="stringliteral">&quot;System Addr:%x =&gt; Local Address:%x\n&quot;</span>, systemAddr, localAddr);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md831"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md833"></a>
 API</h1>
 <p><a class="el" href="group__KERNEL__DPL__ADDR__TRANSLATE.html">APIs for Region based address translation (RAT) module</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:225</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:235</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__ADDR__TRANSLATE_html_ga1769ebed3fd7df26bb09d95a3149ba78"><div class="ttname"><a href="group__KERNEL__DPL__ADDR__TRANSLATE.html#ga1769ebed3fd7df26bb09d95a3149ba78">AddrTranslateP_getLocalAddr</a></div><div class="ttdeci">void * AddrTranslateP_getLocalAddr(uint64_t systemAddr)</div><div class="ttdoc">Translate from system address to a CPU address as seen via the RAT module.</div></div>
 <div class="ttc" id="aDebugP_8h_html"><div class="ttname"><a href="DebugP_8h.html">DebugP.h</a></div></div>
 <div class="ttc" id="aAddrTranslateP_8h_html"><div class="ttname"><a href="AddrTranslateP_8h.html">AddrTranslateP.h</a></div></div>

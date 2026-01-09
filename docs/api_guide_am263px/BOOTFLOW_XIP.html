@@ -92,25 +92,25 @@ $(document).ready(function(){initNavTree('BOOTFLOW_XIP.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md425">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md426">Additional References</a></li>
-<li class="level1"><a href="#autotoc_md427">Pre-requisites</a></li>
-<li class="level1"><a href="#autotoc_md428">Enable XIP for an application</a><ul><li class="level2"><a href="#autotoc_md429">Using linker.cmd</a></li>
-<li class="level2"><a href="#autotoc_md430">Using Memory Configurator</a><ul><li class="level3"><a href="#autotoc_md431">Moving .rodata and .text to flash</a></li>
-<li class="level3"><a href="#autotoc_md432">Moving cfg rodata to internal memory</a></li>
-<li class="level3"><a href="#autotoc_md433">Moving CIO to internal memory</a></li>
+<ul><li class="level1"><a href="#autotoc_md427">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md428">Additional References</a></li>
+<li class="level1"><a href="#autotoc_md429">Pre-requisites</a></li>
+<li class="level1"><a href="#autotoc_md430">Enable XIP for an application</a><ul><li class="level2"><a href="#autotoc_md431">Using linker.cmd</a></li>
+<li class="level2"><a href="#autotoc_md432">Using Memory Configurator</a><ul><li class="level3"><a href="#autotoc_md433">Moving .rodata and .text to flash</a></li>
+<li class="level3"><a href="#autotoc_md434">Moving cfg rodata to internal memory</a></li>
+<li class="level3"><a href="#autotoc_md435">Moving CIO to internal memory</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md434">Enabling secure XIP using OTFA</a><ul><li class="level2"><a href="#autotoc_md435">Steps enable security in XIP image,</a></li>
+<li class="level1"><a href="#autotoc_md436">Enabling secure XIP using OTFA</a><ul><li class="level2"><a href="#autotoc_md437">Steps enable security in XIP image,</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md436">Debugging XIP applications</a></li>
+<li class="level1"><a href="#autotoc_md438">Debugging XIP applications</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_bootflow_xip"></a></p>
-<h1><a class="anchor" id="autotoc_md425"></a>
+<h1><a class="anchor" id="autotoc_md427"></a>
 Introduction</h1>
 <ul>
 <li>Normally, when running a application, the application code is first copied to RAM by bootloader and then code executes from RAM.</li>
@@ -124,7 +124,7 @@ Introduction</h1>
 <li>However in some situations it is needed to execute code from flash for non-real time, non high performance code.</li>
 <li>XIP allows to do this.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md426"></a>
+<h1><a class="anchor" id="autotoc_md428"></a>
 Additional References</h1>
 <p>See also these additional pages for more details and examples about XIP,</p>
 <ul>
@@ -134,7 +134,7 @@ Additional References</h1>
 </li>
 <li>To understand overall boot flow see, <a class="el" href="BOOTFLOW_GUIDE.html">Understanding the bootflow and bootloaders</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md427"></a>
+<h1><a class="anchor" id="autotoc_md429"></a>
 Pre-requisites</h1>
 <ul>
 <li>The flash memory should be visible to the CPU, in "direct access mode (DAC)" i.e memory mapped mode.<ul>
@@ -145,9 +145,9 @@ Pre-requisites</h1>
 <li>The secondary bootloader needs to enable flash at highest throughput mode in this DAC mode, before booting the application.</li>
 <li>The application entry point, interrupt vectors and initial code upto <code>main()</code> should still execute from RAM. After <code>main()</code> the code can execute from flash.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md428"></a>
+<h1><a class="anchor" id="autotoc_md430"></a>
 Enable XIP for an application</h1>
-<h2><a class="anchor" id="autotoc_md429"></a>
+<h2><a class="anchor" id="autotoc_md431"></a>
 Using linker.cmd</h2>
 <p>To enable XIP for a application, below changes need to be done,</p>
 <ul>
@@ -221,9 +221,9 @@ Flash section in R5F MPU</div></div>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md430"></a>
+<h2><a class="anchor" id="autotoc_md432"></a>
 Using Memory Configurator</h2>
-<h3><a class="anchor" id="autotoc_md431"></a>
+<h3><a class="anchor" id="autotoc_md433"></a>
 Moving .rodata and .text to flash</h3>
 <p>As mentioned in the previous section, move <b><code>.rodata</code></b> and <b><code>.text</code></b> in external flash, as shown in the following image:</p>
 <p> <style>div.image img[src="enabling_xip_mem_configurator_1.png"]{width:80%}</style> </p><div class="image">
@@ -232,7 +232,7 @@ Moving .rodata and .text to flash</h3>
 Moving text and rodata to flash.</div></div>
 <p>Here load and run memory, both are set to FLASH memory.</p>
 <p>Make sure that <b><code>Alignment with padding</code></b> checkbox has been checked.</p>
-<h3><a class="anchor" id="autotoc_md432"></a>
+<h3><a class="anchor" id="autotoc_md434"></a>
 Moving cfg rodata to internal memory</h3>
 <p>Then, it is required to move <b><code>.rodata.cfg</code></b> in the internal memory. For this, refer to the following image:</p>
 <p> <style>div.image img[src="enabling_xip_mem_configurator_2.png"]{width:80%}</style> </p><div class="image">
@@ -241,7 +241,7 @@ Moving cfg rodata to internal memory</h3>
 Moving cfg rodata to internal memory.</div></div>
 <p>Here, <b><code>.cfg.rodata</code></b> output section has been added in <b><code>Text Segments</code></b> group.</p>
 <p>Make sure that <b> <code>Alignment with padding</code> </b> checkbox has been checked.</p>
-<h3><a class="anchor" id="autotoc_md433"></a>
+<h3><a class="anchor" id="autotoc_md435"></a>
 Moving CIO to internal memory</h3>
 <p>Refer to following image:</p>
 <p> <style>div.image img[src="enabling_xip_mem_configurator_3.png"]{width:80%}</style> </p><div class="image">
@@ -255,7 +255,7 @@ Moving CIO to internal memory.</div></div>
 </ol>
 <p>With the above, this will direct cio library in internal memory.</p>
 <p>This step is required if CCS logs are enabled. In production build, CCS logs should be disabled.</p>
-<h1><a class="anchor" id="autotoc_md434"></a>
+<h1><a class="anchor" id="autotoc_md436"></a>
 Enabling secure XIP using OTFA</h1>
 <dl class="section note"><dt>Note</dt><dd>This feature is only valid for HSSE device.</dd></dl>
 <ul>
@@ -264,7 +264,7 @@ Enabling secure XIP using OTFA</h1>
 <li>OTFA can be configured to authenticate and decrypt up to four distinct regions in the flash, with different keys. The key management for OTFA is expected to be done by HSM Run Time Firmware.</li>
 <li>The application binary, converted to MCELF format is post-processed for safety and security using the <b>genimage.py</b> tool [Refer <a class="el" href="TOOLS_BOOT.html">Booting Tools</a>]</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md435"></a>
+<h2><a class="anchor" id="autotoc_md437"></a>
 Steps enable security in XIP image,</h2>
 <ol type="1">
 <li>Enter the OTFA configuration settings in JSON format as shown in the example json file below: <div class="fragment"><div class="line">{</div>
@@ -347,7 +347,7 @@ Steps enable security in XIP image,</h2>
 </div><!-- fragment --> Once the images are flashed switch to OSPI boot mode and reset device to see the output.</li>
 </ol>
 <dl class="section note"><dt>Note</dt><dd>In order to use auxilary keys for encryption, please check the TIFS documentation for auxilary key usage. For encryption using auxilary keys, a keyring certificate needs to be generated. This certificate contains the key and has to be imported in the SBL build.</dd></dl>
-<h1><a class="anchor" id="autotoc_md436"></a>
+<h1><a class="anchor" id="autotoc_md438"></a>
 Debugging XIP applications</h1>
 <ul>
 <li>XIP applications can not be loaded via CCS, hence to debug a XIP application one needs to always flash and run the application and then "load symbols" via CCS to debug the application</li>

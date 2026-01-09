@@ -92,39 +92,39 @@ $(document).ready(function(){initNavTree('SDL_TMU_ROM_CHECKSUM_PAGE.html',''); i
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1644">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1645">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1646">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1647">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1648">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1649">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1646">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1647">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1648">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1649">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1650">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1651">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_tmu_rom_checksum"></a></p>
 <p>TMU ROM Checksum is a feature that is used to check the integrity of the TMU ROM data. Its work is to take a set of data associated with the memory regions of TMU ROM and perform checksum on that data and then compare that resultant data value against a pre-determined golden vector value.</p>
-<h1><a class="anchor" id="autotoc_md1644"></a>
+<h1><a class="anchor" id="autotoc_md1646"></a>
 Features Supported</h1>
 <p>This module provides the following functionality:</p>
 <ul>
 <li>Ability to select the MCRC channel to calculate checksum</li>
 <li>Ability to compare resultant checksum data with golden value</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1645"></a>
+<h1><a class="anchor" id="autotoc_md1647"></a>
 SysConfig Features</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1646"></a>
+<h1><a class="anchor" id="autotoc_md1648"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1647"></a>
+<h1><a class="anchor" id="autotoc_md1649"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>None </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1648"></a>
+<h1><a class="anchor" id="autotoc_md1650"></a>
 Example Usage</h1>
 <p>The following shows an example of SDL TMU ROM CHECKSUM API usage by the application to check the integrity of data at ROM region.</p>
 <p>Include the below file to access the APIs</p>
@@ -136,7 +136,7 @@ Example Usage</h1>
 <div class="line">testResult = SDL_TMU_ROM_Checksum_Compute(<a class="code" href="group__SDL__MCRC__API.html#gab5ea04c139cea73db735fe78336972e3">SDL_MCRC_CHANNEL_1</a>, &amp;sectSignVal);</div>
 <div class="line"> </div>
 <div class="line">The above API will <span class="keywordflow">return</span> SDL_PASS, <span class="keywordflow">if</span> the calculated CRC matches with the golden CRC.</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1649"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1651"></a>
 API</h1>
 <p><a class="el" href="group__SDL__TMU__ROM__CHECKSUM__API.html">SDL TMU ROM CHECKSUM IMPLEMENTATION</a> </p>
 </div></div><!-- contents -->

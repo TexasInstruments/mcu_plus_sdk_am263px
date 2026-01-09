@@ -97,24 +97,24 @@ $(document).ready(function(){initNavTree('canfd_8h.html',''); initResizable(); }
 <div class="textblock"><p>This is the header file for the CANFD driver which exposes the data structures and exported API which can be used by the applications to use the CANFD driver. </p>
 <p>The CANFD driver provides functionality of transferring data between CANFD peripherals. This driver does not interpret any of the data sent to or received from using this peripheral.</p>
 <p>The CANFD header file should be included in an application as follows: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;ti/drivers/canfd/canfd.h&gt;</span></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md882"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md884"></a>
 Initializing the driver</h2>
 <p>The CANFD Driver needs to be initialized once across the System. This is done using the <a class="el" href="group__DRV__CANFD__MODULE.html#ga719a7379a5f6a6bc66f131252cee8ecf" title="This function opens a given CANFD peripheral.">CANFD_open</a>. None of the CANFD API's can be used without invoking this API.</p>
 <p>Once the CANFD Driver has been initialized; the bit timing can be configured using <a class="el" href="group__DRV__CANFD__MODULE.html#ga695cb7316ec76d5493eea8df274cb01c" title="Function configures the bit time parameters for the CANFD module.">CANFD_configBitTime</a>. This APIs can be called multiple times to reconfigure bit timings.</p>
-<h2><a class="anchor" id="autotoc_md883"></a>
+<h2><a class="anchor" id="autotoc_md885"></a>
 Creating the message objects</h2>
 <p>Message objects are used to transmit or receive data over the CANFD peripheral. A message object is created using <a class="el" href="group__DRV__CANFD__MODULE.html#ga0bf30f8c28fd5ad2b2af37e79e9445b6" title="Function configures the receive or transmit message object. It also enables Tx completion and Tx canc...">CANFD_createMsgObject</a>.</p>
-<h2><a class="anchor" id="autotoc_md884"></a>
+<h2><a class="anchor" id="autotoc_md886"></a>
 Sending and receiving data</h2>
 <p>Data is transmitted using the <a class="el" href="group__DRV__CANFD__MODULE.html#ga65801b2727f2a7607b52b10519f7790a" title="Function used by the application to transmit data.">CANFD_write</a>. The application will be notified when the transmit is complete if it has enabled dataInterruptEnable and registered a callback function appDataCallBack when initializing the CANFD driver.</p>
 <p>If the receive interrupts are enabled using dataInterruptEnable field and a callback function appCallBack has been registered when initializing the CANFD driver, the driver notifies the application when the data has arrived. The application needs to call the <a class="el" href="group__DRV__CANFD__MODULE.html#gaa27d6e6daf5b106db144040536f0e5bb" title="Function is used by the application to get the CAN message from message RAM using a receive message o...">CANFD_read</a> function to read the received data.</p>
-<h2><a class="anchor" id="autotoc_md885"></a>
+<h2><a class="anchor" id="autotoc_md887"></a>
 Error and status handling</h2>
 <p>The application can monitor the ECC error, Bus off error and Protocol Errors by enabling the error interrupts errInterruptEnable. The driver will call the registered callback function appErrCallBack to indicate which error fields caused the interrupt. It is up to the application to take appropriate action.</p>
-<h2><a class="anchor" id="autotoc_md886"></a>
+<h2><a class="anchor" id="autotoc_md888"></a>
 Get/Set Options</h2>
 <p>Helper APIs to get and set various statistics, error counters, ECC diagnostics, power down have been provided. Refer to <a class="el" href="group__DRV__CANFD__MODULE.html#CANFD_Option">CANFD_Option</a> for more information.</p>
-<h2><a class="anchor" id="autotoc_md887"></a>
+<h2><a class="anchor" id="autotoc_md889"></a>
 Limitation</h2>
 <p>The CANFD driver does not support the DMA or power down. </p>
 </div>

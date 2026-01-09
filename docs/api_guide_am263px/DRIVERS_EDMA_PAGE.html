@@ -92,20 +92,20 @@ $(document).ready(function(){initNavTree('DRIVERS_EDMA_PAGE.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md900">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md901">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md902">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md903">Usage Overview</a><ul><li class="level2"><a href="#autotoc_md904">API Sequence</a></li>
+<ul><li class="level1"><a href="#autotoc_md902">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md903">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md904">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md905">Usage Overview</a><ul><li class="level2"><a href="#autotoc_md906">API Sequence</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md905">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md906">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md907">API</a></li>
+<li class="level1"><a href="#autotoc_md907">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md908">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md909">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_edma"></a></p>
 <p>EDMA driver provides API to perform DMA tranfers.</p>
-<h1><a class="anchor" id="autotoc_md900"></a>
+<h1><a class="anchor" id="autotoc_md902"></a>
 Features Supported</h1>
 <ul>
 <li>DMA, QDMA channels</li>
@@ -115,7 +115,7 @@ Features Supported</h1>
 <li>Manual and Event triggered transfers</li>
 <li>Error Handling</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md901"></a>
+<h1><a class="anchor" id="autotoc_md903"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -127,14 +127,14 @@ SysConfig Features</h1>
 <li>TCC management</li>
 <li>PaRAM management</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md902"></a>
+<h1><a class="anchor" id="autotoc_md904"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md903"></a>
+<h1><a class="anchor" id="autotoc_md905"></a>
 Usage Overview</h1>
-<h2><a class="anchor" id="autotoc_md904"></a>
+<h2><a class="anchor" id="autotoc_md906"></a>
 API Sequence</h2>
 <p>To transfer the data using edma, application calls following APIs</p>
 <ul>
@@ -147,12 +147,12 @@ API Sequence</h2>
 <li><a class="el" href="group__DRV__EDMA__MODULE.html#ga25c7835d8f1791d16acab221d4cacaf0" title="Function to close a EDMA peripheral specified by the EDMA handle.">EDMA_close()</a>: Closes the EDMA instance.</li>
 <li><a class="el" href="group__DRV__EDMA__MODULE.html#gabd3f7b16c29e7f2125360d73edf57c66" title="This function Deinitializes the EDMA driver object and controller.">EDMA_deinit()</a>: De-Initialize the EDMA driver.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md905"></a>
+<h1><a class="anchor" id="autotoc_md907"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md906"></a>
+<h1><a class="anchor" id="autotoc_md908"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="edma_8h.html">drivers/edma.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Instance Open Example </p><div class="fragment"><div class="line">    <a class="code" href="structEDMA__Params.html">EDMA_Params</a>         params;</div>
@@ -228,7 +228,7 @@ Example Usage</h1>
 <div class="line">    testStatus = <a class="code" href="group__DRV__EDMA__MODULE.html#ga77b4c91a94789c39a0c5723b6666dee4">EDMA_freeParam</a>(gEdmaHandle, &amp;param);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(testStatus == <a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a>);</div>
 <div class="line"> </div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md907"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md909"></a>
 API</h1>
 <p><a class="el" href="group__DRV__EDMA__MODULE.html">APIs for EDMA</a> </p>
 </div></div><!-- contents -->
@@ -259,7 +259,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__EDMA__MODULE_html_ga8e3dc80b5b9842c70e59076c642f4d76"><div class="ttname"><a href="group__DRV__EDMA__MODULE.html#ga8e3dc80b5b9842c70e59076c642f4d76">EDMA_allocParam</a></div><div class="ttdeci">int32_t EDMA_allocParam(EDMA_Handle handle, uint32_t *param)</div><div class="ttdoc">Function to allocate Param Set.</div></div>
 <div class="ttc" id="agroup__DRV__EDMA__MODULE_html_gacca60b17fbcdf381855245c83aeb8129"><div class="ttname"><a href="group__DRV__EDMA__MODULE.html#gacca60b17fbcdf381855245c83aeb8129">EDMA_setPaRAM</a></div><div class="ttdeci">void EDMA_setPaRAM(uint32_t baseAddr, uint32_t paRAMId, const EDMACCPaRAMEntry *newPaRAM)</div><div class="ttdoc">Copy the user specified PaRAM Set onto the PaRAM Set associated with the logical channel (DMA/Link).</div></div>
 <div class="ttc" id="astructEDMA__Params_html"><div class="ttname"><a href="structEDMA__Params.html">EDMA_Params</a></div><div class="ttdoc">EDMA open parameters passed to EDMA_open() function.</div><div class="ttdef"><b>Definition:</b> edma/v0/edma.h:544</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="agroup__DRV__EDMA__MODULE_html_ga04b1673c1d1d0a23f25b77906c2fbb46"><div class="ttname"><a href="group__DRV__EDMA__MODULE.html#ga04b1673c1d1d0a23f25b77906c2fbb46">EDMA_RESOURCE_ALLOC_ANY</a></div><div class="ttdeci">#define EDMA_RESOURCE_ALLOC_ANY</div><div class="ttdef"><b>Definition:</b> edma/v0/edma.h:371</div></div>
 <div class="ttc" id="agroup__DRV__EDMA__MODULE_html_gabe40d9f4509dce2b7d653800e5b5d044"><div class="ttname"><a href="group__DRV__EDMA__MODULE.html#gabe40d9f4509dce2b7d653800e5b5d044">EDMA_ccPaRAMEntry_init</a></div><div class="ttdeci">void EDMA_ccPaRAMEntry_init(EDMACCPaRAMEntry *paramEntry)</div><div class="ttdoc">Clear a PaRAM Set .</div></div>
 <div class="ttc" id="astructEDMA__Params_html_aa201bda2709dbd15c15a6eb5cbe98f4a"><div class="ttname"><a href="structEDMA__Params.html#aa201bda2709dbd15c15a6eb5cbe98f4a">EDMA_Params::intrEnable</a></div><div class="ttdeci">uint32_t intrEnable</div><div class="ttdef"><b>Definition:</b> edma/v0/edma.h:545</div></div>

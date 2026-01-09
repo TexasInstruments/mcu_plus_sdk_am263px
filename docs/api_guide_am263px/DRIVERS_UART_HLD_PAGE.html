@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('DRIVERS_UART_HLD_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_uart_hld"></a> </p>
-<h1><a class="anchor" id="autotoc_md1136"></a>
+<h1><a class="anchor" id="autotoc_md1138"></a>
 Features Supported</h1>
 <ul>
 <li>Write and Read mode of operation</li>
@@ -101,16 +101,16 @@ Features Supported</h1>
 <li>Blocking and Non-blocking (Callback) transfers</li>
 <li>Write and Read Cancel mode of operation</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1137"></a>
+<h1><a class="anchor" id="autotoc_md1139"></a>
 Features NOT Supported</h1>
 <ul>
 <li><a class="el" href="group__DRV__UART__LLD__MODULE.html#ga1b64d34e7816aec0224528707619fef8" title="Unblock/callback when no new data comes in.">UART_READ_RETURN_MODE_PARTIAL</a> is not supported in DMA mode of operation</li>
 <li>MODEM control functions</li>
 <li>IrDA(Infrared Data Association) and CIR(Consumer Infrared) features</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1138"></a>
+<h1><a class="anchor" id="autotoc_md1140"></a>
 Usage Overview</h1>
-<h2><a class="anchor" id="autotoc_md1139"></a>
+<h2><a class="anchor" id="autotoc_md1141"></a>
 API Sequence</h2>
 <p>To use the UART driver to send data or receive, the application calls the following APIs:</p>
 <ul>
@@ -122,32 +122,32 @@ API Sequence</h2>
 <li><a class="el" href="group__DRV__UART__MODULE.html#ga6b49b65f3db709c408dc4db23a68895d" title="Function to close a UART peripheral specified by the UART handle.">UART_close()</a>: Close the UART instance.</li>
 <li><a class="el" href="group__DRV__UART__MODULE.html#gaf62535cad4a810b92a9061eb66b510e3" title="This function de-initializes the UART module.">UART_deinit()</a>: De-Initialize the UART driver.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1140"></a>
+<h2><a class="anchor" id="autotoc_md1142"></a>
 Initializing the UART Driver</h2>
 <p><a class="el" href="group__DRV__UART__MODULE.html#gab60a36f7295d704926120d22f806dcd1" title="This function initializes the UART module.">UART_init()</a> must be called before any other UART APIs. This function iterates through the elements of the UART_config[] array, calling the element's device implementation UART initialization function. Please note that initializing UART driver is taken care by the SysConfig generated code.</p>
-<h2><a class="anchor" id="autotoc_md1141"></a>
+<h2><a class="anchor" id="autotoc_md1143"></a>
 Opening the UART Driver</h2>
 <p>After initializing the UART driver by calling <a class="el" href="group__DRV__UART__MODULE.html#gab60a36f7295d704926120d22f806dcd1" title="This function initializes the UART module.">UART_init()</a>, the application can open a UART instance by calling <a class="el" href="group__DRV__UART__MODULE.html#gab540e9ef2a649eeff29085cfa653d097" title="This function opens a given UART peripheral.">UART_open()</a>. Please note that opening UART driver is taken care by the SysConfig generated code. This function takes an index into the UART_config[] array, and the UART parameters data structure. The UART instance is specified by the index of the UART in UART_config[]. Calling <a class="el" href="group__DRV__UART__MODULE.html#gab540e9ef2a649eeff29085cfa653d097" title="This function opens a given UART peripheral.">UART_open()</a> second time with the same index previously passed to <a class="el" href="group__DRV__UART__MODULE.html#gab540e9ef2a649eeff29085cfa653d097" title="This function opens a given UART peripheral.">UART_open()</a> will result in an error. You can, though, re-use the index if the instance is closed via <a class="el" href="group__DRV__UART__MODULE.html#ga6b49b65f3db709c408dc4db23a68895d" title="Function to close a UART peripheral specified by the UART handle.">UART_close()</a>.</p>
 <p>If no <a class="el" href="group__DRV__UART__MODULE.html#gacb2f2e1788b70f88f6ae59b497a828ef" title="Function to initialize the UART_Params struct to its defaults.">UART_Params_init</a> structure is passed to <a class="el" href="group__DRV__UART__MODULE.html#gab540e9ef2a649eeff29085cfa653d097" title="This function opens a given UART peripheral.">UART_open()</a>, default values are used. If the open call is successful, it returns a non-NULL value.</p>
-<h2><a class="anchor" id="autotoc_md1142"></a>
+<h2><a class="anchor" id="autotoc_md1144"></a>
 UART Write Mode</h2>
 <p>The UART driver supports two transfer modes of operation: interrupt and polling mode. In polling mode a task's code execution is blocked until a UART transaction has completed or a timeout has occurred.</p>
 <p>In interrupt mode, again there are two modes blocking and callback. The transfer mode is determined by the <a class="el" href="structUART__Params.html#a97ea411b44f489cd71e8d6d17545abf3">UART_Params.writeMode</a> parameter. The UART driver defaults to blocking mode, if the application does not set it. Once a UART driver is opened, the only way to change the operation mode is to close and re-open the UART instance with the new write mode.</p>
 <p>In blocking mode, a task's code execution is blocked until a UART transaction has completed or a timeout has occurred. This ensures that only one UART transfer operates at a given time. Other tasks requesting UART transfers while a transfer is currently taking place will receive an error as return value. If a timeout occurs the transfer is cancelled, the task is unblocked &amp; will receive an error as return value. The transaction count field will have the number of bytes transferred successfully before the timeout.</p>
 <p>In callback mode, a UART transaction functions asynchronously, which means that it does not block code execution. After a UART transaction has been completed, the UART driver calls a user-provided callback function. Callback mode is supported in the execution context of tasks and hardware interrupt routines.</p>
-<h2><a class="anchor" id="autotoc_md1143"></a>
+<h2><a class="anchor" id="autotoc_md1145"></a>
 UART Read Mode</h2>
 <p>The UART driver supports two read modes of operation: interrupt and polling mode. In polling mode a task's code execution is blocked until a UART transaction has completed or a timeout has occurred.</p>
 <p>In interrupt mode, again there are two modes blocking and callback. The read mode is determined by the <a class="el" href="structUART__Params.html#af54dd52a99d0a545eb9d94afeb282ebe">UART_Params.readMode</a> parameter. The UART driver defaults to blocking mode, if the application does not set it. Once a UART driver is opened, the only way to change the operation mode is to close and re-open the UART instance with the new read mode.</p>
 <p>In blocking mode, a task's code execution is blocked until a UART transaction has completed or a timeout has occurred. This ensures that only one UART read completes at a given time. Other tasks requesting UART read while a read is currently taking place will receive an error as return value. If a timeout occurs the read is cancelled, the task is unblocked &amp; will receive an error as return value. The transaction count field will have the number of bytes read successfully before the timeout.</p>
 <p>In callback mode, a UART transaction functions asynchronously, which means that it does not block code execution. After a UART transaction has been completed, the UART driver calls a user-provided callback function. Callback mode is supported in the execution context of tasks and hardware interrupt routines.</p>
 <p>There is an additional <a class="el" href="structUART__Params.html#a1850d733c08f9bd92a45c8289d88a830">UART_Params.readReturnMode</a> parameter. <a class="el" href="group__DRV__UART__LLD__MODULE.html#ga1750bdbfd3930cacf9ca48e5a153f3c2" title="Unblock/callback when buffer is full.">UART_READ_RETURN_MODE_FULL</a> unblocks or performs a callback when the read buffer has been filled with the number of bytes passed to <a class="el" href="group__DRV__UART__MODULE.html#gab0f66688faa39bad28c36465ac88c538" title="Function to perform UART read operation.">UART_read()</a>. <a class="el" href="group__DRV__UART__LLD__MODULE.html#ga1b64d34e7816aec0224528707619fef8" title="Unblock/callback when no new data comes in.">UART_READ_RETURN_MODE_PARTIAL</a> unblocks or performs a callback whenever a read timeout error occurs on the UART peripheral. The read timeout occurs if the read FIFO is non-empty and no new data has been received for a specific number of clock cycles w.r.o device/baudrate dependent. This mode can be used when the exact number of bytes to be read is not known.</p>
-<h1><a class="anchor" id="autotoc_md1144"></a>
+<h1><a class="anchor" id="autotoc_md1146"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>In case of DMA mode, as R5F core is not Cache Coherent, Cache Writeback is required if R5F writes to the buffers. And before reading the buffers, application needs to invalidate those. Please refer <a class="el" href="EXAMPLES_DRIVERS_UART_ECHO_DMA.html">UART Echo DMA</a>.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1145"></a>
+<h1><a class="anchor" id="autotoc_md1147"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="uart_8h.html">drivers/uart.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Instance Open Example </p><div class="fragment"><div class="line">    <a class="code" href="structUART__Params.html">UART_Params</a>         params;</div>
@@ -261,7 +261,7 @@ Example Usage</h1>
 <div class="line">        <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(gNumBytesRead == transaction.<a class="code" href="structUART__Transaction.html#a32842a6d05bd3dc31d31a8502da5e190">count</a>);</div>
 <div class="line">    }</div>
 <div class="line">}</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1146"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1148"></a>
 API</h1>
 <p><a class="el" href="group__DRV__UART__MODULE.html">APIs for UART</a> </p>
 </div></div><!-- contents -->
@@ -274,7 +274,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__UART__MODULE_html_ga10c9465c727e535023d9097b8b842bf9"><div class="ttname"><a href="group__DRV__UART__MODULE.html#ga10c9465c727e535023d9097b8b842bf9">UART_write</a></div><div class="ttdeci">int32_t UART_write(UART_Handle handle, UART_Transaction *trans)</div><div class="ttdoc">Function to perform UART write operation.</div></div>
 <div class="ttc" id="agroup__DRV__UART__MODULE_html_ga6b49b65f3db709c408dc4db23a68895d"><div class="ttname"><a href="group__DRV__UART__MODULE.html#ga6b49b65f3db709c408dc4db23a68895d">UART_close</a></div><div class="ttdeci">void UART_close(UART_Handle handle)</div><div class="ttdoc">Function to close a UART peripheral specified by the UART handle.</div></div>
 <div class="ttc" id="auart_8h_html"><div class="ttname"><a href="uart_8h.html">uart.h</a></div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga7824b4e99fe103a171fbc355a1c01c67"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga7824b4e99fe103a171fbc355a1c01c67">DebugP_assertNoLog</a></div><div class="ttdeci">#define DebugP_assertNoLog(expression)</div><div class="ttdoc">Function to call for assert check, no logs are printed.</div><div class="ttdef"><b>Definition:</b> DebugP.h:189</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga7824b4e99fe103a171fbc355a1c01c67"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga7824b4e99fe103a171fbc355a1c01c67">DebugP_assertNoLog</a></div><div class="ttdeci">#define DebugP_assertNoLog(expression)</div><div class="ttdoc">Function to call for assert check, no logs are printed.</div><div class="ttdef"><b>Definition:</b> DebugP.h:199</div></div>
 <div class="ttc" id="agroup__DRV__UART__MODULE_html_ga9a2cb7a6a7cd3136a2299f155ebd0a36"><div class="ttname"><a href="group__DRV__UART__MODULE.html#ga9a2cb7a6a7cd3136a2299f155ebd0a36">UART_Handle</a></div><div class="ttdeci">struct UART_Config_s * UART_Handle</div><div class="ttdef"><b>Definition:</b> uart/v0/uart.h:71</div></div>
 <div class="ttc" id="astructUART__Params_html"><div class="ttname"><a href="structUART__Params.html">UART_Params</a></div><div class="ttdoc">UART Parameters.</div><div class="ttdef"><b>Definition:</b> uart/v0/uart.h:120</div></div>
 <div class="ttc" id="astructUART__Params_html_afadb98d0a0ef6e17240bab79306e7828"><div class="ttname"><a href="structUART__Params.html#afadb98d0a0ef6e17240bab79306e7828">UART_Params::baudRate</a></div><div class="ttdeci">uint32_t baudRate</div><div class="ttdef"><b>Definition:</b> uart/v0/uart.h:121</div></div>
@@ -284,7 +284,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__UART__MODULE_html_gab540e9ef2a649eeff29085cfa653d097"><div class="ttname"><a href="group__DRV__UART__MODULE.html#gab540e9ef2a649eeff29085cfa653d097">UART_open</a></div><div class="ttdeci">UART_Handle UART_open(uint32_t index, const UART_Params *prms)</div><div class="ttdoc">This function opens a given UART peripheral.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SEMAPHORE_html_ga23075425da4d8a65a53209b5fdd3fafe"><div class="ttname"><a href="group__KERNEL__DPL__SEMAPHORE.html#ga23075425da4d8a65a53209b5fdd3fafe">SemaphoreP_post</a></div><div class="ttdeci">void SemaphoreP_post(SemaphoreP_Object *obj)</div><div class="ttdoc">Post a semaphore object or unlock a mutex.</div></div>
 <div class="ttc" id="agroup__DRV__UART__MODULE_html_gab0f66688faa39bad28c36465ac88c538"><div class="ttname"><a href="group__DRV__UART__MODULE.html#gab0f66688faa39bad28c36465ac88c538">UART_read</a></div><div class="ttdeci">int32_t UART_read(UART_Handle handle, UART_Transaction *trans)</div><div class="ttdoc">Function to perform UART read operation.</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="astructUART__Transaction_html_a87807cf6f96d87b1cb4107609baeaae9"><div class="ttname"><a href="structUART__Transaction.html#a87807cf6f96d87b1cb4107609baeaae9">UART_Transaction::args</a></div><div class="ttdeci">uint32_t * args</div><div class="ttdef"><b>Definition:</b> uart_lld.h:469</div></div>
 <div class="ttc" id="astructUART__Transaction_html_a6c4f6bad66a3b2e1ff61e26c7e958686"><div class="ttname"><a href="structUART__Transaction.html#a6c4f6bad66a3b2e1ff61e26c7e958686">UART_Transaction::buf</a></div><div class="ttdeci">void * buf</div><div class="ttdef"><b>Definition:</b> uart_lld.h:458</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SEMAPHORE_html_ga8733f9edac3a2d559b97dc0d115c3ba8"><div class="ttname"><a href="group__KERNEL__DPL__SEMAPHORE.html#ga8733f9edac3a2d559b97dc0d115c3ba8">SemaphoreP_pend</a></div><div class="ttdeci">int32_t SemaphoreP_pend(SemaphoreP_Object *obj, uint32_t timeToWaitInTicks)</div><div class="ttdoc">Pend on a semaphore object or lock a mutex.</div></div>

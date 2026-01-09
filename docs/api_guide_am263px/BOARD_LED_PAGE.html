@@ -92,23 +92,23 @@ $(document).ready(function(){initNavTree('BOARD_LED_PAGE.html',''); initResizabl
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1229">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1230">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1231">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1232">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1233">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1234">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1231">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1232">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1233">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1234">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1235">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1236">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_board_led"></a></p>
 <p>The LED driver provides API to control I2C/GPIO based LED present in the board. The driver supports multiple LED control for the LEDs connected to the same I2C controller using a single API which can be used to set LED ON/OFF for multiple LED at the same time.</p>
-<h1><a class="anchor" id="autotoc_md1229"></a>
+<h1><a class="anchor" id="autotoc_md1231"></a>
 Features Supported</h1>
 <ul>
 <li>API to turn ON/OFF LED</li>
 <li>Set LED mask using single API to set the LED state of multiple LEDs connected to same controller at one go</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1230"></a>
+<h1><a class="anchor" id="autotoc_md1232"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -118,22 +118,22 @@ SysConfig Features</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1231"></a>
+<h1><a class="anchor" id="autotoc_md1233"></a>
 Features NOT Supported</h1>
 <ul>
 <li>Set mask API is not supported for GPIO based LED as typically only one LED is connected to a single instance of GPIO pin</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1232"></a>
+<h1><a class="anchor" id="autotoc_md1234"></a>
 Important Usage Guidelines</h1>
 <p>None</p>
-<h1><a class="anchor" id="autotoc_md1233"></a>
+<h1><a class="anchor" id="autotoc_md1235"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="led_8h.html">board/led.h</a>&gt;</span></div>
 </div><!-- fragment --><p> LED ON API </p><div class="fragment"><div class="line">    status = <a class="code" href="group__BOARD__LED__MODULE.html#ga7c1c43e232657b067beecaeb961084b3">LED_on</a>(ledHandle, 0U);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> == status);</div>
 </div><!-- fragment --><p> LED OFF API </p><div class="fragment"><div class="line">    status = <a class="code" href="group__BOARD__LED__MODULE.html#ga6366c208b93cf41c8396913530d14bdf">LED_off</a>(ledHandle, 0U);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> == status);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1234"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1236"></a>
 API</h1>
 <p><a class="el" href="group__BOARD__LED__MODULE.html">APIs for I2C/GPIO based LED driver</a> </p>
 </div></div><!-- contents -->
@@ -143,7 +143,7 @@ API</h1>
 <div class="ttc" id="agroup__BOARD__LED__MODULE_html_ga6366c208b93cf41c8396913530d14bdf"><div class="ttname"><a href="group__BOARD__LED__MODULE.html#ga6366c208b93cf41c8396913530d14bdf">LED_off</a></div><div class="ttdeci">int32_t LED_off(LED_Handle handle, uint32_t index)</div><div class="ttdoc">API to power off the LED.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SYSTEM_html_ga47e638d7c694e6d42e57b96b071b8a6f"><div class="ttname"><a href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a></div><div class="ttdeci">#define SystemP_SUCCESS</div><div class="ttdoc">Return status when the API execution was successful.</div><div class="ttdef"><b>Definition:</b> SystemP.h:56</div></div>
 <div class="ttc" id="aled_8h_html"><div class="ttname"><a href="led_8h.html">led.h</a></div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

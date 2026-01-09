@@ -92,28 +92,28 @@ $(document).ready(function(){initNavTree('EXAMPLES_BASIC_SMART_PLACEMENT.html','
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3741">Introduction</a></li>
-<li class="level1"><a href="#EXAMPLES_BASIC_SMART_PLACEMENT_COMBOS">Supported Combinations</a><ul><ul><li class="level3"><a href="#autotoc_md3742">Building benchmark application</a></li>
+<ul><li class="level1"><a href="#autotoc_md3743">Introduction</a></li>
+<li class="level1"><a href="#EXAMPLES_BASIC_SMART_PLACEMENT_COMBOS">Supported Combinations</a><ul><ul><li class="level3"><a href="#autotoc_md3744">Building benchmark application</a></li>
 </ul>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3743">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3744">Sample Output</a></li>
-<li class="level1"><a href="#autotoc_md3745">Description</a><ul><li class="level2"><a href="#autotoc_md3746">Process of smart placement</a><ul><li class="level3"><a href="#autotoc_md3747">Critical Function Identification</a></li>
-<li class="level3"><a href="#autotoc_md3748">Priority Assignment</a></li>
-<li class="level3"><a href="#autotoc_md3749">Annotating functions</a></li>
-<li class="level3"><a href="#autotoc_md3750">Linker change</a></li>
+<li class="level1"><a href="#autotoc_md3745">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3746">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3747">Description</a><ul><li class="level2"><a href="#autotoc_md3748">Process of smart placement</a><ul><li class="level3"><a href="#autotoc_md3749">Critical Function Identification</a></li>
+<li class="level3"><a href="#autotoc_md3750">Priority Assignment</a></li>
+<li class="level3"><a href="#autotoc_md3751">Annotating functions</a></li>
+<li class="level3"><a href="#autotoc_md3752">Linker change</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3751">How Smart Placement improves code performance?</a></li>
-<li class="level2"><a href="#autotoc_md3752">How Cache Miss ratio is also improved?</a></li>
+<li class="level2"><a href="#autotoc_md3753">How Smart Placement improves code performance?</a></li>
+<li class="level2"><a href="#autotoc_md3754">How Cache Miss ratio is also improved?</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3753">Conclusion</a></li>
+<li class="level1"><a href="#autotoc_md3755">Conclusion</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_example_basic_smart_placement"></a></p>
-<h1><a class="anchor" id="autotoc_md3741"></a>
+<h1><a class="anchor" id="autotoc_md3743"></a>
 Introduction</h1>
 <p>This example provides a basic overview of applying smart placement and compares run time of functions with smart placement and without smart placement.</p>
 <p>The Aim of this example is to:</p><ol type="1">
@@ -136,17 +136,17 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/kernel/nortos/basic_smart_placement   </td></tr>
 </table>
-<h3><a class="anchor" id="autotoc_md3742"></a>
+<h3><a class="anchor" id="autotoc_md3744"></a>
 Building benchmark application</h3>
 <p>To build this application, compiler ti-cgt-armllvm &gt;= 3.2.0 LTS or later is required. Application can be compiled using make command.</p>
-<h1><a class="anchor" id="autotoc_md3743"></a>
+<h1><a class="anchor" id="autotoc_md3745"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3744"></a>
+<h1><a class="anchor" id="autotoc_md3746"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">Profile Point: Without Smart Placement</div>
@@ -160,17 +160,17 @@ Sample Output</h1>
 <div class="line">No. Of CPU instructions executed Count: 3663</div>
 <div class="line">ICache Miss Count: 1</div>
 <div class="line">ICache Access Count: 3905</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3745"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3747"></a>
 Description</h1>
 <p>When the program runs, it first calls <code>basic_smart_placement_main</code> function which internally calls <code>function_f1</code> and <code>annotated_function_f1</code>.</p>
 <p>PMU has been used for profiling execution of <code>function_f1</code> and <code>annotated_function_f1</code>.</p>
-<h2><a class="anchor" id="autotoc_md3746"></a>
+<h2><a class="anchor" id="autotoc_md3748"></a>
 Process of smart placement</h2>
 <p>Following steps can be followed to apply smart placement:</p>
-<h3><a class="anchor" id="autotoc_md3747"></a>
+<h3><a class="anchor" id="autotoc_md3749"></a>
 Critical Function Identification</h3>
 <p>Here, critical functions are manually found using inspection. Because this is manual process, criticality of a function is determined purely based on the knowledge of software/firmware/usecase.</p>
-<h3><a class="anchor" id="autotoc_md3748"></a>
+<h3><a class="anchor" id="autotoc_md3750"></a>
 Priority Assignment</h3>
 <p>Following is critical function's priority table.</p>
 <table class="markdownTable">
@@ -187,7 +187,7 @@ Priority Assignment</h3>
 </table>
 <p>Here note that from the manual inspection it has been identified that <code>annotated_function_f1</code> is more critical than rest of the functions therefore, it has given more a <code>priority number</code> which is smaller than other function's <code>priority number</code>. Because rest of the critical functions are all relatively not as of same priority so they are clubbed together by given them same <code>priority number</code>.</p>
 <p>What <code>priority number</code> to assign to which critical function is also a manual process which involves a good understanding of firmware.</p>
-<h3><a class="anchor" id="autotoc_md3749"></a>
+<h3><a class="anchor" id="autotoc_md3751"></a>
 Annotating functions</h3>
 <p>Once the above table has been formed, each function is annotated as shown:</p>
 <div class="fragment"><div class="line">void __attribute__((local(1))) annotated_function_f1(void);</div>
@@ -200,7 +200,7 @@ Annotating functions</h3>
 </div><!-- fragment --></li>
 <li>by specifying local, all these functions are indicated to be placed in local memory.</li>
 </ol>
-<h3><a class="anchor" id="autotoc_md3750"></a>
+<h3><a class="anchor" id="autotoc_md3752"></a>
 Linker change</h3>
 <p>Here it has to be made sure that following 3 lines are added/present in the SECTIONS of linker.cmd:</p>
 <div class="fragment"><div class="line">.TI.local   : {} &gt;&gt; R5F_TCMA | R5F_TCMB | MSRAM</div>
@@ -209,14 +209,14 @@ Linker change</h3>
 </div><!-- fragment --><p>The above lines basically channeling all the functions that are annotated to be in <code>local</code> memory into TCM memory and if total size of the functions that are marked <code>local</code> is more than the size of R5F_TCMA then all the functions that could be placed in R5F_TCMA will be placed in R5F_TCMA and rest of functions will be moved in R5F_TCMB and even if it still fills R5F_TCMB then remaining function will be moved to MSRAM.</p>
 <p>Similar treatment is for all the functions that are marked <code>onchip</code>, however, they should never be placed in any TCM otherwise it will be logically wrong.</p>
 <p>Also all functions which are marked <code>offchip</code>, should be placed in external FLASH.</p>
-<h2><a class="anchor" id="autotoc_md3751"></a>
+<h2><a class="anchor" id="autotoc_md3753"></a>
 How Smart Placement improves code performance?</h2>
 <p>From the linker, onchip marked functions are routed to TCMA/B and TCM are fastest memories. Therefore, by annotating the critical functions directly from the source, code is placed in faster memory and hence runtime performance has been improved.</p>
 <p>This can be seen from the above sample output. For same number of instructions executed, CPU cycles taken to execute functions without smart placement is 3 times more than with smart placement.</p>
-<h2><a class="anchor" id="autotoc_md3752"></a>
+<h2><a class="anchor" id="autotoc_md3754"></a>
 How Cache Miss ratio is also improved?</h2>
 <p>Again, TCMs are never cached. Therefore, for the critical functions which are not cached well, placing them in TCM will help in improving cache rate and ultimately CPI of function.</p>
-<h1><a class="anchor" id="autotoc_md3753"></a>
+<h1><a class="anchor" id="autotoc_md3755"></a>
 Conclusion</h1>
 <p>This example shows how to manually apply smart placement and shows how it improves code performance with ease-of-use because of it allows placement of function at source level. </p>
 </div></div><!-- contents -->

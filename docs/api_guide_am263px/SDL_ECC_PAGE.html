@@ -92,26 +92,26 @@ $(document).ready(function(){initNavTree('SDL_ECC_PAGE.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1596">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1597">Error Injection for Various RAM ID types</a></li>
-<li class="level1"><a href="#autotoc_md1598">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1599">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1600">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1601">Example Usage of R5F ATCM0</a></li>
-<li class="level1"><a href="#autotoc_md1602">Example Usage of R5F BTCM</a></li>
-<li class="level1"><a href="#autotoc_md1603">Example Usage of MSS L2</a></li>
-<li class="level1"><a href="#autotoc_md1604">Example Usage of MSS TPTC</a></li>
-<li class="level1"><a href="#autotoc_md1605">Example Usage of MCAN</a></li>
-<li class="level1"><a href="#autotoc_md1606">Example Usage of ICSSM</a></li>
-<li class="level1"><a href="#autotoc_md1607">Example Usage of TCM Parity</a></li>
-<li class="level1"><a href="#autotoc_md1608">Example Usage of DMA Parity</a></li>
-<li class="level1"><a href="#autotoc_md1609">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1598">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1599">Error Injection for Various RAM ID types</a></li>
+<li class="level1"><a href="#autotoc_md1600">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1601">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1602">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1603">Example Usage of R5F ATCM0</a></li>
+<li class="level1"><a href="#autotoc_md1604">Example Usage of R5F BTCM</a></li>
+<li class="level1"><a href="#autotoc_md1605">Example Usage of MSS L2</a></li>
+<li class="level1"><a href="#autotoc_md1606">Example Usage of MSS TPTC</a></li>
+<li class="level1"><a href="#autotoc_md1607">Example Usage of MCAN</a></li>
+<li class="level1"><a href="#autotoc_md1608">Example Usage of ICSSM</a></li>
+<li class="level1"><a href="#autotoc_md1609">Example Usage of TCM Parity</a></li>
+<li class="level1"><a href="#autotoc_md1610">Example Usage of DMA Parity</a></li>
+<li class="level1"><a href="#autotoc_md1611">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_ecc"></a></p>
 <p>To increase functional and system reliability, the memories in many device modules and subsystems are protected by Error Correcting Code (ECC), which performs Single Error Correction (SEC) and Double Error Detection (DED). Detected errors are reported via ESM. Single bit errors are corrected, and double bit errors are detected. The ECC Aggregator is connected to these memory and interconnect components which have the ECC. The ECC aggregator provides access to control and monitor the ECC protected memories in a module or subsystem.</p>
 <p>SDL provides support for ECC aggregator configuration. Each ECC aggregator instance can be independently configured through the same SDL API by passing a different instance. The safety manual also defines test-for-diagnostics for the various IPs with ECC/parity support. The SDL also provides the support for executing ECC aggregator self-tests, using the error injection feature of the ECC aggregator. The ECC aggregators should be configured at startup, after running BIST.</p>
-<h1><a class="anchor" id="autotoc_md1596"></a>
+<h1><a class="anchor" id="autotoc_md1598"></a>
 Features Supported</h1>
 <p>The SDL provides support for the ECC through:</p>
 <ul>
@@ -124,26 +124,26 @@ Features Supported</h1>
 </li>
 </ul>
 <pre class="fragment">There are over 13 ECC aggregators on the device each supporting multiple memories and interconnects.
-</pre><h1><a class="anchor" id="autotoc_md1597"></a>
+</pre><h1><a class="anchor" id="autotoc_md1599"></a>
 Error Injection for Various RAM ID types</h1>
 <pre class="fragment">There are two types of ECC aggregator RAM IDs supported on the device (wrapper and interconnect). The wrapper types are used for memories where local computations are performed for particular processing cores in the device, and the interconnect types are utilized for interconnect bus signals between cores or to/from peripherals.
 </pre><p> For wrapper RAM ID types, after injecting an error, the memory associated with that RAM ID needs to be accessed in order to trigger the error interrupt event. It is the application's responsibility to trigger the error event through memory access after injecting the error.</p>
-<h1><a class="anchor" id="autotoc_md1598"></a>
+<h1><a class="anchor" id="autotoc_md1600"></a>
 SysConfig Features</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1599"></a>
+<h1><a class="anchor" id="autotoc_md1601"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1600"></a>
+<h1><a class="anchor" id="autotoc_md1602"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1601"></a>
+<h1><a class="anchor" id="autotoc_md1603"></a>
 Example Usage of R5F ATCM0</h1>
 <p>The following shows an example of SDL R5F ECC API usage by the application for Error Injection Tests and Exception handling.</p>
 <p>Include the below file to access the APIs</p>
@@ -351,7 +351,7 @@ Example Usage of R5F ATCM0</h1>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> retVal;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1602"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1604"></a>
 Example Usage of R5F BTCM</h1>
 <p>The following shows an example of SDL R5F ECC API usage by the application for Error Injection Tests and Exception handling.</p>
 <p>Include the below file to access the APIs</p>
@@ -588,7 +588,7 @@ Example Usage of R5F BTCM</h1>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> retVal;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1603"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1605"></a>
 Example Usage of MSS L2</h1>
 <p>The following shows an example of SDL MSS L2 API usage by the application for Error Injection Tests and Exception handling.</p>
 <p>Include the below file to access the APIs</p>
@@ -762,7 +762,7 @@ Example Usage of MSS L2</h1>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> retVal;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1604"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1606"></a>
 Example Usage of MSS TPTC</h1>
 <p>The following shows an example of SDL MSS TPTC API usage by the application for Error Injection Tests and Exception handling.</p>
 <p>Include the below file to access the APIs</p>
@@ -1031,7 +1031,7 @@ Example Usage of MSS TPTC</h1>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a>(<span class="stringliteral">&quot;\r\nSome tests have failed!!\r\n&quot;</span>);</div>
 <div class="line">}</div>
 <div class="line">EDMA_Deinit();</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1605"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1607"></a>
 Example Usage of MCAN</h1>
 <p>Include the below file to access the APIs</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;ecc_main.h&quot;</span></div>
@@ -1194,7 +1194,7 @@ Example Usage of MCAN</h1>
 <div class="line">  rd_data = <a class="code" href="sdlr_8h.html#a153e7ea87f9009ed9ca9cb719e0fba9f">SDL_REG32_RD</a>(addr+i*16);</div>
 <div class="line">  <a class="code" href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a>(<span class="stringliteral">&quot;\r\nRead data =  0x%p\r\n&quot;</span>,rd_data);</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1606"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1608"></a>
 Example Usage of ICSSM</h1>
 <p>Include the below file to access the APIs</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;ecc_main.h&quot;</span></div>
@@ -1374,7 +1374,7 @@ Example Usage of ICSSM</h1>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> retVal;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1607"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1609"></a>
 Example Usage of TCM Parity</h1>
 <p>Include the below file to access the APIs</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;parity_main.h&quot;</span></div>
@@ -1446,7 +1446,7 @@ Example Usage of TCM Parity</h1>
 <div class="line">        <a class="code" href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a>(<span class="stringliteral">&quot;\r\nB0TCM0 Parity : Failed\r\n&quot;</span>);</div>
 <div class="line">    }</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1608"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1610"></a>
 Example Usage of DMA Parity</h1>
 <p>Include the below file to access the APIs</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;parity_main.h&quot;</span></div>
@@ -1507,7 +1507,7 @@ Example Usage of DMA Parity</h1>
 <div class="line">        result = SDL_EFAIL;</div>
 <div class="line">    }</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1609"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1611"></a>
 API</h1>
 <p><a class="el" href="group__SDL__ECC__AGGR__API.html">APIs for SDL ECC (ECC_AGGR)</a> </p>
 </div></div><!-- contents -->
@@ -1547,7 +1547,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__EDMA__MODULE_html_ga6aa14ac72951cd0a116f750073b294d2"><div class="ttname"><a href="group__DRV__EDMA__MODULE.html#ga6aa14ac72951cd0a116f750073b294d2">EDMA_getBaseAddr</a></div><div class="ttdeci">uint32_t EDMA_getBaseAddr(EDMA_Handle handle)</div><div class="ttdoc">Function to get the edma base address.</div></div>
 <div class="ttc" id="aedma_8h_html"><div class="ttname"><a href="edma_8h.html">edma.h</a></div></div>
 <div class="ttc" id="agroup__DRV__EDMA__MODULE_html_ga2db76ebb47e033367d29bb7c8097cca9"><div class="ttname"><a href="group__DRV__EDMA__MODULE.html#ga2db76ebb47e033367d29bb7c8097cca9">EDMA_OPT_TCC_MASK</a></div><div class="ttdeci">#define EDMA_OPT_TCC_MASK</div><div class="ttdef"><b>Definition:</b> edma/v0/edma.h:294</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:225</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:235</div></div>
 <div class="ttc" id="agroup__DRV__EDMA__MODULE_html_gad325d436c6b1b649127f715c59114bc8"><div class="ttname"><a href="group__DRV__EDMA__MODULE.html#gad325d436c6b1b649127f715c59114bc8">EDMA_allocDmaChannel</a></div><div class="ttdeci">int32_t EDMA_allocDmaChannel(EDMA_Handle handle, uint32_t *dmaCh)</div><div class="ttdoc">Function to allocate the Dma Channel.</div></div>
 <div class="ttc" id="astructSDL__ECC__InjectErrorConfig__t_html"><div class="ttname"><a href="structSDL__ECC__InjectErrorConfig__t.html">SDL_ECC_InjectErrorConfig_t</a></div><div class="ttdef"><b>Definition:</b> sdl_ecc.h:381</div></div>
 <div class="ttc" id="asdl__ecc__utils_8h_html_aaad90528122568c9f2abcec3b0769ea7"><div class="ttname"><a href="sdl__ecc__utils_8h.html#aaad90528122568c9f2abcec3b0769ea7">SDL_ECC_UTILS_enableECCATCM</a></div><div class="ttdeci">void SDL_ECC_UTILS_enableECCATCM(void)</div></div>

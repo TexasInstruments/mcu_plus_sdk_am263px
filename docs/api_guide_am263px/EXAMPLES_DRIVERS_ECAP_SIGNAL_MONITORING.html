@@ -92,24 +92,24 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ECAP_SIGNAL_MONITORIN
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2370">Introduction</a><ul><li class="level2"><a href="#autotoc_md2371">ECAP Signal Monitoring</a></li>
-<li class="level2"><a href="#autotoc_md2372">Example Description</a></li>
+<ul><li class="level1"><a href="#autotoc_md2372">Introduction</a><ul><li class="level2"><a href="#autotoc_md2373">ECAP Signal Monitoring</a></li>
+<li class="level2"><a href="#autotoc_md2374">Example Description</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2373">External Connections</a><ul><li class="level2"><a href="#autotoc_md2374">AM263PX-CC or AM261X-SOM</a></li>
-<li class="level2"><a href="#autotoc_md2375">AM263PX-LP or AM261X-LP</a></li>
+<li class="level1"><a href="#autotoc_md2375">External Connections</a><ul><li class="level2"><a href="#autotoc_md2376">AM263PX-CC or AM261X-SOM</a></li>
+<li class="level2"><a href="#autotoc_md2377">AM263PX-LP or AM261X-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ECAP_SIGNAL_MONITORING_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2376">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2377">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2378">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2378">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2379">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2380">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_ecap_signal_monitoring"></a></p>
-<h1><a class="anchor" id="autotoc_md2370"></a>
+<h1><a class="anchor" id="autotoc_md2372"></a>
 Introduction</h1>
-<h2><a class="anchor" id="autotoc_md2371"></a>
+<h2><a class="anchor" id="autotoc_md2373"></a>
 ECAP Signal Monitoring</h2>
 <p>Each ECAP instance is equipped with 2 signal monitoring units. These signal monitoring units can be configured in one of the 4 following modes.</p><ol type="1">
 <li>High Pulse Monitoring Mode -&gt; Rising to Falling</li>
@@ -138,15 +138,15 @@ ECAP Signal Monitoring Summary</div></div>
 <li>On the Edge monitoring modes, the error1 is set for min or max window violation. the error2 is set if there is never an edge between two sync events. For every sync pulse, the edge monitoring restarts.</li>
 </ol>
 </dd></dl>
-<h2><a class="anchor" id="autotoc_md2372"></a>
+<h2><a class="anchor" id="autotoc_md2374"></a>
 Example Description</h2>
 <p>This example configures 3 ECAP moudule, with a total of 6 signal monitoring modules, each with one configuration that are supported. All ECAPs are enabled with Interrupts for the Errors from the Signal Monitoring Modules. An EPWM is configured to provide the input, routed to ECAP via GPI and Inputxbar. This input is varied in a way to cross min and max values from the siganl monitoring modules and the application checks for the interrupt flags are well as the debug range values.</p>
-<h1><a class="anchor" id="autotoc_md2373"></a>
+<h1><a class="anchor" id="autotoc_md2375"></a>
 External Connections</h1>
-<h2><a class="anchor" id="autotoc_md2374"></a>
+<h2><a class="anchor" id="autotoc_md2376"></a>
 AM263PX-CC or AM261X-SOM</h2>
 <p>No external connection is required.</p>
-<h2><a class="anchor" id="autotoc_md2375"></a>
+<h2><a class="anchor" id="autotoc_md2377"></a>
 AM263PX-LP or AM261X-LP</h2>
 <p>No external connection is required.</p>
 <h1><a class="anchor" id="EXAMPLES_DRIVERS_ECAP_SIGNAL_MONITORING_COMBOS"></a>
@@ -163,7 +163,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/ecap/ecap_capture_pwm/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2376"></a>
+<h1><a class="anchor" id="autotoc_md2378"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -171,10 +171,10 @@ Steps to Run the Example</h1>
 <li>Establish connections as mentioned in External Connections section</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2377"></a>
+<h1><a class="anchor" id="autotoc_md2379"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ECAP_PAGE.html">ECAP</a></p>
-<h1><a class="anchor" id="autotoc_md2378"></a>
+<h1><a class="anchor" id="autotoc_md2380"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ECAP Signal Monitoring Test Test Started ...</div>

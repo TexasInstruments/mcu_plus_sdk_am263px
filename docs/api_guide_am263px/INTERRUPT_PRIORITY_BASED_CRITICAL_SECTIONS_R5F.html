@@ -92,42 +92,42 @@ $(document).ready(function(){initNavTree('INTERRUPT_PRIORITY_BASED_CRITICAL_SECT
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md512">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md513">FreeRTOS Use Case</a><ul><li class="level2"><a href="#autotoc_md514">Enabling Interrupt Priority Mask Based Critical Sections</a></li>
-<li class="level2"><a href="#autotoc_md515">Entering and Exiting Critical Sections (FreeRTOS)</a><ul><li class="level3"><a href="#autotoc_md516">Nested Critical Sections (FreeRTOS)</a></li>
-<li class="level3"><a href="#autotoc_md517">Pseudocode Example (Task Context)</a></li>
-<li class="level3"><a href="#autotoc_md518">Pseudocode Example (ISR Context, with nested interrupts enabled)</a></li>
+<ul><li class="level1"><a href="#autotoc_md514">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md515">FreeRTOS Use Case</a><ul><li class="level2"><a href="#autotoc_md516">Enabling Interrupt Priority Mask Based Critical Sections</a></li>
+<li class="level2"><a href="#autotoc_md517">Entering and Exiting Critical Sections (FreeRTOS)</a><ul><li class="level3"><a href="#autotoc_md518">Nested Critical Sections (FreeRTOS)</a></li>
+<li class="level3"><a href="#autotoc_md519">Pseudocode Example (Task Context)</a></li>
+<li class="level3"><a href="#autotoc_md520">Pseudocode Example (ISR Context, with nested interrupts enabled)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md519">NoRTOS Use Case</a><ul><li class="level2"><a href="#autotoc_md520">Entering and Exiting Critical Sections (NoRTOS)</a><ul><li class="level3"><a href="#autotoc_md521">Pseudocode Example</a></li>
+<li class="level1"><a href="#autotoc_md521">NoRTOS Use Case</a><ul><li class="level2"><a href="#autotoc_md522">Entering and Exiting Critical Sections (NoRTOS)</a><ul><li class="level3"><a href="#autotoc_md523">Pseudocode Example</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md522">Example Case Study: Deep Nested Critical Sections</a><ul><li class="level2"><a href="#autotoc_md523">Scenario Overview</a><ul><li class="level3"><a href="#autotoc_md524">Additional Notes on Interrupt Triggering and Execution Order</a></li>
+<li class="level1"><a href="#autotoc_md524">Example Case Study: Deep Nested Critical Sections</a><ul><li class="level2"><a href="#autotoc_md525">Scenario Overview</a><ul><li class="level3"><a href="#autotoc_md526">Additional Notes on Interrupt Triggering and Execution Order</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md525">Step-by-Step Execution</a></li>
-<li class="level2"><a href="#autotoc_md526">Execution Flow</a></li>
-<li class="level2"><a href="#autotoc_md527">Pseudocode</a></li>
-<li class="level2"><a href="#autotoc_md528">Key Observations</a></li>
+<li class="level2"><a href="#autotoc_md527">Step-by-Step Execution</a></li>
+<li class="level2"><a href="#autotoc_md528">Execution Flow</a></li>
+<li class="level2"><a href="#autotoc_md529">Pseudocode</a></li>
+<li class="level2"><a href="#autotoc_md530">Key Observations</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_interrupt_priority_critical_section"></a></p>
-<h1><a class="anchor" id="autotoc_md512"></a>
+<h1><a class="anchor" id="autotoc_md514"></a>
 Introduction</h1>
 <p>Entering a critical section disables all interrupts globally by default, ensuring atomicity but increasing interrupt latency. Interrupt Priority Mask based Critical Sections provide a more flexible approach: only interrupts below a certain priority are masked (disabled), while higher-priority interrupts remain enabled even within a critical section. This allows critical real-time events to be serviced promptly, improving system responsiveness.</p>
 <dl class="section attention"><dt>Attention</dt><dd>The interrupt priority based critical sections specified below is specific to ARM R5F architecture.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd><br  />
  Interrupt priority mask based critical section have some overheads in taking critical section. <br  />
  So unless this feature is really needed keep this disabled.</dd></dl>
-<h1><a class="anchor" id="autotoc_md513"></a>
+<h1><a class="anchor" id="autotoc_md515"></a>
 FreeRTOS Use Case</h1>
-<h2><a class="anchor" id="autotoc_md514"></a>
+<h2><a class="anchor" id="autotoc_md516"></a>
 Enabling Interrupt Priority Mask Based Critical Sections</h2>
 <p>To enable this feature in FreeRTOS, update your <code>FreeRTOSConfig.h</code>:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#define configUSE_INTERRUPT_PRIORITY_BASED_CRITICAL_SECTIONS    (1)</span></div>
@@ -147,13 +147,13 @@ Enabling Interrupt Priority Mask Based Critical Sections</h2>
 </li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>After updating the config, rebuild all FreeRTOS libraries and your application.</dd></dl>
-<h2><a class="anchor" id="autotoc_md515"></a>
+<h2><a class="anchor" id="autotoc_md517"></a>
 Entering and Exiting Critical Sections (FreeRTOS)</h2>
 <ul>
 <li>Use <code>taskENTER_CRITICAL()</code> and <code>taskEXIT_CRITICAL()</code> in task context.</li>
 <li>Use <code>taskENTER_CRITICAL_FROM_ISR()</code> and <code>taskEXIT_CRITICAL_FROM_ISR()</code> in ISR context.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md516"></a>
+<h3><a class="anchor" id="autotoc_md518"></a>
 Nested Critical Sections (FreeRTOS)</h3>
 <ul>
 <li><b>Tasks:</b><ul>
@@ -171,7 +171,7 @@ Nested Critical Sections (FreeRTOS)</h3>
 <dl class="section warning"><dt>Warning</dt><dd>Critical ISRs (Higher-priority - those with a numerically lower priority value than <code>configMAX_SYSCALL_INTERRUPT_PRIORITY</code>) must not enter a critical section. Doing so can cause undefined behavior. <br  />
  If you really need to mask all interrupts, use <code><a class="el" href="group__KERNEL__DPL__HWI.html#gaac47ffab62f7d25d736b58e40be17425" title="Disable all interrupts.">HwiP_disable()</a></code>. <br  />
  Also these ISRs shouldn't use any FreeRTOS (<code>FromISR</code>) APIs, since this would attempt to enter a critical section. FreeRTOS checks this with <code>portASSERT_IF_INTERRUPT_PRIORITY_INVALID()</code>.</dd></dl>
-<h3><a class="anchor" id="autotoc_md517"></a>
+<h3><a class="anchor" id="autotoc_md519"></a>
 Pseudocode Example (Task Context)</h3>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> task_func(<span class="keywordtype">void</span>) </div>
 <div class="line">{</div>
@@ -181,7 +181,7 @@ Pseudocode Example (Task Context)</h3>
 <div class="line">    <span class="comment">// ... code ...</span></div>
 <div class="line">    taskEXIT_CRITICAL();</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md518"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md520"></a>
 Pseudocode Example (ISR Context, with nested interrupts enabled)</h3>
 <div class="fragment"><div class="line"><span class="comment">// ISR function of an interrupt with priority value say &#39;n&#39; </span></div>
 <div class="line"><span class="comment">// such that `configMAX_SYSCALL_INTERRUPT_PRIORITY &lt;= n &lt; HwiP_MAX_PRIORITY`</span></div>
@@ -196,7 +196,7 @@ Pseudocode Example (ISR Context, with nested interrupts enabled)</h3>
 <div class="line">    <span class="comment">// ... code ...</span></div>
 <div class="line">    taskEXIT_CRITICAL_FROM_ISR(key);</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md519"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md521"></a>
 NoRTOS Use Case</h1>
 <p>For NoRTOS, enable this feature by defining <code>HWIP_USE_INTERRUPT_PRIORITY_BASED_CRITICAL_SECTIONS</code> in <code><a class="el" href="HwiP_8h.html">HwiP.h</a></code>:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#define HWIP_USE_INTERRUPT_PRIORITY_BASED_CRITICAL_SECTIONS</span></div>
@@ -208,7 +208,7 @@ NoRTOS Use Case</h1>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md520"></a>
+<h2><a class="anchor" id="autotoc_md522"></a>
 Entering and Exiting Critical Sections (NoRTOS)</h2>
 <ul>
 <li>Use <code>HWIP_ENTER_CRITICAL_SECTION()</code> to enter and <code>HWIP_EXIT_CRITICAL_SECTION(key)</code> to exit.</li>
@@ -220,7 +220,7 @@ Entering and Exiting Critical Sections (NoRTOS)</h2>
 <dl class="section note"><dt>Note</dt><dd>These APIs can be used from both main context and ISRs.</dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>However, do not use them from a Critical ISR (Higher-priority - those with a numerically lower priority value than <code>HWIP_CRITICAL_SECTION_INTERRUPT_PRIORITY_THRESHOLD</code>), as this may cause unexpected behavior. <br  />
  If you really need to mask all interrupts, use <code><a class="el" href="group__KERNEL__DPL__HWI.html#gaac47ffab62f7d25d736b58e40be17425" title="Disable all interrupts.">HwiP_disable()</a></code>.</dd></dl>
-<h3><a class="anchor" id="autotoc_md521"></a>
+<h3><a class="anchor" id="autotoc_md523"></a>
 Pseudocode Example</h3>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> main_or_isr(<span class="keywordtype">void</span>) {</div>
 <div class="line">    uintptr_t key = HWIP_ENTER_CRITICAL_SECTION();</div>
@@ -229,16 +229,16 @@ Pseudocode Example</h3>
 <div class="line">    <span class="comment">// ... code ...</span></div>
 <div class="line">    HWIP_EXIT_CRITICAL_SECTION(key);</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md522"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md524"></a>
 Example Case Study: Deep Nested Critical Sections</h1>
 <p>This section presents a detailed, step-by-step walkthrough of an example scenario that demonstrates the behavior of interrupt priority mask based critical sections. It illustrates how critical sections — entered from both task and ISR contexts — interact with interrupts at different priority levels. By following this example scenario, you will gain a deeper understanding of how interrupt priority masking operates in practice, particularly in complex situations involving deeply nested interrupts.</p>
-<h2><a class="anchor" id="autotoc_md523"></a>
+<h2><a class="anchor" id="autotoc_md525"></a>
 Scenario Overview</h2>
 <ul>
 <li>The system is configured with multiple interrupt priority levels (16 levels), and the critical section priority mask is set to 4.</li>
 <li>Critical ISRs (priority &lt; mask threshold) are allowed to run even inside the critical section, while Normal ISRs (priority ≥ mask threshold) are masked and deferred until the critical section is exited.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md524"></a>
+<h3><a class="anchor" id="autotoc_md526"></a>
 Additional Notes on Interrupt Triggering and Execution Order</h3>
 <ul>
 <li>A task enters a critical section and triggers two interrupts:<ul>
@@ -254,7 +254,7 @@ Additional Notes on Interrupt Triggering and Execution Order</h3>
 <li>After exiting the ISR critical section, the system will immediately switch to the higher priority normal ISR, preempting the current ISR</li>
 </ul>
 <p>These behaviors ensure that critical ISRs are always serviced promptly, while normal ISRs are deferred and executed in priority order once the critical section is exited.</p>
-<h2><a class="anchor" id="autotoc_md525"></a>
+<h2><a class="anchor" id="autotoc_md527"></a>
 Step-by-Step Execution</h2>
 <ol type="1">
 <li><b>Task Context:</b><ul>
@@ -310,13 +310,13 @@ Step-by-Step Execution</h2>
 </ul>
 </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md526"></a>
+<h2><a class="anchor" id="autotoc_md528"></a>
 Execution Flow</h2>
 <div class="image">
 <object type="image/svg+xml" data="deep_nested_critical_sections.svg" style="pointer-events: none;"></object>
 <div class="caption">
 Execution Flow for Deep Nested Critical Section Example Scenario</div></div>
-<h2><a class="anchor" id="autotoc_md527"></a>
+<h2><a class="anchor" id="autotoc_md529"></a>
 Pseudocode</h2>
 <div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> critical_isr(<span class="keywordtype">void</span> *arg)</div>
 <div class="line">{</div>
@@ -366,7 +366,7 @@ Pseudocode</h2>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Unregister interrupts</span></div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md528"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md530"></a>
 Key Observations</h2>
 <ul>
 <li><b>Critical ISRs</b> (priority above the mask threshold) can preempt both the task and other ISRs, and are executed immediately, even within a critical section.</li>

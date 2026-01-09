@@ -92,20 +92,20 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_EPWM_HR_UPDOWN.html',
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2417">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2418">External Connections</a><ul><li class="level2"><a href="#autotoc_md2419">AM263X-CC or AM263PX-CC or AM261X-SOM</a></li>
-<li class="level2"><a href="#autotoc_md2420">AM263X-LP or AM263PX-LP</a></li>
-<li class="level2"><a href="#autotoc_md2421">AM261X-LP</a></li>
+<ul><li class="level1"><a href="#autotoc_md2419">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2420">External Connections</a><ul><li class="level2"><a href="#autotoc_md2421">AM263X-CC or AM263PX-CC or AM261X-SOM</a></li>
+<li class="level2"><a href="#autotoc_md2422">AM263X-LP or AM263PX-LP</a></li>
+<li class="level2"><a href="#autotoc_md2423">AM261X-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_EPWM_HR_UPDOWN_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2422">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2423">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2424">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2424">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2425">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2426">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_epwm_hr_updown"></a></p>
-<h1><a class="anchor" id="autotoc_md2417"></a>
+<h1><a class="anchor" id="autotoc_md2419"></a>
 Introduction</h1>
 <p>EPWM HR UpDown</p>
 <p>This example modifies the MEP control registers to show edge displacement for high-resolution period with ePWM in Up-Down count mode due to the HRPWM control extension of the respective ePWM module.</p>
@@ -113,12 +113,12 @@ Introduction</h1>
 <img src="am263_epwm_hr_updown.PNG" alt=""/>
 <div class="caption">
 Block Diagram for EPWM HR UpDown example</div></div>
-<h1><a class="anchor" id="autotoc_md2418"></a>
+<h1><a class="anchor" id="autotoc_md2420"></a>
 External Connections</h1>
 <ul>
 <li>Pin can be connected to high resolution oscilloscope (1 GHz) to observe the edge displacement.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2419"></a>
+<h2><a class="anchor" id="autotoc_md2421"></a>
 AM263X-CC or AM263PX-CC or AM261X-SOM</h2>
 <p>When using with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Capture waveform on HSEC Pin 49, 51 for epwm0</li>
@@ -127,7 +127,7 @@ AM263X-CC or AM263PX-CC or AM261X-SOM</h2>
 <li>Capture waveform on HSEC Pin 54, 56 for epwm3</li>
 <li>Capture waveform on HSEC Pin 57, 59 for epwm4</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2420"></a>
+<h2><a class="anchor" id="autotoc_md2422"></a>
 AM263X-LP or AM263PX-LP</h2>
 <p>When using AM263X-LP or AM263PX-LP</p><ul>
 <li>Capture waveform on J2.11 / J6.59 for epwm0</li>
@@ -136,7 +136,7 @@ AM263X-LP or AM263PX-LP</h2>
 <li>Capture waveform on J8.77 / J8.78 for epwm3</li>
 <li>Capture waveform on J8.75 / J8.76 for epwm9</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2421"></a>
+<h2><a class="anchor" id="autotoc_md2423"></a>
 AM261X-LP</h2>
 <p>When using AM261X-LP</p><ul>
 <li>Capture waveform on J7.69 / J7.63 for epwm1</li>
@@ -159,7 +159,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/epwm/epwm_hr_updown   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2422"></a>
+<h1><a class="anchor" id="autotoc_md2424"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -167,10 +167,10 @@ Steps to Run the Example</h1>
 <li>Establish connections as mentioned in External Connections section</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2423"></a>
+<h1><a class="anchor" id="autotoc_md2425"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_EPWM_PAGE.html">EPWM</a></p>
-<h1><a class="anchor" id="autotoc_md2424"></a>
+<h1><a class="anchor" id="autotoc_md2426"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">EPWM High Resolution Up Down Test Started ...</div>

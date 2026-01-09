@@ -92,23 +92,23 @@ $(document).ready(function(){initNavTree('DRIVERS_FSS_PAGE.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md925">Usage of FSS driver</a></li>
-<li class="level1"><a href="#autotoc_md926">Example Usage</a><ul><li class="level2"><a href="#autotoc_md927">Configuring FSS for Bootseg peripheral</a></li>
-<li class="level2"><a href="#autotoc_md928">Configuring FSS for ECCM</a></li>
+<ul><li class="level1"><a href="#autotoc_md927">Usage of FSS driver</a></li>
+<li class="level1"><a href="#autotoc_md928">Example Usage</a><ul><li class="level2"><a href="#autotoc_md929">Configuring FSS for Bootseg peripheral</a></li>
+<li class="level2"><a href="#autotoc_md930">Configuring FSS for ECCM</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md929">API</a></li>
+<li class="level1"><a href="#autotoc_md931">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_fss"></a></p>
-<h1><a class="anchor" id="autotoc_md925"></a>
+<h1><a class="anchor" id="autotoc_md927"></a>
 Usage of FSS driver</h1>
 <p>FSS driver is used to configure bootseg IP and ECCM IP.</p>
 <p>Bootseg IP is used to perform A/B swap in Firmware-Update-Over-The-Air (FOTA) application. Please refer to Technical Resource Manual of the deivce for more details of this IP.</p>
 <p>ECCM is on-the-fly-Ecc module which perform ECC check on the fly which makes XIP from external flash secure. Please refer to Technical Resource Manual of the deivce for more details of this IP.</p>
-<h1><a class="anchor" id="autotoc_md926"></a>
+<h1><a class="anchor" id="autotoc_md928"></a>
 Example Usage</h1>
-<h2><a class="anchor" id="autotoc_md927"></a>
+<h2><a class="anchor" id="autotoc_md929"></a>
 Configuring FSS for Bootseg peripheral</h2>
 <p>Includes the following files</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;drivers/fss.h&gt;</span></div>
@@ -134,7 +134,7 @@ Configuring FSS for Bootseg peripheral</h2>
 <div class="line">    {</div>
 <div class="line">        <a class="code" href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a>(<span class="stringliteral">&quot;Booting from 1st half of flash (or A region).&quot;</span>);</div>
 <div class="line">    }</div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md928"></a>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md930"></a>
 Configuring FSS for ECCM</h2>
 <div class="fragment"><div class="line">    <a class="code" href="structFSS__ECCRegionConfig.html">FSS_ECCRegionConfig</a> region;</div>
 <div class="line">    <span class="comment">/*</span></div>
@@ -149,7 +149,7 @@ Configuring FSS for ECCM</h2>
 <div class="line">    <a class="code" href="group__DRV__FSS__MODULE.html#ga3e86c47b8477423956175589115b0014">FSS_configECCMRegion</a>(&amp;region);</div>
 <div class="line">    <a class="code" href="group__DRV__FSS__MODULE.html#ga936f9e2a951d31629a0af31aeb2f2fdc">FSS_enableECC</a>();</div>
 </div><!-- fragment --><p> make sure to disable ECC before configuring it.</p>
-<h1><a class="anchor" id="autotoc_md929"></a>
+<h1><a class="anchor" id="autotoc_md931"></a>
 API</h1>
 <p><a class="el" href="group__DRV__FSS__MODULE.html">APIs for FSS</a> </p>
 </div></div><!-- contents -->
@@ -162,13 +162,13 @@ API</h1>
 <div class="ttc" id="astructFSS__Config_html_ae3369aeadf5b10470d4f2eb8e0c84165"><div class="ttname"><a href="structFSS__Config.html#ae3369aeadf5b10470d4f2eb8e0c84165">FSS_Config::ipBaseAddress</a></div><div class="ttdeci">uint32_t ipBaseAddress</div><div class="ttdef"><b>Definition:</b> fss.h:93</div></div>
 <div class="ttc" id="astructFSS__ECCRegionConfig_html"><div class="ttname"><a href="structFSS__ECCRegionConfig.html">FSS_ECCRegionConfig</a></div><div class="ttdef"><b>Definition:</b> fss.h:84</div></div>
 <div class="ttc" id="astructFSS__ECCRegionConfig_html_a7fa611c5706630d84da12dbd70738868"><div class="ttname"><a href="structFSS__ECCRegionConfig.html#a7fa611c5706630d84da12dbd70738868">FSS_ECCRegionConfig::startAddress</a></div><div class="ttdeci">uint32_t startAddress</div><div class="ttdef"><b>Definition:</b> fss.h:86</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:225</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:235</div></div>
 <div class="ttc" id="agroup__DRV__FSS__MODULE_html_ga6d89175d542ccb51518c77221543a014"><div class="ttname"><a href="group__DRV__FSS__MODULE.html#ga6d89175d542ccb51518c77221543a014">FSS_selectRegionB</a></div><div class="ttdeci">int32_t FSS_selectRegionB(FSS_Handle handle)</div><div class="ttdoc">Map region N of flash to initial position.</div></div>
 <div class="ttc" id="agroup__DRV__FSS__MODULE_html_gaa769d9cb2f81cf0d26c6995df8d44d2d"><div class="ttname"><a href="group__DRV__FSS__MODULE.html#gaa769d9cb2f81cf0d26c6995df8d44d2d">FSS_disableECC</a></div><div class="ttdeci">void FSS_disableECC(void)</div><div class="ttdoc">Disable ECC.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SYSTEM_html_ga47e638d7c694e6d42e57b96b071b8a6f"><div class="ttname"><a href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a></div><div class="ttdeci">#define SystemP_SUCCESS</div><div class="ttdoc">Return status when the API execution was successful.</div><div class="ttdef"><b>Definition:</b> SystemP.h:56</div></div>
 <div class="ttc" id="astructFSS__Config_html_a87882e19b071650d1a455588d643b914"><div class="ttname"><a href="structFSS__Config.html#a87882e19b071650d1a455588d643b914">FSS_Config::extFlashSize</a></div><div class="ttdeci">uint32_t extFlashSize</div><div class="ttdef"><b>Definition:</b> fss.h:94</div></div>
 <div class="ttc" id="agroup__DRV__FSS__MODULE_html_gaff9a02d813ef5e11bfe05cbd2a09273c"><div class="ttname"><a href="group__DRV__FSS__MODULE.html#gaff9a02d813ef5e11bfe05cbd2a09273c">FSS_getBootRegion</a></div><div class="ttdeci">uint32_t FSS_getBootRegion(FSS_Handle handle)</div><div class="ttdoc">Which boot region is been selected.</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="agroup__DRV__FSS__MODULE_html_ga936f9e2a951d31629a0af31aeb2f2fdc"><div class="ttname"><a href="group__DRV__FSS__MODULE.html#ga936f9e2a951d31629a0af31aeb2f2fdc">FSS_enableECC</a></div><div class="ttdeci">void FSS_enableECC(void)</div><div class="ttdoc">Enable ECC for Flash.</div></div>
 <div class="ttc" id="agroup__DRV__FSS__MODULE_html_gaf35dd2cb3ba1a9b8935cad7e5483b9f7"><div class="ttname"><a href="group__DRV__FSS__MODULE.html#gaf35dd2cb3ba1a9b8935cad7e5483b9f7">FSS_selectRegionA</a></div><div class="ttdeci">int32_t FSS_selectRegionA(FSS_Handle handle)</div><div class="ttdoc">Map region A of flash to initial position.</div></div>
 <!-- HTML footer for doxygen 1.8.11-->

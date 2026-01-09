@@ -92,37 +92,37 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ECAP_EDMA.html',''); 
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2360">Introduction</a><ul><li class="level2"><a href="#autotoc_md2361">Example Description:</a><ul><li class="level3"><a href="#autotoc_md2362">ECAP Configurations:</a></li>
+<ul><li class="level1"><a href="#autotoc_md2362">Introduction</a><ul><li class="level2"><a href="#autotoc_md2363">Example Description:</a><ul><li class="level3"><a href="#autotoc_md2364">ECAP Configurations:</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2363">Watch Variables :</a></li>
-<li class="level1"><a href="#autotoc_md2364">External Connections</a><ul><li class="level2"><a href="#autotoc_md2365">AM263X-CC or AM263Px-CC or AM261X-SOM</a></li>
-<li class="level2"><a href="#autotoc_md2366">AM263X-LP or AM263Px-LP or AM261X-LP</a></li>
+<li class="level1"><a href="#autotoc_md2365">Watch Variables :</a></li>
+<li class="level1"><a href="#autotoc_md2366">External Connections</a><ul><li class="level2"><a href="#autotoc_md2367">AM263X-CC or AM263Px-CC or AM261X-SOM</a></li>
+<li class="level2"><a href="#autotoc_md2368">AM263X-LP or AM263Px-LP or AM261X-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ECAP_EDMA_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2367">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2368">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2369">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2369">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2370">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2371">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_ecap_edma"></a></p>
-<h1><a class="anchor" id="autotoc_md2360"></a>
+<h1><a class="anchor" id="autotoc_md2362"></a>
 Introduction</h1>
 <p>This example demostrates the ECAP triggerring EDMA for transfer of the ECAP timestamp registers to the TCM location without R5 intervention. ECAP can generate EDMA triggers for Data transfer in both CAPTURE mode and APWM mode</p><ul>
 <li>In ECAP Capture Mode, the CAPEVTx [x= 1 to 4] can be used and</li>
 <li>In ECAP APWM Mode, The counter match to Compare or Period can be used.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2361"></a>
+<h2><a class="anchor" id="autotoc_md2363"></a>
 Example Description:</h2>
 <p>An ECAP (APWM_ECAP) is configured in APWM mode to generate trigger at its counter matching period event to transfer timestamp data from "CAPTURE_ECAP2". 2 ECAPs (CAPTURE_ECAP1, CAPTURE_ECAP2) are configured to capture the APMW_ECAP PWM wave. CAPTURE_ECAP1 also triggers EDMA on one of its Capture events.</p>
 <p> <style>div.image img[src="am263_ecap_edma_example_block_diagram.png"]{width:50%}</style> </p><div class="image">
 <img src="am263_ecap_edma_example_block_diagram.png" alt=""/>
 <div class="caption">
 Example Block diagram</div></div>
-<h3><a class="anchor" id="autotoc_md2362"></a>
+<h3><a class="anchor" id="autotoc_md2364"></a>
 ECAP Configurations:</h3>
 <ol type="1">
 <li>APWM_ECAP:</li>
@@ -155,18 +155,18 @@ ECAP Configurations:</h3>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2363"></a>
+<h1><a class="anchor" id="autotoc_md2365"></a>
 Watch Variables :</h1>
 <ol type="1">
 <li>capTrigTimeStamps [ ]: array with CAPTURE_ECAP1 Captured timestamps, triggered by Capture mode.</li>
 <li>pwmTrigTimeStamps [ ]: array with CAPTURE_ECAP2 Captured timestamps, triggered by APWM mode.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md2364"></a>
+<h1><a class="anchor" id="autotoc_md2366"></a>
 External Connections</h1>
-<h2><a class="anchor" id="autotoc_md2365"></a>
+<h2><a class="anchor" id="autotoc_md2367"></a>
 AM263X-CC or AM263Px-CC or AM261X-SOM</h2>
 <p>No external connection is required.</p>
-<h2><a class="anchor" id="autotoc_md2366"></a>
+<h2><a class="anchor" id="autotoc_md2368"></a>
 AM263X-LP or AM263Px-LP or AM261X-LP</h2>
 <p>No external connection is required.</p>
 <h1><a class="anchor" id="EXAMPLES_DRIVERS_ECAP_EDMA_COMBOS"></a>
@@ -183,7 +183,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/ecap/ecap_edma/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2367"></a>
+<h1><a class="anchor" id="autotoc_md2369"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -191,10 +191,10 @@ Steps to Run the Example</h1>
 <li>Establish connections as mentioned in External Connections section</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2368"></a>
+<h1><a class="anchor" id="autotoc_md2370"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ECAP_PAGE.html">ECAP</a></p>
-<h1><a class="anchor" id="autotoc_md2369"></a>
+<h1><a class="anchor" id="autotoc_md2371"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ECAP triggered EDMA transfers Test Started ...</div>

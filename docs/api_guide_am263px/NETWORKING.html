@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('NETWORKING.html',''); initResizable();
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md346">Overview</a><ul><li class="level2"><a href="#autotoc_md347">Salient Features</a></li>
-<li class="level2"><a href="#autotoc_md348">Software Components Overview</a></li>
-<li class="level2"><a href="#autotoc_md349">Examples and Demos</a></li>
-<li class="level2"><a href="#autotoc_md350">Performance</a></li>
-<li class="level2"><a href="#autotoc_md351">Ethernet Driver</a></li>
-<li class="level2"><a href="#autotoc_md352">ICSS-EMAC Driver</a></li>
-<li class="level2"><a href="#autotoc_md353">ICSS TimeSync</a></li>
-<li class="level2"><a href="#autotoc_md354">TCP/IP Stack</a></li>
-<li class="level2"><a href="#autotoc_md355">Time Sensitive Networking (TSN) Stack</a></li>
-<li class="level2"><a href="#autotoc_md356">Enet CLI</a></li>
+<ul><li class="level1"><a href="#autotoc_md348">Overview</a><ul><li class="level2"><a href="#autotoc_md349">Salient Features</a></li>
+<li class="level2"><a href="#autotoc_md350">Software Components Overview</a></li>
+<li class="level2"><a href="#autotoc_md351">Examples and Demos</a></li>
+<li class="level2"><a href="#autotoc_md352">Performance</a></li>
+<li class="level2"><a href="#autotoc_md353">Ethernet Driver</a></li>
+<li class="level2"><a href="#autotoc_md354">ICSS-EMAC Driver</a></li>
+<li class="level2"><a href="#autotoc_md355">ICSS TimeSync</a></li>
+<li class="level2"><a href="#autotoc_md356">TCP/IP Stack</a></li>
+<li class="level2"><a href="#autotoc_md357">Time Sensitive Networking (TSN) Stack</a></li>
+<li class="level2"><a href="#autotoc_md358">Enet CLI</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_networking"></a></p>
-<h1><a class="anchor" id="autotoc_md346"></a>
+<h1><a class="anchor" id="autotoc_md348"></a>
 Overview</h1>
 <p>Advances in automated factories and smart vehicles require advanced networking capabilities, real-time processing and more advanced motor-control topologies. TI Networking solution packaged with the SDK provide a rapidly growing need for Sitara MCU to out space traditional MCUs and deliver processor-like capabilities. Networking is a broad terms used to cover Ethernet (IEEE 802.3), EtherCAT Profinet and other ethernet-like communication protocols used in industrial, automotive and other general use cases.</p>
 <p> <style>div.image img[src="networking_apps.png"]{width:50%}</style> </p><div class="image">
@@ -125,51 +125,51 @@ Figure: Industrial And Automotive Networking Applications</div></div>
 <li><a href="https://www.ti.com/product/AM2732">AM2732</a></li>
 <li><a href="https://www.ti.com/product/AM6411">AM6411</a>, <a href="https://www.ti.com/product/AM6412">AM6412</a>, <a href="https://www.ti.com/product/AM6421">AM6421</a>, <a href="https://www.ti.com/product/AM6422">AM6422</a>, <a href="https://www.ti.com/product/AM6441">AM6441</a>, <a href="https://www.ti.com/product/AM6442">AM6442</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md347"></a>
+<h2><a class="anchor" id="autotoc_md349"></a>
 Salient Features</h2>
 <p> <style>div.image img[src="netowrking_features.png"]{width:50%}</style> </p><div class="image">
 <img src="netowrking_features.png" alt=""/>
 <div class="caption">
 Figure: Networking Software Features</div></div>
-<h2><a class="anchor" id="autotoc_md348"></a>
+<h2><a class="anchor" id="autotoc_md350"></a>
 Software Components Overview</h2>
 <p>Below is the software components overview highlighting mainly the components used in the Networking software development.</p>
 <p> <style>div.image img[src="networking_layer_with_mbedtls.png"]{width:60%}</style> </p><div class="image">
 <img src="cpdma_networking_block_diagram.png" alt=""/>
 <div class="caption">
 Figure: Networking Software Components Overview</div></div>
-<h2><a class="anchor" id="autotoc_md349"></a>
+<h2><a class="anchor" id="autotoc_md351"></a>
 Examples and Demos</h2>
 <p>You can find out-of-box examples and demos <b><a class="el" href="EXAMPLES_NETWORKING.html">here</a></b>.</p>
-<h2><a class="anchor" id="autotoc_md350"></a>
+<h2><a class="anchor" id="autotoc_md352"></a>
 Performance</h2>
 <p>You can find ethernet performance data <b><a class="el" href="enetlld_performance.html">here</a></b>.</p>
-<h2><a class="anchor" id="autotoc_md351"></a>
+<h2><a class="anchor" id="autotoc_md353"></a>
 Ethernet Driver</h2>
 <p>Ethernet Low-Level Driver (<a class="el" href="ENET_LLD.html">Enet-LLD</a>) is a driver that aims at providing the interface for standard Ethernet MAC and switch using CPSW Peripheral.</p><ul>
 <li><a class="el" href="ENET_LLD.html">Enet-LLD</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md352"></a>
+<h2><a class="anchor" id="autotoc_md354"></a>
 ICSS-EMAC Driver</h2>
 <p>ICSS-EMAC (Industrial Communications Subsystem Ethernet Media Access Controller) driver provide APIs to transmit and receive packets with a firmware based MAC and Ethernet Switch that has been implemented on PRUICSS cores.</p><ul>
 <li><a class="el" href="ICSS_EMAC.html">ICSS-EMAC</a> describes the driver features and debugging guide.</li>
 <li><a class="el" href="DUAL_EMAC_AND_SWITCH.html">Dual EMAC and Switch</a> describes the firmware features supported.</li>
 <li><a class="el" href="EXAMPLES_ICSS_EMAC_LWIP.html">ICSS-EMAC Lwip Example</a> is ICSS-EMAC application using the LwIP networking stack.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md353"></a>
+<h2><a class="anchor" id="autotoc_md355"></a>
 ICSS TimeSync</h2>
 <p><a class="el" href="ICSS_TIMESYNC.html">ICSS TimeSync</a> is a separate driver based on ICSS-EMAC, which provides APIs for PTP/1588 v2 receiver implementation on PRU-ICSS.</p>
-<h2><a class="anchor" id="autotoc_md354"></a>
+<h2><a class="anchor" id="autotoc_md356"></a>
 TCP/IP Stack</h2>
 <p>-<a class="el" href="NETWORKING_LWIP.html">Lightweight IP (LwIP)</a></p>
-<h2><a class="anchor" id="autotoc_md355"></a>
+<h2><a class="anchor" id="autotoc_md357"></a>
 Time Sensitive Networking (TSN) Stack</h2>
 <ul>
 <li><a class="el" href="ENET_CPSW_TSN_GPTP.html">Ethernet TSN and gPTP Stack - API and Integration Guide</a></li>
 <li><a class="el" href="EXAMPLES_ENET_CPSW_TSN_GPTP.html">Ethernet TSN gPTP Examples</a></li>
 <li><a class="el" href="ENET_CPSW_LLDP.html">Ethernet LLDP Stack - API and Integration Guide</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md356"></a>
+<h2><a class="anchor" id="autotoc_md358"></a>
 Enet CLI</h2>
 <ul>
 <li><a class="el" href="EXAMPLES_ENET_CLI_APP.html">Enet CLI Example</a> </li>

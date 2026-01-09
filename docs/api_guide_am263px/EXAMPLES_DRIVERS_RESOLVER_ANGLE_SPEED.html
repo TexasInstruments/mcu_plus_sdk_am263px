@@ -92,53 +92,53 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_RESOLVER_ANGLE_SPEED.
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2793">Introduction</a><ul><li class="level2"><a href="#autotoc_md2794">Resolver to Digital Converter in AM26x Family</a></li>
+<ul><li class="level1"><a href="#autotoc_md2795">Introduction</a><ul><li class="level2"><a href="#autotoc_md2796">Resolver to Digital Converter in AM26x Family</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2795">Example Description</a><ul><ul><li class="level3"><a href="#autotoc_md2796">Input Configurations</a></li>
-<li class="level3"><a href="#autotoc_md2797">Excitation Configurations</a></li>
-<li class="level3"><a href="#autotoc_md2798">Tuning Parameters</a></li>
-<li class="level3"><a href="#autotoc_md2799">Resolver Core Configurations</a></li>
-<li class="level3"><a href="#autotoc_md2800">Interrupt Configurations and ISR details</a></li>
+<li class="level1"><a href="#autotoc_md2797">Example Description</a><ul><ul><li class="level3"><a href="#autotoc_md2798">Input Configurations</a></li>
+<li class="level3"><a href="#autotoc_md2799">Excitation Configurations</a></li>
+<li class="level3"><a href="#autotoc_md2800">Tuning Parameters</a></li>
+<li class="level3"><a href="#autotoc_md2801">Resolver Core Configurations</a></li>
+<li class="level3"><a href="#autotoc_md2802">Interrupt Configurations and ISR details</a></li>
 </ul>
-<li class="level2"><a href="#autotoc_md2801">SW Track2 details</a></li>
-</ul>
-</li>
-<li class="level1"><a href="#autotoc_md2802">External Connections</a><ul><li class="level2"><a href="#autotoc_md2803">AM263PX-CC</a></li>
+<li class="level2"><a href="#autotoc_md2803">SW Track2 details</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2804">Watch variables:</a></li>
+<li class="level1"><a href="#autotoc_md2804">External Connections</a><ul><li class="level2"><a href="#autotoc_md2805">AM263PX-CC</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#autotoc_md2806">Watch variables:</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_RESOLVER_ANGLE_SPEED_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2805">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2806">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2807">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2807">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2808">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2809">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_resolver_angle_speed"></a></p>
-<h1><a class="anchor" id="autotoc_md2793"></a>
+<h1><a class="anchor" id="autotoc_md2795"></a>
 Introduction</h1>
 <p>A Resolver to Digital Converter (RDC) resolves the angle and velocity of a motor from the physical resolver connected to it. this is done so by sending out an excitation sine wave of higher frequency, 20KHz in case of this example, and modulating it across the sine and cosine windings of the resolver, based on the motor shaft position.</p>
 <p> <style>div.image img[src="am263p_resovler_modulator_diagram.png"]{width:100%}</style> </p><div class="image">
 <img src="am263p_resovler_modulator_diagram.png" alt=""/>
 <div class="caption">
 External Resolver Modulation based on the shaft position</div></div>
-<h2><a class="anchor" id="autotoc_md2794"></a>
+<h2><a class="anchor" id="autotoc_md2796"></a>
 Resolver to Digital Converter in AM26x Family</h2>
 <p>RDC in AM26x family, reads the Sine and Cosine inputs via its ADC_R0, ADC_R1 in various configurable parameters. these are then fed to the Hardware loops for various signal error corrections viz., DC offset correction / Band Pass filter, Phase Correction, Gain Correction. the DC offset, Phase-Gain corrections can be configured for Auto mode as the IP supports estimation for the same.</p>
 <p> <style>div.image img[src="am263p_resolver_ip_block_diagram.png"]{width:100%}</style> </p><div class="image">
 <img src="am263p_resolver_ip_block_diagram.png" alt=""/>
 <div class="caption">
 Resolver to Digital Converter Block Diagram</div></div>
-<h1><a class="anchor" id="autotoc_md2795"></a>
+<h1><a class="anchor" id="autotoc_md2797"></a>
 Example Description</h1>
 <p>This example configures the RDC in Single Ended mode, and to take inputs parallely on sine and cosine modulated waveforms from one motor. The Results of the resolver are read in an ISR triggered at every 5 uS, or at 20KHz frequency, equal to that of the Excitation Sine Signal.</p>
-<h3><a class="anchor" id="autotoc_md2796"></a>
+<h3><a class="anchor" id="autotoc_md2798"></a>
 Input Configurations</h3>
 <p>The <em>Sequencer mode 0</em> is selected. The sine signal is sample by ADC_R0 on channel AIN0, while the cosine is sampled by ADC_R1 on Channel AIN0. Both signals are sampled simultaneously by the ADC_Rs. ADC burst count is disabled, with ADC SoC width is set for 0, i.e., minimum offered from the IP, of 100nS-120nS. </p><dl class="section note"><dt>Note</dt><dd>The sequencer mode selection automatically takes care of the ADC_R configurations, which the user/ application need not configure any further.</dd></dl>
-<h3><a class="anchor" id="autotoc_md2797"></a>
+<h3><a class="anchor" id="autotoc_md2799"></a>
 Excitation Configurations</h3>
 <p>The <em>Excitation frequency</em> is set at <em>20KHz</em>, with sync in enabled. The <em>PWM XBar 2</em>, which is connected to resolver to digital converter in case of AM263Px, is configured for the EPWM0 syncout signal. The ADC SoC start Delay is set at 20, i.e., 20*1250nS +30nS or, 25.030 uS. </p>
-<h3><a class="anchor" id="autotoc_md2798"></a>
+<h3><a class="anchor" id="autotoc_md2800"></a>
 Tuning Parameters</h3>
 <p>Manual Tuning parameters set as following.</p><ol type="1">
 <li>Phase offset correction value : 0</li>
@@ -146,7 +146,7 @@ Tuning Parameters</h3>
 <li>Cos Gain Correction Value : 25000</li>
 <li>Ideal Sample Override Value : 7</li>
 </ol>
-<h3><a class="anchor" id="autotoc_md2799"></a>
+<h3><a class="anchor" id="autotoc_md2801"></a>
 Resolver Core Configurations</h3>
 <ul>
 <li>DC offset Correction enabled, for calcoef1,2 being 8,9 and Manual correction offset correction values being 0.</li>
@@ -155,21 +155,21 @@ Resolver Core Configurations</h3>
 <li>track2 kvelfilt is set to 8. <dl class="section note"><dt>Note</dt><dd>In Sequencer Mode 0, the Resolver Core 0 takes in the values form the ADC_R0, ADC_R1 on the sin and cos samples and computes for the angle and the velocity. the Resovler Core 1 is not used in this scenario, and hence need not configure the parameters for the Resolver Core 1.</dd></dl>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md2800"></a>
+<h3><a class="anchor" id="autotoc_md2802"></a>
 Interrupt Configurations and ISR details</h3>
 <ul>
 <li>EPWM1 is set to generate interrupt from its Event Trigger Submodule when the counter hits compare A value of 20 while incrementing. the interrupt is generated at every period, i.e., the interrupt generation frequency is 20KHz.</li>
 <li>EPMM1 INT is configured at INTxBar0, which further is used for ISR App_epwm1ISR for reading the HW results from RDC and computing SW track2 loop (optional for more accurate results).</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>No Interrupt from the RDC (Resolver to Digital Converter) is enabled. Although interrupts may be used for ESM, refer integration details from TRM, the example does not configure them.</dd></dl>
-<h2><a class="anchor" id="autotoc_md2801"></a>
+<h2><a class="anchor" id="autotoc_md2803"></a>
 SW Track2 details</h2>
 <ul>
 <li>The example showcases an additional method for computing the angle and velocity which may be optionally used. For quicker accesses, the loop needs to be placed at TCM and should be strictly timed to the excitation signal frequency.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2802"></a>
+<h1><a class="anchor" id="autotoc_md2804"></a>
 External Connections</h1>
-<h2><a class="anchor" id="autotoc_md2803"></a>
+<h2><a class="anchor" id="autotoc_md2805"></a>
 AM263PX-CC</h2>
 <p>Connect the Single ended inputs from the external resolver to the following.</p><ul>
 <li>Sine Modulated signal : ADC_R0_AIN0 or HSEC pin</li>
@@ -177,7 +177,7 @@ AM263PX-CC</h2>
 </ul>
 <p>This example on AM263Px ZCZ-S pacakge with HSEC connecter, has been validated using the resolver LTN-R58 and the Wolfspeed Traction Inverter reference design (<a href="https://www.ti.com/tool/TIDM-02014">https://www.ti.com/tool/TIDM-02014</a>)</p>
 <dl class="section note"><dt>Note</dt><dd>for the AM263Px CC E1 board, the resolver excitation, ADC_Rx_AINy pins are muxed and are controlled from the IO Expander on board. </dd></dl>
-<h1><a class="anchor" id="autotoc_md2804"></a>
+<h1><a class="anchor" id="autotoc_md2806"></a>
 Watch variables:</h1>
 <ul>
 <li>raw_atan_angle : Holds the results of Angle, in degrees, from Arc Tan loop of the RDC.</li>
@@ -200,7 +200,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/resolver/resolver_angle_speed/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2805"></a>
+<h1><a class="anchor" id="autotoc_md2807"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -210,10 +210,10 @@ Steps to Run the Example</h1>
 <li>Using the watch variables, view the ADC conversion results.</li>
 <li>View the ADC conversion results in UART console logs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2806"></a>
+<h1><a class="anchor" id="autotoc_md2808"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_RESOLVER_PAGE.html">RESOLVER</a></p>
-<h1><a class="anchor" id="autotoc_md2807"></a>
+<h1><a class="anchor" id="autotoc_md2809"></a>
 Sample Output</h1>
 <p>the following is a sample CCS Console output for the example run.,</p>
 <div class="fragment"><div class="line">[Cortex_R5_0] Detected CC version is E2. Calling TCA6424 Drivers for io expander configurations</div>

@@ -92,40 +92,40 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_CMPSS_CALIBRATION.htm
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2258">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2259">External Connections</a><ul><li class="level2"><a href="#autotoc_md2260">AM263PX-CC or AM263X-CC or AM261X-SOM</a></li>
-<li class="level2"><a href="#autotoc_md2261">AM263PX-LP or AM263X-LP</a></li>
-<li class="level2"><a href="#autotoc_md2262">AM261x-LP</a></li>
+<ul><li class="level1"><a href="#autotoc_md2260">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2261">External Connections</a><ul><li class="level2"><a href="#autotoc_md2262">AM263PX-CC or AM263X-CC or AM261X-SOM</a></li>
+<li class="level2"><a href="#autotoc_md2263">AM263PX-LP or AM263X-LP</a></li>
+<li class="level2"><a href="#autotoc_md2264">AM261x-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_CMPSS_CALIBRATION_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2263">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2264">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2265">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2265">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2266">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2267">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_cmpss_calibration"></a></p>
-<h1><a class="anchor" id="autotoc_md2258"></a>
+<h1><a class="anchor" id="autotoc_md2260"></a>
 Introduction</h1>
 <p>The CMPSS has two sources of offset errors: comparator offset error and compdac offset error. In the data sheet the comparator offset error is referred to as Input referred offset error and compdac offset error is referred to as Static offset error. If both inputs of the comparator are driven from a pin, only the comparator offset error applies. However if the inverting input of the comparator is driven from the compdac, then only the compdac offset error applies. This is because the compdac offset error includes comparator offset error. Due to the offset errors, the CMPSS must be calibrated to make sure trips happen at the expected levels.</p>
 <p>This example shows the calibration of CMPSS when the negative input of the comparator is driven from the compdac. CMPSSA1 COMPH comparator is enabled for calibration. CMPIN1P is used to give positive input coming from the DAC and Compdac is configured to provide the negative input. DAC is used to provide different voltage values to CMPIN1P. Compdac is configured to provide signal of 4095 and will decrement till CMPSS latch is set for that specific voltage value at positive input.</p>
 <p>Output will be the measured voltages at which CMPSS latch is set when compared with different DAC value including the compdac offset error. Please refer the datasheet for the allowed compdac offset error.</p>
-<h1><a class="anchor" id="autotoc_md2259"></a>
+<h1><a class="anchor" id="autotoc_md2261"></a>
 External Connections</h1>
 <ul>
 <li>Connect DAC output to CMPIN1P</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2260"></a>
+<h2><a class="anchor" id="autotoc_md2262"></a>
 AM263PX-CC or AM263X-CC or AM261X-SOM</h2>
 <p>When using with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Connect HSEC Pin 9 to HSEC Pin 15</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2261"></a>
+<h2><a class="anchor" id="autotoc_md2263"></a>
 AM263PX-LP or AM263X-LP</h2>
 <p>When using AM263x-LP</p><ul>
 <li>Connect J1/J3 Pin 30 to J1/3 Pin 66</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2262"></a>
+<h2><a class="anchor" id="autotoc_md2264"></a>
 AM261x-LP</h2>
 <p>When using AM261x-LP</p><ul>
 <li>Connect J1/J3 Pin 30 to J1/3 Pin 63</li>
@@ -144,7 +144,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/cmpss/cmpss_calibration/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2263"></a>
+<h1><a class="anchor" id="autotoc_md2265"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -154,10 +154,10 @@ Steps to Run the Example</h1>
 <li>When a low input is provided, Trip signal output is low and EPWM gives a PWM waveform</li>
 <li>When a high input(higher than VDD/2) is provided, Trip signal output turns high and EPWM gets tripped</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2264"></a>
+<h1><a class="anchor" id="autotoc_md2266"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_CMPSS_PAGE.html">CMPSS</a></p>
-<h1><a class="anchor" id="autotoc_md2265"></a>
+<h1><a class="anchor" id="autotoc_md2267"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">\cond SOC_AM261X</div>

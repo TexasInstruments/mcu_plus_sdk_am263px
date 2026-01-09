@@ -92,31 +92,31 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_SDFM_ECAP_LOOP_BACK.h
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2875">Introduction</a><ul><li class="level2"><a href="#autotoc_md2876">Example Description</a></li>
-<li class="level2"><a href="#autotoc_md2877">Configurations</a></li>
+<ul><li class="level1"><a href="#autotoc_md2877">Introduction</a><ul><li class="level2"><a href="#autotoc_md2878">Example Description</a></li>
+<li class="level2"><a href="#autotoc_md2879">Configurations</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2878">External Connections</a><ul><li class="level2"><a href="#autotoc_md2879">AM263PX-CC (E2) with 180 pin HSEC Dock</a></li>
-<li class="level2"><a href="#autotoc_md2880">AM263PX-LP (E2)</a></li>
-<li class="level2"><a href="#autotoc_md2881">AM261X-SOM (E1) with 180 pin HSEC Dock</a></li>
-<li class="level2"><a href="#autotoc_md2882">AM261X-LP Rev A</a></li>
-<li class="level2"><a href="#autotoc_md2883">Watch  Variables</a></li>
+<li class="level1"><a href="#autotoc_md2880">External Connections</a><ul><li class="level2"><a href="#autotoc_md2881">AM263PX-CC (E2) with 180 pin HSEC Dock</a></li>
+<li class="level2"><a href="#autotoc_md2882">AM263PX-LP (E2)</a></li>
+<li class="level2"><a href="#autotoc_md2883">AM261X-SOM (E1) with 180 pin HSEC Dock</a></li>
+<li class="level2"><a href="#autotoc_md2884">AM261X-LP Rev A</a></li>
+<li class="level2"><a href="#autotoc_md2885">Watch  Variables</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_SDFM_ECAP_LOOP_BACK_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2884">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2885">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2886">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2886">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2887">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2888">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_sdfm_ecap_loop_back"></a></p>
-<h1><a class="anchor" id="autotoc_md2875"></a>
+<h1><a class="anchor" id="autotoc_md2877"></a>
 Introduction</h1>
 <p> <style>div.image img[src="am263p_sdfm_ecap_loop_back_block_diagram.png"]{width:75%}</style> </p><div class="image">
 <img src="am263p_sdfm_ecap_loop_back_block_diagram.png" alt=""/>
 <div class="caption">
 Example Block diagram</div></div>
-<h2><a class="anchor" id="autotoc_md2876"></a>
+<h2><a class="anchor" id="autotoc_md2878"></a>
 Example Description</h2>
 <p>ECAP in its APWM mode can be used a Clock for the SDFM. This example demonstrates the configurations and usage of such internal loopback. In AM263Px, the loopback configurations can be done to leverage the following pairs.</p>
 <table class="markdownTable">
@@ -140,7 +140,7 @@ Example Description</h2>
 <td class="markdownTableBodyNone">1  </td><td class="markdownTableBodyNone">3  </td><td class="markdownTableBodyNone">4(default), 12   </td></tr>
 </table>
 <p>In this example, SDFM filters 2,3 are configured for the clock input to have from filter 1 and filter 1 is configured to take the loopback clock. The Data interrupts from the SDFM filter 2,3 invoke the ISR, where the CPU reads the data form FIFO of Filter 2 and Data result of Filter 3. </p>
-<h2><a class="anchor" id="autotoc_md2877"></a>
+<h2><a class="anchor" id="autotoc_md2879"></a>
 Configurations</h2>
 <p>SDFM configuration is shown below:</p><ul>
 <li>SDFM used in this example - SDFM0</li>
@@ -158,13 +158,13 @@ Configurations</h2>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2878"></a>
+<h1><a class="anchor" id="autotoc_md2880"></a>
 External Connections</h1>
 <ul>
 <li>Connect Sigma-Delta data streams to SDFM0_D1, SDFM0_D2</li>
 <li>Output xbar out 8 or SDFM0_CLK0 can be used for providing clock to external sdfm modulator. </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2879"></a>
+<h2><a class="anchor" id="autotoc_md2881"></a>
 AM263PX-CC (E2) with 180 pin HSEC Dock</h2>
 <ul>
 <li>SDFM0_CLK0 can be probed at HSEC Pin 72 for Clock</li>
@@ -172,10 +172,10 @@ AM263PX-CC (E2) with 180 pin HSEC Dock</h2>
 <li>Provide Data Streams on SDFM0_D1 at HSEC 99 or, alternately, use EPWM0_A output for data stream input from HSEC 49</li>
 <li>Provide Data Streams on SDFM0_D2 at HSEC 103 or, alternately, use EPWM0_A output for data stream input from HSEC 49 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2880"></a>
+<h2><a class="anchor" id="autotoc_md2882"></a>
 AM263PX-LP (E2)</h2>
 <p>Not Supported </p>
-<h2><a class="anchor" id="autotoc_md2881"></a>
+<h2><a class="anchor" id="autotoc_md2883"></a>
 AM261X-SOM (E1) with 180 pin HSEC Dock</h2>
 <ul>
 <li>SDFM1_CLK0 can be probed at HSEC Pin 100 for Clock</li>
@@ -183,7 +183,7 @@ AM261X-SOM (E1) with 180 pin HSEC Dock</h2>
 <li>Provide Data Streams on SDFM1_D1 at HSEC 106 or, alternately, use EPWM0_A output for data stream input from HSEC 49</li>
 <li>Provide Data Streams on SDFM1_D2 at HSEC 153 or, alternately, use EPWM0_A output for data stream input from HSEC 49</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2882"></a>
+<h2><a class="anchor" id="autotoc_md2884"></a>
 AM261X-LP Rev A</h2>
 <ul>
 <li>SDFM1_CLK0 can be probed at J1/3 pin 6 (needs IO Expander to demux from ADC input) otherwise, probe the output clock at the outputxbar output (see below).</li>
@@ -191,7 +191,7 @@ AM261X-LP Rev A</h2>
 <li>Provide Data Streams on SDFM1_D1 at J6/8 59 or, alternately, use EPWM2_A output for data stream input from J2/4 40</li>
 <li>Provide Data Streams on SDFM1_D2 at J6/8 54 or, alternately, use EPWM2_A output for data stream input from J2/4 40</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2883"></a>
+<h2><a class="anchor" id="autotoc_md2885"></a>
 Watch  Variables</h2>
 <ul>
 <li>filter2Result - Output of filter 2</li>
@@ -211,7 +211,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/sdfm/sdfm_ecap_loop_back/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2884"></a>
+<h1><a class="anchor" id="autotoc_md2886"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -220,10 +220,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>View the UART console logs for results</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2885"></a>
+<h1><a class="anchor" id="autotoc_md2887"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_SDFM_PAGE.html">SDFM</a></p>
-<h1><a class="anchor" id="autotoc_md2886"></a>
+<h1><a class="anchor" id="autotoc_md2888"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">SDFM filter sync CPU read Test Started ...</div>

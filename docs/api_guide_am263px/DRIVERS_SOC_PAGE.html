@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('DRIVERS_SOC_PAGE.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1163">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1164">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1165">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1166">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1167">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1168">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1165">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1166">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1167">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1168">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1169">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1170">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_device_am263px_soc"></a></p>
 <p>The SOC driver provides API to configure SOC specific features like clocks.</p>
-<h1><a class="anchor" id="autotoc_md1163"></a>
+<h1><a class="anchor" id="autotoc_md1165"></a>
 Features Supported</h1>
 <ul>
 <li>API to enable/disable a module clock</li>
@@ -112,7 +112,7 @@ Features Supported</h1>
 <li>Address Translation APIs for all the R5F cores</li>
 <li>SOC Software Warm Reset APIs. Please refer "Reset" chapter in techical reference manual for more details.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1164"></a>
+<h1><a class="anchor" id="autotoc_md1166"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -128,15 +128,15 @@ Sample XBAR Configuration</div></div>
 <ul>
 <li>XBAR configuration also possible from the SysConfig module to which it is connected. For example, DMA Trigger XBAR can be configured from EDMA module.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1165"></a>
+<h1><a class="anchor" id="autotoc_md1167"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md1166"></a>
+<h1><a class="anchor" id="autotoc_md1168"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>Most of these APIs are already integrated with SysConfig tool and the generated code does the required call to enable a module, set the required clock and so on. User need to use these APIs in their application only for exceptional scenarios.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1167"></a>
+<h1><a class="anchor" id="autotoc_md1169"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;drivers/soc.h&gt;</span></div>
 </div><!-- fragment --><p> Get Core Name String </p><div class="fragment"><div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span> *coreName;</div>
@@ -147,7 +147,7 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">    cpuClockRate = <a class="code" href="group__DRV__SOC__MODULE.html#ga33bb19e70642cf4aa8bfab89b52b49d6">SOC_getSelfCpuClk</a>();</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a>(<span class="stringliteral">&quot;CPU Clock Frequency: %u\r\n&quot;</span>, cpuClockRate);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1168"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1170"></a>
 API</h1>
 <p><a class="el" href="group__DRV__SOC__MODULE.html">APIs for SOC Specific Functions</a></p>
 <p><a class="el" href="group__DRV__SOC__RCM__MODULE.html">APIs for SOC Reset and Clock Functions</a></p>
@@ -156,7 +156,7 @@ API</h1>
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <div class="ttc" id="acslr__soc__defines_8h_html_a822173b770be26a93c3bec07938fe6d8"><div class="ttname"><a href="cslr__soc__defines_8h.html#a822173b770be26a93c3bec07938fe6d8">CSL_CORE_ID_R5FSS0_0</a></div><div class="ttdeci">#define CSL_CORE_ID_R5FSS0_0</div><div class="ttdef"><b>Definition:</b> cslr_soc_defines.h:146</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:225</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:235</div></div>
 <div class="ttc" id="agroup__DRV__SOC__MODULE_html_ga33bb19e70642cf4aa8bfab89b52b49d6"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#ga33bb19e70642cf4aa8bfab89b52b49d6">SOC_getSelfCpuClk</a></div><div class="ttdeci">uint64_t SOC_getSelfCpuClk(void)</div><div class="ttdoc">Get the clock frequency in Hz of the CPU on which the driver is running.</div></div>
 <div class="ttc" id="agroup__DRV__SOC__MODULE_html_ga56fa202291d97fe899178305711fedf6"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#ga56fa202291d97fe899178305711fedf6">SOC_getCoreName</a></div><div class="ttdeci">const char * SOC_getCoreName(uint16_t coreId)</div><div class="ttdoc">Convert a core ID to a user readable name.</div></div>
 <!-- HTML footer for doxygen 1.8.11-->

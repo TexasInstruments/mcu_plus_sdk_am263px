@@ -92,20 +92,20 @@ $(document).ready(function(){initNavTree('KERNEL_DPL_DEBUG_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md803">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md804">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md805">Important Usage Guidelines</a><ul><li class="level2"><a href="#autotoc_md806">Shared memory logging</a></li>
-<li class="level2"><a href="#autotoc_md807">UART logging</a></li>
-<li class="level2"><a href="#autotoc_md808">Memory logging</a></li>
-<li class="level2"><a href="#autotoc_md809">Other guidelines</a></li>
+<ul><li class="level1"><a href="#autotoc_md805">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md806">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md807">Important Usage Guidelines</a><ul><li class="level2"><a href="#autotoc_md808">Shared memory logging</a></li>
+<li class="level2"><a href="#autotoc_md809">UART logging</a></li>
+<li class="level2"><a href="#autotoc_md810">Memory logging</a></li>
+<li class="level2"><a href="#autotoc_md811">Other guidelines</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md810">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md811">API</a></li>
+<li class="level1"><a href="#autotoc_md812">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md813">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_dpl_DebugP"></a></p>
-<h1><a class="anchor" id="autotoc_md803"></a>
+<h1><a class="anchor" id="autotoc_md805"></a>
 Features Supported</h1>
 <ul>
 <li>APIs to log strings to the selected console</li>
@@ -130,14 +130,14 @@ Features Supported</h1>
 </li>
 <li>APIs to read line as string and/or format input in scanf style from UART console.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md804"></a>
+<h1><a class="anchor" id="autotoc_md806"></a>
 Features NOT Supported</h1>
 <ul>
 <li>Log APIs should not be called from ISR context. When called in ISR the APIs have no effect.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md805"></a>
+<h1><a class="anchor" id="autotoc_md807"></a>
 Important Usage Guidelines</h1>
-<h2><a class="anchor" id="autotoc_md806"></a>
+<h2><a class="anchor" id="autotoc_md808"></a>
 Shared memory logging</h2>
 <ul>
 <li>The core on which the shared memory reader is enabled, the option to use shared memory writer is ignored.</li>
@@ -152,7 +152,7 @@ Shared memory logging</h2>
 <li>To change the size of the log buffer, change the value of <a class="el" href="group__KERNEL__DPL__DEBUG.html#ga339794276863c87430f83deb5a1e798c">DebugP_SHM_LOG_SIZE</a> in <code><a class="el" href="DebugP_8h.html">source/kernel/dpl/DebugP.h</a></code>. <dl class="section note"><dt>Note</dt><dd>When shared memory reader is enabled for a nortos application user needs to invoke <a class="el" href="group__KERNEL__DPL__DEBUG.html#gaf997bf25164b3cc752a2a8b3e1d6d5fe">DebugP_shmLogRead</a> API to read logs from shared memory. <a class="el" href="group__KERNEL__DPL__DEBUG.html#gaf997bf25164b3cc752a2a8b3e1d6d5fe">DebugP_shmLogRead</a> will read the log once and exit thus application needs to call this API periodically in-order to gather continous logs.</dd></dl>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md807"></a>
+<h2><a class="anchor" id="autotoc_md809"></a>
 UART logging</h2>
 <ul>
 <li>Make sure the selected UART driver is opened for the logs to be output to UART.<ul>
@@ -160,21 +160,21 @@ UART logging</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md808"></a>
+<h2><a class="anchor" id="autotoc_md810"></a>
 Memory logging</h2>
 <ul>
 <li>When log to memory is enabled, the log can be viewed via ROV (see <a class="el" href="ROV_INTRO_PAGE.html">Using SDK with Real-time Object View (ROV)</a>) in CCS</li>
 <li>The memory used for logging is limited. The writer is typically faster than the ROV reader, so here the writer will overwrite the older data, i.e the log will have the latest logs up to log buffer size.</li>
 <li>To change the size of the log buffer, change the value of <a class="el" href="group__KERNEL__DPL__DEBUG.html#ga5567d1d9d00dd9556c61e30dabb0f551">DebugP_MEM_LOG_SIZE</a> in <code><a class="el" href="DebugP_8h.html">source/kernel/dpl/DebugP.h</a></code>.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md809"></a>
+<h2><a class="anchor" id="autotoc_md811"></a>
 Other guidelines</h2>
 <ul>
 <li>Log and assert APIs should not be called from ISR context.</li>
 <li>The assert and logging APIs are task or thread safe, i.e they can be called from multiple tasks without the output getting mixed.</li>
 <li>The cores on which CCS or UART or shared memory writer is enabled can use either NORTOS or FreeRTOS.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md810"></a>
+<h1><a class="anchor" id="autotoc_md812"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs, </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="DebugP_8h.html">kernel/dpl/DebugP.h</a>&gt;</span></div>
@@ -215,16 +215,16 @@ Example Usage</h1>
 <div class="line">     */</div>
 <div class="line">    LOG_SHM_MEM  : ORIGIN = 0x701D4000, LENGTH = 0x00004000</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md811"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md813"></a>
 API</h1>
 <p><a class="el" href="group__KERNEL__DPL__DEBUG.html">APIs for Debug log's and assert's</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:225</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:235</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga5c767649af82b6ee94fd3918500eae87"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga5c767649af82b6ee94fd3918500eae87">DebugP_scanf</a></div><div class="ttdeci">int32_t DebugP_scanf(char *format,...)</div><div class="ttdoc">Read a formatted string from the selected UART driver.</div></div>
 <div class="ttc" id="aDebugP_8h_html"><div class="ttname"><a href="DebugP_8h.html">DebugP.h</a></div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

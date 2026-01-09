@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('EXAMPLES_RL2.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3768">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md3770">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_RL2_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3769">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3770">Sample Output</a></li>
-<li class="level1"><a href="#autotoc_md3771">Description</a></li>
+<li class="level1"><a href="#autotoc_md3771">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3772">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3773">Description</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_rl2_basic"></a></p>
-<h1><a class="anchor" id="autotoc_md3768"></a>
+<h1><a class="anchor" id="autotoc_md3770"></a>
 Introduction</h1>
 <p>Rl2 example provides how to use RL2 in applications and also shows how RL2 brings in benefits.</p>
 <h1><a class="anchor" id="EXAMPLES_RL2_COMBOS"></a>
@@ -117,14 +117,14 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/rl2   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3769"></a>
+<h1><a class="anchor" id="autotoc_md3771"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination &#160; and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li><b>When using makefiles to build</b>, note the required combination and build using &#160; make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3770"></a>
+<h1><a class="anchor" id="autotoc_md3772"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">Starting OSPI Bootloader ...</div>
 <div class="line">[BOOTLOADER_PROFILE] Boot Media       : NOR SPI FLASH</div>
@@ -163,7 +163,7 @@ Sample Output</h1>
 <div class="line">ICache Access Count: 210600</div>
 <div class="line"> </div>
 <div class="line">All tests have passed!!</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3771"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3773"></a>
 Description</h1>
 <p>On how to configure RL2, please go through <a class="el" href="OPTIFLASH_CONFIGURE.html">Configuring OptiFlash various IP</a>.</p>
 <p>This example shows how RL2 is used and how its different functions are used. With RL2 enabled, the function that was being executed is getting cached in the RL2 cache bank. First time, it caused 129 L2 cache misses, and because each L2 cache line (at a size of 128KB) is 32 bytes, it implies that a total of ~4KB of code is being cached. This is in alignment with the size of the function that is being executed from the flash. Later on, every time there were L2 cache hits,</p>

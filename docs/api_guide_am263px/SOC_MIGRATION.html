@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('SOC_MIGRATION.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md553">Installing dependencies</a></li>
-<li class="level1"><a href="#autotoc_md554">Setup</a></li>
-<li class="level1"><a href="#autotoc_md555">Migrating examples to SIP (ZCZ_F) package</a><ul><li class="level2"><a href="#autotoc_md556">Excluding examples from migration</a></li>
+<ul><li class="level1"><a href="#autotoc_md555">Installing dependencies</a></li>
+<li class="level1"><a href="#autotoc_md556">Setup</a></li>
+<li class="level1"><a href="#autotoc_md557">Migrating examples to SIP (ZCZ_F) package</a><ul><li class="level2"><a href="#autotoc_md558">Excluding examples from migration</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_soc_migration"></a></p>
-<h1><a class="anchor" id="autotoc_md553"></a>
+<h1><a class="anchor" id="autotoc_md555"></a>
 Installing dependencies</h1>
 <ul>
 <li>Install SysConfig version 1.16.0 or above from <a href="https://www.ti.com/tool/SYSCONFIG#downloads">here</a></li>
@@ -111,7 +111,7 @@ Installing dependencies</h1>
 <li>Once node is installed, download yargs package using: <div class="fragment"><div class="line">$ npm install yargs@16</div>
 </div><!-- fragment --></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md554"></a>
+<h1><a class="anchor" id="autotoc_md556"></a>
 Setup</h1>
 <ul>
 <li>The migration script titled <b>migrate.js</b> is situated inside the "{your_sdk_path}/tools/migration_script" folder.</li>
@@ -129,7 +129,7 @@ Setup</h1>
 <li>The package and part arguments can be skipped if not required.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>The script is not validated for part migration yet.</dd></dl>
-<h1><a class="anchor" id="autotoc_md555"></a>
+<h1><a class="anchor" id="autotoc_md557"></a>
 Migrating examples to SIP (ZCZ_F) package</h1>
 <p>To run the script, open terminal/command prompt inside the SDK folder that has the migrate.js script.</p>
 <p>In this case, navigate to migration_script folder using: </p><pre class="fragment">$ cd tools/migration_script
@@ -140,7 +140,7 @@ Migrating examples to SIP (ZCZ_F) package</h1>
 </pre><p>It does in-place modification of <b>example.syscfg</b>, <b>makefile</b>, and <b>example.projectspec</b> files of the examples.</p>
 <p>The list of files successfully migrated and files that failed to migrate can be observed from the <b>log_file.txt</b> generated inside the tools/migration_script folder of the SDK.</p>
 <p>To understand the list of arguments, their aliases and description enter this command: </p><pre class="fragment">$ node migrate.js --help
-</pre><h2><a class="anchor" id="autotoc_md556"></a>
+</pre><h2><a class="anchor" id="autotoc_md558"></a>
 Excluding examples from migration</h2>
 <p>To skip certain examples from being migrated, add the SDK relative path to those folders in the file <b>exclude_list_am263px.js</b> inside migration_script/soc folder. </p>
 </div></div><!-- contents -->

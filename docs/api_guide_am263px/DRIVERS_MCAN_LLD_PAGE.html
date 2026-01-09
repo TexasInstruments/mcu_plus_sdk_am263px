@@ -92,35 +92,35 @@ $(document).ready(function(){initNavTree('DRIVERS_MCAN_LLD_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md999">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1000">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1001">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1002">Usage</a><ul><li class="level2"><a href="#autotoc_md1003">Message Ram Initialization</a></li>
-<li class="level2"><a href="#autotoc_md1004">Acceptance filtering</a></li>
-<li class="level2"><a href="#autotoc_md1005">Filter Types</a><ul><li class="level3"><a href="#autotoc_md1006">Range Filter</a></li>
-<li class="level3"><a href="#autotoc_md1007">Filter for specific IDs</a></li>
-<li class="level3"><a href="#autotoc_md1008">Classic Bit Mask Filter</a></li>
+<ul><li class="level1"><a href="#autotoc_md1001">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1002">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1003">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1004">Usage</a><ul><li class="level2"><a href="#autotoc_md1005">Message Ram Initialization</a></li>
+<li class="level2"><a href="#autotoc_md1006">Acceptance filtering</a></li>
+<li class="level2"><a href="#autotoc_md1007">Filter Types</a><ul><li class="level3"><a href="#autotoc_md1008">Range Filter</a></li>
+<li class="level3"><a href="#autotoc_md1009">Filter for specific IDs</a></li>
+<li class="level3"><a href="#autotoc_md1010">Classic Bit Mask Filter</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md1009">Filter Element Configuration</a></li>
-<li class="level2"><a href="#autotoc_md1010">Tx Buffer/FIFO Configuration</a></li>
+<li class="level2"><a href="#autotoc_md1011">Filter Element Configuration</a></li>
+<li class="level2"><a href="#autotoc_md1012">Tx Buffer/FIFO Configuration</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1011">Important Usage Guidelines</a><ul><li class="level2"><a href="#autotoc_md1012">Bit Rate Calculation</a></li>
-<li class="level2"><a href="#autotoc_md1013">CAN bus termination</a></li>
-<li class="level2"><a href="#autotoc_md1014">Transceiver Delay Compensation Value(TDCV)</a></li>
-<li class="level2"><a href="#autotoc_md1015">Things to consider/check before sending a message over CAN bus</a></li>
-<li class="level2"><a href="#autotoc_md1016">Debug CAN communication failure</a></li>
-<li class="level2"><a href="#autotoc_md1017">BusOff Recovery Sequence</a></li>
+<li class="level1"><a href="#autotoc_md1013">Important Usage Guidelines</a><ul><li class="level2"><a href="#autotoc_md1014">Bit Rate Calculation</a></li>
+<li class="level2"><a href="#autotoc_md1015">CAN bus termination</a></li>
+<li class="level2"><a href="#autotoc_md1016">Transceiver Delay Compensation Value(TDCV)</a></li>
+<li class="level2"><a href="#autotoc_md1017">Things to consider/check before sending a message over CAN bus</a></li>
+<li class="level2"><a href="#autotoc_md1018">Debug CAN communication failure</a></li>
+<li class="level2"><a href="#autotoc_md1019">BusOff Recovery Sequence</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#MCAN_EXAMPLE_USAGE">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1018">API</a></li>
+<li class="level1"><a href="#autotoc_md1020">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_mcan_lld"></a></p>
 <p>The Controller Area Network (CAN) is a serial communication protocol which efficiently supports distributed real-time control. The MCAN module supports both classic CAN and CAN FD (CAN with Flexible Data-Rate) specifications. CAN FD feature allows high throughput and increased payload per data frame. The driver provides API's to configure the MCAN module. Below are the high level features supported by the MCAN driver.</p>
-<h1><a class="anchor" id="autotoc_md999"></a>
+<h1><a class="anchor" id="autotoc_md1001"></a>
 Features Supported</h1>
 <ul>
 <li>MCAN module conforms with CAN Protocol 2.0 A, B and ISO 11898-1:2015</li>
@@ -138,21 +138,21 @@ Features Supported</h1>
 <li>Configure Maskable interrupts and two interrupt lines</li>
 <li>Api's to read protocol status register(useful in case of communication failures)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1000"></a>
+<h1><a class="anchor" id="autotoc_md1002"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <p>SysConfig can be used to configure below parameters apart from common configuration like Clock, MPU, RAT and others.</p><ul>
 <li>MCAN instances and pin configurations.</li>
 <li>Defualt values for bit time parameter initialization set by MCAN_initSetBitTimeParams</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1001"></a>
+<h1><a class="anchor" id="autotoc_md1003"></a>
 Features NOT Supported</h1>
 <ul>
 <li>DMA mode of operation</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1002"></a>
+<h1><a class="anchor" id="autotoc_md1004"></a>
 Usage</h1>
-<h2><a class="anchor" id="autotoc_md1003"></a>
+<h2><a class="anchor" id="autotoc_md1005"></a>
 Message Ram Initialization</h2>
 <p>The MCAN module has implemented Message RAM. The main purpose of the Message RAM is to store:</p>
 <ul>
@@ -162,7 +162,7 @@ Message Ram Initialization</h2>
 <li>Message ID Filter Elements</li>
 </ul>
 <p>User just needs to configure the number of elements required based on their usecase.</p>
-<h2><a class="anchor" id="autotoc_md1004"></a>
+<h2><a class="anchor" id="autotoc_md1006"></a>
 Acceptance filtering</h2>
 <p>The MCAN module is capable to configure two sets of acceptance filters - one set for standard and one set for extended identifiers. These filters can be assigned to an Rx Buffer or to one of the two Rx FIFOs. The main features of the filter elements are:</p>
 <ul>
@@ -181,20 +181,20 @@ Acceptance filtering</h2>
 <li>Received frame is stored in Rx Buffer</li>
 </ul>
 <p>To receive all the messages without acceptance filtering, you need to configure <b>anfe</b> and <b>anfs</b> fields of Global filter register. Please refer section "Acceptance Filtering" in technical reference manual for more details.</p>
-<h2><a class="anchor" id="autotoc_md1005"></a>
+<h2><a class="anchor" id="autotoc_md1007"></a>
 Filter Types</h2>
 <p>Basically there are 3 types of filter which MCAN module supports.</p>
-<h3><a class="anchor" id="autotoc_md1006"></a>
+<h3><a class="anchor" id="autotoc_md1008"></a>
 Range Filter</h3>
 <p>Each filter element can be configured to operate as Range Filter (Standard Filter Type SFT = 00/Extended Filter Type EFT = 00). The filter matches for all received message frames with IDs in the range from SFID1 to SFID2 (SFID2 &gt;= SFID1) and respectively in the range from EFID1 to EFID2 (EFID2 &gt;= EFID1).</p>
 <p>There are two options for range filtering of extended frames:</p><ul>
 <li>Extended Filter Type EFT = 00: The Extended ID AND Mask is used for Range Filtering. The Message ID of received frames is ANDed with the Extended ID AND Mask before the range filter is applied.</li>
 <li>Extended Filter Type EFT = 11: The Extended ID AND Mask (MCAN_XIDAM) is not used for Range Filtering.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1007"></a>
+<h3><a class="anchor" id="autotoc_md1009"></a>
 Filter for specific IDs</h3>
 <p>Each filter element can be configured to filter one or two dedicated Message IDs (Standard Filter Type SFT =01/ Extended Filter Type EFT =01). To filter only one specific Message ID, the filter element has to be configured with SFID1 = SFID2 respectively EFID1 = EFID2.</p>
-<h3><a class="anchor" id="autotoc_md1008"></a>
+<h3><a class="anchor" id="autotoc_md1010"></a>
 Classic Bit Mask Filter</h3>
 <p>Classic bit mask filtering can filter groups of Message IDs (Standard Filter Type SFT =10/Extended Filter Type EFT =10). This is done by masking single bits of a received Message ID. In this case SFID1/EFID1 element is used as Message ID filter, while SFID2/EFID2 element is used as filter mask. A 0 bit at the filter mask (SFID2/EFID2) will mask out the corresponding bit position of the configured Message ID filter (SFID1/EFID1) and the value of the received Message ID at that bit position is not relevant for acceptance filtering. Only those bits of the received Message ID where the corresponding mask bits are 1 are relevant for acceptance filtering. There are two interesting cases:</p>
 <ul>
@@ -202,7 +202,7 @@ Classic Bit Mask Filter</h3>
 <li>All mask bits are 0: all Message IDs match.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>For example: if sfid1(message id) is 0xC0 and sfid2(mask) is 0xF then all the messages ranged from 0xC0 to 0xCF will be received. In case you want to receive all messages, sfid2(mask) need to be set to 0x0.</dd></dl>
-<h2><a class="anchor" id="autotoc_md1009"></a>
+<h2><a class="anchor" id="autotoc_md1011"></a>
 Filter Element Configuration</h2>
 <p>Up to 128 filter elements can be configured for 11-bit standard IDs and 64 filter elements can be configured for 29-bit extended IDs. Each filter element have 4 following parameters to be configured.</p>
 <ul>
@@ -211,7 +211,7 @@ Filter Element Configuration</h2>
 <li>sfec/efec : Place to store message(Buffer/FIFO0/FIFO1)</li>
 <li>sft/eft : Filter Types</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1010"></a>
+<h2><a class="anchor" id="autotoc_md1012"></a>
 Tx Buffer/FIFO Configuration</h2>
 <p>The MCAN module supports up to 32 Tx Buffers. These Tx Buffers can be configured as dedicated Tx Buffers, Tx FIFO and as combination of dedicated Tx Buffers/Tx FIFO. In the message RAM, FIFO is allocated only after the number of buffers allocated. i.e.</p>
 <div class="fragment"><div class="line">txFifoStartAddr = txBufStartAddr + txBufCnt;</div>
@@ -220,9 +220,9 @@ Tx Buffer/FIFO Configuration</h2>
 <li>Two or more dedicated Tx Buffers are configured with the same Message ID. In this case the Tx Buffer with the lowest buffer number is transmitted first.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>Please refer <a class="el" href="group__DRV__MCAN__MODULE.html">APIs for MCAN</a> for more details and <a class="el" href="DRIVERS_MCAN_LLD_PAGE.html#MCAN_EXAMPLE_USAGE">Example Usage</a> for code snippets.</dd></dl>
-<h1><a class="anchor" id="autotoc_md1011"></a>
+<h1><a class="anchor" id="autotoc_md1013"></a>
 Important Usage Guidelines</h1>
-<h2><a class="anchor" id="autotoc_md1012"></a>
+<h2><a class="anchor" id="autotoc_md1014"></a>
 Bit Rate Calculation</h2>
 <p> <style>div.image img[src="drivers/mcan_bit_timing.PNG"]{width:50%}</style> </p><div class="image">
 <img src="mcan_bit_timing.PNG" alt=""/>
@@ -252,7 +252,7 @@ MCAN Bit Timing</div></div>
 <div class="line">MCAN_BitTimingParams::nomTimeSeg2 = 2 (TSEG2 = 3)</div>
 <div class="line"> </div>
 <div class="line">bit rate = 80MHz / 8 / (1 + 6 + 3) = 1Mbps</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1013"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1015"></a>
 CAN bus termination</h2>
 <p>CAN bus termination is needed to minimize the reflection, to reduce the noise. The transmission lines must be terminated to make sure noise does not cause communication failure.</p>
 <p>There are two types of CAN termination:</p>
@@ -261,7 +261,7 @@ CAN bus termination</h2>
 <li>Split Termination Two 60 Ohm(RL/2) resistors along with capacitor(CL) is used to suppress the noise at both ends of the bus. Typical value of CL for 1.1 Mbps is 4.7 nF.</li>
 </ul>
 <p>Please note RL and CL values are dependent on a signaling rate.</p>
-<h2><a class="anchor" id="autotoc_md1014"></a>
+<h2><a class="anchor" id="autotoc_md1016"></a>
 Transceiver Delay Compensation Value(TDCV)</h2>
 <p>CAN is a broadcast protocol, every node on the bus sees the message on the bus even if it is Tx node. Tx node uses this data on Rx line for integrity and error checks locally. Overview of a bit flow through different stages in communication is:</p>
 <div class="fragment"><div class="line">CAN module core -&gt; CAN module Tx line -&gt; SoC Tx Pin/PAD -&gt; Transceiver Out -&gt; CAN Bus -&gt; Transceiver In -&gt; SoC Rx Pin/PAD -&gt; CAN module Rx line -&gt; CAN module core</div>
@@ -269,7 +269,7 @@ Transceiver Delay Compensation Value(TDCV)</h2>
 <ul>
 <li>MCAN provides functionality to measure delay between transition on Tx line and same transition for Rx line. User need not to measure transceiver loop-back delay or refer transceiver documentation for the same. User just needs to program SSP position which could be same as Sampling Point(SP).</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1015"></a>
+<h2><a class="anchor" id="autotoc_md1017"></a>
 Things to consider/check before sending a message over CAN bus</h2>
 <p>Make sure following is done/checked before attempting communication on bus:</p>
 <ul>
@@ -282,7 +282,7 @@ Things to consider/check before sending a message over CAN bus</h2>
 <li>CAN module is powered up and configured properly.</li>
 <li>SoC pins/PADs for CAN are configured properly.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1016"></a>
+<h2><a class="anchor" id="autotoc_md1018"></a>
 Debug CAN communication failure</h2>
 <p>When any CAN message transmission/reception fails, controller updates LEC (Last Error Code) and DLEC (Data Phase Last Error Code) fields in status register('MCAN_PSR')</p>
 <p><b>LEC</b>: this field is updated when error happened in arbitration phase in case of CAN FD message or during full message for classic CAN message.</p>
@@ -338,7 +338,7 @@ Debug CAN communication failure</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1017"></a>
+<h2><a class="anchor" id="autotoc_md1019"></a>
 BusOff Recovery Sequence</h2>
 <p>Below is directly adopted from the Bosch app note.</p>
 <p>The MCAN enters Busoff state according to CAN protocol conditions. The Busoff state is reported by setting PSR.BO. Additionally, the MCAN sets CCCR.INIT to stop all CAN operation. To restart CAN operation, the application software needs to clear CCCR.INIT. After CCCR.INIT is cleared, the MCAN’s CAN state machine waits for the completion of the Busoff Recovery Sequence according to CAN protocol (at least 128 occurrences of Bus Idle Condition, which is the detection of 11 consecutive recessive bits). In the MCAN User’s Manual the description of Bus_Off recovery states that “Once CCCR.INIT has been cleared by the CPU, the device will then wait for 129 occurrences of Bus Idle (129 * 11 consecutive recessive bits) before resuming normal operation. At the end of the Bus_Off recovery sequence, the Error Management Counters will be reset”.</p>
@@ -484,7 +484,7 @@ Example Usage</h1>
 <div class="line">        <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga23075425da4d8a65a53209b5fdd3fafe">SemaphoreP_post</a>(&amp;gMcanRxDoneSem);</div>
 <div class="line">    }</div>
 </div><!-- fragment --><p> MCAN Interrupt De-Registration </p><div class="fragment"><div class="line">    <a class="code" href="group__KERNEL__DPL__HWI.html#ga9dac4d4990b599de54662b9e32c0b47b">HwiP_destruct</a>(&amp;gMcanHwiObject);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1018"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1020"></a>
 API</h1>
 <p><a class="el" href="group__DRV__MCAN__MODULE.html">APIs for MCAN</a> </p>
 </div></div><!-- contents -->
@@ -510,7 +510,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__MCAN__MODULE_html_ga5209c8b871cb2b6a4d8237f467581e1d"><div class="ttname"><a href="group__DRV__MCAN__MODULE.html#ga5209c8b871cb2b6a4d8237f467581e1d">MCAN_clearNewDataStatus</a></div><div class="ttdeci">void MCAN_clearNewDataStatus(uint32_t baseAddr, const MCAN_RxNewDataStatus *newDataStatus)</div><div class="ttdoc">This API clear New Data Message Status.</div></div>
 <div class="ttc" id="agroup__DRV__MCAN__MODULE_html_gad1a4de6f54132076a132c5b314c3455f"><div class="ttname"><a href="group__DRV__MCAN__MODULE.html#gad1a4de6f54132076a132c5b314c3455f">MCAN_clearIntrStatus</a></div><div class="ttdeci">void MCAN_clearIntrStatus(uint32_t baseAddr, uint32_t intrMask)</div><div class="ttdoc">This API is used to clear the interrupt status.</div></div>
 <div class="ttc" id="agroup__DRV__MCAN__MODULE_html_gae37ac29182dea3a49e228272633e123a"><div class="ttname"><a href="group__DRV__MCAN__MODULE.html#gae37ac29182dea3a49e228272633e123a">MCAN_writeMsgRam</a></div><div class="ttdeci">void MCAN_writeMsgRam(uint32_t baseAddr, uint32_t memType, uint32_t bufNum, const MCAN_TxBufElement *elem)</div><div class="ttdoc">This API is used to write Tx message to message RAM.</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga8e7ba11b5db9c1a2743435f3c1bf04fe"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga8e7ba11b5db9c1a2743435f3c1bf04fe">DebugP_logError</a></div><div class="ttdeci">#define DebugP_logError(format,...)</div><div class="ttdoc">Function to log a string to the enabled console, for error zone.</div><div class="ttdef"><b>Definition:</b> DebugP.h:234</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga8e7ba11b5db9c1a2743435f3c1bf04fe"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga8e7ba11b5db9c1a2743435f3c1bf04fe">DebugP_logError</a></div><div class="ttdeci">#define DebugP_logError(format,...)</div><div class="ttdoc">Function to log a string to the enabled console, for error zone.</div><div class="ttdef"><b>Definition:</b> DebugP.h:244</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SYSTEM_html_ga47e638d7c694e6d42e57b96b071b8a6f"><div class="ttname"><a href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a></div><div class="ttdeci">#define SystemP_SUCCESS</div><div class="ttdoc">Return status when the API execution was successful.</div><div class="ttdef"><b>Definition:</b> SystemP.h:56</div></div>
 <div class="ttc" id="agroup__DRV__MCAN__MODULE_html_ga92c8acea1ffc5c0bdc926503b780f2d8"><div class="ttname"><a href="group__DRV__MCAN__MODULE.html#ga92c8acea1ffc5c0bdc926503b780f2d8">MCAN_getNewDataStatus</a></div><div class="ttdeci">void MCAN_getNewDataStatus(uint32_t baseAddr, MCAN_RxNewDataStatus *newDataStatus)</div><div class="ttdoc">This API will return New Data Message Status.</div></div>
 <div class="ttc" id="agroup__DRV__MCAN__MODULE_html_gab7f5ca9e1bf82489a130afbb64a675cf"><div class="ttname"><a href="group__DRV__MCAN__MODULE.html#gab7f5ca9e1bf82489a130afbb64a675cf">MCAN_readMsgRam</a></div><div class="ttdeci">void MCAN_readMsgRam(uint32_t baseAddr, uint32_t memType, uint32_t bufNum, uint32_t fifoNum, MCAN_RxBufElement *elem)</div><div class="ttdoc">This API is used to read received message form message RAM.</div></div>
@@ -519,7 +519,7 @@ API</h1>
 <div class="ttc" id="agroup__KERNEL__DPL__SEMAPHORE_html_ga23075425da4d8a65a53209b5fdd3fafe"><div class="ttname"><a href="group__KERNEL__DPL__SEMAPHORE.html#ga23075425da4d8a65a53209b5fdd3fafe">SemaphoreP_post</a></div><div class="ttdeci">void SemaphoreP_post(SemaphoreP_Object *obj)</div><div class="ttdoc">Post a semaphore object or unlock a mutex.</div></div>
 <div class="ttc" id="agroup__DRV__CANFD__MODULE_html_gaae9ff297ab474d1d5bb2901e53415cbf"><div class="ttname"><a href="group__DRV__CANFD__MODULE.html#gaae9ff297ab474d1d5bb2901e53415cbf">MCAN_MAX_PAYLOAD_BYTES</a></div><div class="ttdeci">#define MCAN_MAX_PAYLOAD_BYTES</div><div class="ttdoc">Maximum payload supported by CAN-FD protocol in bytes.</div><div class="ttdef"><b>Definition:</b> canfd.h:195</div></div>
 <div class="ttc" id="agroup__DRV__MCAN__MODULE_html_gabd0b62d9b8f921ccadd722ea40cc6c5a"><div class="ttname"><a href="group__DRV__MCAN__MODULE.html#gabd0b62d9b8f921ccadd722ea40cc6c5a">MCAN_getIntrStatus</a></div><div class="ttdeci">uint32_t MCAN_getIntrStatus(uint32_t baseAddr)</div><div class="ttdoc">This API will return interrupt status.</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="astructHwiP__Params_html_a943b3d55a5aaa669f8bcb04017fdf2a1"><div class="ttname"><a href="structHwiP__Params.html#a943b3d55a5aaa669f8bcb04017fdf2a1">HwiP_Params::intNum</a></div><div class="ttdeci">uint32_t intNum</div><div class="ttdef"><b>Definition:</b> HwiP.h:129</div></div>
 <div class="ttc" id="agroup__DRV__MCAN__MODULE_html_ga46ea81a605e82a03519fba0a5f43eae1"><div class="ttname"><a href="group__DRV__MCAN__MODULE.html#ga46ea81a605e82a03519fba0a5f43eae1">MCAN_STD_FILT_ELEM_BUFFER</a></div><div class="ttdeci">#define MCAN_STD_FILT_ELEM_BUFFER</div><div class="ttdef"><b>Definition:</b> mcan.h:312</div></div>
 <div class="ttc" id="agroup__DRV__MCAN__MODULE_html_gafc4177091062ae4ec7d2102bee7dcf3a"><div class="ttname"><a href="group__DRV__MCAN__MODULE.html#gafc4177091062ae4ec7d2102bee7dcf3a">MCAN_RX_FIFO_NUM_0</a></div><div class="ttdeci">#define MCAN_RX_FIFO_NUM_0</div><div class="ttdef"><b>Definition:</b> mcan.h:469</div></div>

@@ -92,13 +92,13 @@ $(document).ready(function(){initNavTree('bootseg_ip_working.html',''); initResi
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md654">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md655">How to make 1st Half as Active Region</a></li>
-<li class="level1"><a href="#autotoc_md656">How to make 2nd Half as Active Region</a></li>
+<ul><li class="level1"><a href="#autotoc_md656">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md657">How to make 1st Half as Active Region</a></li>
+<li class="level1"><a href="#autotoc_md658">How to make 2nd Half as Active Region</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_bootseg_ip_working_bootseg_ip_working"></a></p>
-<h1><a class="anchor" id="autotoc_md654"></a>
+<h1><a class="anchor" id="autotoc_md656"></a>
 Introduction</h1>
 <p>One of the key component of Firmware Updated-Over-Air (FOTA) is to switch to a new verison of firmware. BootSeg hardware IP has been added in the SOC to alows this switching to the other image. Bootseg IP is part of FSAS area of SOC. The following image shows the location of bootseg hardware block as part of FSAS.</p>
 <p> <style>div.image img[src="bootsegIP.png"]{width:50%}</style> </p><div class="image">
@@ -123,10 +123,10 @@ Bootseg IP working</div></div>
 <li>16MB - 32MB as Active reigon from which to boot and 0MB - 16MB as backup region.</li>
 </ol>
 <p>Please note that here, we are assuming that size of flash is 32MB and each region size is half of size of flash here.</p>
-<h1><a class="anchor" id="autotoc_md655"></a>
+<h1><a class="anchor" id="autotoc_md657"></a>
 How to make 1st Half as Active Region</h1>
 <p>In the fss driver <code>source\drivers\fss\v0\<a class="el" href="fss_8h.html">fss.h</a></code> there is an API called <code>FSS_selectRegionA</code> which will select 1st half of flash as the boot region or Active region and applicaton need to make sure to write in region B of the flash.</p>
-<h1><a class="anchor" id="autotoc_md656"></a>
+<h1><a class="anchor" id="autotoc_md658"></a>
 How to make 2nd Half as Active Region</h1>
 <p>In the fss driver <code>source\drivers\fss\v0\<a class="el" href="fss_8h.html">fss.h</a></code> there is an API called <code>FSS_selectRegionB</code> which will select 2nd half of flash as the boot region or Active region and applicaton need to make sure to write in region B of the flash. </p>
 </div></div><!-- contents -->

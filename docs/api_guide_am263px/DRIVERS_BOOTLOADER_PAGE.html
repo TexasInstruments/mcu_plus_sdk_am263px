@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('DRIVERS_BOOTLOADER_PAGE.html',''); ini
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md870">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md871">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md872">Features not Supported</a></li>
-<li class="level1"><a href="#autotoc_md873">R5 Dual Core Support</a></li>
-<li class="level1"><a href="#autotoc_md874">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md875">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md872">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md873">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md874">Features not Supported</a></li>
+<li class="level1"><a href="#autotoc_md875">R5 Dual Core Support</a></li>
+<li class="level1"><a href="#autotoc_md876">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md877">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_bootloader_v1"></a></p>
 <p>The Bootloader module provides APIs to write bootloader applications for various boot media like QSPI, UART, SOC memory etc.</p>
-<h1><a class="anchor" id="autotoc_md870"></a>
+<h1><a class="anchor" id="autotoc_md872"></a>
 Features Supported</h1>
 <ul>
 <li>QSPI Boot</li>
@@ -110,7 +110,7 @@ Features Supported</h1>
 <li>API to parse multicore application image</li>
 <li>Separate APIs to boot self and non-self cores</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md871"></a>
+<h1><a class="anchor" id="autotoc_md873"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -118,12 +118,12 @@ SysConfig Features</h1>
 <li>Boot Media to be used</li>
 <li>Boot Image offset</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md872"></a>
+<h1><a class="anchor" id="autotoc_md874"></a>
 Features not Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md873"></a>
+<h1><a class="anchor" id="autotoc_md875"></a>
 R5 Dual Core Support</h1>
 <ul>
 <li>With the configuration used in MCU SDK to generate the app images, the RBL brings the R5 Lock Step Mode.</li>
@@ -141,7 +141,7 @@ R5 Dual Core Support</h1>
 </li>
 <li>Refer the IPC example which configures the R5 in Dual Core mode. <a class="el" href="EXAMPLES_DRIVERS_IPC_NOTIFY_ECHO.html">IPC Notify Echo</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md874"></a>
+<h1><a class="anchor" id="autotoc_md876"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="bootloader_8h.html">drivers/bootloader.h</a>&gt;</span></div>
@@ -175,7 +175,7 @@ Example Usage</h1>
 <div class="line">    }</div>
 <div class="line"> </div>
 </div><!-- fragment --><p>Instance Close Example </p><div class="fragment"><div class="line">    <a class="code" href="group__DRV__BOOTLOADER__MODULE.html#ga021ceadeefd7c709ba42b9c23775ec92">Bootloader_close</a>(gBootloaderHandle);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md875"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md877"></a>
 API</h1>
 <p><a class="el" href="group__DRV__BOOTLOADER__MODULE.html">APIs for BOOTLOADING CPUs</a> </p>
 </div></div><!-- contents -->
@@ -190,7 +190,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__BOOTLOADER__MODULE_html_ga5a55e1117a1504daa49d6df9679b8e6d"><div class="ttname"><a href="group__DRV__BOOTLOADER__MODULE.html#ga5a55e1117a1504daa49d6df9679b8e6d">Bootloader_runSelfCpu</a></div><div class="ttdeci">int32_t Bootloader_runSelfCpu(Bootloader_Handle handle, Bootloader_BootImageInfo *bootImageInfo)</div><div class="ttdoc">API to boot self CPU.</div></div>
 <div class="ttc" id="acslr__soc__defines_8h_html_ae426f84ccf4813ca83ff492212d636c8"><div class="ttname"><a href="cslr__soc__defines_8h.html#ae426f84ccf4813ca83ff492212d636c8">CSL_CORE_ID_R5FSS1_1</a></div><div class="ttdeci">#define CSL_CORE_ID_R5FSS1_1</div><div class="ttdef"><b>Definition:</b> cslr_soc_defines.h:149</div></div>
 <div class="ttc" id="acslr__soc__defines_8h_html_a2a5b4840c743a891534e4d7f6d2699f3"><div class="ttname"><a href="cslr__soc__defines_8h.html#a2a5b4840c743a891534e4d7f6d2699f3">CSL_CORE_ID_R5FSS0_1</a></div><div class="ttdeci">#define CSL_CORE_ID_R5FSS0_1</div><div class="ttdef"><b>Definition:</b> cslr_soc_defines.h:147</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="abootloader_8h_html"><div class="ttname"><a href="bootloader_8h.html">bootloader.h</a></div><div class="ttdoc">Bootloader Driver API/interface file.</div></div>
 <div class="ttc" id="agroup__DRV__BOOTLOADER__MODULE_html_ga9456896dc1df25051d0ad6467767a39f"><div class="ttname"><a href="group__DRV__BOOTLOADER__MODULE.html#ga9456896dc1df25051d0ad6467767a39f">Bootloader_open</a></div><div class="ttdeci">Bootloader_Handle Bootloader_open(uint32_t instanceNum, Bootloader_Params *openParams)</div><div class="ttdoc">Open bootloader driver.</div></div>
 <!-- HTML footer for doxygen 1.8.11-->

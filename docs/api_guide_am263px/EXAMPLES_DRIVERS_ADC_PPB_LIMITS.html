@@ -92,26 +92,26 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_PPB_LIMITS.html',
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2060">Introduction</a><ul><li class="level2"><a href="#autotoc_md2061">Example Description</a></li>
-<li class="level2"><a href="#autotoc_md2062">SOC configuration</a></li>
-<li class="level2"><a href="#autotoc_md2063">PPB Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2064">ISR Configuration</a></li>
+<ul><li class="level1"><a href="#autotoc_md2062">Introduction</a><ul><li class="level2"><a href="#autotoc_md2063">Example Description</a></li>
+<li class="level2"><a href="#autotoc_md2064">SOC configuration</a></li>
+<li class="level2"><a href="#autotoc_md2065">PPB Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2066">ISR Configuration</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2065">External Connections</a><ul><li class="level2"><a href="#autotoc_md2066">AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</a></li>
-<li class="level2"><a href="#autotoc_md2067">AM263X-CC E1</a></li>
-<li class="level2"><a href="#autotoc_md2068">AM263PX-LP or AM263X-LP or AM261X-LP</a></li>
+<li class="level1"><a href="#autotoc_md2067">External Connections</a><ul><li class="level2"><a href="#autotoc_md2068">AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</a></li>
+<li class="level2"><a href="#autotoc_md2069">AM263X-CC E1</a></li>
+<li class="level2"><a href="#autotoc_md2070">AM263PX-LP or AM263X-LP or AM261X-LP</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2069">Watch Variables</a></li>
+<li class="level1"><a href="#autotoc_md2071">Watch Variables</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_PPB_LIMITS_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2070">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2071">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2072">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2072">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2073">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2074">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_ppb_limits"></a></p>
-<h1><a class="anchor" id="autotoc_md2060"></a>
+<h1><a class="anchor" id="autotoc_md2062"></a>
 Introduction</h1>
 <ul>
 <li>Post Processing Blocks of the ADC are featured with limit checking on the PPBResult registers. the following are limits that each PPB can check,<ol type="1">
@@ -126,17 +126,17 @@ Introduction</h1>
 <img src="am263_adc_ppb_limits.png" alt=""/>
 <div class="caption">
 Example Block diagram</div></div>
- <h2><a class="anchor" id="autotoc_md2061"></a>
+ <h2><a class="anchor" id="autotoc_md2063"></a>
 Example Description</h2>
 <p>This example is a demonstration of such feature and uses the loopback from DAC to generate the required analog wave form (ramp wave is choosen for this example). Once the High and Low values are touched, the PPBs generate the EVTINT and ISR will check the events of PPB0, PPB1 (both configured for SOC0) and determine which limit has occured.</p>
-<h2><a class="anchor" id="autotoc_md2062"></a>
+<h2><a class="anchor" id="autotoc_md2064"></a>
 SOC configuration</h2>
 <ul>
 <li>SOC0 is configured to sample on AIN0</li>
 <li>Sample window of 20 is selected (arbitrary)</li>
 <li>Software only trigger is selected. </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2063"></a>
+<h2><a class="anchor" id="autotoc_md2065"></a>
 PPB Configurations</h2>
 <ul>
 <li>SOC0 is selected for PPB0 and PPB1</li>
@@ -145,31 +145,31 @@ PPB Configurations</h2>
 <li>PPB2 is set for Lower Limit Checking i.e., PPB Event is set for TripLow</li>
 <li>PPB2EVTINT is set for TripLow Note : PPBEVTINT is a logical OR for all the PPBxEVTINT, and is source for ISR</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2064"></a>
+<h2><a class="anchor" id="autotoc_md2066"></a>
 ISR Configuration</h2>
 <ul>
 <li>App_adc_PPB_ISR is set for INTXbar0, selected for ADC1EVTINT</li>
 <li>ISR checks which event has occured and load the corresponding PPB result to respective arrays.</li>
 <li>ISR Clears the events for further generated event identification</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2065"></a>
+<h1><a class="anchor" id="autotoc_md2067"></a>
 External Connections</h1>
-<h2><a class="anchor" id="autotoc_md2066"></a>
+<h2><a class="anchor" id="autotoc_md2068"></a>
 AM263PX-CC E2 or AM263X-CC E2 or AM261X-SOM E1</h2>
 <p>Loop DAC output back to ADC1 Channel 0</p><ul>
 <li>Connect HSEC Pin 9 to HSEC Pin 12 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2067"></a>
+<h2><a class="anchor" id="autotoc_md2069"></a>
 AM263X-CC E1</h2>
 <p>Loop DAC output back to ADC1 Channel 0</p><ul>
 <li>Connect HSEC Pin 9 to HSEC Pin 18</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2068"></a>
+<h2><a class="anchor" id="autotoc_md2070"></a>
 AM263PX-LP or AM263X-LP or AM261X-LP</h2>
 <p>Loop DAC output back to ADC1 Channel 0</p><ul>
 <li>Connect J1/J3 Pin 30 to J1/J3 Pin 24 (for AM261X-LP, to use DAC out at J3 30, please refer to IO expander configurations from Schematics and Syscfg)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2069"></a>
+<h1><a class="anchor" id="autotoc_md2071"></a>
 Watch Variables</h1>
 <ul>
 <li>gAdcHighLimitOutputs[] - holds the High limit trip values</li>
@@ -189,7 +189,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_ppb_limits/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2070"></a>
+<h1><a class="anchor" id="autotoc_md2072"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -199,10 +199,10 @@ Steps to Run the Example</h1>
 <li>Using the watch variables, view the ADC conversion results.</li>
 <li>Observe 6 EPWM waveforms. After ADC input voltage exceeds the PPB limit, PWMs get tripped.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2071"></a>
+<h1><a class="anchor" id="autotoc_md2073"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md2072"></a>
+<h1><a class="anchor" id="autotoc_md2074"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ADC PPB Limits Test Started</div>

@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_PPB_EPWM_TRIP.htm
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2086">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2087">External Connections</a><ul><li class="level2"><a href="#autotoc_md2088">AM263PX-CC E2</a></li>
-<li class="level2"><a href="#autotoc_md2089">AM263X-CC E2 or AM263X-CC E1 or AM261X-SOM E1</a></li>
-<li class="level2"><a href="#autotoc_md2090">AM263PX-LP</a></li>
-<li class="level2"><a href="#autotoc_md2091">AM263X-LP</a></li>
-<li class="level2"><a href="#autotoc_md2092">AM261X-LP</a></li>
+<ul><li class="level1"><a href="#autotoc_md2088">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2089">External Connections</a><ul><li class="level2"><a href="#autotoc_md2090">AM263PX-CC E2</a></li>
+<li class="level2"><a href="#autotoc_md2091">AM263X-CC E2 or AM263X-CC E1 or AM261X-SOM E1</a></li>
+<li class="level2"><a href="#autotoc_md2092">AM263PX-LP</a></li>
+<li class="level2"><a href="#autotoc_md2093">AM263X-LP</a></li>
+<li class="level2"><a href="#autotoc_md2094">AM261X-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_PPB_EPWM_TRIP_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2093">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2094">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2095">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2095">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2096">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2097">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_ppb_epwm_trip"></a></p>
-<h1><a class="anchor" id="autotoc_md2086"></a>
+<h1><a class="anchor" id="autotoc_md2088"></a>
 Introduction</h1>
 <p>This example demonstrates EPWM tripping through ADC limit detection PPB block. ADC0INT1 is configured to periodically trigger the ADC0 channel 2 post initial software forced trigger. The limit detection post-processing block(PPB) is configured and if the ADC results are outside of the defined range, the post-processing block will generate an ADCxEVTy event. This event is configured as EPWM trip source through configuring EPWM XBAR and corresponding EPWM’s trip zone and digital compare sub-modules. The example showcases one-shot, cycle-by-cycle and direct tripping of PWMs through ADCAEVT1 source via Digital compare submodule. DAC is configured to generate a ramp waveform and its output is connected as ADC input. PWM tripping is validated by reading different trip flags.</p>
 <dl class="section note"><dt>Note</dt><dd>The ADC EVT routing the Outputxbar in AM263x is missing. Hence in order to bring the ADC EVT to GPIO, we can follow other routes such as routing.<ol type="1">
@@ -133,14 +133,14 @@ Module Block diagram</div></div>
 <p>Watch Variables</p><ul>
 <li>adc0Result2 - Digital representation of the voltage on pin ADC0_AIN2</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2087"></a>
+<h1><a class="anchor" id="autotoc_md2089"></a>
 External Connections</h1>
 <ul>
 <li>ADC0_AIN2 pin should be connected to DAC output pin.</li>
 <li>EPWM0A, EPWM0B, EPWM1A, EPWM1B, EPWM2A, EPWM2B can be connected to an oscilloscope to validate tripping.</li>
 <li>In case of AM261x-LP, these are EPWM 2A/B, 3A/B, 4A/B respectively</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2088"></a>
+<h2><a class="anchor" id="autotoc_md2090"></a>
 AM263PX-CC E2</h2>
 <p>When using AM263Px-CC with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p>
 <ul>
@@ -148,7 +148,7 @@ AM263PX-CC E2</h2>
 <li>Capture and analyze waveforms at HSEC Pin 49, HSEC Pin 51, HSEC Pin 53, HSEC Pin 55, HSEC Pin 50, HSEC Pin 52</li>
 <li>Observe ADC EVT via Output Xbar on HSEC Pin 85</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2089"></a>
+<h2><a class="anchor" id="autotoc_md2091"></a>
 AM263X-CC E2 or AM263X-CC E1 or AM261X-SOM E1</h2>
 <p>When using AM263x-CC with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p>
 <ul>
@@ -156,21 +156,21 @@ AM263X-CC E2 or AM263X-CC E1 or AM261X-SOM E1</h2>
 <li>Capture and analyze waveforms at HSEC Pin 49, HSEC Pin 51, HSEC Pin 53, HSEC Pin 55, HSEC Pin 50, HSEC Pin 52</li>
 <li>Observe ADC EVT via PWMXbar - DCEVT - Output Xbar on HSEC Pin 85</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2090"></a>
+<h2><a class="anchor" id="autotoc_md2092"></a>
 AM263PX-LP</h2>
 <p>When using AM263Px-LP</p><ul>
 <li>Connect booster pack header J5/J7 pin 66 (ADC input) to J1/J3 pin 30 (DAC out)</li>
 <li>Capture and analyze waveforms at booster pack header J2/J4 pin 11, J6/J8 pin 59, J2/J4 pin 37, J2/J4 pin 38, J2/J4 pin 39, J2/J4 pin 40.</li>
 <li>Observe ADC EVT via Output Xbar on J5.50</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2091"></a>
+<h2><a class="anchor" id="autotoc_md2093"></a>
 AM263X-LP</h2>
 <p>When using AM263x-LP</p><ul>
 <li>Connect booster pack header J5/J7 pin 66 (ADC input) to J1/J3 pin 30 (DAC out)</li>
 <li>Capture and analyze waveforms at booster pack header J2/J4 pin 11, J6/J8 pin 59, J2/J4 pin 37, J2/J4 pin 38, J2/J4 pin 39, J2/J4 pin 40.</li>
 <li>Observe ADC EVT via PWMXbar - DCEVT - Output Xbar on J5.58</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2092"></a>
+<h2><a class="anchor" id="autotoc_md2094"></a>
 AM261X-LP</h2>
 <p>When using AM261x-LP</p><ul>
 <li>Connect booster pack header J7 pin 63 (ADC input) to J3 pin 30 (DAC out) | note for these pins refer to IO Expander configurations on Schematics and syscfg</li>
@@ -196,7 +196,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_ppb_epwm_trip/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2093"></a>
+<h1><a class="anchor" id="autotoc_md2095"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -206,10 +206,10 @@ Steps to Run the Example</h1>
 <li>Using the watch variables, view the ADC conversion results.</li>
 <li>Observe 6 EPWM waveforms. After ADC input voltage exceeds the PPB limit, PWMs get tripped.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2094"></a>
+<h1><a class="anchor" id="autotoc_md2096"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md2095"></a>
+<h1><a class="anchor" id="autotoc_md2097"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ADC PPB ePWM Trip Test Started ...</div>

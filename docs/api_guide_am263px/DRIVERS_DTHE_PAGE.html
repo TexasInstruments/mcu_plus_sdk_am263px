@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('DRIVERS_DTHE_PAGE.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><ul><li class="level2"><a href="#autotoc_md1175">Features Supported In Hardware</a></li>
-<li class="level2"><a href="#autotoc_md1176">Features Supported In Driver</a></li>
-<li class="level2"><a href="#autotoc_md1177">Block diagram</a></li>
-<li class="level2"><a href="#autotoc_md1178">Functional description</a></li>
-<li class="level2"><a href="#autotoc_md1179">DTHE API&#39;s Supported</a></li>
-<li class="level2"><a href="#autotoc_md1180">API</a></li>
+<ul><ul><li class="level2"><a href="#autotoc_md1177">Features Supported In Hardware</a></li>
+<li class="level2"><a href="#autotoc_md1178">Features Supported In Driver</a></li>
+<li class="level2"><a href="#autotoc_md1179">Block diagram</a></li>
+<li class="level2"><a href="#autotoc_md1180">Functional description</a></li>
+<li class="level2"><a href="#autotoc_md1181">DTHE API&#39;s Supported</a></li>
+<li class="level2"><a href="#autotoc_md1182">API</a></li>
 </ul>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_security_crypto_dthe"></a></p>
 <p>DTHE stands for Data Transform and Hashing Engine. This module is a wrapper on top of the Crypto IP with some additional capability, including CRC and Checksum</p>
-<h2><a class="anchor" id="autotoc_md1175"></a>
+<h2><a class="anchor" id="autotoc_md1177"></a>
 Features Supported In Hardware</h2>
 <p>DTHE provides the following features:</p>
 <ul>
@@ -148,7 +148,7 @@ Features Supported In Hardware</h2>
 </li>
 <li>Supports TCP CheckSum (CSUM)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1176"></a>
+<h2><a class="anchor" id="autotoc_md1178"></a>
 Features Supported In Driver</h2>
 <dl class="section note"><dt>Note</dt><dd>True Random Number Generation (TRNG) and PKA (Public Key Accelerator) are not supported from R5F on HS-SE/HS-FS devices as these are secure assets and are locked for HSM.</dd>
 <dd>
@@ -177,20 +177,20 @@ TRNG and PKA are single context engines and hence are secure assets on HS-SE/HS-
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1177"></a>
+<h2><a class="anchor" id="autotoc_md1179"></a>
 Block diagram</h2>
 <p> <style>div.image img[src="dthe_block_diagram.png"]{width:60%}</style> </p><div class="image">
 <img src="dthe_block_diagram.png" alt=""/>
 <div class="caption">
 DTHE block diagram</div></div>
-<h2><a class="anchor" id="autotoc_md1178"></a>
+<h2><a class="anchor" id="autotoc_md1180"></a>
 Functional description</h2>
 <ul>
 <li><a class="el" href="group__SECURITY__DTHE__MODULE.html#gaba32c784d8bf4ff4dd94bb33572332d6" title="Function to open DTHE instance, enable DTHE engine.">DTHE_open()</a> checks if the <a class="el" href="group__SECURITY__DTHE__MODULE.html#ga83c5172e7759b4dadec0a146eb376798" title="Handle to the DTHE driver.">DTHE_Handle</a> is already open and if it is not open it continues to initialize the <a class="el" href="group__SECURITY__DTHE__MODULE.html#ga83c5172e7759b4dadec0a146eb376798" title="Handle to the DTHE driver.">DTHE_Handle</a> with the desired SOC configuration.</li>
 <li>The <a class="el" href="group__SECURITY__DTHE__MODULE.html#ga83c5172e7759b4dadec0a146eb376798" title="Handle to the DTHE driver.">DTHE_Handle</a> is further used by AES and SHA drivers.</li>
 <li><a class="el" href="group__SECURITY__DTHE__MODULE.html#ga2a700d92ae7a4eddae0a7cea569e5fab" title="Function to close a DTHE module specified by the DTHE handle.">DTHE_close()</a> takes <a class="el" href="group__SECURITY__DTHE__MODULE.html#ga83c5172e7759b4dadec0a146eb376798" title="Handle to the DTHE driver.">DTHE_Handle</a> as parameter and proceeds to check if handle is not NULL and whether handle is open, if both conditions are satisfied then after changing <a class="el" href="group__SECURITY__DTHE__MODULE.html#ga83c5172e7759b4dadec0a146eb376798" title="Handle to the DTHE driver.">DTHE_Handle</a> to NULL, <a class="el" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f" title="Return status when the API execution was successful.">SystemP_SUCCESS</a> is returned.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1179"></a>
+<h2><a class="anchor" id="autotoc_md1181"></a>
 DTHE API's Supported</h2>
 <ul>
 <li><a class="el" href="group__SECURITY__DTHE__MODULE.html#ga06651a0f51249bac45154e58c52afccd" title="This function initializes the DTHE.">DTHE_init()</a>: Initializes the DTHE module.</li>
@@ -198,7 +198,7 @@ DTHE API's Supported</h2>
 <li><a class="el" href="group__SECURITY__DTHE__MODULE.html#gaba32c784d8bf4ff4dd94bb33572332d6" title="Function to open DTHE instance, enable DTHE engine.">DTHE_open()</a>: Function to open DTHE instance, enable DTHE engine.</li>
 <li><a class="el" href="group__SECURITY__DTHE__MODULE.html#ga2a700d92ae7a4eddae0a7cea569e5fab" title="Function to close a DTHE module specified by the DTHE handle.">DTHE_close()</a>: Function to close a DTHE module specified by the DTHE handle.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1180"></a>
+<h2><a class="anchor" id="autotoc_md1182"></a>
 API</h2>
 <ul>
 <li><a class="el" href="group__SECURITY__DTHE__MODULE.html">APIs for DTHE</a> </li>

@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('DRIVERS_I2C_HLD_PAGE.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_i2c_v1_hld"></a> </p>
-<h1><a class="anchor" id="autotoc_md942"></a>
+<h1><a class="anchor" id="autotoc_md944"></a>
 Features Supported</h1>
 <ul>
 <li>Controller and Target mode of Operation</li>
@@ -101,7 +101,7 @@ Features Supported</h1>
 <li>Queueing of I2C transactions</li>
 <li>I2C Bus Recovery</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md943"></a>
+<h1><a class="anchor" id="autotoc_md945"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <p>SysConfig can be used to configure below parameters apart from common configuration like Clock,MPU,RAT and others.</p><ul>
@@ -114,14 +114,14 @@ SysConfig Features</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md944"></a>
+<h1><a class="anchor" id="autotoc_md946"></a>
 Features NOT Supported</h1>
 <ul>
 <li>DMA Mode Operation.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md945"></a>
+<h1><a class="anchor" id="autotoc_md947"></a>
 Usage Overview</h1>
-<h2><a class="anchor" id="autotoc_md946"></a>
+<h2><a class="anchor" id="autotoc_md948"></a>
 API Sequence</h2>
 <p>To use the I2C HLD driver to transmit/receive data over the I2C bus, probe target and set bus frequency the application may call the following APIs:</p>
 <ul>
@@ -135,13 +135,13 @@ API Sequence</h2>
 <li><a class="el" href="group__DRV__I2C__HLD__MODULE.html#gad78db5aecccd790b4e9b5b45cbb05f5b" title="API to set the bus frequency of I2C Instance.">I2C_setBusFrequency()</a>: Set Bus frequency.</li>
 <li><a class="el" href="group__DRV__I2C__HLD__MODULE.html#gae72fbbef5977e287d18c7fb842464c6e" title="API to get the handle of an open I2C instance from the instance index.">I2C_getHandle()</a>: Get I2C Handle from index.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md947"></a>
+<h2><a class="anchor" id="autotoc_md949"></a>
 Initializing the I2C HLD Driver</h2>
 <p><a class="el" href="group__DRV__I2C__HLD__MODULE.html#ga9ff51ddf1d325776fef90cce0223772b" title="Initialize the I2C module.">I2C_init()</a> must be called before any other I2C Open is called.</p>
 <p><a class="el" href="group__DRV__I2C__HLD__MODULE.html#ga942a6589f060e6a9becb4eae13eee8f5" title="API to Open I2C at index idx with parameters params.">I2C_open()</a> must be called before calling any I2C APIs. This function takes index and params to initialize an instance and returns the handle to the I2C instance.</p>
 <p>Calling <a class="el" href="group__DRV__I2C__HLD__MODULE.html#ga12c86d89a687f2ee1eb980d99c32326d" title="API to close the I2C instance specified by the handle passed.">I2C_close()</a> closes the instance passed.</p>
 <p>Please note that the initialization of I2C HLD instances is taken care by the SysConfig generated code.</p>
-<h1><a class="anchor" id="autotoc_md948"></a>
+<h1><a class="anchor" id="autotoc_md950"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;drivers/i2c.h&gt;</span></div>
 </div><!-- fragment --><p> Instance Open Example </p><div class="fragment"><div class="line">    <a class="code" href="structI2C__Params.html">I2C_Params</a>      params;</div>
@@ -169,7 +169,7 @@ Example Usage</h1>
 <div class="line">    <span class="keywordflow">if</span> (<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> != status) {</div>
 <div class="line">        <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(FALSE);</div>
 <div class="line">    }</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md949"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md951"></a>
 API</h1>
 <p><a class="el" href="group__DRV__I2C__HLD__MODULE.html">APIs for I2C HLD</a> </p>
 </div></div><!-- contents -->
@@ -187,7 +187,7 @@ API</h1>
 <div class="ttc" id="astructI2C__Transaction_html_a804b918d5cb08bb75a39866d0b89e01e"><div class="ttname"><a href="structI2C__Transaction.html#a804b918d5cb08bb75a39866d0b89e01e">I2C_Transaction::readBuf</a></div><div class="ttdeci">void * readBuf</div><div class="ttdef"><b>Definition:</b> i2c.h:239</div></div>
 <div class="ttc" id="astructI2C__Transaction_html_a08959a9f098163d02d6002e73b3a4606"><div class="ttname"><a href="structI2C__Transaction.html#a08959a9f098163d02d6002e73b3a4606">I2C_Transaction::writeCount</a></div><div class="ttdeci">size_t writeCount</div><div class="ttdef"><b>Definition:</b> i2c.h:236</div></div>
 <div class="ttc" id="astructI2C__Transaction_html_a2085d4c943f0d8617365b7c427e6a0de"><div class="ttname"><a href="structI2C__Transaction.html#a2085d4c943f0d8617365b7c427e6a0de">I2C_Transaction::readCount</a></div><div class="ttdeci">size_t readCount</div><div class="ttdef"><b>Definition:</b> i2c.h:242</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="agroup__DRV__I2C__HLD__MODULE_html_ga12c86d89a687f2ee1eb980d99c32326d"><div class="ttname"><a href="group__DRV__I2C__HLD__MODULE.html#ga12c86d89a687f2ee1eb980d99c32326d">I2C_close</a></div><div class="ttdeci">void I2C_close(I2C_Handle handle)</div><div class="ttdoc">API to close the I2C instance specified by the handle passed.</div></div>
 <div class="ttc" id="astructI2C__Params_html_ab72ce0fd173d102656a5b482ad6f3779"><div class="ttname"><a href="structI2C__Params.html#ab72ce0fd173d102656a5b482ad6f3779">I2C_Params::transferMode</a></div><div class="ttdeci">uint8_t transferMode</div><div class="ttdef"><b>Definition:</b> i2c.h:290</div></div>
 <div class="ttc" id="agroup__DRV__I2C__HLD__MODULE_html_ga9ff51ddf1d325776fef90cce0223772b"><div class="ttname"><a href="group__DRV__I2C__HLD__MODULE.html#ga9ff51ddf1d325776fef90cce0223772b">I2C_init</a></div><div class="ttdeci">void I2C_init(void)</div><div class="ttdoc">Initialize the I2C module.</div></div>

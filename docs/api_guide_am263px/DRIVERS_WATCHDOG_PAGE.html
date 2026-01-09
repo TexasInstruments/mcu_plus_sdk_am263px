@@ -92,24 +92,24 @@ $(document).ready(function(){initNavTree('DRIVERS_WATCHDOG_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1157">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1158">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1159">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1160">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1161">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1162">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1159">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1160">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1161">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1162">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1163">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1164">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_watchdog"></a></p>
 <p>The WATCHDOG driver provides API for safety diagnostic which can detect a runaway CPU and generate either a reset or NMI (non-maskable interrupt) response. It generates resets or NMIs after a programmable period, or if no correct key sequence was written to the RTIWDKEY register.</p>
-<h1><a class="anchor" id="autotoc_md1157"></a>
+<h1><a class="anchor" id="autotoc_md1159"></a>
 Features Supported</h1>
 <ul>
 <li>Supports Watchdog reset mode.</li>
 <li>Supports Watchdog interrupt mode.</li>
 <li>Supports digital windowed Watchdog feature.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1158"></a>
+<h1><a class="anchor" id="autotoc_md1160"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -117,17 +117,17 @@ SysConfig Features</h1>
 <li>Option to select Watchdog Window size.</li>
 <li>Option to select Watchdog expiry time in millisecond.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1159"></a>
+<h1><a class="anchor" id="autotoc_md1161"></a>
 Features NOT Supported</h1>
 <ul>
 <li>NA</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1160"></a>
+<h1><a class="anchor" id="autotoc_md1162"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>Important Usage Guildelines</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1161"></a>
+<h1><a class="anchor" id="autotoc_md1163"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="watchdog_8h.html">drivers/watchdog.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Instance Open Example </p><div class="fragment"><div class="line">    <a class="code" href="structWatchdog__Params.html">Watchdog_Params</a>      params;</div>
@@ -140,7 +140,7 @@ Example Usage</h1>
 <div class="line">    }</div>
 </div><!-- fragment --><p> Instance Close Example </p><div class="fragment"><div class="line">    <a class="code" href="group__DRV__WDT__MODULE.html#ga1c0dfea7011b06f303d01afb631ffbdd">Watchdog_close</a>(gWatchdogHandle);</div>
 </div><!-- fragment --><p> Watchdog Service Example </p><div class="fragment"><div class="line">    <a class="code" href="group__DRV__WDT__MODULE.html#ga396decd6b1807db10c636f9987c3be4c">Watchdog_clear</a>(gWatchdogHandle);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1162"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1164"></a>
 API</h1>
 <p><a class="el" href="group__DRV__WDT__MODULE.html">APIs for WDT</a> </p>
 </div></div><!-- contents -->
@@ -153,7 +153,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__WDT__MODULE_html_ga1c0dfea7011b06f303d01afb631ffbdd"><div class="ttname"><a href="group__DRV__WDT__MODULE.html#ga1c0dfea7011b06f303d01afb631ffbdd">Watchdog_close</a></div><div class="ttdeci">void Watchdog_close(Watchdog_Handle handle)</div><div class="ttdoc">The function closes a Watchdog peripheral specified by the Watchdog handle. It stops (holds) the Watc...</div></div>
 <div class="ttc" id="astructWatchdog__Params_html_a94b5d650f8beb7dce719360404039ccf"><div class="ttname"><a href="structWatchdog__Params.html#a94b5d650f8beb7dce719360404039ccf">Watchdog_Params::resetMode</a></div><div class="ttdeci">Watchdog_ResetMode resetMode</div><div class="ttdef"><b>Definition:</b> watchdog_rti.h:166</div></div>
 <div class="ttc" id="agroup__DRV__WDT__MODULE_html_ggada0db7216129d7dad494bb0cd0169f88aafccd6330c396d9ffc2786524625bf1f"><div class="ttname"><a href="group__DRV__WDT__MODULE.html#ggada0db7216129d7dad494bb0cd0169f88aafccd6330c396d9ffc2786524625bf1f">Watchdog_RESET_ON</a></div><div class="ttdeci">@ Watchdog_RESET_ON</div><div class="ttdef"><b>Definition:</b> watchdog_rti.h:124</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="agroup__DRV__WDT__MODULE_html_ga396decd6b1807db10c636f9987c3be4c"><div class="ttname"><a href="group__DRV__WDT__MODULE.html#ga396decd6b1807db10c636f9987c3be4c">Watchdog_clear</a></div><div class="ttdeci">void Watchdog_clear(Watchdog_Handle handle)</div><div class="ttdoc">The function clears the Watchdog to prevent a reset signal from being generated if the module is in W...</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->

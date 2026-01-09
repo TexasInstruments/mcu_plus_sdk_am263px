@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('BOARD_FLASH_PAGE.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1223">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1224">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1225">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1226">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1227">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1228">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1225">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1226">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1227">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1228">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1229">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1230">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_board_flash"></a></p>
 <p>The Flash driver provides API to read and write to xSPI based flash devices present in the board.</p>
 <p>The driver takes care of all sequencing necessary to perform writes across pages and the application need not take care of the programming intricacies.</p>
-<h1><a class="anchor" id="autotoc_md1223"></a>
+<h1><a class="anchor" id="autotoc_md1225"></a>
 Features Supported</h1>
 <ul>
 <li>APIs to read and write to a flash offset</li>
@@ -111,7 +111,7 @@ Features Supported</h1>
 <li>API for block erases</li>
 <li>Supports Nand Flash</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1224"></a>
+<h1><a class="anchor" id="autotoc_md1226"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -122,12 +122,12 @@ SysConfig Features</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1225"></a>
+<h1><a class="anchor" id="autotoc_md1227"></a>
 Features NOT Supported</h1>
 <ul>
 <li>DMA for NAND FLASH</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1226"></a>
+<h1><a class="anchor" id="autotoc_md1228"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>Typically before writing to an offset, erase the block which corresponds to the offset</li>
@@ -139,7 +139,7 @@ Important Usage Guidelines</h1>
 <li>Flash writes can only be done to a page size aligned offset, otherwise the write API returns an error</li>
 <li>The <code>sbl_ospi</code> will be typically flashed at location 0x00000000 in the flash memory. So applications using flash should refrain from using this offset. Similarly, the starting of the last block of the flash is used for storing attackVector patterns later used for PHY tuning. So avoid using this offset as well.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1227"></a>
+<h1><a class="anchor" id="autotoc_md1229"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="flash_8h.html">board/flash.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Flash Read API </p><div class="fragment"><div class="line">    uint32_t offset;</div>
@@ -170,7 +170,7 @@ Example Usage</h1>
 <div class="line">    <span class="comment">/* Erase the block */</span></div>
 <div class="line">    status = <a class="code" href="group__BOARD__FLASH__MODULE.html#ga6871c4f81b71aa3543e8c37ace777821">Flash_eraseBlk</a>(handle,blk);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> == status);</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1228"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1230"></a>
 API</h1>
 <p><a class="el" href="group__BOARD__FLASH__MODULE.html">APIs for FLASH</a> <a class="el" href="group__BOARD__FLASH__MODULE.html">APIs for FLASH</a> </p>
 </div></div><!-- contents -->
@@ -178,7 +178,7 @@ API</h1>
 </div><!-- doc-content -->
 <div class="ttc" id="agroup__BOARD__FLASH__MODULE_html_ga011f0693fe6668e01b61e415a78a4586"><div class="ttname"><a href="group__BOARD__FLASH__MODULE.html#ga011f0693fe6668e01b61e415a78a4586">Flash_offsetToBlkPage</a></div><div class="ttdeci">int32_t Flash_offsetToBlkPage(Flash_Handle handle, uint32_t offset, uint32_t *block, uint32_t *page)</div><div class="ttdoc">Utility API to convert offset in bytes to (Block Num, Page Num)</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SYSTEM_html_ga47e638d7c694e6d42e57b96b071b8a6f"><div class="ttname"><a href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a></div><div class="ttdeci">#define SystemP_SUCCESS</div><div class="ttdoc">Return status when the API execution was successful.</div><div class="ttdef"><b>Definition:</b> SystemP.h:56</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="agroup__BOARD__FLASH__MODULE_html_ga6871c4f81b71aa3543e8c37ace777821"><div class="ttname"><a href="group__BOARD__FLASH__MODULE.html#ga6871c4f81b71aa3543e8c37ace777821">Flash_eraseBlk</a></div><div class="ttdeci">int32_t Flash_eraseBlk(Flash_Handle handle, uint32_t blockNum)</div><div class="ttdoc">Erase a block from flash.</div></div>
 <div class="ttc" id="agroup__BOARD__FLASH__MODULE_html_ga001f20252aa7da2e6a33036cd2d45178"><div class="ttname"><a href="group__BOARD__FLASH__MODULE.html#ga001f20252aa7da2e6a33036cd2d45178">Flash_write</a></div><div class="ttdeci">int32_t Flash_write(Flash_Handle handle, uint32_t offset, uint8_t *buf, uint32_t len)</div><div class="ttdoc">Write to flash.</div></div>
 <div class="ttc" id="aflash_8h_html"><div class="ttname"><a href="flash_8h.html">flash.h</a></div></div>

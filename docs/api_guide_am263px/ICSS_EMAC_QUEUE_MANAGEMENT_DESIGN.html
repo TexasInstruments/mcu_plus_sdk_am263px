@@ -92,44 +92,44 @@ $(document).ready(function(){initNavTree('ICSS_EMAC_QUEUE_MANAGEMENT_DESIGN.html
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1424">Overview</a></li>
-<li class="level1"><a href="#autotoc_md1425">Ports in ICSS EMAC</a></li>
-<li class="level1"><a href="#autotoc_md1426">Port-Based Queue Organization</a><ul><li class="level2"><a href="#autotoc_md1427">Queue Distribution</a></li>
-<li class="level2"><a href="#autotoc_md1428">Default Queue Sizes</a></li>
+<ul><li class="level1"><a href="#autotoc_md1426">Overview</a></li>
+<li class="level1"><a href="#autotoc_md1427">Ports in ICSS EMAC</a></li>
+<li class="level1"><a href="#autotoc_md1428">Port-Based Queue Organization</a><ul><li class="level2"><a href="#autotoc_md1429">Queue Distribution</a></li>
+<li class="level2"><a href="#autotoc_md1430">Default Queue Sizes</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1429">Introduction to Queue Management Units</a><ul><li class="level2"><a href="#autotoc_md1430">Buffer</a></li>
-<li class="level2"><a href="#autotoc_md1431">Buffer Descriptor (BD)</a></li>
-<li class="level2"><a href="#autotoc_md1432">Queue</a></li>
-<li class="level2"><a href="#autotoc_md1433">Queue Descriptor (QD)</a></li>
+<li class="level1"><a href="#autotoc_md1431">Introduction to Queue Management Units</a><ul><li class="level2"><a href="#autotoc_md1432">Buffer</a></li>
+<li class="level2"><a href="#autotoc_md1433">Buffer Descriptor (BD)</a></li>
+<li class="level2"><a href="#autotoc_md1434">Queue</a></li>
+<li class="level2"><a href="#autotoc_md1435">Queue Descriptor (QD)</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1434">Detailed Component Structure and Relationships</a></li>
-<li class="level1"><a href="#autotoc_md1435">Collision Queue</a><ul><li class="level2"><a href="#autotoc_md1436">What is Queue Contention?</a></li>
-<li class="level2"><a href="#autotoc_md1437">Primary-Secondary Arbitration System</a></li>
-<li class="level2"><a href="#autotoc_md1438">How the Arbitration Works</a></li>
-<li class="level2"><a href="#autotoc_md1439">Collision Queue Mechanism</a></li>
+<li class="level1"><a href="#autotoc_md1436">Detailed Component Structure and Relationships</a></li>
+<li class="level1"><a href="#autotoc_md1437">Collision Queue</a><ul><li class="level2"><a href="#autotoc_md1438">What is Queue Contention?</a></li>
+<li class="level2"><a href="#autotoc_md1439">Primary-Secondary Arbitration System</a></li>
+<li class="level2"><a href="#autotoc_md1440">How the Arbitration Works</a></li>
+<li class="level2"><a href="#autotoc_md1441">Collision Queue Mechanism</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1440">Reception Flow Example</a><ul><li class="level2"><a href="#autotoc_md1441">Initial State (Empty Queues)</a></li>
-<li class="level2"><a href="#autotoc_md1442">Packet Arrives at PRU (Firmware Receives)</a></li>
-<li class="level2"><a href="#autotoc_md1443">Firmware (Producer) Actions</a></li>
-<li class="level2"><a href="#autotoc_md1444">Host (Consumer) Actions</a></li>
+<li class="level1"><a href="#autotoc_md1442">Reception Flow Example</a><ul><li class="level2"><a href="#autotoc_md1443">Initial State (Empty Queues)</a></li>
+<li class="level2"><a href="#autotoc_md1444">Packet Arrives at PRU (Firmware Receives)</a></li>
+<li class="level2"><a href="#autotoc_md1445">Firmware (Producer) Actions</a></li>
+<li class="level2"><a href="#autotoc_md1446">Host (Consumer) Actions</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1445">Transmission Flow Example</a><ul><li class="level2"><a href="#autotoc_md1446">Initial State (Empty Transmit Queue)</a></li>
-<li class="level2"><a href="#autotoc_md1447">Application Calls ICSS_EMAC_txPacket</a></li>
-<li class="level2"><a href="#autotoc_md1448">Driver (Producer) Actions in ICSS_EMAC_txPacketEnqueue</a></li>
-<li class="level2"><a href="#autotoc_md1449">Firmware (Consumer) Actions</a></li>
+<li class="level1"><a href="#autotoc_md1447">Transmission Flow Example</a><ul><li class="level2"><a href="#autotoc_md1448">Initial State (Empty Transmit Queue)</a></li>
+<li class="level2"><a href="#autotoc_md1449">Application Calls ICSS_EMAC_txPacket</a></li>
+<li class="level2"><a href="#autotoc_md1450">Driver (Producer) Actions in ICSS_EMAC_txPacketEnqueue</a></li>
+<li class="level2"><a href="#autotoc_md1451">Firmware (Consumer) Actions</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_icss_emac_icss_emac_queue_management"></a></p>
-<h1><a class="anchor" id="autotoc_md1424"></a>
+<h1><a class="anchor" id="autotoc_md1426"></a>
 Overview</h1>
 <p>This page describes the queue management implementation in the ICSS EMAC driver. The queue management system is responsible for managing the flow of packets between the PRU firmware and the host processor.</p>
-<h1><a class="anchor" id="autotoc_md1425"></a>
+<h1><a class="anchor" id="autotoc_md1427"></a>
 Ports in ICSS EMAC</h1>
 <p>The ICSS-EMAC architecture uses a specific port numbering convention that is fundamental to understanding queue management. Although there are only two physical Ethernet ports on every ICSS instance, the system treats the host processor as a logical third port for convenience and protocol compatibility.</p>
 <p>The ports are referred to as:</p><ul>
@@ -137,10 +137,10 @@ Ports in ICSS EMAC</h1>
 <li>Physical Port 0: <a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga8149aef84e214698f4c40e3a6290cab1">ICSS_EMAC_PORT_1</a></li>
 <li>Physical Port 1: <a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga8961b5fbf7d921e0f2869d85386e0df3">ICSS_EMAC_PORT_2</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1426"></a>
+<h1><a class="anchor" id="autotoc_md1428"></a>
 Port-Based Queue Organization</h1>
 <p>Each port has its own set of queues, and the total number varies by operating mode.</p>
-<h2><a class="anchor" id="autotoc_md1427"></a>
+<h2><a class="anchor" id="autotoc_md1429"></a>
 Queue Distribution</h2>
 <p><b>Switch Mode</b>: 15 queues total</p><ul>
 <li>4 host receive queues (<a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga529426b030d582d0589f29b064643cd6">ICSS_EMAC_PORT_0</a>)</li>
@@ -159,7 +159,7 @@ Queue Distribution</h2>
 <div class="image">
 <img src="ICSS_EMAC_Queues.PNG" alt=""/>
 </div>
-<h2><a class="anchor" id="autotoc_md1428"></a>
+<h2><a class="anchor" id="autotoc_md1430"></a>
 Default Queue Sizes</h2>
 <p>The default queue sizes are shown below. The sizes are denoted by blocks, where each block is 32 bytes in size.</p>
 <div class="fragment"><div class="line"><span class="comment">/* Physical Port queue size. Same for both ports */</span></div>
@@ -175,9 +175,9 @@ Default Queue Sizes</h2>
 <div class="line"><span class="preprocessor">#define ICSS_EMAC_DEFAULT_FW_HOST_QUEUE_4_SIZE   ((uint32_t)194U)      </span><span class="comment">/* NRT (IP, ARP, ICMP ?) */</span><span class="preprocessor"></span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#define ICSS_EMAC_DEFAULT_FW_COLLISION_QUEUE_SIZE (48U)</span></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1429"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1431"></a>
 Introduction to Queue Management Units</h1>
-<h2><a class="anchor" id="autotoc_md1430"></a>
+<h2><a class="anchor" id="autotoc_md1432"></a>
 Buffer</h2>
 <p>A buffer is the actual memory space where packet data is stored.</p>
 <ul>
@@ -195,7 +195,7 @@ Buffer</h2>
 <div class="line">└──────────────────────────────────────────────────────────────┘</div>
 <div class="line">│◄──────────────────── 32 bytes total ───────────────────────►│</div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>A single buffer holds exactly 32 bytes. If a packet is larger, it spans multiple buffers. For example, a typical Ethernet frame with headers would need multiple 32-byte buffers to store the complete packet.</dd></dl>
-<h2><a class="anchor" id="autotoc_md1431"></a>
+<h2><a class="anchor" id="autotoc_md1433"></a>
 Buffer Descriptor (BD)</h2>
 <p>A buffer descriptor is metadata that describes and points to buffer(s) containing packet data.</p>
 <ul>
@@ -222,7 +222,7 @@ Buffer Descriptor (BD)</h2>
 <div class="line">│ [Error=0]          │ [Error=0]          │ [Error=0]          │ [Error=0]          │</div>
 <div class="line">└────────────────────┴────────────────────┴────────────────────┴────────────────────┘</div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>The first BD contains the complete packet length and metadata, while subsequent BDs point to additional 32-byte data blocks.</dd></dl>
-<h2><a class="anchor" id="autotoc_md1432"></a>
+<h2><a class="anchor" id="autotoc_md1434"></a>
 Queue</h2>
 <p>A queue is a logical collection of buffers organized to store multiple packets in a FIFO manner.</p>
 <ul>
@@ -252,7 +252,7 @@ Queue</h2>
 <div class="line">│                                                             │</div>
 <div class="line">│ ... (more packets)                                          │</div>
 <div class="line">└─────────────────────────────────────────────────────────────┘</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1433"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1435"></a>
 Queue Descriptor (QD)</h2>
 <p>A queue descriptor is the control structure that manages a queue's state and pointers.</p>
 <ul>
@@ -279,7 +279,7 @@ Queue Descriptor (QD)</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">overflow_cnt  </td><td class="markdownTableBodyNone">max_fill_level  </td><td class="markdownTableBodyNone">status  </td><td class="markdownTableBodyNone">busy_s  </td><td class="markdownTableBodyNone">wr_ptr  </td><td class="markdownTableBodyNone">rd_ptr   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1434"></a>
+<h1><a class="anchor" id="autotoc_md1436"></a>
 Detailed Component Structure and Relationships</h1>
 <p>The following diagram shows the hierarchical relationship between all queue management components:</p>
 <div class="fragment"><div class="line">┌────────────────────────────────────────────────────────────────────────────┐</div>
@@ -347,15 +347,15 @@ Detailed Component Structure and Relationships</h1>
 <div class="line">│ │ └────────────────────────────────────────────────────────────────────┘ │ │</div>
 <div class="line">│ └────────────────────────────────────────────────────────────────────────┘ │</div>
 <div class="line">└────────────────────────────────────────────────────────────────────────────┘</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1435"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1437"></a>
 Collision Queue</h1>
-<h2><a class="anchor" id="autotoc_md1436"></a>
+<h2><a class="anchor" id="autotoc_md1438"></a>
 What is Queue Contention?</h2>
 <p>Queue contention occurs when two PRUs or a PRU and the Host want to acquire the same queue at the same time. This creates a race condition that must be resolved to prevent data corruption and ensure proper packet handling.</p>
 <p>There are two main scenarios where contention happens:</p>
 <p><b>Host Queue Contention</b>: This occurs when both PRU0 and PRU1 try to write received packets to the same host queue simultaneously. For example, when both ports receive broadcast packets at the same time, both PRUs will attempt to store the packet in the host receive queue.</p>
 <p><b>Port Queue Contention</b>: This happens when the Host and a PRU try to access the same port transmit queue. For instance, the host application might want to transmit a packet while the PRU is performing a store-and-forward operation on the same queue.</p>
-<h2><a class="anchor" id="autotoc_md1437"></a>
+<h2><a class="anchor" id="autotoc_md1439"></a>
 Primary-Secondary Arbitration System</h2>
 <p>To resolve these conflicts, ICSS-EMAC uses a Primary-Secondary arbitration scheme where different entities are assigned priority based on the queue type:</p>
 <ul>
@@ -364,19 +364,19 @@ Primary-Secondary Arbitration System</h2>
 <li><b>For Physical Port 1 Transmit Queues (<a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga8961b5fbf7d921e0f2869d85386e0df3">ICSS_EMAC_PORT_2</a>)</b>: PRU0 acts as the primary arbiter and the Host acts as the secondary arbiter, since PRU0 manages Physical Port 1 transmit operations.</li>
 </ul>
 <p>Each queue descriptor contains ownership bits - one for secondary ownership and one for primary ownership. These bits are used to coordinate access between the competing entities.</p>
-<h2><a class="anchor" id="autotoc_md1438"></a>
+<h2><a class="anchor" id="autotoc_md1440"></a>
 How the Arbitration Works</h2>
 <p><b>Primary Arbiter Process</b>: When the primary arbiter wants to acquire a queue, it first checks the secondary ownership bit. If the secondary has already acquired the queue, the primary gives up and stores its packet in a collision queue instead. If the queue is free, the primary sets its ownership bit and proceeds to use the main queue.</p>
 <p><b>Secondary Arbiter Process</b>: The secondary arbiter process is more complex because it needs to handle race conditions. First, the secondary checks if the primary ownership bit is set. If so, it goes directly to the collision queue. If the primary bit is clear, the secondary sets its own ownership bit and then immediately re-checks the primary bit. This double-check is crucial because the primary arbiter might have acquired the queue between the secondary's initial check and when it set its own bit. If the primary did acquire the queue during this window, the secondary clears its ownership bit and falls back to using the collision queue.</p>
-<h2><a class="anchor" id="autotoc_md1439"></a>
+<h2><a class="anchor" id="autotoc_md1441"></a>
 Collision Queue Mechanism</h2>
 <p>Collision queues serve as temporary storage when the main queue is busy. Each port has its own collision buffer in MSRAM.</p>
 <p>The critical limitation is that each collision queue can only hold a single packet, regardless of the packet size. If a collision queue is already occupied and another contention occurs, the new packet will be dropped.</p>
-<h1><a class="anchor" id="autotoc_md1440"></a>
+<h1><a class="anchor" id="autotoc_md1442"></a>
 Reception Flow Example</h1>
 <p>This section demonstrates how a packet is received from the network and delivered to the host application.</p>
 <dl class="section note"><dt>Note</dt><dd>The offsets used here are for demonstration purposes only - the actual offsets when application is running on the target may differ.</dd></dl>
-<h2><a class="anchor" id="autotoc_md1441"></a>
+<h2><a class="anchor" id="autotoc_md1443"></a>
 Initial State (Empty Queues)</h2>
 <div class="fragment"><div class="line">Queue State: Empty</div>
 <div class="line">┌─────────────────────────────────────────────────────────────┐</div>
@@ -399,7 +399,7 @@ Initial State (Empty Queues)</h2>
 <div class="line">│Buf1  │ │Buf2  │ │Buf3  │ │Buf4  │ ... (empty)</div>
 <div class="line">│ 32B  │ │ 32B  │ │ 32B  │ │ 32B  │</div>
 <div class="line">└──────┘ └──────┘ └──────┘ └──────┘</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1442"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1444"></a>
 Packet Arrives at PRU (Firmware Receives)</h2>
 <div class="fragment"><div class="line">Incoming Packet: 68 bytes</div>
 <div class="line">┌─────────────────────────────────────────────────────────────┐</div>
@@ -407,7 +407,7 @@ Packet Arrives at PRU (Firmware Receives)</h2>
 <div class="line">│ (14 bytes)      |(20 bytes) |(20 bytes)  | (14 bytes)       │</div>
 <div class="line">└─────────────────────────────────────────────────────────────┘</div>
 <div class="line">│◄──────────────── 68 bytes total ────────────────────────────►│</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1443"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1445"></a>
 Firmware (Producer) Actions</h2>
 <p><b>1. Firmware Stores Packet Data in Buffers (MSRAM)</b></p>
 <p>PRU Firmware splits 68-byte packet into 32-byte blocks:</p>
@@ -469,7 +469,7 @@ Firmware (Producer) Actions</h2>
 <div class="line">Available for host consumption: 1 packet (68 bytes)</div>
 </div><!-- fragment --><p><b>4. Firmware Generates Host Interrupt</b></p>
 <p>The PRU firmware triggers interrupt to the host processor via ICSS INTC - notifying that a packet is ready to be received.</p>
-<h2><a class="anchor" id="autotoc_md1444"></a>
+<h2><a class="anchor" id="autotoc_md1446"></a>
 Host (Consumer) Actions</h2>
 <ol type="1">
 <li><b>Host Detects New Packet</b>: <code>ICSS_EMAC_rxInterruptHandler</code> wakes up RxTask (<code>ICSS_EMAC_osRxTaskFnc</code>) and <code>ICSS_EMAC_pollPkt()</code> is called.</li>
@@ -482,11 +482,11 @@ Host (Consumer) Actions</h2>
 </ul>
 </li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1445"></a>
+<h1><a class="anchor" id="autotoc_md1447"></a>
 Transmission Flow Example</h1>
 <p>This section demonstrates how a packet is transmitted from the host application to the network.</p>
 <dl class="section note"><dt>Note</dt><dd>The offsets used here are for demonstration purposes only - the actual offsets when application is running on the target may differ.</dd></dl>
-<h2><a class="anchor" id="autotoc_md1446"></a>
+<h2><a class="anchor" id="autotoc_md1448"></a>
 Initial State (Empty Transmit Queue)</h2>
 <div class="fragment"><div class="line">Port 1 Transmit Queue (P1_Q1) - Initial State:</div>
 <div class="line">┌─────────────────────────────────────────────────────────────┐</div>
@@ -510,7 +510,7 @@ Initial State (Empty Transmit Queue)</h2>
 <div class="line">│Buf1  │ │Buf2  │ │Buf3  │ │Buf4  │ ... (empty)</div>
 <div class="line">│ 32B  │ │ 32B  │ │ 32B  │ │ 32B  │</div>
 <div class="line">└──────┘ └──────┘ └──────┘ └──────┘</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1447"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1449"></a>
 Application Calls ICSS_EMAC_txPacket</h2>
 <div class="fragment"><div class="line">Application Request:</div>
 <div class="line">┌─────────────────────────────────────────────────────────────┐</div>
@@ -528,7 +528,7 @@ Application Calls ICSS_EMAC_txPacket</h2>
 <div class="line">│ (14 bytes)      |(20 bytes) |(20 bytes)  | (46 bytes)       │</div>
 <div class="line">└─────────────────────────────────────────────────────────────┘</div>
 <div class="line">│◄──────────────── 100 bytes total ───────────────────────────►│</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1448"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1450"></a>
 Driver (Producer) Actions in ICSS_EMAC_txPacketEnqueue</h2>
 <ol type="1">
 <li><b>Queue Validation and Selection</b>: The driver validates port number, queue priority, packet length, and link status, then selects the appropriate transmit queue.</li>
@@ -617,7 +617,7 @@ Driver (Producer) Actions in ICSS_EMAC_txPacketEnqueue</h2>
 <div class="line"> </div>
 <div class="line">Queue State: Has Data (Wr_ptr &gt; Rd_ptr)</div>
 <div class="line">Available for firmware transmission: 1 packet (100 bytes)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1449"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1451"></a>
 Firmware (Consumer) Actions</h2>
 <p><b>1. Firmware Detects New Packet</b></p>
 <div class="fragment"><div class="line">PRU Firmware (Transmit Task):</div>

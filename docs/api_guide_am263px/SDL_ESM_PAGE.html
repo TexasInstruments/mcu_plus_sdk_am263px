@@ -92,19 +92,19 @@ $(document).ready(function(){initNavTree('SDL_ESM_PAGE.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1516">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1517">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1518">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1519">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1520">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1521">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1518">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1519">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1520">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1521">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1522">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1523">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_esm"></a></p>
 <p>The Error Signaling Module (ESM) aggregates safety-related events and/or errors resulting from diagnostics from throughout the device into one location that can be monitored internally or externally. It allows designation of events as high priority or low priority interrupts, and also directly manipulate an I/O error pin to signal an external hardware (e.g. external monitor) that an error has occurred. Using the Error Signaling Module allows a single place in the SoC to manage these events, take corrective action, and clear error pin signaling external hardware if appropriate corrective action is taken. An external controller can monitor the error pin and is able to reset the device or keep the system in a safe, known state.</p>
 <p>There can be multiple ESM instances on a device, and each one can support multiple error events that come from the various IP blocks in the device. Detailed information regarding the error events supported can be found in the device-specific TRM.</p>
 <p>SDL provides the application with an interface to the ESM. Using SDL ESM, the application can initialize the ESM and listen for the desired error events from the device as well as configure the priority and error pin signaling of the events. As part of initialization of the ESM by the application, the application registers a callback for being notified of the error events. This is called by the SDL's ESM Handler. SDL provides APIs for initializing and configuring the ESM for detecting the HW errors. The application can use the APIs to configure the ESM interrupts and priorities. Also, configuration of the error pin reporting is supported. SDL also provides the ability for the application to manipulate the error pin.</p>
-<h1><a class="anchor" id="autotoc_md1516"></a>
+<h1><a class="anchor" id="autotoc_md1518"></a>
 Features Supported</h1>
 <p>The SDL provides support for the ESM through:</p>
 <ul>
@@ -120,20 +120,20 @@ Features Supported</h1>
 <li>Enable nErrorPin assertion for the event</li>
 </ul>
 <p>The ESM Handler is responsible for handling the errors at runtime and notifying the application via registered callback. The registered callback will run in interrupt context.</p>
-<h1><a class="anchor" id="autotoc_md1517"></a>
+<h1><a class="anchor" id="autotoc_md1519"></a>
 SysConfig Features</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1518"></a>
+<h1><a class="anchor" id="autotoc_md1520"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1519"></a>
+<h1><a class="anchor" id="autotoc_md1521"></a>
 Important Usage Guidelines</h1>
 <p>The mapping of interrupts 0 to 63 is level event and 64 to rest is pulse event.</p>
-<h1><a class="anchor" id="autotoc_md1520"></a>
+<h1><a class="anchor" id="autotoc_md1522"></a>
 Example Usage</h1>
 <p>The following shows an example of SDL ESM API usage by the application to set up the ESM to monitor for specific safety events.</p>
 <p>In this example, the application configures the ESM for a particular ESM Instance. If there are multiple ESM instances on a device, then all instances for which the application wishes to listen for error events need to be configured. In this example we will configure only one of the ESM Instances</p>
@@ -190,7 +190,7 @@ Example Usage</h1>
 <div class="line">}</div>
 </div><!-- fragment --><p>In order to readback the static config:</p>
 <div class="fragment"><div class="line">ret = <a class="code" href="group__SDL__ESM__MODULE.html#gaa6038c780ee7ecdef27dcc9abe883712">SDL_ESM_getStaticRegisters</a>(<a class="code" href="group__SDL__ESM__MODULE.html#ggae5a25ad63d3b6fb92538167520983d51a825e49e84662d961a375f14f9c9afc9d">SDL_ESM_INST_MAIN_ESM0</a>, &amp;staticRegs);</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1521"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1523"></a>
 API</h1>
 <p><a class="el" href="group__SDL__ESM__MODULE.html">APIs for SDL ESM</a> </p>
 </div></div><!-- contents -->
@@ -200,7 +200,7 @@ API</h1>
 <div class="ttc" id="astructSDL__ESM__config_html"><div class="ttname"><a href="structSDL__ESM__config.html">SDL_ESM_config</a></div><div class="ttdoc">ESM init configuration.</div><div class="ttdef"><b>Definition:</b> esm/v2/sdl_esm.h:180</div></div>
 <div class="ttc" id="agroup__SDL__ESM__MODULE_html_ggae5a25ad63d3b6fb92538167520983d51a825e49e84662d961a375f14f9c9afc9d"><div class="ttname"><a href="group__SDL__ESM__MODULE.html#ggae5a25ad63d3b6fb92538167520983d51a825e49e84662d961a375f14f9c9afc9d">SDL_ESM_INST_MAIN_ESM0</a></div><div class="ttdeci">@ SDL_ESM_INST_MAIN_ESM0</div><div class="ttdef"><b>Definition:</b> sdl_esm_soc.h:66</div></div>
 <div class="ttc" id="agroup__SDL__ESM__MODULE_html_ga9e180bb2d7cc584f3bd10ce49d7ec99a"><div class="ttname"><a href="group__SDL__ESM__MODULE.html#ga9e180bb2d7cc584f3bd10ce49d7ec99a">SDL_ESM_clrNError</a></div><div class="ttdeci">int32_t SDL_ESM_clrNError(SDL_ESM_Inst instance)</div><div class="ttdoc">SDL ESM API to clear the nError pin for the specified ESM instance.</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:225</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:235</div></div>
 <div class="ttc" id="agroup__SDL__ESM__MODULE_html_gaa6038c780ee7ecdef27dcc9abe883712"><div class="ttname"><a href="group__SDL__ESM__MODULE.html#gaa6038c780ee7ecdef27dcc9abe883712">SDL_ESM_getStaticRegisters</a></div><div class="ttdeci">int32_t SDL_ESM_getStaticRegisters(SDL_ESM_Inst instance, SDL_ESM_staticRegs *pStaticRegs)</div><div class="ttdoc">SDL ESM API to read the static registers. The API reads and returns the static register configuration...</div></div>
 <div class="ttc" id="agroup__SDL__ESM__MODULE_html_gad1bf99d8a66ec79494c85e534621176f"><div class="ttname"><a href="group__SDL__ESM__MODULE.html#gad1bf99d8a66ec79494c85e534621176f">SDL_ESM_verifyConfig</a></div><div class="ttdeci">int32_t SDL_ESM_verifyConfig(SDL_ESM_Inst instance, const SDL_ESM_config *pConfig)</div><div class="ttdoc">SDL ESM API to verify the written configuration of the ESM module. The API verifies the written confi...</div></div>
 <div class="ttc" id="agroup__SDL__ESM__MODULE_html_gae5a25ad63d3b6fb92538167520983d51"><div class="ttname"><a href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a></div><div class="ttdeci">SDL_ESM_Inst</div><div class="ttdef"><b>Definition:</b> sdl_esm_soc.h:65</div></div>

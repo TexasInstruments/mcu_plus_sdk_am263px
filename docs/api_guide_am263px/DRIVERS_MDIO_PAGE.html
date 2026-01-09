@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('DRIVERS_MDIO_PAGE.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1060">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1061">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1062">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1063">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1062">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1063">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1064">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1065">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_mdio"></a></p>
 <p>MDIO driver provides an interface to the MDIO management interface module which implements the 802.3 serial management interface to interrogate and control the Ethernet PHYs on the board.</p>
-<h1><a class="anchor" id="autotoc_md1060"></a>
+<h1><a class="anchor" id="autotoc_md1062"></a>
 Features Supported</h1>
 <ul>
 <li>Initialize MDIO clock</li>
@@ -108,10 +108,10 @@ Features Supported</h1>
 <li>Read the link status of Ethernet PHY</li>
 <li>Enable link change Interrupt</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1061"></a>
+<h1><a class="anchor" id="autotoc_md1063"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md1062"></a>
+<h1><a class="anchor" id="autotoc_md1064"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="drivers_2mdio_8h.html">drivers/mdio.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Initializing MDIO clock </p><div class="fragment"><div class="line">    status = <a class="code" href="group__DRV__MDIO__MODULE.html#ga4fa82fb47226414567b3f803b0fdf5a0">MDIO_initClock</a>(mdioBaseAddress);</div>
@@ -125,7 +125,7 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* Write a PHY register */</span></div>
 <div class="line">    status = <a class="code" href="group__DRV__MDIO__MODULE.html#gadc80f49a087953a4485744fec734eaab">MDIO_phyRegWrite</a>(mdioBaseAddress, NULL, phyAddress, 0, phyRegVal);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1063"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1065"></a>
 API</h1>
 <p><a class="el" href="group__DRV__MDIO__MODULE.html">APIs for MDIO</a> </p>
 </div></div><!-- contents -->
@@ -137,7 +137,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__MDIO__MODULE_html_gadc80f49a087953a4485744fec734eaab"><div class="ttname"><a href="group__DRV__MDIO__MODULE.html#gadc80f49a087953a4485744fec734eaab">MDIO_phyRegWrite</a></div><div class="ttdeci">int32_t MDIO_phyRegWrite(uint32_t baseAddr, void *pUserGroup, uint32_t phyAddr, uint32_t regNum, uint16_t wrVal)</div><div class="ttdoc">This API writes an IEEE defined PHY register using MDIO. It should be called only after successful ex...</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SYSTEM_html_ga47e638d7c694e6d42e57b96b071b8a6f"><div class="ttname"><a href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a></div><div class="ttdeci">#define SystemP_SUCCESS</div><div class="ttdoc">Return status when the API execution was successful.</div><div class="ttdef"><b>Definition:</b> SystemP.h:56</div></div>
 <div class="ttc" id="adrivers_2mdio_8h_html"><div class="ttname"><a href="drivers_2mdio_8h.html">mdio.h</a></div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

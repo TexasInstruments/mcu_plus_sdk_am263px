@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('SDL_ECC_BUS_SAFETY_PAGE.html',''); ini
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1632">Features Supported</a><ul><li class="level2"><a href="#autotoc_md1633">SysConfig Features</a></li>
-<li class="level2"><a href="#autotoc_md1634">Features NOT Supported</a></li>
-<li class="level2"><a href="#autotoc_md1635">Important Usage Guidelines</a></li>
-<li class="level2"><a href="#autotoc_md1636">Example Usage</a></li>
-<li class="level2"><a href="#autotoc_md1637">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1634">Features Supported</a><ul><li class="level2"><a href="#autotoc_md1635">SysConfig Features</a></li>
+<li class="level2"><a href="#autotoc_md1636">Features NOT Supported</a></li>
+<li class="level2"><a href="#autotoc_md1637">Important Usage Guidelines</a></li>
+<li class="level2"><a href="#autotoc_md1638">Example Usage</a></li>
+<li class="level2"><a href="#autotoc_md1639">API</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_ecc_bus_safety"></a></p>
-<h1><a class="anchor" id="autotoc_md1632"></a>
+<h1><a class="anchor" id="autotoc_md1634"></a>
 Features Supported</h1>
 <p>ECC BUS SAFETY module consists ECC Bus Safety Diagnostics.</p>
 <ul>
@@ -115,22 +115,31 @@ Features Supported</h1>
 <li>API to support and induce error on particular node bus.</li>
 <li>API to support interrupt configuration</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1633"></a>
+<p>Supported nodes</p>
+<p> <style>div.image img[src="am263px_bus.png"]{width:70%}</style> </p><div class="image">
+<img src="am263px_bus.png" alt=""/>
+<div class="caption">
+ECC Bus Safety</div></div>
+<p> Note:</p><ul>
+<li>CR5A_AXI_RD_SEC - Tested in r5fss0-0 core. Similarly CR5B, CR5C, CR5D can be tested in relevant core.</li>
+<li>L2_A, L2_B, L2_C, L2_D, L2_E and L2_F - To be tested by disable cache memory.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md1635"></a>
 SysConfig Features</h2>
 <ul>
 <li>None</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1634"></a>
+<h2><a class="anchor" id="autotoc_md1636"></a>
 Features NOT Supported</h2>
 <ul>
 <li>None</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1635"></a>
+<h2><a class="anchor" id="autotoc_md1637"></a>
 Important Usage Guidelines</h2>
 <ul>
 <li>None</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1636"></a>
+<h2><a class="anchor" id="autotoc_md1638"></a>
 Example Usage</h2>
 <p>The following shows an example of SDL ECC BUS SAFETY API usage by the application for Error Injection Tests.</p>
 <p>Include the below file to access the APIs</p>
@@ -422,7 +431,7 @@ Example Usage</h2>
 <div class="line">        ret_val = SDL_EFAIL;</div>
 <div class="line">    }</div>
 <div class="line">}</div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md1637"></a>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md1639"></a>
 API</h2>
 <p><a class="el" href="group__SDL__ECC__BUS__SAFETY__MODULE.html">APIs for SDL ECC BUS SAFETY</a> </p>
 </div></div><!-- contents -->

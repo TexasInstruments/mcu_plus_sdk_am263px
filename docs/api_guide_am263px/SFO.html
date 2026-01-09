@@ -92,35 +92,35 @@ $(document).ready(function(){initNavTree('SFO.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1499">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md1500">Files included</a></li>
-<li class="level1"><a href="#autotoc_md1501">Software usage details for SFO library</a><ul><li class="level2"><a href="#autotoc_md1502">1. Add &quot;Include&quot; Files:</a></li>
-<li class="level2"><a href="#autotoc_md1503">2. Variable Declarations:</a></li>
-<li class="level2"><a href="#autotoc_md1504">3. MEP_ScaleFactor Initialization:</a></li>
-<li class="level2"><a href="#autotoc_md1505">4. Application Code</a></li>
+<ul><li class="level1"><a href="#autotoc_md1501">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md1502">Files included</a></li>
+<li class="level1"><a href="#autotoc_md1503">Software usage details for SFO library</a><ul><li class="level2"><a href="#autotoc_md1504">1. Add &quot;Include&quot; Files:</a></li>
+<li class="level2"><a href="#autotoc_md1505">2. Variable Declarations:</a></li>
+<li class="level2"><a href="#autotoc_md1506">3. MEP_ScaleFactor Initialization:</a></li>
+<li class="level2"><a href="#autotoc_md1507">4. Application Code</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1506">Examples</a></li>
+<li class="level1"><a href="#autotoc_md1508">Examples</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_calibration_calibration_sfo"></a></p>
-<h1><a class="anchor" id="autotoc_md1499"></a>
+<h1><a class="anchor" id="autotoc_md1501"></a>
 Introduction</h1>
 <p>The SFO library implements Scale Factor Optimization routine to drive the micro-edge positioner (MEP) calibration module to run SFO diagnostics and determine the appropriate MEP scale factor (number of MEP steps per coarse EPWMCLK step) for a device at any given time.</p>
-<h1><a class="anchor" id="autotoc_md1500"></a>
+<h1><a class="anchor" id="autotoc_md1502"></a>
 Files included</h1>
 <ol type="1">
 <li>SFO lib source code - sfo.c</li>
 <li>SFO lib header file - sfo.h</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1501"></a>
+<h1><a class="anchor" id="autotoc_md1503"></a>
 Software usage details for SFO library</h1>
-<h2><a class="anchor" id="autotoc_md1502"></a>
+<h2><a class="anchor" id="autotoc_md1504"></a>
 1. Add "Include" Files:</h2>
 <p>Include sfo.h header file in application code apart for the other device specific files. <br  />
 </p>
 <div class="fragment"><div class="line">E.g. #include &quot;sfo.h&quot;   </div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1503"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1505"></a>
 2. Variable Declarations:</h2>
 <p>The application needs to declare below variables to provide OTTOCAL (calibration module) instance addresses used in SFO lib and to capture calibration status &amp; output. <br  />
 </p>
@@ -133,7 +133,7 @@ Software usage details for SFO library</h1>
 <li>OTTOCAL2 for EPWM16-EPWM23</li>
 <li>OTTOCAL3 for EPWM24-EPWM31</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1504"></a>
+<h2><a class="anchor" id="autotoc_md1506"></a>
 3. MEP_ScaleFactor Initialization:</h2>
 <p>Prior to using the MEP_ScaleFactor variable in application code, SFO() should be called to drive the MEP calibration module to calculate an initial MEP_ScaleFactor value.</p>
 <div class="fragment"><div class="line">E.g.</div>
@@ -149,7 +149,7 @@ Software usage details for SFO library</h1>
 <div class="line">         error();</div>
 <div class="line">     }</div>
 <div class="line"> }</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1505"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1507"></a>
 4. Application Code</h2>
 <p>While the application is running, fluctuations in both device temperature and supply voltage may be expected. To be sure that optimal Scale Factors are used for each ePWM module, the SFO function should be re-run periodically as part of a slower back-ground loop. Some examples of this are shown here.</p>
 <div class="fragment"><div class="line">E.g.</div>
@@ -170,7 +170,7 @@ Software usage details for SFO library</h1>
 <div class="line">     error();</div>
 <div class="line">    }</div>
 <div class="line">   }</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1506"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1508"></a>
 Examples</h1>
 <ul>
 <li>Refer <a class="el" href="EXAMPLES_DRIVERS_HRPWM_DEADBAND_SFO.html">EPWM HR Deadband SFO</a></li>

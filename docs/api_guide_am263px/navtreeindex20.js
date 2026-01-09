@@ -1,5 +1,7 @@
 var NAVTREEINDEX20 =
 {
+"group__BOARD__ETHPHY__MODULE.html#ga0a4326f41500c990258092fd3fdf4b85":[19,1,0,8],
+"group__BOARD__ETHPHY__MODULE.html#ga12357295dbfb128a326ccc1155352ce8":[19,1,0,30],
 "group__BOARD__ETHPHY__MODULE.html#ga148127b94a1165c90d0367726fd7609c":[19,1,0,5],
 "group__BOARD__ETHPHY__MODULE.html#ga17df35c07a5ac06774c81641820b7308":[19,1,0,10],
 "group__BOARD__ETHPHY__MODULE.html#ga1ff1085f5dd3f92027839529fde1aa27":[19,1,0,24],
@@ -247,7 +249,5 @@ var NAVTREEINDEX20 =
 "group__CPSW__ALE__MOD.html#ggaf3bf2f1cea23dbfd1861b20830a603a0aa616bc9ea12c9dfece495b4232702fa1":[19,4,0,1,0,93,3],
 "group__CPSW__ALE__MOD.html#ggaf3bf2f1cea23dbfd1861b20830a603a0ae85863db62f4c7a1f86539bf24fbfe82":[19,4,0,1,0,93,0],
 "group__CPSW__CPTS__MOD.html":[19,4,0,11,0],
-"group__CPSW__CPTS__MOD.html#ga1dc0fcc93faeb7a0d47cb715163ea75f":[19,4,0,11,0,21],
-"group__CPSW__CPTS__MOD.html#ga2eb9600ca33fa89f5298204a10a4fa8d":[19,4,0,11,0,19],
-"group__CPSW__CPTS__MOD.html#ga2f780a5e1a3499181f7218b95ac9fc34":[19,4,0,11,0,13]
+"group__CPSW__CPTS__MOD.html#ga1dc0fcc93faeb7a0d47cb715163ea75f":[19,4,0,11,0,21]
 };

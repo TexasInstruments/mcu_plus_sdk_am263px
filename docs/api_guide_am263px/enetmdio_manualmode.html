@@ -92,14 +92,14 @@ $(document).ready(function(){initNavTree('enetmdio_manualmode.html',''); initRes
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1302">Workaround for details errata i2329-MDIO interface corruption and its impact:</a></li>
-<li class="level1"><a href="#autotoc_md1303">Limitations</a></li>
-<li class="level1"><a href="#autotoc_md1304">Not supported MDIO IOCTL APIs in MDIO Manual mode</a></li>
+<ul><li class="level1"><a href="#autotoc_md1304">Workaround for details errata i2329-MDIO interface corruption and its impact:</a></li>
+<li class="level1"><a href="#autotoc_md1305">Limitations</a></li>
+<li class="level1"><a href="#autotoc_md1306">Not supported MDIO IOCTL APIs in MDIO Manual mode</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_enet_lld_mdio_manual_mode"></a></p>
 <dl class="section note"><dt>Note</dt><dd>If your silicon is affected with errata <a href="https://www.ti.com/lit/er/sprz457e/sprz457e.pdf" target="_blank">i2329— MDIO interface corruption</a>, please refer to Release notes for the information [ <a class="el" href="RELEASE_NOTES_PAGE.html">Release Notes</a> ], then TI suggests to use MDIO Manual mode as software workaround mentioned below</dd></dl>
-<h1><a class="anchor" id="autotoc_md1302"></a>
+<h1><a class="anchor" id="autotoc_md1304"></a>
 Workaround for details errata i2329-MDIO interface corruption and its impact:</h1>
 <ul>
 <li>more details about errata here <a href="https://www.ti.com/lit/er/sprz457e/sprz457e.pdf" target="_blank">i2329— MDIO interface corruption</a>.</li>
@@ -109,14 +109,14 @@ Workaround for details errata i2329-MDIO interface corruption and its impact:</h
 <li>Polling logic to get LINK status of active PHYs should be implemented by application, by calling <a class="el" href="group__DRV__ENETPHY.html#gae8c9df0eace5f8b6b809176a0c420cda" title="Get link status.">EnetPhy_isLinked()</a> API from PHY driver. Please refer to "Enet Lwip CPSW Example" and "Enet Lwip ICSSG Example" for implementation.</li>
 <li>Each PHY register read consumes around 100 CPU cycles as tested on AM243x platform. Which implies, polling one PHY link status at every 100 ms periodicity would take 0.1% of CPU. It scales with number of PHYs to be monitored.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1303"></a>
+<h1><a class="anchor" id="autotoc_md1305"></a>
 Limitations</h1>
 <ul>
 <li>Only Clause 22 frame format is support. Clause 45 frame format is not supported.</li>
 <li>MDIO state machine is disabled and hence MDIO LINK_INT and USER_INT interrupts are NOT available.</li>
 <li>Testing has been done by keeping "link status polling task" running at highest priority task in application.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1304"></a>
+<h1><a class="anchor" id="autotoc_md1306"></a>
 Not supported MDIO IOCTL APIs in MDIO Manual mode</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">

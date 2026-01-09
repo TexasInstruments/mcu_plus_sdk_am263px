@@ -92,23 +92,23 @@ $(document).ready(function(){initNavTree('BOARD_EEPROM_PAGE.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1212">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1213">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1214">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1215">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1216">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1217">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1214">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1215">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1216">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1217">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1218">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1219">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_board_eeprom"></a></p>
 <p>The EEPROM driver provides API to read and write to I2C based EEPROM devices present in the board. The driver takes care of all sequencing necessary to perform writes across pages and the application need not take care of the programming intricacies.</p>
-<h1><a class="anchor" id="autotoc_md1212"></a>
+<h1><a class="anchor" id="autotoc_md1214"></a>
 Features Supported</h1>
 <ul>
 <li>Read and write API from any offset</li>
 <li>Provide API to return EEPROM attributes like size, page size etc</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1213"></a>
+<h1><a class="anchor" id="autotoc_md1215"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -119,20 +119,20 @@ SysConfig Features</h1>
 </pre><ul>
 <li>Option to set the I2C address of the EEPROM</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1214"></a>
+<h1><a class="anchor" id="autotoc_md1216"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md1215"></a>
+<h1><a class="anchor" id="autotoc_md1217"></a>
 Important Usage Guidelines</h1>
 <p>None</p>
-<h1><a class="anchor" id="autotoc_md1216"></a>
+<h1><a class="anchor" id="autotoc_md1218"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="eeprom_8h.html">board/eeprom.h</a>&gt;</span></div>
 </div><!-- fragment --><p> EEPROM Read API </p><div class="fragment"><div class="line">    status = <a class="code" href="group__BOARD__EEPROM__MODULE.html#ga68ee21f3536d1285b710553023a27b2d">EEPROM_read</a>(handle, 0, buffer, 100);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> == status);</div>
 </div><!-- fragment --><p> EEPROM Write API </p><div class="fragment"><div class="line">    status = <a class="code" href="group__BOARD__EEPROM__MODULE.html#ga0b9c545f8bb83dd9a6e11858ffb3bb42">EEPROM_write</a>(handle, 0, buffer, 100);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> == status);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1217"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1219"></a>
 API</h1>
 <p><a class="el" href="group__BOARD__EEPROM__MODULE.html">APIs for I2C based EEPROM</a> </p>
 </div></div><!-- contents -->
@@ -142,7 +142,7 @@ API</h1>
 <div class="ttc" id="agroup__BOARD__EEPROM__MODULE_html_ga0b9c545f8bb83dd9a6e11858ffb3bb42"><div class="ttname"><a href="group__BOARD__EEPROM__MODULE.html#ga0b9c545f8bb83dd9a6e11858ffb3bb42">EEPROM_write</a></div><div class="ttdeci">int32_t EEPROM_write(EEPROM_Handle handle, uint32_t offset, const uint8_t *buf, uint32_t len)</div><div class="ttdoc">Write to EEPROM.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SYSTEM_html_ga47e638d7c694e6d42e57b96b071b8a6f"><div class="ttname"><a href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a></div><div class="ttdeci">#define SystemP_SUCCESS</div><div class="ttdoc">Return status when the API execution was successful.</div><div class="ttdef"><b>Definition:</b> SystemP.h:56</div></div>
 <div class="ttc" id="agroup__BOARD__EEPROM__MODULE_html_ga68ee21f3536d1285b710553023a27b2d"><div class="ttname"><a href="group__BOARD__EEPROM__MODULE.html#ga68ee21f3536d1285b710553023a27b2d">EEPROM_read</a></div><div class="ttdeci">int32_t EEPROM_read(EEPROM_Handle handle, uint32_t offset, uint8_t *buf, uint32_t len)</div><div class="ttdoc">Read data from EEPROM.</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -92,29 +92,29 @@ $(document).ready(function(){initNavTree('ICSS_TIMESYNC.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1453">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md1454">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1455">Features not supported</a></li>
-<li class="level1"><a href="#autotoc_md1456">ICSS TimeSync Design</a></li>
-<li class="level1"><a href="#autotoc_md1457">Usage</a><ul><li class="level2"><a href="#autotoc_md1458">Including the header file</a></li>
-<li class="level2"><a href="#autotoc_md1459">Initializing the Handle</a></li>
-<li class="level2"><a href="#autotoc_md1460">Enabling/Disabling the Driver</a></li>
-<li class="level2"><a href="#autotoc_md1461">Updating IP Address</a></li>
+<ul><li class="level1"><a href="#autotoc_md1455">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md1456">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1457">Features not supported</a></li>
+<li class="level1"><a href="#autotoc_md1458">ICSS TimeSync Design</a></li>
+<li class="level1"><a href="#autotoc_md1459">Usage</a><ul><li class="level2"><a href="#autotoc_md1460">Including the header file</a></li>
+<li class="level2"><a href="#autotoc_md1461">Initializing the Handle</a></li>
+<li class="level2"><a href="#autotoc_md1462">Enabling/Disabling the Driver</a></li>
+<li class="level2"><a href="#autotoc_md1463">Updating IP Address</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1462">PTP Stack Porting Guide</a><ul><li class="level2"><a href="#autotoc_md1463">Running Best Main Clock Algorithm</a></li>
-<li class="level2"><a href="#autotoc_md1464">Getting the current time</a></li>
-<li class="level2"><a href="#autotoc_md1465">Resetting the driver</a></li>
-<li class="level2"><a href="#autotoc_md1466">Getting other parameters</a></li>
+<li class="level1"><a href="#autotoc_md1464">PTP Stack Porting Guide</a><ul><li class="level2"><a href="#autotoc_md1465">Running Best Main Clock Algorithm</a></li>
+<li class="level2"><a href="#autotoc_md1466">Getting the current time</a></li>
+<li class="level2"><a href="#autotoc_md1467">Resetting the driver</a></li>
+<li class="level2"><a href="#autotoc_md1468">Getting other parameters</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1467">Debug Guide</a></li>
-<li class="level1"><a href="#autotoc_md1468">API</a></li>
-<li class="level1"><a href="#autotoc_md1469">See also</a></li>
+<li class="level1"><a href="#autotoc_md1469">Debug Guide</a></li>
+<li class="level1"><a href="#autotoc_md1470">API</a></li>
+<li class="level1"><a href="#autotoc_md1471">See also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_icss_timesync"></a></p>
-<h1><a class="anchor" id="autotoc_md1453"></a>
+<h1><a class="anchor" id="autotoc_md1455"></a>
 Introduction</h1>
 <p>The ICSS TimeSync driver provide APIs for PTP/1588 v2 receiver implementation on PRU-ICSS.</p>
 <p>Precision Time Protocol (PTP) comes in a variety of standards and flavors. Every industry has it's own set of sub rules and configurations which are defined by Annexes and Profiles. For example, the telecom industry uses the telecom profile, while power and substation automation requires the power profile. CIP sync requires the Drive profile.</p>
@@ -127,7 +127,7 @@ Introduction</h1>
 </ol>
 <p>Delay Request/Response based Ordinary Clock and Transparent Clock support is provided to support CIP Sync, which requires support for Annex D of PTP/1588 (PTP over UDP).</p>
 <dl class="section note"><dt>Note</dt><dd>ICSS TimeSync will be supported for use in EtherNet/IP Adapter and PRP(Parallel Redundancy Protocol) examples only.</dd></dl>
-<h1><a class="anchor" id="autotoc_md1454"></a>
+<h1><a class="anchor" id="autotoc_md1456"></a>
 Features Supported</h1>
 <ul>
 <li>Annex D based PTP/1588 solution for EtherNet/IP</li>
@@ -138,7 +138,7 @@ Features Supported</h1>
 <li>1PPS output for Sync, with configurable time period for sync generation.</li>
 <li>Statistics for debugging and monitoring</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1455"></a>
+<h1><a class="anchor" id="autotoc_md1457"></a>
 Features not supported</h1>
 <ul>
 <li>Annex F based PTP/1588 solution with adaptation for HSR/PRP on IEC 62439-3</li>
@@ -149,15 +149,15 @@ Features not supported</h1>
 <li>Annex D based PTP/1588 solution in P2P mode</li>
 <li>Management Messages</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1456"></a>
+<h1><a class="anchor" id="autotoc_md1458"></a>
 ICSS TimeSync Design</h1>
 <p><a class="el" href="ICSS_TIMESYNC_DESIGN.html">ICSS TimeSync Design</a> explains the driver design in detail.</p>
-<h1><a class="anchor" id="autotoc_md1457"></a>
+<h1><a class="anchor" id="autotoc_md1459"></a>
 Usage</h1>
-<h2><a class="anchor" id="autotoc_md1458"></a>
+<h2><a class="anchor" id="autotoc_md1460"></a>
 Including the header file</h2>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="icss__timeSync__init_8h.html">networking/icss_timesync/icss_timeSync_init.h</a>&gt;</span></div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md1459"></a>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md1461"></a>
 Initializing the Handle</h2>
 <p><a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga67ad62cf3c9129b05dcd0b5dc1071edd">TimeSync_drvInit</a> should be called initialize the driver. It does everything and returns a value indicating whether initialization succeeded or failed. The driver call does not allocate the memory it needs. Therefore the allocation must be done by the application.</p>
 <div class="fragment"><div class="line">    int8_t returnVal = <a class="code" href="icss__timeSync_8h.html#a9e5a0d759d31693171ae2be87d0000c9">TIME_SYNC_OK</a>;</div>
@@ -193,13 +193,13 @@ Initializing the Handle</h2>
 <div class="line">    returnVal = <a class="code" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga67ad62cf3c9129b05dcd0b5dc1071edd">TimeSync_drvInit</a>(timeSyncHandle);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(returnVal == <a class="code" href="icss__timeSync_8h.html#a9e5a0d759d31693171ae2be87d0000c9">TIME_SYNC_OK</a>);</div>
 </div><!-- fragment --><p> The variables shown in the code above do not show the full list of configurable variables and structures for which memory should be allocated. Please check all members inside <a class="el" href="structTimeSync__ParamsHandle.html">TimeSync_ParamsHandle</a> structure.</p>
-<h2><a class="anchor" id="autotoc_md1460"></a>
+<h2><a class="anchor" id="autotoc_md1462"></a>
 Enabling/Disabling the Driver</h2>
 <p>A separate call is required to <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga79a380fdc7ccc4428bbaf6852cc7d6ff">TimeSync_drvEnable</a> is needed for enabling PTP processing in firmware. The corresponding <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#gaaf53bd1fb03574a6522cb12d162362a3">TimeSync_drvDisable</a> call disables the module in firmware.</p>
-<h2><a class="anchor" id="autotoc_md1461"></a>
+<h2><a class="anchor" id="autotoc_md1463"></a>
 Updating IP Address</h2>
 <p><a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#gae8383d41c2ad275db450172a2170d1be">TimeSync_addIP</a> should be called to update IP and modify checksum in PTP packet buffers, whenever IP is assigned or changed.</p>
-<h1><a class="anchor" id="autotoc_md1462"></a>
+<h1><a class="anchor" id="autotoc_md1464"></a>
 PTP Stack Porting Guide</h1>
 <p>Porting your own PTP/1588 stack is simple because most of the tasks, especially the time critical tasks are performed by the driver. The stack is only responsible for</p>
 <ul>
@@ -210,25 +210,25 @@ PTP Stack Porting Guide</h1>
 <p>Once <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga67ad62cf3c9129b05dcd0b5dc1071edd">TimeSync_drvInit</a> and <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga79a380fdc7ccc4428bbaf6852cc7d6ff">TimeSync_drvEnable</a> APIs are called from the application, all PTP announce and management messages are sent on the highest priority queue to the host. All incoming PTP frames are handled through the regular Rx interrupt registered by ICSS-EMAC (See <a class="el" href="ICSS_EMAC_DESIGN.html#ICSS_EMAC_DESIGN_INTERRUPTS">Interrupts</a> section in <a class="el" href="ICSS_EMAC_DESIGN.html">ICSS-EMAC Design</a> for more details). <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga0d9348a67c56e2431736a2824cdfcf55">TimeSync_processPTPFrame</a> must be called for processing PTP frames. As mentioned in <a class="el" href="ICSS_EMAC_DESIGN.html#ICSS_EMAC_DESIGN_DATA_PATH_RX">Rx Data Path</a>, <code>rxRTCallBack</code> needs to be registered to process these frames in queues. Therefore, either <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga0d9348a67c56e2431736a2824cdfcf55">TimeSync_processPTPFrame</a> must be registered as <code>rxRTCallBack</code>, or if different types of frames (other than PTP) are coming on the high priority queues, then application must differentiate PTP frames in <code>rxRTCallBack</code> and then call the <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga0d9348a67c56e2431736a2824cdfcf55">TimeSync_processPTPFrame</a> API for PTP frames.</p>
 <p>In <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga0d9348a67c56e2431736a2824cdfcf55">TimeSync_processPTPFrame</a>, the frame type is checked and if it is an Announce or Management message the data is copied to the buffer <code>ptpGeneralFrame</code>. Once the frame has been copied a flag <code>generalFrameFlag</code> is set. Another API called <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga82f21f97872e71a9256e68313df6d2a7">TimeSync_getGeneralMessage</a> checks the flag and copies the data from the buffer <code>ptpGeneralFrame</code> to another buffer buff which belongs to the PTP stack. The API <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga82f21f97872e71a9256e68313df6d2a7">TimeSync_getGeneralMessage</a> strips the header from the frame based on whether the mode is E2E or P2P and only copies the relevant data to the stack buffer. This way only the relevant data is sent to stack and stack need not worry whether the mode is E2E or P2P.</p>
 <p>The stack can either modify <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga0d9348a67c56e2431736a2824cdfcf55">TimeSync_processPTPFrame</a> to call the <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga82f21f97872e71a9256e68313df6d2a7">TimeSync_getGeneralMessage</a> API, or call <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga82f21f97872e71a9256e68313df6d2a7">TimeSync_getGeneralMessage</a> in a loop in a task.</p>
-<h2><a class="anchor" id="autotoc_md1463"></a>
+<h2><a class="anchor" id="autotoc_md1465"></a>
 Running Best Main Clock Algorithm</h2>
 <p>PRU-ICSS firmware compares the Source MAC ID of Sync and Follow Up frames with the value stored at the offset <code>PTP_MASTER_SRC_MAC_ID</code> in PRU-ICSS Shared RAM, and if it does not match then the sync processing does not happen. For starting sync processing, BMCA has to complete and once the source MAC ID of a broadcaster is available, it should be shared with firmware by calling <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#gacc6d5a7aed0c6574d98c34e859817463">TimeSync_updateParentAddress</a>.</p>
-<h2><a class="anchor" id="autotoc_md1464"></a>
+<h2><a class="anchor" id="autotoc_md1466"></a>
 Getting the current time</h2>
 <p>As explained in <a class="el" href="ICSS_TIMESYNC_DESIGN.html#ICSS_TIMESYNC_DESIGN_TIMESTAMPING">Timestamping</a> section of <a class="el" href="ICSS_TIMESYNC_DESIGN.html">ICSS TimeSync Design</a> page, ICSS TimeSync has a very simple design where the IEP counter acts as the nanoseconds counter. <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#gaaeb1e164482cae1679b85773ee3c162e">TimeSync_getCurrentTime</a> returns the current time on device.</p>
-<h2><a class="anchor" id="autotoc_md1465"></a>
+<h2><a class="anchor" id="autotoc_md1467"></a>
 Resetting the driver</h2>
 <p>In case of a timeout, link break, etc. the driver requires a reset. This is done using the <a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga0ecd71c8cf84fc9ee69373dba314d9c2">TimeSync_reset</a>. This API also calls the <a class="el" href="icss__timeSyncApi_8h.html#a37893687b02fc503c9e4c807ab7c70fa">TimeSync_stackResetCallback_t</a> which can be registered by stack.</p>
-<h2><a class="anchor" id="autotoc_md1466"></a>
+<h2><a class="anchor" id="autotoc_md1468"></a>
 Getting other parameters</h2>
 <p>Most of the information related to PTP is encapsulated in Announce and Management messages. However certain information is part of the driver, and the stack may need access to these for its operation. Relevant information can be read from the runtime structure <a class="el" href="structtimeSync__RuntimeVar__t.html">timeSync_RuntimeVar_t</a> based on the requirement.</p>
-<h1><a class="anchor" id="autotoc_md1467"></a>
+<h1><a class="anchor" id="autotoc_md1469"></a>
 Debug Guide</h1>
 <p>Internal structures used by ICSS TimeSync Driver can be checked for debugging. Most relevant structures are <a class="el" href="structtimeSync__RuntimeVar__t.html">timeSync_RuntimeVar_t</a> are <a class="el" href="structtimeSync__SyntInfo__t.html">timeSync_SyntInfo_t</a>.</p>
-<h1><a class="anchor" id="autotoc_md1468"></a>
+<h1><a class="anchor" id="autotoc_md1470"></a>
 API</h1>
 <p><a class="el" href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html">APIs for ICSS TimeSync</a></p>
-<h1><a class="anchor" id="autotoc_md1469"></a>
+<h1><a class="anchor" id="autotoc_md1471"></a>
 See also</h1>
 <p><a class="el" href="ICSS_EMAC.html">ICSS-EMAC</a> </p>
 </div></div><!-- contents -->
@@ -240,7 +240,7 @@ See also</h1>
 <div class="ttc" id="aicss__timeSyncApi_8h_html_aaad5d4f02c9ca2cce10ce5d38d6c95aba627abe5a430420baf29ebe1940a7f2fb"><div class="ttname"><a href="icss__timeSyncApi_8h.html#aaad5d4f02c9ca2cce10ce5d38d6c95aba627abe5a430420baf29ebe1940a7f2fb">BOTH</a></div><div class="ttdeci">@ BOTH</div><div class="ttdef"><b>Definition:</b> icss_timeSyncApi.h:185</div></div>
 <div class="ttc" id="astructtimeSync__RuntimeVar__t_html"><div class="ttname"><a href="structtimeSync__RuntimeVar__t.html">timeSync_RuntimeVar_t</a></div><div class="ttdoc">Runtime variables for Time Sync implementation.</div><div class="ttdef"><b>Definition:</b> icss_timeSyncApi.h:504</div></div>
 <div class="ttc" id="astructTimeSync__ParamsHandle_html"><div class="ttname"><a href="structTimeSync__ParamsHandle.html">TimeSync_ParamsHandle</a></div><div class="ttdoc">Time synchronization parameter handle structure.</div><div class="ttdef"><b>Definition:</b> icss_timeSyncApi.h:834</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="aicss__timeSync_8h_html_a9e5a0d759d31693171ae2be87d0000c9"><div class="ttname"><a href="icss__timeSync_8h.html#a9e5a0d759d31693171ae2be87d0000c9">TIME_SYNC_OK</a></div><div class="ttdeci">#define TIME_SYNC_OK</div><div class="ttdoc">Success.</div><div class="ttdef"><b>Definition:</b> icss_timeSync.h:56</div></div>
 <div class="ttc" id="aicss__timeSyncApi_8h_html_a91afc412cdef68f6aad3611cfea22dc2"><div class="ttname"><a href="icss__timeSyncApi_8h.html#a91afc412cdef68f6aad3611cfea22dc2">TimeSync_ParamsHandle_t</a></div><div class="ttdeci">struct TimeSync_ParamsHandle_s * TimeSync_ParamsHandle_t</div><div class="ttdef"><b>Definition:</b> icss_timeSyncApi.h:985</div></div>
 <div class="ttc" id="agroup__NETWORKING__ICSS__TIMESYNC__MODULE_html_ga1132d45ed6de3bd3ff29383e470d926e"><div class="ttname"><a href="group__NETWORKING__ICSS__TIMESYNC__MODULE.html#ga1132d45ed6de3bd3ff29383e470d926e">TimeSync_alloc_PktBuffer</a></div><div class="ttdeci">int8_t TimeSync_alloc_PktBuffer(TimeSync_ParamsHandle_t timeSyncHandle)</div><div class="ttdoc">Allocate Rx and Tx buffers for frames like Sync, Announce etc.</div></div>

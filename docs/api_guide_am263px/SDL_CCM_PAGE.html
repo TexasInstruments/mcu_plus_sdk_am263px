@@ -92,16 +92,16 @@ $(document).ready(function(){initNavTree('SDL_CCM_PAGE.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1618">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1619">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1620">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1621">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1622">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1623">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1620">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1621">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1622">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1623">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1624">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1625">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_ccm"></a></p>
-<h1><a class="anchor" id="autotoc_md1618"></a>
+<h1><a class="anchor" id="autotoc_md1620"></a>
 Features Supported</h1>
 <p>The Compute Compare Module (CCM) is the R5F sub-system’s implementation for the lockstep error detection logic. The R5F sub-system, when bootstrapped to lockstep mode, has a logic that compares the outputs of the two cores and asserts an interrupt whenever an error is detected. There is also a logic to test the comparison logic.</p>
 <p>The CCM module provides APIs to:</p>
@@ -112,22 +112,22 @@ Features Supported</h1>
 <li>Read back the static config registers</li>
 <li>Clear errors that have occurred due to error injection or actual fault</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1619"></a>
+<h1><a class="anchor" id="autotoc_md1621"></a>
 SysConfig Features</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1620"></a>
+<h1><a class="anchor" id="autotoc_md1622"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1621"></a>
+<h1><a class="anchor" id="autotoc_md1623"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1622"></a>
+<h1><a class="anchor" id="autotoc_md1624"></a>
 Example Usage</h1>
 <p>The following shows an example of SDL R5F CCM API usage by the application.</p>
 <p>Initialize the R5F CCM instance </p><div class="fragment"><div class="line">retVal = <a class="code" href="group__SDL__IP__CCM__API.html#ga9095d19a45c92adf95fcd9a269a0d445">SDL_CCM_init</a>(<a class="code" href="group__SDL__CCM__MODULE.html#ga2b0a86935845dc94efa86c9f1e96ba05">SDL_R5SS0_CCM</a>);</div>
@@ -172,7 +172,7 @@ Example Usage</h1>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a>(<span class="stringliteral">&quot;\n R5F-CPU example application CCM inject Test complete&quot;</span>);</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1623"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1625"></a>
 API</h1>
 <p><a class="el" href="group__SDL__CCM__MODULE.html">APIs for CCM MODULE</a> </p>
 </div></div><!-- contents -->
@@ -180,7 +180,7 @@ API</h1>
 </div><!-- doc-content -->
 <div class="ttc" id="agroup__SDL__IP__CCM__API_html_ggaed3b5468e77f018c83e4ecee904b898ba343cbce032d24a4a0e198e4f36fa11d6"><div class="ttname"><a href="group__SDL__IP__CCM__API.html#ggaed3b5468e77f018c83e4ecee904b898ba343cbce032d24a4a0e198e4f36fa11d6">SDL_CCM_MONITOR_TYPE_OUTPUT_COMPARE_BLOCK</a></div><div class="ttdeci">@ SDL_CCM_MONITOR_TYPE_OUTPUT_COMPARE_BLOCK</div><div class="ttdef"><b>Definition:</b> sdl_ip_ccm.h:80</div></div>
 <div class="ttc" id="agroup__SDL__IP__CCM__API_html_ga9095d19a45c92adf95fcd9a269a0d445"><div class="ttname"><a href="group__SDL__IP__CCM__API.html#ga9095d19a45c92adf95fcd9a269a0d445">SDL_CCM_init</a></div><div class="ttdeci">int32_t SDL_CCM_init(SDL_CCM_Inst instance, uint32_t index)</div><div class="ttdoc">Initialization API for CCM module.</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:225</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:235</div></div>
 <div class="ttc" id="agroup__SDL__IP__CCM__API_html_gga835962722bdac82c3b766ba8db65bb5caf7e61feac8857c02fe7d2cad59713beb"><div class="ttname"><a href="group__SDL__IP__CCM__API.html#gga835962722bdac82c3b766ba8db65bb5caf7e61feac8857c02fe7d2cad59713beb">SDL_CCM_SELFTEST_TYPE_NORMAL</a></div><div class="ttdeci">@ SDL_CCM_SELFTEST_TYPE_NORMAL</div><div class="ttdef"><b>Definition:</b> sdl_ip_ccm.h:106</div></div>
 <div class="ttc" id="agroup__SDL__IP__CCM__API_html_ga69afcc924c1a44b0e43adf98f5d28be9"><div class="ttname"><a href="group__SDL__IP__CCM__API.html#ga69afcc924c1a44b0e43adf98f5d28be9">SDL_CCM_selfTest</a></div><div class="ttdeci">int32_t SDL_CCM_selfTest(SDL_CCM_Inst instance, SDL_CCM_MonitorType monitorType, SDL_CCM_SelfTestType testType, uint32_t polarityInversionMask, uint32_t timeoutCnt)</div><div class="ttdoc">Executes a self-test of the CCM module. The types of self-tests supported are described in detail in ...</div></div>
 <div class="ttc" id="agroup__SDL__IP__CCM__API_html_ga40cbf706be675deb2ae2b377ac9d42d4"><div class="ttname"><a href="group__SDL__IP__CCM__API.html#ga40cbf706be675deb2ae2b377ac9d42d4">SDL_CCM_verifyConfig</a></div><div class="ttdeci">int32_t SDL_CCM_verifyConfig(SDL_CCM_Inst instance)</div><div class="ttdoc">Verifies the configuration done as part of SDL_CCM_init is as expected.</div></div>

@@ -92,33 +92,33 @@ $(document).ready(function(){initNavTree('KERNEL_DPL_EVENT_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md852">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md853">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md854">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md855">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md856">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md854">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md855">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md856">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md857">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md858">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_dpl_EventP"></a></p>
-<h1><a class="anchor" id="autotoc_md852"></a>
+<h1><a class="anchor" id="autotoc_md854"></a>
 Features Supported</h1>
 <ul>
 <li>APIs to construct and destruct Events</li>
 <li>APIs to set, get or clear bits and wait for bits</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md853"></a>
+<h1><a class="anchor" id="autotoc_md855"></a>
 Features NOT Supported</h1>
 <ul>
 <li>These APIs are not implemented for no-RTOS. Error will be returned if these APIs called using no-RTOS.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md854"></a>
+<h1><a class="anchor" id="autotoc_md856"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li><a class="el" href="group__KERNEL__DPL__EVENT.html#ga49665ab39513aebef09c689c6e1c34cd">EventP_waitBits</a> should not be called within ISR context. It can be called from task context.</li>
 <li>Setting or clearing the Event bits is a non-deterministic operation and FreeRTOS does not allow non-deterministic operations to be performed in interrupts or from critical sections. If <a class="el" href="group__KERNEL__DPL__EVENT.html#ga3ebf3093b25a2a3036ef20f5224c69cc">EventP_setBits</a> or <a class="el" href="group__KERNEL__DPL__EVENT.html#ga1862bf85d3f7e9ff0dfafa22e2da2fe4">EventP_clearBits</a> is called from an ISR, a message is sent to RTOS daemon task to perform the operation in the context of daemon task. If the set or clear operation is required to be completed immediately, then the priority of RTOS daemon task must be higher than the priority of task waiting for the Event bits. The priority of RTOS daemon task is set by the <code>configTIMER_TASK_PRIORITY</code> in FreeRTOSConfig.h file.</li>
 <li>The actual current value of Event bits returned from <a class="el" href="group__KERNEL__DPL__EVENT.html#ga49665ab39513aebef09c689c6e1c34cd">EventP_waitBits</a> and <a class="el" href="group__KERNEL__DPL__EVENT.html#gafc3f4a27c2889586c62ad25508f86275">EventP_getBits</a> can be different from returned value if an interrupt or a higher priority task modifies the value between the calling task leaving blocked state and exiting this API.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md855"></a>
+<h1><a class="anchor" id="autotoc_md857"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="EventP_8h.html">kernel/dpl/EventP.h</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="DebugP_8h.html">kernel/dpl/DebugP.h</a>&gt;</span></div>
@@ -166,7 +166,7 @@ Example Usage</h1>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> == status);</div>
 <div class="line"> </div>
 <div class="line">}</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md856"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md858"></a>
 API</h1>
 <p><a class="el" href="group__KERNEL__DPL__EVENT.html">APIs for Event</a> </p>
 </div></div><!-- contents -->
@@ -181,7 +181,7 @@ API</h1>
 <div class="ttc" id="agroup__KERNEL__DPL__EVENT_html_gafca8272287bdaa6a6e5cc7b29f52105e"><div class="ttname"><a href="group__KERNEL__DPL__EVENT.html#gafca8272287bdaa6a6e5cc7b29f52105e">EventP_construct</a></div><div class="ttdeci">int32_t EventP_construct(EventP_Object *obj)</div><div class="ttdoc">Opaque Event object used with the Event APIs.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__EVENT_html_ga3ebf3093b25a2a3036ef20f5224c69cc"><div class="ttname"><a href="group__KERNEL__DPL__EVENT.html#ga3ebf3093b25a2a3036ef20f5224c69cc">EventP_setBits</a></div><div class="ttdeci">int32_t EventP_setBits(EventP_Object *obj, uint32_t bitsToSet)</div><div class="ttdoc">Setting a bit or multiple bits in the Event bits.</div></div>
 <div class="ttc" id="aDebugP_8h_html"><div class="ttname"><a href="DebugP_8h.html">DebugP.h</a></div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="aEventP_8h_html"><div class="ttname"><a href="EventP_8h.html">EventP.h</a></div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->

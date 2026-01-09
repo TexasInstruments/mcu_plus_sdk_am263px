@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_SBL_NULL.html',''); i
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2826">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md2828">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_SBL_NULL_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2827">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2828">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2829">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2829">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2830">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2831">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_sbl_null"></a></p>
-<h1><a class="anchor" id="autotoc_md2826"></a>
+<h1><a class="anchor" id="autotoc_md2828"></a>
 Introduction</h1>
 <p>This is a bootloader which does SOC initializations and put all the cores in WFI. This example is what is referred to as the SOC initialization binary in <a class="el" href="ADDITIONAL_DETAILS_PAGE.html#EVM_FLASH_SOC_INIT">SOC Initialization using the Binary Flashed in OSPI memory</a>. The SBL NULL does not load any images on the cores. For more information on how this example is being used, refer <a class="el" href="ADDITIONAL_DETAILS_PAGE.html#EVM_FLASH_SOC_INIT">SOC Initialization using the Binary Flashed in OSPI memory</a></p>
 <h1><a class="anchor" id="EXAMPLES_DRIVERS_SBL_NULL_COMBOS"></a>
@@ -117,7 +117,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/boot/sbl_null   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2827"></a>
+<h1><a class="anchor" id="autotoc_md2829"></a>
 Steps to Run the Example</h1>
 <p>Since this is a bootloader and is used as a SOC initialization binary, the example will be run every time you boot an application using this example. It is generally run from a boot media (OSPI Flash, SD Card) unlike other examples which are usually loaded with CCS. Nevertheless, you can build this example like you do for the others using makefile or build it via CCS by importing as a project.</p>
 <ul>
@@ -125,10 +125,10 @@ Steps to Run the Example</h1>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Flash this bootloader by following steps mentioned in <a class="el" href="ADDITIONAL_DETAILS_PAGE.html#EVM_FLASH_SOC_INIT">SOC Initialization using the Binary Flashed in OSPI memory</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2828"></a>
+<h1><a class="anchor" id="autotoc_md2830"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_BOOTLOADER_PAGE.html">BOOTLOADER</a></p>
-<h1><a class="anchor" id="autotoc_md2829"></a>
+<h1><a class="anchor" id="autotoc_md2831"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">Starting NULL Bootloader ...</div>
 <div class="line">INFO: Bootloader_runCpu:150: CPU r5f1-1 is initialized to 400000000 Hz !!!</div>

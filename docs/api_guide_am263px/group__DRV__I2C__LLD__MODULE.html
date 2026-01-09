@@ -213,9 +213,9 @@ Typedefs</h2></td></tr>
 <tr class="memitem:ga23324d9710da262795d83316f4bf0099"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga23324d9710da262795d83316f4bf0099">I2C_lld_transferCompleteCallback</a>) (void *<a class="el" href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a>, const <a class="el" href="structI2CLLD__Message.html">I2CLLD_Message</a> *msg, int32_t transferStatus)</td></tr>
 <tr class="memdesc:ga23324d9710da262795d83316f4bf0099"><td class="mdescLeft">&#160;</td><td class="mdescRight">The definition of a transfer completion callback function used by the I2C driver when used in Controller Callback Mode.  <a href="group__DRV__I2C__LLD__MODULE.html#ga23324d9710da262795d83316f4bf0099">More...</a><br /></td></tr>
 <tr class="separator:ga23324d9710da262795d83316f4bf0099"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac22c76ced9ab30d26b0b4eb3659b9cc2"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gac22c76ced9ab30d26b0b4eb3659b9cc2">I2C_lld_targetTransferCompleteCallback</a>) (void *<a class="el" href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a>, const <a class="el" href="structI2CLLD__Transaction.html">I2CLLD_Transaction</a> *targetTxn, int32_t transferStatus)</td></tr>
-<tr class="memdesc:gac22c76ced9ab30d26b0b4eb3659b9cc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The definition of a transfer completion callback function used by the I2C driver when used in Target Mode.  <a href="group__DRV__I2C__LLD__MODULE.html#gac22c76ced9ab30d26b0b4eb3659b9cc2">More...</a><br /></td></tr>
-<tr class="separator:gac22c76ced9ab30d26b0b4eb3659b9cc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7ca6d2d5c8c4ffc90673b823e3befd36"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga7ca6d2d5c8c4ffc90673b823e3befd36">I2C_lld_targetTransferCompleteCallback</a>) (void *<a class="el" href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a>, const <a class="el" href="structI2CLLD__targetTransaction.html">I2CLLD_targetTransaction</a> *targetTxn, int32_t transferStatus)</td></tr>
+<tr class="memdesc:ga7ca6d2d5c8c4ffc90673b823e3befd36"><td class="mdescLeft">&#160;</td><td class="mdescRight">The definition of a transfer completion callback function used by the I2C driver when used in Target Mode.  <a href="group__DRV__I2C__LLD__MODULE.html#ga7ca6d2d5c8c4ffc90673b823e3befd36">More...</a><br /></td></tr>
+<tr class="separator:ga7ca6d2d5c8c4ffc90673b823e3befd36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae22ed23487028cfde657ceab7de377fc"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structI2CLLD__Object.html">I2CLLD_Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gae22ed23487028cfde657ceab7de377fc">I2CLLD_Handle</a></td></tr>
 <tr class="separator:gae22ed23487028cfde657ceab7de377fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -734,14 +734,14 @@ MACROS used to define the state of the I2C Driver State Machine</h2></td></tr>
 
 </div>
 </div>
-<a id="gac22c76ced9ab30d26b0b4eb3659b9cc2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac22c76ced9ab30d26b0b4eb3659b9cc2">&#9670;&nbsp;</a></span>I2C_lld_targetTransferCompleteCallback</h2>
+<a id="ga7ca6d2d5c8c4ffc90673b823e3befd36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7ca6d2d5c8c4ffc90673b823e3befd36">&#9670;&nbsp;</a></span>I2C_lld_targetTransferCompleteCallback</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* I2C_lld_targetTransferCompleteCallback) (void *<a class="el" href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a>, const <a class="el" href="structI2CLLD__Transaction.html">I2CLLD_Transaction</a> *targetTxn, int32_t transferStatus)</td>
+          <td class="memname">typedef void(* I2C_lld_targetTransferCompleteCallback) (void *<a class="el" href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a>, const <a class="el" href="structI2CLLD__targetTransaction.html">I2CLLD_targetTransaction</a> *targetTxn, int32_t transferStatus)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -750,7 +750,7 @@ MACROS used to define the state of the I2C Driver State Machine</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">args</td><td>Void Pointer </td></tr>
-    <tr><td class="paramname">targetTxn</td><td>Pointer to <a class="el" href="structI2CLLD__Transaction.html" title="I2C Transaction.">I2CLLD_Transaction</a> Object </td></tr>
+    <tr><td class="paramname">targetTxn</td><td>Pointer to <a class="el" href="structI2CLLD__targetTransaction.html" title="I2C Target Transaction.">I2CLLD_targetTransaction</a> Object </td></tr>
     <tr><td class="paramname">transferStatus</td><td>Transfer Status </td></tr>
   </table>
   </dd>

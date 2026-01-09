@@ -92,30 +92,30 @@ $(document).ready(function(){initNavTree('EXAMPLES_ENET_LWIP_CPSW.html',''); ini
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2968">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2969">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2970">Packet pool configuration</a></li>
-<li class="level1"><a href="#autotoc_md2971">Configuring Syscfg</a></li>
-<li class="level1"><a href="#autotoc_md2972">Iperf using LWIP</a><ul><li class="level2"><a href="#autotoc_md2973">Important Iperf Arguments:</a></li>
+<ul><li class="level1"><a href="#autotoc_md2970">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2971">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md2972">Packet pool configuration</a></li>
+<li class="level1"><a href="#autotoc_md2973">Configuring Syscfg</a></li>
+<li class="level1"><a href="#autotoc_md2974">Iperf using LWIP</a><ul><li class="level2"><a href="#autotoc_md2975">Important Iperf Arguments:</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2974">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md2975">To Configure Static IP</a></li>
-<li class="level2"><a href="#autotoc_md2976">Build the example</a></li>
-<li class="level2"><a href="#autotoc_md2977">HW Setup</a></li>
-<li class="level2"><a href="#autotoc_md2978">Create a network between EVM and host PC</a></li>
-<li class="level2"><a href="#autotoc_md2979">Run the example</a></li>
-<li class="level2"><a href="#autotoc_md2980">Sample output for CPSW example</a></li>
-<li class="level2"><a href="#autotoc_md2981">Communicate with the EVM using ethernet</a></li>
-<li class="level2"><a href="#autotoc_md2982">Measuring the throughput using Iperf:</a></li>
-<li class="level2"><a href="#autotoc_md2983">Sample output for iperf command</a></li>
-<li class="level2"><a href="#autotoc_md2984">Troubleshooting issues</a></li>
+<li class="level1"><a href="#autotoc_md2976">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md2977">To Configure Static IP</a></li>
+<li class="level2"><a href="#autotoc_md2978">Build the example</a></li>
+<li class="level2"><a href="#autotoc_md2979">HW Setup</a></li>
+<li class="level2"><a href="#autotoc_md2980">Create a network between EVM and host PC</a></li>
+<li class="level2"><a href="#autotoc_md2981">Run the example</a></li>
+<li class="level2"><a href="#autotoc_md2982">Sample output for CPSW example</a></li>
+<li class="level2"><a href="#autotoc_md2983">Communicate with the EVM using ethernet</a></li>
+<li class="level2"><a href="#autotoc_md2984">Measuring the throughput using Iperf:</a></li>
+<li class="level2"><a href="#autotoc_md2985">Sample output for iperf command</a></li>
+<li class="level2"><a href="#autotoc_md2986">Troubleshooting issues</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2985">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2987">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_enet_lwip_cpsw"></a></p>
-<h1><a class="anchor" id="autotoc_md2968"></a>
+<h1><a class="anchor" id="autotoc_md2970"></a>
 Introduction</h1>
 <dl class="section note"><dt>Note</dt><dd>lwIP features are made available as is from public lwIP project. SDK configuration may only enable and exercise a subset of these features.</dd></dl>
 <p>This example is a TCP/UDP IP application using the LwIP networking stack, coupled with ethernet driver (ENET)</p>
@@ -132,7 +132,7 @@ Introduction</h1>
 <li>Example is configured to run in MAC mode only.</li>
 </ul>
 <p>Note: In this example, Different Priority Packets are received using a single channel by enabling the default thread Id (for this enChOverrideFlag is set in dmacfg), which allows packets with no classifer match to be received by the host.</p>
-<h1><a class="anchor" id="autotoc_md2969"></a>
+<h1><a class="anchor" id="autotoc_md2971"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -147,10 +147,10 @@ Supported Combinations</h1>
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/lwip/enet_lwip_cpsw   </td></tr>
 </table>
 <p>For support on am263px-cc-addon-auto, please refer <a class="el" href="ETHERNET_ADDON_BOARDS_TOP.html">Ethernet Add-on Boards</a></p>
-<h1><a class="anchor" id="autotoc_md2970"></a>
+<h1><a class="anchor" id="autotoc_md2972"></a>
 Packet pool configuration</h1>
 <p>To change packet pool configuration from syscfg, please refer to <a class="el" href="PACKETPOOL_CONFIG_TOP.html">Ethernet Packet Pool Allocation Guidelines</a></p>
-<h1><a class="anchor" id="autotoc_md2971"></a>
+<h1><a class="anchor" id="autotoc_md2973"></a>
 Configuring Syscfg</h1>
 <ul>
 <li>Following Syscfg option allows flexibility to configure memory footprint based on the required use case like: Number of DMA descriptors and buffering.</li>
@@ -195,7 +195,7 @@ Configuring Syscfg</h1>
 <td>Netif instance </td><td>TI Networking / Enet (CPSW) / LWIP Interface config </td><td>No of netifs allocated by the example.<br  />
  Only one netif should be set to default when more than one netif is allocated.  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2972"></a>
+<h1><a class="anchor" id="autotoc_md2974"></a>
 Iperf using LWIP</h1>
 <ul>
 <li>Iperf is a tool for network performance measurement and tuning. It is a cross-platform tool that can produce standardized performance measurements for any network. Iperf has client and server functionality, and can create data streams to measure the throughput between the two ends in one or both directions.</li>
@@ -207,7 +207,7 @@ Iperf using LWIP</h1>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2973"></a>
+<h2><a class="anchor" id="autotoc_md2975"></a>
 Important Iperf Arguments:</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -235,25 +235,25 @@ Important Iperf Arguments:</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">-V  </td><td class="markdownTableBodyNone">Used when IPv6 address is used instead of IPv4   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2974"></a>
+<h1><a class="anchor" id="autotoc_md2976"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md2975"></a>
+<h2><a class="anchor" id="autotoc_md2977"></a>
 To Configure Static IP</h2>
 <p>Modify code in file <code>lwipcfg.h</code> file as below to set USE_DHCP and -USE_AUTOIP as '0' </p><div class="fragment"><div class="line">/* uncomment the next two lines for Static IP */</div>
 <div class="line">-//#define USE_DHCP     0</div>
 <div class="line">-//#define USE_AUTOIP  0</div>
 <div class="line">+#define USE_DHCP     0</div>
 <div class="line">+#define USE_AUTOIP  0</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2976"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2978"></a>
 Build the example</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2977"></a>
+<h2><a class="anchor" id="autotoc_md2979"></a>
 HW Setup</h2>
 <dl class="section note"><dt>Note</dt><dd>Make sure you have setup the EVM with cable connections as shown here, <a class="el" href="EVM_SETUP_PAGE.html">EVM Setup</a>. In addition do below steps.</dd></dl>
-<h2><a class="anchor" id="autotoc_md2978"></a>
+<h2><a class="anchor" id="autotoc_md2980"></a>
 Create a network between EVM and host PC</h2>
 <ul>
 <li>The EVM will get an IP address using DHCP, so make sure to connect the other end of the cable to a network which has a DHCP server running.</li>
@@ -267,7 +267,7 @@ Local network between PC and EVM</div></div>
 <li>To check the router connection with host PC, recommend to disconnect all other networking connections on the PC, sometimes you may need to disable firewall SW, and make sure the router is able to assign a IP address to your host PC</li>
 <li>After we run the example on the EVM (next step), the EVM will similarly be assigned a IP address, and then host can communicate with the EVM using the assigned IP address.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2979"></a>
+<h2><a class="anchor" id="autotoc_md2981"></a>
 Run the example</h2>
 <dl class="section attention"><dt>Attention</dt><dd>If you need to reload and run again, a CPU power-cycle is MUST</dd></dl>
 <ul>
@@ -275,7 +275,7 @@ Run the example</h2>
 <li>You will see logs in the UART terminal as shown in the next section.</li>
 <li>Note the IP address seen in the log, this is what we will use to communicate with the EVM.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2980"></a>
+<h2><a class="anchor" id="autotoc_md2982"></a>
 Sample output for CPSW example</h2>
 <div class="fragment"><div class="line">==========================</div>
 <div class="line">      ENET LWIP App</div>
@@ -292,7 +292,7 @@ Sample output for CPSW example</h2>
 <div class="line">MAC Port 1: link up</div>
 <div class="line">link_callback==UP</div>
 <div class="line">      5. 34s : CPU load =   2.04 %</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2981"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2983"></a>
 Communicate with the EVM using ethernet</h2>
 <ul>
 <li>Firstly you can try to reach the EVM using ping as shown below, using a command shell on the host PC <pre class="fragment">  &gt; ping 192.168.1.100
@@ -305,7 +305,7 @@ Communicate with the EVM using ethernet</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2982"></a>
+<h2><a class="anchor" id="autotoc_md2984"></a>
 Measuring the throughput using Iperf:</h2>
 <ul>
 <li>Once we get the IP after running the example, we can use following iperf command on windows to get the throughput.<ul>
@@ -313,7 +313,7 @@ Measuring the throughput using Iperf:</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2983"></a>
+<h2><a class="anchor" id="autotoc_md2985"></a>
 Sample output for iperf command</h2>
 <div class="fragment"><div class="line">DUT side:</div>
 <div class="line">==========================</div>
@@ -363,7 +363,7 @@ Sample output for iperf command</h2>
 <div class="line">[ 4] 0.0-10.0 sec 110 MBytes 93.4 Mbits/sec</div>
 <div class="line">[ 4] local 192.168.1.4 port 5001 connected with 192.168.1.200 port 54911</div>
 <div class="line">[ 4] 0.0-10.0 sec 18.0 MBytes 92.8 Mbits/sec</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2984"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2986"></a>
 Troubleshooting issues</h2>
 <ul>
 <li>To ensure compatibility with CPSW RGMII2 port on am263px-cc board, make sure that SW-15(switch) should be set to <code>LOW</code> for board versions(E2/A/B versions). This configuration ensures seamless out-of-box support and functionality with the CPSW RGMII2 port on the specified versions.</li>
@@ -374,7 +374,7 @@ Troubleshooting issues</h2>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2985"></a>
+<h1><a class="anchor" id="autotoc_md2987"></a>
 See Also</h1>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

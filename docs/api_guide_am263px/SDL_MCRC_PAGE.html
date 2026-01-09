@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('SDL_MCRC_PAGE.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1525">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1526">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1527">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1528">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1529">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1530">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1527">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1528">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1529">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1530">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1531">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1532">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_mcrc"></a></p>
 <p>MCRC module is used to perform CRC (Cyclic Redundancy check) to verify integrity of a memory system. The MCRC controller is used to calculate the signature for a set of data and then compare the calculated signature value against a predetermined good signature value. MCRC controller provides four channels to perform CRC calculation on multiple memories.</p>
-<h1><a class="anchor" id="autotoc_md1525"></a>
+<h1><a class="anchor" id="autotoc_md1527"></a>
 Features Supported</h1>
 <p>Each MCRC instance supports 4 channels. Each channel can be configured to operate in one of 3 modes</p>
 <ul>
@@ -118,22 +118,22 @@ Features Supported</h1>
 <li>API to support readback of written configuration</li>
 <li>API to support interrupt configuration</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1526"></a>
+<h1><a class="anchor" id="autotoc_md1528"></a>
 SysConfig Features</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1527"></a>
+<h1><a class="anchor" id="autotoc_md1529"></a>
 Features NOT Supported</h1>
 <ul>
 <li>No DMA mode examples for M4</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1528"></a>
+<h1><a class="anchor" id="autotoc_md1530"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1529"></a>
+<h1><a class="anchor" id="autotoc_md1531"></a>
 Example Usage</h1>
 <p>The following shows an example of SDL MCRC API usage by the application for Full CPU mode.</p>
 <p>Include the below file to access the APIs</p>
@@ -202,7 +202,7 @@ Example Usage</h1>
 <div class="line"><span class="keywordflow">else</span> {</div>
 <div class="line">    result = SDL_EFAIL;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1530"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1532"></a>
 API</h1>
 <p><a class="el" href="group__SDL__MCRC__MODULE.html">APIs for SDL MCRC</a> </p>
 </div></div><!-- contents -->
@@ -218,7 +218,7 @@ API</h1>
 <div class="ttc" id="agroup__SDL__MCRC__API_html_gaee2f45aa16f1e7df77b539ef2e2becf4"><div class="ttname"><a href="group__SDL__MCRC__API.html#gaee2f45aa16f1e7df77b539ef2e2becf4">SDL_MCRC_BYTESWAP_ENABLE</a></div><div class="ttdeci">#define SDL_MCRC_BYTESWAP_ENABLE</div><div class="ttdef"><b>Definition:</b> mcrc/v0/sdl_mcrc.h:258</div></div>
 <div class="ttc" id="agroup__SDL__MCRC__API_html_gab5ea04c139cea73db735fe78336972e3"><div class="ttname"><a href="group__SDL__MCRC__API.html#gab5ea04c139cea73db735fe78336972e3">SDL_MCRC_CHANNEL_1</a></div><div class="ttdeci">#define SDL_MCRC_CHANNEL_1</div><div class="ttdef"><b>Definition:</b> mcrc/v0/sdl_mcrc.h:159</div></div>
 <div class="ttc" id="agroup__SDL__MCRC__API_html_gaa3cc6df99410829b1c68fd78a361c7ac"><div class="ttname"><a href="group__SDL__MCRC__API.html#gaa3cc6df99410829b1c68fd78a361c7ac">SDL_MCRC_init</a></div><div class="ttdeci">int32_t SDL_MCRC_init(SDL_MCRC_InstType instance, SDL_MCRC_Channel_t channel, uint32_t watchdogPreload, uint32_t blockPreload)</div><div class="ttdoc">Initialize MCRC channel and will configure watchdog and block preload value for given channel.</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:225</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:235</div></div>
 <div class="ttc" id="astructSDL__MCRC__Signature__t_html_a86ec4de6ec996bead68ca4ffbd3003b0"><div class="ttname"><a href="structSDL__MCRC__Signature__t.html#a86ec4de6ec996bead68ca4ffbd3003b0">SDL_MCRC_Signature_t::regH</a></div><div class="ttdeci">uint32_t regH</div><div class="ttdef"><b>Definition:</b> mcrc/v0/sdl_mcrc.h:290</div></div>
 <div class="ttc" id="agroup__SDL__MCRC__API_html_ga17450ee682e27fc981ec54be837cf359"><div class="ttname"><a href="group__SDL__MCRC__API.html#ga17450ee682e27fc981ec54be837cf359">SDL_MCRC_OPERATION_MODE_FULLCPU</a></div><div class="ttdeci">#define SDL_MCRC_OPERATION_MODE_FULLCPU</div><div class="ttdef"><b>Definition:</b> mcrc/v0/sdl_mcrc.h:145</div></div>
 <div class="ttc" id="agroup__SDL__MCRC__API_html_ga279b8690ae62ee816c5f075feafaaff0"><div class="ttname"><a href="group__SDL__MCRC__API.html#ga279b8690ae62ee816c5f075feafaaff0">SDL_MCRC_DATALENGTH_32BIT</a></div><div class="ttdeci">#define SDL_MCRC_DATALENGTH_32BIT</div><div class="ttdef"><b>Definition:</b> mcrc/v0/sdl_mcrc.h:224</div></div>

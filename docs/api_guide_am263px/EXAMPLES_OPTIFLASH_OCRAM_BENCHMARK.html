@@ -93,10 +93,10 @@ $(document).ready(function(){initNavTree('EXAMPLES_OPTIFLASH_OCRAM_BENCHMARK.htm
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
 <ul><li class="level1"><a href="#EXAMPLES_OPTIFLASH_OCRAM_BENCHMARKCOMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3785">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md3786">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3787">Building the application</a></li>
-<li class="level2"><a href="#autotoc_md3788">Running the application</a></li>
-<li class="level2"><a href="#autotoc_md3789">Sample output</a></li>
+<li class="level1"><a href="#autotoc_md3787">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3788">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3789">Building the application</a></li>
+<li class="level2"><a href="#autotoc_md3790">Running the application</a></li>
+<li class="level2"><a href="#autotoc_md3791">Sample output</a></li>
 </ul>
 </li>
 </ul>
@@ -116,7 +116,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/benchmarks/optiflash_benchmark/ocram   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3785"></a>
+<h1><a class="anchor" id="autotoc_md3787"></a>
 Introduction</h1>
 <ul>
 <li>This demo provides a means of measuring the performance of a realistic application where the text of the application is sitting in various memory locations and the data is sitting in On-Chip-Memory RAM (referred to as OCM, OCMC or OCMRAM).</li>
@@ -124,18 +124,18 @@ Introduction</h1>
 <li>The most instruction intensive example achieves a instruction cache miss rate (ICM/sec) of ~3-4 million per second when run entirely from OCMRAM. This is a rate that we have similarly seen in real-world customer examples.</li>
 <li>More data intensive tests have more repetitive code, achieving much lower ICM rates.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3786"></a>
+<h1><a class="anchor" id="autotoc_md3788"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md3787"></a>
+<h2><a class="anchor" id="autotoc_md3789"></a>
 Building the application</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3788"></a>
+<h2><a class="anchor" id="autotoc_md3790"></a>
 Running the application</h2>
 <p>Flash the application binary to the device, follow the steps mentioned here (see <a class="el" href="GETTING_STARTED_FLASH.html">Flash a Hello World example</a>).</p>
-<h2><a class="anchor" id="autotoc_md3789"></a>
+<h2><a class="anchor" id="autotoc_md3791"></a>
 Sample output</h2>
 <div class="fragment"><div class="line">Starting OSPI Bootloader ...</div>
 <div class="line">KPI_DATA: [BOOTLOADER_PROFILE] Boot Media       : NOR SPI FLASH</div>

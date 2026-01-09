@@ -92,50 +92,50 @@ $(document).ready(function(){initNavTree('enet_mcupsdk_10_00_update.html',''); i
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1322">While upgrading from 11.01 or earlier to latest SDK</a><ul><li class="level2"><a href="#autotoc_md1323">Change Set</a><ul><li class="level3"><a href="#autotoc_md1324">Change-1 Description</a></li>
-<li class="level3"><a href="#autotoc_md1325">Change-1 Impact</a></li>
-<li class="level3"><a href="#autotoc_md1326">Change-2 Description</a></li>
-<li class="level3"><a href="#autotoc_md1327">Change-2 Impact</a></li>
+<ul><li class="level1"><a href="#autotoc_md1324">While upgrading from 11.01 or earlier to latest SDK</a><ul><li class="level2"><a href="#autotoc_md1325">Change Set</a><ul><li class="level3"><a href="#autotoc_md1326">Change-1 Description</a></li>
+<li class="level3"><a href="#autotoc_md1327">Change-1 Impact</a></li>
+<li class="level3"><a href="#autotoc_md1328">Change-2 Description</a></li>
+<li class="level3"><a href="#autotoc_md1329">Change-2 Impact</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1328">While upgrading from 11.00 SDK to 11.01 SDK</a><ul><li class="level2"><a href="#autotoc_md1329">Change Set</a><ul><li class="level3"><a href="#autotoc_md1330">Change-1 Description</a></li>
+<li class="level1"><a href="#autotoc_md1330">While upgrading from 11.00 SDK to 11.01 SDK</a><ul><li class="level2"><a href="#autotoc_md1331">Change Set</a><ul><li class="level3"><a href="#autotoc_md1332">Change-1 Description</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1331">While upgrading from 10.00 SDK</a><ul><li class="level2"><a href="#autotoc_md1332">Change Set</a><ul><li class="level3"><a href="#autotoc_md1333">Change-1 Description</a></li>
-<li class="level3"><a href="#autotoc_md1334">Change-1 Impact</a></li>
-<li class="level3"><a href="#autotoc_md1335">Change-1 Solution</a></li>
-<li class="level3"><a href="#autotoc_md1336">Change-2 Description</a></li>
-<li class="level3"><a href="#autotoc_md1337">Change-2 Impact</a></li>
-<li class="level3"><a href="#autotoc_md1338">Change-2 Solution</a></li>
+<li class="level1"><a href="#autotoc_md1333">While upgrading from 10.00 SDK</a><ul><li class="level2"><a href="#autotoc_md1334">Change Set</a><ul><li class="level3"><a href="#autotoc_md1335">Change-1 Description</a></li>
+<li class="level3"><a href="#autotoc_md1336">Change-1 Impact</a></li>
+<li class="level3"><a href="#autotoc_md1337">Change-1 Solution</a></li>
+<li class="level3"><a href="#autotoc_md1338">Change-2 Description</a></li>
+<li class="level3"><a href="#autotoc_md1339">Change-2 Impact</a></li>
+<li class="level3"><a href="#autotoc_md1340">Change-2 Solution</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1339">While upgrading from 09.02 SDK or earlier</a><ul><li class="level2"><a href="#autotoc_md1340">Change-1 Description</a></li>
-<li class="level2"><a href="#autotoc_md1341">Change-1 Impact</a></li>
-<li class="level2"><a href="#autotoc_md1342">Change-1 Solution</a><ul><li class="level3"><a href="#autotoc_md1343">Option 1:</a></li>
-<li class="level3"><a href="#autotoc_md1344">Option 2:</a></li>
+<li class="level1"><a href="#autotoc_md1341">While upgrading from 09.02 SDK or earlier</a><ul><li class="level2"><a href="#autotoc_md1342">Change-1 Description</a></li>
+<li class="level2"><a href="#autotoc_md1343">Change-1 Impact</a></li>
+<li class="level2"><a href="#autotoc_md1344">Change-1 Solution</a><ul><li class="level3"><a href="#autotoc_md1345">Option 1:</a></li>
+<li class="level3"><a href="#autotoc_md1346">Option 2:</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md1345">Change-2 Description</a></li>
-<li class="level2"><a href="#autotoc_md1346">Change-2 Impact</a></li>
-<li class="level2"><a href="#autotoc_md1347">Change-2 Solution</a></li>
+<li class="level2"><a href="#autotoc_md1347">Change-2 Description</a></li>
+<li class="level2"><a href="#autotoc_md1348">Change-2 Impact</a></li>
+<li class="level2"><a href="#autotoc_md1349">Change-2 Solution</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_enet_lld_mcupsdk_update_migration_guide_mcupsdk_10_00_onwards"></a></p>
-<h1><a class="anchor" id="autotoc_md1322"></a>
+<h1><a class="anchor" id="autotoc_md1324"></a>
 While upgrading from 11.01 or earlier to latest SDK</h1>
-<h2><a class="anchor" id="autotoc_md1323"></a>
+<h2><a class="anchor" id="autotoc_md1325"></a>
 Change Set</h2>
 <p><b>Change-1</b>: Sysconfig generated file changes<br  />
  <b>Change-2</b>: Enet Module interface removed</p>
-<h3><a class="anchor" id="autotoc_md1324"></a>
+<h3><a class="anchor" id="autotoc_md1326"></a>
 Change-1 Description</h3>
 <p>Enet-LLD sysconfig layer has been cleaned up to improve code readability by removing sysconfig API abstractions and statically initializing CPSW/ICSSG configurations and calling driver APIs directly.</p>
 <p>The following new files are generated from sysconfig. Example makefiles have been updated to include these files:</p>
@@ -191,13 +191,13 @@ Change-1 Description</h3>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">getIpNxtWhitelistCount(), getIpNxtWhitelistInitArray()  </td><td class="markdownTableBodyLeft">Template helper functions   </td></tr>
 </table>
-<h3><a class="anchor" id="autotoc_md1325"></a>
+<h3><a class="anchor" id="autotoc_md1327"></a>
 Change-1 Impact</h3>
 <ul>
 <li>All networking examples now generate additional files that are included in makefiles - ti_enet_dma_init.c/h and ti_enet_init.c.</li>
 <li>Enet driver initialization has been internally refactored to reduce abstraction. Users need to rebuild their projects to get the modified template changes.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1326"></a>
+<h3><a class="anchor" id="autotoc_md1328"></a>
 Change-2 Description</h3>
 <p>Enet module abstraction layer has been removed to meet functional safety standards by replacing generic <code>EnetMod_Handle</code> with specific typed handles (e.g., <code>CpswAle_Handle</code>, <code>Mdio_Handle</code>), eliminating function pointers and void pointers.</p><ul>
 <li>The <code>void *arg</code> argument used in the function pointer of <code><a class="el" href="structEnetPhy__Mdio.html" title="MDIO driver.">EnetPhy_Mdio</a></code> structure has been changed to <code>Mdio_Obj*</code></li>
@@ -240,7 +240,7 @@ Change-2 Description</h3>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">EnetPhy  </td><td class="markdownTableBodyLeft">EnetPhy_open  </td><td class="markdownTableBodyLeft"><code>..., void *mdioArgs</code>  </td><td class="markdownTableBodyLeft"><code>..., Mdio_Obj *mdioArgs</code>   </td></tr>
 </table>
-<h3><a class="anchor" id="autotoc_md1327"></a>
+<h3><a class="anchor" id="autotoc_md1329"></a>
 Change-2 Impact</h3>
 <ol type="1">
 <li>All code using <code>EnetMod_Handle</code> has been replaced with module specific handle type (e.g., <code>CpswAle_Handle</code>, <code>Mdio_Handle</code>)</li>
@@ -248,12 +248,12 @@ Change-2 Impact</h3>
 <li>All generic wrapper calls for module IOCTLs have been replaced with module-specific functions</li>
 <li>PHY code that passes <code>void*</code> pointers has been updated to use <code>Mdio_Obj*</code> instead</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md1328"></a>
+<h1><a class="anchor" id="autotoc_md1330"></a>
 While upgrading from 11.00 SDK to 11.01 SDK</h1>
-<h2><a class="anchor" id="autotoc_md1329"></a>
+<h2><a class="anchor" id="autotoc_md1331"></a>
 Change Set</h2>
 <p>Change-1 : ENET UDMA API changes</p>
-<h3><a class="anchor" id="autotoc_md1330"></a>
+<h3><a class="anchor" id="autotoc_md1332"></a>
 Change-1 Description</h3>
 <p>The ENET UDMA API has undergone some changes, with the primary goal of enhancing overall code quality and adhering to functional safety standards. These changes aim to minimize the use of error-prone constructs and eliminate the utilization of void pointers.</p>
 <table class="markdownTable">
@@ -272,49 +272,49 @@ Change-1 Description</h3>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">6. Enet DMA close TX channel: EnetDma_closeTxCh(EnetDma_TxChHandle hTxCh, EnetDma_PktQ *fq, EnetDma_PktQ *cq)  </td><td class="markdownTableBodyLeft">EnetUdma_closeTxCh(EnetDma_TxChHandle hTxCh, EnetDma_PktQ *fq, EnetDma_PktQ *cq)   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1331"></a>
+<h1><a class="anchor" id="autotoc_md1333"></a>
 While upgrading from 10.00 SDK</h1>
-<h2><a class="anchor" id="autotoc_md1332"></a>
+<h2><a class="anchor" id="autotoc_md1334"></a>
 Change Set</h2>
 <p>Change-1 : ENET(CPSW) and ENET(ICSS) pinmux configuration.<br  />
  Change-2 : Support to configure link parameters in Sysconfig GUI tool.<br  />
  Change-3 : ENET(CPSW) and ENET(ICSS) Example paths have been changed.<br  />
  Change-4 : Support to add and configure Ethernet PHY module through sysconfig-GUI tool.<br  />
 </p>
-<h3><a class="anchor" id="autotoc_md1333"></a>
+<h3><a class="anchor" id="autotoc_md1335"></a>
 Change-1 Description</h3>
 <p>In MCU+ SDK version of 10.01, ENET(CPSW) and ENET(ICSS) related examples showcasing various features have been moved from ${MCU_PLUS_SDK_PATH}/examples/networking to ${MCU_PLUS_SDK_PATH}/source/networking/enet/core/examples</p>
-<h3><a class="anchor" id="autotoc_md1334"></a>
+<h3><a class="anchor" id="autotoc_md1336"></a>
 Change-1 Impact</h3>
 <p>The above change makes older build commands to build Networking examples no longer supported, and it has to be updated with correct path.</p>
-<h3><a class="anchor" id="autotoc_md1335"></a>
+<h3><a class="anchor" id="autotoc_md1337"></a>
 Change-1 Solution</h3>
 <p>Please use "make help DEVICE=&lt;dev_name&gt;" to get the correct location and build commands for the examples. </p><dl class="section note"><dt>Note</dt><dd>For Windows , please use "gmake" instead of "make"</dd></dl>
-<h3><a class="anchor" id="autotoc_md1336"></a>
+<h3><a class="anchor" id="autotoc_md1338"></a>
 Change-2 Description</h3>
 <p>In MCU+ SDK version of 10.01, support to add custom PHY and configure it through sysconfig tool has been added, and this needs updates in corresponding example.syscfg file to be compatible with latest changes</p>
-<h3><a class="anchor" id="autotoc_md1337"></a>
+<h3><a class="anchor" id="autotoc_md1339"></a>
 Change-2 Impact</h3>
 <p>This will need addition of the corresponding sysconfig tool changes to add the ethernet phy module and configure it.</p>
-<h3><a class="anchor" id="autotoc_md1338"></a>
+<h3><a class="anchor" id="autotoc_md1340"></a>
 Change-2 Solution</h3>
 <ul>
 <li>Refer <a class="el" href="phy_integration_guide_top.html">Ethernet PHY Integration Guide</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1339"></a>
+<h1><a class="anchor" id="autotoc_md1341"></a>
 While upgrading from 09.02 SDK or earlier</h1>
-<h2><a class="anchor" id="autotoc_md1340"></a>
+<h2><a class="anchor" id="autotoc_md1342"></a>
 Change-1 Description</h2>
 <p>In MCU+ SDK version of 10.00, ENET(CPSW) and ENET(ICSS) component in Sysconfig GUI has been updated with fixes to correct MII/RMII mode for ICSSG and CPSW Resp.. Additionally support added to release unused pins based on number of ports were enabled in CPSW.</p>
-<h2><a class="anchor" id="autotoc_md1341"></a>
+<h2><a class="anchor" id="autotoc_md1343"></a>
 Change-1 Impact</h2>
 <p>The above described change makes any older 'example.syscfg' generated using SDK version of 09.00 or earlier not compatible with SDK version 10.00 or later. This incompatibility is seen only when either ENET(CPSW) or ENET(ICSS) is added in your application/example.If neither of the components are added, you may ignore this change and there is no impact. User will see the error in sysconfig gui tool when the old example.syscfg file is opened in updated version of mcu plus sdk.</p>
-<h2><a class="anchor" id="autotoc_md1342"></a>
+<h2><a class="anchor" id="autotoc_md1344"></a>
 Change-1 Solution</h2>
-<h3><a class="anchor" id="autotoc_md1343"></a>
+<h3><a class="anchor" id="autotoc_md1345"></a>
 Option 1:</h3>
 <p>If it is possible to create an example.syscfg as per user configurations, please generate a new example.syscfg from any SDK example and change the configuration as per your need. This is the safest option.</p>
-<h3><a class="anchor" id="autotoc_md1344"></a>
+<h3><a class="anchor" id="autotoc_md1346"></a>
 Option 2:</h3>
 <p>Sometimes, it is not easy to get a new example.syscfg that matches the older example.syscfg. In those case, please follow the below steps</p>
 <ul>
@@ -324,13 +324,13 @@ Option 2:</h3>
 <li>Find and replace 'enet_cpsw1.macport1LoopbackEn = true;' with 'enet_cpsw1.macport1LoopbackMode = "LOOPBACK_MODE_MAC";'</li>
 </ul>
 <p>Save the modifications. Then open sysconfig GUI tool with the modifications, save and close the tool.</p>
-<h2><a class="anchor" id="autotoc_md1345"></a>
+<h2><a class="anchor" id="autotoc_md1347"></a>
 Change-2 Description</h2>
 <p>In MCU+ SDK version of 10.00, parameters that configures link capabilities for auto negotiation such as speed and duplexity is added into syscfg GUI.</p>
-<h2><a class="anchor" id="autotoc_md1346"></a>
+<h2><a class="anchor" id="autotoc_md1348"></a>
 Change-2 Impact</h2>
 <p>'EnetApp_initLinkArgs' function that is defined in the user applicaiton code is no longer called. Instead, a new function EnetApp_initLinkArgs is defined.</p>
-<h2><a class="anchor" id="autotoc_md1347"></a>
+<h2><a class="anchor" id="autotoc_md1349"></a>
 Change-2 Solution</h2>
 <ul>
 <li>User shall open delete their locally defined 'EnetApp_initLinkArgs' and instead let sysconfig tool handle it via generated code.</li>

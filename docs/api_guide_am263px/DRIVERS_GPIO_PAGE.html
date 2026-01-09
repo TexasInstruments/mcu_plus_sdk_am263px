@@ -92,24 +92,24 @@ $(document).ready(function(){initNavTree('DRIVERS_GPIO_PAGE.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md936">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md937">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md938">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md939">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md940">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md941">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md938">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md939">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md940">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md941">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md942">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md943">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_gpio"></a></p>
 <p>The General-Purpose Input/Output (GPIO) driver provides API to configure general-purpose pins as either inputs or outputs. It also provided API to configure GPIO to produce host CPU interrupts and DMA synchronization events in different interrupt/event generation modes.</p>
-<h1><a class="anchor" id="autotoc_md936"></a>
+<h1><a class="anchor" id="autotoc_md938"></a>
 Features Supported</h1>
 <ul>
 <li>Supports up to 16 GPIO signals per bank</li>
 <li>Supports up to 9 banks of interrupt and DMA trigger capable GPIOs</li>
 <li>Set/clear functionality</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md937"></a>
+<h1><a class="anchor" id="autotoc_md939"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -118,10 +118,10 @@ SysConfig Features</h1>
 <li>Set interrupt router output lines</li>
 <li>Configuring pinmux based on selected pin</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md938"></a>
+<h1><a class="anchor" id="autotoc_md940"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md939"></a>
+<h1><a class="anchor" id="autotoc_md941"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>Not all GPIO pins, banks are present in a particular device. Refer device TRM for actual GPIO instances and pins supported  <style>div.image img[src="gpio_interrupt_config.png"]{width:50%"}</style> <div class="image">
@@ -133,7 +133,7 @@ GPIO INTERRUPT ROUTER CONFIGURATION</div></div>
 <li>The output lines of the interrupt router are a shared resource. Although many output pins are available for the GPIO MUX, only the resource pins that are allocated in the board configuration are available for use.</li>
 <li>Change the board configuration and click GET RM DATA in SysConfig to use more interrupt router output lines.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md940"></a>
+<h1><a class="anchor" id="autotoc_md942"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="gpio_8h.html">drivers/gpio.h</a>&gt;</span></div>
 </div><!-- fragment --><p> GPIO configuration as output </p><div class="fragment"><div class="line">    uint32_t pinNum = gGpioPinNum, pinValue;</div>
@@ -266,7 +266,7 @@ Example Usage</h1>
 <div class="line">    <span class="comment">/* Unregister interrupt */</span></div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__HWI.html#ga9dac4d4990b599de54662b9e32c0b47b">HwiP_destruct</a>(&amp;gGpioHwiObject);</div>
 <div class="line">}</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md941"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md943"></a>
 API</h1>
 <p><a class="el" href="group__DRV__GPIO__MODULE.html">APIs for GPIO</a> </p>
 </div></div><!-- contents -->
@@ -283,7 +283,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__GPIO__MODULE_html_ga2424a0689fe07d992bec1a7840942613"><div class="ttname"><a href="group__DRV__GPIO__MODULE.html#ga2424a0689fe07d992bec1a7840942613">GPIO_DIRECTION_INPUT</a></div><div class="ttdeci">#define GPIO_DIRECTION_INPUT</div><div class="ttdef"><b>Definition:</b> gpio/v0/gpio.h:90</div></div>
 <div class="ttc" id="agroup__DRV__GPIO__MODULE_html_ga9ae19577951cc497ee2ed22d1911c680"><div class="ttname"><a href="group__DRV__GPIO__MODULE.html#ga9ae19577951cc497ee2ed22d1911c680">GPIO_PIN_HIGH</a></div><div class="ttdeci">#define GPIO_PIN_HIGH</div><div class="ttdoc">GPIO pin is at logic high.</div><div class="ttdef"><b>Definition:</b> gpio/v0/gpio.h:81</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__HWI_html_ga33f02161b1837b41f08ba064f1001045"><div class="ttname"><a href="group__KERNEL__DPL__HWI.html#ga33f02161b1837b41f08ba064f1001045">HwiP_Params_init</a></div><div class="ttdeci">void HwiP_Params_init(HwiP_Params *params)</div><div class="ttdoc">Set default values to HwiP_Params.</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:225</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:235</div></div>
 <div class="ttc" id="agroup__DRV__GPIO__MODULE_html_ga2c00fbd33bda3fd280b4480f8f92f225"><div class="ttname"><a href="group__DRV__GPIO__MODULE.html#ga2c00fbd33bda3fd280b4480f8f92f225">GPIO_clearBankIntrStatus</a></div><div class="ttdeci">static void GPIO_clearBankIntrStatus(uint32_t baseAddr, uint32_t bankNum, uint32_t intrStatus)</div><div class="ttdoc">This API clears the interrupt status of the specified bank.</div><div class="ttdef"><b>Definition:</b> gpio/v0/gpio.h:374</div></div>
 <div class="ttc" id="agroup__DRV__GPIO__MODULE_html_ga87fed161743bfb3b4323d0ac825c0685"><div class="ttname"><a href="group__DRV__GPIO__MODULE.html#ga87fed161743bfb3b4323d0ac825c0685">GPIO_TRIG_TYPE_RISE_EDGE</a></div><div class="ttdeci">#define GPIO_TRIG_TYPE_RISE_EDGE</div><div class="ttdoc">Interrupt request on occurrence of a rising edge on the input pin.</div><div class="ttdef"><b>Definition:</b> gpio/v0/gpio.h:101</div></div>
 <div class="ttc" id="agroup__DRV__GPIO__MODULE_html_ga3bd3df4e40ff41074aadac07003bd075"><div class="ttname"><a href="group__DRV__GPIO__MODULE.html#ga3bd3df4e40ff41074aadac07003bd075">GPIO_setDirMode</a></div><div class="ttdeci">void GPIO_setDirMode(uint32_t baseAddr, uint32_t pinNum, uint32_t pinDir)</div><div class="ttdoc">This API configures the direction of a specified GPIO pin as being either input or output.</div></div>
@@ -298,7 +298,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__GPIO__MODULE_html_ga8392f9bf16a5d0ccda3f8a020620b984"><div class="ttname"><a href="group__DRV__GPIO__MODULE.html#ga8392f9bf16a5d0ccda3f8a020620b984">GPIO_setTrigType</a></div><div class="ttdeci">void GPIO_setTrigType(uint32_t baseAddr, uint32_t pinNum, uint32_t trigType)</div><div class="ttdoc">This API configures the trigger type for a specified input GPIO pin.</div></div>
 <div class="ttc" id="astructHwiP__Params_html_a26ec86a18720de1a3fe54828ceb959d2"><div class="ttname"><a href="structHwiP__Params.html#a26ec86a18720de1a3fe54828ceb959d2">HwiP_Params::args</a></div><div class="ttdeci">void * args</div><div class="ttdef"><b>Definition:</b> HwiP.h:131</div></div>
 <div class="ttc" id="agroup__DRV__GPIO__MODULE_html_ga67230e311672673fe87fb8c4c2d34561"><div class="ttname"><a href="group__DRV__GPIO__MODULE.html#ga67230e311672673fe87fb8c4c2d34561">GPIO_GET_BANK_INDEX</a></div><div class="ttdeci">#define GPIO_GET_BANK_INDEX(pinNum)</div><div class="ttdoc">Returns the bank index based on pin number.</div><div class="ttdef"><b>Definition:</b> gpio/v0/gpio.h:126</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="astructHwiP__Params_html_a943b3d55a5aaa669f8bcb04017fdf2a1"><div class="ttname"><a href="structHwiP__Params.html#a943b3d55a5aaa669f8bcb04017fdf2a1">HwiP_Params::intNum</a></div><div class="ttdeci">uint32_t intNum</div><div class="ttdef"><b>Definition:</b> HwiP.h:129</div></div>
 <div class="ttc" id="agroup__DRV__GPIO__MODULE_html_ga30df85a8a1114fb8c8f10b88a5a3357d"><div class="ttname"><a href="group__DRV__GPIO__MODULE.html#ga30df85a8a1114fb8c8f10b88a5a3357d">GPIO_TRIG_TYPE_NONE</a></div><div class="ttdeci">#define GPIO_TRIG_TYPE_NONE</div><div class="ttdoc">No interrupt request on either rising or falling edges on the pin.</div><div class="ttdef"><b>Definition:</b> gpio/v0/gpio.h:99</div></div>
 <div class="ttc" id="agroup__DRV__GPIO__MODULE_html_gaea8105e96af200dede9ff7a1ec127ffb"><div class="ttname"><a href="group__DRV__GPIO__MODULE.html#gaea8105e96af200dede9ff7a1ec127ffb">GPIO_getBankIntrStatus</a></div><div class="ttdeci">static uint32_t GPIO_getBankIntrStatus(uint32_t baseAddr, uint32_t bankNum)</div><div class="ttdoc">This API returns the interrupt status of the specified bank.</div><div class="ttdef"><b>Definition:</b> gpio/v0/gpio.h:359</div></div>

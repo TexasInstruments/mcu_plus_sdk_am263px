@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('CLOCKTREE.html',''); initResizable(); 
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md730">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md731">Overview</a></li>
+<ul><li class="level1"><a href="#autotoc_md732">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md733">Overview</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_tools_clocktree"></a></p>
-<h1><a class="anchor" id="autotoc_md730"></a>
+<h1><a class="anchor" id="autotoc_md732"></a>
 Introduction</h1>
 <p>Previously, the MCU+SDK offered limited flexibility in selecting clock sources or frequencies through the sysconfig tool, with most values hardcoded for various modules. These hardcoded values were reflected in the ti_power_clock_config.c file, which is one of the generated sysconfig files. Additionally, the clock values for the PLLs were also hardcoded within the soc_bootloader.c files.</p>
 <p>With the introduction of the clock tree, users now have an enhanced view of the entire clock architecture, illustrating how clock sources, multiplexers, dividers, and peripherals are interconnected. This centralizes the configurability of the clocktree, allowing users to adjust these values directly from the ClockTree view, with the changes appearing as read-only values in the Software view. This update significantly reduces the hardcoding of clock values that was prevalent in earlier versions. However, some combinations of muxes and dividers may still produce incompatible input clock frequencies for certain peripherals, and the system includes errors and warnings to address these scenarios.</p>
 <p>This new approach also minimizes human errors. For instance, when two modules share the same muxes (such as UART and LIN), any modifications made will automatically reflect on both modules, ensuring consistency that could otherwise be compromised with manual configurations.</p>
-<h1><a class="anchor" id="autotoc_md731"></a>
+<h1><a class="anchor" id="autotoc_md733"></a>
 Overview</h1>
 <p>In the ClockTree panel view, components are organized into four categories:</p>
 <ul>

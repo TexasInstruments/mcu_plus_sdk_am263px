@@ -92,30 +92,30 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_RESOLVER_DIAGNOSITCS.
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2808">Introduction</a><ul><li class="level2"><a href="#autotoc_md2809">Resolver Diagnostics</a></li>
+<ul><li class="level1"><a href="#autotoc_md2810">Introduction</a><ul><li class="level2"><a href="#autotoc_md2811">Resolver Diagnostics</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2810">Example Description</a><ul><li class="level2"><a href="#autotoc_md2811">Input Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2812">Excitation Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2813">Resolver Core Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2814">Interrupt Configurations and ISR details</a></li>
-<li class="level2"><a href="#autotoc_md2815">SW Track2 details</a></li>
+<li class="level1"><a href="#autotoc_md2812">Example Description</a><ul><li class="level2"><a href="#autotoc_md2813">Input Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2814">Excitation Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2815">Resolver Core Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2816">Interrupt Configurations and ISR details</a></li>
+<li class="level2"><a href="#autotoc_md2817">SW Track2 details</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2816">Watch variables</a></li>
-<li class="level1"><a href="#autotoc_md2817">External Connections</a><ul><li class="level2"><a href="#autotoc_md2818">DMRD (Dual Motor Resolver Dock)</a></li>
+<li class="level1"><a href="#autotoc_md2818">Watch variables</a></li>
+<li class="level1"><a href="#autotoc_md2819">External Connections</a><ul><li class="level2"><a href="#autotoc_md2820">DMRD (Dual Motor Resolver Dock)</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_RESOLVER_DIAGNOSITCS_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2819">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2820">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2821">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2821">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2822">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2823">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_resolver_diagnostics"></a></p>
-<h1><a class="anchor" id="autotoc_md2808"></a>
+<h1><a class="anchor" id="autotoc_md2810"></a>
 Introduction</h1>
-<h2><a class="anchor" id="autotoc_md2809"></a>
+<h2><a class="anchor" id="autotoc_md2811"></a>
 Resolver Diagnostics</h2>
 <p>AM263Px Resolver to Digital Converter offers a wide range of the Diagnostics at HW level to help improve safety. These are crucial to help support the safety aspect of the application without actaully consuming the CPU. The following are the diagnostics that are present in the IP. These are present at each RDC core within the Resolver IP.</p>
 <ol type="1">
@@ -161,23 +161,23 @@ Resolver Diagnostics</h2>
 </li>
 </ol>
 <p>It is important from the Software (Application) to verify / check the diagnostics periodically by injecting fault.</p>
-<h1><a class="anchor" id="autotoc_md2810"></a>
+<h1><a class="anchor" id="autotoc_md2812"></a>
 Example Description</h1>
 <p>The example intends to demonstrate a way to use the diagnostic checks. Also, the example intends to showcase the usage of the static configuration reads and verification of the static configurations with the initialised values. </p>
-<h2><a class="anchor" id="autotoc_md2811"></a>
+<h2><a class="anchor" id="autotoc_md2813"></a>
 Input Configurations</h2>
 <ol type="1">
 <li>Sequencer Mode 4 is used in the application to avail both RDC for dual motor (or single motor redundant sensing). Please note that, Sequencer modes 0,1,2 activate only RDC0 and are used for the single motor sensing, where as, Sequencer modes 3,4,5 activate two RDC cores RDC0 and RDC1 for dual motor sensing or redundant sensing of single motor.</li>
 <li>Differential Mode of Sampling is selected. </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md2812"></a>
+<h2><a class="anchor" id="autotoc_md2814"></a>
 Excitation Configurations</h2>
 <ol type="1">
 <li>Amplitude control is 210 or (84%)</li>
 <li>Sync in is enabled and corresponding PWMxBar is connected with the ISR_SYNC_PWM_EPWM3 Syncout.</li>
 <li>Over Sampling Ratio is set to be 20. </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md2813"></a>
+<h2><a class="anchor" id="autotoc_md2815"></a>
 Resolver Core Configurations</h2>
 <p>Both the Cores RDC0 and RDC1 are configured in exact same manner for the redundant sensing application.</p><ol type="1">
 <li>Band Pass Filter is enabled. Auto DC Offset Correction is disabled, with the manual offset correction values set to be 0.</li>
@@ -186,17 +186,17 @@ Resolver Core Configurations</h2>
 <li>Manual Gain correction is set to 2.66 (43697) for both Sine and Cosine channels. Manual Phase Correction is set to 0 deg (0).</li>
 <li>Track2 Configurations include the Kvelfilt Value at 8. </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md2814"></a>
+<h2><a class="anchor" id="autotoc_md2816"></a>
 Interrupt Configurations and ISR details</h2>
 <ol type="1">
 <li>No interrupts from the RDCs are enabled.</li>
 <li>ISR_SYNC_PWM_EPWM3 is configured for interrupt, via INTxBar0 at 100 uS for the Resolver Angle, velocity reads.</li>
 <li>ISR_SYNC_PWMDIAGNOSTICS_10MS_ISR_EPWM7_EPWM3 is configured for interrupt, via INTxBar1 at 10 mS for the Resolver Diagnostics Checks.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md2815"></a>
+<h2><a class="anchor" id="autotoc_md2817"></a>
 SW Track2 details</h2>
 <p>The example showcases an additional method for computing the angle and velocity which may be optionally used. For quicker accesses, the loop needs to be placed at TCM and should be strictly timed to the excitation signal frequency.</p>
-<h1><a class="anchor" id="autotoc_md2816"></a>
+<h1><a class="anchor" id="autotoc_md2818"></a>
 Watch variables</h1>
 <ol type="1">
 <li>testLog is an array of 2 structs, defined for the example purpose. these contain the test status of the diagnostics performed. These can be monitored. The following are the values and their meaning.<ul>
@@ -211,9 +211,9 @@ Watch variables</h1>
 <li>sw_track2_angle : array, with RDC Core number as index, to read the results from the sw_track2 Angle</li>
 <li>sw_track2_velocity : array, with RDC Core number as index, to read the results from the sw_track2 Angle</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md2817"></a>
+<h1><a class="anchor" id="autotoc_md2819"></a>
 External Connections</h1>
-<h2><a class="anchor" id="autotoc_md2818"></a>
+<h2><a class="anchor" id="autotoc_md2820"></a>
 DMRD (Dual Motor Resolver Dock)</h2>
 <p> <style>div.image img[src="am263p_dmrd.png"]{width:50%}</style> </p><div class="image">
 <img src="am263p_dmrd.png" alt=""/>
@@ -329,7 +329,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/resolver/resolver_diagnostics/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2819"></a>
+<h1><a class="anchor" id="autotoc_md2821"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -339,10 +339,10 @@ Steps to Run the Example</h1>
 <li>Using the watch variables, view the ADC conversion results.</li>
 <li>View the ADC conversion results in UART console logs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2820"></a>
+<h1><a class="anchor" id="autotoc_md2822"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_RESOLVER_PAGE.html">RESOLVER</a></p>
-<h1><a class="anchor" id="autotoc_md2821"></a>
+<h1><a class="anchor" id="autotoc_md2823"></a>
 Sample Output</h1>
 <p>the following is a sample CCS Console output for the example run.,</p>
 <div class="fragment"><div class="line">[Cortex_R5_0] Detected CC version is E2. Calling TCA6424 Drivers for io expander configurations</div>

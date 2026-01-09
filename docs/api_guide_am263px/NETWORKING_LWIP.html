@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('NETWORKING_LWIP.html',''); initResizab
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md357">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md358">Upgrade</a><ul><li class="level2"><a href="#autotoc_md359">Upgrade to version 2.2.1</a></li>
-<li class="level2"><a href="#autotoc_md360">Upgrade to version 2.2.0</a></li>
+<ul><li class="level1"><a href="#autotoc_md359">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md360">Upgrade</a><ul><li class="level2"><a href="#autotoc_md361">Upgrade to version 2.2.1</a></li>
+<li class="level2"><a href="#autotoc_md362">Upgrade to version 2.2.0</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_networking_lwip"></a></p>
-<h1><a class="anchor" id="autotoc_md357"></a>
+<h1><a class="anchor" id="autotoc_md359"></a>
 Introduction</h1>
 <p>LwIP is the TCP/IP networking protocol stack supported and integrated into SDK in its 'venilla' version.</p>
 <p>As per <a href="http://savannah.nongnu.org/projects/lwip/">LwIP project page</a></p>
@@ -115,9 +115,9 @@ Introduction</h1>
 </ul>
 </blockquote>
 <p>Current version that is supported is STABLE-2_2_1_RELEASE.</p>
-<h1><a class="anchor" id="autotoc_md358"></a>
+<h1><a class="anchor" id="autotoc_md360"></a>
 Upgrade</h1>
-<h2><a class="anchor" id="autotoc_md359"></a>
+<h2><a class="anchor" id="autotoc_md361"></a>
 Upgrade to version 2.2.1</h2>
 <p>In MCU+ SDK release version 11.02.00, LwIP stack has been upgraded to support LwIP version 2.2.1 (tag: <code>STABLE-2_2_1_RELEASE</code>). Below is the <a href="https://savannah.nongnu.org/news/?group=lwip">official release news</a> from LwIP- </p><blockquote class="doxtable">
 <p>lwIP 2.2.1 is now available from the lwIP download area or via git (using the STABLE-2_2_1_RELEASE tag) or via the gitweb link.<br  />
@@ -127,7 +127,7 @@ Upgrade to version 2.2.1</h2>
 <li>The <code>mqtt.c</code> file in <code>${SDK_INSTALL_PATH}/examples/lwip/cpsw_lwip_mqtt</code> has been updated to accommodate changes to the <code>mqtt_connect_client_info_t</code> struct introduced in the new stack version.</li>
 </ol>
 <p>This is a smaller bugfix-only release. Contrib has not been changed since 2.1.0. For a list of the bugs fixed, see <code>${SDK_INSTALL_PATH}/source/networking/lwip/lwip-stack/CHANGELOG</code>.</p>
-<h2><a class="anchor" id="autotoc_md360"></a>
+<h2><a class="anchor" id="autotoc_md362"></a>
 Upgrade to version 2.2.0</h2>
 <p>In MCU+ SDK release version 09.01.00, LwIP stack is upgraded to support LwIP version 2.2.0 LwIP (tag: <code>STABLE-2_2_0_RELEASE</code>). Below is the official release news from LwIP- </p><blockquote class="doxtable">
 <p>lwIP 2.2.0 is now available from the lwIP download area or via git (using the STABLE-2_2_0_RELEASE tag) or via this gitweb link: There have been some bugs fixed, and some new features were added (most notably full ACD support). Additionally, the contents of the contrib repository has been moved to the main repository ('contrib' directory on top level) to make things more consistent, especially with git. The old contrib repository should not be used any more. The 2.1.x branch will not be continued, so eventually, all users of 2.1.x might want to upgrade to get bugfixes. </p>

@@ -92,16 +92,16 @@ $(document).ready(function(){initNavTree('KERNEL_DPL_TASK_PAGE.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md837">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md838">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md839">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md840">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md841">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md839">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md840">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md841">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md842">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md843">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_dpl_TaskP"></a></p>
 <dl class="section attention"><dt>Attention</dt><dd>This module is not applicable for NO RTOS environment</dd></dl>
-<h1><a class="anchor" id="autotoc_md837"></a>
+<h1><a class="anchor" id="autotoc_md839"></a>
 Features Supported</h1>
 <ul>
 <li>APIs to create and destroy tasks</li>
@@ -109,17 +109,17 @@ Features Supported</h1>
 <li>Ability to specify task priority, task entry function, stack pointer, stack size</li>
 <li>Ability to get task and CPU load</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md838"></a>
+<h1><a class="anchor" id="autotoc_md840"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md839"></a>
+<h1><a class="anchor" id="autotoc_md841"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>On R5F, and M4F, make sure memory provided as stack is 32b aligned and size is also multiple of 32b</li>
 <li>Stack and stack size MUST be provided by application and is not allocated internally</li>
 <li><a class="el" href="group__KERNEL__DPL__TASK.html#ga4e2a069770eaee380c742f99bad3ae6a" title="Reset task load statistics.">TaskP_loadResetAll()</a> needs to be called in the application. If load counters are not reset, the accumulated load counters can lead to filtered and less steady CPU load values.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md840"></a>
+<h1><a class="anchor" id="autotoc_md842"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs, </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="TaskP_8h.html">kernel/dpl/TaskP.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Example usage to define task objects and parameters </p><div class="fragment"><div class="line"><span class="comment">/* Task priority, stack, stack size and task objects, these MUST be global&#39;s */</span></div>
@@ -168,7 +168,7 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__TASK.html#gad4331e94d214fd7f63870906bddd5657">TaskP_loadGet</a>(&amp;gMyTask, &amp;taskLoad);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a>(<span class="stringliteral">&quot; LOAD: %s = %2d.%2d %%\r\n&quot;</span>, taskLoad.<a class="code" href="structTaskP__Load.html#a931070c16c2ceddfb3e7bac1668d1e1a">name</a>, taskLoad.<a class="code" href="structTaskP__Load.html#a1ece63fe72865342dacd3ee29193149c">cpuLoad</a>/100, taskLoad.<a class="code" href="structTaskP__Load.html#a1ece63fe72865342dacd3ee29193149c">cpuLoad</a>%100 );</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md841"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md843"></a>
 API</h1>
 <p><a class="el" href="group__KERNEL__DPL__TASK.html">APIs for Task</a> </p>
 </div></div><!-- contents -->
@@ -179,7 +179,7 @@ API</h1>
 <div class="ttc" id="astructTaskP__Load_html"><div class="ttname"><a href="structTaskP__Load.html">TaskP_Load</a></div><div class="ttdoc">Task load statistics.</div><div class="ttdef"><b>Definition:</b> TaskP.h:79</div></div>
 <div class="ttc" id="astructTaskP__Load_html_a931070c16c2ceddfb3e7bac1668d1e1a"><div class="ttname"><a href="structTaskP__Load.html#a931070c16c2ceddfb3e7bac1668d1e1a">TaskP_Load::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition:</b> TaskP.h:81</div></div>
 <div class="ttc" id="astructTaskP__Params_html_a7b4966f980beb04adf3bb8676f19d997"><div class="ttname"><a href="structTaskP__Params.html#a7b4966f980beb04adf3bb8676f19d997">TaskP_Params::args</a></div><div class="ttdeci">void * args</div><div class="ttdef"><b>Definition:</b> TaskP.h:146</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:225</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:235</div></div>
 <div class="ttc" id="astructTaskP__Params_html_a6506253f422e9bf9b67cafb17fa5de69"><div class="ttname"><a href="structTaskP__Params.html#a6506253f422e9bf9b67cafb17fa5de69">TaskP_Params::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition:</b> TaskP.h:142</div></div>
 <div class="ttc" id="agroup__lld__ethernet_html_ga8c1dfc1ccf00a08192611433ee7f17b4"><div class="ttname"><a href="group__lld__ethernet.html#ga8c1dfc1ccf00a08192611433ee7f17b4">__attribute__</a></div><div class="ttdeci">struct lld_sockaddr __attribute__</div><div class="ttdoc">This is the SecureBoot Stream type which holds the data for a specific bootloader to HSM call....</div></div>
 <div class="ttc" id="astructTaskP__Params_html_a2f59987ac5a12da61cd33371c2de1617"><div class="ttname"><a href="structTaskP__Params.html#a2f59987ac5a12da61cd33371c2de1617">TaskP_Params::taskMain</a></div><div class="ttdeci">TaskP_FxnMain taskMain</div><div class="ttdef"><b>Definition:</b> TaskP.h:147</div></div>
@@ -192,7 +192,7 @@ API</h1>
 <div class="ttc" id="agroup__KERNEL__DPL__TASK_html_ga3e2c95b313b6a530741829d1550720b6"><div class="ttname"><a href="group__KERNEL__DPL__TASK.html#ga3e2c95b313b6a530741829d1550720b6">TaskP_construct</a></div><div class="ttdeci">int32_t TaskP_construct(TaskP_Object *obj, const TaskP_Params *params)</div><div class="ttdoc">Create a task object.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__TASK_html_ga4921ae3a972ab84e34df23c077dc6154"><div class="ttname"><a href="group__KERNEL__DPL__TASK.html#ga4921ae3a972ab84e34df23c077dc6154">TaskP_loadGetTotalCpuLoad</a></div><div class="ttdeci">uint32_t TaskP_loadGetTotalCpuLoad(void)</div><div class="ttdoc">Get total CPU load including all task and ISR execution time.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__TASK_html_gad4331e94d214fd7f63870906bddd5657"><div class="ttname"><a href="group__KERNEL__DPL__TASK.html#gad4331e94d214fd7f63870906bddd5657">TaskP_loadGet</a></div><div class="ttdeci">void TaskP_loadGet(TaskP_Object *obj, TaskP_Load *taskLoad)</div><div class="ttdoc">Get task load.</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="astructTaskP__Params_html_a572cdf36adacd6ca009dcf6cb6c5120e"><div class="ttname"><a href="structTaskP__Params.html#a572cdf36adacd6ca009dcf6cb6c5120e">TaskP_Params::stack</a></div><div class="ttdeci">uint8_t * stack</div><div class="ttdef"><b>Definition:</b> TaskP.h:144</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__TASK_html_gada126fc28d0aea5c60f1984dadfde56e"><div class="ttname"><a href="group__KERNEL__DPL__TASK.html#gada126fc28d0aea5c60f1984dadfde56e">TaskP_Params_init</a></div><div class="ttdeci">void TaskP_Params_init(TaskP_Params *params)</div><div class="ttdoc">Set default values to TaskP_Params.</div></div>
 <!-- HTML footer for doxygen 1.8.11-->

@@ -92,33 +92,33 @@ $(document).ready(function(){initNavTree('MATHLIB_DRIVER.html',''); initResizabl
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1485">MATHLIB</a><ul><li class="level2"><a href="#autotoc_md1486">Introduction</a></li>
-<li class="level2"><a href="#autotoc_md1487">Features Supported</a></li>
-<li class="level2"><a href="#autotoc_md1488">Features Not Supported</a></li>
+<ul><li class="level1"><a href="#autotoc_md1487">MATHLIB</a><ul><li class="level2"><a href="#autotoc_md1488">Introduction</a></li>
+<li class="level2"><a href="#autotoc_md1489">Features Supported</a></li>
+<li class="level2"><a href="#autotoc_md1490">Features Not Supported</a></li>
 <li class="level2"><a href="#MATHLIB_ADDITIONAL_REFERENCES">Additional References</a></li>
-<li class="level2"><a href="#autotoc_md1489">API</a></li>
+<li class="level2"><a href="#autotoc_md1491">API</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1490">FastRTS library</a><ul><li class="level2"><a href="#autotoc_md1491">Features Supported</a></li>
-<li class="level2"><a href="#autotoc_md1492">Features Not Supported</a></li>
-<li class="level2"><a href="#autotoc_md1493">API</a></li>
+<li class="level1"><a href="#autotoc_md1492">FastRTS library</a><ul><li class="level2"><a href="#autotoc_md1493">Features Supported</a></li>
+<li class="level2"><a href="#autotoc_md1494">Features Not Supported</a></li>
+<li class="level2"><a href="#autotoc_md1495">API</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#TMU_LIBRARY">TMU library</a><ul><li class="level2"><a href="#autotoc_md1494">Features Supported:</a></li>
-<li class="level2"><a href="#autotoc_md1495">Features Not Supported:</a></li>
-<li class="level2"><a href="#autotoc_md1496">API</a></li>
-<li class="level2"><a href="#autotoc_md1497">See Also</a></li>
+<li class="level1"><a href="#TMU_LIBRARY">TMU library</a><ul><li class="level2"><a href="#autotoc_md1496">Features Supported:</a></li>
+<li class="level2"><a href="#autotoc_md1497">Features Not Supported:</a></li>
+<li class="level2"><a href="#autotoc_md1498">API</a></li>
+<li class="level2"><a href="#autotoc_md1499">See Also</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_mathlib_mathlib_driver"></a> </p>
-<h1><a class="anchor" id="autotoc_md1485"></a>
+<h1><a class="anchor" id="autotoc_md1487"></a>
 MATHLIB</h1>
-<h2><a class="anchor" id="autotoc_md1486"></a>
+<h2><a class="anchor" id="autotoc_md1488"></a>
 Introduction</h2>
 <p>Trigonometric functions are commonly used in real-time control applications, particularly within the inner loops of control algorithms, where speed and accuracy is essential. The performance of trigonometric functions is a key careabout for designers of these systems as it can have a significant impact on the overall performance of the system. Until recently, trignometric functions based on lookup tables were considered faster than the polynomial-based methods; however, with the inclusion of floating-point units (FPUs) and faster clock speeds, polynomial-based approximations have gained favor. TI has developed C functions of the most commonly used trigonometric functions using these polynomial-based methods and has optimized them for TI's Arm®-based microcontrollers (MCUs) and microprocessors (MPUs).</p>
-<h2><a class="anchor" id="autotoc_md1487"></a>
+<h2><a class="anchor" id="autotoc_md1489"></a>
 Features Supported</h2>
 <p>Supports Below trignometric functions (ti_arm_trig):</p>
 <ul>
@@ -130,19 +130,19 @@ Features Supported</h2>
 <li>Arctangent</li>
 <li>Arctangent2</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1488"></a>
+<h2><a class="anchor" id="autotoc_md1490"></a>
 Features Not Supported</h2>
 <p>NA</p>
 <h2><a class="anchor" id="MATHLIB_ADDITIONAL_REFERENCES"></a>
 Additional References</h2>
 <p><a href="https://www.ti.com/lit/pdf/sprad27">App Note: Optimized Trigonometric Functions on TI Arm Cores</a></p>
-<h2><a class="anchor" id="autotoc_md1489"></a>
+<h2><a class="anchor" id="autotoc_md1491"></a>
 API</h2>
 <p><a class="el" href="group__DRV__MATHLIB__MODULE.html">APIs for MATHLIB</a></p>
-<h1><a class="anchor" id="autotoc_md1490"></a>
+<h1><a class="anchor" id="autotoc_md1492"></a>
 FastRTS library</h1>
 <p>Addintionally, TI also offers a traditional Look-up Table based trigonometric functions for users needing the most optimized operation with the trade-off of increase data size (3344Bytes of LUT stored in .trigData). It also bypasses some limitations of the aforementioned TI Arm Trig libary such as the limited input range of 0 - 2PI for sine/cosine functions. Furthermore, the Fast Run-Time-Support (FastRTS) library also offers an optimized math operation of logs and exponents.</p>
-<h2><a class="anchor" id="autotoc_md1491"></a>
+<h2><a class="anchor" id="autotoc_md1493"></a>
 Features Supported</h2>
 <p>Supports Below trignometric and math functions (fastrts):</p>
 <ul>
@@ -156,16 +156,16 @@ Features Supported</h2>
 <li>Log (base of e)</li>
 <li>Exponent (base of e)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md1492"></a>
+<h2><a class="anchor" id="autotoc_md1494"></a>
 Features Not Supported</h2>
 <p>NA</p>
-<h2><a class="anchor" id="autotoc_md1493"></a>
+<h2><a class="anchor" id="autotoc_md1495"></a>
 API</h2>
 <p><a class="el" href="group__DRV__FASTRTS__MODULE.html">APIs for MATHLIB</a></p>
 <h1><a class="anchor" id="TMU_LIBRARY"></a>
 TMU library</h1>
 <p>MCU PLUS SDK integrates a software library to use the TMU (Trigonometric Math Unit) hardware in AM263Px. This TMU library provides efficient (assembly level functions) and MATHLIB compatible API interface for performing trigonometric calculations, a critical component in many real-time applications such as Motor Control and Digital Power.</p>
-<h2><a class="anchor" id="autotoc_md1494"></a>
+<h2><a class="anchor" id="autotoc_md1496"></a>
 Features Supported:</h2>
 <p>TMU library supports below trignometric and math functions (ti_arm_tmu):</p><ul>
 <li>sin, sin_pu</li>
@@ -181,17 +181,17 @@ Features Supported:</h2>
 </ul>
 <p>Additionally, the TMU assmebly code integrated with the SDK makes use of one operation specific register and it's corresponding result register. To make use of a different register then the one used by SDK, users can add API calls in the TMU source file pointing to another register. Or they can make a direct write to the Operation specific register in their application code as follows:</p>
 <p>HWREG(x) = input value /add delay for computation to complete/ result = HWREG(y) Here, x is the address of the TMU specific operation registers and y is the address of the result register</p>
-<h2><a class="anchor" id="autotoc_md1495"></a>
+<h2><a class="anchor" id="autotoc_md1497"></a>
 Features Not Supported:</h2>
 <ul>
 <li>div and sqrt operations</li>
 <li>Underflow and Overflow interrupts to show mathematical operation errors</li>
 </ul>
 <p><a class="el" href="EXAMPLES_DRIVERS_TMU_CORES_SUPPORT.html#TMU_TCMA_ERRATA">Errata : TCM Memory Corruption on R5SS0_CORE1 and R5SS1_CORE1 when writing to TMU Registers</a></p>
-<h2><a class="anchor" id="autotoc_md1496"></a>
+<h2><a class="anchor" id="autotoc_md1498"></a>
 API</h2>
 <p><a class="el" href="group__DRV__TMU__MODULE.html">APIs for TMU</a></p>
-<h2><a class="anchor" id="autotoc_md1497"></a>
+<h2><a class="anchor" id="autotoc_md1499"></a>
 See Also</h2>
 <ul>
 <li><a class="el" href="TMU_GUIDE.html">Trigonometric Math Unit Guide</a></li>

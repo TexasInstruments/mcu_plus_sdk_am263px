@@ -92,46 +92,46 @@ $(document).ready(function(){initNavTree('BOOTFLOW_GUIDE.html',''); initResizabl
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md414">Introduction</a><ul><li class="level2"><a href="#autotoc_md415">What Is Bootloader?</a></li>
-<li class="level2"><a href="#autotoc_md416">Multi-Stage Bootloader</a></li>
-<li class="level2"><a href="#autotoc_md417">Multi-Core Bootloading</a></li>
+<ul><li class="level1"><a href="#autotoc_md416">Introduction</a><ul><li class="level2"><a href="#autotoc_md417">What Is Bootloader?</a></li>
+<li class="level2"><a href="#autotoc_md418">Multi-Stage Bootloader</a></li>
+<li class="level2"><a href="#autotoc_md419">Multi-Core Bootloading</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md418">Bootloading in MCU+SDK</a><ul><li class="level2"><a href="#autotoc_md419">ROM Boot</a><ul><li class="level3"><a href="#autotoc_md420">Preparing the SBL for boot</a></li>
+<li class="level1"><a href="#autotoc_md420">Bootloading in MCU+SDK</a><ul><li class="level2"><a href="#autotoc_md421">ROM Boot</a><ul><li class="level3"><a href="#autotoc_md422">Preparing the SBL for boot</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#BOOTFLOW_MCELF_BOOT">Booting MCELF application</a><ul><li class="level3"><a href="#autotoc_md421">Booting the application</a></li>
+<li class="level2"><a href="#BOOTFLOW_MCELF_BOOT">Booting MCELF application</a><ul><li class="level3"><a href="#autotoc_md423">Booting the application</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md422">Secure Boot</a></li>
-<li class="level1"><a href="#autotoc_md423">PBIST For 200MHz and 400MHz R5F Core Variants</a></li>
-<li class="level1"><a href="#autotoc_md424">Additional References</a></li>
+<li class="level1"><a href="#autotoc_md424">Secure Boot</a></li>
+<li class="level1"><a href="#autotoc_md425">PBIST For 200MHz and 400MHz R5F Core Variants</a></li>
+<li class="level1"><a href="#autotoc_md426">Additional References</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_bootflow"></a></p>
-<h1><a class="anchor" id="autotoc_md414"></a>
+<h1><a class="anchor" id="autotoc_md416"></a>
 Introduction</h1>
 <p>This section is aimed at explaining what a bootloader is, why is it needed and details regarding the bootloader and bootflow used in the MCU+SDK.</p>
-<h2><a class="anchor" id="autotoc_md415"></a>
+<h2><a class="anchor" id="autotoc_md417"></a>
 What Is Bootloader?</h2>
 <p>Generally speaking, bootloader is a piece of software / firmware that runs as soon as you power on an SoC. A bootloader's main duty is to start the subsequent pieces of software, such an OS, a baremetal application or in some cases another bootloader. When it comes to embedded, the bootloader is usually closely tied with the underlying SoC architecture. The bootloader is usually stored in a protected, non-volatile on-chip memory. Typically the bootloader performs various hardware checks, initializes the processor and configures the SoC registers etc. Since the primary aim of the bootloader is to load the next piece of software, it needs to communicate to the external world to receive this firmware/application image. This can be over a number of protocols - USB, UART, SPI, I2C, External Flash, Internal Flash, SD Card, Ethernet, CAN etc. Bootloader is also a key component in embedded security. Hardware Root-of-Trust is usually passed onto the bootloader and is passed on down the line.</p>
 <dl class="section note"><dt>Note</dt><dd>In devices supported by MCU+SDK, the first stage bootloader is burned into read-only memory of the device and is considered as device firmware / ROM. Mostly in MCU+SDK when we say "bootloader" we are referring to the secondary bootloader, or the SBL</dd></dl>
-<h2><a class="anchor" id="autotoc_md416"></a>
+<h2><a class="anchor" id="autotoc_md418"></a>
 Multi-Stage Bootloader</h2>
 <p>As mentioned earlier, sometimes the bootloader would be loading another bootloader which can load another one and so on. This is usually the case in advanced SoCs, and there are various reasons for this. The first bootloader is usually kept on secure, read-only memory for security reasons and to have a known state always before application software starts. It makes sense then to keep this bootloader simple and let it do only the bare minimum configuration required. This secondary bootloader can be complex and configurable to suit the needs of the application. This can also be updated easily compared to the first stage bootloader. In fact for the devices in MCU+SDK, we have a two-stage bootloading - the first stage bootloader is called ROM Bootloader (RBL) and the second stage bootloader is called Secondary Bootloader (SBL).</p>
-<h2><a class="anchor" id="autotoc_md417"></a>
+<h2><a class="anchor" id="autotoc_md419"></a>
 Multi-Core Bootloading</h2>
 <p>Multi-core bootloading is almost always a follow up when there is a multi-stage bootloading. In this case the first bootloader technically might not be even aware of the other cores, it will just boot the next stage bootloader and this second stage bootloader will take care of the complex bootloading on the different cores.</p>
 <p>Loading a multi-core application is slightly more complicated than loading a single core application. There would be concerns regarding image preparation, shared memory access, and so on. Mostly there would be a particular format in which the individual core images are created, and then they may/may not be concatenated into a single image for SBL to load. Whatever format the application image is in, the SBL should be aware of it so that it can parse and load the image correctly.</p>
-<h1><a class="anchor" id="autotoc_md418"></a>
+<h1><a class="anchor" id="autotoc_md420"></a>
 Bootloading in MCU+SDK</h1>
 <p>In the MCU+SDK, the bootflow takes place mainly in two steps after you power ON the device</p><ul>
 <li><b>ROM boot</b>, in which the ROM bootloader boots a secondary bootloader or an SBL</li>
 <li><b>SBL boot</b> in which the secondary bootloader boots the application</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md419"></a>
+<h2><a class="anchor" id="autotoc_md421"></a>
 ROM Boot</h2>
 <p>The <b>RBL</b> or ROM Bootloader is stored in read-only memory and is almost considered as part of the SoC. The details regarding the RBL and ROM Boot is out of scope for this user guide. Please refer to the Technical Reference Manual of the device for more details. But basically the ROM expects an x509 signed binary image of the secondary bootloader to be provided for boot.</p>
 <ul>
@@ -184,7 +184,7 @@ Validation for Device Types</div></div>
 <ul>
 <li>For ROM to accept any image to boot, there are some restrictions in the image preparation</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md420"></a>
+<h3><a class="anchor" id="autotoc_md422"></a>
 Preparing the SBL for boot</h3>
 <p>The SBL is like any other application, created using the same compiler and linker toolchain. It is an example implementation rather than a deliverable. It is customizable by users, but must adhere to the requirements by RBL which is a constant as mentioned above. However the steps to convert the application <code>.out</code> into a bootable image are different for SBL as listed below:</p>
 <ul>
@@ -222,17 +222,17 @@ SBL Boot for MCELF</div></div>
 <li>To understand the steps to use XIP, see <a class="el" href="BOOTFLOW_XIP.html">Enabling XIP or eXecute In Place</a></li>
 </ul>
 <p>Now, as mentioned above, to boot an application with SBL it has to be specially prepared. Refer here <a class="el" href="BUILDING_APPLICATION.html">Building an Application</a> to see how an application is prepared to be bootable.</p>
-<h3><a class="anchor" id="autotoc_md421"></a>
+<h3><a class="anchor" id="autotoc_md423"></a>
 Booting the application</h3>
 <p>After a SBL and application image is flashed, shown below is the high level boot flow, after the SOC is powered on.</p>
 <p> <style>div.image img[src="bootflow_main.png"]{width:40%}</style> </p><div class="image">
 <img src="bootflow_main.png" alt=""/>
 <div class="caption">
 HIGH LEVEL BOOTFLOW</div></div>
-<h1><a class="anchor" id="autotoc_md422"></a>
+<h1><a class="anchor" id="autotoc_md424"></a>
 Secure Boot</h1>
 <p>In secure device variants, there are slight differences in the bootflow. For details on secure boot, please refer <a class="el" href="SECURE_BOOT.html">Enabling Secure Boot</a></p>
-<h1><a class="anchor" id="autotoc_md423"></a>
+<h1><a class="anchor" id="autotoc_md425"></a>
 PBIST For 200MHz and 400MHz R5F Core Variants</h1>
 <p>pBIST (parallel Built-In Self-Test) can be performed for both 200MHz and 400MHz part numbers by including the instance of <code>mcu_bist</code> in the sys-config for the bootloader examples. By default it's enabled only for bootloader <code>sbl-sd</code>. For 400 MHz part numbers ROM performs pBIST on R5FSS0 Memories and L2 Memory - Bank-0 and Bank-1. But due to ROM limitation this test is not done by ROM for 200 MHz part numbers. The <code>mcu_bist</code> instance can be added or removed on the basis of use-case. pBIST is perfromed only on L2 memory - three banks (Bank-1,Bank-2,Bank3 (not on Bank-0)) and R5FSS1 TCM Memories. Please refer below for more information.</p>
 <dl class="section note"><dt>Note</dt><dd>Important Information:<br  />
@@ -303,7 +303,7 @@ SBL code resides in the 1st bank of L2 memory (Bank-0); So pBIST is performed on
 • The pBIST procedure performed during the SBL startup helps mitigate the limitations imposed by the ROM. <br  />
 • It is important to ensure that the SBL and associated software are correctly installed and configured on the target device for the workaround to function effectively.</p>
 <p>To know more about pBIST and overall SDL support for pBIST, please take a look at <a class="el" href="SDL_PBIST_PAGE.html">PBIST</a></p>
-<h1><a class="anchor" id="autotoc_md424"></a>
+<h1><a class="anchor" id="autotoc_md426"></a>
 Additional References</h1>
 <p>See also these additional pages for more details and examples about the boot flow,</p>
 <ul>

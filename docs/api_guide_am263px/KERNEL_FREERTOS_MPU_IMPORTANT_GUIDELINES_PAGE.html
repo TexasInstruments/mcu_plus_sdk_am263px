@@ -92,14 +92,14 @@ $(document).ready(function(){initNavTree('KERNEL_FREERTOS_MPU_IMPORTANT_GUIDELIN
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md786">Using and adding FreeRTOS MPU to your project</a></li>
-<li class="level1"><a href="#autotoc_md787">Important tips for application writers</a></li>
+<ul><li class="level1"><a href="#autotoc_md788">Using and adding FreeRTOS MPU to your project</a></li>
+<li class="level1"><a href="#autotoc_md789">Important tips for application writers</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_os_freertos_mpu_important_guidelines"></a></p>
 <p>This section has additional useful information related to FreeRTOS MPU and its integration within MCU+ SDK.</p>
 <p>Refer <a href="https://www.freertos.org/Security/04-FreeRTOS-MPU-memory-protection-unit">FreeRTOS - Memory Protection Unit (MPU) Support</a> for official FreeRTOS documentation.</p>
-<h1><a class="anchor" id="autotoc_md786"></a>
+<h1><a class="anchor" id="autotoc_md788"></a>
 Using and adding FreeRTOS MPU to your project</h1>
 <ul>
 <li>You can start using FreeRTOS MPU referring to <a class="el" href="EXAMPLES_KERNEL_FREERTOS_TASK_SWITCH_MPU.html">FreeRTOS MPU Task Switch Example</a> at <code>${SDK_INSTALL_PATH}/examples/kernel/freertos/task_switch_mpu</code></li>
@@ -114,7 +114,7 @@ Using and adding FreeRTOS MPU to your project</h1>
 <li>And link to below library for your SOC and CPU of choice <pre class="fragment">  freertos.{soc}.{cpu}-mpu.{compiler}.{profile}.lib
 </pre></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md787"></a>
+<h1><a class="anchor" id="autotoc_md789"></a>
 Important tips for application writers</h1>
 <ul>
 <li>For R5F with total of 16 configurable MPU regions,<ul>

@@ -1,5 +1,12 @@
 var NAVTREEINDEX61 =
 {
+"structCpswStats__MacPort__Ng.html#accad67a1b6d44d64f99bf441dcc4c862":[19,4,0,9,0,3,24],
+"structCpswStats__MacPort__Ng.html#ad345368e73ecc3660208bf93d188ce90":[19,4,0,9,0,3,49],
+"structCpswStats__MacPort__Ng.html#ad52108a746a3bb3fa52bd933ea6df463":[19,4,0,9,0,3,58],
+"structCpswStats__MacPort__Ng.html#ad57d0e0bab2c17e86d99d6cb542011d8":[19,4,0,9,0,3,17],
+"structCpswStats__MacPort__Ng.html#ae44589988aa84cda7b287f4d79ab4017":[19,4,0,9,0,3,2],
+"structCpswStats__MacPort__Ng.html#ae5701a097a85d21ac5ce4e604180134e":[19,4,0,9,0,3,6],
+"structCpswStats__MacPort__Ng.html#ae9428eadec9db4e1fa8d65316866c167":[19,4,0,9,0,3,44],
 "structCpswStats__MacPort__Ng.html#af047bdd59ac7bc21a9155632494d2d48":[19,4,0,9,0,3,47],
 "structCpswStats__MacPort__Ng.html#af1606898c4615962bb51178637660137":[19,4,0,9,0,3,29],
 "structCpswStats__MacPort__Ng.html#af3ec4f3ac6a091f5c8b4c09874fca76a":[19,4,0,9,0,3,54],
@@ -242,12 +249,5 @@ var NAVTREEINDEX61 =
 "structDp83tg720__Cfg.html#a8e32adc4472d26b83e111523029288dd":[19,4,0,13,6,0,4],
 "structDp83tg720__Cfg.html#ac6e8c3d969daf161cc05dca8858efcae":[19,4,0,13,6,0,0],
 "structDp83tg720__Cfg.html#ad4f0e76fe34b1aacd0cdc6d0cb87ba8d":[19,4,0,13,6,0,1],
-"structDp83tg721__Cfg.html":[19,4,0,13,7,0],
-"structDp83tg721__Cfg.html#a218b17c167c05ab37b743243a5d55a37":[19,4,0,13,7,0,1],
-"structDp83tg721__Cfg.html#a2f950e4786d6bb20569fa49b62beccaf":[19,4,0,13,7,0,7],
-"structDp83tg721__Cfg.html#a35031498afb2864c959fcfb0091985f0":[19,4,0,13,7,0,8],
-"structDp83tg721__Cfg.html#a4faec932bf7c13505730ea9a90022b33":[19,4,0,13,7,0,6],
-"structDp83tg721__Cfg.html#a9d4ba55faf2eb4013ecd544009e5eb14":[19,4,0,13,7,0,3],
-"structDp83tg721__Cfg.html#aa4db9debd32d7a3c4b5b17f5b1249c96":[19,4,0,13,7,0,4],
-"structDp83tg721__Cfg.html#ab3fd43a1a509b8d4ea18d12468bf999f":[19,4,0,13,7,0,5]
+"structDp83tg721__Cfg.html":[19,4,0,13,7,0]
 };

@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('SDL_STC_PAGE.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1626">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1627">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1628">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1629">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1630">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1631">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1628">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1629">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1630">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1631">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1632">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1633">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_stc"></a></p>
 <p>The Self-Test Controller (STC) is used to test logic cores based on the On-Product Multiple Input Signature Register (OPMISR) scan compression architecture.The self test controller facilitates complete isolation of the logical segment under test from rest of the system during the self-test run.</p>
 <p>The STC have some internal configuration.Gernally The configuration need not to be changed for running STC. For running STC The core should be in low power mode for which STC is about to run.</p>
-<h1><a class="anchor" id="autotoc_md1626"></a>
+<h1><a class="anchor" id="autotoc_md1628"></a>
 Features Supported</h1>
 <p>The STC module provides the following functionality:</p>
 <ul>
@@ -114,20 +114,20 @@ Features Supported</h1>
 <li>Ability to continue from the last executed interval(test set) as well as ability to restart from the beginning(1st interval in the ROM) or start from the 1st interval of each segment.</li>
 </ul>
 <p>Errors detected by the STC module during operation are reported via ESM error (application will receive via ESM application callback).</p>
-<h1><a class="anchor" id="autotoc_md1627"></a>
+<h1><a class="anchor" id="autotoc_md1629"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
-<h1><a class="anchor" id="autotoc_md1628"></a>
+<h1><a class="anchor" id="autotoc_md1630"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1629"></a>
+<h1><a class="anchor" id="autotoc_md1631"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>R5F STC can be tested by enabling sysconfig in SBL_NULL bootloader example only, not in standalone example.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1630"></a>
+<h1><a class="anchor" id="autotoc_md1632"></a>
 Example Usage</h1>
 <p>The following shows an example of SDL STC API usage by the application.</p>
 <p>Include the below file to access the APIs</p>
@@ -168,20 +168,20 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">if STC will be Done Successfully, it will return nothing, beacuse core reset would have been done till now.</div>
 <div class="line">if something will be going wrong, it will return something (!=SDL_PASS) value.</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1631"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1633"></a>
 API</h1>
 <p><a class="el" href="group__SDL__STC__API.html">SDL Self Test Controller(STC)</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <div class="ttc" id="agroup__SDL__STC__FUNCTIONS_html_ga00392f4db379a977f229b4a5e3064ce0"><div class="ttname"><a href="group__SDL__STC__FUNCTIONS.html#ga00392f4db379a977f229b4a5e3064ce0">SDL_STC_getStatus</a></div><div class="ttdeci">int32_t SDL_STC_getStatus(SDL_STC_Inst instance)</div><div class="ttdoc">This API is used to get status for STC result.</div></div>
-<div class="ttc" id="agroup__SDL__STC__ENUM_html_ggae98c0f72a895727d5fc3e0d651da9f76a5b0d863fb471c8777bd26f9ea375379c"><div class="ttname"><a href="group__SDL__STC__ENUM.html#ggae98c0f72a895727d5fc3e0d651da9f76a5b0d863fb471c8777bd26f9ea375379c">SDL_STC_COMPLETED_FAILURE</a></div><div class="ttdeci">@ SDL_STC_COMPLETED_FAILURE</div><div class="ttdef"><b>Definition:</b> stc/v0/sdl_stc.h:203</div></div>
+<div class="ttc" id="agroup__SDL__STC__ENUM_html_ggae98c0f72a895727d5fc3e0d651da9f76a5b0d863fb471c8777bd26f9ea375379c"><div class="ttname"><a href="group__SDL__STC__ENUM.html#ggae98c0f72a895727d5fc3e0d651da9f76a5b0d863fb471c8777bd26f9ea375379c">SDL_STC_COMPLETED_FAILURE</a></div><div class="ttdeci">@ SDL_STC_COMPLETED_FAILURE</div><div class="ttdef"><b>Definition:</b> stc/v0/sdl_stc.h:199</div></div>
 <div class="ttc" id="asdl__stc_8h_html"><div class="ttname"><a href="sdl__stc_8h.html">sdl_stc.h</a></div></div>
-<div class="ttc" id="agroup__SDL__STC__ENUM_html_ggae98c0f72a895727d5fc3e0d651da9f76a50758bcb8cc5133e5889aba38760e357"><div class="ttname"><a href="group__SDL__STC__ENUM.html#ggae98c0f72a895727d5fc3e0d651da9f76a50758bcb8cc5133e5889aba38760e357">SDL_STC_NOT_COMPLETED</a></div><div class="ttdeci">@ SDL_STC_NOT_COMPLETED</div><div class="ttdef"><b>Definition:</b> stc/v0/sdl_stc.h:205</div></div>
+<div class="ttc" id="agroup__SDL__STC__ENUM_html_ggae98c0f72a895727d5fc3e0d651da9f76a50758bcb8cc5133e5889aba38760e357"><div class="ttname"><a href="group__SDL__STC__ENUM.html#ggae98c0f72a895727d5fc3e0d651da9f76a50758bcb8cc5133e5889aba38760e357">SDL_STC_NOT_COMPLETED</a></div><div class="ttdeci">@ SDL_STC_NOT_COMPLETED</div><div class="ttdef"><b>Definition:</b> stc/v0/sdl_stc.h:201</div></div>
 <div class="ttc" id="asdl__stc__soc_8h_html_aad36ac76028de00b60ec1f1127fcdbcd"><div class="ttname"><a href="sdl__stc__soc_8h.html#aad36ac76028de00b60ec1f1127fcdbcd">SDL_STC_Inst</a></div><div class="ttdeci">SDL_STC_Inst</div><div class="ttdef"><b>Definition:</b> sdl_stc_soc.h:79</div></div>
-<div class="ttc" id="agroup__SDL__STC__ENUM_html_ggae98c0f72a895727d5fc3e0d651da9f76a91ddd2381130e548973850e6a9e878c8"><div class="ttname"><a href="group__SDL__STC__ENUM.html#ggae98c0f72a895727d5fc3e0d651da9f76a91ddd2381130e548973850e6a9e878c8">SDL_STC_NOT_RUN</a></div><div class="ttdeci">@ SDL_STC_NOT_RUN</div><div class="ttdef"><b>Definition:</b> stc/v0/sdl_stc.h:207</div></div>
-<div class="ttc" id="agroup__SDL__STC__ENUM_html_ggae98c0f72a895727d5fc3e0d651da9f76ac5782c594ce88f77abfc638ec51e7b2c"><div class="ttname"><a href="group__SDL__STC__ENUM.html#ggae98c0f72a895727d5fc3e0d651da9f76ac5782c594ce88f77abfc638ec51e7b2c">SDL_STC_COMPLETED_SUCCESS</a></div><div class="ttdeci">@ SDL_STC_COMPLETED_SUCCESS</div><div class="ttdef"><b>Definition:</b> stc/v0/sdl_stc.h:201</div></div>
-<div class="ttc" id="agroup__SDL__STC__ENUM_html_ggae98c0f72a895727d5fc3e0d651da9f76aaa55b8a9aec727343eedde132b806441"><div class="ttname"><a href="group__SDL__STC__ENUM.html#ggae98c0f72a895727d5fc3e0d651da9f76aaa55b8a9aec727343eedde132b806441">INVALID_RESULT</a></div><div class="ttdeci">@ INVALID_RESULT</div><div class="ttdef"><b>Definition:</b> stc/v0/sdl_stc.h:209</div></div>
+<div class="ttc" id="agroup__SDL__STC__ENUM_html_ggae98c0f72a895727d5fc3e0d651da9f76a91ddd2381130e548973850e6a9e878c8"><div class="ttname"><a href="group__SDL__STC__ENUM.html#ggae98c0f72a895727d5fc3e0d651da9f76a91ddd2381130e548973850e6a9e878c8">SDL_STC_NOT_RUN</a></div><div class="ttdeci">@ SDL_STC_NOT_RUN</div><div class="ttdef"><b>Definition:</b> stc/v0/sdl_stc.h:203</div></div>
+<div class="ttc" id="agroup__SDL__STC__ENUM_html_ggae98c0f72a895727d5fc3e0d651da9f76ac5782c594ce88f77abfc638ec51e7b2c"><div class="ttname"><a href="group__SDL__STC__ENUM.html#ggae98c0f72a895727d5fc3e0d651da9f76ac5782c594ce88f77abfc638ec51e7b2c">SDL_STC_COMPLETED_SUCCESS</a></div><div class="ttdeci">@ SDL_STC_COMPLETED_SUCCESS</div><div class="ttdef"><b>Definition:</b> stc/v0/sdl_stc.h:197</div></div>
+<div class="ttc" id="agroup__SDL__STC__ENUM_html_ggae98c0f72a895727d5fc3e0d651da9f76aaa55b8a9aec727343eedde132b806441"><div class="ttname"><a href="group__SDL__STC__ENUM.html#ggae98c0f72a895727d5fc3e0d651da9f76aaa55b8a9aec727343eedde132b806441">INVALID_RESULT</a></div><div class="ttdeci">@ INVALID_RESULT</div><div class="ttdef"><b>Definition:</b> stc/v0/sdl_stc.h:205</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

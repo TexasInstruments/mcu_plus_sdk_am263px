@@ -127,6 +127,12 @@ Functions</h2></td></tr>
 <tr class="memitem:gadd57c555a1e4dda746a54516ce5735fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__KERNEL__DPL__DEBUG.html#gadd57c555a1e4dda746a54516ce5735fe">DebugP_shmLogWriterInit</a> (<a class="el" href="structDebugP__ShmLog.html">DebugP_ShmLog</a> *shmLog, uint16_t selfCoreId)</td></tr>
 <tr class="memdesc:gadd57c555a1e4dda746a54516ce5735fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize shared memory log writer for this core.  <a href="group__KERNEL__DPL__DEBUG.html#gadd57c555a1e4dda746a54516ce5735fe">More...</a><br /></td></tr>
 <tr class="separator:gadd57c555a1e4dda746a54516ce5735fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad4635c2c782fd506c13b42caa1e43bab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__KERNEL__DPL__DEBUG.html#gad4635c2c782fd506c13b42caa1e43bab">DebugP_shmLogWriterPreludeEnable</a> ()</td></tr>
+<tr class="memdesc:gad4635c2c782fd506c13b42caa1e43bab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable auto prelude for shared memory log writer.  <a href="group__KERNEL__DPL__DEBUG.html#gad4635c2c782fd506c13b42caa1e43bab">More...</a><br /></td></tr>
+<tr class="separator:gad4635c2c782fd506c13b42caa1e43bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf78c150d8bf80efda0aba32375d2428b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__KERNEL__DPL__DEBUG.html#gaf78c150d8bf80efda0aba32375d2428b">DebugP_shmLogWriterPreludeDisable</a> ()</td></tr>
+<tr class="memdesc:gaf78c150d8bf80efda0aba32375d2428b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable auto prelude for shared memory log writer.  <a href="group__KERNEL__DPL__DEBUG.html#gaf78c150d8bf80efda0aba32375d2428b">More...</a><br /></td></tr>
+<tr class="separator:gaf78c150d8bf80efda0aba32375d2428b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga09c579165f3a21051f96cad2383cc48f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__KERNEL__DPL__DEBUG.html#ga09c579165f3a21051f96cad2383cc48f">DebugP_shmLogWriterPutChar</a> (char character)</td></tr>
 <tr class="memdesc:ga09c579165f3a21051f96cad2383cc48f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a character to shared memory log.  <a href="group__KERNEL__DPL__DEBUG.html#ga09c579165f3a21051f96cad2383cc48f">More...</a><br /></td></tr>
 <tr class="separator:ga09c579165f3a21051f96cad2383cc48f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,6 +142,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga3c72cd24ade647f36fab1915865e9daa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__KERNEL__DPL__DEBUG.html#ga3c72cd24ade647f36fab1915865e9daa">DebugP_shmLogReaderInit</a> (<a class="el" href="structDebugP__ShmLog.html">DebugP_ShmLog</a> *shmLog, uint16_t numCores)</td></tr>
 <tr class="memdesc:ga3c72cd24ade647f36fab1915865e9daa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize log reader to read from shared memory and log to console via DebugP_log.  <a href="group__KERNEL__DPL__DEBUG.html#ga3c72cd24ade647f36fab1915865e9daa">More...</a><br /></td></tr>
 <tr class="separator:ga3c72cd24ade647f36fab1915865e9daa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab522508e9c0e5bf8a799a859c05fad39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__KERNEL__DPL__DEBUG.html#gab522508e9c0e5bf8a799a859c05fad39">DebugP_shmLogReaderSetChunkSize</a> (uint16_t readChunkSize)</td></tr>
+<tr class="memdesc:gab522508e9c0e5bf8a799a859c05fad39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the read chunk size for the shared memory reader.  <a href="group__KERNEL__DPL__DEBUG.html#gab522508e9c0e5bf8a799a859c05fad39">More...</a><br /></td></tr>
+<tr class="separator:gab522508e9c0e5bf8a799a859c05fad39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9a4ea37a585dd8f8e294a8effe291fee"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__KERNEL__DPL__DEBUG.html#ga9a4ea37a585dd8f8e294a8effe291fee">DebugP_shmLogReaderGetChunkSize</a> (void)</td></tr>
+<tr class="memdesc:ga9a4ea37a585dd8f8e294a8effe291fee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the read chunk size for the shared memory reader.  <a href="group__KERNEL__DPL__DEBUG.html#ga9a4ea37a585dd8f8e294a8effe291fee">More...</a><br /></td></tr>
+<tr class="separator:ga9a4ea37a585dd8f8e294a8effe291fee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf997bf25164b3cc752a2a8b3e1d6d5fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__KERNEL__DPL__DEBUG.html#gaf997bf25164b3cc752a2a8b3e1d6d5fe">DebugP_shmLogRead</a> (void)</td></tr>
 <tr class="memdesc:gaf997bf25164b3cc752a2a8b3e1d6d5fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads logs from shared memory.  <a href="group__KERNEL__DPL__DEBUG.html#gaf997bf25164b3cc752a2a8b3e1d6d5fe">More...</a><br /></td></tr>
 <tr class="separator:gaf997bf25164b3cc752a2a8b3e1d6d5fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,6 +178,9 @@ Macros</h2></td></tr>
 <tr class="memitem:ga72a4648d76ea11dc0878155f2a3ac3dd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__KERNEL__DPL__DEBUG.html#ga72a4648d76ea11dc0878155f2a3ac3dd">DebugP_SHM_LOG_IS_VALID</a>&#160;&#160;&#160;(0x12345678U)</td></tr>
 <tr class="memdesc:ga72a4648d76ea11dc0878155f2a3ac3dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to indicate shared memory buffer is valid.  <a href="group__KERNEL__DPL__DEBUG.html#ga72a4648d76ea11dc0878155f2a3ac3dd">More...</a><br /></td></tr>
 <tr class="separator:ga72a4648d76ea11dc0878155f2a3ac3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0e32b69060167dfcb63f2093fe165189"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__KERNEL__DPL__DEBUG.html#ga0e32b69060167dfcb63f2093fe165189">DebugP_SHM_LOG_READER_CHUNK_SIZE_INF</a>&#160;&#160;&#160;UINT16_MAX</td></tr>
+<tr class="memdesc:ga0e32b69060167dfcb63f2093fe165189"><td class="mdescLeft">&#160;</td><td class="mdescRight">Infinite read chunk size for the shared memory reader.  <a href="group__KERNEL__DPL__DEBUG.html#ga0e32b69060167dfcb63f2093fe165189">More...</a><br /></td></tr>
+<tr class="separator:ga0e32b69060167dfcb63f2093fe165189"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3a34ba2b1387309d73db26a7a70845a4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__KERNEL__DPL__DEBUG.html#ga3a34ba2b1387309d73db26a7a70845a4">UNSIGNED_INTEGERVAL_TWO</a>&#160;&#160;&#160;(2U)</td></tr>
 <tr class="separator:ga3a34ba2b1387309d73db26a7a70845a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadb2b6d1e3a428e07b79a647dc1bbcd74"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__KERNEL__DPL__DEBUG.html#gadb2b6d1e3a428e07b79a647dc1bbcd74">UNSIGNED_INTEGERVAL_THREE</a>&#160;&#160;&#160;(3U)</td></tr>
@@ -334,6 +349,23 @@ Debug log APIs</h2></td></tr>
 
 <p>Flag to indicate shared memory buffer is valid. </p>
 <p>Written by the writer after it has initialized and cleared by the reader after reader has initialized </p>
+
+</div>
+</div>
+<a id="ga0e32b69060167dfcb63f2093fe165189"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0e32b69060167dfcb63f2093fe165189">&#9670;&nbsp;</a></span>DebugP_SHM_LOG_READER_CHUNK_SIZE_INF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DebugP_SHM_LOG_READER_CHUNK_SIZE_INF&#160;&#160;&#160;UINT16_MAX</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Infinite read chunk size for the shared memory reader. </p>
+<p>DebugP_shmLogReaderSetChunkSize(DebugP_SHM_LOG_READER_CHUNK_SIZE_INF) will make <a class="el" href="group__KERNEL__DPL__DEBUG.html#gaf997bf25164b3cc752a2a8b3e1d6d5fe" title="Reads logs from shared memory.">DebugP_shmLogRead()</a> process the entire shared memory log in one go or until the end of the shared memory log is reached. </p>
 
 </div>
 </div>
@@ -850,6 +882,45 @@ Debug log APIs</h2></td></tr>
 
 </div>
 </div>
+<a id="gad4635c2c782fd506c13b42caa1e43bab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad4635c2c782fd506c13b42caa1e43bab">&#9670;&nbsp;</a></span>DebugP_shmLogWriterPreludeEnable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugP_shmLogWriterPreludeEnable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable auto prelude for shared memory log writer. </p>
+
+</div>
+</div>
+<a id="gaf78c150d8bf80efda0aba32375d2428b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf78c150d8bf80efda0aba32375d2428b">&#9670;&nbsp;</a></span>DebugP_shmLogWriterPreludeDisable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugP_shmLogWriterPreludeDisable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disable auto prelude for shared memory log writer. </p>
+<p>This is useful for creating structured logs </p>
+
+</div>
+</div>
 <a id="ga09c579165f3a21051f96cad2383cc48f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga09c579165f3a21051f96cad2383cc48f">&#9670;&nbsp;</a></span>DebugP_shmLogWriterPutChar()</h2>
 
@@ -934,6 +1005,7 @@ Debug log APIs</h2></td></tr>
 
 <p>Initialize log reader to read from shared memory and log to console via DebugP_log. </p>
 <p>The parameter <code>shmLog</code> is a array and is indexed using core ID as defined by <a class="el" href="cslr__soc__defines_8h.html#CSL_CoreID">CSL_CoreID</a></p>
+<p>A single invocation processes up to <a class="el" href="group__KERNEL__DPL__DEBUG.html#ga9a4ea37a585dd8f8e294a8effe291fee" title="Get the read chunk size for the shared memory reader.">DebugP_shmLogReaderGetChunkSize()</a> log lines</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">shmLog</td><td>[in] Array of addresses of shared memory where the reader should read from. </td></tr>
@@ -941,6 +1013,53 @@ Debug log APIs</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="gab522508e9c0e5bf8a799a859c05fad39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab522508e9c0e5bf8a799a859c05fad39">&#9670;&nbsp;</a></span>DebugP_shmLogReaderSetChunkSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DebugP_shmLogReaderSetChunkSize </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>readChunkSize</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the read chunk size for the shared memory reader. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">readChunkSize</td><td>[in] The read chunk size in bytes. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga9a4ea37a585dd8f8e294a8effe291fee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9a4ea37a585dd8f8e294a8effe291fee">&#9670;&nbsp;</a></span>DebugP_shmLogReaderGetChunkSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t DebugP_shmLogReaderGetChunkSize </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the read chunk size for the shared memory reader. </p>
+<dl class="section return"><dt>Returns</dt><dd>The read chunk size in bytes. </dd></dl>
 
 </div>
 </div>

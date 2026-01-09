@@ -92,14 +92,14 @@ $(document).ready(function(){initNavTree('EXAMPLE_SPINLOCK.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2909">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md2911">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLE_SPINLOCK_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2910">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2911">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2912">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2913">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_spinlock_example"></a></p>
-<h1><a class="anchor" id="autotoc_md2909"></a>
+<h1><a class="anchor" id="autotoc_md2911"></a>
 Introduction</h1>
 <p>The Spinlock module provides hardware assistance for synchronizing the processes running on multiple processors in the device. The following example shows the working of spinlock in synchronizing multiple cores.</p>
 <p>In this example 2 cores work simultaneously. Synchronization is achieved with the help of spinlock, where the core is only active when it has acquired the spinlock, while the other core waits till the lock if free.</p>
@@ -119,7 +119,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/spinlock/spinlock_example/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2910"></a>
+<h1><a class="anchor" id="autotoc_md2912"></a>
 Steps to Run the Example</h1>
 <dl class="section note"><dt>Note</dt><dd>This is a <code>system</code> or multi-core project, so refer to system project build instructions for CCS project or makefiles when building the example.</dd></dl>
 <ul>
@@ -128,7 +128,7 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executables, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>This is a multi-core example. Hence the executables should be loaded and run for all the above mentioned cores</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2911"></a>
+<h1><a class="anchor" id="autotoc_md2913"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">[Cortex_R5_0] hello core 0</div>

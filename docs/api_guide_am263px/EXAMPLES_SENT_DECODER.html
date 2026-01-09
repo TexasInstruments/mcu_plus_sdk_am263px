@@ -92,23 +92,23 @@ $(document).ready(function(){initNavTree('EXAMPLES_SENT_DECODER.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md291">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md292">SENT Signal</a></li>
-<li class="level1"><a href="#autotoc_md293">Supported Combinations</a><ul><li class="level2"><a href="#autotoc_md294">HW Setup</a></li>
+<ul><li class="level1"><a href="#autotoc_md293">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md294">SENT Signal</a></li>
+<li class="level1"><a href="#autotoc_md295">Supported Combinations</a><ul><li class="level2"><a href="#autotoc_md296">HW Setup</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#EXAMPLES_SENT_DECODER_STEPS_TO_RUN">Steps to Run the Example</a><ul><ul><li class="level3"><a href="#autotoc_md295">Sample Output</a></li>
+<li class="level1"><a href="#EXAMPLES_SENT_DECODER_STEPS_TO_RUN">Steps to Run the Example</a><ul><ul><li class="level3"><a href="#autotoc_md297">Sample Output</a></li>
 </ul>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md296">Steps to modify SENT decoder PRU Firmware</a><ul><li class="level2"><a href="#autotoc_md297">Modifying Tick Period</a></li>
-<li class="level2"><a href="#autotoc_md298">Modifying the pins used</a></li>
+<li class="level1"><a href="#autotoc_md298">Steps to modify SENT decoder PRU Firmware</a><ul><li class="level2"><a href="#autotoc_md299">Modifying Tick Period</a></li>
+<li class="level2"><a href="#autotoc_md300">Modifying the pins used</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_pru_io_sent_decoder"></a></p>
-<h1><a class="anchor" id="autotoc_md291"></a>
+<h1><a class="anchor" id="autotoc_md293"></a>
 Introduction</h1>
 <p>The Single Edge Nibble Transmission protocol is a unidirectional communications method that connects the sensor/transmitting device and the controller/receiving device without the use of a coordination signal from the controller/receiving device. It is intended for usage in situations where high-resolution data must be transferred from a sensor to an engine control unit (ECU). It serves as a simpler, less expensive alternative to CAN, LIN, or PSI5 as well as a replacement for lesser resolution techniques such as traditional sensors that provide analog output voltage and PWM. Automotive applications for SENT-compatible sensor devices include applications for pedal sensing, mass airflow sensing, pressure sensing, temperature sensing, humidity sensing, and many others.</p>
 <p> <style>div.image img[src="SENT_Intro.png"]{width:60%}</style> </p><div class="image">
@@ -117,7 +117,7 @@ Introduction</h1>
 SENT Signal</div></div>
 <p><b>The SENT decoder Example is a reference for software based implementation of SAE J2716. PRU ICSS firmware enables SENT decoder interface on TI Sitara AM263Px processor.</b></p>
 <p>This example does following: configures pin mux, sets soc mux to enable gpio mode for ICSS, initializes PRU, DMEM and PRU INTC module, downloads crc look up table in PRU Data RAM, and extracts sent decoded signal to UART terminal.</p>
-<h1><a class="anchor" id="autotoc_md292"></a>
+<h1><a class="anchor" id="autotoc_md294"></a>
 SENT Signal</h1>
 <p>The sensor sends out a signal that is made up of a string of pulses with data encoded as falling to falling edge periods. It happens independently of any receiver module activity and takes place without the receiver module sending a synchronization signal. The modulated signal with a constant amplitude voltage and an evaluation of the time interval between two falling edges (a single edge) is delivered in units of 4 bits (1 nibble), which can represent values ranging from 0 to 15. According to the SAE J2716 specification, a transmitter-specific nominal clock period that is used to quantify the pulse period (tick time) can be between 3-90 ms. The sensor device can use low-cost RC oscillators because the maximum permitted clock deviation is 20% from the normal tick time. The specified tick time, the sent data value, and the message time of a SENT message determine its duration. The following pulses (all with nominal timings) make up the transmitting sequence:</p>
 <ol type="1">
@@ -131,7 +131,7 @@ SENT Signal</h1>
 <img src="sent_signal.png" alt=""/>
 <div class="caption">
 SENT Signal</div></div>
-<h1><a class="anchor" id="autotoc_md293"></a>
+<h1><a class="anchor" id="autotoc_md295"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -157,7 +157,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/pru_io/sent/decoder/firmware/pru(0 or 1)   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md294"></a>
+<h2><a class="anchor" id="autotoc_md296"></a>
 HW Setup</h2>
 <p> <style>div.image img[src="sent_hw_setup1.jpg"]{width:60%}</style> </p><div class="image">
 <img src="sent_hw_setup1.jpg" alt=""/>
@@ -209,7 +209,7 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>Open a UART terminal as per <a class="el" href="EVM_SETUP_PAGE.html#CCS_UART_TERMINAL">Setup UART Terminal</a> and view received SENT frames</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md295"></a>
+<h3><a class="anchor" id="autotoc_md297"></a>
 Sample Output</h3>
 <div class="fragment"><div class="line">******************SENT DECODER Application**********************</div>
 <div class="line"> </div>
@@ -294,9 +294,9 @@ Sample Output</h3>
 <li>See list supported firmware design and list of supported feature : <a class="el" href="SENT.html">SENT</a></li>
 </ul>
 </dd></dl>
-<h1><a class="anchor" id="autotoc_md296"></a>
+<h1><a class="anchor" id="autotoc_md298"></a>
 Steps to modify SENT decoder PRU Firmware</h1>
-<h2><a class="anchor" id="autotoc_md297"></a>
+<h2><a class="anchor" id="autotoc_md299"></a>
 Modifying Tick Period</h2>
 <p>Modification supported: Change hardcoded tick period in firmware. Current release supports only 1us tick period support in firmware. In order to modify it:</p>
 <ul>
@@ -307,7 +307,7 @@ Modifying Tick Period</h2>
 <div class="fragment"><div class="line">ch0_ticktime                .set   500</div>
 <div class="line">ch0_syncpulse_min_dur       .set   400*56</div>
 <div class="line">ch0_syncpulse_max_dur       .set   600*56</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md298"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md300"></a>
 Modifying the pins used</h2>
 <p>1.The user needs to select the correct pins with proper pinmux configurations in sysconfig.</p>
 <p>2.Update PRU0 Channel State Definitions Modify the channel state values in the PRU0 firmware's main.asm file to match your desired pin configuration. Update these channel state values according to your pin requirements.</p>

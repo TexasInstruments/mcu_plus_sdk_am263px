@@ -92,19 +92,19 @@ $(document).ready(function(){initNavTree('EXAMPLES_ENET_CLI_APP.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3754">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md3755">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3756">Packet pool configuration</a></li>
-<li class="level1"><a href="#autotoc_md3757">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3758">Build the Example</a></li>
-<li class="level2"><a href="#autotoc_md3759">Sample Outputs</a></li>
-<li class="level2"><a href="#autotoc_md3760">Accessing the LwIP Shell</a></li>
+<ul><li class="level1"><a href="#autotoc_md3756">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3757">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md3758">Packet pool configuration</a></li>
+<li class="level1"><a href="#autotoc_md3759">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3760">Build the Example</a></li>
+<li class="level2"><a href="#autotoc_md3761">Sample Outputs</a></li>
+<li class="level2"><a href="#autotoc_md3762">Accessing the LwIP Shell</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3761">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3763">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_enet_cli_app"></a></p>
-<h1><a class="anchor" id="autotoc_md3754"></a>
+<h1><a class="anchor" id="autotoc_md3756"></a>
 Introduction</h1>
 <p>This example demonstrates the usage of the Enet CLI commands</p>
 <p>This example does the following:</p><ul>
@@ -114,7 +114,7 @@ Introduction</h1>
 <li>It also registers commands to launch the gPTP stack and LwIP shell.</li>
 <li>On running the application, it launches a command line interface on the UART terminal.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3755"></a>
+<h1><a class="anchor" id="autotoc_md3757"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -129,18 +129,18 @@ Supported Combinations</h1>
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/enet_cli_app   </td></tr>
 </table>
 <p>For support on am263px-cc-addon-auto, please refer <a class="el" href="ETHERNET_ADDON_BOARDS_TOP.html">Ethernet Add-on Boards</a></p>
-<h1><a class="anchor" id="autotoc_md3756"></a>
+<h1><a class="anchor" id="autotoc_md3758"></a>
 Packet pool configuration</h1>
 <p>To change packet pool configuration from syscfg, please refer to <a class="el" href="PACKETPOOL_CONFIG_TOP.html">Ethernet Packet Pool Allocation Guidelines</a></p>
-<h1><a class="anchor" id="autotoc_md3757"></a>
+<h1><a class="anchor" id="autotoc_md3759"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md3758"></a>
+<h2><a class="anchor" id="autotoc_md3760"></a>
 Build the Example</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3759"></a>
+<h2><a class="anchor" id="autotoc_md3761"></a>
 Sample Outputs</h2>
 <p>Once the application has started, using the <code>help</code> commands will give the following output:</p>
 <div class="fragment"><div class="line">Enabling clocks!</div>
@@ -217,7 +217,7 @@ Sample Outputs</h2>
 <div class="line"> </div>
 <div class="line">&gt; </div>
 </div><!-- fragment --><p>The commands <code>enet_cfg</code>, <code>enet_dbg</code>, <code>phy</code> and <code>utils</code> are the built-in commands. The rest of the commands are user defined.</p>
-<h2><a class="anchor" id="autotoc_md3760"></a>
+<h2><a class="anchor" id="autotoc_md3762"></a>
 Accessing the LwIP Shell</h2>
 <p>The LwIP shell can be launched by using the command <code>lwip_shell start</code>. Starting the LwIP shell will give the following output:</p>
 <div class="fragment"><div class="line">&gt; lwip_shell start</div>
@@ -271,7 +271,7 @@ Accessing the LwIP Shell</h2>
 <div class="line">quit: quits</div>
 <div class="line">&gt; </div>
 </div><!-- fragment --><p>These are the built-in commands provided by the LwIP shell.</p>
-<h1><a class="anchor" id="autotoc_md3761"></a>
+<h1><a class="anchor" id="autotoc_md3763"></a>
 See Also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> </p>
 </div></div><!-- contents -->

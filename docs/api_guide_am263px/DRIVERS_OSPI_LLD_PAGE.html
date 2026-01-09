@@ -92,20 +92,20 @@ $(document).ready(function(){initNavTree('DRIVERS_OSPI_LLD_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1104">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1105">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1106">OSPI Phy Tuning Algorithm</a></li>
-<li class="level1"><a href="#OSPI_LLD_MIGRATION_GUIDE">OSPI LLD Migration Guide</a><ul><li class="level2"><a href="#autotoc_md1107">11.02.00 Changes</a></li>
+<ul><li class="level1"><a href="#autotoc_md1106">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1107">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1108">OSPI Phy Tuning Algorithm</a></li>
+<li class="level1"><a href="#OSPI_LLD_MIGRATION_GUIDE">OSPI LLD Migration Guide</a><ul><li class="level2"><a href="#autotoc_md1109">11.02.00 Changes</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1108">Features not Supported</a></li>
-<li class="level1"><a href="#autotoc_md1109">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1110">API</a></li>
+<li class="level1"><a href="#autotoc_md1110">Features not Supported</a></li>
+<li class="level1"><a href="#autotoc_md1111">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1112">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_ospi_lld"></a></p>
 <p>The Octal Serial Peripheral Interface (OSPI) module is a kind of Serial Peripheral Interface (SPI) module which allows single, dual, quad or octal read and write access to external flash devices. The OSPI module is used to transfer data, either in a memory mapped direct mode (for example a processor wishing to execute code directly from external flash memory), or in an indirect mode where the module is set-up to silently perform some requested operation, signaling its completion via interrupts or status registers.</p>
-<h1><a class="anchor" id="autotoc_md1104"></a>
+<h1><a class="anchor" id="autotoc_md1106"></a>
 Features Supported</h1>
 <ul>
 <li>Support for single, dual, quad (QSPI mode) or octal I/O instructions.</li>
@@ -120,7 +120,7 @@ Features Supported</h1>
 <li>Support DMA Read.</li>
 <li>Interrupt mode is supported.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1105"></a>
+<h1><a class="anchor" id="autotoc_md1107"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -168,7 +168,7 @@ OSPI WINDOW PARAMS</div></div>
 <li>In advanced config, you can choose various parameters like frame format, decoder chip select, read dummy cycles etc.</li>
 <li>Pinmux configurations for the OSPI instance</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1106"></a>
+<h1><a class="anchor" id="autotoc_md1108"></a>
 OSPI Phy Tuning Algorithm</h1>
 <p>The OSPI tuning algorithm works as follows:</p><ul>
 <li><b>Step 1 Find Golden Primary RxLow</b><br  />
@@ -495,7 +495,7 @@ and Rx_Low  │     ++│++++++++++++
 </ul>
 <h1><a class="anchor" id="OSPI_LLD_MIGRATION_GUIDE"></a>
 OSPI LLD Migration Guide</h1>
-<h2><a class="anchor" id="autotoc_md1107"></a>
+<h2><a class="anchor" id="autotoc_md1109"></a>
 11.02.00 Changes</h2>
 <table class="doxtable">
 <tr>
@@ -503,9 +503,9 @@ OSPI LLD Migration Guide</h1>
 <tr>
 <td><a class="el" href="group__DRV__OSPI__LLD__PHY__API__MODULE.html#gafd227d515282233156c11c820eecf274">OSPI_lld_phyTuneGrapher</a> </td><td>Param arrays[4][128][128] updated to arrays[5][128][128]  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1108"></a>
+<h1><a class="anchor" id="autotoc_md1110"></a>
 Features not Supported</h1>
-<h1><a class="anchor" id="autotoc_md1109"></a>
+<h1><a class="anchor" id="autotoc_md1111"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="ospi_8h.html">drivers/ospi.h</a>&gt;</span></div>
@@ -581,7 +581,7 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">    status = <a class="code" href="ospi__lld_8h.html#a1e216aee614427d4b927084c0ee55e5f">OSPI_lld_deInit</a>(gOspiHandle);</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(status == <a class="code" href="ospi__lld_8h.html#a55d0de1852596151ea5221adf3930c55">OSPI_SYSTEM_SUCCESS</a>);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1110"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1112"></a>
 API</h1>
 <p><a class="el" href="group__DRV__OSPI__LLD__MODULE.html">APIs for OSPI LLD</a> </p>
 </div></div><!-- contents -->
@@ -594,7 +594,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__OSPI__LLD__TRANS__INIT__API__MODULE_html_ga0fe11a08bf60be67834bef6e01e849bf"><div class="ttname"><a href="group__DRV__OSPI__LLD__TRANS__INIT__API__MODULE.html#ga0fe11a08bf60be67834bef6e01e849bf">OSPI_lld_Transaction_init</a></div><div class="ttdeci">void OSPI_lld_Transaction_init(OSPI_Transaction *trans)</div><div class="ttdoc">Function to initialize the OSPI_Transaction structure.</div></div>
 <div class="ttc" id="aospi__lld_8h_html_ac930a2647f66d87a7efaed91b05eb22b"><div class="ttname"><a href="ospi__lld_8h.html#ac930a2647f66d87a7efaed91b05eb22b">OSPI_lld_init</a></div><div class="ttdeci">int32_t OSPI_lld_init(OSPILLD_Handle hOspi)</div><div class="ttdoc">This function opens a given OSPI peripheral.</div></div>
 <div class="ttc" id="agroup__DRV__OSPI__LLD__READ__WRITE__MODULE_html_gafccf7cee32027d511f06e5910e94780c"><div class="ttname"><a href="group__DRV__OSPI__LLD__READ__WRITE__MODULE.html#gafccf7cee32027d511f06e5910e94780c">OSPI_lld_writeIndirect</a></div><div class="ttdeci">int32_t OSPI_lld_writeIndirect(OSPILLD_Handle handle, OSPI_Transaction *trans)</div><div class="ttdoc">Function to perform indirect writes to the flash using INDAC controller.</div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:225</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:235</div></div>
 <div class="ttc" id="agroup__DRV__OSPI__LLD__READ__WRITE__MODULE_html_ga44904dad5400f05b8aa05b370d8cff73"><div class="ttname"><a href="group__DRV__OSPI__LLD__READ__WRITE__MODULE.html#ga44904dad5400f05b8aa05b370d8cff73">OSPI_lld_readIndirect</a></div><div class="ttdeci">int32_t OSPI_lld_readIndirect(OSPILLD_Handle handle, OSPI_Transaction *trans)</div><div class="ttdoc">Function to perform indirect reads from the flash using INDAC controller.</div></div>
 <div class="ttc" id="agroup__lld__ethernet_html_ga8c1dfc1ccf00a08192611433ee7f17b4"><div class="ttname"><a href="group__lld__ethernet.html#ga8c1dfc1ccf00a08192611433ee7f17b4">__attribute__</a></div><div class="ttdeci">struct lld_sockaddr __attribute__</div><div class="ttdoc">This is the SecureBoot Stream type which holds the data for a specific bootloader to HSM call....</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__HWI_html_gaccf47c6fb95111f0fbba1b86705d5907"><div class="ttname"><a href="group__KERNEL__DPL__HWI.html#gaccf47c6fb95111f0fbba1b86705d5907">HwiP_enableInt</a></div><div class="ttdeci">void HwiP_enableInt(uint32_t intNum)</div><div class="ttdoc">Enable a specific interrupt.</div></div>
@@ -603,7 +603,7 @@ API</h1>
 <div class="ttc" id="aospi__lld_8h_html_a1e216aee614427d4b927084c0ee55e5f"><div class="ttname"><a href="ospi__lld_8h.html#a1e216aee614427d4b927084c0ee55e5f">OSPI_lld_deInit</a></div><div class="ttdeci">int32_t OSPI_lld_deInit(OSPILLD_Handle hOspi)</div><div class="ttdoc">Function to close a OSPI peripheral specified by the OSPI handle.</div></div>
 <div class="ttc" id="aDebugP_8h_html"><div class="ttname"><a href="DebugP_8h.html">DebugP.h</a></div></div>
 <div class="ttc" id="aospi_8h_html"><div class="ttname"><a href="ospi_8h.html">ospi.h</a></div></div>
-<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:177</div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

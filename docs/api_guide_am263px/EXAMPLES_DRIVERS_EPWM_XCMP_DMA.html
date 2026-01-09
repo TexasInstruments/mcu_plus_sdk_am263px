@@ -92,20 +92,20 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_EPWM_XCMP_DMA.html','
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2515">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2516">External Connections</a><ul><li class="level2"><a href="#autotoc_md2517">AM263Px-CC E1 or AM261x-SOM</a></li>
-<li class="level2"><a href="#autotoc_md2518">AM263Px-LP</a></li>
-<li class="level2"><a href="#autotoc_md2519">AM261x-LP</a></li>
+<ul><li class="level1"><a href="#autotoc_md2517">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2518">External Connections</a><ul><li class="level2"><a href="#autotoc_md2519">AM263Px-CC E1 or AM261x-SOM</a></li>
+<li class="level2"><a href="#autotoc_md2520">AM263Px-LP</a></li>
+<li class="level2"><a href="#autotoc_md2521">AM261x-LP</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_EPWM_XCMP_DMA_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2520">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2521">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2522">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2522">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2523">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2524">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_epwm_xcmp_dma"></a></p>
-<h1><a class="anchor" id="autotoc_md2515"></a>
+<h1><a class="anchor" id="autotoc_md2517"></a>
 Introduction</h1>
 <p>EPWM XCMP Multiple Edges</p>
 <p>Example Description : The Example demonstrates xcmp shadow set registers of EPWMs to be loaded with EDMA, post period and duty calculations. Xcmp shadow values are calculated and populated in an array in TCM memory, whilst EDMA channels are configured for the transfer of these set of values to the Shadow sets of the EPWMs, xlinked with xload register.</p>
@@ -119,10 +119,10 @@ Introduction</h1>
 <img src="am263_epwm_xcmp_dma_block_diagram.png" alt=""/>
 <div class="caption">
 EPWM XCMP DMA Block Diagram</div></div>
-<h1><a class="anchor" id="autotoc_md2516"></a>
+<h1><a class="anchor" id="autotoc_md2518"></a>
 External Connections</h1>
 <p>connect the following EPWM outputs to an oscilloscope to view the waveform.</p>
-<h2><a class="anchor" id="autotoc_md2517"></a>
+<h2><a class="anchor" id="autotoc_md2519"></a>
 AM263Px-CC E1 or AM261x-SOM</h2>
 <ul>
 <li>EPWM0_A and EPWM0_B pin ie, HSEC 49, HSEC 51.</li>
@@ -131,7 +131,7 @@ AM263Px-CC E1 or AM261x-SOM</h2>
 <li>EPWM3_A and EPWM3_B pin ie, HSEC 54, HSEC 56.</li>
 <li>EPWM4_A and EPWM4_B pin ie, HSEC 57, HSEC 59.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2518"></a>
+<h2><a class="anchor" id="autotoc_md2520"></a>
 AM263Px-LP</h2>
 <ul>
 <li>EPWM0_A and EPWM0_B pin ie, J4 11 / J8 59.</li>
@@ -140,7 +140,7 @@ AM263Px-LP</h2>
 <li>EPWM3_A and EPWM3_B pin ie, J8 77 / J8 78.</li>
 <li>EPWM9_A and EPWM9_B pin ie, J8.75 / J8.76.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2519"></a>
+<h2><a class="anchor" id="autotoc_md2521"></a>
 AM261x-LP</h2>
 <ul>
 <li>EPWM5_A/B pin ie, J6 80/ J6 79.</li>
@@ -163,7 +163,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/epwm/epwm_xcmp_dma   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2520"></a>
+<h1><a class="anchor" id="autotoc_md2522"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -171,10 +171,10 @@ Steps to Run the Example</h1>
 <li>Establish connections as mentioned in External Connections section</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2521"></a>
+<h1><a class="anchor" id="autotoc_md2523"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_EPWM_PAGE.html">EPWM</a></p>
-<h1><a class="anchor" id="autotoc_md2522"></a>
+<h1><a class="anchor" id="autotoc_md2524"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">EPWM XCMP EDMA Test Started ...</div>

@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('BOARD_PMIC_PAGE.html',''); initResizab
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1235">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1236">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1237">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1238">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1239">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1240">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1237">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1238">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1239">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1240">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1241">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1242">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_board_pmic"></a></p>
 <p>The PMIC driver provides API to control SPI based PMIC present in the board. It supports configuration of various features/modules in the PMIC. MCSPI controller is used to read/write to the PMIC registers. Refer to the corresponding PMIC datasheet for more details.</p>
-<h1><a class="anchor" id="autotoc_md1235"></a>
+<h1><a class="anchor" id="autotoc_md1237"></a>
 Features Supported</h1>
 <ul>
 <li>Support enable/disable watchdog</li>
@@ -113,20 +113,20 @@ Features Supported</h1>
 <li>IRQ</li>
 <li>ESM</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1236"></a>
+<h1><a class="anchor" id="autotoc_md1238"></a>
 SysConfig Features</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md1237"></a>
+<h1><a class="anchor" id="autotoc_md1239"></a>
 Features NOT Supported</h1>
 <ul>
 <li>NA</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1238"></a>
+<h1><a class="anchor" id="autotoc_md1240"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>Power cycle the board to restore the PMIC register configurations.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1239"></a>
+<h1><a class="anchor" id="autotoc_md1241"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="pmic_8h.html">board/pmic.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Instance Open Blackbird PMIC Example </p><div class="fragment"><div class="line"> </div>
@@ -145,7 +145,7 @@ Example Usage</h1>
 <div class="line"><span class="comment">/*gPmicHandle[CONFIG_PMIC0] return from PMIC_open*/</span></div>
 <div class="line"><a class="code" href="group__BOARD__PMIC__MODULE.html#gaa305375f08acd4cc7d48d2b14ee6ba7d">PMIC_configure</a>(gPmicHandle[CONFIG_PMIC0]);</div>
 </div><!-- fragment --><p>Instance Close Example </p><div class="fragment"><div class="line"><a class="code" href="group__BOARD__PMIC__MODULE.html#ga8bf0f7313eb0eee09344d972fdede780">PMIC_close</a>(gPmicHandle[CONFIG_PMIC0]);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1240"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1242"></a>
 API</h1>
 <p><a class="el" href="group__BOARD__PMIC__MODULE.html">APIs for I2C/MCSPI based PMIC driver</a> </p>
 </div></div><!-- contents -->

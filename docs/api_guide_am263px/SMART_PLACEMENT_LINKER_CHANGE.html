@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('SMART_PLACEMENT_LINKER_CHANGE.html',''
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md651">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md652">Linker changes</a></li>
-<li class="level1"><a href="#autotoc_md653">Memory Configurator Changes</a></li>
+<ul><li class="level1"><a href="#autotoc_md653">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md654">Linker changes</a></li>
+<li class="level1"><a href="#autotoc_md655">Memory Configurator Changes</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_add_smart_placement_sections"></a></p>
-<h1><a class="anchor" id="autotoc_md651"></a>
+<h1><a class="anchor" id="autotoc_md653"></a>
 Introduction</h1>
 <p>To make smart placement functional (<a class="el" href="SMART_PLACEMENT.html">Smart Placement</a>), linker script needs to be changed to account new section that compiler generates.</p>
 <p>If linker script is generated using Memory Configurator (<a class="el" href="MEMORY_CONFIGURATOR.html">Memory Configurator</a>) then memory configurator needs to changed.</p>
 <p>This page will show what changes needs to be done.</p>
-<h1><a class="anchor" id="autotoc_md652"></a>
+<h1><a class="anchor" id="autotoc_md654"></a>
 Linker changes</h1>
 <p>Linker will aggregate all function input sections into designated output sections while sorting the placement of input sections based on the given priority. Following code can be added in the linker file to inorder to do that.</p>
 <pre class="fragment">SECTIONS
@@ -122,7 +122,7 @@ Linker changes</h1>
 <p>Similar treatment is for all the functions that are marked <code>onchip</code>, however, they should never be placed in any TCM otherwise it will be logically wrong.</p>
 <p>Also, all functions which are marked <code>offchip</code>, should be placed in external FLASH.</p>
 <p>It should be noted that although annotating using assembler directive is convenient, one short-coming is that static functions cannot be annotated or if annotated, no effect of it is on its placement. To solve this, C/C++ based annotation has to be used in the definition/declaration of that static function.</p>
-<h1><a class="anchor" id="autotoc_md653"></a>
+<h1><a class="anchor" id="autotoc_md655"></a>
 Memory Configurator Changes</h1>
 <p>Memory configurator generated the linker script only, therefore, goal is such that the generated linker script would also have same changes.</p>
 <p>Open <code>Memory Configurator</code>. And under that, open "`Section`". Something like following will be shown: </p><div class="image">

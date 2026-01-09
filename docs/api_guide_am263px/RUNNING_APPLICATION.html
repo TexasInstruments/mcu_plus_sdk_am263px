@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('RUNNING_APPLICATION.html',''); initRes
 <p>Then the SBL needs to be placed at 0x70020000 in RAM, and the application offset needs to be specified to the SBL.</p>
 <p>The SBL then reads this application, parses it, loads to respective CPUs, releases core from reset. The application starts running now.</p>
 <p>For detailed information on bootloaders and bootflow, refer <a class="el" href="BOOTFLOW_GUIDE.html">Understanding the bootflow and bootloaders</a></p>
-<h1><a class="anchor" id="autotoc_md692"></a>
+<h1><a class="anchor" id="autotoc_md694"></a>
 SBLs in SDK</h1>
 <table class="doxtable">
 <tr>
@@ -121,7 +121,7 @@ SBLs in SDK</h1>
 <p>The SBL is like any other example of the SDK. They use the bootloader library APIs to carry out the bootloading process.</p>
 <p>Depending on the boot media from which we load the application binary, we have multiple SBLs like <code>sbl_ospi</code>,<code>sbl_uart</code> etc.</p>
 <p>A bare minimum SBL called the <code>sbl_null</code> is also included which aids the users to load their applications via CCS. Here are some details regarding those.</p>
-<h2><a class="anchor" id="autotoc_md693"></a>
+<h2><a class="anchor" id="autotoc_md695"></a>
 SBL NULL</h2>
 <ul>
 <li>The <code>sbl_null</code> is a secondary bootloader which doesn't load any application binary, but just does the SOC initialization and puts all the cores in WFI (Wait For Interrupt) mode.</li>
@@ -129,7 +129,7 @@ SBL NULL</h2>
 <li>The other method is using NO-BOOT/DEV-BOOT boot modes of the devices and using GEL scripts to initialize the SoC via debugger. The application binaries can then be side-loaded. ROM is not involved in this case. The <code>sbl_null</code> is an alternative to this process.</li>
 <li>This is referred to as the SOC initialization binary, refer <a class="el" href="ADDITIONAL_DETAILS_PAGE.html#EVM_FLASH_SOC_INIT">SOC Initialization using the Binary Flashed in OSPI memory</a> for more on this.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md694"></a>
+<h2><a class="anchor" id="autotoc_md696"></a>
 SBL OSPI</h2>
 <ul>
 <li>The <code>sbl_ospi</code> is a secondary bootloader which reads and parses the application image from a location in the OSPI flash and then moves on to core initialization and other steps</li>
@@ -137,20 +137,20 @@ SBL OSPI</h2>
 <li>This location or offset is specified in the SysConfig of the <code>sbl_ospi</code> application. Currently this is 0x81000. This offset is chosen under the assumption that the <code>sbl_ospi</code> application takes at max 512 KB from the start of the flash. If a custom bootloader is used, make sure that this offset is chosen in such a way that it is greater than the size of the bootloader which is being flashed and also aligns with the block size of the flash.</li>
 <li>To flash an application (or any file in fact) to a location in the OSPI flash memory, follow the steps mentioned in <a class="el" href="TOOLS_FLASH.html#BASIC_STEPS_TO_FLASH_FILES">Basic steps to flash files</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md695"></a>
+<h2><a class="anchor" id="autotoc_md697"></a>
 SBL UART</h2>
 <ul>
 <li>The <code>sbl_uart</code> is a secondary bootloader which receives the multicore application via UART, stores it in memory and then does the parsing, core initialization etc.</li>
 <li>To boot an application using the <code>sbl_uart</code>, you can refer to <a class="el" href="TOOLS_BOOT.html#UART_BOOTLOADER_PYTHON_SCRIPT">UART Bootloader Python Script</a> subsection. Detailed steps on the usage is mentioned in the same subsection.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md696"></a>
+<h2><a class="anchor" id="autotoc_md698"></a>
 SBL CAN</h2>
 <ul>
 <li>The <code>sbl_can</code> is a secondary bootloader which needs to be flashed in QSPI Flash.</li>
 <li>The <code>sbl_can</code> receives the multicore application via CAN, stores it in memory and then does the parsing, core initialization etc.</li>
 <li>To boot an application using the <code>sbl_can</code>, you can refer to <a class="el" href="TOOLS_BOOT.html#CAN_BOOTLOADER_PYTHON_SCRIPT">CAN Bootloader Python Script</a> subsection.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md697"></a>
+<h2><a class="anchor" id="autotoc_md699"></a>
 SBL SD</h2>
 <ul>
 <li>The <code>sbl_sd</code> is a secondary bootloader which reads the application image file from the SD card and then moves on to core initialization and other steps</li>
@@ -159,18 +159,18 @@ SBL SD</h2>
 <li>Currently the <code>sbl_sd</code> reads the full application file into an MSRAM buffer and then parses the multicore application. Because of this reason <b>application images higher than ~512 KB in size can't be booted by <code>sbl_sd</code> as of now</b>.</li>
 <li>To boot an application using <code>sbl_sd</code>, you can refer to <a class="el" href="EXAMPLES_DRIVERS_SBL_SD.html">SBL SD</a> subsection.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md698"></a>
+<h1><a class="anchor" id="autotoc_md700"></a>
 SBL Based bootflow on HSFS device</h1>
 <p>For non secure boot, the SBL just reads the application image from a boot media, parses it, and boots it.</p>
 <p> <style>div.image img[src="bootflow_am263x_hsfs.png"]{width:70%}</style> </p><div class="image">
 <img src="bootflow_am263x_hsfs.png" alt=""/>
 <div class="caption">
 HSFS Application Run</div></div>
-<h1><a class="anchor" id="autotoc_md699"></a>
+<h1><a class="anchor" id="autotoc_md701"></a>
 SBL Based bootflow on HSSE device</h1>
 <p>In secure boot, the SBL reads the <b>signed application image</b> from a boot media, authenticates it, decrypts it, and boots it.</p>
 <p>For detailed information refer <a class="el" href="SECURE_BOOT.html">Enabling Secure Boot</a></p>
-<h1><a class="anchor" id="autotoc_md700"></a>
+<h1><a class="anchor" id="autotoc_md702"></a>
 Debugging support</h1>
 <p>For information on various debugging tools and techniques, refer <a href="https://www.ti.com/document-viewer/lit/html/sprad28">Debugging Sitara AM2x Microcontrollers</a> </p>
 </div></div><!-- contents -->
