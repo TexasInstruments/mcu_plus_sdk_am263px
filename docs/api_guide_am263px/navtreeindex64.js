@@ -1,5 +1,10 @@
 var NAVTREEINDEX64 =
 {
+"structFirewallRegionReq__t.html#a7b548afc2de395afea9c79227610b36a":[19,7,16,7,3],
+"structFirewallRegionReq__t.html#abc11df4b0af4c8174587fc3e27cbaa84":[19,7,16,7,0],
+"structFirewallRegionReq__t.html#ac9c2cc8dbc241cf6f99608d0d47483d4":[19,7,16,7,4],
+"structFirewallRegionReq__t.html#afeeff1bd5891d1826ef4ae47514fbb12":[19,7,16,7,1],
+"structFirewallReq__t.html":[19,7,16,8],
 "structFirewallReq__t.html#a13f059b3ce67788bae334a186eacf743":[19,7,16,8,1],
 "structFirewallReq__t.html#a517b37cdf25d7cd61b2ffe644f15df59":[19,7,16,8,0],
 "structFirewallReq__t.html#a9c9804e0edbc604ad4b77937429092dc":[19,7,16,8,3],
@@ -244,10 +249,5 @@ var NAVTREEINDEX64 =
 "structICSS__EMAC__Attrs.html":[19,4,2,4],
 "structICSS__EMAC__Attrs.html#a127d7d72a1f46a83b18c38da5fab44d8":[19,4,2,4,5],
 "structICSS__EMAC__Attrs.html#a12cc0705daacd022ae86c19d7c91670a":[19,4,2,4,16],
-"structICSS__EMAC__Attrs.html#a13c2b547d3b4b7ca26f77653d92709f7":[19,4,2,4,9],
-"structICSS__EMAC__Attrs.html#a159f36ad1106722c55d6ce4c2928628c":[19,4,2,4,14],
-"structICSS__EMAC__Attrs.html#a1e9e44190048f0e27dd5cfc8cf17d29e":[19,4,2,4,10],
-"structICSS__EMAC__Attrs.html#a1fb022884e97b50c9ef6982b2d1ed9e9":[19,4,2,4,6],
-"structICSS__EMAC__Attrs.html#a36d6d3c500463d79915d5b89c3e93c9c":[19,4,2,4,19],
-"structICSS__EMAC__Attrs.html#a3eaa33a27ab4790b54b72f2078b518a4":[19,4,2,4,18]
+"structICSS__EMAC__Attrs.html#a13c2b547d3b4b7ca26f77653d92709f7":[19,4,2,4,9]
 };

@@ -1,5 +1,10 @@
 var NAVTREEINDEX63 =
 {
+"structEnetMdio__C22ReadInArgs.html":[19,4,0,5,1],
+"structEnetMdio__C22ReadInArgs.html#a6d9e4501c562910f16e7f3530150f45a":[19,4,0,5,1,2],
+"structEnetMdio__C22ReadInArgs.html#a93ebffc525b608376b1be1a26c8438f0":[19,4,0,5,1,1],
+"structEnetMdio__C22ReadInArgs.html#ada320e4bdcfe4eebb176e7222f106701":[19,4,0,5,1,0],
+"structEnetMdio__C22WriteInArgs.html":[19,4,0,5,3],
 "structEnetMdio__C22WriteInArgs.html#a8f70eed551f6e36726d6b3bd89ec5ae7":[19,4,0,5,3,0],
 "structEnetMdio__C22WriteInArgs.html#aab170bb9e6625230f4394057d6537301":[19,4,0,5,3,2],
 "structEnetMdio__C22WriteInArgs.html#ab82559728ce6106d49afbd7097bfafb0":[19,4,0,5,3,3],
@@ -244,10 +249,5 @@ var NAVTREEINDEX63 =
 "structFirewallIntrReq__t.html#ae010c0d59ea37104743b1eba04df8f45":[19,7,16,9,3],
 "structFirewallIntrReq__t.html#aed7702b1f519dbbae14464b4db614c22":[19,7,16,9,4],
 "structFirewallRegionReq__t.html":[19,7,16,7],
-"structFirewallRegionReq__t.html#a48772bfc7d8b5ea9d62cb5146a86e18a":[19,7,16,7,2],
-"structFirewallRegionReq__t.html#a7b548afc2de395afea9c79227610b36a":[19,7,16,7,3],
-"structFirewallRegionReq__t.html#abc11df4b0af4c8174587fc3e27cbaa84":[19,7,16,7,0],
-"structFirewallRegionReq__t.html#ac9c2cc8dbc241cf6f99608d0d47483d4":[19,7,16,7,4],
-"structFirewallRegionReq__t.html#afeeff1bd5891d1826ef4ae47514fbb12":[19,7,16,7,1],
-"structFirewallReq__t.html":[19,7,16,8]
+"structFirewallRegionReq__t.html#a48772bfc7d8b5ea9d62cb5146a86e18a":[19,7,16,7,2]
 };

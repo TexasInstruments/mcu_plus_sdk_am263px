@@ -22,7 +22,8 @@ var group__NETWORKING__ICSS__EMAC__MODULE =
       [ "colStatusAddr", "structICSS__EMAC__FwStaticMmap.html#a64f260c9d61b6949e3e6a95725a9bcb5", null ],
       [ "promiscuousModeOffset", "structICSS__EMAC__FwStaticMmap.html#a43d1970ac57310160e0d418dc973c109", null ],
       [ "specialUnicastMACAddrOffset", "structICSS__EMAC__FwStaticMmap.html#ae64c03dd72e9e69478967f88918ec20b", null ],
-      [ "specialUnicastMACAddressFeatureEnableOffset", "structICSS__EMAC__FwStaticMmap.html#ab9655b9a55b7014a1682a5f38fd1a385", null ]
+      [ "specialUnicastMACAddressFeatureEnableOffset", "structICSS__EMAC__FwStaticMmap.html#ab9655b9a55b7014a1682a5f38fd1a385", null ],
+      [ "portForwardStatusOffset", "structICSS__EMAC__FwStaticMmap.html#a3de11b9ba620ac9852505bd0650763c0", null ]
     ] ],
     [ "ICSS_EMAC_FwDynamicMmap", "structICSS__EMAC__FwDynamicMmap.html", [
       [ "queueSizeOffset", "structICSS__EMAC__FwDynamicMmap.html#a526e4d08c2078de6deef614465a55912", null ],
@@ -295,6 +296,7 @@ var group__NETWORKING__ICSS__EMAC__MODULE =
     [ "ICSS_EMAC_IOCTL_VLAN_FILTER_CTRL", "group__NETWORKING__ICSS__EMAC__MODULE.html#gafd505c0e86510c82e1edbe3661dbb93c", null ],
     [ "ICSS_EMAC_IOCTL_PORT_FLUSH_CTRL", "group__NETWORKING__ICSS__EMAC__MODULE.html#gaa24a7ba0ddaec9544b28ffc3596d036b", null ],
     [ "ICSS_EMAC_IOCTL_SPECIAL_UNICAST_MAC_CTRL", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga74e61f9feb34b71ea2364d18f946c6dc", null ],
+    [ "ICSS_EMAC_IOCTL_PORT_FWD_CTRL", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga4c3ec0c29f6656d85dc887bcc38c53d8", null ],
     [ "ICSS_EMAC_IOCTL_MULTICAST_FILTER_CTRL_ENABLE", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga91322fcf2c3b7812a8ef5f5df403c831", null ],
     [ "ICSS_EMAC_IOCTL_MULTICAST_FILTER_CTRL_DISABLE", "group__NETWORKING__ICSS__EMAC__MODULE.html#gab384f3d2981061edb13ed4b1059c25f3", null ],
     [ "ICSS_EMAC_IOCTL_MULTICAST_FILTER_CTRL_OVERRIDE_HASHMASK", "group__NETWORKING__ICSS__EMAC__MODULE.html#gaba7491d68cb68aa881a1f4557cbcca3e", null ],
@@ -311,6 +313,8 @@ var group__NETWORKING__ICSS__EMAC__MODULE =
     [ "ICSS_EMAC_IOCTL_VLAN_FILTER_CTRL_REMOVE_VID_CMD", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga1294e2234acd6f0e06e31779a5b351ca", null ],
     [ "ICSS_EMAC_IOCTL_SPECIAL_UNICAST_MAC_CTRL_DISABLE_CMD", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga7023db57b77a71dbe52709430b4faefe", null ],
     [ "ICSS_EMAC_IOCTL_SPECIAL_UNICAST_MAC_CTRL_ENABLE_CMD", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga3e1f5962437d201aebfbea2aee8bea40", null ],
+    [ "ICSS_EMAC_IOCTL_PORT_FWD_CTRL_ENABLE_CMD", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga0e0220110084e8da7eb322e9cfd0cfbf", null ],
+    [ "ICSS_EMAC_IOCTL_PORT_FWD_CTRL_DISABLE_CMD", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga959dce62cfd617eb00b1a8570f7a62d7", null ],
     [ "ICSS_EMAC_LEARNING_PORT_STATE_LEARNING", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga1da68d1b288e97dc84baa98342bc58e6", null ],
     [ "ICSS_EMAC_LEARNING_PORT_STATE_NOT_LEARNING", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga2e4d3483e35b6b601cbd00d05ff69bc1", null ],
     [ "ICSS_EMAC_LEARNING_PORT_STATE_LOCKED", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga9245979d511beb5616a5e4eedf38dcd7", null ],

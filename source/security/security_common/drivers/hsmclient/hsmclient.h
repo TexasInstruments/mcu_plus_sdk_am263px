@@ -988,6 +988,20 @@ int32_t HsmClient_activeToDormantBankCopy(HsmClient_t *HsmClient,
                                           FlashBankCopy_t *pFlashBankCopyObject, 
                                           uint32_t timeout);
 
+/**
+ *  @brief  Client request to update device Sec-Cfg
+ *          Valid only for F29x family of devices
+ *
+ *  @param  HsmClient               [IN] HsmClient object
+ *  @param pFirmwareUpdateObject     [IN] Pointer to arguments to be passed to HSM core via SIPC.
+ * 
+ * @return
+ * 1. SystemP_SUCCESS if copy done successfully
+ * 2. SystemP_FAILURE if NACK message is received or client id not registered.
+ */
+int32_t HsmClient_SecCfgUpdate(HsmClient_t *HsmClient,
+                                            FirmwareUpdateReq_t *pFirmwareUpdateObject);
+
 /** @} */
 
 #ifdef __cplusplus

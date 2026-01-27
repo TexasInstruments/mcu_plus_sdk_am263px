@@ -4,7 +4,7 @@
         "id": "MCU-PLUS-SDK-AM263PX",
         "name": "MCU+ SDK for AM263Px",
         "rootCategory": [ "MCU+ SDK", "MCU+ SDK for AM263Px" ],
-        "version": "11.01.00.19",
+        "version": "11.01.00.01",
         "type": "software",
         "image": "./mcu_plus_sdk.png",
         "devices": ["AM263Px"],

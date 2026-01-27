@@ -1,5 +1,11 @@
 var NAVTREEINDEX69 =
 {
+"structMMCSD__Attrs.html#a637bc0faa7950042bf4b8bcb0c9a874d":[19,7,30,2,6],
+"structMMCSD__Attrs.html#a8569634362cc495cf4a2d4a70fbbcb01":[19,7,30,2,3],
+"structMMCSD__Attrs.html#a8ec2135b406bbd1e93321e6da0fcb06e":[19,7,30,2,2],
+"structMMCSD__Attrs.html#a9ba220da5cccd6196ef1b6562d21d9b5":[19,7,30,2,0],
+"structMMCSD__Attrs.html#aaab7277288db7fb13d47436e2f14a533":[19,7,30,2,4],
+"structMMCSD__Attrs.html#ac977985c283d56e22baf13a9a9032a08":[19,7,30,2,10],
 "structMMCSD__Attrs.html#adafbf0fd6332a1af6f9bd245d228e3ea":[19,7,30,2,9],
 "structMMCSD__Attrs.html#ae889fa72d4c58b3cc7f3dc8ae10fff38":[19,7,30,2,5],
 "structMMCSD__Attrs.html#af5b7c806682a401336a40c06c09238d4":[19,7,30,2,1],
@@ -243,11 +249,5 @@ var NAVTREEINDEX69 =
 "structPRUICSS__IrqFunMap.html#ae4b8089802c8d64336ce356082ac5a26":[19,7,37,3,2],
 "structPRUICSS__IrqFunMap.html#af7fe49357209c3b3d547ab399bd416c3":[19,7,37,3,0],
 "structPRUICSS__Object.html":[19,7,37,4],
-"structPRUICSS__Object.html#a0fd7ff6fd8c35488000960f164e77812":[19,7,37,4,0],
-"structPRUICSS__Object.html#a92f3def7e88f0820c7beb3217a9143d9":[19,7,37,4,1],
-"structPRUICSS__SysevtToChannelMap.html":[19,7,37,0],
-"structPRUICSS__SysevtToChannelMap.html#a129beadbc2e4ced9ee4fc67ef55539f4":[19,7,37,0,2],
-"structPRUICSS__SysevtToChannelMap.html#a5736b5cea19105694b49b2266fee18d6":[19,7,37,0,0],
-"structPRUICSS__SysevtToChannelMap.html#ac574f95a04cc123475d2efee1cd20929":[19,7,37,0,1],
-"structPRUICSS__SysevtToChannelMap.html#af06d1d833cd80d37f13cd90022fcea74":[19,7,37,0,3]
+"structPRUICSS__Object.html#a0fd7ff6fd8c35488000960f164e77812":[19,7,37,4,0]
 };

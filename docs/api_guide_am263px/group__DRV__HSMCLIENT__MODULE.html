@@ -284,6 +284,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga2a4fabce99d63a311aab8352a9fe890b"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga2a4fabce99d63a311aab8352a9fe890b">HsmClient_activeToDormantBankCopy</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structFlashBankCopy__t.html">FlashBankCopy_t</a> *pFlashBankCopyObject, uint32_t timeout)</td></tr>
 <tr class="memdesc:ga2a4fabce99d63a311aab8352a9fe890b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client request to copy active flash bank contents to dormant flash bank Valid only for F29x family of devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga2a4fabce99d63a311aab8352a9fe890b">More...</a><br /></td></tr>
 <tr class="separator:ga2a4fabce99d63a311aab8352a9fe890b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabe2810b39dc269a55fcca419c65eb87c"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gabe2810b39dc269a55fcca419c65eb87c">HsmClient_SecCfgUpdate</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structFirmwareUpdateReq__t.html">FirmwareUpdateReq_t</a> *pFirmwareUpdateObject)</td></tr>
+<tr class="memdesc:gabe2810b39dc269a55fcca419c65eb87c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client request to update device Sec-Cfg Valid only for F29x family of devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#gabe2810b39dc269a55fcca419c65eb87c">More...</a><br /></td></tr>
+<tr class="separator:gabe2810b39dc269a55fcca419c65eb87c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -404,6 +407,9 @@ Macros</h2></td></tr>
 <tr class="memitem:ga9b9e4251d86003eb35eadb0f9712430a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga9b9e4251d86003eb35eadb0f9712430a">HSM_MSG_FLASH_BANK_COPY</a>&#160;&#160;&#160;(0x9059)</td></tr>
 <tr class="memdesc:ga9b9e4251d86003eb35eadb0f9712430a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy active flash bank contents to dormant flash bank.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga9b9e4251d86003eb35eadb0f9712430a">More...</a><br /></td></tr>
 <tr class="separator:ga9b9e4251d86003eb35eadb0f9712430a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga961b6e9ba945d256aed207d40283f16f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga961b6e9ba945d256aed207d40283f16f">HSM_MSG_FW_UPDATE_SECCFG</a>&#160;&#160;&#160;(0x905AU)</td></tr>
+<tr class="memdesc:ga961b6e9ba945d256aed207d40283f16f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Program Sec-Cfg to SOC non main flash.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga961b6e9ba945d256aed207d40283f16f">More...</a><br /></td></tr>
+<tr class="separator:ga961b6e9ba945d256aed207d40283f16f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0842e3d812796be34207849e8dc8dc3a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga0842e3d812796be34207849e8dc8dc3a">HSM_FLAG_AOP</a>&#160;&#160;&#160;(0x11)</td></tr>
 <tr class="memdesc:ga0842e3d812796be34207849e8dc8dc3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">HSM FLAG used by HSM client to indicate that it expects ACK messasge from HSM and will wait for a response message.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga0842e3d812796be34207849e8dc8dc3a">More...</a><br /></td></tr>
 <tr class="separator:ga0842e3d812796be34207849e8dc8dc3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1006,6 +1012,22 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Copy active flash bank contents to dormant flash bank. </p>
+
+</div>
+</div>
+<a id="ga961b6e9ba945d256aed207d40283f16f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga961b6e9ba945d256aed207d40283f16f">&#9670;&nbsp;</a></span>HSM_MSG_FW_UPDATE_SECCFG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSM_MSG_FW_UPDATE_SECCFG&#160;&#160;&#160;(0x905AU)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Program Sec-Cfg to SOC non main flash. </p>
 
 </div>
 </div>
@@ -2932,6 +2954,48 @@ Macros</h2></td></tr>
     <tr><td class="paramname">HsmClient</td><td>[IN] HsmClient object </td></tr>
     <tr><td class="paramname">pFlashBankCopyObject</td><td>[IN] Flash Bank copy object </td></tr>
     <tr><td class="paramname">timeout</td><td>[IN] timeout</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><ol type="1">
+<li>SystemP_SUCCESS if copy done successfully</li>
+<li>SystemP_FAILURE if NACK message is received or client id not registered. </li>
+</ol>
+</dd></dl>
+
+</div>
+</div>
+<a id="gabe2810b39dc269a55fcca419c65eb87c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabe2810b39dc269a55fcca419c65eb87c">&#9670;&nbsp;</a></span>HsmClient_SecCfgUpdate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t HsmClient_SecCfgUpdate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structHsmClient__t.html">HsmClient_t</a> *&#160;</td>
+          <td class="paramname"><em>HsmClient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structFirmwareUpdateReq__t.html">FirmwareUpdateReq_t</a> *&#160;</td>
+          <td class="paramname"><em>pFirmwareUpdateObject</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Client request to update device Sec-Cfg Valid only for F29x family of devices. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HsmClient</td><td>[IN] HsmClient object </td></tr>
+    <tr><td class="paramname">pFirmwareUpdateObject</td><td>[IN] Pointer to arguments to be passed to HSM core via SIPC.</td></tr>
   </table>
   </dd>
 </dl>

@@ -177,6 +177,7 @@ var group__DRV__HSMCLIENT__MODULE =
     [ "HSM_MSG_READ_OTFA", "group__DRV__HSMCLIENT__MODULE.html#ga23d267eaff2aca3dc800e6944ff9b1dd", null ],
     [ "HSM_MSG_PROC_AUTH_BOOT_SEC_CFG", "group__DRV__HSMCLIENT__MODULE.html#gaab5435a13c609f9d255749ea551375a7", null ],
     [ "HSM_MSG_FLASH_BANK_COPY", "group__DRV__HSMCLIENT__MODULE.html#ga9b9e4251d86003eb35eadb0f9712430a", null ],
+    [ "HSM_MSG_FW_UPDATE_SECCFG", "group__DRV__HSMCLIENT__MODULE.html#ga961b6e9ba945d256aed207d40283f16f", null ],
     [ "HSM_FLAG_AOP", "group__DRV__HSMCLIENT__MODULE.html#ga0842e3d812796be34207849e8dc8dc3a", null ],
     [ "HSM_FLAG_NAOP", "group__DRV__HSMCLIENT__MODULE.html#ga5f0c48b13ab8d657a61ff359466f16e8", null ],
     [ "HSM_FLAG_ACK", "group__DRV__HSMCLIENT__MODULE.html#gae54cfaab6d2e23b938c84ac9979ad5c3", null ],
@@ -237,5 +238,6 @@ var group__DRV__HSMCLIENT__MODULE =
     [ "HsmClient_configOTFARegions", "group__DRV__HSMCLIENT__MODULE.html#ga5ea570bc441bb6c6a9dff879b0600e27", null ],
     [ "HsmClient_readOTFARegions", "group__DRV__HSMCLIENT__MODULE.html#gae655894963d794110ea5de532102ef64", null ],
     [ "HsmClient_secCfgValidate", "group__DRV__HSMCLIENT__MODULE.html#ga6634bc2f8d0d9f5574111f6070838002", null ],
-    [ "HsmClient_activeToDormantBankCopy", "group__DRV__HSMCLIENT__MODULE.html#ga2a4fabce99d63a311aab8352a9fe890b", null ]
+    [ "HsmClient_activeToDormantBankCopy", "group__DRV__HSMCLIENT__MODULE.html#ga2a4fabce99d63a311aab8352a9fe890b", null ],
+    [ "HsmClient_SecCfgUpdate", "group__DRV__HSMCLIENT__MODULE.html#gabe2810b39dc269a55fcca419c65eb87c", null ]
 ];

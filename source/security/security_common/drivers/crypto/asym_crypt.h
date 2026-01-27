@@ -130,13 +130,13 @@ typedef void *AsymCrypt_Handle;
 /** RSA KEY PQ maximun length */
 #define RSA_KEY_PQ_MAXLEN                   ((RSA_KEY_N_MAXLEN / 2U) + 4U)
 /** RSA KEY SIG maximun length */
-#define RSA_SIG_MAXLEN                      RSA_KEY_N_MAXLEN
+#define RSA_SIG_MAXLEN                      (RSA_KEY_N_MAXLEN)
 
 /** Eddsa Key length in Bytes */
 #define EDDSA_MAX_KEY_LEN                   (57U)
 
 /** Eddsa Max BigInt length */
-#define EDDSA_MAX_BIGINT_LEN                ASYM_CRYPT_LEN(EDDSA_MAX_KEY_LEN - 1U)
+#define EDDSA_MAX_BIGINT_LEN                (ASYM_CRYPT_LEN(EDDSA_MAX_KEY_LEN - 1U))
 
 /** Ed25519 Key length in Bytes */
 #define EDDSA_ED25519_KEY_LEN              (32U)

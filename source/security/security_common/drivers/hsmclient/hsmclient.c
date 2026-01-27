@@ -2041,6 +2041,60 @@ int32_t HsmClient_firmwareUpdate_CodeVerify(HsmClient_t *HsmClient,
 
     return status;
 }
+
+int32_t HsmClient_SecCfgUpdate(HsmClient_t *HsmClient,
+                                            FirmwareUpdateReq_t *pFirmwareUpdateObject)
+{
+    int32_t status = SystemP_FAILURE;
+    uint16_t crcArgs;
+    uint32_t timeout = SystemP_WAIT_FOREVER;
+
+    /*populate the send message structure */
+    HsmClient->ReqMsg.destClientId = HSM_CLIENT_ID_1;
+    HsmClient->ReqMsg.srcClientId = HsmClient->ClientId;
+    /* Always expect acknowledgement from HSM server */
+    HsmClient->ReqMsg.flags = HSM_FLAG_AOP;
+    HsmClient->ReqMsg.serType = HSM_MSG_FW_UPDATE_SECCFG;
+    /* Convert sec-cfg start address to HSM memory space */   
+    pFirmwareUpdateObject->pStartAddress = (uint8_t *)(uintptr_t)SOC_virtToPhy(pFirmwareUpdateObject->pStartAddress);
+    /* Convert pDecryptionBuffer address to HSM memory space */   
+    pFirmwareUpdateObject->pDecryptionBuffer = (void *)(uintptr_t)SOC_virtToPhy(pFirmwareUpdateObject->pDecryptionBuffer);
+    /* Add arg crc */
+    HsmClient->ReqMsg.crcArgs = crc16_ccit((uint8_t *)pFirmwareUpdateObject, sizeof(FirmwareUpdateReq_t));
+    /* Change the Arguments Address in Physical Address */
+    HsmClient->ReqMsg.args = (void *)(uintptr_t)SOC_virtToPhy(pFirmwareUpdateObject);
+    /*
+     * Write back the pFirmwareUpdateObject struct and
+     * invalidate the cache before passing it to HSM
+     */
+    CacheP_wbInv(pFirmwareUpdateObject, GET_CACHE_ALIGNED_SIZE(sizeof(FirmwareUpdateReq_t)), CacheP_TYPE_ALL);
+    /* Send SIPC message and wait for response from HSM */
+    status = HsmClient_SendAndRecv(HsmClient, timeout);
+    /* Check if HSM has responded to message request */
+    if (SystemP_SUCCESS == status) {
+        /* Check if the service request has been NACKED by HSM or not */
+        if (HSM_FLAG_NACK == HsmClient->RespFlag) {
+            DebugP_log("\r\n [HSM_CLIENT] Sec-Cfg update nacked by HSM server\r\n");
+            status = SystemP_FAILURE;
+        } else {
+            /* Change the Arguments Address in Physical Address */
+            HsmClient->RespMsg.args = (void *)SOC_phyToVirt((uint64_t)HsmClient->RespMsg.args);
+            /* check the integrity of args */
+            crcArgs = crc16_ccit((uint8_t *)(HsmClient->RespMsg.args), 0);
+            if (crcArgs == HsmClient->RespMsg.crcArgs) {
+                status = SystemP_SUCCESS;
+            } else {
+                DebugP_log("\r\n [HSM_CLIENT] CRC check for Sec-Cfg update service response failed \r\n");
+                status = SystemP_FAILURE;
+            }
+        }
+    } else {
+        /* Do nothing */
+    }
+
+    return status;
+}
+
 int32_t HsmClient_VerifyROTSwitchingCertificate(HsmClient_t *HsmClient,
                                                 uint8_t *cert,
                                                 uint32_t cert_size,

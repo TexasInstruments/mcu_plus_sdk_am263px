@@ -117,15 +117,16 @@ int32_t cri_pke_get_pseudo_random(void *buf, size_t len, int32_t slot, uint32_t 
 	ISSUE_MAU_COMMAND(COPY, R_MAU_ADDR_RNG, length);
 
 	ret = cri_pke_wait();
-	if ((ret != 0)) { goto err; }
-
-	if (buf != NULL) {
-		if (slot == CRI_PKE_NO_SLOT) {
-			(void)memcpy(buf, pke_addr(0, NULL, bits), len);
-		} else {
-			(void)memcpy(buf, pke_addr(slot, NULL, bits), len);
+	
+	if (ret == 0) {
+		if (buf != NULL) {
+			if (slot == CRI_PKE_NO_SLOT) {
+				(void)memcpy(buf, pke_addr(0, NULL, bits), len);
+			} else {
+				(void)memcpy(buf, pke_addr(slot, NULL, bits), len);
+			}
 		}
 	}
-err:
+
 	return ret;
 }
