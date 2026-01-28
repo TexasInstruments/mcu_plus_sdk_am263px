@@ -1770,6 +1770,12 @@ uint32_t SOC_rcmGetPeripheralClockFrequency(SOC_RcmPeripheralClockSource clkSour
             clkFreq = Finp * 1000 * 1000;
             break;
         }
+		case RCM_PLLID_RCCLK10M:
+        {
+            Finp = gXTALInfo[clkFreqId].Finp;
+            clkFreq = (Finp * 1000 * 1000 * 10) / 25;
+            break;
+        }
         default:
         {
             DebugP_assert(FALSE);
