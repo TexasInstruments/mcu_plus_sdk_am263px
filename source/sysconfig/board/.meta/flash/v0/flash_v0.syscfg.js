@@ -188,6 +188,31 @@ Board_open()
 ~~~
 
 `
+let bootQuirksDescription = `
+Certain flashes would require detection and recovery after corruption or any other changes required immediately post-boot.
+So this is a hook to add such quirks, the function mentioned here would be the first thing invoked in the **open** function before any configuration is done.
+
+The function signature would be
+~~~
+int32_t myBootQuirksFxn(Flash_Config *cfg)
+{
+    int32_t status = SystemP_SUCCESS;
+
+    /* Your code for handling boot initialization goes here */
+
+    return status;
+}
+~~~
+
+You can define this function in your application's source. It will be invoked in this fashion:
+~~~
+Board_open()
+    -> Flash_open()
+        -> Flash_*Open()
+            -> myBootQuirksFxn(Flash_Config *cfg)
+~~~
+
+`
 
 let skipInitDesc = `
 In some cases, a HW initialization of the flash device in the application may not be
@@ -250,6 +275,8 @@ let flash_module = {
                     inst.protocol = soc.getDefaultProtocol().name;
                 } else if(inst.device == "CUSTOM_FLASH") {
                     inst.fname = "";
+                    inst.quirks = "";
+                    inst.bootQuirks = "";
                 }
             }
         },
@@ -264,6 +291,19 @@ let flash_module = {
             displayName: "Flash Name",
             default: soc.getDefaultFlashName(),
             placeholder: "Type your flash name here",
+            onChange: function(inst, ui) {
+                if(inst.fname == "S28HS512T") {
+                    inst.bootQuirks = "Flash_quirkOSPIEarlyFixup";
+                }
+                else if(inst.fname == "S25HL512T")
+                {
+                    inst.bootQuirks = "Flash_quirkQSPIEarlyFixup";
+                }
+                else
+                {
+                    inst.bootQuirks = "";
+                }
+            }
         },
         {
             name: "protocol",
@@ -278,7 +318,6 @@ let flash_module = {
                 }
 
                 let hideCustomProtocolSettings = true;
-
                 if(inst.protocol == "custom") {
                     hideCustomProtocolSettings = false;
                 }
@@ -890,7 +929,15 @@ let flash_module = {
             description: "Function to handle any vendor specific quirks of the flash",
             longDescription: quirksDescription,
             default: "Flash_quirkSpansionUNHYSADisable",
-        }
+        },
+        /* Boot Quirks */
+        {
+            name: "bootQuirks",
+            displayName: "Boot Quirks Function",
+            description: "Function to handle any vendor specific quirks of the flash during boot",
+            longDescription: bootQuirksDescription,
+            default: "Flash_quirkOSPIEarlyFixup",
+        },
 
     ],
     validate: validate,

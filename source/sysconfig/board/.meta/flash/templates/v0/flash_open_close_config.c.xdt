@@ -174,6 +174,9 @@ Flash_Config gFlashConfig[CONFIG_FLASH_NUM_INSTANCES] =
 % if (config.quirks != "NULL") {
 extern int32_t `config.quirks`(Flash_Config *config);
 % }
+% if (config.bootQuirks != "NULL") {
+extern int32_t `config.bootQuirks`(Flash_Config *config);
+% }
 % if (config.customProtoFxn != "NULL") {
 extern int32_t `config.customProtoFxn`(Flash_Config *config);
 % }
@@ -187,6 +190,7 @@ Flash_Params gFlashParams[CONFIG_FLASH_NUM_INSTANCES] =
     % let config = module.getInstanceConfig(instance);
     {
         .quirksFxn = `config.quirks`,
+        .bootQuirksFxn = `config.bootQuirks`,
         .custProtoFxn = `config.customProtoFxn`,
     },
     % }
