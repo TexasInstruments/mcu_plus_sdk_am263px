@@ -159,12 +159,16 @@ let mibspi_module = {
                     ui.t2cDelay.hidden = false;
                     ui.c2tDelay.hidden = false;
                     ui.wDelay.hidden = false;
+                    ui.csHold.hidden =! inst.advanced;
+                    inst.csHold = false;
                 }
                 else {
                     ui.bitRate.hidden = true;
                     ui.t2cDelay.hidden = true;
                     ui.c2tDelay.hidden = true;
                     ui.wDelay.hidden = true;
+                    ui.csHold.hidden = false;
+                    inst.csHold = true;
                 }
             },
         },
@@ -376,8 +380,10 @@ PHA1 = Data are latched on even-numbered edges of SPICLK`,
                 ui.featureBitMap.hidden = hideConfigs;
                 ui.txDummyValue.hidden = hideConfigs;
                 ui.eccEnable.hidden = hideConfigs;
-                ui.csHold.hidden = hideConfigs;
                 ui.compatibilityMode.hidden = hideConfigs;
+                if(inst.mode == "CONTROLLER") {
+                    ui.csHold.hidden = hideConfigs;
+                }
             },
         },
         {
@@ -435,7 +441,8 @@ PHA1 = Data are latched on even-numbered edges of SPICLK`,
             displayName: "CS Hold Enable",
             default: false,
             hidden: true,
-            description: `Enable CS Hold`,
+            description: `Workaround for errata i2336:
+            Force CSHOLD in peripheral mode and ensure CSCHOLD is always set in peripheral mode to prevent premature CS de-assertion`,
         },
         {
             name: "compatibilityMode",
@@ -489,6 +496,11 @@ function validate(inst, report) {
             (inst.transferCallbackFxn == ""))) {
         report.logError("Callback function MUST be provided for callback transfer mode", inst, "transferCallbackFxn");
     }
+
+    if(inst.mode == "PERIPHERAL" && inst.csHold == false) {
+        report.logError("CS Hold MUST be enabled in Peripheral mode to prevent premature CS de-assertion (errata i2336)", inst, "csHold");
+    }
+
     common.validate.checkNumberRange(inst, report, "transferTimeout", 0x0, 0xFFFFFFFF, "hex");
     common.validate.checkNumberRange(inst, report, "txDummyValue", 0x0, 0xFFFF, "hex");
     common.validate.checkNumberRange(inst, report, "t2cDelay", 0, 0xFF, "hex");
