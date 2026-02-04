@@ -314,10 +314,6 @@ def get_cert(args):
         else:
             enc_iter_count = 0
             enc_salt = '0000'
-        
-    if (args.fw_type == 'SEC_CFG_CPU1' or args.fw_type == 'SEC_CFG_CPU2' or args.fw_type == 'SEC_CFG_CPU3'):
-        args.fw_enc = False
-        args.fw_enc_key = ''
 
     if (args.fw_enc and (args.device == 'f29h85x' or args.device == 'f29p32x') and args.boot == 'FLASH'):
         ext_fw_enc_integ_seq = "1.3.6.1.4.1.294.1.14=ASN1:SEQUENCE:fw_enc_image_integrity"
