@@ -1,5 +1,10 @@
 var NAVTREEINDEX65 =
 {
+"structI2C__Transaction.html#afa4e6dc5a33d862aa60f15383e6d0e17":[19,7,18,2,10],
+"structICSS__EMAC__Attrs.html":[19,4,2,4],
+"structICSS__EMAC__Attrs.html#a127d7d72a1f46a83b18c38da5fab44d8":[19,4,2,4,5],
+"structICSS__EMAC__Attrs.html#a12cc0705daacd022ae86c19d7c91670a":[19,4,2,4,16],
+"structICSS__EMAC__Attrs.html#a13c2b547d3b4b7ca26f77653d92709f7":[19,4,2,4,9],
 "structICSS__EMAC__Attrs.html#a159f36ad1106722c55d6ce4c2928628c":[19,4,2,4,14],
 "structICSS__EMAC__Attrs.html#a1e9e44190048f0e27dd5cfc8cf17d29e":[19,4,2,4,10],
 "structICSS__EMAC__Attrs.html#a1fb022884e97b50c9ef6982b2d1ed9e9":[19,4,2,4,6],
@@ -244,10 +249,5 @@ var NAVTREEINDEX65 =
 "structIcssgStats__MacPort.html#ad6f0ffe8e20a8e0d64868e724dcf002a":[19,4,0,9,1,0,41],
 "structIcssgStats__MacPort.html#ae05d70e0698765b9c4ff2d16328708a1":[19,4,0,9,1,0,48],
 "structIcssgStats__MacPort.html#ae6787d636af67fb0436bc02e65ea5452":[19,4,0,9,1,0,2],
-"structIcssgStats__MacPort.html#aef0221362f9add41bf6375bb8755e71e":[19,4,0,9,1,0,18],
-"structIcssgStats__MacPort.html#af23cca38996147a78c50bbaeeaddfdb7":[19,4,0,9,1,0,20],
-"structIcssgStats__MacPort.html#af3f9017e2b95b131c74694e5a5adc67a":[19,4,0,9,1,0,8],
-"structIcssgStats__MacPort.html#af9488af14101571a2e9f8da8e6b54fdb":[19,4,0,9,1,0,59],
-"structIcssgStats__MacPort.html#af97b66ee50b4cc5a841feebb32b401ca":[19,4,0,9,1,0,22],
-"structIcssgStats__MacPort.html#afb5471015db128f3c6c6a5974ef681a6":[19,4,0,9,1,0,58]
+"structIcssgStats__MacPort.html#aef0221362f9add41bf6375bb8755e71e":[19,4,0,9,1,0,18]
 };

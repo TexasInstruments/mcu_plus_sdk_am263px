@@ -164,6 +164,12 @@ Functions</h2></td></tr>
 <tr class="memitem:gae0f6320ae6158bf639a53d885e622e92"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gae0f6320ae6158bf639a53d885e622e92">OSPI_lld_setBaudRateDiv</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> hOspi, uint32_t baudRateDiv)</td></tr>
 <tr class="memdesc:gae0f6320ae6158bf639a53d885e622e92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the baud rate divider for OSPI communication.  <a href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gae0f6320ae6158bf639a53d885e622e92">More...</a><br /></td></tr>
 <tr class="separator:gae0f6320ae6158bf639a53d885e622e92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga31873664f52b270b2fe115d6f56fbb0b"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga31873664f52b270b2fe115d6f56fbb0b">OSPI_lld_disableDdrRdCmds</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> hOspi)</td></tr>
+<tr class="memdesc:ga31873664f52b270b2fe115d6f56fbb0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function resets DDR bit in INSTR_RD register for RD commands.  <a href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga31873664f52b270b2fe115d6f56fbb0b">More...</a><br /></td></tr>
+<tr class="separator:ga31873664f52b270b2fe115d6f56fbb0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaba67be87df4c0c756aaa7fd57c43cd0"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gaaba67be87df4c0c756aaa7fd57c43cd0">OSPI_lld_set1sProtocol</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> hOspi)</td></tr>
+<tr class="memdesc:gaaba67be87df4c0c756aaa7fd57c43cd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the OSPI controller to operate in 1S-1S-1S mode.  <a href="group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gaaba67be87df4c0c756aaa7fd57c43cd0">More...</a><br /></td></tr>
+<tr class="separator:gaaba67be87df4c0c756aaa7fd57c43cd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga941559f676595d9563a47cc5942f9798"></a>
@@ -1056,6 +1062,62 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on success, error code on failure </dd></dl>
+
+</div>
+</div>
+<a id="ga31873664f52b270b2fe115d6f56fbb0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga31873664f52b270b2fe115d6f56fbb0b">&#9670;&nbsp;</a></span>OSPI_lld_disableDdrRdCmds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t OSPI_lld_disableDdrRdCmds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a>&#160;</td>
+          <td class="paramname"><em>hOspi</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function resets DDR bit in INSTR_RD register for RD commands. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>OSPI controller has been opened using <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hOspi</td><td>An <a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="ospi__lld_8h.html#a55d0de1852596151ea5221adf3930c55" title="Return status when the API execution was successful.">OSPI_SYSTEM_SUCCESS</a> if DDR successfully disabled, else error on failure </dd></dl>
+
+</div>
+</div>
+<a id="gaaba67be87df4c0c756aaa7fd57c43cd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaba67be87df4c0c756aaa7fd57c43cd0">&#9670;&nbsp;</a></span>OSPI_lld_set1sProtocol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t OSPI_lld_set1sProtocol </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a>&#160;</td>
+          <td class="paramname"><em>hOspi</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resets the OSPI controller to operate in 1S-1S-1S mode. </p>
+<p>This function reverts the OSPI controller configuration from advanced modes (such as 8D-8D-8D DDR mode) back to the basic single-lane mode (1S-1S-1S). It unsets all registers that were configured for high-performance modes, allowing the controller to operate in the standard SPI mode.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hOspi</td><td>An <a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> returned from an <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on success, else failure </dd></dl>
 
 </div>
 </div>

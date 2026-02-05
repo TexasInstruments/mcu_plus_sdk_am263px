@@ -21,5 +21,7 @@ var group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE =
     [ "OSPI_lld_isValidateOtpEnable", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga016b4802e71f603a163c409035eaec2c", null ],
     [ "OSPI_lld_setFrequency", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gaea64faff981b9a81edadbc7c3d60d384", null ],
     [ "OSPI_lld_setDelays", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga4344e2f746fbd1a7d7bfc352d065dc3c", null ],
-    [ "OSPI_lld_setBaudRateDiv", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gae0f6320ae6158bf639a53d885e622e92", null ]
+    [ "OSPI_lld_setBaudRateDiv", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gae0f6320ae6158bf639a53d885e622e92", null ],
+    [ "OSPI_lld_disableDdrRdCmds", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#ga31873664f52b270b2fe115d6f56fbb0b", null ],
+    [ "OSPI_lld_set1sProtocol", "group__DRV__OSPI__NOR__FLASH__LLD__API__MODULE.html#gaaba67be87df4c0c756aaa7fd57c43cd0", null ]
 ];

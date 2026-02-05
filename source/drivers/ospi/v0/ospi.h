@@ -466,7 +466,7 @@ int32_t OSPI_enableSDR(OSPI_Handle handle);
  *
  *  \param  handle  An #OSPI_Handle returned from an #OSPI_open()
  *
- *  \return #SystemP_SUCCESS if SDR successfully enabled, else error on failure
+ *  \return #SystemP_SUCCESS if DDR successfully enabled, else error on failure
  */
 int32_t OSPI_enableDdrRdCmds(OSPI_Handle handle);
 
@@ -1040,6 +1040,31 @@ int32_t OSPI_setDelays(OSPI_Handle handle, uint32_t inputClkFreq);
  *  \return SystemP_SUCCESS on success, error code on failure
  */
 int32_t OSPI_setBaudRateDiv(OSPI_Handle handle, uint32_t baudRateDiv);
+
+/**
+ *  \brief  This function resets DDR bit in INSTR_RD register for RD commands
+ *
+ *  \pre    OSPI controller has been opened using #OSPI_open()
+ *
+ *  \param  handle  An #OSPI_Handle returned from an #OSPI_open()
+ *
+ *  \return #SystemP_SUCCESS if DDR successfully disabled, else error on failure
+ */
+int32_t OSPI_disableDdrRdCmds(OSPI_Handle handle);
+
+/**
+ *  \brief Resets the OSPI controller to operate in 1S-1S-1S mode
+ *
+ *  This function reverts the OSPI controller configuration from advanced modes
+ *  (such as 8D-8D-8D DDR mode) back to the basic single-lane mode (1S-1S-1S).
+ *  It unsets all registers that were configured for high-performance modes,
+ *  allowing the controller to operate in the standard SPI mode.
+ *
+ *  \param handle       OSPI handle
+ *
+ *  \return SystemP_SUCCESS on success, error code on failure
+ */
+int32_t OSPI_set1sProtocol(OSPI_Handle handle);
 
 /** @} */
 

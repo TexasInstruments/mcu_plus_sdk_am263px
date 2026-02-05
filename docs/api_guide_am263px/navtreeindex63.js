@@ -1,5 +1,9 @@
 var NAVTREEINDEX63 =
 {
+"structEnetMacPort__SetPreemptQueueInArgs.html#a3de150e85834178fa587963ba460aded":[19,4,0,3,12,0],
+"structEnetMacPort__SetPriorityRegenMapInArgs.html":[19,4,0,3,5],
+"structEnetMacPort__SetPriorityRegenMapInArgs.html#ad0199e6e73b37d0279b9fdc3276fbe66":[19,4,0,3,5,0],
+"structEnetMacPort__SetPriorityRegenMapInArgs.html#ae2b540beda1c8b05f867919c3ee1b39f":[19,4,0,3,5,1],
 "structEnetMdio__C22ReadInArgs.html":[19,4,0,5,1],
 "structEnetMdio__C22ReadInArgs.html#a6d9e4501c562910f16e7f3530150f45a":[19,4,0,5,1,2],
 "structEnetMdio__C22ReadInArgs.html#a93ebffc525b608376b1be1a26c8438f0":[19,4,0,5,1,1],
@@ -245,9 +249,5 @@ var NAVTREEINDEX63 =
 "structFirewallIntrReq__t.html":[19,7,16,9],
 "structFirewallIntrReq__t.html#abd0ff8cb914f32f07e8d8769691754b3":[19,7,16,9,0],
 "structFirewallIntrReq__t.html#acf477d8e7189537db3350332c7f95917":[19,7,16,9,1],
-"structFirewallIntrReq__t.html#ad931a180ebba4369b293985f9462ea11":[19,7,16,9,2],
-"structFirewallIntrReq__t.html#ae010c0d59ea37104743b1eba04df8f45":[19,7,16,9,3],
-"structFirewallIntrReq__t.html#aed7702b1f519dbbae14464b4db614c22":[19,7,16,9,4],
-"structFirewallRegionReq__t.html":[19,7,16,7],
-"structFirewallRegionReq__t.html#a48772bfc7d8b5ea9d62cb5146a86e18a":[19,7,16,7,2]
+"structFirewallIntrReq__t.html#ad931a180ebba4369b293985f9462ea11":[19,7,16,9,2]
 };

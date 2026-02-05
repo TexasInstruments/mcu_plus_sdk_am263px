@@ -1,5 +1,10 @@
 var NAVTREEINDEX72 =
 {
+"structSDL__vimStaticRegs.html#ad550f5a8685e77fb345679df400268e2":[19,6,0,0,4,1],
+"structSDL__vimStaticRegs.html#ae4bd9c6351959bafd728127ad017e049":[19,6,0,0,4,0],
+"structSDL__vimStaticRegs.html#afd63ea9c67fe47577809f7b91fe2b45e":[19,6,0,0,4,6],
+"structSDL__vimStaticRegs__GRP.html":[19,6,0,0,3],
+"structSDL__vimStaticRegs__GRP.html#a3053e3f0fda8f27999be8c2c62aceb45":[19,6,0,0,3,2],
 "structSDL__vimStaticRegs__GRP.html#a512780e1409d83a8ca154878e1014f16":[19,6,0,0,3,0],
 "structSDL__vimStaticRegs__GRP.html#a5d616f19b4dee02b10dd30245b739503":[19,6,0,0,3,1],
 "structSDL__vimStaticRegs__GRP.html#acc6fbfdcb631753600f3452d41f61a9c":[19,6,0,0,3,3],
@@ -244,10 +249,5 @@ var NAVTREEINDEX72 =
 "structWatchdog__MCB.html#af7097f79feb5df0c332ebf7f35b6132e":[19,7,47,4,2],
 "structWatchdog__Params.html":[19,7,47,2],
 "structWatchdog__Params.html#a271a705e14c41b87186e565a17c6d702":[19,7,47,2,5],
-"structWatchdog__Params.html#a66cc94bb1c0ad34072ce8446f4a5aeb9":[19,7,47,2,4],
-"structWatchdog__Params.html#a710aaa2504356ab3d3f9a27ac19ddb85":[19,7,47,2,0],
-"structWatchdog__Params.html#a94b5d650f8beb7dce719360404039ccf":[19,7,47,2,2],
-"structWatchdog__Params.html#ab5804d1d8a4af03d6dd936117bcce06a":[19,7,47,2,1],
-"structWatchdog__Params.html#abe7792eef8afa2972a4625f428b7241b":[19,7,47,2,3],
-"struct____attribute____.html":[19,7,6,1]
+"structWatchdog__Params.html#a66cc94bb1c0ad34072ce8446f4a5aeb9":[19,7,47,2,4]
 };

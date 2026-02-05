@@ -1,5 +1,9 @@
 var NAVTREEINDEX62 =
 {
+"structDp83tc812__Cfg.html#a960ef484d9cd6379b0c6ffd3d8485ebc":[19,4,0,13,5,0,0],
+"structDp83tc812__Cfg.html#aa6231dc7e0af5ab9fbef7dfb10d346cc":[19,4,0,13,5,0,4],
+"structDp83tg720__Cfg.html":[19,4,0,13,6,0],
+"structDp83tg720__Cfg.html#a139cefb5dbc20e4d55b17524248efd86":[19,4,0,13,6,0,2],
 "structDp83tg720__Cfg.html#a78eb845768829b5beabfa8256082e807":[19,4,0,13,6,0,3],
 "structDp83tg720__Cfg.html#a8e32adc4472d26b83e111523029288dd":[19,4,0,13,6,0,4],
 "structDp83tg720__Cfg.html#ac6e8c3d969daf161cc05dca8858efcae":[19,4,0,13,6,0,0],
@@ -245,9 +249,5 @@ var NAVTREEINDEX62 =
 "structEnetMacPort__SetPreemptMinFragSizeInArgs.html#a22db3b452689ae92acea45e88430dc7f":[19,4,0,3,10,1],
 "structEnetMacPort__SetPreemptMinFragSizeInArgs.html#ab59cc41e23dae9952670b35417a555ff":[19,4,0,3,10,0],
 "structEnetMacPort__SetPreemptQueueInArgs.html":[19,4,0,3,12],
-"structEnetMacPort__SetPreemptQueueInArgs.html#a11eb77230bea6b3df95eac0fea70fbb0":[19,4,0,3,12,1],
-"structEnetMacPort__SetPreemptQueueInArgs.html#a3de150e85834178fa587963ba460aded":[19,4,0,3,12,0],
-"structEnetMacPort__SetPriorityRegenMapInArgs.html":[19,4,0,3,5],
-"structEnetMacPort__SetPriorityRegenMapInArgs.html#ad0199e6e73b37d0279b9fdc3276fbe66":[19,4,0,3,5,0],
-"structEnetMacPort__SetPriorityRegenMapInArgs.html#ae2b540beda1c8b05f867919c3ee1b39f":[19,4,0,3,5,1]
+"structEnetMacPort__SetPreemptQueueInArgs.html#a11eb77230bea6b3df95eac0fea70fbb0":[19,4,0,3,12,1]
 };

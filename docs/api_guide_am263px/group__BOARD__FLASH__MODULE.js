@@ -50,6 +50,7 @@ var group__BOARD__FLASH__MODULE =
     ] ],
     [ "Flash_Params", "structFlash__Params.html", [
       [ "quirksFxn", "structFlash__Params.html#af84f256d7f327843ed0ea6abdd7a59c8", null ],
+      [ "bootQuirksFxn", "structFlash__Params.html#ad72dcfc0daca45ca650db45b1b31ee1d", null ],
       [ "custProtoFxn", "structFlash__Params.html#adbf8c9b96aeeeca61ee090ea1d0fe554", null ]
     ] ],
     [ "Flash_Fxns", "structFlash__Fxns.html", [
