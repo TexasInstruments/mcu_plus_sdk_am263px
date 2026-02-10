@@ -41,25 +41,25 @@ int32_t cri_pke_get_true_random(void *buf, size_t len)
 		if((len-i)<16U)
 		{
 			(void)RNG_read(pke_rng_handle, &rand_val[0]);
-			if((len-i)%4U == 0U)
+			if(((len-i)%4U) == 0U)
 			{
 				(void)memcpy((uint8_t *)buf + i, rand_val, (len-i));
 			}
 			else
 			{
-				if((len-i)/4U > 0U)
+				if(((len-i)/4U) > 0U)
 				{
 					((uint32_t *)buf + (i/sizeof(uint32_t)))[0U] = rand_val[0U];
 				}
-				if((len-i)/4U > 1U)
+				if(((len-i)/4U) > 1U)
 				{
 					((uint32_t *)buf + (i/sizeof(uint32_t)))[1U] = rand_val[1U];
 				}
-				if((len-i)/4U > 2U)
+				if(((len-i)/4U) > 2U)
 				{
 					((uint32_t *)buf + (i/sizeof(uint32_t)))[2U] = rand_val[2U];
 				}
-				if((len-i)/4U > 3U)
+				if(((len-i)/4U) > 3U)
 				{
 					((uint32_t *)buf + (i/sizeof(uint32_t)))[3U] = rand_val[3U];
 				}
@@ -87,14 +87,14 @@ int32_t cri_pke_get_pseudo_random(void *buf, size_t len, int32_t slot, uint32_t 
 	uint32_t slot_len;
 
 #ifdef CRI_PKE_32_BIT
-	if (len < MAU_READ_REG(R_MAU_MIN_LEN) * sizeof(uint32_t)) {
+	if (len < (MAU_READ_REG(R_MAU_MIN_LEN) * sizeof(uint32_t))) {
 		length = MAU_READ_REG(R_MAU_MIN_LEN);
 	} else {
 		length = ((len - 1) / sizeof(uint32_t)) + 1;
 	}
 	bits = length * 32;
 #else /* 64-bit */
-	if (len < MAU_READ_REG(R_MAU_MIN_LEN) * sizeof(uint64_t)) {
+	if (len < (MAU_READ_REG(R_MAU_MIN_LEN) * sizeof(uint64_t))) {
 		length = MAU_READ_REG(R_MAU_MIN_LEN);
 	} else {
 		length = ((len - 1U) / sizeof(uint64_t)) + 1U;

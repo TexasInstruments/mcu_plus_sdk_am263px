@@ -323,7 +323,7 @@ int32_t SIPC_sendMsg(uint8_t remoteSecCoreId, uint8_t remoteClientId,uint8_t loc
             do
             {
                 status = SIPC_mailboxWrite(mailboxBaseAddr, intrBitPos, swQ, msgValue);
-                if(status != SystemP_SUCCESS && waitForFifoNotFull)
+                if((status != SystemP_SUCCESS) && waitForFifoNotFull)
                 {
                     /* Allow interrupt enable and check again */
                     HwiP_restore(oldIntState);
