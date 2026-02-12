@@ -1,5 +1,17 @@
 var NAVTREEINDEX73 =
 {
+"structWatchdog__HwAttrs.html":[19,7,47,1],
+"structWatchdog__HwAttrs.html#a5e5b737b3657f1f79ed5ae7d5f8c56dd":[19,7,47,1,0],
+"structWatchdog__HwAttrs.html#aa2d2e632dc6e8144901d9d9c44c94d04":[19,7,47,1,1],
+"structWatchdog__HwAttrs.html#ae161d5d9bfc7e99f85512fbdbaa5e138":[19,7,47,1,2],
+"structWatchdog__MCB.html":[19,7,47,4],
+"structWatchdog__MCB.html#ac33fbe6685d976591aebe555112ae7a8":[19,7,47,4,1],
+"structWatchdog__MCB.html#ac5fba2d61181c91d0f79dd999ddb4b68":[19,7,47,4,0],
+"structWatchdog__MCB.html#ad5144368c77f6ce5e18e9403b0c40214":[19,7,47,4,3],
+"structWatchdog__MCB.html#af7097f79feb5df0c332ebf7f35b6132e":[19,7,47,4,2],
+"structWatchdog__Params.html":[19,7,47,2],
+"structWatchdog__Params.html#a271a705e14c41b87186e565a17c6d702":[19,7,47,2,5],
+"structWatchdog__Params.html#a66cc94bb1c0ad34072ce8446f4a5aeb9":[19,7,47,2,4],
 "structWatchdog__Params.html#a710aaa2504356ab3d3f9a27ac19ddb85":[19,7,47,2,0],
 "structWatchdog__Params.html#a94b5d650f8beb7dce719360404039ccf":[19,7,47,2,2],
 "structWatchdog__Params.html#ab5804d1d8a4af03d6dd936117bcce06a":[19,7,47,2,1],

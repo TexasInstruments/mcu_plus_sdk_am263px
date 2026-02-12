@@ -143,7 +143,7 @@ var group__DRV__LIN__MODULE =
     [ "LIN_sendData", "group__DRV__LIN__MODULE.html#gadbfa9c467cc392b8005ffafbcef7a61f", null ],
     [ "LIN_isBaseValid", "group__DRV__LIN__MODULE.html#gac39a0ff0cc60b62ab12df8304fde226b", null ],
     [ "LIN_setLINMode", "group__DRV__LIN__MODULE.html#ga787fbb0229a33a7c8e8b0ab28b4f883f", null ],
-    [ "LIN_setMaximumBaudRate", "group__DRV__LIN__MODULE.html#ga498db432f87568112ee5ab6f942adf8a", null ],
+    [ "LIN_setMaximumBaudRate", "group__DRV__LIN__MODULE.html#ga3bf4b5544353667af01bc3a07fb647f8", null ],
     [ "LIN_setMessageFiltering", "group__DRV__LIN__MODULE.html#ga01396a3e564b1b473f8381865cc9add7", null ],
     [ "LIN_enableParity", "group__DRV__LIN__MODULE.html#gaf84b1f7a9e8e9fe3645b53ad3477c542", null ],
     [ "LIN_disableParity", "group__DRV__LIN__MODULE.html#ga5d02e0eb8a9cb8cb840877dfdded72da", null ],

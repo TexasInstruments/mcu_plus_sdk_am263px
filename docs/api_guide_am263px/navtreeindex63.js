@@ -1,5 +1,17 @@
 var NAVTREEINDEX63 =
 {
+"structEnetMacPort__SetCreditBasedShaperInArgs.html#a3886970bf6d2966f9a63ac4b79c33b56":[19,4,0,3,8,1],
+"structEnetMacPort__SetEgressPriorityMapInArgs.html":[19,4,0,3,6],
+"structEnetMacPort__SetEgressPriorityMapInArgs.html#a2a044248d238fe43e42d7e62d03c1fbf":[19,4,0,3,6,1],
+"structEnetMacPort__SetEgressPriorityMapInArgs.html#ad0fca372275708f8b057dc9eb75ae998":[19,4,0,3,6,0],
+"structEnetMacPort__SetIngressDscpPriorityMapInArgs.html":[19,4,0,3,4],
+"structEnetMacPort__SetIngressDscpPriorityMapInArgs.html#a5e867226035960e9900d9fe97b43cfc7":[19,4,0,3,4,1],
+"structEnetMacPort__SetIngressDscpPriorityMapInArgs.html#a9aa3889c93f36b96dce2232238969fed":[19,4,0,3,4,0],
+"structEnetMacPort__SetPreemptMinFragSizeInArgs.html":[19,4,0,3,10],
+"structEnetMacPort__SetPreemptMinFragSizeInArgs.html#a22db3b452689ae92acea45e88430dc7f":[19,4,0,3,10,1],
+"structEnetMacPort__SetPreemptMinFragSizeInArgs.html#ab59cc41e23dae9952670b35417a555ff":[19,4,0,3,10,0],
+"structEnetMacPort__SetPreemptQueueInArgs.html":[19,4,0,3,12],
+"structEnetMacPort__SetPreemptQueueInArgs.html#a11eb77230bea6b3df95eac0fea70fbb0":[19,4,0,3,12,1],
 "structEnetMacPort__SetPreemptQueueInArgs.html#a3de150e85834178fa587963ba460aded":[19,4,0,3,12,0],
 "structEnetMacPort__SetPriorityRegenMapInArgs.html":[19,4,0,3,5],
 "structEnetMacPort__SetPriorityRegenMapInArgs.html#ad0199e6e73b37d0279b9fdc3276fbe66":[19,4,0,3,5,0],
@@ -237,17 +249,5 @@ var NAVTREEINDEX63 =
 "structFOTAAgent__Params.html":[19,7,10,1],
 "structFOTAAgent__Params.html#a376593885f3f496254bf055e7352c0ce":[19,7,10,1,0],
 "structFOTAAgent__Params.html#a507bd0732885c1ae83e7b41370e31a79":[19,7,10,1,2],
-"structFOTAAgent__Params.html#a9c243924c47e91fc2a0df8dd5cc6cf6c":[19,7,10,1,1],
-"structFOTAAgent__Params.html#aa5934f3c70c5c022983fb70310e209f3":[19,7,10,1,3],
-"structFSS__Config.html":[19,7,14,1],
-"structFSS__Config.html#a87882e19b071650d1a455588d643b914":[19,7,14,1,1],
-"structFSS__Config.html#ae3369aeadf5b10470d4f2eb8e0c84165":[19,7,14,1,0],
-"structFSS__ECCRegionConfig.html":[19,7,14,0],
-"structFSS__ECCRegionConfig.html#a38a9c33c3efdd5624a505bb345575a89":[19,7,14,0,2],
-"structFSS__ECCRegionConfig.html#a603f8e6077f5c5f935b47306da8fe5be":[19,7,14,0,0],
-"structFSS__ECCRegionConfig.html#a7fa611c5706630d84da12dbd70738868":[19,7,14,0,1],
-"structFirewallIntrReq__t.html":[19,7,16,9],
-"structFirewallIntrReq__t.html#abd0ff8cb914f32f07e8d8769691754b3":[19,7,16,9,0],
-"structFirewallIntrReq__t.html#acf477d8e7189537db3350332c7f95917":[19,7,16,9,1],
-"structFirewallIntrReq__t.html#ad931a180ebba4369b293985f9462ea11":[19,7,16,9,2]
+"structFOTAAgent__Params.html#a9c243924c47e91fc2a0df8dd5cc6cf6c":[19,7,10,1,1]
 };

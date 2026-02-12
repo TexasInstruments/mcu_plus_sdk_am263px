@@ -1,5 +1,17 @@
 var NAVTREEINDEX38 =
 {
+"group__DRV__MCSPI__LLD__MODULE.html#ga3f52f1cda834a92e65271acf7156d67d":[19,7,28,21],
+"group__DRV__MCSPI__LLD__MODULE.html#ga3f6a6b50cf7467ed24a47b2901fdd2f6":[19,7,28,89],
+"group__DRV__MCSPI__LLD__MODULE.html#ga4046b1c0d01e5e31855e43c81f02f17d":[19,7,28,68],
+"group__DRV__MCSPI__LLD__MODULE.html#ga42cb25b77155f07fe058c6d81d1a1e32":[19,7,28,60],
+"group__DRV__MCSPI__LLD__MODULE.html#ga439e8f03edc99644be40a5dfbb1b27a9":[19,7,28,36],
+"group__DRV__MCSPI__LLD__MODULE.html#ga451aba2b1ca0c8ccb3547f7598129a3f":[19,7,28,96],
+"group__DRV__MCSPI__LLD__MODULE.html#ga4546259852b6b9b3811a15f0e6f47f52":[19,7,28,84],
+"group__DRV__MCSPI__LLD__MODULE.html#ga454f40200e04c92eedcbae380a6f71f5":[19,7,28,29],
+"group__DRV__MCSPI__LLD__MODULE.html#ga467ce5fb0a6586d7da5dcb3e099e2f12":[19,7,28,67],
+"group__DRV__MCSPI__LLD__MODULE.html#ga471023734e5329ebc65a53092d70730e":[19,7,28,23],
+"group__DRV__MCSPI__LLD__MODULE.html#ga47d5d6f22de36bf91e167f83fa1b6a0f":[19,7,28,55],
+"group__DRV__MCSPI__LLD__MODULE.html#ga4dfee07f911b5fe9c459309906e50ee9":[19,7,28,112],
 "group__DRV__MCSPI__LLD__MODULE.html#ga52d86840ed53916cace8f58ec2631499":[19,7,28,17],
 "group__DRV__MCSPI__LLD__MODULE.html#ga5321095795591db87f4cfeb788abf786":[19,7,28,12],
 "group__DRV__MCSPI__LLD__MODULE.html#ga532219eca14e3d2d768d76df7db46d94":[19,7,28,131],
@@ -237,17 +249,5 @@ var NAVTREEINDEX38 =
 "group__DRV__OSPI__LLD__MODULE.html#gaab37281f1de2120a6e8c1bb396be8b85":[19,7,34,46],
 "group__DRV__OSPI__LLD__MODULE.html#gaacd9c2a641ff3c014a39fc94980bd3cd":[19,7,34,34],
 "group__DRV__OSPI__LLD__MODULE.html#gaaef3b5598e9c6578bb727f76e4633b46":[19,7,34,22],
-"group__DRV__OSPI__LLD__MODULE.html#gab72a37197e96fc7690b1dfdb751e1cca":[19,7,34,19],
-"group__DRV__OSPI__LLD__MODULE.html#gabf886a11af66b463ed93bf674140e149":[19,7,34,12],
-"group__DRV__OSPI__LLD__MODULE.html#gabfc137bf2576fc0426a59f5d718a9a72":[19,7,34,23],
-"group__DRV__OSPI__LLD__MODULE.html#gac019dac1e7917fd6351ac4840e763195":[19,7,34,9],
-"group__DRV__OSPI__LLD__MODULE.html#gad33321c4d3c0e127cc9dbc5150a5d946":[19,7,34,16],
-"group__DRV__OSPI__LLD__MODULE.html#gadfd42de3f9f3f1aaa42329ab54226f15":[19,7,34,40],
-"group__DRV__OSPI__LLD__MODULE.html#gae2fc4e0801ce850ed23824675d8573ad":[19,7,34,28],
-"group__DRV__OSPI__LLD__MODULE.html#gae589b4ecf0e83feaf138aa818f87a439":[19,7,34,51],
-"group__DRV__OSPI__LLD__MODULE.html#gae61b7b91fdcb31ffd5b0ce67a1d80355":[19,7,34,35],
-"group__DRV__OSPI__LLD__MODULE.html#gae9b31d26f1bb582b75802caf013529ed":[19,7,34,32],
-"group__DRV__OSPI__LLD__MODULE.html#gaf383c0431b9a1e5a4548e496e34a07b0":[19,7,34,11],
-"group__DRV__OSPI__LLD__MODULE.html#gafe5b7c84a86e56c3ad7f73f5e7153a52":[19,7,34,14],
-"group__DRV__OSPI__LLD__PHY__API__MODULE.html":[19,7,34,1]
+"group__DRV__OSPI__LLD__MODULE.html#gab72a37197e96fc7690b1dfdb751e1cca":[19,7,34,19]
 };

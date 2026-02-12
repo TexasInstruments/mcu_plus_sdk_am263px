@@ -58,8 +58,17 @@ LIN_OpenParams gLinOpenParams[CONFIG_LIN_HLD_NUM_INSTANCES] =
         .commMode                                       = `config.commModeSciHLD`,
         % }
         .multiBufferMode                                = `config.multiBufferModeHLD`,
+
+
+% if(config.manualConfigBaudHLD == false){
+%   let baudPreScalerHLD = ((config.inputClkFreqHLD/(16.0*config.baudRateHLD)) - 1) | 0;
+%   let baudFracDivHLD = 16*((config.inputClkFreqHLD/(16.0*config.baudRateHLD)) - (baudPreScalerHLD + 1)) | 0;
+        .baudConfigParams.preScaler                     = `baudPreScalerHLD`,
+        .baudConfigParams.fracDivSel_M                  = `baudFracDivHLD`,
+% } else {
         .baudConfigParams.preScaler                     = `config.baudPreScalerHLD`,
         .baudConfigParams.fracDivSel_M                  = `config.fracDivSel_M_HLD`,
+%}
         .baudConfigParams.supFracDivSel_U               = `config.supFracDivSel_U_HLD`,
         % if(config.moduleModeHLD == "LIN_MODULE_OP_MODE_SCI") {
         .sciConfigParams.parityType                     = `config.parityTypeHLD`,

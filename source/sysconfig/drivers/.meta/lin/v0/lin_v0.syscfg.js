@@ -4,6 +4,8 @@ let pinmux = system.getScript("/drivers/pinmux/pinmux");
 let soc = system.getScript(`/drivers/lin/soc/lin_${common.getSocName()}`);
 let hwi = system.getScript("/kernel/dpl/hwi.js");
 
+let inputFreq = 96000000;
+
 let LIN_InterruptFlags = [
     {name: " LIN_INT_WAKEUP", displayName : " Wakeup "},
     {name: " LIN_INT_TO", displayName : " Time out "},
@@ -437,7 +439,9 @@ let configHLD = [
                         linInstanceName   = linSolution.peripheralName
                     else
                         linInstanceName = inst[interfaceName].$suggestSolution?.peripheralName
-                    return soc.getClkRate(linInstanceName)
+                    inputFreq = soc.getClkRate(linInstanceName)
+                    
+                    return inputFreq;
                 }
             },
         ]
@@ -604,23 +608,22 @@ let configHLD = [
                 description: "If enabled, Baud Pre-scalers Can be assigned Manually",
                 onChange: function (inst, ui) {
                     if(inst.manualConfigBaudHLD == true) {
-                        ui.baudPreScalerHLD.readOnly = false;
-                        ui.fracDivSel_M_HLD.readOnly = false;
-                        ui.supFracDivSel_U_HLD.readOnly = false;
-                        ui.baudRateHLD.readOnly = true;
+                        ui.baudPreScalerHLD.hidden = false;
+                        ui.fracDivSel_M_HLD.hidden = false;
+                        ui.supFracDivSel_U_HLD.hidden = false;
+                        ui.baudRateHLD.hidden = true;
                         /** Calculate and Change Baud Value */
                         let config = soc.getDefaultConfig();
-                        inst.baudRateHLD = (config.sysClk/((16.0*inst.baudPreScalerHLD) + 16 + inst.fracDivSel_M_HLD)) | 0;
+                        inst.baudRateHLD = (inputFreq/((16.0*inst.baudPreScalerHLD) + 16 + inst.fracDivSel_M_HLD)) | 0;
 
                     } else {
-                        ui.baudPreScalerHLD.readOnly = true;
-                        ui.fracDivSel_M_HLD.readOnly = true;
-                        ui.supFracDivSel_U_HLD.readOnly = true;
-                        ui.baudRateHLD.readOnly = false;
+                        ui.baudPreScalerHLD.hidden = true;
+                        ui.fracDivSel_M_HLD.hidden = true;
+                        ui.supFracDivSel_U_HLD.hidden = true;
+                        ui.baudRateHLD.hidden = false;
                         /** Re Calculate and change in case of modification by user */
-                        let config = soc.getDefaultConfig();
-                        inst.baudPreScalerHLD = ((config.sysClk/(16.0*inst.baudRateHLD)) - 1) | 0;
-                        inst.fracDivSel_M_HLD = 16*((config.sysClk/(16.0*inst.baudRateHLD)) - (inst.baudPreScalerHLD + 1)) | 0;
+                        inst.baudPreScalerHLD = ((inputFreq/(16.0*inst.baudRateHLD)) - 1) | 0;
+                        inst.fracDivSel_M_HLD = 16*((inputFreq/(16.0*inst.baudRateHLD)) - (inst.baudPreScalerHLD + 1)) | 0;
                     }
                 },
             },
@@ -632,9 +635,8 @@ let configHLD = [
                 readOnly: false,
                 description: "Baud Rate",
                 onChange: function (inst, ui) {
-                    let config = soc.getDefaultConfig();
-                    inst.baudPreScalerHLD = ((config.sysClk/(16.0*inst.baudRateHLD)) - 1) | 0;
-                    inst.fracDivSel_M_HLD = 16*((config.sysClk/(16.0*inst.baudRateHLD)) - (inst.baudPreScalerHLD + 1)) | 0;
+                    inst.baudPreScalerHLD = (((inputFreq)/(16.0*inst.baudRateHLD)) - 1) | 0;
+                    inst.fracDivSel_M_HLD = 16*(((inputFreq)/(16.0*inst.baudRateHLD)) - (inst.baudPreScalerHLD + 1)) | 0;
                 },
             },
             {
@@ -643,12 +645,11 @@ let configHLD = [
                 description: "The 24-bit integer prescaler used to select the required baud rates.",
                 default: getDefaultPreScaler(),
                 hidden: true,
-                readOnly: true,
+                readOnly: false,
                 description: "Prescaler",
                 onChange: function (inst, ui) {
                     /** Calculate and Change Baud Value */
-                    let config = soc.getDefaultConfig();
-                    inst.baudRateHLD = (config.sysClk/((16.0*inst.baudPreScalerHLD) + 16 + inst.fracDivSel_M_HLD)) | 0;
+                    inst.baudRateHLD = (inputFreq/((16.0*inst.baudPreScalerHLD) + 16 + inst.fracDivSel_M_HLD)) | 0;
                 },
             },
             {
@@ -657,12 +658,11 @@ let configHLD = [
                 description: "The 4-bit fractional divider to refine the baud rate selection.",
                 default: getDefaultFracDiv(),
                 hidden: true,
-                readOnly: true,
+                readOnly: false,
                 description: "Fractional Divider",
                 onChange: function (inst, ui) {
                     /* Calculate and Change Baud Value */
-                    let config = soc.getDefaultConfig();
-                    inst.baudRateHLD = (config.sysClk/((16.0*inst.baudPreScalerHLD) + 16 + inst.fracDivSel_M_HLD)) | 0;
+                    inst.baudRateHLD = (inputFreq/((16.0*inst.baudPreScalerHLD) + 16 + inst.fracDivSel_M_HLD)) | 0;
                 },
             },
             {
@@ -670,7 +670,7 @@ let configHLD = [
                 displayName: "Super Fractional Divider",
                 default: 0,
                 hidden: true,
-                readOnly: true,
+                readOnly: false,
                 description: "Super Fractional Divider",
                 onChange: function (inst, ui) {
                     /** Calculate and Change Baud Value */
@@ -1062,11 +1062,11 @@ const hideAllHldConfigs = (ui) => {
 
 function getDefaultPreScaler() {
     let config = soc.getDefaultConfig();
-    return ((config.sysClk/(16.0 * 19200.0)) - 1) | 0;
+    return ((inputFreq/(16.0 * 19200.0)) - 1) | 0;
 }
 function getDefaultFracDiv() {
     let config = soc.getDefaultConfig();
-    return 16*((config.sysClk/(16.0*19200)) - (getDefaultPreScaler() + 1)) | 0;
+    return 16*((inputFreq/(16.0*19200)) - (getDefaultPreScaler() + 1)) | 0;
 }
 
 const setHldDefaultConfigs = (inst, ui) => {
@@ -1097,13 +1097,13 @@ const setHldDefaultConfigs = (inst, ui) => {
     ui.supFracDivSel_U_HLD.hidden = true
 
     if(inst.manualConfigBaudHLD === false) {
-        ui.baudPreScalerHLD.readOnly = true;
-        ui.fracDivSel_M_HLD.readOnly = true;
-        ui.supFracDivSel_U_HLD.readOnly = true;
+        ui.baudPreScalerHLD.hidden = true;
+        ui.fracDivSel_M_HLD.hidden = true;
+        ui.supFracDivSel_U_HLD.hidden = true;
     } else {
-        ui.baudPreScalerHLD.readOnly = false;
-        ui.fracDivSel_M_HLD.readOnly = false;
-        ui.supFracDivSel_U_HLD.readOnly = false;
+        ui.baudPreScalerHLD.hidden = false;
+        ui.fracDivSel_M_HLD.hidden = false;
+        ui.supFracDivSel_U_HLD.hidden = false;
     }
 
     inst.debugModeHLD = "LIN_HLD_DEBUG_COMPLETE";
@@ -1117,8 +1117,8 @@ const setHldDefaultConfigs = (inst, ui) => {
     inst.baudRateHLD = 19200;
     ui.baudRateHLD.hidden = false
 
-    ui.baudPreScalerHLD.hidden = false
-    ui.fracDivSel_M_HLD.hidden = false
+    ui.baudPreScalerHLD.hidden = true
+    ui.fracDivSel_M_HLD.hidden = true
 
     inst.enableParityHLD = true;
     ui.enableParityHLD.hidden = false;
@@ -1332,13 +1332,8 @@ function validate(instance, report) {
         let clockSrc = soc.getClkSource(linInstanceName)
         let clockRate = soc.getClkRate(linInstanceName)
 
-        if(!clockSrc_Freq_Map.hasOwnProperty(clockSrc) || clockRate !== clockSrc_Freq_Map[clockSrc]){
-            if(!clockSrc_Freq_Map.hasOwnProperty(clockSrc)){
-                report.logWarning(`Invalid clock source ${clockSrc} selected `, instance, "inputClkFreqHLD");
-            }
-            else{
-                report.logWarning(`Valid clock frequency for this clock source ${clockSrc} is ${clockSrc_Freq_Map[clockSrc]}`, instance, "inputClkFreqHLD");
-            }
+        if(!clockSrc_Freq_Map.hasOwnProperty(clockSrc)){
+            report.logWarning(`Invalid clock source ${clockSrc} selected `, instance, "inputClkFreqHLD");
         }
     }
 }

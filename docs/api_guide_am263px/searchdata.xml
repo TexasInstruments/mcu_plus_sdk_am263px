@@ -61876,651 +61876,651 @@
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00465</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00466</field>
     <field name="keywords"></field>
-    <field name="text">LIN_setMaximumBaudRate uint32_t base uint32_t clockVal DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_MBRSR CSL_LIN_MBRSR_MBR_MASK CSL_LIN_MBRSR_MBR_SHIFT clockVal U</field>
+    <field name="text">LIN_setMaximumBaudRate uint32_t base uint32_t clockVal uint32_t baudrate DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_MBRSR CSL_LIN_MBRSR_MBR_MASK CSL_LIN_MBRSR_MBR_SHIFT clockVal baudrate</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00487</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00493</field>
     <field name="keywords"></field>
     <field name="text">LIN_setMessageFiltering uint32_t base LIN_MessageFilter type DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_HGENCTRL_MASK CSL_LIN_SCIGCR1_HGENCTRL_SHIFT type</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00505</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00511</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableParity uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_PARITYENA_MASK CSL_LIN_SCIGCR1_PARITYENA_SHIFT CSL_TRUE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00523</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00529</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableParity uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_PARITYENA_MASK CSL_LIN_SCIGCR1_PARITYENA_SHIFT CSL_FALSE uint16_t</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00548</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00554</field>
     <field name="keywords"></field>
     <field name="text">LIN_generateParityID uint16_t identifier uint16_t p0 p1 parityIdentifier p0 identifier LIN_ID0 identifier LIN_ID1 U identifier LIN_ID2 U identifier LIN_ID4 U p1 identifier LIN_ID1 U identifier LIN_ID3 U identifier LIN_ID4 U identifier LIN_ID5 U parityIdentifier identifier p0 U p1 U parityIdentifier</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00574</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00580</field>
     <field name="keywords"></field>
     <field name="text">LIN_setIDByte uint32_t base uint16_t identifier DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_LINID CSL_LIN_LINID_IDBYTE_MASK CSL_LIN_LINID_IDBYTE_SHIFT identifier</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00594</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00600</field>
     <field name="keywords"></field>
     <field name="text">LIN_setIDResponderTask uint32_t base uint16_t identifier DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_LINID CSL_LIN_LINID_IDSLAVETASKBYTE_MASK CSL_LIN_LINID_IDSLAVETASKBYTE_SHIFT identifier</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00612</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00618</field>
     <field name="keywords"></field>
     <field name="text">LIN_sendWakeupSignal uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_LINTD0 CSL_LIN_LINTD0_TD0_MASK CSL_LIN_LINTD0_TD0_SHIFT uint16_t LIN_WAKEUP_KEY HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR2 CSL_LIN_SCIGCR2_POWERDOWN_MASK CSL_LIN_SCIGCR2_POWERDOWN_SHIFT CSL_TRUE HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR2 CSL_LIN_SCIGCR2_GENWU_MASK CSL_LIN_SCIGCR2_GENWU_SHIFT CSL_TRUE HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR2 CSL_LIN_SCIGCR2_POWERDOWN_MASK CSL_LIN_SCIGCR2_POWERDOWN_SHIFT CSL_FALSE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00647</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00653</field>
     <field name="keywords"></field>
     <field name="text">LIN_enterSleep uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR2 CSL_LIN_SCIGCR2_POWERDOWN_MASK CSL_LIN_SCIGCR2_POWERDOWN_SHIFT CSL_TRUE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00666</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00672</field>
     <field name="keywords"></field>
     <field name="text">LIN_sendChecksum uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR2 CSL_LIN_SCIGCR2_SC_MASK CSL_LIN_SCIGCR2_SC_SHIFT CSL_TRUE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00685</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00691</field>
     <field name="keywords"></field>
     <field name="text">LIN_triggerChecksumCompare uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR2 CSL_LIN_SCIGCR2_CC_MASK CSL_LIN_SCIGCR2_CC_SHIFT CSL_TRUE Bool</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00706</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00712</field>
     <field name="keywords"></field>
     <field name="text">LIN_isTxReady uint32_t base DebugP_assert LIN_isBaseValid base HW_RD_REG32_RAW base CSL_LIN_SCIFLR CSL_LIN_SCIFLR_TXRDY_MASK CSL_LIN_SCIFLR_TXRDY_MASK</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00729</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00735</field>
     <field name="keywords"></field>
     <field name="text">LIN_setFrameLength uint32_t base uint16_t length DebugP_assert LIN_isBaseValid base DebugP_assert length U length U HW_WR_FIELD32_RAW base CSL_LIN_SCIFORMAT CSL_LIN_SCIFORMAT_LENGTH_MASK CSL_LIN_SCIFORMAT_LENGTH_SHIFT uint32_t length uint32_t U</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00754</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00760</field>
     <field name="keywords"></field>
     <field name="text">LIN_setCommMode uint32_t base LIN_CommMode mode DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_COMMMODE_MASK CSL_LIN_SCIGCR1_COMMMODE_SHIFT uint16_t mode</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00774</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00780</field>
     <field name="keywords"></field>
     <field name="text">LIN_setTxMask uint32_t base uint16_t mask DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_LINMASK CSL_LIN_LINMASK_TXIDMASK_MASK CSL_LIN_LINMASK_TXIDMASK_SHIFT mask</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00794</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00800</field>
     <field name="keywords"></field>
     <field name="text">LIN_setRxMask uint32_t base uint16_t mask DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_LINMASK CSL_LIN_LINMASK_RXIDMASK_MASK CSL_LIN_LINMASK_RXIDMASK_SHIFT uint32_t mask uint16_t</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00813</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00819</field>
     <field name="keywords"></field>
     <field name="text">LIN_getTxMask uint32_t base DebugP_assert LIN_isBaseValid base HW_RD_FIELD32_RAW base CSL_LIN_LINMASK CSL_LIN_LINMASK_TXIDMASK_MASK CSL_LIN_LINMASK_TXIDMASK_SHIFT uint16_t</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00834</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00840</field>
     <field name="keywords"></field>
     <field name="text">LIN_getRxMask uint32_t base DebugP_assert LIN_isBaseValid base HW_RD_FIELD32_RAW base CSL_LIN_LINMASK CSL_LIN_LINMASK_RXIDMASK_MASK CSL_LIN_LINMASK_RXIDMASK_SHIFT Bool</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00855</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00861</field>
     <field name="keywords"></field>
     <field name="text">LIN_isRxReady uint32_t base DebugP_assert LIN_isBaseValid base HW_RD_FIELD32_RAW base CSL_LIN_SCIFLR CSL_LIN_SCIFLR_RXRDY_MASK CSL_LIN_SCIFLR_RXRDY_SHIFT uint16_t</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00875</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00881</field>
     <field name="keywords"></field>
     <field name="text">LIN_getRxIdentifier uint32_t base DebugP_assert LIN_isBaseValid base HW_RD_FIELD32_RAW base CSL_LIN_LINID CSL_LIN_LINID_RECEIVEDID_MASK CSL_LIN_LINID_RECEIVEDID_SHIFT Bool</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00896</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00902</field>
     <field name="keywords"></field>
     <field name="text">LIN_isTxMatch uint32_t base DebugP_assert LIN_isBaseValid base HW_RD_FIELD32_RAW base CSL_LIN_SCIFLR CSL_LIN_SCIFLR_IDTXFLAG_MASK CSL_LIN_SCIFLR_IDTXFLAG_SHIFT Bool</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00917</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00923</field>
     <field name="keywords"></field>
     <field name="text">LIN_isRxMatch uint32_t base DebugP_assert LIN_isBaseValid base HW_RD_FIELD32_RAW base CSL_LIN_SCIFLR CSL_LIN_SCIFLR_IDRXFLAG_MASK CSL_LIN_SCIFLR_IDRXFLAG_SHIFT</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l00960</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l00966</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableInterrupt uint32_t base uint32_t intFlags DebugP_assert LIN_isBaseValid base HW_WR_REG32_RAW base CSL_LIN_SCISETINT HW_RD_REG32_RAW base CSL_LIN_SCISETINT intFlags</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01003</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01009</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableInterrupt uint32_t base uint32_t intFlags DebugP_assert LIN_isBaseValid base HW_WR_REG32_RAW base CSL_LIN_SCICLEARINT intFlags</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01045</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01051</field>
     <field name="keywords"></field>
     <field name="text">LIN_clearInterruptStatus uint32_t base uint32_t intFlags DebugP_assert LIN_isBaseValid base HW_WR_REG32_RAW base CSL_LIN_SCIFLR intFlags</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01088</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01094</field>
     <field name="keywords"></field>
     <field name="text">LIN_setInterruptLevel0 uint32_t base uint32_t intFlags DebugP_assert LIN_isBaseValid base HW_WR_REG32_RAW base CSL_LIN_SCICLEARINTLVL intFlags</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01131</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01137</field>
     <field name="keywords"></field>
     <field name="text">LIN_setInterruptLevel1 uint32_t base uint32_t intFlags DebugP_assert LIN_isBaseValid base HW_WR_REG32_RAW base CSL_LIN_SCISETINTLVL HW_RD_REG32_RAW base CSL_LIN_SCISETINTLVL intFlags</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01158</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01164</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableModuleErrors uint32_t base uint32_t errors DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_IODFTENA_MASK CSL_LIN_IODFTCTRL_IODFTENA_SHIFT uint32_t LIN_IO_DFT_KEY HW_WR_REG32_RAW base CSL_LIN_IODFTCTRL HW_RD_REG32_RAW base CSL_LIN_IODFTCTRL errors HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_IODFTENA_MASK CSL_LIN_IODFTCTRL_IODFTENA_SHIFT uint32_t CSL_FALSE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01189</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01195</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableModuleErrors uint32_t base uint32_t errors DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_IODFTENA_MASK CSL_LIN_IODFTCTRL_IODFTENA_SHIFT uint32_t LIN_IO_DFT_KEY HW_WR_REG32_RAW base CSL_LIN_IODFTCTRL HW_RD_REG32_RAW base CSL_LIN_IODFTCTRL errors HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_IODFTENA_MASK CSL_LIN_IODFTCTRL_IODFTENA_SHIFT uint32_t CSL_FALSE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01217</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01223</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableAutomaticBaudrate uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_ADAPT_MASK CSL_LIN_SCIGCR1_ADAPT_SHIFT CSL_TRUE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01236</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01242</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableAutomaticBaudrate uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_ADAPT_MASK CSL_LIN_SCIGCR1_ADAPT_SHIFT CSL_FALSE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01257</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01263</field>
     <field name="keywords"></field>
     <field name="text">LIN_stopExtendedFrame uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_STOPEXTFRAME_MASK CSL_LIN_SCIGCR1_STOPEXTFRAME_SHIFT CSL_TRUE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01279</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01285</field>
     <field name="keywords"></field>
     <field name="text">LIN_setChecksumType uint32_t base LIN_ChecksumType type DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_CTYPE_MASK CSL_LIN_SCIGCR1_CTYPE_SHIFT type</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01312</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01318</field>
     <field name="keywords"></field>
     <field name="text">LIN_setSyncFields uint32_t base uint16_t syncBreak uint16_t delimiter DebugP_assert LIN_isBaseValid base DebugP_assert syncBreak U DebugP_assert delimiter U delimiter U HW_WR_FIELD32_RAW base CSL_LIN_LINCOMP CSL_LIN_LINCOMP_SDEL_MASK CSL_LIN_LINCOMP_SDEL_SHIFT delimiter U HW_WR_FIELD32_RAW base CSL_LIN_LINCOMP CSL_LIN_LINCOMP_SBREAK_MASK CSL_LIN_LINCOMP_SBREAK_SHIFT syncBreak</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01335</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01341</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableSCIMode uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK CSL_LIN_SCIGCR1_LINMODE_SHIFT CSL_FALSE HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_CLK_MASTER_MASK CSL_LIN_SCIGCR1_CLK_MASTER_SHIFT CSL_TRUE HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_TIMINGMODE_MASK CSL_LIN_SCIGCR1_TIMINGMODE_SHIFT CSL_TRUE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01359</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01365</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableSCIMode uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_CLK_MASTER_MASK CSL_LIN_SCIGCR1_CLK_MASTER_SHIFT CSL_FALSE HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_TIMINGMODE_MASK CSL_LIN_SCIGCR1_TIMINGMODE_SHIFT CSL_FALSE HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK CSL_LIN_SCIGCR1_LINMODE_SHIFT CSL_TRUE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01389</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01395</field>
     <field name="keywords"></field>
     <field name="text">LIN_setSCICommMode uint32_t base LIN_SCICommMode mode DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_COMMMODE_MASK CSL_LIN_SCIGCR1_COMMMODE_SHIFT mode</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01413</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01419</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableSCIParity uint32_t base LIN_SCIParityType parity DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_PARITYENA_MASK CSL_LIN_SCIGCR1_PARITYENA_SHIFT U HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_PARITY_MASK CSL_LIN_SCIGCR1_PARITY_SHIFT parity</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01436</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01442</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableSCIParity uint32_t base DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_PARITYENA_MASK CSL_LIN_SCIGCR1_PARITYENA_SHIFT U</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01460</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01466</field>
     <field name="keywords"></field>
     <field name="text">LIN_setSCIStopBits uint32_t base LIN_SCIStopBits number DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_STOP_MASK CSL_LIN_SCIGCR1_STOP_SHIFT number</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01485</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01491</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableSCISleepMode uint32_t base DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_SLEEP_MASK CSL_LIN_SCIGCR1_SLEEP_SHIFT CSL_TRUE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01506</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01512</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableSCISleepMode uint32_t base DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_SLEEP_MASK CSL_LIN_SCIGCR1_SLEEP_SHIFT CSL_FALSE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01530</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01536</field>
     <field name="keywords"></field>
     <field name="text">LIN_enterSCILowPower uint32_t base DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR2 CSL_LIN_SCIGCR2_POWERDOWN_MASK CSL_LIN_SCIGCR2_POWERDOWN_SHIFT CSL_TRUE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01550</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01556</field>
     <field name="keywords"></field>
     <field name="text">LIN_exitSCILowPower uint32_t base DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR2 CSL_LIN_SCIGCR2_POWERDOWN_MASK CSL_LIN_SCIGCR2_POWERDOWN_SHIFT CSL_FALSE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01573</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01579</field>
     <field name="keywords"></field>
     <field name="text">LIN_setSCICharLength uint32_t base uint16_t numBits DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U DebugP_assert numBits U numBits U HW_WR_FIELD32_RAW base CSL_LIN_SCIFORMAT CSL_LIN_SCIFORMAT_CHAR_MASK CSL_LIN_SCIFORMAT_CHAR_SHIFT uint32_t numBits U</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01598</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01604</field>
     <field name="keywords"></field>
     <field name="text">LIN_setSCIFrameLength uint32_t base uint16_t length DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U DebugP_assert length U length U HW_WR_FIELD32_RAW base CSL_LIN_SCIFORMAT CSL_LIN_SCIFORMAT_LENGTH_MASK CSL_LIN_SCIFORMAT_LENGTH_SHIFT uint32_t length U Bool</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01622</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01628</field>
     <field name="keywords"></field>
     <field name="text">LIN_isSCIDataAvailable uint32_t base DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_RD_REG32_RAW base CSL_LIN_SCIFLR CSL_LIN_SCIFLR_RXRDY_MASK CSL_LIN_SCIFLR_RXRDY_MASK Bool</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01644</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01650</field>
     <field name="keywords"></field>
     <field name="text">LIN_isSCISpaceAvailable uint32_t base DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_RD_REG32_RAW base CSL_LIN_SCIFLR CSL_LIN_SCIFLR_TXRDY_MASK CSL_LIN_SCIFLR_TXRDY_MASK uint16_t</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01676</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01682</field>
     <field name="keywords"></field>
     <field name="text">LIN_readSCICharNonBlocking uint32_t base Bool emulation DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U emulation HW_RD_REG32_RAW base CSL_LIN_SCIED CSL_LIN_SCIED_ED_MASK HW_RD_REG32_RAW base CSL_LIN_SCIRD CSL_LIN_SCIRD_RD_MASK uint16_t</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01708</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01714</field>
     <field name="keywords"></field>
     <field name="text">LIN_readSCICharBlocking uint32_t base Bool emulation DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U LIN_isSCIDataAvailable base emulation HW_RD_REG32_RAW base CSL_LIN_SCIED CSL_LIN_SCIED_ED_MASK HW_RD_REG32_RAW base CSL_LIN_SCIRD CSL_LIN_SCIRD_RD_MASK</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01740</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01746</field>
     <field name="keywords"></field>
     <field name="text">LIN_writeSCICharNonBlocking uint32_t base uint16_t data DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U DebugP_assert data CSL_LIN_SCITD_TD_MASK HW_WR_FIELD32_RAW base CSL_LIN_SCITD CSL_LIN_SCITD_TD_MASK CSL_LIN_SCITD_TD_SHIFT data</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01764</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01770</field>
     <field name="keywords"></field>
     <field name="text">LIN_writeSCICharBlocking uint32_t base uint16_t data DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U DebugP_assert data CSL_LIN_SCITD_TD_MASK LIN_isSCISpaceAvailable base HW_WR_FIELD32_RAW base CSL_LIN_SCITD CSL_LIN_SCITD_TD_MASK CSL_LIN_SCITD_TD_SHIFT data</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01800</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01806</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableSCIModuleErrors uint32_t base uint32_t errors DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_IODFTENA_MASK CSL_LIN_IODFTCTRL_IODFTENA_SHIFT LIN_IO_DFT_KEY HW_WR_REG32_RAW base CSL_LIN_IODFTCTRL HW_RD_REG32_RAW base CSL_LIN_IODFTCTRL errors HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_IODFTENA_MASK CSL_LIN_IODFTCTRL_IODFTENA_SHIFT CSL_FALSE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01833</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01839</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableSCIModuleErrors uint32_t base uint32_t errors DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_IODFTENA_MASK CSL_LIN_IODFTCTRL_IODFTENA_SHIFT LIN_IO_DFT_KEY HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL errors U CSL_FALSE HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_IODFTENA_MASK CSL_LIN_IODFTCTRL_IODFTENA_SHIFT CSL_FALSE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01878</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01884</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableSCIInterrupt uint32_t base uint32_t intFlags DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_WR_REG32_RAW base CSL_LIN_SCISETINT HW_RD_REG32_RAW base CSL_LIN_SCISETINT intFlags</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01917</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01923</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableSCIInterrupt uint32_t base uint32_t intFlags DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_WR_REG32_RAW base CSL_LIN_SCICLEARINT HW_RD_REG32_RAW base CSL_LIN_SCICLEARINT intFlags</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01955</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l01961</field>
     <field name="keywords"></field>
     <field name="text">LIN_clearSCIInterruptStatus uint32_t base uint32_t intFlags DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_WR_REG32_RAW base CSL_LIN_SCIFLR HW_RD_REG32_RAW base CSL_LIN_SCIFLR intFlags</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l01994</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02000</field>
     <field name="keywords"></field>
     <field name="text">LIN_setSCIInterruptLevel0 uint32_t base uint32_t intFlags DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_WR_REG32_RAW base CSL_LIN_SCICLEARINTLVL HW_RD_REG32_RAW base CSL_LIN_SCICLEARINTLVL intFlags</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02032</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02038</field>
     <field name="keywords"></field>
     <field name="text">LIN_setSCIInterruptLevel1 uint32_t base uint32_t intFlags DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_WR_REG32_RAW base CSL_LIN_SCISETINTLVL HW_RD_REG32_RAW base CSL_LIN_SCISETINTLVL intFlags Bool</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02055</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02061</field>
     <field name="keywords"></field>
     <field name="text">LIN_isSCIReceiverIdle uint32_t base DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_RD_REG32_RAW base CSL_LIN_SCIFLR CSL_LIN_SCIFLR_IDLE_MASK U Bool</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02079</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02085</field>
     <field name="keywords"></field>
     <field name="text">LIN_getSCITxFrameType uint32_t base DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_RD_REG32_RAW base CSL_LIN_SCIFLR CSL_LIN_SCIFLR_WAKEUP_MASK CSL_LIN_SCIFLR_WAKEUP_MASK Bool</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02103</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02109</field>
     <field name="keywords"></field>
     <field name="text">LIN_getSCIRxFrameType uint32_t base DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_RD_REG32_RAW base CSL_LIN_SCIFLR CSL_LIN_SCIFLR_RXWAKE_MASK CSL_LIN_SCIFLR_RXWAKE_MASK Bool</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02126</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02132</field>
     <field name="keywords"></field>
     <field name="text">LIN_isSCIBreakDetected uint32_t base DebugP_assert LIN_isBaseValid base DebugP_assert HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LINMODE_MASK U HW_RD_REG32_RAW base CSL_LIN_SCIFLR CSL_LIN_SCIFLR_BRKDT_MASK CSL_LIN_SCIFLR_BRKDT_MASK</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02149</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02155</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableModule uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR0 CSL_LIN_SCIGCR0_RESET_MASK CSL_LIN_SCIGCR0_RESET_SHIFT CSL_TRUE HW_WR_FIELD32_RAW base CSL_LIN_SCIPIO0 CSL_LIN_SCIPIO0_RXFUNC_MASK CSL_LIN_SCIPIO0_RXFUNC_SHIFT CSL_TRUE HW_WR_FIELD32_RAW base CSL_LIN_SCIPIO0 CSL_LIN_SCIPIO0_TXFUNC_MASK CSL_LIN_SCIPIO0_TXFUNC_SHIFT CSL_TRUE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02174</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02180</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableModule uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIPIO0 CSL_LIN_SCIPIO0_RXFUNC_MASK CSL_LIN_SCIPIO0_RXFUNC_SHIFT CSL_FALSE HW_WR_FIELD32_RAW base CSL_LIN_SCIPIO0 CSL_LIN_SCIPIO0_TXFUNC_MASK CSL_LIN_SCIPIO0_TXFUNC_SHIFT CSL_FALSE HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR0 CSL_LIN_SCIGCR0_RESET_MASK CSL_LIN_SCIGCR0_RESET_SHIFT CSL_FALSE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02203</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02209</field>
     <field name="keywords"></field>
     <field name="text">LIN_setBaudRatePrescaler uint32_t base uint32_t prescaler uint32_t divider DebugP_assert LIN_isBaseValid base DebugP_assert prescaler CSL_LIN_BRSR_SCI_LIN_PSL_MASK CSL_LIN_BRSR_SCI_LIN_PSH_MASK DebugP_assert divider CSL_LIN_BRSR_M_MASK CSL_LIN_BRSR_M_SHIFT HW_WR_REG32_RAW base CSL_LIN_BRSR prescaler divider CSL_LIN_BRSR_M_SHIFT</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02225</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02231</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableDataTransmitter uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_REG32_RAW base CSL_LIN_SCIGCR1 HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_TXENA_MASK</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02244</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02250</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableDataTransmitter uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_REG32_RAW base CSL_LIN_SCIGCR1 HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_TXENA_MASK</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02263</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02269</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableDataReceiver uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_REG32_RAW base CSL_LIN_SCIGCR1 HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_RXENA_MASK</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02282</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02288</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableDataReceiver uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_REG32_RAW base CSL_LIN_SCIGCR1 HW_RD_REG32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_RXENA_MASK</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02305</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02311</field>
     <field name="keywords"></field>
     <field name="text">LIN_performSoftwareReset uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_SWNRST_MASK CSL_LIN_SCIGCR1_SWNRST_SHIFT CSL_TRUE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02328</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02334</field>
     <field name="keywords"></field>
     <field name="text">LIN_enterSoftwareReset uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_SWNRST_MASK CSL_LIN_SCIGCR1_SWNRST_SHIFT CSL_FALSE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02349</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02355</field>
     <field name="keywords"></field>
     <field name="text">LIN_exitSoftwareReset uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_SWNRST_MASK CSL_LIN_SCIGCR1_SWNRST_SHIFT CSL_TRUE Bool</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02369</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02375</field>
     <field name="keywords"></field>
     <field name="text">LIN_isBusBusy uint32_t base DebugP_assert LIN_isBaseValid base HW_RD_REG32_RAW base CSL_LIN_SCIFLR CSL_LIN_SCIFLR_BUSY_MASK CSL_LIN_SCIFLR_BUSY_MASK Bool</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02389</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02395</field>
     <field name="keywords"></field>
     <field name="text">LIN_isTxBufferEmpty uint32_t base DebugP_assert LIN_isBaseValid base HW_RD_REG32_RAW base CSL_LIN_SCIFLR CSL_LIN_SCIFLR_TXEMPTY_MASK CSL_LIN_SCIFLR_TXEMPTY_MASK</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02419</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02425</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableExtLoopback uint32_t base LIN_LoopbackType loopbackType LIN_AnalogLoopback path DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_IODFTENA_MASK CSL_LIN_IODFTCTRL_IODFTENA_SHIFT LIN_IO_DFT_KEY HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_LPBENA_MASK CSL_LIN_IODFTCTRL_LPBENA_SHIFT loopbackType HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_RXPENA_MASK CSL_LIN_IODFTCTRL_RXPENA_SHIFT path</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02447</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02453</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableExtLoopback uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_LPBENA_MASK CSL_LIN_IODFTCTRL_LPBENA_SHIFT CSL_FALSE HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_RXPENA_MASK CSL_LIN_IODFTCTRL_RXPENA_SHIFT CSL_FALSE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02469</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02475</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableIntLoopback uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LOOPBACK_MASK CSL_LIN_SCIGCR1_LOOPBACK_SHIFT CSL_TRUE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02488</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02494</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableIntLoopback uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_LOOPBACK_MASK CSL_LIN_SCIGCR1_LOOPBACK_SHIFT CSL_FALSE uint32_t</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02531</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02537</field>
     <field name="keywords"></field>
     <field name="text">LIN_getInterruptStatus uint32_t base DebugP_assert LIN_isBaseValid base HW_RD_REG32_RAW base CSL_LIN_SCIFLR uint32_t</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02552</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02558</field>
     <field name="keywords"></field>
     <field name="text">LIN_getInterruptLevel uint32_t base DebugP_assert LIN_isBaseValid base HW_RD_REG32_RAW base CSL_LIN_SCISETINTLVL uint16_t</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02597</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02603</field>
     <field name="keywords"></field>
     <field name="text">LIN_getInterruptLine0Offset uint32_t base DebugP_assert LIN_isBaseValid base HW_RD_REG32_RAW base CSL_LIN_SCIINTVECT0 CSL_LIN_SCIINTVECT0_INTVECT0_MASK uint16_t</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02642</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02648</field>
     <field name="keywords"></field>
     <field name="text">LIN_getInterruptLine1Offset uint32_t base DebugP_assert LIN_isBaseValid base HW_RD_REG32_RAW base CSL_LIN_SCIINTVECT1 CSL_LIN_SCIINTVECT1_INTVECT1_MASK</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02660</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02666</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableMultibufferMode uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_MBUFMODE_MASK CSL_LIN_SCIGCR1_MBUFMODE_SHIFT CSL_TRUE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02678</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02684</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableMultibufferMode uint32_t base DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_MBUFMODE_MASK CSL_LIN_SCIGCR1_MBUFMODE_SHIFT CSL_FALSE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02701</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02707</field>
     <field name="keywords"></field>
     <field name="text">LIN_setTransmitDelay uint32_t base uint16_t delay DebugP_assert LIN_isBaseValid base DebugP_assert delay U HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_IODFTENA_MASK CSL_LIN_IODFTCTRL_IODFTENA_SHIFT LIN_IO_DFT_KEY HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_TXSHIFT_MASK CSL_LIN_IODFTCTRL_TXSHIFT_SHIFT delay HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_IODFTENA_MASK CSL_LIN_IODFTCTRL_IODFTENA_SHIFT CSL_FALSE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02734</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02740</field>
     <field name="keywords"></field>
     <field name="text">LIN_setPinSampleMask uint32_t base LIN_PinSampleMask mask DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_IODFTENA_MASK CSL_LIN_IODFTCTRL_IODFTENA_SHIFT LIN_IO_DFT_KEY HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_PINSAMPLEMASK_MASK CSL_LIN_IODFTCTRL_PINSAMPLEMASK_SHIFT mask HW_WR_FIELD32_RAW base CSL_LIN_IODFTCTRL CSL_LIN_IODFTCTRL_IODFTENA_MASK CSL_LIN_IODFTCTRL_IODFTENA_SHIFT CSL_FALSE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02765</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02771</field>
     <field name="keywords"></field>
     <field name="text">LIN_setDebugSuspendMode uint32_t base LIN_DebugMode mode DebugP_assert LIN_isBaseValid base HW_WR_FIELD32_RAW base CSL_LIN_SCIGCR1 CSL_LIN_SCIGCR1_CONT_MASK CSL_LIN_SCIGCR1_CONT_SHIFT mode</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02789</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02795</field>
     <field name="keywords"></field>
     <field name="text">LIN_enableGlobalInterrupt uint32_t base LIN_InterruptLine line DebugP_assert LIN_isBaseValid base HW_WR_REG32_RAW base CSL_LIN_LIN_GLB_INT_EN HW_RD_REG32_RAW base CSL_LIN_LIN_GLB_INT_EN CSL_LIN_LIN_GLB_INT_FLG_INT0_FLG_MASK uint16_t line</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02812</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02818</field>
     <field name="keywords"></field>
     <field name="text">LIN_disableGlobalInterrupt uint32_t base LIN_InterruptLine line DebugP_assert LIN_isBaseValid base HW_WR_REG32_RAW base CSL_LIN_LIN_GLB_INT_EN HW_RD_REG32_RAW base CSL_LIN_LIN_GLB_INT_EN CSL_LIN_LIN_GLB_INT_FLG_INT0_FLG_MASK uint16_t line</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02835</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02841</field>
     <field name="keywords"></field>
     <field name="text">LIN_clearGlobalInterruptStatus uint32_t base LIN_InterruptLine line DebugP_assert LIN_isBaseValid base HW_WR_REG32_RAW base CSL_LIN_LIN_GLB_INT_CLR CSL_LIN_LIN_GLB_INT_FLG_INT0_FLG_MASK uint16_t line Bool</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02860</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02866</field>
     <field name="keywords"></field>
     <field name="text">LIN_getGlobalInterruptStatus uint32_t base LIN_InterruptLine line DebugP_assert LIN_isBaseValid base HW_RD_REG32_RAW base CSL_LIN_LIN_GLB_INT_FLG CSL_LIN_LIN_GLB_INT_FLG_INT0_FLG_MASK uint16_t line CSL_LIN_LIN_GLB_INT_FLG_INT0_FLG_MASK uint16_t line Bool</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">lin.h</field>
-    <field name="url">lin_2v0_2lin_8h_source.html#l02883</field>
+    <field name="url">lin_2v0_2lin_8h_source.html#l02889</field>
     <field name="keywords"></field>
     <field name="text">LIN_getPinStatus uint32_t base LIN_PinType pin DebugP_assert LIN_isBaseValid base HW_RD_REG32_RAW base CSL_LIN_SCIPIO2 pin pin</field>
   </doc>
@@ -160961,10 +160961,10 @@
   <doc>
     <field name="type">function</field>
     <field name="name">LIN_setMaximumBaudRate</field>
-    <field name="args">(uint32_t base, uint32_t clockVal)</field>
-    <field name="url">group__DRV__LIN__MODULE.html#ga498db432f87568112ee5ab6f942adf8a</field>
+    <field name="args">(uint32_t base, uint32_t clockVal, uint32_t baudrate)</field>
+    <field name="url">group__DRV__LIN__MODULE.html#ga3bf4b5544353667af01bc3a07fb647f8</field>
     <field name="keywords">LIN_setMaximumBaudRate LIN_setMaximumBaudRate</field>
-    <field name="text">Set Maximum Baud Rate Prescaler Set Maximum Baud Rate Prescaler base is the base address of the LIN commander clockVal is the device system clock Hz In LIN mode only this function is used to set the maximum baud rate prescaler used during synchronization phase of a responder module if the ADAPT bit is set The maximum baud rate prescaler is used by the wakeup and idle timer counters for a constant 4 second expiration time relative to a 2 0 kHz rate Use LIN_enableAutomaticBaudrate() to set the ADAPT bit and enable automatic bit rate mod detection</field>
+    <field name="text">Set Maximum Baud Rate Prescaler Set Maximum Baud Rate Prescaler base is the base address of the LIN commander clockVal is the device system clock Hz baudrate is the device baud rate In LIN mode only this function is used to set the maximum baud rate prescaler used during synchronization phase of a responder module if the ADAPT bit is set The maximum baud rate prescaler is used by the wakeup and idle timer counters for a constant 4 second expiration time relative to a 2 0 kHz rate Use LIN_enableAutomaticBaudrate() to set the ADAPT bit and enable automatic bit rate mod detection</field>
   </doc>
   <doc>
     <field name="type">function</field>
@@ -161735,6 +161735,20 @@
     <field name="name">lin_loopback_polling.md</field>
     <field name="url">lin__loopback__polling_8md.html</field>
     <field name="keywords">lin_loopback_polling.md</field>
+    <field name="text"></field>
+  </doc>
+  <doc>
+    <field name="type">file</field>
+    <field name="name">lin_responder_lld.md</field>
+    <field name="url">lin__responder__lld_8md.html</field>
+    <field name="keywords">lin_responder_lld.md</field>
+    <field name="text"></field>
+  </doc>
+  <doc>
+    <field name="type">file</field>
+    <field name="name">lin_responder_read_adapt_baud_hld.md</field>
+    <field name="url">lin__responder__read__adapt__baud__hld_8md.html</field>
+    <field name="keywords">lin_responder_read_adapt_baud_hld.md</field>
     <field name="text"></field>
   </doc>
   <doc>
@@ -205144,7 +205158,7 @@
     <field name="name">EXAMPLES::EXAMPLES_DRIVERS</field>
     <field name="url">EXAMPLES_DRIVERS.html</field>
     <field name="keywords"></field>
-    <field name="text">This page lists all the examples related to usage of SOC and board peripheral drivers ADC ADC Burst Mode Oversampling ADC Burst Mode EPWM ADC Differential Mode ADC Early Interrupt Offset ADC High Priority SOC ADC Multiple SOC EPWM ADC PPB Delay ADC PPB Limits ADC PPB Offset ADC PPB EPWM Trip ADC SOC Continuous DMA ADC SOC Continuous ADC SOC ECAP ADC SOC RTI ADC SOC EPWM ADC SOC Oversampling ADC SOC software ADC SOC software sync ADC Software Interleaved Averaging ADC Global Force ADC DAC Loopback ADC Alternate DMA trigger ADC Open Shorts Detection ADC Safety Checker ADC Trigger Repeater Oversampling ADC Trigger Repeater Undersampling CMPSS CMPSS Asynchronous trip CMPSS Digital Filter trip CMPSS Calibration CMPSS Diode Emulation DAC DAC constant voltage DAC Synced by EPWM DAC Ramp Wave DAC Random Voltage DAC Sine DMA DAC Sine Wave DAC Square wave ECAP ECAP APWM mode ECAP APWM Phase Shift ECAP Capture Pwm ECAP EDMA Example ECAP Signal Monitoring Example EDMA EDMA Chain Transfer EDMA Error Interrupt EDMA Interrupt Transfer EDMA Link Transfer EDMA MultiMem Transfer EDMA Polled Transfer EPWM EPWM HR duty cycle EPWM Configure Signal API usage EPWM trip zone EPWM DMA EPWM Synchronization EPWM valley switching EPWM Hr Updown EPWM protection solution using PRU EPWM Minimum Deadband EPWM Deadband EPWM Chopper EPWM Illegal Combo Logic EPWM HR Deadband SFO EPWM HR Phase Shift SFO EPWM HR duty cycle SFO EPWM UP-Count Action Qualifier EPWM UPDOWN-Count Action Qualifier EPWM Global Load and Link Example EPWM Digital counter compare capture EPWM Diode Emulation EPWM XCMP Multiple Edges EPWM XCMP EDMA EQEP EQEP frequency measurement EQEP Position Speed EQEP Speed Direction EQEP Frequency Calculation EQEP CW/CCW Example FSI FSI Loopback Dma FSI Loopback Interrupt FSI Loopback Polling FSI HLD Loopback Dma FSI HLD Loopback Interrupt FSI HLD Loopback Polling GPIO GPIO Input Interrupt GPIO LED Blink GPIO MULTI LED Blink HSMCLIENT HSM Services Example MPU Firewall Service DEMO I2C I2C Led Blink I2C Read I2C Memory Read I2C Temperature Read I2C Led Blink Interrupt LLD I2C Led Blink Polling LLD I2C Led Read Write LLD I2C Memory Read Interrupt LLD I2C Memory Read Polling LLD I2C Temperature Interrupt LLD I2C Temperature Polling LLD I2C Slave Transfer IPC IPC Notify Echo IPC Notify Echo Example With OptiShare IPC RP Message Echo IPC RP Message Echo Callback IPC SafeIPC Echo IPC Shared Memory Mutex using Spinlock LIN LIN Internal Loopback Interrupt LIN SCI Internal Loopback Interrupt LIN SCI DMA Loopback LIN Internal Loopback Polling LIN External Commander Transmit LIN Commander Write HLD LIN Commander Read HLD LIN Responder Write HLD LIN Responder Read HLD MCAN MCAN External Read Write MCAN Loopback Interrupt MCAN Loopback Polling MCAN Loopback DMA CANFD Loopback DMA CANFD Loopback Polling CANFD Loopback Interrupt CANFD External Read Write CANFD Loopback Interrupt MCSPI MCSPI External Loopback MCSPI Loopback MCSPI Loopback DMA MCSPI Performance 8 Bit MCSPI Performance 3 2 Bit MCSPI Loopback DMA LLD MCSPI Loopback Interrupt LLD MCSPI Loopback Polling LLD MCSPI Loopback Turbo Mode MCSPI Loopback Multi Instances Multi channels LLD MMCSD MMCSD RAW IO MMCSD FILE IO MMCSD RAW IO SD INTR LLD MMCSD RAW IO SD LLD OSPI OSPI Flash IO OSPI Flash File IO OSPI Flash DMA OSPI Flash Diagnostic OSPI Flash INTERRUPT OSPI Nand Flash IO OSPI Flash Diagnostic LLD OSPI Flash DMA LLD OSPI Flash INTERRUPT LLD OSPI Graph Plotter OSPI Flash XIP RL2 Example FLC Example RAT Example Swap To Region B Using FOTA Agent FSS Switch To B PMIC PMIC ESM Level mode example PMIC ESM pwm mode example PMIC Q A watchdog interrupt example PMIC Q A watchdog reset example PMIC user register configuration example PMU PMU Multievent RTI RTI LED Blink RESOLVER Resolver Angle and Velocity resolution example Resolver Diagnostics example SDFM SDFM EPWM sync CPU read SDFM Filter sync DMA read SDFM Filter sync CPU read SDFM single channel filter sync CPU read SDFM ECAP Loop Back Example SPINLOCK Spinlock Example TMU TMU Operations and Benchmarking TMU 4 Cores Support TMU Context Save and Restore TMU PARK TRANSFORM UART UART Echo UART Echo DMA UART Echo Callback UART Echo Low Latency Interrupt UART Echo Low Latency Polling UART Echo DMA LLD UART Echo Interrupt LLD UART Echo Polling LLD WATCHDOG Watchdog interrupt mode Watchdog reset mode SOC and Board Peripheral Drivers SOC and Board Peripheral Drivers This page lists all the examples related to usage of SOC and board peripheral drivers ADC ADC Burst Mode Oversampling ADC Burst Mode EPWM ADC Differential Mode ADC Early Interrupt Offset ADC High Priority SOC ADC Multiple SOC EPWM ADC PPB Delay ADC PPB Limits ADC PPB Offset ADC PPB EPWM Trip ADC SOC Continuous DMA ADC SOC Continuous ADC SOC ECAP ADC SOC RTI ADC SOC EPWM ADC SOC Oversampling ADC SOC software ADC SOC software sync ADC Software Interleaved Averaging ADC Global Force ADC DAC Loopback ADC Alternate DMA trigger ADC Open Shorts Detection ADC Safety Checker ADC Trigger Repeater Oversampling ADC Trigger Repeater Undersampling CMPSS CMPSS Asynchronous trip CMPSS Digital Filter trip CMPSS Calibration CMPSS Diode Emulation DAC DAC constant voltage DAC Synced by EPWM DAC Ramp Wave DAC Random Voltage DAC Sine DMA DAC Sine Wave DAC Square wave ECAP ECAP APWM mode ECAP APWM Phase Shift ECAP Capture Pwm ECAP EDMA Example ECAP Signal Monitoring Example EDMA EDMA Chain Transfer EDMA Error Interrupt EDMA Interrupt Transfer EDMA Link Transfer EDMA MultiMem Transfer EDMA Polled Transfer EPWM EPWM HR duty cycle EPWM Configure Signal API usage EPWM trip zone EPWM DMA EPWM Synchronization EPWM valley switching EPWM Hr Updown EPWM protection solution using PRU EPWM Minimum Deadband EPWM Deadband EPWM Chopper EPWM Illegal Combo Logic EPWM HR Deadband SFO EPWM HR Phase Shift SFO EPWM HR duty cycle SFO EPWM UP-Count Action Qualifier EPWM UPDOWN-Count Action Qualifier EPWM Global Load and Link Example EPWM Digital counter compare capture EPWM Diode Emulation EPWM XCMP Multiple Edges EPWM XCMP EDMA EQEP EQEP frequency measurement EQEP Position Speed EQEP Speed Direction EQEP Frequency Calculation EQEP CW/CCW Example FSI FSI Loopback Dma FSI Loopback Interrupt FSI Loopback Polling FSI HLD Loopback Dma FSI HLD Loopback Interrupt FSI HLD Loopback Polling GPIO GPIO Input Interrupt GPIO LED Blink GPIO MULTI LED Blink HSMCLIENT HSM Services Example MPU Firewall Service DEMO I2C I2C Led Blink I2C Read I2C Memory Read I2C Temperature Read I2C Led Blink Interrupt LLD I2C Led Blink Polling LLD I2C Led Read Write LLD I2C Memory Read Interrupt LLD I2C Memory Read Polling LLD I2C Temperature Interrupt LLD I2C Temperature Polling LLD I2C Slave Transfer IPC IPC Notify Echo IPC Notify Echo Example With OptiShare IPC RP Message Echo IPC RP Message Echo Callback IPC SafeIPC Echo IPC Shared Memory Mutex using Spinlock LIN LIN Internal Loopback Interrupt LIN SCI Internal Loopback Interrupt LIN SCI DMA Loopback LIN Internal Loopback Polling LIN External Commander Transmit LIN Commander Write HLD LIN Commander Read HLD LIN Responder Write HLD LIN Responder Read HLD MCAN MCAN External Read Write MCAN Loopback Interrupt MCAN Loopback Polling MCAN Loopback DMA CANFD Loopback DMA CANFD Loopback Polling CANFD Loopback Interrupt CANFD External Read Write CANFD Loopback Interrupt MCSPI MCSPI External Loopback MCSPI Loopback MCSPI Loopback DMA MCSPI Performance 8 Bit MCSPI Performance 3 2 Bit MCSPI Loopback DMA LLD MCSPI Loopback Interrupt LLD MCSPI Loopback Polling LLD MCSPI Loopback Turbo Mode MCSPI Loopback Multi Instances Multi channels LLD MMCSD MMCSD RAW IO MMCSD FILE IO MMCSD RAW IO SD INTR LLD MMCSD RAW IO SD LLD OSPI OSPI Flash IO OSPI Flash File IO OSPI Flash DMA OSPI Flash Diagnostic OSPI Flash INTERRUPT OSPI Nand Flash IO OSPI Flash Diagnostic LLD OSPI Flash DMA LLD OSPI Flash INTERRUPT LLD OSPI Graph Plotter OSPI Flash XIP RL2 Example FLC Example RAT Example Swap To Region B Using FOTA Agent FSS Switch To B PMIC PMIC ESM Level mode example PMIC ESM pwm mode example PMIC Q A watchdog interrupt example PMIC Q A watchdog reset example PMIC user register configuration example PMU PMU Multievent RTI RTI LED Blink RESOLVER Resolver Angle and Velocity resolution example Resolver Diagnostics example SDFM SDFM EPWM sync CPU read SDFM Filter sync DMA read SDFM Filter sync CPU read SDFM single channel filter sync CPU read SDFM ECAP Loop Back Example SPINLOCK Spinlock Example TMU TMU Operations and Benchmarking TMU 4 Cores Support TMU Context Save and Restore TMU PARK TRANSFORM UART UART Echo UART Echo DMA UART Echo Callback UART Echo Low Latency Interrupt UART Echo Low Latency Polling UART Echo DMA LLD UART Echo Interrupt LLD UART Echo Polling LLD WATCHDOG Watchdog interrupt mode Watchdog reset mode</field>
+    <field name="text">This page lists all the examples related to usage of SOC and board peripheral drivers ADC ADC Burst Mode Oversampling ADC Burst Mode EPWM ADC Differential Mode ADC Early Interrupt Offset ADC High Priority SOC ADC Multiple SOC EPWM ADC PPB Delay ADC PPB Limits ADC PPB Offset ADC PPB EPWM Trip ADC SOC Continuous DMA ADC SOC Continuous ADC SOC ECAP ADC SOC RTI ADC SOC EPWM ADC SOC Oversampling ADC SOC software ADC SOC software sync ADC Software Interleaved Averaging ADC Global Force ADC DAC Loopback ADC Alternate DMA trigger ADC Open Shorts Detection ADC Safety Checker ADC Trigger Repeater Oversampling ADC Trigger Repeater Undersampling CMPSS CMPSS Asynchronous trip CMPSS Digital Filter trip CMPSS Calibration CMPSS Diode Emulation DAC DAC constant voltage DAC Synced by EPWM DAC Ramp Wave DAC Random Voltage DAC Sine DMA DAC Sine Wave DAC Square wave ECAP ECAP APWM mode ECAP APWM Phase Shift ECAP Capture Pwm ECAP EDMA Example ECAP Signal Monitoring Example EDMA EDMA Chain Transfer EDMA Error Interrupt EDMA Interrupt Transfer EDMA Link Transfer EDMA MultiMem Transfer EDMA Polled Transfer EPWM EPWM HR duty cycle EPWM Configure Signal API usage EPWM trip zone EPWM DMA EPWM Synchronization EPWM valley switching EPWM Hr Updown EPWM protection solution using PRU EPWM Minimum Deadband EPWM Deadband EPWM Chopper EPWM Illegal Combo Logic EPWM HR Deadband SFO EPWM HR Phase Shift SFO EPWM HR duty cycle SFO EPWM UP-Count Action Qualifier EPWM UPDOWN-Count Action Qualifier EPWM Global Load and Link Example EPWM Digital counter compare capture EPWM Diode Emulation EPWM XCMP Multiple Edges EPWM XCMP EDMA EQEP EQEP frequency measurement EQEP Position Speed EQEP Speed Direction EQEP Frequency Calculation EQEP CW/CCW Example FSI FSI Loopback Dma FSI Loopback Interrupt FSI Loopback Polling FSI HLD Loopback Dma FSI HLD Loopback Interrupt FSI HLD Loopback Polling GPIO GPIO Input Interrupt GPIO LED Blink GPIO MULTI LED Blink HSMCLIENT HSM Services Example MPU Firewall Service DEMO I2C I2C Led Blink I2C Read I2C Memory Read I2C Temperature Read I2C Led Blink Interrupt LLD I2C Led Blink Polling LLD I2C Led Read Write LLD I2C Memory Read Interrupt LLD I2C Memory Read Polling LLD I2C Temperature Interrupt LLD I2C Temperature Polling LLD I2C Slave Transfer IPC IPC Notify Echo IPC Notify Echo Example With OptiShare IPC RP Message Echo IPC RP Message Echo Callback IPC SafeIPC Echo IPC Shared Memory Mutex using Spinlock LIN LIN Internal Loopback Interrupt LIN SCI Internal Loopback Interrupt LIN SCI DMA Loopback LIN Internal Loopback Polling LIN External Commander Transmit LIN Commander Write HLD LIN Commander Read HLD LIN Responder Write HLD LIN Responder Read HLD LIN Responder Read Adapt Baud Rate HLD LIN Responder LLD MCAN MCAN External Read Write MCAN Loopback Interrupt MCAN Loopback Polling MCAN Loopback DMA CANFD Loopback DMA CANFD Loopback Polling CANFD Loopback Interrupt CANFD External Read Write CANFD Loopback Interrupt MCSPI MCSPI External Loopback MCSPI Loopback MCSPI Loopback DMA MCSPI Performance 8 Bit MCSPI Performance 3 2 Bit MCSPI Loopback DMA LLD MCSPI Loopback Interrupt LLD MCSPI Loopback Polling LLD MCSPI Loopback Turbo Mode MCSPI Loopback Multi Instances Multi channels LLD MMCSD MMCSD RAW IO MMCSD FILE IO MMCSD RAW IO SD INTR LLD MMCSD RAW IO SD LLD OSPI OSPI Flash IO OSPI Flash File IO OSPI Flash DMA OSPI Flash Diagnostic OSPI Flash INTERRUPT OSPI Nand Flash IO OSPI Flash Diagnostic LLD OSPI Flash DMA LLD OSPI Flash INTERRUPT LLD OSPI Graph Plotter OSPI Flash XIP RL2 Example FLC Example RAT Example Swap To Region B Using FOTA Agent FSS Switch To B PMIC PMIC ESM Level mode example PMIC ESM pwm mode example PMIC Q A watchdog interrupt example PMIC Q A watchdog reset example PMIC user register configuration example PMU PMU Multievent RTI RTI LED Blink RESOLVER Resolver Angle and Velocity resolution example Resolver Diagnostics example SDFM SDFM EPWM sync CPU read SDFM Filter sync DMA read SDFM Filter sync CPU read SDFM single channel filter sync CPU read SDFM ECAP Loop Back Example SPINLOCK Spinlock Example TMU TMU Operations and Benchmarking TMU 4 Cores Support TMU Context Save and Restore TMU PARK TRANSFORM UART UART Echo UART Echo DMA UART Echo Callback UART Echo Low Latency Interrupt UART Echo Low Latency Polling UART Echo DMA LLD UART Echo Interrupt LLD UART Echo Polling LLD WATCHDOG Watchdog interrupt mode Watchdog reset mode SOC and Board Peripheral Drivers SOC and Board Peripheral Drivers This page lists all the examples related to usage of SOC and board peripheral drivers ADC ADC Burst Mode Oversampling ADC Burst Mode EPWM ADC Differential Mode ADC Early Interrupt Offset ADC High Priority SOC ADC Multiple SOC EPWM ADC PPB Delay ADC PPB Limits ADC PPB Offset ADC PPB EPWM Trip ADC SOC Continuous DMA ADC SOC Continuous ADC SOC ECAP ADC SOC RTI ADC SOC EPWM ADC SOC Oversampling ADC SOC software ADC SOC software sync ADC Software Interleaved Averaging ADC Global Force ADC DAC Loopback ADC Alternate DMA trigger ADC Open Shorts Detection ADC Safety Checker ADC Trigger Repeater Oversampling ADC Trigger Repeater Undersampling CMPSS CMPSS Asynchronous trip CMPSS Digital Filter trip CMPSS Calibration CMPSS Diode Emulation DAC DAC constant voltage DAC Synced by EPWM DAC Ramp Wave DAC Random Voltage DAC Sine DMA DAC Sine Wave DAC Square wave ECAP ECAP APWM mode ECAP APWM Phase Shift ECAP Capture Pwm ECAP EDMA Example ECAP Signal Monitoring Example EDMA EDMA Chain Transfer EDMA Error Interrupt EDMA Interrupt Transfer EDMA Link Transfer EDMA MultiMem Transfer EDMA Polled Transfer EPWM EPWM HR duty cycle EPWM Configure Signal API usage EPWM trip zone EPWM DMA EPWM Synchronization EPWM valley switching EPWM Hr Updown EPWM protection solution using PRU EPWM Minimum Deadband EPWM Deadband EPWM Chopper EPWM Illegal Combo Logic EPWM HR Deadband SFO EPWM HR Phase Shift SFO EPWM HR duty cycle SFO EPWM UP-Count Action Qualifier EPWM UPDOWN-Count Action Qualifier EPWM Global Load and Link Example EPWM Digital counter compare capture EPWM Diode Emulation EPWM XCMP Multiple Edges EPWM XCMP EDMA EQEP EQEP frequency measurement EQEP Position Speed EQEP Speed Direction EQEP Frequency Calculation EQEP CW/CCW Example FSI FSI Loopback Dma FSI Loopback Interrupt FSI Loopback Polling FSI HLD Loopback Dma FSI HLD Loopback Interrupt FSI HLD Loopback Polling GPIO GPIO Input Interrupt GPIO LED Blink GPIO MULTI LED Blink HSMCLIENT HSM Services Example MPU Firewall Service DEMO I2C I2C Led Blink I2C Read I2C Memory Read I2C Temperature Read I2C Led Blink Interrupt LLD I2C Led Blink Polling LLD I2C Led Read Write LLD I2C Memory Read Interrupt LLD I2C Memory Read Polling LLD I2C Temperature Interrupt LLD I2C Temperature Polling LLD I2C Slave Transfer IPC IPC Notify Echo IPC Notify Echo Example With OptiShare IPC RP Message Echo IPC RP Message Echo Callback IPC SafeIPC Echo IPC Shared Memory Mutex using Spinlock LIN LIN Internal Loopback Interrupt LIN SCI Internal Loopback Interrupt LIN SCI DMA Loopback LIN Internal Loopback Polling LIN External Commander Transmit LIN Commander Write HLD LIN Commander Read HLD LIN Responder Write HLD LIN Responder Read HLD LIN Responder Read Adapt Baud Rate HLD LIN Responder LLD MCAN MCAN External Read Write MCAN Loopback Interrupt MCAN Loopback Polling MCAN Loopback DMA CANFD Loopback DMA CANFD Loopback Polling CANFD Loopback Interrupt CANFD External Read Write CANFD Loopback Interrupt MCSPI MCSPI External Loopback MCSPI Loopback MCSPI Loopback DMA MCSPI Performance 8 Bit MCSPI Performance 3 2 Bit MCSPI Loopback DMA LLD MCSPI Loopback Interrupt LLD MCSPI Loopback Polling LLD MCSPI Loopback Turbo Mode MCSPI Loopback Multi Instances Multi channels LLD MMCSD MMCSD RAW IO MMCSD FILE IO MMCSD RAW IO SD INTR LLD MMCSD RAW IO SD LLD OSPI OSPI Flash IO OSPI Flash File IO OSPI Flash DMA OSPI Flash Diagnostic OSPI Flash INTERRUPT OSPI Nand Flash IO OSPI Flash Diagnostic LLD OSPI Flash DMA LLD OSPI Flash INTERRUPT LLD OSPI Graph Plotter OSPI Flash XIP RL2 Example FLC Example RAT Example Swap To Region B Using FOTA Agent FSS Switch To B PMIC PMIC ESM Level mode example PMIC ESM pwm mode example PMIC Q A watchdog interrupt example PMIC Q A watchdog reset example PMIC user register configuration example PMU PMU Multievent RTI RTI LED Blink RESOLVER Resolver Angle and Velocity resolution example Resolver Diagnostics example SDFM SDFM EPWM sync CPU read SDFM Filter sync DMA read SDFM Filter sync CPU read SDFM single channel filter sync CPU read SDFM ECAP Loop Back Example SPINLOCK Spinlock Example TMU TMU Operations and Benchmarking TMU 4 Cores Support TMU Context Save and Restore TMU PARK TRANSFORM UART UART Echo UART Echo DMA UART Echo Callback UART Echo Low Latency Interrupt UART Echo Low Latency Polling UART Echo DMA LLD UART Echo Interrupt LLD UART Echo Polling LLD WATCHDOG Watchdog interrupt mode Watchdog reset mode</field>
   </doc>
   <doc>
     <field name="type">page</field>
@@ -205935,7 +205949,21 @@
     <field name="name">EXAMPLES::EXAMPLES_DRIVERS::EXAMPLES_DRIVERS_LIN_RESPONDER_READ_HLD</field>
     <field name="url">EXAMPLES_DRIVERS_LIN_RESPONDER_READ_HLD.html</field>
     <field name="keywords"></field>
-    <field name="text">This example demonstrates LIN Responder mode data read operation where the Instance LIN1 is set as a Responder The transfer is initiated by PLIN-USB from PEAK Systems IPEH-004052 device connected to external PC The LIN1 instance waits for Reception of a Message from remote Commander Example Can be run in Polling Interrupt and DMA mode The Operating mode is configurable in SYSCONFIG Parameter Value CPU OS r5fss0-0 nortos r5fss0-0 freertos Toolchain ti-arm-clang Boards am263px-cc Example folder examples/drivers/lin/lin_responder_write Board Configuration Change the SW5 to ON state and change the SW4 to 1 2 LIN SW5 and SW4 settings Hardware Conectivity Connect the PLIN-USB module to PC from USB and Serial Port to be connected as mentioned in the image below LIN Hardware Connectivity with PLIN USB J10 Header Software Setup Download and Install the PLIN-View Pro from Click on LIN in the menu bar and connect to PLIN-USB Make sure the LINMode for PLIN is Commander with Baud Rate of 1 9 2 0 0 LIN Hardware Connectivity with PLIN USB After successful connection with PLIN-USB the status of connection is shown as the bottom of the screen PLIN Connectivity status Create A new Frame with following configuration LIN Commander Frame When using CCS projects to build import the CCS project for the required combination and build it using the CCS project menu see Using SDK with CCS Projects When using makefiles to build note the required combination and build using make command see Using SDK with Makefiles Launch a CCS debug session and run the executable see CCS Launch Load and Run LIN HLD Shown below is a sample output when the application is run Shown below is a sample output on PLIN-View Pro Output on PLIN-View Pro This example demonstrates LIN Responder mode data read operation where the Instance LIN1 is set as a Responder The transfer is initiated by PLIN-USB from PEAK Systems IPEH-004052 device connected to external PC The LIN1 instance waits for Reception of a Message from remote Commander Example Can be run in Polling Interrupt and DMA mode The Operating mode is configurable in SYSCONFIG Parameter Value CPU OS r5fss0-0 nortos r5fss0-0 freertos Toolchain ti-arm-clang Boards am263px-cc Example folder examples/drivers/lin/lin_responder_write Board Configuration Change the SW5 to ON state and change the SW4 to 1 2 LIN SW5 and SW4 settings Hardware Conectivity Connect the PLIN-USB module to PC from USB and Serial Port to be connected as mentioned in the image below LIN Hardware Connectivity with PLIN USB J10 Header Software Setup Download and Install the PLIN-View Pro from Click on LIN in the menu bar and connect to PLIN-USB Make sure the LINMode for PLIN is Commander with Baud Rate of 1 9 2 0 0 LIN Hardware Connectivity with PLIN USB After successful connection with PLIN-USB the status of connection is shown as the bottom of the screen PLIN Connectivity status Create A new Frame with following configuration LIN Commander Frame When using CCS projects to build import the CCS project for the required combination and build it using the CCS project menu see Using SDK with CCS Projects When using makefiles to build note the required combination and build using make command see Using SDK with Makefiles Launch a CCS debug session and run the executable see CCS Launch Load and Run LIN HLD Shown below is a sample output when the application is run Shown below is a sample output on PLIN-View Pro Output on PLIN-View Pro LIN Responder Read HLD LIN Responder Read HLD This example demonstrates LIN Responder mode data read operation where the Instance LIN1 is set as a Responder The transfer is initiated by PLIN-USB from PEAK Systems IPEH-004052 device connected to external PC The LIN1 instance waits for Reception of a Message from remote Commander Example Can be run in Polling Interrupt and DMA mode The Operating mode is configurable in SYSCONFIG Parameter Value CPU OS r5fss0-0 nortos r5fss0-0 freertos Toolchain ti-arm-clang Boards am263px-cc Example folder examples/drivers/lin/lin_responder_write Board Configuration Change the SW5 to ON state and change the SW4 to 1 2 LIN SW5 and SW4 settings Hardware Conectivity Connect the PLIN-USB module to PC from USB and Serial Port to be connected as mentioned in the image below LIN Hardware Connectivity with PLIN USB J10 Header Software Setup Download and Install the PLIN-View Pro from Click on LIN in the menu bar and connect to PLIN-USB Make sure the LINMode for PLIN is Commander with Baud Rate of 1 9 2 0 0 LIN Hardware Connectivity with PLIN USB After successful connection with PLIN-USB the status of connection is shown as the bottom of the screen PLIN Connectivity status Create A new Frame with following configuration LIN Commander Frame When using CCS projects to build import the CCS project for the required combination and build it using the CCS project menu see Using SDK with CCS Projects When using makefiles to build note the required combination and build using make command see Using SDK with Makefiles Launch a CCS debug session and run the executable see CCS Launch Load and Run LIN HLD Shown below is a sample output when the application is run Shown below is a sample output on PLIN-View Pro Output on PLIN-View Pro</field>
+    <field name="text">This example demonstrates LIN Responder mode data read operation where the Instance LIN1 is set as a Responder The transfer is initiated by PLIN-USB from PEAK Systems IPEH-004052 device connected to external PC The LIN1 instance waits for Reception of a Message from remote Commander Example Can be run in Polling Interrupt and DMA mode The Operating mode is configurable in SYSCONFIG Parameter Value CPU OS r5fss0-0 nortos r5fss0-0 freertos Toolchain ti-arm-clang Boards am263px-cc Example folder examples/drivers/lin/lin_responder_read Board Configuration Change the SW5 to ON state and change the SW4 to 1 2 LIN SW5 and SW4 settings Hardware Conectivity Connect the PLIN-USB module to PC from USB and Serial Port to be connected as mentioned in the image below LIN Hardware Connectivity with PLIN USB J10 Header Software Setup Download and Install the PLIN-View Pro from Click on LIN in the menu bar and connect to PLIN-USB Make sure the LINMode for PLIN is Commander with Baud Rate of 1 9 2 0 0 LIN Hardware Connectivity with PLIN USB After successful connection with PLIN-USB the status of connection is shown as the bottom of the screen PLIN Connectivity status Create A new Frame with following configuration LIN Commander Frame When using CCS projects to build import the CCS project for the required combination and build it using the CCS project menu see Using SDK with CCS Projects When using makefiles to build note the required combination and build using make command see Using SDK with Makefiles Launch a CCS debug session and run the executable see CCS Launch Load and Run LIN HLD Shown below is a sample output when the application is run Shown below is a sample output on PLIN-View Pro Output on PLIN-View Pro This example demonstrates LIN Responder mode data read operation where the Instance LIN1 is set as a Responder The transfer is initiated by PLIN-USB from PEAK Systems IPEH-004052 device connected to external PC The LIN1 instance waits for Reception of a Message from remote Commander Example Can be run in Polling Interrupt and DMA mode The Operating mode is configurable in SYSCONFIG Parameter Value CPU OS r5fss0-0 nortos r5fss0-0 freertos Toolchain ti-arm-clang Boards am263px-cc Example folder examples/drivers/lin/lin_responder_read Board Configuration Change the SW5 to ON state and change the SW4 to 1 2 LIN SW5 and SW4 settings Hardware Conectivity Connect the PLIN-USB module to PC from USB and Serial Port to be connected as mentioned in the image below LIN Hardware Connectivity with PLIN USB J10 Header Software Setup Download and Install the PLIN-View Pro from Click on LIN in the menu bar and connect to PLIN-USB Make sure the LINMode for PLIN is Commander with Baud Rate of 1 9 2 0 0 LIN Hardware Connectivity with PLIN USB After successful connection with PLIN-USB the status of connection is shown as the bottom of the screen PLIN Connectivity status Create A new Frame with following configuration LIN Commander Frame When using CCS projects to build import the CCS project for the required combination and build it using the CCS project menu see Using SDK with CCS Projects When using makefiles to build note the required combination and build using make command see Using SDK with Makefiles Launch a CCS debug session and run the executable see CCS Launch Load and Run LIN HLD Shown below is a sample output when the application is run Shown below is a sample output on PLIN-View Pro Output on PLIN-View Pro LIN Responder Read HLD LIN Responder Read HLD This example demonstrates LIN Responder mode data read operation where the Instance LIN1 is set as a Responder The transfer is initiated by PLIN-USB from PEAK Systems IPEH-004052 device connected to external PC The LIN1 instance waits for Reception of a Message from remote Commander Example Can be run in Polling Interrupt and DMA mode The Operating mode is configurable in SYSCONFIG Parameter Value CPU OS r5fss0-0 nortos r5fss0-0 freertos Toolchain ti-arm-clang Boards am263px-cc Example folder examples/drivers/lin/lin_responder_read Board Configuration Change the SW5 to ON state and change the SW4 to 1 2 LIN SW5 and SW4 settings Hardware Conectivity Connect the PLIN-USB module to PC from USB and Serial Port to be connected as mentioned in the image below LIN Hardware Connectivity with PLIN USB J10 Header Software Setup Download and Install the PLIN-View Pro from Click on LIN in the menu bar and connect to PLIN-USB Make sure the LINMode for PLIN is Commander with Baud Rate of 1 9 2 0 0 LIN Hardware Connectivity with PLIN USB After successful connection with PLIN-USB the status of connection is shown as the bottom of the screen PLIN Connectivity status Create A new Frame with following configuration LIN Commander Frame When using CCS projects to build import the CCS project for the required combination and build it using the CCS project menu see Using SDK with CCS Projects When using makefiles to build note the required combination and build using make command see Using SDK with Makefiles Launch a CCS debug session and run the executable see CCS Launch Load and Run LIN HLD Shown below is a sample output when the application is run Shown below is a sample output on PLIN-View Pro Output on PLIN-View Pro</field>
+  </doc>
+  <doc>
+    <field name="type">page</field>
+    <field name="name">EXAMPLES::EXAMPLES_DRIVERS::EXAMPLES_DRIVERS_LIN_RESPONDER_READ_ADAPT_BAUD_HLD</field>
+    <field name="url">EXAMPLES_DRIVERS_LIN_RESPONDER_READ_ADAPT_BAUD_HLD.html</field>
+    <field name="keywords"></field>
+    <field name="text">This example demonstrates LIN Responder mode data read operation with adaptive baudrate enabled where the Instance LIN1 is set as a Responder The transfer is initiated by PLIN-USB from PEAK Systems IPEH-004052 device connected to external PC The LIN1 instance waits for Reception of a Message from remote Commander Example Can be run in Polling Interrupt and DMA mode The Operating mode is configurable in SYSCONFIG Parameter Value CPU OS r5fss0-0 nortos r5fss0-0 freertos Toolchain ti-arm-clang Boards am263px-cc Example folder examples/drivers/lin/lin_responder_read_adapt_baud Board Configuration Change the SW5 to ON state and change the SW4 to 1 2 LIN SW5 and SW4 settings Hardware Conectivity Connect the PLIN-USB module to PC from USB and Serial Port to be connected as mentioned in the image below LIN Hardware Connectivity with PLIN USB J10 Header Software Setup Download and Install the PLIN-View Pro from Click on LIN in the menu bar and connect to PLIN-USB Ensure the LIN mode for PLIN is set to Commander with a baud rate that varies within a range of from 1 9 2 0 0 LIN Hardware Connectivity with PLIN USB After successful connection with PLIN-USB the status of connection is shown as the bottom of the screen PLIN Connectivity status Create A new Frame with following configuration LIN Commander Frame When using CCS projects to build import the CCS project for the required combination and build it using the CCS project menu see Using SDK with CCS Projects When using makefiles to build note the required combination and build using make command see Using SDK with Makefiles Launch a CCS debug session and run the executable see CCS Launch Load and Run LIN HLD Shown below is a sample output when the application is run Shown below is a sample output on PLIN-View Pro Output on PLIN-View Pro This example demonstrates LIN Responder mode data read operation with adaptive baudrate enabled where the Instance LIN1 is set as a Responder The transfer is initiated by PLIN-USB from PEAK Systems IPEH-004052 device connected to external PC The LIN1 instance waits for Reception of a Message from remote Commander Example Can be run in Polling Interrupt and DMA mode The Operating mode is configurable in SYSCONFIG Parameter Value CPU OS r5fss0-0 nortos r5fss0-0 freertos Toolchain ti-arm-clang Boards am263px-cc Example folder examples/drivers/lin/lin_responder_read_adapt_baud Board Configuration Change the SW5 to ON state and change the SW4 to 1 2 LIN SW5 and SW4 settings Hardware Conectivity Connect the PLIN-USB module to PC from USB and Serial Port to be connected as mentioned in the image below LIN Hardware Connectivity with PLIN USB J10 Header Software Setup Download and Install the PLIN-View Pro from Click on LIN in the menu bar and connect to PLIN-USB Ensure the LIN mode for PLIN is set to Commander with a baud rate that varies within a range of from 1 9 2 0 0 LIN Hardware Connectivity with PLIN USB After successful connection with PLIN-USB the status of connection is shown as the bottom of the screen PLIN Connectivity status Create A new Frame with following configuration LIN Commander Frame When using CCS projects to build import the CCS project for the required combination and build it using the CCS project menu see Using SDK with CCS Projects When using makefiles to build note the required combination and build using make command see Using SDK with Makefiles Launch a CCS debug session and run the executable see CCS Launch Load and Run LIN HLD Shown below is a sample output when the application is run Shown below is a sample output on PLIN-View Pro Output on PLIN-View Pro LIN Responder Read Adapt Baud Rate HLD LIN Responder Read Adapt Baud Rate HLD This example demonstrates LIN Responder mode data read operation with adaptive baudrate enabled where the Instance LIN1 is set as a Responder The transfer is initiated by PLIN-USB from PEAK Systems IPEH-004052 device connected to external PC The LIN1 instance waits for Reception of a Message from remote Commander Example Can be run in Polling Interrupt and DMA mode The Operating mode is configurable in SYSCONFIG Parameter Value CPU OS r5fss0-0 nortos r5fss0-0 freertos Toolchain ti-arm-clang Boards am263px-cc Example folder examples/drivers/lin/lin_responder_read_adapt_baud Board Configuration Change the SW5 to ON state and change the SW4 to 1 2 LIN SW5 and SW4 settings Hardware Conectivity Connect the PLIN-USB module to PC from USB and Serial Port to be connected as mentioned in the image below LIN Hardware Connectivity with PLIN USB J10 Header Software Setup Download and Install the PLIN-View Pro from Click on LIN in the menu bar and connect to PLIN-USB Ensure the LIN mode for PLIN is set to Commander with a baud rate that varies within a range of from 1 9 2 0 0 LIN Hardware Connectivity with PLIN USB After successful connection with PLIN-USB the status of connection is shown as the bottom of the screen PLIN Connectivity status Create A new Frame with following configuration LIN Commander Frame When using CCS projects to build import the CCS project for the required combination and build it using the CCS project menu see Using SDK with CCS Projects When using makefiles to build note the required combination and build using make command see Using SDK with Makefiles Launch a CCS debug session and run the executable see CCS Launch Load and Run LIN HLD Shown below is a sample output when the application is run Shown below is a sample output on PLIN-View Pro Output on PLIN-View Pro</field>
+  </doc>
+  <doc>
+    <field name="type">page</field>
+    <field name="name">EXAMPLES::EXAMPLES_DRIVERS::EXAMPLES_DRIVERS_LIN_RESPONDER_LLD</field>
+    <field name="url">EXAMPLES_DRIVERS_LIN_RESPONDER_LLD.html</field>
+    <field name="keywords"></field>
+    <field name="text">This example demonstrates LIN Responder mode data write and read operation using LLD driver where the Instance LIN1 is set as a Responder The transfer is initiated by PLIN-USB from PEAK Systems IPEH-004052 device connected to external PC The LIN1 instance waits for appropriate ID On ID match the instance responds with data then waits for Reception of a Message from remote Commander Example Can be run in Polling Interrupt and DMA mode The Operating mode is configurable in SYSCONFIG Parameter Value CPU OS r5fss0-0 nortos r5fss0-0 freertos Toolchain ti-arm-clang Boards am263px-cc Example folder examples/drivers/lin/lin_responder_lld Board Configuration Change the SW5 to ON state and change the SW4 to 1 2 LIN SW5 and SW4 settings Hardware Conectivity Connect the PLIN-USB module to PC from USB and Serial Port to be connected as mentioned in the image below LIN Hardware Connectivity with PLIN USB J10 Header Software Setup Download and Install the PLIN-View Pro from Click on LIN in the menu bar and connect to PLIN-USB Make sure the LINMode for PLIN is Commander with Baud Rate of 1 9 2 0 0 LIN Hardware Connectivity with PLIN USB Create A new Commander Read Frame with following configuration LIN Commander Read Frame Then create new Commander Write Frame Frame with following configuration PLIN Connectivity status Create A new Frame with following configuration LIN Commander Write Frame When using CCS projects to build import the CCS project for the required combination and build it using the CCS project menu see Using SDK with CCS Projects When using makefiles to build note the required combination and build using make command see Using SDK with Makefiles Launch a CCS debug session and run the executable see CCS Launch Load and Run First send the Commander Read Frame Then send Commander Write Frame LIN HLD Shown below is a sample output when the application is run Shown below is a sample output on PLIN-View Pro Output on PLIN-View Pro This example demonstrates LIN Responder mode data write and read operation using LLD driver where the Instance LIN1 is set as a Responder The transfer is initiated by PLIN-USB from PEAK Systems IPEH-004052 device connected to external PC The LIN1 instance waits for appropriate ID On ID match the instance responds with data then waits for Reception of a Message from remote Commander Example Can be run in Polling Interrupt and DMA mode The Operating mode is configurable in SYSCONFIG Parameter Value CPU OS r5fss0-0 nortos r5fss0-0 freertos Toolchain ti-arm-clang Boards am263px-cc Example folder examples/drivers/lin/lin_responder_lld Board Configuration Change the SW5 to ON state and change the SW4 to 1 2 LIN SW5 and SW4 settings Hardware Conectivity Connect the PLIN-USB module to PC from USB and Serial Port to be connected as mentioned in the image below LIN Hardware Connectivity with PLIN USB J10 Header Software Setup Download and Install the PLIN-View Pro from Click on LIN in the menu bar and connect to PLIN-USB Make sure the LINMode for PLIN is Commander with Baud Rate of 1 9 2 0 0 LIN Hardware Connectivity with PLIN USB Create A new Commander Read Frame with following configuration LIN Commander Read Frame Then create new Commander Write Frame Frame with following configuration PLIN Connectivity status Create A new Frame with following configuration LIN Commander Write Frame When using CCS projects to build import the CCS project for the required combination and build it using the CCS project menu see Using SDK with CCS Projects When using makefiles to build note the required combination and build using make command see Using SDK with Makefiles Launch a CCS debug session and run the executable see CCS Launch Load and Run First send the Commander Read Frame Then send Commander Write Frame LIN HLD Shown below is a sample output when the application is run Shown below is a sample output on PLIN-View Pro Output on PLIN-View Pro LIN Responder LLD LIN Responder LLD This example demonstrates LIN Responder mode data write and read operation using LLD driver where the Instance LIN1 is set as a Responder The transfer is initiated by PLIN-USB from PEAK Systems IPEH-004052 device connected to external PC The LIN1 instance waits for appropriate ID On ID match the instance responds with data then waits for Reception of a Message from remote Commander Example Can be run in Polling Interrupt and DMA mode The Operating mode is configurable in SYSCONFIG Parameter Value CPU OS r5fss0-0 nortos r5fss0-0 freertos Toolchain ti-arm-clang Boards am263px-cc Example folder examples/drivers/lin/lin_responder_lld Board Configuration Change the SW5 to ON state and change the SW4 to 1 2 LIN SW5 and SW4 settings Hardware Conectivity Connect the PLIN-USB module to PC from USB and Serial Port to be connected as mentioned in the image below LIN Hardware Connectivity with PLIN USB J10 Header Software Setup Download and Install the PLIN-View Pro from Click on LIN in the menu bar and connect to PLIN-USB Make sure the LINMode for PLIN is Commander with Baud Rate of 1 9 2 0 0 LIN Hardware Connectivity with PLIN USB Create A new Commander Read Frame with following configuration LIN Commander Read Frame Then create new Commander Write Frame Frame with following configuration PLIN Connectivity status Create A new Frame with following configuration LIN Commander Write Frame When using CCS projects to build import the CCS project for the required combination and build it using the CCS project menu see Using SDK with CCS Projects When using makefiles to build note the required combination and build using make command see Using SDK with Makefiles Launch a CCS debug session and run the executable see CCS Launch Load and Run First send the Commander Read Frame Then send Commander Write Frame LIN HLD Shown below is a sample output when the application is run Shown below is a sample output on PLIN-View Pro Output on PLIN-View Pro</field>
   </doc>
   <doc>
     <field name="type">page</field>

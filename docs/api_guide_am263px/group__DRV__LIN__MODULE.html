@@ -122,9 +122,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga787fbb0229a33a7c8e8b0ab28b4f883f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__LIN__MODULE.html#ga787fbb0229a33a7c8e8b0ab28b4f883f">LIN_setLINMode</a> (uint32_t base, <a class="el" href="group__DRV__LIN__MODULE.html#gac3008a3b3514608d8768652b3c3363ad">LIN_LINMode</a> mode)</td></tr>
 <tr class="memdesc:ga787fbb0229a33a7c8e8b0ab28b4f883f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the LIN mode.  <a href="group__DRV__LIN__MODULE.html#ga787fbb0229a33a7c8e8b0ab28b4f883f">More...</a><br /></td></tr>
 <tr class="separator:ga787fbb0229a33a7c8e8b0ab28b4f883f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga498db432f87568112ee5ab6f942adf8a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__LIN__MODULE.html#ga498db432f87568112ee5ab6f942adf8a">LIN_setMaximumBaudRate</a> (uint32_t base, uint32_t clockVal)</td></tr>
-<tr class="memdesc:ga498db432f87568112ee5ab6f942adf8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set Maximum Baud Rate Prescaler.  <a href="group__DRV__LIN__MODULE.html#ga498db432f87568112ee5ab6f942adf8a">More...</a><br /></td></tr>
-<tr class="separator:ga498db432f87568112ee5ab6f942adf8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3bf4b5544353667af01bc3a07fb647f8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__LIN__MODULE.html#ga3bf4b5544353667af01bc3a07fb647f8">LIN_setMaximumBaudRate</a> (uint32_t base, uint32_t clockVal, uint32_t baudrate)</td></tr>
+<tr class="memdesc:ga3bf4b5544353667af01bc3a07fb647f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set Maximum Baud Rate Prescaler.  <a href="group__DRV__LIN__MODULE.html#ga3bf4b5544353667af01bc3a07fb647f8">More...</a><br /></td></tr>
+<tr class="separator:ga3bf4b5544353667af01bc3a07fb647f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga01396a3e564b1b473f8381865cc9add7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__LIN__MODULE.html#ga01396a3e564b1b473f8381865cc9add7">LIN_setMessageFiltering</a> (uint32_t base, <a class="el" href="group__DRV__LIN__MODULE.html#ga3c9e1c865b7ddde8a36a7ff4a2789add">LIN_MessageFilter</a> type)</td></tr>
 <tr class="memdesc:ga01396a3e564b1b473f8381865cc9add7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set Message filtering Type.  <a href="group__DRV__LIN__MODULE.html#ga01396a3e564b1b473f8381865cc9add7">More...</a><br /></td></tr>
 <tr class="separator:ga01396a3e564b1b473f8381865cc9add7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2285,8 +2285,8 @@ Lin Serial Communication Interface Error Defination</h2></td></tr>
 
 </div>
 </div>
-<a id="ga498db432f87568112ee5ab6f942adf8a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga498db432f87568112ee5ab6f942adf8a">&#9670;&nbsp;</a></span>LIN_setMaximumBaudRate()</h2>
+<a id="ga3bf4b5544353667af01bc3a07fb647f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3bf4b5544353667af01bc3a07fb647f8">&#9670;&nbsp;</a></span>LIN_setMaximumBaudRate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2304,7 +2304,13 @@ Lin Serial Communication Interface Error Defination</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>clockVal</em>&#160;</td>
+          <td class="paramname"><em>clockVal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baudrate</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2323,7 +2329,8 @@ Lin Serial Communication Interface Error Defination</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">base</td><td>is the base address of the LIN commander. </td></tr>
-    <tr><td class="paramname">clockVal</td><td>is the device system clock (Hz).</td></tr>
+    <tr><td class="paramname">clockVal</td><td>is the device system clock (Hz). </td></tr>
+    <tr><td class="paramname">baudrate</td><td>is the device baud rate.</td></tr>
   </table>
   </dd>
 </dl>
