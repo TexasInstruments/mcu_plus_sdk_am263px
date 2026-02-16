@@ -1,5 +1,6 @@
 var NAVTREEINDEX73 =
 {
+"structWatchdog__Config.html#aa8602245e364f7f910255dbcb14f51d1":[19,7,47,3,0],
 "structWatchdog__HwAttrs.html":[19,7,47,1],
 "structWatchdog__HwAttrs.html#a5e5b737b3657f1f79ed5ae7d5f8c56dd":[19,7,47,1,0],
 "structWatchdog__HwAttrs.html#aa2d2e632dc6e8144901d9d9c44c94d04":[19,7,47,1,1],

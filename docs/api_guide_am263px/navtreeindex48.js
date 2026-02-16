@@ -1,5 +1,6 @@
 var NAVTREEINDEX48 =
 {
+"group__ENET__TRACE__API.html":[19,4,0,12],
 "group__ENET__TRACE__API.html#ga1143d63c994f9dbaf9e65f565939b1fc":[19,4,0,12,11],
 "group__ENET__TRACE__API.html#ga6b495539922c6e4ff133e0991d75b82b":[19,4,0,12,10],
 "group__ENET__TRACE__API.html#ga6d6f9ce78be8c92817e6747eeff81e3c":[19,4,0,12,6],
@@ -248,6 +249,5 @@ var NAVTREEINDEX48 =
 "group__KERNEL__DPL__MPU__ARMV7.html#ga3fb88c46ac821cf49a7797547896ff12":[19,2,8,4],
 "group__KERNEL__DPL__MPU__ARMV7.html#ga4191bfc73e949c59a90b5d93fc99a879":[19,2,8,10],
 "group__KERNEL__DPL__MPU__ARMV7.html#ga58c5b873dc0e607a908d5c4ebb2c350c":[19,2,8,7],
-"group__KERNEL__DPL__MPU__ARMV7.html#ga790280b05b7fffb83965667041ce2650":[19,2,8,5],
-"group__KERNEL__DPL__MPU__ARMV7.html#ga7d5c8f75b6ae60721f6f8955425fa605":[19,2,8,8]
+"group__KERNEL__DPL__MPU__ARMV7.html#ga790280b05b7fffb83965667041ce2650":[19,2,8,5]
 };

@@ -1,5 +1,6 @@
 var NAVTREEINDEX72 =
 {
+"structSDL__ecc__aggrStatusCtrl.html#aea8803868dd7c7c6f1fbbf7709c0d3f0":[19,6,4,0,6,3],
 "structSDL__esmRegs__ERR__GRP__STATIC.html":[19,6,6,0,4],
 "structSDL__esmRegs__ERR__GRP__STATIC.html#a131616924875b84a39f42dff5cad5ad3":[19,6,6,0,4,4],
 "structSDL__esmRegs__ERR__GRP__STATIC.html#a4b033338fcc9bcbc8ba1806f1e7d7495":[19,6,6,0,4,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX72 =
 "structUScaledNs.html#a93eb3a141ee6100e434209e14de73c6c":[19,9,0,9,1],
 "structUScaledNs.html#adcbf28b8574a2a597f8827aaff15caf9":[19,9,0,9,0],
 "structWatchdog__Config.html":[19,7,47,3],
-"structWatchdog__Config.html#a96131766bd4da7bc2239eed02f15bed0":[19,7,47,3,1],
-"structWatchdog__Config.html#aa8602245e364f7f910255dbcb14f51d1":[19,7,47,3,0]
+"structWatchdog__Config.html#a96131766bd4da7bc2239eed02f15bed0":[19,7,47,3,1]
 };

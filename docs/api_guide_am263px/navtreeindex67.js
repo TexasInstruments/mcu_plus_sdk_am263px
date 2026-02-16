@@ -1,5 +1,6 @@
 var NAVTREEINDEX67 =
 {
+"structIpcNotify__Params.html#a4003fe842396ced1f982f0de17d1fe3c":[19,7,20,0,1],
 "structIpcNotify__Params.html#a493606a5c5157f9500f1355b4089d263":[19,7,20,0,7],
 "structIpcNotify__Params.html#a6ed3def8a1b3702e0ea930f72e13ea0f":[19,7,20,0,5],
 "structIpcNotify__Params.html#a71699a4d96a2e1dfecad8e0a41fa6c41":[19,7,20,0,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX67 =
 "structMCAN__MsgRAMConfigParams.html#ab1d91d5885f8d14aaf33473c1cedce46":[19,7,26,8,7],
 "structMCAN__MsgRAMConfigParams.html#ab32e5ac58ece0ed58d47a8def44a4bbd":[19,7,26,8,4],
 "structMCAN__MsgRAMConfigParams.html#ad8cc43864c213ec8c01880d019c095aa":[19,7,26,8,6],
-"structMCAN__MsgRAMConfigParams.html#aee9acf02daf8acfac1fffc861e861da7":[19,7,26,8,1],
-"structMCAN__MsgRAMConfigParams.html#af4f4d48ef85a02e4f9e3d84af9ed5b6e":[19,7,26,8,9]
+"structMCAN__MsgRAMConfigParams.html#aee9acf02daf8acfac1fffc861e861da7":[19,7,26,8,1]
 };

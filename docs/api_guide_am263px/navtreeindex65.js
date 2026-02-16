@@ -1,5 +1,6 @@
 var NAVTREEINDEX65 =
 {
+"structI2C__Transaction.html":[19,7,18,2],
 "structI2C__Transaction.html#a08959a9f098163d02d6002e73b3a4606":[19,7,18,2,1],
 "structI2C__Transaction.html#a2085d4c943f0d8617365b7c427e6a0de":[19,7,18,2,3],
 "structI2C__Transaction.html#a21755edd4d999d6041d303e269596371":[19,7,18,2,5],
@@ -248,6 +249,5 @@ var NAVTREEINDEX65 =
 "structIcssgStats__MacPort.html#aa64be7b2de54fa8fcd87dfe2b5250375":[19,4,0,9,1,0,30],
 "structIcssgStats__MacPort.html#aa689102fd815057c14f08c75b0a64d12":[19,4,0,9,1,0,12],
 "structIcssgStats__MacPort.html#aa78d5ca211901b49b899196c7d344df5":[19,4,0,9,1,0,50],
-"structIcssgStats__MacPort.html#aa7e9fd309ee0ba418af979ff58862b31":[19,4,0,9,1,0,9],
-"structIcssgStats__MacPort.html#ab4f6efa3416a3f809ca84c30d6dbb0f8":[19,4,0,9,1,0,57]
+"structIcssgStats__MacPort.html#aa7e9fd309ee0ba418af979ff58862b31":[19,4,0,9,1,0,9]
 };

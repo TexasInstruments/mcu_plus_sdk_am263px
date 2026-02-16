@@ -1,5 +1,6 @@
 var NAVTREEINDEX58 =
 {
+"structCANFD__MCANTdcConfig.html":[19,7,2,3],
 "structCANFD__MCANTdcConfig.html#a146ba03ceef72bf7a8eb3d63cf5c2c63":[19,7,2,3,1],
 "structCANFD__MCANTdcConfig.html#a48a552d0cade931d186d0995e2295e2d":[19,7,2,3,0],
 "structCANFD__MessageObject.html":[19,7,2,19],
@@ -248,6 +249,5 @@ var NAVTREEINDEX58 =
 "structCpswAle__PolicerEntryOutArgs.html":[19,4,0,1,0,30],
 "structCpswAle__PolicerEntryOutArgs.html#a03328df41a641dfc2af01b37ba851a2c":[19,4,0,1,0,30,9],
 "structCpswAle__PolicerEntryOutArgs.html#a067d7135dfeda2017b7f8750a7e54b4a":[19,4,0,1,0,30,12],
-"structCpswAle__PolicerEntryOutArgs.html#a205e988f1f37eae3a606c0c374599aaf":[19,4,0,1,0,30,18],
-"structCpswAle__PolicerEntryOutArgs.html#a2653dce115e8ce47f49dac4160d2b9ce":[19,4,0,1,0,30,8]
+"structCpswAle__PolicerEntryOutArgs.html#a205e988f1f37eae3a606c0c374599aaf":[19,4,0,1,0,30,18]
 };
