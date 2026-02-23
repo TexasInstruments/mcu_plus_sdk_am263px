@@ -714,7 +714,7 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
                             
                             if(partialDataSize != DTHE_AES_ZERO)
                             {
-                                (void)memset(inPartialBlock,0u,sizeof(inPartialBlock));
+                                (void)memset(inPartialBlock,0,sizeof(inPartialBlock));
                                 (void)memcpy(inPartialBlock,&ptrWordInputBuffer[numBlocks*4U],partialDataSize);
 
                                 /* Wait for the AES IP to be ready to receive the data: */
@@ -1329,7 +1329,7 @@ static inline void DTHE_AES_readIV(CSL_AesRegs *ptrAesRegs, uint32_t* ivReg)
  */
 static void DTHE_AES_pollInputReady(CSL_AesRegs *ptrAesRegs)
 {
-    uint8_t     done = 0U;
+    uint32_t     done = 0U;
 
     /* Loop around till the condition is met: */
     while (done == 0U)
@@ -1365,7 +1365,7 @@ static void DTHE_AES_writeDataBlock(CSL_AesRegs *ptrAesRegs, const uint32_t* ptr
  */
 static void DTHE_AES_pollOutputReady(CSL_AesRegs *ptrAesRegs)
 {
-    uint8_t     done = 0U;
+    uint32_t     done = 0U;
 
     /* Loop around till the condition is met: */
     while (done == 0U)
@@ -1383,7 +1383,7 @@ static void DTHE_AES_pollOutputReady(CSL_AesRegs *ptrAesRegs)
  */
 static void DTHE_AES_pollContextReady(CSL_AesRegs *ptrAesRegs)
 {
-    uint8_t     done = 0U;
+    uint32_t     done = 0U;
 
     /* Loop around till the condition is met: */
     while (done == 0U)

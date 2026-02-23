@@ -84,7 +84,7 @@ uint32_t                gDTHESHAdigestCount;
 static void DTHE_SHA_setInterruptStatus(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t intStatus);
 static void DTHE_SHA_setDMA(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t dmaStatus);
 static void DTHE_SHA_pollContextReady(CSL_EIP57T_SHARegs* ptrSHARegs);
-static uint8_t DTHE_SHA_isContextReadyIRQ(const CSL_EIP57T_SHARegs* ptrSHARegs);
+static uint32_t DTHE_SHA_isContextReadyIRQ(const CSL_EIP57T_SHARegs* ptrSHARegs);
 static void DTHE_SHA_setUseAlgoConstants(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t useAlgConstants);
 static void DTHE_SHA_setCloseHash(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t closeHashFlag);
 static void DTHE_SHA_setHMACKeyProcessing(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t hmacKeyFlag);
@@ -101,8 +101,8 @@ static void DTHE_SHA_pollOutputReady (CSL_EIP57T_SHARegs* ptrSHARegs);
 static void DTHE_SHA_getHashDigest(const CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t* ptrDigest);
 static void DTHE_SHA512_getHashDigest(const CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t* ptrDigest);
 static void DTHE_SHA_setAlgorithm(CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t algorithm);
-static uint8_t DTHE_SHA_isOutputReadyIRQ(const CSL_EIP57T_SHARegs* ptrSHARegs);
-static uint8_t DTHE_SHA_isInputReadyIRQ(const CSL_EIP57T_SHARegs* ptrSHARegs);
+static uint32_t DTHE_SHA_isOutputReadyIRQ(const CSL_EIP57T_SHARegs* ptrSHARegs);
+static uint32_t DTHE_SHA_isInputReadyIRQ(const CSL_EIP57T_SHARegs* ptrSHARegs);
 static uint32_t DTHE_SHA512_getDigestCount(const CSL_EIP57T_SHARegs* ptrSHARegs);
 static uint32_t DTHE_SHA_getDigestCount(const CSL_EIP57T_SHARegs* ptrSHARegs);
 static void DTHE_SHA_setHMACOuterKey(CSL_EIP57T_SHARegs* ptrSHARegs, const uint32_t* ptrHMACKey);
@@ -650,7 +650,7 @@ static void DTHE_SHA_setDMA(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t dmaStatus)
  */
 static void DTHE_SHA_pollContextReady(CSL_EIP57T_SHARegs* ptrSHARegs)
 {
-    uint8_t     done = 0U;
+    uint32_t     done = 0U;
 
     /* Loop around till the condition is met: */
     while (done == 0U)
@@ -668,7 +668,7 @@ static void DTHE_SHA_pollContextReady(CSL_EIP57T_SHARegs* ptrSHARegs)
  *  \retval                 1 - Available for a new context
  *                          0 - Not available for a new context
  */
-static uint8_t DTHE_SHA_isContextReadyIRQ(const CSL_EIP57T_SHARegs* ptrSHARegs)
+static uint32_t DTHE_SHA_isContextReadyIRQ(const CSL_EIP57T_SHARegs* ptrSHARegs)
 {
     return CSL_FEXTR (ptrSHARegs->IRQSTATUS, 3U, 3U);
 }
@@ -818,7 +818,7 @@ static void DTHE_SHA512_setHashLength(CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t l
  */
 static void DTHE_SHA_pollInputReady(CSL_EIP57T_SHARegs* ptrSHARegs)
 {
-    uint8_t     done = 0U;
+    uint32_t     done = 0U;
 
     /* Loop around till the condition is met: */
     while (done == 0U)
@@ -856,7 +856,7 @@ static void DTHE_SHA_writeDataBlock(CSL_EIP57T_SHARegs* ptrSHARegs, const uint32
  */
 static void DTHE_SHA_pollOutputReady (CSL_EIP57T_SHARegs* ptrSHARegs)
 {
-    uint8_t     done = 0U;
+    uint32_t     done = 0U;
 
     /* Loop around till the condition is met: */
     while (done == 0U)
@@ -958,7 +958,7 @@ static void DTHE_SHA_setAlgorithm(CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t algor
  *  \return 1 - (Partial) result is available
  *          0 - (Partial) result is not available
  */
-static uint8_t DTHE_SHA_isOutputReadyIRQ(const CSL_EIP57T_SHARegs* ptrSHARegs)
+static uint32_t DTHE_SHA_isOutputReadyIRQ(const CSL_EIP57T_SHARegs* ptrSHARegs)
 {
     return CSL_FEXTR (ptrSHARegs->IRQSTATUS, 0U, 0U);
 }
@@ -971,7 +971,7 @@ static uint8_t DTHE_SHA_isOutputReadyIRQ(const CSL_EIP57T_SHARegs* ptrSHARegs)
  *  \return 1 - Data FIFO is ready to receive data
  *          0 - Data FIFO is not ready to receive data
  */
-static uint8_t DTHE_SHA_isInputReadyIRQ(const CSL_EIP57T_SHARegs* ptrSHARegs)
+static uint32_t DTHE_SHA_isInputReadyIRQ(const CSL_EIP57T_SHARegs* ptrSHARegs)
 {
     return CSL_FEXTR (ptrSHARegs->IRQSTATUS, 1U, 1U);
 }

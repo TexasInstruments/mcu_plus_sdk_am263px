@@ -141,8 +141,8 @@ AsymCrypt_Handle AsymCrypt_open(uint32_t index)
 
     (void)RNG_setup(pke_rng_handle);
 
-    gPKEContext.copy_flags = 0U;
-    gPKEContext.resp_flags = 0U;
+    gPKEContext.copy_flags = 0;
+    gPKEContext.resp_flags = 0;
 
     /* Flush all the errors and clears the memories of PKE RAM */
     (void)cri_pke_flush(&gPKEContext);
@@ -868,7 +868,7 @@ AsymCrypt_Return_t AsymCrypt_EddsaGetPubKey(AsymCrypt_Handle handle,
             }
         }
 
-        (void)memset((uint8_t*)&privKeyHash[key_len], 0U, key_len);
+        (void)memset((uint8_t*)&privKeyHash[key_len], 0, key_len);
 
         /*Get publicKey for the given privateKey
         * Note:-
