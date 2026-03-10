@@ -76,6 +76,14 @@ Bootloader_`common.camelSentence(instance.bootMedia)`Args gBootloader`i`Args =
     % else if(instance.bootMedia == "PCIE") {
     .curOffset      = 0,
     % }
+    % else if (instance.bootMedia == "UART") {
+    .curOffset          = 0,
+    .appImageBaseAddr   = 0,
+    .virtMemOffset      = 0,
+    .segmentSize        = 0,
+    .loadAddress        = 0,
+    .finalPacket        = 0,
+    %}
 };
 % }
 

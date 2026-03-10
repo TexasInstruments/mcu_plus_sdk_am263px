@@ -1,5 +1,8 @@
 var NAVTREEINDEX60 =
 {
+"structCpswMacPort__InterVlanRoutingCfg.html#a489aac68e292c5d8e4c2d3c39378c972":[19,4,0,3,0,2,0],
+"structCpswMacPort__IpTsCfg.html":[19,4,0,3,0,4],
+"structCpswMacPort__IpTsCfg.html#a04e56a5c0590e0ada36ed239cc2d13a2":[19,4,0,3,0,4,5],
 "structCpswMacPort__IpTsCfg.html#a107c87b176050ea8c5e7787dd4dae18a":[19,4,0,3,0,4,0],
 "structCpswMacPort__IpTsCfg.html#a15ac0df09a6907c4d95e5df789730d9a":[19,4,0,3,0,4,8],
 "structCpswMacPort__IpTsCfg.html#a43cd6f365c3a54cbe53b766bebfa67eb":[19,4,0,3,0,4,6],
@@ -246,8 +249,5 @@ var NAVTREEINDEX60 =
 "structCpswStats__MacPort__Ng.html#a54c6ae69f66c7cbd93595c6edf7e01cb":[19,4,0,9,0,3,56],
 "structCpswStats__MacPort__Ng.html#a57daa2250af3cb2ebe4f5763e152c89d":[19,4,0,9,0,3,10],
 "structCpswStats__MacPort__Ng.html#a5bd1f3b720279a04d2f7ff6e05297c52":[19,4,0,9,0,3,30],
-"structCpswStats__MacPort__Ng.html#a5cbfdcaffa5167d5347826a6a1c1da01":[19,4,0,9,0,3,23],
-"structCpswStats__MacPort__Ng.html#a60a6d7d4bbb52bac5d9eef3161aaff44":[19,4,0,9,0,3,39],
-"structCpswStats__MacPort__Ng.html#a62ce23587405b429510e9943c6567efd":[19,4,0,9,0,3,35],
-"structCpswStats__MacPort__Ng.html#a67d17f8c4c5bd41ef05207b3b6a75bfd":[19,4,0,9,0,3,53]
+"structCpswStats__MacPort__Ng.html#a5cbfdcaffa5167d5347826a6a1c1da01":[19,4,0,9,0,3,23]
 };

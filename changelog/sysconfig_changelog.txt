@@ -1,1 +1,40 @@
 First commit tracked for sysconfig: aa70f1758ea8eb3e5a342c2df620f9c4c63ea677
+========================================
+Changes from build on 2026-03-10 20:47:09
+Previous commit: aa70f1758ea8eb3e5a342c2df620f9c4c63ea677
+Current commit: 036fed782f7f665db9aff41ab9df3cf7fc945de5
+========================================
+
+commit 036fed782f7f665db9aff41ab9df3cf7fc945de5
+Author: Dave Joseph <d-joseph@ti.com>
+Date:   Fri Feb 13 19:07:04 2026 +0530
+
+    am64x/am243x: pinmux: Fast drive strength fix
+    
+    - Add drive strength fast mode correction
+    
+    Fixes: SITSW-7933
+    
+    Signed-off-by: Dave Joseph <d-joseph@ti.com>
+
+ drivers/.meta/pinmux/pinmux_config.c.xdt | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 48508a433c54cc0e82761bf7b61506bb08afd53d
+Author: Nikhil M Jain <n-jain1@ti.com>
+Date:   Fri Feb 20 19:05:57 2026 +0530
+
+    am64/am243: bootloader: Add UART boot media support
+    
+    Add UART as a supported boot media option for AM64x and AM243x platforms,
+    including the necessary configuration template initialization.
+    
+    Fixes: SITSW-10132
+    
+    Signed-off-by: Nikhil M Jain <n-jain1@ti.com>
+
+ drivers/.meta/bootloader/soc/bootloader_am243x.syscfg.js   | 1 +
+ drivers/.meta/bootloader/soc/bootloader_am64x.syscfg.js    | 1 +
+ drivers/.meta/bootloader/templates/bootloader_config.c.xdt | 8 ++++++++
+ 3 files changed, 10 insertions(+)
+

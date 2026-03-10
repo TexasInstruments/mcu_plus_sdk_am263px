@@ -1,5 +1,8 @@
 var NAVTREEINDEX63 =
 {
+"structEnetMacPort__QueuePreemptCfg.html":[19,4,0,3,11],
+"structEnetMacPort__QueuePreemptCfg.html#a31d6fb350274be373e6f1951ab41e10e":[19,4,0,3,11,0],
+"structEnetMacPort__SetCreditBasedShaperInArgs.html":[19,4,0,3,8],
 "structEnetMacPort__SetCreditBasedShaperInArgs.html#a1e23b882368edde3ca4b84ac59f561c5":[19,4,0,3,8,0],
 "structEnetMacPort__SetCreditBasedShaperInArgs.html#a3886970bf6d2966f9a63ac4b79c33b56":[19,4,0,3,8,1],
 "structEnetMacPort__SetEgressPriorityMapInArgs.html":[19,4,0,3,6],
@@ -246,8 +249,5 @@ var NAVTREEINDEX63 =
 "structFOTAAgent__Handle.html#a7b02dee51bfba8bd8f5b1d031c7befc2":[19,7,10,2,6],
 "structFOTAAgent__Handle.html#a8531ad42d8d1428bd91e4ac8fb7b6749":[19,7,10,2,4],
 "structFOTAAgent__Handle.html#adc7932a88a4dc42e48ebca98e73fe5d3":[19,7,10,2,8],
-"structFOTAAgent__Handle.html#aef22a610f05eb4a8fc2d238538bdab15":[19,7,10,2,3],
-"structFOTAAgent__Params.html":[19,7,10,1],
-"structFOTAAgent__Params.html#a376593885f3f496254bf055e7352c0ce":[19,7,10,1,0],
-"structFOTAAgent__Params.html#a507bd0732885c1ae83e7b41370e31a79":[19,7,10,1,2]
+"structFOTAAgent__Handle.html#aef22a610f05eb4a8fc2d238538bdab15":[19,7,10,2,3]
 };

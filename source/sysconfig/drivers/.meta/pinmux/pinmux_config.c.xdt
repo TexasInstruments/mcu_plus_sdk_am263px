@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2021-2024 Texas Instruments Incorporated
+ *  Copyright (C) 2021-2026 Texas Instruments Incorporated
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions
@@ -247,6 +247,9 @@ void Pinmux_init(void)
     CSL_REG32_WR(CSL_MSS_CTRL_U_BASE + CSL_MSS_CTRL_ICSSM1_PRU1_GPIO_OUT_CTRL, `MSS_CTRL_ICSSM1_PRU1_GPIO_OUT_CTRL_VALUE`);
     %}
 
+    % if((common.getSocName() == "am64x") || (common.getSocName() == "am243x")) {
+    SOC_fixFastDriveStrength();
+    % }
     Pinmux_config(gPinMuxMainDomainCfg, PINMUX_DOMAIN_ID_MAIN);
     
     % if(common.isMcuDomainSupported()) {

@@ -4,7 +4,8 @@ var group__DRV__BOOTLOADER__MODULE =
       [ "memArgsAppImageBaseAddr", "structBootloader__Params.html#a6992dc3b8c23540c3a0c63bae1fe306d", null ],
       [ "bufIoTempBuf", "structBootloader__Params.html#ae5691aac8586b6d4ff6ca5aa31be8484", null ],
       [ "bufIoTempBufSize", "structBootloader__Params.html#acfdb619642a1239ed600963a6d25b02d", null ],
-      [ "bufIoDeviceIndex", "structBootloader__Params.html#a4205bd11092417e913e877ced1a0ffe7", null ]
+      [ "bufIoDeviceIndex", "structBootloader__Params.html#a4205bd11092417e913e877ced1a0ffe7", null ],
+      [ "fileName", "structBootloader__Params.html#aa226a365dfdaaa8612fbfe872724dd5a", null ]
     ] ],
     [ "Bootloader_Fxns", "structBootloader__Fxns.html", [
       [ "imgOpenFxn", "structBootloader__Fxns.html#aeb39a2ad56a51adb5d2770b67886fef9", null ],
@@ -46,7 +47,9 @@ var group__DRV__BOOTLOADER__MODULE =
     [ "BOOTLOADER_MEDIA_BUFIO", "group__DRV__BOOTLOADER__MODULE.html#ga0f998332cc5f2dd0241e9ad6b9129a43", null ],
     [ "BOOTLOADER_MEDIA_PCIE", "group__DRV__BOOTLOADER__MODULE.html#gab3910080929fff68e6e3bf28f651795c", null ],
     [ "BOOTLOADER_MEDIA_USB", "group__DRV__BOOTLOADER__MODULE.html#ga6235c5f187c6445dbcc8681937e2803c", null ],
+    [ "BOOTLOADER_MEDIA_UART", "group__DRV__BOOTLOADER__MODULE.html#ga41e85a931d6abe6f93c10da948d3e9b9", null ],
     [ "BOOTLOADER_SCRATCH_MEM_ENABLE", "group__DRV__BOOTLOADER__MODULE.html#gaa1220e00ac1c5bca990aef73fa0e46ae", null ],
+    [ "LINUX_LOAD_ONLY_IMAGE_ID", "group__DRV__BOOTLOADER__MODULE.html#gac259551825bf2b2eed7ce4f3e8faddbb", null ],
     [ "Bootloader_Handle", "group__DRV__BOOTLOADER__MODULE.html#ga8c2fc1e55aeabdc0aeb19b979fa8d662", null ],
     [ "Bootloader_imgOpenFxn", "group__DRV__BOOTLOADER__MODULE.html#ga78ee19c2e608954d09585ce9668a4551", null ],
     [ "Bootloader_imgReadFxn", "group__DRV__BOOTLOADER__MODULE.html#ga70c39e64013ab688283356f42ecab831", null ],

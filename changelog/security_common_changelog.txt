@@ -1,1 +1,24 @@
 First commit tracked for security_common: 46ecce9c372a34a9a3f5e91c88d20aadf15fe89f
+========================================
+Changes from build on 2026-03-10 20:47:04
+Previous commit: 46ecce9c372a34a9a3f5e91c88d20aadf15fe89f
+Current commit: 6621b7852de7e8dab976003fc613db87c7bcdff9
+========================================
+
+commit 6621b7852de7e8dab976003fc613db87c7bcdff9
+Author: seema <seema.khatib@ti.com>
+Date:   Wed Jan 28 10:02:45 2026 +0530
+
+    f29h85x: misra: MISRA.DEFINE.NOT_DISTINCT.C90.2012
+    
+    -Remove duplicate macro
+    
+    Fixes: TIFSMCU-4728
+    
+    Signed-off-by: seema <seema.khatib@ti.com>
+
+ drivers/crypto/asym_crypt.h    | 3 +++
+ drivers/crypto/dthe/dthe_sha.c | 3 ---
+ drivers/crypto/rng/rng.h       | 5 +----
+ 3 files changed, 4 insertions(+), 7 deletions(-)
+

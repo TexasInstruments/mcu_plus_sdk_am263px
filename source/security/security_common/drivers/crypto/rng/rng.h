@@ -54,7 +54,7 @@
 
 #include <string.h>
 #include <security_common/drivers/crypto/pka/hw_include/cslr_cp_ace.h>
-
+#include <security_common/drivers/crypto/asym_crypt.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -123,9 +123,6 @@ typedef struct
     RNG_Attrs             *attrs;
     /**< Driver params passed during open */
 } RNG_Config;
-
-/** \brief device type HSSE */
-#define DEVTYPE_HSSE         (0x0AU)
 
 /* ========================================================================== */
 /*                            Global Variables                                */

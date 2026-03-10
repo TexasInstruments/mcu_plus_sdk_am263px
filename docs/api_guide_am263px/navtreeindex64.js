@@ -1,5 +1,8 @@
 var NAVTREEINDEX64 =
 {
+"structFOTAAgent__Params.html":[19,7,10,1],
+"structFOTAAgent__Params.html#a376593885f3f496254bf055e7352c0ce":[19,7,10,1,0],
+"structFOTAAgent__Params.html#a507bd0732885c1ae83e7b41370e31a79":[19,7,10,1,2],
 "structFOTAAgent__Params.html#a9c243924c47e91fc2a0df8dd5cc6cf6c":[19,7,10,1,1],
 "structFOTAAgent__Params.html#aa5934f3c70c5c022983fb70310e209f3":[19,7,10,1,3],
 "structFSS__Config.html":[19,7,14,1],
@@ -246,8 +249,5 @@ var NAVTREEINDEX64 =
 "structI2C__Object.html#ad6a25967b42125c9b81c9bd8a600b117":[19,7,18,4,9],
 "structI2C__Object.html#ada53053790f68feab247d1452cb646ab":[19,7,18,4,1],
 "structI2C__Object.html#aff386dafe5a558b55af8c556841ca4de":[19,7,18,4,11],
-"structI2C__Params.html":[19,7,18,3],
-"structI2C__Params.html#a56e74ffc2f1ee70f715dcb41874f153c":[19,7,18,3,1],
-"structI2C__Params.html#a7f9942a2c6bab07474666638d0dfdc57":[19,7,18,3,2],
-"structI2C__Params.html#ab72ce0fd173d102656a5b482ad6f3779":[19,7,18,3,0]
+"structI2C__Params.html":[19,7,18,3]
 };

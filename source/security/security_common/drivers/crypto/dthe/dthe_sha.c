@@ -48,9 +48,6 @@
 /*                           Macros & Typedefs                                */
 /* ========================================================================== */
 
-/** \brief The Maximum Digest Size is 64bytes for the SHA512. */
-#define DTHE_SHA_MAX_DIGEST_SIZE_BYTES          (64U)
-
 /** \brief The Maximum HMAC Key Size is 128bytes or 1024bits for the SHA512. */
 #define DTHE_SHA_MAX_HMAC_KEY_SIZE_BYTES        (128U)
 

@@ -150,6 +150,9 @@ typedef void *AsymCrypt_Handle;
 /** Ed448 Hash length in Bytes */
 #define EDDSA_ED448_HASH_LEN               (114U)
 
+/** \brief device type HSSE */
+#define DEVTYPE_HSSE         (0x0AU)
+
 /* ========================================================================== */
 /*                         Structure Declarations                             */
 /* ========================================================================== */

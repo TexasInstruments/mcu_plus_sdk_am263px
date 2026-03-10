@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">11.02.00</span>
+   &#160;<span id="projectnumber">26.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -129,7 +129,7 @@ Important files and folders</h1>
 <p class="endtd"></p>
 </td></tr>
 <tr>
-<td>genimage.py </td><td><p class="starttd">Python script used to generate multicore elf image from individual core elf images. </p>
+<td>genimage_am26x.py </td><td><p class="starttd">Python script used to generate multicore elf image from individual core elf images. </p>
 <p class="endtd"></p>
 </td></tr>
 </table>
@@ -229,7 +229,7 @@ MCELF Image File Format</div></div>
 <div class="line"> </div>
 <div class="line">$ pip install -r requirements.txt</div>
 <div class="line"> </div>
-<div class="line">$ {PYTHON} genimage.py --core-img={CORE_0_ID}:{core0_app.out} --core-img={CORE_1_ID}:{core1_app.out} --core-img={CORE_2_ID}:{core2_app.out} --core-img={CORE_3_ID}:{core3_app.out} --output={application.mcelf} </div>
+<div class="line">$ {PYTHON} genimage_am26x.py --core-img={CORE_0_ID}:{core0_app.out} --core-img={CORE_1_ID}:{core1_app.out} --core-img={CORE_2_ID}:{core2_app.out} --core-img={CORE_3_ID}:{core3_app.out} --output={application.mcelf} </div>
 </div><!-- fragment --><ul>
 <li>The various core ID to be used are as below.</li>
 </ul>

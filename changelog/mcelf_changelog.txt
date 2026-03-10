@@ -1,0 +1,7 @@
+First commit tracked for mcelf: c8b7063656635f127aac2d94c4ce9277ca06f79c
+
+Recent commit history (last 20 commits):
+
+c8b7063 allsoc: genimage: refactor into SoC-specific variants
+
+Note: Detailed file changes will be shown in subsequent builds when comparing commits
