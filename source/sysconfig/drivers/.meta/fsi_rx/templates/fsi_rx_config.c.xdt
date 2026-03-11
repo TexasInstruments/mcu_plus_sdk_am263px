@@ -1,3 +1,0 @@
-%%{
-    let module = system.modules['/drivers/fsi_rx/fsi_rx'];
-%%}

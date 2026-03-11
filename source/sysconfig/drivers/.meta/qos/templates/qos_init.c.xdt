@@ -1,4 +1,0 @@
-%%{
-    let module = system.modules['/drivers/qos/qos'];
-%%}
-    QOS_init(gQosData, gQosCount);

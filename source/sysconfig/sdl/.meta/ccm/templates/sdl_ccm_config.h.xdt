@@ -1,6 +1,0 @@
-/*
- * CCM
- */
-#include <sdl/sdl_ccm.h>
-
-int32_t SDL_ccmSetup(void);
