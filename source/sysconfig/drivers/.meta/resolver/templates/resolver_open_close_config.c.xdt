@@ -1,0 +1,133 @@
+RDC_configParams gRdcParams;
+void Drivers_resolverOpen()
+{
+% let module = system.modules['/drivers/resolver/resolver'];
+% let common   = system.getScript("/common");
+% let nameOfModule = "resolver";
+% let nameOfPeripheral = module.peripheralName;
+%if (module != null)
+%{
+    % for(let i = 0; i < module.$instances.length; i++) {
+	    % let instance = module.$instances[i];
+		% let baseName = instance.$name + "_BASE_ADDR";
+    /* setting up the Params */
+    RDC_paramsInit(&gRdcParams);
+
+    gRdcParams.Input_signalMode = `instance.resolverSignalMode`;
+    gRdcParams.Input_socWidth = `instance.adcSocWidth`;
+    gRdcParams.Input_adcBurstCount = `instance.adcBurstCount`;
+    gRdcParams.Input_resolverSequencerMode = `instance.resolverSequencerMode`;
+
+    gRdcParams.ExcFrq_freqSel = `instance.resolverExcitationFrequencySelect`;
+    gRdcParams.ExcFrq_phase = `instance.resolverExcitationFrequencyPhase`;
+    gRdcParams.ExcFrq_amplitude = `instance.resolverExcitationFrequencyAmplitudeAdv`;
+    gRdcParams.ExcFrq_enableSyncIn = `instance.syncInEnable`;
+    gRdcParams.ExcFrq_socDelay = `instance.socDelayAdv`;
+
+    %for(let core = 0; core <= 1; core++)
+        %{
+    gRdcParams.core`core`.BpfDc_bpfEnable = `instance["core"+core+"bandPassFilterEnable"]`;
+    gRdcParams.core`core`.BpfDc_offsetCorrectionEnable = `instance["core"+core+"dcOffsetCorrectionEnable"]`;
+    gRdcParams.core`core`.BpfDc_dcOffCal1 = `instance["core"+core+"dcOffsetCalCoef1Adv"]`;
+    gRdcParams.core`core`.BpfDc_dcOffCal2 = `instance["core"+core+"dcOffsetCalCoef2Adv"]`;
+    gRdcParams.core`core`.BpfDc_manualSin = `instance["core"+core+"sinDcOffset"]`;
+    gRdcParams.core`core`.BpfDc_manualCos = `instance["core"+core+"cosDcOffset"]`;
+
+    gRdcParams.core`core`.IdealSample_overrideValue = `instance["core"+core+"IdealSampleOverrideValueAdv"]`;
+    gRdcParams.core`core`.IdealSample_absThresholdValue = `instance["core"+core+"IdealSampleDetectionThresholdAdv"]`;
+    gRdcParams.core`core`.IdealSample_sampleAdjustCount = `instance["core"+core+"IdealSampleBpfAdjustAdv"]`;
+    gRdcParams.core`core`.IdealSample_mode = `instance["core"+core+"IdealSampleModeAdv"]`;
+    gRdcParams.core`core`.IdealSample_bottomSampleEnable = `instance["core"+core+"IdealSampleBottomSamplingAdv"]`;
+
+    gRdcParams.core`core`.Pg_estimationEnable = `instance["core"+core+"PgEstimationEnableAdv"]`;
+    gRdcParams.core`core`.Pg_estimationLimit = `instance["core"+core+"PgEstimationTrainLimitAdv"]`;
+
+    gRdcParams.core`core`.Pg_correctionEnable = `instance["core"+core+"PgCorrectionEnableAdv"]`;
+    gRdcParams.core`core`.Pg_autoCorrectionEnable = `instance["core"+core+"PgAutoPhaseGainCorrectionAdv"]`;
+    gRdcParams.core`core`.Pg_sinGainBypassValue = `instance["core"+core+"PgSinGainBypassValueAdv"]`;
+    gRdcParams.core`core`.Pg_cosGainBypassValue = `instance["core"+core+"PgCosGainBypassValueAdv"]`;
+    gRdcParams.core`core`.Pg_cosPhaseBypassValue = `instance["core"+core+"PgCosPhaseBypassValueAdv"]`;
+
+    ((gRdcParams.core`core`).track2Constants).kvelfilt = `instance["core"+core+"track2kvelfiltAdv"]`;
+%%{
+let IntOptions  = [
+    "RDC_INTERRUPT_SOURCE_LOWAMPLITUDE_ERR",
+    "RDC_INTERRUPT_SOURCE_HIGHAMPLITUDE_COS_FAULT_ERR",
+    "RDC_INTERRUPT_SOURCE_HIGHAMPLITUDE_SIN_FAULT_ERR",
+    "RDC_INTERRUPT_SOURCE_SINSQCOSSQ_LO_ERR",
+    "RDC_INTERRUPT_SOURCE_SINSQCOSSQ_HI_ERR",
+    "RDC_INTERRUPT_SOURCE_COS_MULTI_ZC_ERROR_ERR",
+    "RDC_INTERRUPT_SOURCE_SIN_MULTI_ZC_ERROR_ERR",
+    "RDC_INTERRUPT_SOURCE_COS_NEG_ZC_PEAK_MISMATCH_ERR",
+    "RDC_INTERRUPT_SOURCE_COS_POS_ZC_PEAK_MISMATCH_ERR",
+    "RDC_INTERRUPT_SOURCE_SIN_NEG_ZC_PEAK_MISMATCH_ERR",
+    "RDC_INTERRUPT_SOURCE_SIN_POS_ZC_PEAK_MISMATCH_ERR",
+    "RDC_INTERRUPT_SOURCE_EXCFREQDRIFT_SIN_LO_ERR",
+    "RDC_INTERRUPT_SOURCE_EXCFREQDRIFT_COS_LO_ERR",
+    "RDC_INTERRUPT_SOURCE_EXCFREQDRIFT_HI_ERR",
+    "RDC_INTERRUPT_SOURCE_PHASEDRIFT_COS_LO_ERR",
+    "RDC_INTERRUPT_SOURCE_PHASEDRIFT_COS_HI_ERR",
+    "RDC_INTERRUPT_SOURCE_GAINDRIFT_SIN_LO_ERR",
+    "RDC_INTERRUPT_SOURCE_GAINDRIFT_SIN_HI_ERR",
+    "RDC_INTERRUPT_SOURCE_GAINDRIFT_COS_LO_ERR",
+    "RDC_INTERRUPT_SOURCE_GAINDRIFT_COS_HI_ERR",
+    "RDC_INTERRUPT_SOURCE_OFFSETDRIFT_SIN_LO_ERR",
+    "RDC_INTERRUPT_SOURCE_OFFSETDRIFT_SIN_HI_ERR",
+    "RDC_INTERRUPT_SOURCE_OFFSETDRIFT_COS_LO_ERR",
+    "RDC_INTERRUPT_SOURCE_OFFSETDRIFT_COS_HI_ERR",
+    "RDC_INTERRUPT_SOURCE_TRACK_LOCK_ERR",
+    ]
+
+    let currentInt = ""
+    let enableIntCount = 0
+    let IntsToEnableOR = "("
+    for (let IntToEnable in instance["ResolverCore"+core+"InterruptConfig"])
+    {
+        currentInt = instance["ResolverCore"+core+"InterruptConfig"][enableIntCount]
+        if (enableIntCount == 0)
+        {
+            IntsToEnableOR += currentInt
+        }
+        else
+        {
+            IntsToEnableOR += " | " + currentInt
+        }
+        let disableIndex = IntOptions.indexOf(currentInt)
+        if(disableIndex>-1){
+            IntOptions.splice(disableIndex,1)
+        }
+        enableIntCount++
+    }
+    IntsToEnableOR += ")"
+    let IntsToDisableOR = "("
+    let disableIntCount = 0
+    for(let IntToDisable in IntOptions){
+        currentInt = IntOptions[disableIntCount]
+        if (disableIntCount == 0)
+        {
+            IntsToDisableOR += currentInt
+        }
+        else
+        {
+            IntsToDisableOR += " | " + currentInt
+        }
+        disableIntCount++
+    }
+    IntsToDisableOR += ")"
+%%}
+    %if(enableIntCount > 0)
+    %{
+    gRdcParams.Int_core`core`Interrupts = `IntsToEnableOR`;
+    %}
+    %else
+    %{
+    gRdcParams.Int_core`core`Interrupts = 0;
+    %}
+
+        %}
+    gRdcParams.Int_seqEnable = `instance.SequencerInterrupt`;
+
+    RDC_init(`baseName`, &gRdcParams);
+    %}
+%}
+}

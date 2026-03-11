@@ -1,0 +1,34 @@
+%%{
+    let module = system.modules[args[0]];
+    let common = system.getScript("/common");
+    let clockSet = 0;
+%%}
+% if (module.getClockFrequencies) {
+    % for(let i = 0; i < module.$instances.length; i++) {
+        % let instance = module.$instances[i];
+        % let clockFrequencies = module.getClockFrequencies(instance);
+        % clockFrequencies.forEach( function(clockFrequency) {
+        % if (common.getSocName() == "am64x" || common.getSocName() == "am243x") {
+            % if(clockFrequency.clkParentId)
+            % {
+    { `clockFrequency.moduleId`, `clockFrequency.clkId`, `clockFrequency.clkRate`,`clockFrequency.clkParentId`},
+            % }
+            % else
+            % {
+    { `clockFrequency.moduleId`, `clockFrequency.clkId`, `clockFrequency.clkRate`, SOC_MODULES_END},
+            % }
+        % }
+        % else {
+            % if (module.displayName == "I2C") {
+                % if ( clockSet == 0) {
+    { `clockFrequency.moduleId`, `clockFrequency.clkId`, `clockFrequency.clkRate`},
+                    % clockSet = 1
+                % }
+            % }
+            % else {
+    { `clockFrequency.moduleId`, `clockFrequency.clkId`, `clockFrequency.clkRate`},
+            % }
+        % }
+        % } );
+    % }
+% }

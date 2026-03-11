@@ -1,0 +1,4 @@
+Changes from REL.PRU-ICSS-ETHERNET-SWITCH_02.02.15.09 to REL.PRU-ICSS-ETHERNET-SWITCH_02.02.15.10
+
+- Firmware implementation of buffer pool management in ICSSG replacing the usage of ICSSG HW Buffer pool widget 
+

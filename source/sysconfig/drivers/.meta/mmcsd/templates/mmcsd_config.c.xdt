@@ -1,0 +1,73 @@
+%%{
+    let module = system.modules['/drivers/mmcsd/mmcsd'];
+%%}
+/*
+ * MMCSD
+ */
+
+/* MMCSD attributes */
+static MMCSD_Attrs gMmcsdAttrs[CONFIG_MMCSD_NUM_INSTANCES] =
+{
+% for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    % let config = module.getInstanceConfig(instance);
+    % let operatingMode = module.getOperatingMode(instance);
+    % let name = config.name;
+    {
+        .ctrlBaseAddr         = `config.ctrlBaseAddr`,
+        .ssBaseAddr           = `config.ssBaseAddr`,
+        .inputClkFreq         = `config.inputClkFreq`U,
+        .intrNum              = `config.intrNum`U,
+        .intrEnable           = `config.intrEnable`,
+        .enableDma            = `config.dmaEnable`,
+        .phyType              = MMCSD_PHY_TYPE_`config.phyType`,
+        .cardType             = MMCSD_CARD_TYPE_`config.cardType`,
+        % let busWidthTemp = "";
+        % if(config.moduleSelect == "MMC0") {
+        %     busWidthTemp = config.busWidthMMC;
+        % }
+        % else {
+        %     busWidthTemp = config.busWidthSD;
+        % }
+        .busWidth               = MMCSD_BUS_WIDTH_`busWidthTemp`,
+        .tuningType           = MMCSD_PHY_TUNING_TYPE_`config.tuningType`,
+        .autoAssignMaxSpeed     = `config.autoAssignMaxBusSpeed`,
+        % let modeSelTemp = "";
+        % let modeSelCardTemp = "";
+        % if(config.moduleSelect == "MMC0") {
+        %     modeSelTemp = config.modeSelectEMMC;
+        %     modeSelCardTemp = "MMCSD_MMC_MODE_";
+        % }
+        % else {
+        %     modeSelTemp = config.modeSelectSD;
+        %     modeSelCardTemp = "MMCSD_SD_MODE_";
+        % }
+        .uaBusSpeed             = `modeSelCardTemp``modeSelTemp`,
+        % let slotTypeTemp = "";
+        % if(config.moduleSelect == "MMC0") {
+        %     slotTypeTemp = "MMCSD_SLOT_TYPE_VAL_EMBEDDED";
+        % }
+        % else {
+        %     slotTypeTemp = "MMCSD_SLOT_TYPE_VAL_REMOVABLE";
+        % }
+        .slotType               = `slotTypeTemp`,
+        .pllEnableSD            = `config.usePLLSD`,
+        .intrPriority           = `config.intrPriority`,
+    },
+% }
+};
+/* MMCSD objects - initialized by the driver */
+static MMCSD_Object gMmcsdObjects[CONFIG_MMCSD_NUM_INSTANCES];
+/* MMCSD driver configuration */
+MMCSD_Config gMmcsdConfig[CONFIG_MMCSD_NUM_INSTANCES] =
+{
+% for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    {
+        &gMmcsdAttrs[`instance.$name.toUpperCase()`],
+        &gMmcsdObjects[`instance.$name.toUpperCase()`],
+    },
+% }
+};
+
+uint32_t gMmcsdConfigNum = CONFIG_MMCSD_NUM_INSTANCES;

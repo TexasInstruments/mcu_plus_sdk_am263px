@@ -1,0 +1,243 @@
+%%{
+    let common = system.getScript("/common");
+    let soc = system.getScript(`/drivers/soc/drivers_${common.getSocName()}`);
+    let driverVer = soc.getDriverVer("mcan");
+    let module = system.modules['/drivers/mcan/mcan'];
+    let mcanSoc = system.getScript(`/drivers/mcan/soc/mcan_${common.getSocName()}`);
+    let canfdEdmaInstances = [];
+    for(let i=0; i < module.$instances.length; i++) {
+        let instance = module.$instances[i];
+        let config = module.getInstanceConfig(instance);
+        canfdEdmaInstances.push(module.getInstanceConfig(instance).edmaDriver);
+    }
+%%}
+#include <string.h>
+#include <drivers/mcan/v0/canfd.h>
+#include <drivers/mcan/v0/mcan.h>
+
+/* driver configuration array size */
+uint32_t    gCANFDConfigNum = CONFIG_MCAN_NUM_INSTANCES;
+
+% for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    % let config = module.getInstanceConfig(instance);
+    % if(config.transferMode == "CALLBACK" && config.transferCallbackFxn != "NULL") {
+/* CANFD Transfer Callback */
+void `config.transferCallbackFxn`(void *args, CANFD_Reason reason);
+void `config.errorCallbackFxn`(void *args, CANFD_Reason reason, CANFD_ErrStatusResp* errStatusResp);
+    % }
+% }
+
+% for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    % let config = module.getInstanceConfig(instance);
+%{
+% if(config.fdMode == true)
+%{
+MCAN_ExtMsgIDFilterElement exFilterConfig`i` =
+{
+    .efid1  = `config.extendedFilterID1`U,
+    .efec   = `config.extendedFilterEleConfig`,
+    .efid2  = `config.extendedFilterID2`U,
+    .eft    = `config.extendedFilterType`,
+};
+
+%}
+% else
+%{
+MCAN_StdMsgIDFilterElement standFilterConfig`i` =
+{
+    .sfid1  = `config.standardFilterID1`U,
+    .sfec   = `config.standardFilterEleConfig`,
+    .sfid2  = `config.standardFilterID2`U,
+    .sft    = `config.standardFilterType`,
+};
+
+%}
+%}
+%}
+
+/* MCAN atrributes */
+static CANFD_Attrs gCanfdAttrs[CONFIG_MCAN_NUM_INSTANCES] =
+{
+    % for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    % let config = module.getInstanceConfig(instance);
+    {
+        .baseAddr                             = `config.baseAddr`,
+        .intrNum0                             = `config.intrNum0`,
+        .intrNum1                             = `config.intrNum1`,
+        .intrPriority                         = `config.intrPriority`U,
+        .operMode                             = CANFD_OPER_MODE_`config.operMode`,
+        .OptionTLVtype                        = `config.optionTLVType`,
+        .CANFDMcanloopbackParams.enable       = `config.enableLoopback`,
+        .CANFDMcanloopbackParams.mode         = CANFD_MCANLoopBackMode_`config.loopbackMode`,
+        .CANFDMcanBitTimingParams.nomBrp      = 0x`config.nomBrp.toString(16).toUpperCase()`U,
+        .CANFDMcanBitTimingParams.nomPropSeg  = 0x`config.nomPropSeg.toString(16).toUpperCase()`U,
+        .CANFDMcanBitTimingParams.nomPseg1    = 0x`config.nomPseg1.toString(16).toUpperCase()`U,
+        .CANFDMcanBitTimingParams.nomPseg2    = 0x`config.nomPseg2.toString(16).toUpperCase()`U,
+        .CANFDMcanBitTimingParams.nomSjw      = 0x`config.nomSjw.toString(16).toUpperCase()`U,
+        .CANFDMcanBitTimingParams.dataBrp     = 0x`config.dataBrp.toString(16).toUpperCase()`U,
+        .CANFDMcanBitTimingParams.dataPropSeg = 0x`config.dataPropSeg.toString(16).toUpperCase()`U,
+        .CANFDMcanBitTimingParams.dataPseg1   = 0x`config.dataPseg1.toString(16).toUpperCase()`U,
+        .CANFDMcanBitTimingParams.dataPseg2   = 0x`config.dataPseg2.toString(16).toUpperCase()`U,
+        .CANFDMcanBitTimingParams.dataSjw     = 0x`config.dataSjw.toString(16).toUpperCase()`U,
+
+        .txMemType   = MCAN_MEM_TYPE_`config.txMemType`,
+        .rxMemType   = MCAN_MEM_TYPE_`config.rxMemType`,
+        % if(config.fdMode == true)
+        %{
+        .filterConfig  = (MCAN_ExtMsgIDFilterElement*) &exFilterConfig`i`,
+        %}
+        % else
+        %{
+        .filterConfig  = (MCAN_StdMsgIDFilterElement*) &standFilterConfig`i`,
+        %}
+    },
+    % }
+};
+
+CANFD_Object gCanfdObj[CONFIG_MCAN_NUM_INSTANCES];
+CANFD_Handle gCanfdHandle[CONFIG_MCAN_NUM_INSTANCES];
+extern CANFD_OpenParams openParams[CONFIG_MCAN_NUM_INSTANCES];
+
+/* CANFD driver configuration */
+CANFD_Config gCanfdConfig[CONFIG_MCAN_NUM_INSTANCES] =
+{
+% for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    {
+        &gCanfdAttrs[`instance.$name.toUpperCase()`],
+        &gCanfdObj[`instance.$name.toUpperCase()`],
+    },
+% }
+};
+
+CANFD_OpenParams openParams[CONFIG_MCAN_NUM_INSTANCES] =
+{
+    % for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    % let config = module.getInstanceConfig(instance);
+    {
+        .transferMode              = CANFD_TRANSFER_MODE_`config.transferMode`,
+        .transferCallbackFxn       = `config.transferCallbackFxn`,
+        .errorCallbackFxn          = `config.errorCallbackFxn`,
+        .fdMode                    = `config.fdMode`,
+        .brsEnable                 = `config.brsEnable`,
+        .txpEnable                 = `config.txpEnable`,
+        .efbi                      = `config.efbi`,
+        .pxhddisable               = `config.pxhddisable`,
+        .darEnable                 = `config.darEnable`,
+        .wkupReqEnable             = `config.wkupReqEnable`,
+        .autoWkupEnable            = `config.autoWkupEnable`,
+        .emulationEnable           = `config.emulationEnable`,
+        .emulationFAck             = `config.emulationFAck`,
+        .clkStopFAck               = `config.clkStopFAck`,
+        .wdcPreload                = `config.wdcPreload`,
+        .tdcEnable                 = `config.tdcEnable`,
+        /* Transmitter Delay Compensation parameters. */
+        .tdcConfig.tdcf            = `config.tdcConfig_tdcf`,
+        .tdcConfig.tdco            = `config.tdcConfig_tdco`,
+        /* Initialize MCAN Config parameters.  */
+        .monEnable                 = `config.monEnable`,
+        .asmEnable                 = `config.asmEnable`,
+        .tsPrescalar               = `config.tsPrescalar`,
+        .tsSelect                  = `config.tsSelect`,
+        .timeoutSelect             = `config.timeoutSelect`,
+        .timeoutPreload            = `config.timeoutPreload`,
+        .timeoutCntEnable          = `config.timeoutCntEnable`,
+        /* Global Filter Configuration parameters. */
+        .filterConfig.rrfe         = `config.rrfe`,
+        .filterConfig.rrfs         = `config.rrfs`,
+        .filterConfig.anfe         = `config.anfe`,
+        .filterConfig.anfs         = `config.anfs`,
+        /* Message RAM Configuration parameters. */
+        .msgRAMConfig.lss          = `config.$name`_MCAN_STD_ID_FILTER_NUM,
+        .msgRAMConfig.lse          = `config.$name`_MCAN_EXT_ID_FILTER_NUM,
+        .msgRAMConfig.txBufNum     = `config.$name`_MCAN_TX_BUFF_SIZE,
+        .msgRAMConfig.txFIFOSize              = `config.txFIFOSize`,
+        .msgRAMConfig.txBufMode               = `config.txBufMode`,
+        .msgRAMConfig.txEventFIFOSize         = `config.$name`_MCAN_TX_EVENT_SIZE,
+        .msgRAMConfig.txEventFIFOWaterMark    = `config.txEventFIFOWaterMark`,
+        .msgRAMConfig.rxFIFO0size             = `config.$name`_MCAN_FIFO_0_NUM,
+        .msgRAMConfig.rxFIFO0waterMark        = `config.rxFIFO0waterMark`,
+        .msgRAMConfig.rxFIFO0OpMode           = `config.rxFIFO0OpMode`,
+        .msgRAMConfig.rxFIFO1size             = `config.$name`_MCAN_FIFO_1_NUM,
+        .msgRAMConfig.rxFIFO1waterMark        = `config.rxFIFO1waterMark`,
+        .msgRAMConfig.rxFIFO1OpMode           = `config.rxFIFO1OpMode`,
+
+        /* ECC Configuration parameters. */
+        .eccConfig.enable           = `config.eccEnable`,
+        .eccConfig.enableChk        = `config.enableChk`,
+        .eccConfig.enableRdModWr    = `config.enableRdModWr`,
+        .errInterruptEnable         = `config.errInterruptEnable`,
+        .dataInterruptEnable        = `config.dataInterruptEnable`,
+    },
+    %}
+};
+
+#include <drivers/edma.h>
+#include <drivers/mcan/v0/dma/edma/canfd_dma_edma.h>
+
+%if(canfdEdmaInstances.length > 0) {
+
+% if (common.getSocName() === 'am273x') {
+CANFD_EdmaChConfig gEdmaDmaChCfg[] =
+{
+    {
+        .edmaRxChId = {EDMA_MSS_TPCC_A_EVT_MCANA_DMA_REQ0},
+        .edmaTxChId = {EDMA_MSS_TPCC_A_EVT_MCANA_DMA_REQ1},
+    },
+};
+% }
+% else {
+CANFD_EdmaChConfig gEdmaDmaChCfg[] =
+{
+    {
+        .edmaRxChId = {DMA_TRIG_XBAR_EDMA_MODULE_0},
+        .edmaTxChId = {DMA_TRIG_XBAR_EDMA_MODULE_1},
+    },
+};
+% }
+
+CANFD_EdmaArgs gCanfdEdmaArgs =
+{
+    .drvHandle = (void *)&gEdmaConfig[`canfdEdmaInstances[0].$name`],
+};
+
+CANFD_DmaHandle gCanfdDmaHandle[`canfdEdmaInstances.length.length`] =
+{
+% for(let i = 0; i < canfdEdmaInstances.length; i++) {
+    (void *)&gEdmaConfig[CONFIG_EDMA0],
+% }
+};
+% }
+%else {
+
+CANFD_EdmaArgs gCanfdEdmaArgs =
+{
+    .drvHandle        = NULL,
+};
+
+CANFD_DmaHandle gcanfdDmaHandle[`canfdEdmaInstances.length.length`] =
+{
+    % for(let i = 0; i < canfdEdmaInstances.length; i++) {
+        NULL,
+    % }
+};
+%}
+
+CANFD_DmaChConfig gCanfdDmaChCfg[`module.$instances.length`] =
+{
+    % for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    % let instNameCamelCase = common.camelSentence(instance.$name);
+    % let config = module.getInstanceConfig(instance);
+    %if(config.operMode == "DMA") {
+    gEdmaDmaChCfg,
+    %}
+    % else {
+    NULL,
+    %}
+    %}
+};

@@ -1,0 +1,91 @@
+%%{
+    // this section is for Init parts...
+    let common = system.getScript('/common')
+    let soc_ctrl_epwm = system.modules["/drivers/soc_ctrl/v0/subModules/soc_ctrl_epwm"];
+    let soc_ctrl_epwm_scripts = system.getScript["/drivers/soc_ctrl/v0/subModules/soc_ctrl_epwm"];
+
+    let arg = args;
+
+    let instance = soc_ctrl_epwm.$instances[0];
+    let thisCoreCxt = common.getSelfSysCfgCoreName();
+
+    let getAddedInstances = soc_ctrl_epwm.getAddedInstances
+    // let modules = soc_ctrl_adc.usedModules
+    let epwmStaticConfigArray = soc_ctrl_epwm.epwmStaticConfigArray
+
+    // console.log(adcStaticConfigArray)
+
+    let epwmInstAdded = getAddedInstances('/drivers/epwm/epwm')
+
+    let epwmArgStr = ""
+    let epwmMask = []
+    if (epwmInstAdded.length > 0){
+        epwmArgStr = epwmArgStr + "("
+        for (let i of epwmInstAdded){
+            epwmMask.push("(1U << " + i.replace("EPWM", "") + "U)")
+        }
+
+        epwmArgStr += epwmMask.join(" | ") + ")"
+    }
+
+    let tbClkSynArgStr = ""
+    if(epwmInstAdded.length > 0){
+        tbClkSynArgStr = "("
+        let tempArr = []
+        for(let epwmInst of epwmInstAdded){
+            let epwmInstNumberStr = epwmInst.replace("EPWM", "")
+            if(instance["tbclkSyncCtrlEn"]){
+                if(instance["tbclkSyncCtrlEn"].includes(epwmInst) && (instance["tbClkSyncDisable"+epwmInstNumberStr])){
+                    continue;
+                }else {
+                    tempArr.push("(1U << " + epwmInst.replace("EPWM", "") + "U)")
+                }
+            }
+        }
+        tbClkSynArgStr += tempArr.join(" | ") + ")"
+    }
+%%}
+%if(soc_ctrl_epwm)
+%{
+    % switch (arg[0])
+    % {
+    % case "header_file":
+/* 
+ * EPWM tbclk enable/disable configs get stored in the following macros. 
+ * These may be used in the Application to enable/disable the tbclksync
+ */
+extern uint32_t gEpwmTbClkSyncDisableMask, gEpwmTbClkSyncEnableMask;
+        % break;
+    % case "begin":
+        % /* code */
+        % if(epwmArgStr != ""){
+    // this may be used in the application by an definition.
+    gEpwmTbClkSyncDisableMask = `epwmArgStr`;
+    /* Disabling the TBCLK SYNC for the EPWM configurations */
+    SOC_setMultipleEpwmTbClk(gEpwmTbClkSyncDisableMask, FALSE);
+        % }
+
+    /* Halt Controls for EPWM */
+            % for (let opt of epwmInstAdded){
+                % if(instance["haltCtrlEn"].includes(opt) && instance["haltDisable"+opt.replace("EPWM","")]){
+    /* Halt Disabled for EPWM instance `opt.replace("EPWM","")`*/
+    Soc_disableEPWMHalt(`opt.replace("EPWM","")`);
+                % } else {
+    /* Halt Enabled for EPWM instance `opt.replace("EPWM","")`*/
+    Soc_enableEPWMHalt(`opt.replace("EPWM","")`);
+                % }
+            %}
+        % break;
+    % case "end":
+        % /* code */
+        % if((tbClkSynArgStr !== "") && (tbClkSynArgStr !== "()")){
+/* Enabling the TBCLK SYNC after the EPWM configurations */
+    // this may be used in the application by an definition.
+    gEpwmTbClkSyncEnableMask = `tbClkSynArgStr`;
+    SOC_setMultipleEpwmTbClk(gEpwmTbClkSyncEnableMask, TRUE);
+        % }
+        % break;
+    % default:
+        % break;
+    % }
+%}

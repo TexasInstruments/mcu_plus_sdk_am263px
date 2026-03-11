@@ -1,0 +1,8 @@
+    if(status==SystemP_SUCCESS)
+    {
+        status = Board_ioexpOpen();
+        if(status == SystemP_FAILURE)
+        {
+            DebugP_log("IO Expander Configuration Failed!!\r\n");
+        }
+    }

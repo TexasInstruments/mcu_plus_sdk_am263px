@@ -1,0 +1,37 @@
+%%{
+    let common = system.getScript("/common");
+    let soc = system.getScript(`/drivers/soc/drivers_${common.getSocName()}`);
+    let driverVer = soc.getDriverVer("mcan");
+    let module = system.modules['/drivers/mcan/mcan'];
+%%}
+/*
+ * MCAN
+ */
+#include <drivers/mcan/v0/canfd.h>
+#include <drivers/mcan/v0/mcan.h>
+
+% for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    % let config = module.getInstanceConfig(instance);
+
+#define `instance.$name`_MCAN_STD_ID_FILT_START_ADDR     (`config.flssa`U)
+#define `instance.$name`_MCAN_STD_ID_FILTER_NUM          (`config.lss`U)
+#define `instance.$name`_MCAN_EXT_ID_FILT_START_ADDR     (`config.flesa`U)
+#define `instance.$name`_MCAN_EXT_ID_FILTER_NUM          (`config.lse`U)
+#define `instance.$name`_MCAN_TX_BUFF_SIZE               (`config.txBufNum`U)
+#define `instance.$name`_MCAN_FIFO_1_NUM                 (`config.rxFIFO1size`U)
+#define `instance.$name`_MCAN_TX_EVENT_SIZE              (`config.txEventFIFOSize`U)
+#define `instance.$name`_MCAN_FIFO_0_NUM                 (`config.rxFIFO0size`U)
+
+#define `instance.$name.toUpperCase()`              (`i`U)
+#define `instance.$name.toUpperCase()`_BASE_ADDR    (`config.baseAddr`)
+% }
+
+#define CONFIG_MCAN_NUM_INSTANCES (`module.$instances.length`U)
+
+/*  CANFD objects - initialized by the driver */
+extern CANFD_Object gCanfdObj[CONFIG_MCAN_NUM_INSTANCES];
+/*  CANFD global configuration array */
+extern CANFD_Config gCanfdConfig[CONFIG_MCAN_NUM_INSTANCES];
+/* CANFD Driver handles */
+extern CANFD_Handle gCanfdHandle[CONFIG_MCAN_NUM_INSTANCES];

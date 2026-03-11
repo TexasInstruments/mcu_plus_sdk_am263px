@@ -1,0 +1,29 @@
+%%{
+    let module = system.modules['/board/ioexp/ioexp'];
+%%}
+%if(module)
+%{
+/*
+ * IOEXP
+ */
+% let driverNamesInc = [];
+% for(let instance of module.$instances)
+% {
+%   let staticArrCfg = module.getInstanceConfig(instance)
+%   let driverName = staticArrCfg.driverName
+%   if (! driverNamesInc.includes(driverName))
+%   {
+%       driverNamesInc.push(driverName)
+#include <board/ioexp/`staticArrCfg.driverName`.h>
+%   }
+% }
+
+/* IOEXP Instance Macros */
+% for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+#define `instance.$name.toUpperCase()` (`i`U)
+% }
+#define CONFIG_IOEXP_NUM_INSTANCES (`module.$instances.length`U)
+
+void  Board_ioexpInit();
+%}
