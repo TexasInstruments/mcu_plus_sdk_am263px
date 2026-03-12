@@ -1083,3 +1083,139 @@ Current commit: 7eab6694402088ac23e0045a0143c687b0872d0c
 ========================================
 
 
+========================================
+Changes from build on 2026-03-12 20:46:37
+Previous commit: 7eab6694402088ac23e0045a0143c687b0872d0c
+Current commit: 177732aa0701f2c04aa4c073777072ede2857a0d
+========================================
+
+commit 177732aa0701f2c04aa4c073777072ede2857a0d
+Author: Dave Joseph <d-joseph@ti.com>
+Date:   Thu Feb 12 15:18:50 2026 +0530
+
+    allsocs: makefiles: Update makefiles for sysconfig
+    
+    - Update makefiles to support sysconfig version 1.26.2
+    
+    Fixes: SITSW-7933
+    Signed-off-by: Dave Joseph <d-joseph@ti.com>
+
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ examples/enet_cpsw_est/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile           | 2 +-
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_nortos/ti-arm-clang/makefile        | 4 ++--
+ .../am62dx-evm-dp83tg721/am62dx-evm/mcu-r5fss0-0_nortos/ti-arm-clang/makefile    | 2 +-
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ examples/enet_layer2_cpsw/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile        | 2 +-
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../enet_layer2_cpsw_switch/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/makefile    | 2 +-
+ .../am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/makefile                       | 2 +-
+ examples/enet_layer2_cpsw_switch/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile | 2 +-
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am62dx-evm-dp83867/mcu-r5fss0-0_freertos/ti-arm-clang/makefile               | 2 +-
+ .../loopback_mac_end/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/makefile           | 2 +-
+ .../loopback_mac_end/am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/makefile      | 2 +-
+ .../loopback_mac_end/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile             | 2 +-
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      | 4 ++--
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../am62dx-evm-dp83tg721/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile  | 2 +-
+ .../loopback_phy_end/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/makefile           | 2 +-
+ .../loopback_phy_end/am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/makefile      | 2 +-
+ .../loopback_phy_end/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile             | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ examples/lwip/cpsw_lwip_https/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/makefile  | 2 +-
+ examples/lwip/cpsw_lwip_https/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile    | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_nortos/ti-arm-clang/makefile      | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ examples/lwip/enet_cpsw_socket/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/makefile | 2 +-
+ examples/lwip/enet_cpsw_socket/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile   | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../lwip/enet_cpsw_tcpclient/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/makefile   | 2 +-
+ .../lwip/enet_cpsw_tcpclient/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile     | 2 +-
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../lwip/enet_cpsw_tcpserver/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/makefile   | 2 +-
+ .../enet_cpsw_tcpserver/am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/makefile   | 2 +-
+ .../lwip/enet_cpsw_tcpserver/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile     | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../lwip/enet_cpsw_udp_igmp/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/makefile    | 2 +-
+ examples/lwip/enet_cpsw_udp_igmp/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../lwip/enet_cpsw_udpclient/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/makefile   | 2 +-
+ .../lwip/enet_cpsw_udpclient/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile     | 2 +-
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      | 4 ++--
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../am62dx-evm-dp83tg721/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile  | 2 +-
+ examples/lwip/enet_lwip_cpsw/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/makefile   | 2 +-
+ .../lwip/enet_lwip_cpsw/am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/makefile   | 2 +-
+ examples/lwip/enet_lwip_cpsw/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile     | 2 +-
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      | 4 ++--
+ .../am275x-evm-dp83867/am275x-evm/c75ss0-0_freertos/ti-c7000/makefile            | 4 ++--
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am275x-evm-dp83tg721/am275x-evm/c75ss0-0_freertos/ti-c7000/makefile          | 4 ++--
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      | 4 ++--
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am275x-evm-dp83867/am275x-evm/c75ss0-0_freertos/ti-c7000/makefile            | 4 ++--
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../am275x-evm-dp83867/am275x-evm/c75ss0-0_freertos/ti-c7000/makefile            | 4 ++--
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am62dx-evm-dp83867/am62dx-evm/c75ss0-0_freertos/ti-c7000/makefile            | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      | 4 ++--
+ .../am62dx-evm-dp83tg721/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile  | 2 +-
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      | 4 ++--
+ .../am62dx-evm-dp83tg721/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile  | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/c75ss0-0_freertos/ti-c7000/makefile            | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../avb_listener/am62dx-evm-dp83867/am62dx-evm/system_avblistener_app/makefile   | 2 +-
+ .../avb_talker/am62dx-evm-dp83867/am62dx-evm/c75ss0-0_freertos/ti-c7000/makefile | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../avb_talker/am62dx-evm-dp83867/am62dx-evm/system_avbtalker_app/makefile       | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      | 4 ++--
+ .../am62dx-evm-dp83tg721/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile  | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      | 4 ++--
+ .../am62dx-evm-dp83tg721/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile  | 2 +-
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      | 4 ++--
+ .../am62dx-evm-dp83tg721/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile  | 2 +-
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      | 4 ++--
+ .../am62dx-evm-dp83tg721/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile  | 2 +-
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      | 4 ++--
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      | 4 ++--
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 4 ++--
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      | 4 ++--
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../am62dx-evm-dp83tg721/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile  | 2 +-
+ .../tsn/gptp_cpsw_app/am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/makefile     | 2 +-
+ examples/tsn/gptp_cpsw_app/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile       | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ examples/tsn/gptp_lwip_cpsw/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/makefile    | 2 +-
+ .../tsn/gptp_lwip_cpsw/am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ examples/tsn/gptp_lwip_cpsw/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile      | 2 +-
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 2 +-
+ test/clock_sync_demo/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile          | 4 ++--
+ test/clock_sync_demo/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile      | 2 +-
+ .../loopback_phy_end/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/makefile           | 2 +-
+ .../loopback_phy_end/am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/makefile      | 2 +-
+ .../loopback_phy_end/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile             | 2 +-
+ 117 files changed, 154 insertions(+), 154 deletions(-)
+
