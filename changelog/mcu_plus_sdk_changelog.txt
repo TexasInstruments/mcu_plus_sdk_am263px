@@ -54214,3 +54214,81 @@ Date:   Wed Feb 25 15:38:14 2026 +0530
  source/dhrystone_benchmark/makefile.am64x.a53.gcc-aarch64.nortos                 | 1 -
  9 files changed, 9 deletions(-)
 
+========================================
+Changes from build on 2026-03-16 20:48:18
+Previous commit: f0348b8aebd1a5923a64d4998eb758f1159a29e4
+Current commit: 8d475810c2140c53bdbf3d945beaa6e342243758
+========================================
+
+commit 8d475810c2140c53bdbf3d945beaa6e342243758
+Author: Ashutosh Nayak <a-nayak2@ti.com>
+Date:   Mon Mar 16 16:41:40 2026 +0530
+
+    am64x/am243x: sdl: misc SDL fixes
+    
+    - Fix debug log in ECC example for automation support
+    
+    - Fix negative case handling in RTI API
+    
+    - Rework ROM UT to avoid infinite log
+    
+    - Prevent undue editing of base_addr value in this API
+    
+    - All of these changes are already present in k3_next
+    
+    Fixes: PROC_SDL-8858
+    
+    Signed-off-by: Ashutosh <a-nayak2@ti.com>
+
+ examples/sdl/ecc/ecc_main.c                              |  4 ++++
+ source/sdl/rti/v0/sdl_rti.c                              |  8 ++++++--
+ test/sdl/rom_checksum/unit_test/rom_checksum_test_main.c | 21 +++++++++++++++++++--
+ 3 files changed, 29 insertions(+), 4 deletions(-)
+
+commit add276c8ae6280e421a5326dd83fbd8a56e51cfe
+Author: thilak <t-karanam@ti.com>
+Date:   Sat Mar 14 19:53:29 2026 +0530
+
+    allsocs: templates: Add infra support to copy .h files in CCS
+    
+    - The current project Infra does not have capability to
+      copy the .h files into CCS forcing to link them to
+      the ones in the installer.
+    - This causes the installer to break if any changes are made to .h file.
+    - This template modification adds this capability to copy .h files
+      in the CCS.
+    - To copy the .h file in CCS, add the list of files to project.incfiles
+      variable in the project_<soc>.js file.
+    
+    Fixes: SITSW-10832
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ .project/templates/projectspec_executable.xdt | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+commit 57a429d5fc7adf1c42d0c752d72ae5572f2bd6dc
+Author: Ashutosh Nayak <a-nayak2@ti.com>
+Date:   Fri Mar 13 18:22:01 2026 +0530
+
+    am64x/am243x: sdl: fix ESM interrupt handling
+    
+    - Fix issue in SDL_ESM_loInterruptHandler API
+    
+    - Wrong ESM instance parameter was being passed
+    
+    - Fix made in SDL_ESM_checkSpecialEvent API of all SoC files
+    
+    - Prevent undue editing of base_addr value in this API
+    
+    - This ensures that the value of base_addr stays valid
+    
+    Fixes: PROC_SDL-9635
+    
+    Signed-off-by: Ashutosh <a-nayak2@ti.com>
+
+ source/sdl/esm/soc/am243x/sdl_esm_core.c | 9 +++++----
+ source/sdl/esm/soc/am64x/sdl_esm_core.c  | 9 +++++----
+ source/sdl/esm/v0/v0_0/sdl_esm_priv.c    | 2 +-
+ 3 files changed, 11 insertions(+), 9 deletions(-)
+

@@ -1470,3 +1470,867 @@ Date:   Fri Mar 13 13:56:33 2026 +0530
  .../layer2_performance/am64x-sk/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs   | 3 +++
  231 files changed, 693 insertions(+)
 
+========================================
+Changes from build on 2026-03-16 20:46:40
+Previous commit: c33a68604bb7e09388b12b49b6354248cfe4716b
+Current commit: 0179901faaf607766a6866a5ded2f81ffaeed975
+========================================
+
+commit 0179901faaf607766a6866a5ded2f81ffaeed975
+Author: thilak <t-karanam@ti.com>
+Date:   Mon Mar 16 12:00:39 2026 +0530
+
+    allsocs: enet: Add Generated Makefiles and projectspec build files
+    
+    - Add Generated Makefiles and projectspec build files
+    
+    Fixes: SITSW-10832
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ .../enet_cli_app/am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec   | 18 ++++++++++++++++++
+ .../enet_cli_app/am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec    | 18 ++++++++++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 18 ++++++++++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 18 ++++++++++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 18 ++++++++++++++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 18 ++++++++++++++++++
+ .../enet_cli_app/am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec    | 18 ++++++++++++++++++
+ .../enet_cli_app/am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec    | 18 ++++++++++++++++++
+ .../enet_cli_app/am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec     | 18 ++++++++++++++++++
+ .../enet_cli_app/am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec    | 18 ++++++++++++++++++
+ examples/enet_cli_app/am64x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec | 18 ++++++++++++++++++
+ .../enet_cli_app/am64x-sk/r5fss0-0_freertos/ti-arm-clang/example.projectspec     | 18 ++++++++++++++++++
+ .../enet_cpsw_est/am243x-evm/r5fss0-0_freertos/gcc-armv7/example.projectspec     |  8 ++++++++
+ .../enet_cpsw_est/am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec  |  8 ++++++++
+ examples/enet_cpsw_est/am243x-lp/r5fss0-0_freertos/gcc-armv7/example.projectspec |  8 ++++++++
+ .../enet_cpsw_est/am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec   |  8 ++++++++
+ .../enet_cpsw_est/am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec   |  8 ++++++++
+ .../enet_cpsw_est/am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec  |  8 ++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  8 ++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  8 ++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  8 ++++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  8 ++++++++
+ .../enet_cpsw_est/am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec   |  8 ++++++++
+ .../enet_cpsw_est/am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec   |  8 ++++++++
+ .../enet_cpsw_est/am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec  |  8 ++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  8 ++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  8 ++++++++
+ .../enet_cpsw_est/am62x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec     |  8 ++++++++
+ .../enet_cpsw_est/am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec    |  8 ++++++++
+ .../enet_cpsw_est/am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec   |  8 ++++++++
+ .../am243x-lp/r5fss0-0_nortos/gcc-armv7/example.projectspec                      |  8 ++++++++
+ .../am243x-lp/r5fss0-0_nortos/ti-arm-clang/example.projectspec                   |  8 ++++++++
+ .../am263x-cc/r5fss0-0_nortos/ti-arm-clang/example.projectspec                   |  8 ++++++++
+ .../am275x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec                  |  8 ++++++++
+ .../am62dx-evm/mcu-r5fss0-0_nortos/ti-arm-clang/example.projectspec              |  8 ++++++++
+ .../am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  8 ++++++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  8 ++++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  8 ++++++++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  8 ++++++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  8 ++++++++
+ .../enet_layer2_cpsw/am243x-evm/r5fss0-0_freertos/gcc-armv7/example.projectspec  |  6 ++++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../enet_layer2_cpsw/am243x-lp/r5fss0-0_freertos/gcc-armv7/example.projectspec   |  6 ++++++
+ .../am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  6 ++++++
+ .../am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  6 ++++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am263px-cc/r5fss0-1_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am263px-cc/r5fss0-1_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am263px-cc/r5fss0-1_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  6 ++++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  6 ++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  6 ++++++
+ .../enet_layer2_cpsw/am62x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec  |  6 ++++++
+ .../enet_layer2_cpsw/am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec |  6 ++++++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  6 ++++++
+ .../enet_layer2_cpsw/am64x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec  |  6 ++++++
+ .../enet_layer2_cpsw/am64x-sk/r5fss0-0_freertos/ti-arm-clang/example.projectspec |  6 ++++++
+ .../am243x-evm/r5fss0-0_freertos/gcc-armv7/example.projectspec                   |  6 ++++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am243x-lp/r5fss0-0_freertos/gcc-armv7/example.projectspec                    |  6 ++++++
+ .../am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  6 ++++++
+ .../am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  6 ++++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  6 ++++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  6 ++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  6 ++++++
+ .../am62lx-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec                 |  6 ++++++
+ .../am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  6 ++++++
+ .../am62x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec                   |  6 ++++++
+ .../am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec                  |  6 ++++++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  6 ++++++
+ .../am64x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec                   |  6 ++++++
+ .../am64x-sk/r5fss0-0_freertos/ti-arm-clang/example.projectspec                  |  6 ++++++
+ .../am243x-evm/r5fss0-0_freertos/gcc-armv7/example.projectspec                   | 18 ++++++++++++++++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 18 ++++++++++++++++++
+ .../am243x-evm/r5fss0-1_freertos/gcc-armv7/example.projectspec                   | 18 ++++++++++++++++++
+ .../am243x-evm/r5fss0-1_freertos/ti-arm-clang/example.projectspec                | 18 ++++++++++++++++++
+ .../am243x-lp/r5fss0-0_freertos/gcc-armv7/example.projectspec                    | 18 ++++++++++++++++++
+ .../am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 18 ++++++++++++++++++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 20 ++++++++++++++++++++
+ .../enet_layer2_multi_channel/am263x-cc/r5fss0-0_freertos/ti-arm-clang/makefile  |  1 +
+ .../am263x-cc/r5fss0-1_freertos/ti-arm-clang/example.projectspec                 | 20 ++++++++++++++++++++
+ .../enet_layer2_multi_channel/am263x-cc/r5fss0-1_freertos/ti-arm-clang/makefile  |  1 +
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 20 ++++++++++++++++++++
+ .../enet_layer2_multi_channel/am263x-lp/r5fss0-0_freertos/ti-arm-clang/makefile  |  1 +
+ .../am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 20 ++++++++++++++++++++
+ .../enet_layer2_multi_channel/am273x-evm/r5fss0-0_freertos/ti-arm-clang/makefile |  1 +
+ .../am273x-evm/r5fss0-1_freertos/ti-arm-clang/example.projectspec                | 20 ++++++++++++++++++++
+ .../enet_layer2_multi_channel/am273x-evm/r5fss0-1_freertos/ti-arm-clang/makefile |  1 +
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 18 ++++++++++++++++++
+ .../am64x-evm/r5fss0-1_freertos/ti-arm-clang/example.projectspec                 | 18 ++++++++++++++++++
+ .../loopback_mac_end/am243x-evm/r5fss0-0_freertos/gcc-armv7/example.projectspec  |  4 ++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../loopback_mac_end/am243x-lp/r5fss0-0_freertos/gcc-armv7/example.projectspec   |  4 ++++
+ .../am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am62dx-evm-dp83867/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec    |  4 ++++
+ .../am62lx-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec                 |  4 ++++
+ .../am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  4 ++++
+ .../loopback_mac_end/am62x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec  |  4 ++++
+ .../loopback_mac_end/am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec |  4 ++++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../loopback_mac_end/am64x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec  |  4 ++++
+ .../loopback_mac_end/am64x-sk/r5fss0-0_freertos/ti-arm-clang/example.projectspec |  4 ++++
+ .../loopback_phy_end/am243x-evm/r5fss0-0_freertos/gcc-armv7/example.projectspec  |  4 ++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../loopback_phy_end/am243x-lp/r5fss0-0_freertos/gcc-armv7/example.projectspec   |  4 ++++
+ .../am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-1_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-1_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-1_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  4 ++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  4 ++++
+ .../am62lx-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec                 |  4 ++++
+ .../am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  4 ++++
+ .../loopback_phy_end/am62x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec  |  4 ++++
+ .../loopback_phy_end/am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec |  4 ++++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../loopback_phy_end/am64x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec  |  4 ++++
+ .../loopback_phy_end/am64x-sk/r5fss0-0_freertos/ti-arm-clang/example.projectspec |  4 ++++
+ .../loopback_phy_end/am243x-evm/r5fss0-0_nortos/gcc-armv7/example.projectspec    |  4 ++++
+ .../loopback_phy_end/am243x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec |  4 ++++
+ .../loopback_phy_end/am243x-lp/r5fss0-0_nortos/gcc-armv7/example.projectspec     |  4 ++++
+ .../loopback_phy_end/am243x-lp/r5fss0-0_nortos/ti-arm-clang/example.projectspec  |  4 ++++
+ .../loopback_phy_end/am64x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec  |  4 ++++
+ .../enet_rawudp/am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec    |  6 ++++++
+ .../am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 10 ++++++++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 10 ++++++++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 10 ++++++++++
+ .../am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 18 ++++++++++++++++++
+ examples/ether_ring/am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec | 18 ++++++++++++++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 14 ++++++++++++++
+ .../etherring_can/am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec   | 14 ++++++++++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  6 ++++++
+ .../cpsw_lwip_https/am243x-evm/r5fss0-0_freertos/gcc-armv7/example.projectspec   |  6 ++++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../cpsw_lwip_https/am243x-lp/r5fss0-0_freertos/gcc-armv7/example.projectspec    |  6 ++++++
+ .../cpsw_lwip_https/am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec |  6 ++++++
+ .../cpsw_lwip_https/am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec |  6 ++++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../cpsw_lwip_https/am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec |  6 ++++++
+ .../cpsw_lwip_https/am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec |  6 ++++++
+ .../am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  6 ++++++
+ .../cpsw_lwip_https/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec |  6 ++++++
+ .../cpsw_lwip_https/am62x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec   |  6 ++++++
+ .../cpsw_lwip_https/am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec  |  6 ++++++
+ .../cpsw_lwip_https/am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec |  6 ++++++
+ .../cpsw_lwip_mqtt/am243x-evm/r5fss0-0_freertos/gcc-armv7/example.projectspec    |  6 ++++++
+ .../cpsw_lwip_mqtt/am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec |  6 ++++++
+ .../cpsw_lwip_mqtt/am243x-lp/r5fss0-0_freertos/gcc-armv7/example.projectspec     |  6 ++++++
+ .../cpsw_lwip_mqtt/am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec  |  6 ++++++
+ .../cpsw_lwip_mqtt/am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec  |  6 ++++++
+ .../cpsw_lwip_mqtt/am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec  |  6 ++++++
+ .../cpsw_lwip_mqtt/am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec |  6 ++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  6 ++++++
+ .../cpsw_lwip_mqtt/am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec  |  6 ++++++
+ .../am243x-evm/r5fss0-0_nortos/gcc-armv7/example.projectspec                     |  4 ++++
+ .../am243x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec                  |  4 ++++
+ .../am243x-lp/r5fss0-0_nortos/gcc-armv7/example.projectspec                      |  4 ++++
+ .../am243x-lp/r5fss0-0_nortos/ti-arm-clang/example.projectspec                   |  4 ++++
+ .../am261x-lp/r5fss0-0_nortos/ti-arm-clang/example.projectspec                   |  4 ++++
+ .../am261x-som/r5fss0-0_nortos/ti-arm-clang/example.projectspec                  |  4 ++++
+ .../am263px-cc/r5fss0-0_nortos/ti-arm-clang/example.projectspec                  |  4 ++++
+ .../am263px-cc/r5fss0-0_nortos/ti-arm-clang/example.projectspec                  |  4 ++++
+ .../am263px-cc/r5fss0-0_nortos/ti-arm-clang/example.projectspec                  |  4 ++++
+ .../am263px-lp/r5fss0-0_nortos/ti-arm-clang/example.projectspec                  |  4 ++++
+ .../am263x-cc/r5fss0-0_nortos/ti-arm-clang/example.projectspec                   |  4 ++++
+ .../am263x-lp/r5fss0-0_nortos/ti-arm-clang/example.projectspec                   |  4 ++++
+ .../am273x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec                  |  4 ++++
+ .../am62dx-evm/mcu-r5fss0-0_nortos/ti-arm-clang/example.projectspec              |  4 ++++
+ .../am64x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec                   |  4 ++++
+ .../enet_cpsw_socket/am243x-evm/r5fss0-0_freertos/gcc-armv7/example.projectspec  |  4 ++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../enet_cpsw_socket/am243x-lp/r5fss0-0_freertos/gcc-armv7/example.projectspec   |  4 ++++
+ .../am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  4 ++++
+ .../am62lx-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec                 |  4 ++++
+ .../enet_cpsw_socket/am62x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec  |  4 ++++
+ .../enet_cpsw_socket/am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec |  4 ++++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am243x-evm/r5fss0-0_freertos/gcc-armv7/example.projectspec                   |  4 ++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am243x-lp/r5fss0-0_freertos/gcc-armv7/example.projectspec                    |  4 ++++
+ .../am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  4 ++++
+ .../am62lx-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec                 |  4 ++++
+ .../am62x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec                   |  4 ++++
+ .../am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec                  |  4 ++++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am243x-evm/r5fss0-0_freertos/gcc-armv7/example.projectspec                   |  4 ++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am243x-lp/r5fss0-0_freertos/gcc-armv7/example.projectspec                    |  4 ++++
+ .../am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  4 ++++
+ .../am62lx-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec                 |  4 ++++
+ .../am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  4 ++++
+ .../am62x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec                   |  4 ++++
+ .../am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec                  |  4 ++++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am243x-evm/r5fss0-0_freertos/gcc-armv7/example.projectspec                   |  4 ++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../enet_cpsw_udp_igmp/am243x-lp/r5fss0-0_freertos/gcc-armv7/example.projectspec |  4 ++++
+ .../am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  4 ++++
+ .../am62lx-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec                 |  4 ++++
+ .../am62x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec                   |  4 ++++
+ .../am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec                  |  4 ++++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am243x-evm/r5fss0-0_freertos/gcc-armv7/example.projectspec                   |  4 ++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am243x-lp/r5fss0-0_freertos/gcc-armv7/example.projectspec                    |  4 ++++
+ .../am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  4 ++++
+ .../am62lx-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec                 |  4 ++++
+ .../am62x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec                   |  4 ++++
+ .../am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec                  |  4 ++++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  4 ++++
+ .../am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 |  4 ++++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 14 ++++++++++++++
+ .../am64x-evm/r5fss0-1_freertos/ti-arm-clang/example.projectspec                 | 12 ++++++++++++
+ .../enet_lwip_cpsw/am243x-evm/r5fss0-0_freertos/gcc-armv7/example.projectspec    | 10 +++-------
+ examples/lwip/enet_lwip_cpsw/am243x-evm/r5fss0-0_freertos/gcc-armv7/makefile     |  6 ------
+ .../enet_lwip_cpsw/am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec | 10 +++-------
+ examples/lwip/enet_lwip_cpsw/am243x-evm/r5fss0-0_freertos/ti-arm-clang/makefile  |  6 ------
+ .../enet_lwip_cpsw/am243x-evm/r5fss0-1_freertos/gcc-armv7/example.projectspec    | 10 +++-------
+ examples/lwip/enet_lwip_cpsw/am243x-evm/r5fss0-1_freertos/gcc-armv7/makefile     |  6 ------
+ .../enet_lwip_cpsw/am243x-evm/r5fss0-1_freertos/ti-arm-clang/example.projectspec | 10 +++-------
+ examples/lwip/enet_lwip_cpsw/am243x-evm/r5fss0-1_freertos/ti-arm-clang/makefile  |  6 ------
+ .../enet_lwip_cpsw/am243x-lp/r5fss0-0_freertos/gcc-armv7/example.projectspec     | 10 +++-------
+ examples/lwip/enet_lwip_cpsw/am243x-lp/r5fss0-0_freertos/gcc-armv7/makefile      |  6 ------
+ .../enet_lwip_cpsw/am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 10 +++-------
+ examples/lwip/enet_lwip_cpsw/am243x-lp/r5fss0-0_freertos/ti-arm-clang/makefile   |  6 ------
+ .../enet_lwip_cpsw/am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 24 ++++++++++++++++++++++++
+ .../enet_lwip_cpsw/am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec | 24 ++++++++++++++++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 24 ++++++++++++++++++++++++
+ .../am263px-cc/r5fss0-1_freertos/ti-arm-clang/example.projectspec                | 24 ++++++++++++++++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 24 ++++++++++++++++++++++++
+ .../am263px-cc/r5fss0-1_freertos/ti-arm-clang/example.projectspec                | 24 ++++++++++++++++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 24 ++++++++++++++++++++++++
+ .../am263px-cc/r5fss0-1_freertos/ti-arm-clang/example.projectspec                | 24 ++++++++++++++++++++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 24 ++++++++++++++++++++++++
+ .../enet_lwip_cpsw/am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 24 ++++++++++++++++++++++++
+ .../enet_lwip_cpsw/am263x-cc/r5fss0-1_freertos/ti-arm-clang/example.projectspec  | 24 ++++++++++++++++++++++++
+ .../enet_lwip_cpsw/am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 24 ++++++++++++++++++++++++
+ .../enet_lwip_cpsw/am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec | 12 +++---------
+ examples/lwip/enet_lwip_cpsw/am273x-evm/r5fss0-0_freertos/ti-arm-clang/makefile  |  7 -------
+ .../enet_lwip_cpsw/am273x-evm/r5fss0-1_freertos/ti-arm-clang/example.projectspec | 12 +++---------
+ examples/lwip/enet_lwip_cpsw/am273x-evm/r5fss0-1_freertos/ti-arm-clang/makefile  |  7 -------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  6 ++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  6 ++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  6 ++++++
+ .../enet_lwip_cpsw/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec  |  6 ++++++
+ .../am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  6 ++++++
+ .../enet_lwip_cpsw/am62x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec    |  6 ++++++
+ .../enet_lwip_cpsw/am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec   | 10 +++-------
+ examples/lwip/enet_lwip_cpsw/am64x-evm/a53ss0-0_freertos/gcc-aarch64/makefile    |  6 ------
+ .../enet_lwip_cpsw/am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 10 +++-------
+ examples/lwip/enet_lwip_cpsw/am64x-evm/r5fss0-0_freertos/ti-arm-clang/makefile   |  6 ------
+ .../enet_lwip_cpsw/am64x-evm/r5fss0-1_freertos/ti-arm-clang/example.projectspec  | 10 +++-------
+ examples/lwip/enet_lwip_cpsw/am64x-evm/r5fss0-1_freertos/ti-arm-clang/makefile   |  6 ------
+ .../enet_lwip_cpsw/am64x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec    | 10 +++-------
+ examples/lwip/enet_lwip_cpsw/am64x-sk/a53ss0-0_freertos/gcc-aarch64/makefile     |  6 ------
+ .../enet_lwip_cpsw/am64x-sk/r5fss0-0_freertos/ti-arm-clang/example.projectspec   | 10 +++-------
+ examples/lwip/enet_lwip_cpsw/am64x-sk/r5fss0-0_freertos/ti-arm-clang/makefile    |  6 ------
+ .../enet_lwip_icssg/am243x-evm/r5fss0-0_freertos/gcc-armv7/example.projectspec   | 24 ++++++++++++++++++++++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 24 ++++++++++++++++++++++++
+ .../enet_lwip_icssg/am243x-lp/r5fss0-0_freertos/gcc-armv7/example.projectspec    | 24 ++++++++++++++++++++++++
+ .../enet_lwip_icssg/am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec | 24 ++++++++++++++++++++++++
+ .../enet_lwip_icssg/am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec | 24 ++++++++++++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 23 +++++++++++++++++++++--
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        |  3 +--
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 23 +++++++++++++++++++++--
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      |  3 +--
+ .../am275x-evm-dp83867/am275x-evm/c75ss0-0_freertos/ti-c7000/example.projectspec |  5 +++++
+ .../am275x-evm-dp83867/am275x-evm/c75ss0-0_freertos/ti-c7000/makefile            |  1 +
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 25 +++++++++++++++++++++----
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        |  4 +---
+ .../am275x-evm/c75ss0-0_freertos/ti-c7000/example.projectspec                    |  5 +++++
+ .../am275x-evm-dp83tg721/am275x-evm/c75ss0-0_freertos/ti-c7000/makefile          |  1 +
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 25 +++++++++++++++++++++----
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      |  4 +---
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 31 +++++++++++++++++++++++++++++--
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        |  3 ++-
+ .../am275x-evm-dp83867/am275x-evm/c75ss0-0_freertos/ti-c7000/example.projectspec |  5 +++++
+ .../am275x-evm-dp83867/am275x-evm/c75ss0-0_freertos/ti-c7000/makefile            |  1 +
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 30 ++++++++++++++++++++++++++----
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        |  4 ++--
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 16 ++++++++++++++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 16 ++++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 16 ++++++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 16 ++++++++++++++++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 16 ++++++++++++++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 16 ++++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 16 ++++++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 16 ++++++++++++++++
+ .../am275x-evm-dp83867/am275x-evm/c75ss0-0_freertos/ti-c7000/example.projectspec |  2 ++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  2 ++
+ .../am62dx-evm-dp83867/am62dx-evm/c75ss0-0_freertos/ti-c7000/example.projectspec |  2 ++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  2 ++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 18 ++++++++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 18 ++++++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 14 ++++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 14 ++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 20 ++++++++++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 20 ++++++++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 14 ++++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 14 ++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 20 ++++++++++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 20 ++++++++++++++++++++
+ .../am62dx-evm-dp83867/am62dx-evm/c75ss0-0_freertos/ti-c7000/example.projectspec |  4 ++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  4 ++++
+ .../am62dx-evm-dp83867/am62dx-evm/c75ss0-0_freertos/ti-c7000/example.projectspec |  4 ++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            |  4 ++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 12 ++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 18 ++++++++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 18 ++++++++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 12 ++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 18 ++++++++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 18 ++++++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 14 ++++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 14 ++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 14 ++++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 14 ++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 16 ++++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 16 ++++++++++++++++
+ .../est_cpsw_app/am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec   | 14 ++++++++++++++
+ .../est_cpsw_app/am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec    | 14 ++++++++++++++
+ .../est_cpsw_app/am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec    | 14 ++++++++++++++
+ .../est_cpsw_app/am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec    | 14 ++++++++++++++
+ .../est_cpsw_app/am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec    | 14 ++++++++++++++
+ .../tsn/est_cpsw_app/am64x-sk/r5fss0-0_freertos/ti-arm-clang/example.projectspec | 14 ++++++++++++++
+ .../gptp_cpsw_app/am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 12 ++++++++++++
+ .../gptp_cpsw_app/am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec   | 12 ++++++++++++
+ .../gptp_cpsw_app/am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec   | 12 ++++++++++++
+ .../gptp_cpsw_app/am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 12 ++++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../gptp_cpsw_app/am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec   | 12 ++++++++++++
+ .../gptp_cpsw_app/am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec   | 12 ++++++++++++
+ .../gptp_cpsw_app/am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 10 ++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 12 ++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 12 ++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 12 ++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 12 ++++++++++++
+ .../am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 12 ++++++++++++
+ .../tsn/gptp_cpsw_app/am62x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec | 12 ++++++++++++
+ .../gptp_cpsw_app/am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec    | 12 ++++++++++++
+ .../gptp_cpsw_app/am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec   | 12 ++++++++++++
+ .../gptp_cpsw_app/am64x-sk/r5fss0-0_freertos/ti-arm-clang/example.projectspec    | 12 ++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 12 ++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 12 ++++++++++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 10 ++++++++++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 10 ++++++++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 10 ++++++++++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                 | 10 ++++++++++
+ .../gptp_lwip_cpsw/am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec | 10 ++++++++++
+ .../gptp_lwip_cpsw/am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 10 ++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 10 ++++++++++
+ .../gptp_lwip_cpsw/am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 10 ++++++++++
+ .../gptp_lwip_cpsw/am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 10 ++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 10 ++++++++++
+ .../gptp_lwip_cpsw/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec  | 10 ++++++++++
+ .../am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 10 ++++++++++
+ .../gptp_lwip_cpsw/am62x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec    | 10 ++++++++++
+ .../gptp_lwip_cpsw/am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec   | 10 ++++++++++
+ .../gptp_lwip_cpsw/am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 10 ++++++++++
+ .../am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 12 ++++++++++++
+ .../gptp_lwip_icssg/am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec | 12 ++++++++++++
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 12 ++++++++++++
+ 464 files changed, 3681 insertions(+), 206 deletions(-)
+
+commit 28a138fa226620c065789004b224c55bdf0156b6
+Author: thilak <t-karanam@ti.com>
+Date:   Mon Mar 16 11:58:55 2026 +0530
+
+    allsocs: enet: Modify Source files to include headers by their names.
+    
+    - Modify the source Files to include header files by their names
+      without their relative path.
+    
+    Fixes: SITSW-10832
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ examples/lwip/enet_cpsw_udpclient/app_udpclient.c                                | 2 +-
+ examples/tsn/aafpcm_audio_demo/auto_amplifier/autoamp_avb.c                      | 4 ++--
+ examples/tsn/aafpcm_audio_demo/auto_amplifier/autoamp_mcasp_audio.c              | 4 ++--
+ examples/tsn/aafpcm_audio_demo/central_compute/central_aaf_app.c                 | 4 ++--
+ .../tsn/aafpcm_audio_demo/central_compute/remote_core/remote_mcasp_playback.c    | 4 ++--
+ examples/tsn/aafpcm_audio_etherring_demo/auto_amplifier/autoamp_avb.c            | 6 +++---
+ examples/tsn/aafpcm_audio_etherring_demo/auto_amplifier/autoamp_mcasp_audio.c    | 6 +++---
+ examples/tsn/aafpcm_audio_etherring_demo/central_compute/central_aaf_app.c       | 4 ++--
+ .../central_compute/remote_core/remote_mcasp_playback.c                          | 4 ++--
+ examples/tsn/aafpcm_audio_etherring_demo/common_files/control_data.c             | 6 +++---
+ 10 files changed, 22 insertions(+), 22 deletions(-)
+
+commit 6211c64495bbe4e43e78377581c74fe45a0e0afa
+Author: thilak <t-karanam@ti.com>
+Date:   Mon Mar 16 11:57:38 2026 +0530
+
+    allsocs: enet: Add Header files in project.js
+    
+    - This Commit adds .h files and its paths to all the examples across all
+      the SOCs so that they are copied in the CCS.
+    - Without this change, the compilation in CCS fails as .h files were not
+      being copied earlier.
+    
+    Fixes: SITSW-10832
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ examples/enet_cli_app/.project/project_am243x.js                                 | 17 ++++++++++++++++-
+ examples/enet_cli_app/.project/project_am263px.js                                | 17 ++++++++++++++++-
+ examples/enet_cli_app/.project/project_am263x.js                                 | 17 ++++++++++++++++-
+ examples/enet_cli_app/.project/project_am64x.js                                  | 15 +++++++++++++++
+ examples/enet_cpsw_est/.project/project_am243x.js                                | 10 ++++++++++
+ examples/enet_cpsw_est/.project/project_am261x.js                                | 10 ++++++++++
+ examples/enet_cpsw_est/.project/project_am263px.js                               | 10 ++++++++++
+ examples/enet_cpsw_est/.project/project_am263x.js                                | 10 ++++++++++
+ examples/enet_cpsw_est/.project/project_am273x.js                                | 10 ++++++++++
+ examples/enet_cpsw_est/.project/project_am275x.js                                | 10 ++++++++++
+ examples/enet_cpsw_est/.project/project_am62ax.js                                | 10 ++++++++++
+ examples/enet_cpsw_est/.project/project_am62dx.js                                | 10 ++++++++++
+ examples/enet_cpsw_est/.project/project_am62x.js                                 | 10 ++++++++++
+ examples/enet_cpsw_est/.project/project_am64x.js                                 | 10 ++++++++++
+ examples/enet_cpsw_fast_startup/.project/project_am243x.js                       | 10 ++++++++++
+ examples/enet_cpsw_fast_startup/.project/project_am263x.js                       | 10 ++++++++++
+ examples/enet_cpsw_fast_startup/.project/project_am275x.js                       | 10 ++++++++++
+ examples/enet_cpsw_fast_startup/.project/project_am62dx.js                       | 10 ++++++++++
+ examples/enet_cpsw_industrial_app/.project/project_am261x.js                     | 10 ++++++++++
+ examples/enet_cpsw_industrial_app/.project/project_am263px.js                    | 10 ++++++++++
+ examples/enet_cpsw_industrial_app/.project/project_am263x.js                     | 10 ++++++++++
+ examples/enet_layer2_cpsw/.project/project_am243x.js                             |  9 +++++++++
+ examples/enet_layer2_cpsw/.project/project_am261x.js                             |  9 +++++++++
+ examples/enet_layer2_cpsw/.project/project_am263px.js                            |  9 +++++++++
+ examples/enet_layer2_cpsw/.project/project_am263x.js                             |  9 +++++++++
+ examples/enet_layer2_cpsw/.project/project_am275x.js                             |  9 +++++++++
+ examples/enet_layer2_cpsw/.project/project_am62ax.js                             |  9 +++++++++
+ examples/enet_layer2_cpsw/.project/project_am62dx.js                             |  9 +++++++++
+ examples/enet_layer2_cpsw/.project/project_am62x.js                              |  9 +++++++++
+ examples/enet_layer2_cpsw/.project/project_am64x.js                              |  9 +++++++++
+ examples/enet_layer2_cpsw_switch/.project/project_am243x.js                      |  9 +++++++++
+ examples/enet_layer2_cpsw_switch/.project/project_am261x.js                      |  9 +++++++++
+ examples/enet_layer2_cpsw_switch/.project/project_am263px.js                     |  9 +++++++++
+ examples/enet_layer2_cpsw_switch/.project/project_am263x.js                      |  9 +++++++++
+ examples/enet_layer2_cpsw_switch/.project/project_am275x.js                      |  9 +++++++++
+ examples/enet_layer2_cpsw_switch/.project/project_am62ax.js                      |  9 +++++++++
+ examples/enet_layer2_cpsw_switch/.project/project_am62dx.js                      |  9 +++++++++
+ examples/enet_layer2_cpsw_switch/.project/project_am62lx.js                      |  9 +++++++++
+ examples/enet_layer2_cpsw_switch/.project/project_am62px.js                      |  9 +++++++++
+ examples/enet_layer2_cpsw_switch/.project/project_am62x.js                       |  9 +++++++++
+ examples/enet_layer2_cpsw_switch/.project/project_am64x.js                       |  9 +++++++++
+ examples/enet_layer2_cpsw_switch/.project/project_j722s.js                       |  9 +++++++++
+ examples/enet_layer2_multi_channel/.project/project_am243x.js                    | 15 +++++++++++++++
+ examples/enet_layer2_multi_channel/.project/project_am263x.js                    | 17 +++++++++++++++++
+ examples/enet_layer2_multi_channel/.project/project_am273x.js                    | 17 +++++++++++++++++
+ examples/enet_layer2_multi_channel/.project/project_am62ax.js                    | 15 +++++++++++++++
+ examples/enet_layer2_multi_channel/.project/project_am64x.js                     | 15 +++++++++++++++
+ examples/enet_layer2_multi_channel/.project/project_awr294x.js                   | 17 +++++++++++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_mac_end/.project/project_am243x.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_mac_end/.project/project_am261x.js |  8 ++++++++
+ .../enet_cpsw_loopback/loopback_mac_end/.project/project_am263px.js              |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_mac_end/.project/project_am263x.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_mac_end/.project/project_am273x.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_mac_end/.project/project_am275x.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_mac_end/.project/project_am62ax.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_mac_end/.project/project_am62dx.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_mac_end/.project/project_am62lx.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_mac_end/.project/project_am62px.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_mac_end/.project/project_am62x.js  |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_mac_end/.project/project_am64x.js  |  8 ++++++++
+ .../enet_cpsw_loopback/loopback_mac_end/.project/project_awr294x.js              |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_mac_end/.project/project_j722s.js  |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_phy_end/.project/project_am243x.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_phy_end/.project/project_am261x.js |  8 ++++++++
+ .../enet_cpsw_loopback/loopback_phy_end/.project/project_am263px.js              |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_phy_end/.project/project_am263x.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_phy_end/.project/project_am273x.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_phy_end/.project/project_am275x.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_phy_end/.project/project_am62ax.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_phy_end/.project/project_am62dx.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_phy_end/.project/project_am62lx.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_phy_end/.project/project_am62px.js |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_phy_end/.project/project_am62x.js  |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_phy_end/.project/project_am64x.js  |  8 ++++++++
+ .../enet_cpsw_loopback/loopback_phy_end/.project/project_awr294x.js              |  8 ++++++++
+ .../enet_loopback/enet_cpsw_loopback/loopback_phy_end/.project/project_j722s.js  |  8 ++++++++
+ .../enet_icssg_loopback/loopback_phy_end/.project/project_am243x.js              |  8 ++++++++
+ .../enet_loopback/enet_icssg_loopback/loopback_phy_end/.project/project_am64x.js |  8 ++++++++
+ examples/enet_rawudp/.project/project_am273x.js                                  |  9 +++++++++
+ examples/enet_tx_scatter_gather/.project/project_am261x.js                       | 11 +++++++++++
+ examples/enet_tx_scatter_gather/.project/project_am263px.js                      | 11 +++++++++++
+ examples/enet_tx_scatter_gather/.project/project_am263x.js                       | 11 +++++++++++
+ examples/enet_tx_scatter_gather/.project/project_am273x.js                       | 11 +++++++++++
+ examples/enet_tx_scatter_gather/.project/project_awr294x.js                      | 11 +++++++++++
+ examples/ether_ring/.project/project_am263px.js                                  | 15 +++++++++++++++
+ examples/ether_ring/.project/project_am263x.js                                   | 15 +++++++++++++++
+ examples/etherring_can/.project/project_am263px.js                               | 13 +++++++++++++
+ examples/etherring_can/.project/project_am263x.js                                | 13 +++++++++++++
+ examples/etherring_trafficgen/.project/project_am263px.js                        |  9 +++++++++
+ examples/etherring_trafficgen/.project/project_am263x.js                         |  9 +++++++++
+ examples/lwip/cpsw_lwip_https/.project/project_am243x.js                         |  9 +++++++++
+ examples/lwip/cpsw_lwip_https/.project/project_am261x.js                         |  9 +++++++++
+ examples/lwip/cpsw_lwip_https/.project/project_am263px.js                        |  9 +++++++++
+ examples/lwip/cpsw_lwip_https/.project/project_am263x.js                         |  9 +++++++++
+ examples/lwip/cpsw_lwip_https/.project/project_am273x.js                         |  9 +++++++++
+ examples/lwip/cpsw_lwip_https/.project/project_am62ax.js                         |  9 +++++++++
+ examples/lwip/cpsw_lwip_https/.project/project_am62dx.js                         |  9 +++++++++
+ examples/lwip/cpsw_lwip_https/.project/project_am62lx.js                         |  9 +++++++++
+ examples/lwip/cpsw_lwip_https/.project/project_am62x.js                          |  9 +++++++++
+ examples/lwip/cpsw_lwip_https/.project/project_am64x.js                          |  9 +++++++++
+ examples/lwip/cpsw_lwip_mqtt/.project/project_am243x.js                          |  9 +++++++++
+ examples/lwip/cpsw_lwip_mqtt/.project/project_am263x.js                          |  9 +++++++++
+ examples/lwip/cpsw_lwip_mqtt/.project/project_am273x.js                          |  9 +++++++++
+ examples/lwip/cpsw_lwip_mqtt/.project/project_am62dx.js                          |  9 +++++++++
+ examples/lwip/cpsw_lwip_mqtt/.project/project_am64x.js                           |  9 +++++++++
+ examples/lwip/enet_cpsw_rawhttpserver/.project/project_am243x.js                 |  8 ++++++++
+ examples/lwip/enet_cpsw_rawhttpserver/.project/project_am261x.js                 |  8 ++++++++
+ examples/lwip/enet_cpsw_rawhttpserver/.project/project_am263px.js                |  8 ++++++++
+ examples/lwip/enet_cpsw_rawhttpserver/.project/project_am263x.js                 |  8 ++++++++
+ examples/lwip/enet_cpsw_rawhttpserver/.project/project_am273x.js                 |  8 ++++++++
+ examples/lwip/enet_cpsw_rawhttpserver/.project/project_am62dx.js                 |  8 ++++++++
+ examples/lwip/enet_cpsw_rawhttpserver/.project/project_am64x.js                  |  8 ++++++++
+ examples/lwip/enet_cpsw_rawhttpserver/.project/project_awr294x.js                |  8 ++++++++
+ examples/lwip/enet_cpsw_socket/.project/project_am243x.js                        |  8 ++++++++
+ examples/lwip/enet_cpsw_socket/.project/project_am261x.js                        |  8 ++++++++
+ examples/lwip/enet_cpsw_socket/.project/project_am263px.js                       |  8 ++++++++
+ examples/lwip/enet_cpsw_socket/.project/project_am263x.js                        |  8 ++++++++
+ examples/lwip/enet_cpsw_socket/.project/project_am273x.js                        |  8 ++++++++
+ examples/lwip/enet_cpsw_socket/.project/project_am62ax.js                        |  8 ++++++++
+ examples/lwip/enet_cpsw_socket/.project/project_am62dx.js                        |  8 ++++++++
+ examples/lwip/enet_cpsw_socket/.project/project_am62lx.js                        |  8 ++++++++
+ examples/lwip/enet_cpsw_socket/.project/project_am62x.js                         |  8 ++++++++
+ examples/lwip/enet_cpsw_socket/.project/project_am64x.js                         |  8 ++++++++
+ examples/lwip/enet_cpsw_socket/.project/project_awr294x.js                       |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpclient/.project/project_am243x.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpclient/.project/project_am261x.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpclient/.project/project_am263px.js                    |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpclient/.project/project_am263x.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpclient/.project/project_am273x.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpclient/.project/project_am62ax.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpclient/.project/project_am62dx.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpclient/.project/project_am62lx.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpclient/.project/project_am62x.js                      |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpclient/.project/project_am64x.js                      |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpclient/.project/project_awr294x.js                    |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpserver/.project/project_am243x.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpserver/.project/project_am261x.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpserver/.project/project_am263px.js                    |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpserver/.project/project_am263x.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpserver/.project/project_am273x.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpserver/.project/project_am275x.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpserver/.project/project_am62ax.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpserver/.project/project_am62dx.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpserver/.project/project_am62lx.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpserver/.project/project_am62px.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpserver/.project/project_am62x.js                      |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpserver/.project/project_am64x.js                      |  8 ++++++++
+ examples/lwip/enet_cpsw_tcpserver/.project/project_awr294x.js                    |  8 ++++++++
+ examples/lwip/enet_cpsw_udp_igmp/.project/project_am243x.js                      |  8 ++++++++
+ examples/lwip/enet_cpsw_udp_igmp/.project/project_am261x.js                      |  8 ++++++++
+ examples/lwip/enet_cpsw_udp_igmp/.project/project_am263px.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_udp_igmp/.project/project_am263x.js                      |  8 ++++++++
+ examples/lwip/enet_cpsw_udp_igmp/.project/project_am273x.js                      |  8 ++++++++
+ examples/lwip/enet_cpsw_udp_igmp/.project/project_am62ax.js                      |  8 ++++++++
+ examples/lwip/enet_cpsw_udp_igmp/.project/project_am62dx.js                      |  8 ++++++++
+ examples/lwip/enet_cpsw_udp_igmp/.project/project_am62lx.js                      |  8 ++++++++
+ examples/lwip/enet_cpsw_udp_igmp/.project/project_am62x.js                       |  8 ++++++++
+ examples/lwip/enet_cpsw_udp_igmp/.project/project_am64x.js                       |  8 ++++++++
+ examples/lwip/enet_cpsw_udp_igmp/.project/project_awr294x.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_udpclient/.project/project_am243x.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_udpclient/.project/project_am261x.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_udpclient/.project/project_am263px.js                    |  8 ++++++++
+ examples/lwip/enet_cpsw_udpclient/.project/project_am263x.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_udpclient/.project/project_am273x.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_udpclient/.project/project_am62ax.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_udpclient/.project/project_am62dx.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_udpclient/.project/project_am62lx.js                     |  8 ++++++++
+ examples/lwip/enet_cpsw_udpclient/.project/project_am62x.js                      |  8 ++++++++
+ examples/lwip/enet_cpsw_udpclient/.project/project_am64x.js                      |  8 ++++++++
+ examples/lwip/enet_cpsw_udpclient/.project/project_awr294x.js                    |  8 ++++++++
+ examples/lwip/enet_icssg_tcpserver/.project/project_am243x.js                    |  8 ++++++++
+ examples/lwip/enet_icssg_tcpserver/.project/project_am64x.js                     |  8 ++++++++
+ examples/lwip/enet_intercore_icssg/.project/project_am243x.js                    | 14 ++++++++++++++
+ examples/lwip/enet_intercore_icssg/.project/project_am64x.js                     | 27 +++++++++++++++++++++++++++
+ examples/lwip/enet_lwip_cpsw/.project/project_am243x.js                          | 15 +++++++++------
+ examples/lwip/enet_lwip_cpsw/.project/project_am261x.js                          | 18 ++++++++++++++++++
+ examples/lwip/enet_lwip_cpsw/.project/project_am263px.js                         | 18 ++++++++++++++++++
+ examples/lwip/enet_lwip_cpsw/.project/project_am263x.js                          | 18 ++++++++++++++++++
+ examples/lwip/enet_lwip_cpsw/.project/project_am273x.js                          | 16 +++++++++-------
+ examples/lwip/enet_lwip_cpsw/.project/project_am275x.js                          |  9 +++++++++
+ examples/lwip/enet_lwip_cpsw/.project/project_am62ax.js                          |  9 +++++++++
+ examples/lwip/enet_lwip_cpsw/.project/project_am62dx.js                          |  9 +++++++++
+ examples/lwip/enet_lwip_cpsw/.project/project_am62lx.js                          |  9 +++++++++
+ examples/lwip/enet_lwip_cpsw/.project/project_am62px.js                          |  9 +++++++++
+ examples/lwip/enet_lwip_cpsw/.project/project_am62x.js                           |  9 +++++++++
+ examples/lwip/enet_lwip_cpsw/.project/project_am64x.js                           | 15 +++++++++------
+ examples/lwip/enet_lwip_cpsw/.project/project_awr294x.js                         | 18 ++++++++++++++++++
+ examples/lwip/enet_lwip_icssg/.project/project_am243x.js                         | 18 ++++++++++++++++++
+ examples/lwip/enet_lwip_icssg/.project/project_am64x.js                          | 18 ++++++++++++++++++
+ examples/tsn/aafpcm_audio_demo/auto_amplifier/.project/project_am275x.js         | 22 +++++++++++++++++++---
+ examples/tsn/aafpcm_audio_demo/central_compute/.project/project_am275x.js        | 30 +++++++++++++++++++++++++++---
+ .../tsn/aafpcm_audio_etherring_demo/auto_amplifier/.project/project_am275x.js    | 25 +++++++++++++++++++++++--
+ .../tsn/aafpcm_audio_etherring_demo/central_compute/.project/project_am275x.js   | 31 +++++++++++++++++++++++++++++--
+ examples/tsn/aafpcmlistener_app/.project/project_am263x.js                       | 14 ++++++++++++++
+ examples/tsn/aafpcmlistener_app/.project/project_am275x.js                       | 14 ++++++++++++++
+ examples/tsn/aafpcmlistener_app/.project/project_am62ax.js                       | 14 ++++++++++++++
+ examples/tsn/aafpcmlistener_app/.project/project_am62dx.js                       | 14 ++++++++++++++
+ examples/tsn/aafpcmtalker_app/.project/project_am263x.js                         | 14 ++++++++++++++
+ examples/tsn/aafpcmtalker_app/.project/project_am275x.js                         | 14 ++++++++++++++
+ examples/tsn/aafpcmtalker_app/.project/project_am62ax.js                         | 14 ++++++++++++++
+ examples/tsn/aafpcmtalker_app/.project/project_am62dx.js                         | 14 ++++++++++++++
+ examples/tsn/acf_app/.project/project_am62ax.js                                  | 14 ++++++++++++++
+ examples/tsn/aes3_aaf/aes3_aaflistener_app/.project/project_am275x.js            |  7 +++++++
+ examples/tsn/aes3_aaf/aes3_aaflistener_app/.project/project_am62dx.js            |  7 +++++++
+ examples/tsn/aes3_aaf/aes3_aaftalker_app/.project/project_am275x.js              | 15 +++++++++++++++
+ examples/tsn/aes3_aaf/aes3_aaftalker_app/.project/project_am62dx.js              | 15 +++++++++++++++
+ examples/tsn/avb_autoamplifier_demo/audio_sink/.project/project_am275x.js        | 13 +++++++++++++
+ examples/tsn/avb_autoamplifier_demo/audio_sink/.project/project_am62dx.js        | 13 +++++++++++++
+ .../tsn/avb_autoamplifier_demo/audio_sink_with_crf/.project/project_am275x.js    | 16 ++++++++++++++++
+ .../tsn/avb_autoamplifier_demo/audio_sink_with_crf/.project/project_am62dx.js    | 16 ++++++++++++++++
+ examples/tsn/avb_autoamplifier_demo/audio_source/.project/project_am275x.js      | 13 +++++++++++++
+ examples/tsn/avb_autoamplifier_demo/audio_source/.project/project_am62dx.js      | 13 +++++++++++++
+ .../tsn/avb_autoamplifier_demo/audio_source_with_crf/.project/project_am275x.js  | 16 ++++++++++++++++
+ .../tsn/avb_autoamplifier_demo/audio_source_with_crf/.project/project_am62dx.js  | 16 ++++++++++++++++
+ examples/tsn/avb_cpsw_app/avb_listener/.project/project_am62ax.js                |  8 ++++++++
+ examples/tsn/avb_cpsw_app/avb_listener/.project/project_am62dx.js                |  8 ++++++++
+ examples/tsn/avb_cpsw_app/avb_talker/.project/project_am62ax.js                  |  8 ++++++++
+ examples/tsn/avb_cpsw_app/avb_talker/.project/project_am62dx.js                  |  8 ++++++++
+ examples/tsn/avtp_apps/.project/project_am62ax.js                                | 14 ++++++++++++++
+ examples/tsn/avtp_apps/.project/project_am64x.js                                 | 14 ++++++++++++++
+ examples/tsn/avtplistener_app/.project/project_am62ax.js                         | 12 ++++++++++++
+ examples/tsn/avtplistener_app/.project/project_am62dx.js                         | 12 ++++++++++++
+ examples/tsn/avtplistener_crftalker/.project/project_am275x.js                   | 15 +++++++++++++++
+ examples/tsn/avtplistener_crftalker/.project/project_am62dx.js                   | 15 +++++++++++++++
+ examples/tsn/avtptalker_app/.project/project_am62ax.js                           | 12 ++++++++++++
+ examples/tsn/avtptalker_app/.project/project_am62dx.js                           | 12 ++++++++++++
+ examples/tsn/avtptalker_crflistener/.project/project_am275x.js                   | 15 +++++++++++++++
+ examples/tsn/avtptalker_crflistener/.project/project_am62dx.js                   | 15 +++++++++++++++
+ examples/tsn/cbs_cpsw_app/.project/project_am62ax.js                             | 13 +++++++++++++
+ examples/tsn/crflistener_app/.project/project_am275x.js                          | 13 +++++++++++++
+ examples/tsn/crflistener_app/.project/project_am62ax.js                          | 13 +++++++++++++
+ examples/tsn/crflistener_app/.project/project_am62dx.js                          | 13 +++++++++++++
+ examples/tsn/crftalker_app/.project/project_am275x.js                            | 13 +++++++++++++
+ examples/tsn/crftalker_app/.project/project_am62ax.js                            | 13 +++++++++++++
+ examples/tsn/crftalker_app/.project/project_am62dx.js                            | 13 +++++++++++++
+ examples/tsn/enet_multistream_mcr/crflistener/.project/project_am275x.js         | 14 ++++++++++++++
+ examples/tsn/enet_multistream_mcr/crftalker/.project/project_am275x.js           | 14 ++++++++++++++
+ examples/tsn/est_cpsw_app/.project/project_am243x.js                             | 13 +++++++++++++
+ examples/tsn/est_cpsw_app/.project/project_am263x.js                             | 13 +++++++++++++
+ examples/tsn/est_cpsw_app/.project/project_am273x.js                             | 13 +++++++++++++
+ examples/tsn/est_cpsw_app/.project/project_am62ax.js                             | 13 +++++++++++++
+ examples/tsn/est_cpsw_app/.project/project_am64x.js                              | 13 +++++++++++++
+ examples/tsn/gptp_cpsw_app/.project/project_am243x.js                            | 12 ++++++++++++
+ examples/tsn/gptp_cpsw_app/.project/project_am261x.js                            | 12 ++++++++++++
+ examples/tsn/gptp_cpsw_app/.project/project_am263px.js                           | 11 +++++++++++
+ examples/tsn/gptp_cpsw_app/.project/project_am263x.js                            | 12 ++++++++++++
+ examples/tsn/gptp_cpsw_app/.project/project_am273x.js                            | 11 +++++++++++
+ examples/tsn/gptp_cpsw_app/.project/project_am275x.js                            | 12 ++++++++++++
+ examples/tsn/gptp_cpsw_app/.project/project_am62ax.js                            | 12 ++++++++++++
+ examples/tsn/gptp_cpsw_app/.project/project_am62dx.js                            | 12 ++++++++++++
+ examples/tsn/gptp_cpsw_app/.project/project_am62px.js                            | 12 ++++++++++++
+ examples/tsn/gptp_cpsw_app/.project/project_am62x.js                             | 12 ++++++++++++
+ examples/tsn/gptp_cpsw_app/.project/project_am64x.js                             | 12 ++++++++++++
+ examples/tsn/gptp_cpsw_quicksync_master_app/.project/project_am62ax.js           | 12 ++++++++++++
+ examples/tsn/gptp_cpsw_quicksync_master_app/.project/project_am62dx.js           | 12 ++++++++++++
+ examples/tsn/gptp_cpsw_quicksync_slave_app/.project/project_am62ax.js            | 12 ++++++++++++
+ examples/tsn/gptp_cpsw_quicksync_slave_app/.project/project_am62dx.js            | 12 ++++++++++++
+ examples/tsn/gptp_icssg_app/gptp_icssg_dualmac/.project/project_am243x.js        | 11 +++++++++++
+ examples/tsn/gptp_icssg_app/gptp_icssg_dualmac/.project/project_am64x.js         | 11 +++++++++++
+ examples/tsn/gptp_icssg_app/gptp_icssg_switch/.project/project_am243x.js         | 11 +++++++++++
+ examples/tsn/gptp_icssg_app/gptp_icssg_switch/.project/project_am64x.js          | 11 +++++++++++
+ examples/tsn/gptp_lwip_cpsw/.project/project_am243x.js                           | 11 +++++++++++
+ examples/tsn/gptp_lwip_cpsw/.project/project_am263px.js                          | 11 +++++++++++
+ examples/tsn/gptp_lwip_cpsw/.project/project_am263x.js                           | 11 +++++++++++
+ examples/tsn/gptp_lwip_cpsw/.project/project_am62ax.js                           | 11 +++++++++++
+ examples/tsn/gptp_lwip_cpsw/.project/project_am62dx.js                           | 11 +++++++++++
+ examples/tsn/gptp_lwip_cpsw/.project/project_am62lx.js                           | 11 +++++++++++
+ examples/tsn/gptp_lwip_cpsw/.project/project_am62px.js                           | 11 +++++++++++
+ examples/tsn/gptp_lwip_cpsw/.project/project_am62x.js                            | 11 +++++++++++
+ examples/tsn/gptp_lwip_cpsw/.project/project_am64x.js                            | 11 +++++++++++
+ examples/tsn/gptp_lwip_icssg/.project/project_am243x.js                          | 12 ++++++++++++
+ examples/tsn/gptp_lwip_icssg/.project/project_am64x.js                           | 12 ++++++++++++
+ examples/tsn/lldp_cpsw_app/.project/project_am243x.js                            | 12 ++++++++++++
+ examples/tsn/lldp_cpsw_app/.project/project_am263px.js                           | 11 +++++++++++
+ examples/tsn/lldp_cpsw_app/.project/project_am263x.js                            | 12 ++++++++++++
+ examples/tsn/lldp_cpsw_app/.project/project_am273x.js                            | 11 +++++++++++
+ examples/tsn/lldp_cpsw_app/.project/project_am62ax.js                            | 12 ++++++++++++
+ examples/tsn/lldp_cpsw_app/.project/project_am62dx.js                            | 12 ++++++++++++
+ examples/tsn/lldp_cpsw_app/.project/project_am64x.js                             | 12 ++++++++++++
+ examples/tsn/mrplistener_app/.project/project_am62ax.js                          | 13 +++++++++++++
+ examples/tsn/mrptalker_app/.project/project_am62ax.js                            | 13 +++++++++++++
+ examples/tsn/netconf_cpsw_lwip_app/.project/project_am62ax.js                    | 11 +++++++++++
+ 282 files changed, 2997 insertions(+), 32 deletions(-)
+
+commit a976fba36efbc9faace4475395174ccbe01ef298
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Wed Dec 17 16:02:19 2025 +0530
+
+    am273x: enet: EST flag enabled
+    
+    - EST Flags are enabled for CPSW 2G
+    so that error logs does not come for cpsw linkdown
+    
+    Fixes: SITSW-9512
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ sysconfig/networking/.meta/enet_cpsw/templates/am273x/enet_soc_cfg.c.xdt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 8375660dc8feccd5992f36049b76075a53d8b884
+Author: thilak <t-karanam@ti.com>
+Date:   Sun Mar 15 17:05:13 2026 +0530
+
+    am243/64: enet: Fix ICSSG template for LwIP No RTOS
+    
+    - LwipifEnetApp_Object has to be defined for both
+      Freertos and No rtos variants.
+    - Modify the template to define for both variants.
+    
+    Fixes: SITSW-9863
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ sysconfig/networking/.meta/enet_icss/templates/enet_lwipif.c.xdt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit b80694536523e95a33da8b77ef52afa887dae7a1
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Tue Jan 27 14:58:27 2026 +0530
+
+    allsoc: lwipif: udp-lite checksum
+    
+    - Before checking for UDP lite packets
+      it is ensured that the packet is an IPv4 or IPv6
+      packet
+    
+    - otherwise udp-lite checksum is triggereg for some
+      ARP message where src MAC address is of the form
+      XX:88:XX:XX:XX:XX
+    
+    Fixes: SITSW-7481
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ lwipif/src/lwip2enet.c        |  2 +-
+ lwipif/src/lwip2lwipif.c      | 27 ++++++++++++++++++++++++++-
+ lwipif/src/lwip2lwipif_priv.h |  2 ++
+ 3 files changed, 29 insertions(+), 2 deletions(-)
+
