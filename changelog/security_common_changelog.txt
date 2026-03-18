@@ -22,3 +22,26 @@ Date:   Wed Jan 28 10:02:45 2026 +0530
  drivers/crypto/rng/rng.h       | 5 +----
  3 files changed, 4 insertions(+), 7 deletions(-)
 
+========================================
+Changes from build on 2026-03-18 20:46:27
+Previous commit: 6621b7852de7e8dab976003fc613db87c7bcdff9
+Current commit: f4fbeacd8bf9cb31f2e879876e28f851430434dc
+========================================
+
+commit f4fbeacd8bf9cb31f2e879876e28f851430434dc
+Author: Arush Pant <a-pant@ti.com>
+Date:   Wed Mar 18 11:18:13 2026 +0530
+
+    f29p32x: build: build fix
+    
+    - fixes build failures for soc
+      caused due to removal of soc.h
+      file
+    
+    Fixes: TIFSMCU-5043
+    
+    Signed-off-by: Arush Pant <a-pant@ti.com>
+
+ drivers/secure_ipc_notify/soc/f29h85x/sipc_notify_cfg.h | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+

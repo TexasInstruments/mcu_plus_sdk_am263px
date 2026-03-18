@@ -258,12 +258,10 @@ UART Bootloader Python Script</h1>
 <li><b>POWER ON the EVM</b></li>
 <li>To confirm that the board is in UART boot mode, open the UART terminal and confirm that you see the character 'C' getting printed on the console every 2-3 seconds.</li>
 <li>Now close the terminal. This is important as the script won't be able to function properly if the UART terminal is open.</li>
-<li>Open a command prompt and run the below command to send the SBL and application binary to the EVM <div class="fragment"><div class="line">cd ${SDK_INSTALL_PATH}/tools/boot</div>
-<div class="line">python uart_bootloader.py -p COM&lt;x&gt; --bootloader=sbl_prebuilt/{board}/sbl_uart.release.tiimage --file=&lt; path to multicore application binary &gt;</div>
-</div><!-- fragment --><ul>
+<li>Open a command prompt and run the below command to send the SBL and application binary to the EVM if SOC_AM64X || SOC_AM243X <div class="fragment"><div class="line">cd ${SDK_INSTALL_PATH}/tools/boot</div>
+<div class="line">python uart_bootloader.py -p COM&lt;x&gt; --bootloader=sbl_prebuilt/{board}/sbl_uart.release.tiimage --file=&lt; path to multicore application binary &gt; --soc=am64x_am243x</div>
+</div><!-- fragment --></li>
 <li>When you execute this, the script first sends the uart bootloader, and then the multicore application</li>
-</ul>
-</li>
 <li>After the multicore application file is successfully parsed, the uart bootloader sends an acknowledgment to the script and waits for 5 seconds before running the application binary</li>
 <li>Upon receiving the ack, the script will exit successfully</li>
 <li>Connect to the UART terminal within 5 seconds to see logs from the application</li>
