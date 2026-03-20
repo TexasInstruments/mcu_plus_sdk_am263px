@@ -60,6 +60,8 @@
 #define EDMA_AES_TX_CHANNEL_NUMBER      (16U)
 #define EDMA_SHA_TX_CH_NUMBER           (9U)
 #define EDMA_AES_RX_CHANNEL_NUMBER      (17U)
+/* HSM_SW_DMA_REQ2 (ch63) — software DMA request, reserved for memcpy use */
+#define EDMA_MEMCPY_CHANNEL_NUMBER      (63U)
 
 /* ========================================================================== */
 /*                         Structure Declarations                             */
@@ -88,6 +90,7 @@ DMA_Fxns gEdmaFxns =
     .enableRxTransferRegionFxn = EDMA_enableRxTransferRegion,
     .waitForRxTranferFxn = EDMA_WaitForRxTransfer,
     .disableRxChFxn = EDMA_disableRxChannel,
+    .memCopyFxn = EDMA_memCopy,
 };
 
 /** Global CC edma params */
@@ -358,7 +361,7 @@ int32_t EDMA_disableRxChannel(DMA_Handle handle)
     int32_t         status = SystemP_FAILURE;
     DMA_Config      *dmaCfg;
     EDMA_Handle     edmaHandler;
-    
+
     if(NULL == handle)
     {
         status  = SystemP_FAILURE;
@@ -367,7 +370,7 @@ int32_t EDMA_disableRxChannel(DMA_Handle handle)
     {
         dmaCfg = (DMA_Config *)handle;
         edmaHandler = dmaCfg->dmaHandle;
-        
+
         /* Free channel */
         EDMA_freeChannelRegion(globalEdmaParams[EDMA_RX_CH_PARAMS_INDEX].baseAddr, globalEdmaParams[EDMA_RX_CH_PARAMS_INDEX].regionId, EDMA_CHANNEL_TYPE_DMA,
             globalEdmaParams[EDMA_RX_CH_PARAMS_INDEX].dmaCh, EDMA_TRIG_MODE_MANUAL, globalEdmaParams[EDMA_RX_CH_PARAMS_INDEX].tcc, EDMA_TEST_EVT_QUEUE_NO);
@@ -380,4 +383,110 @@ int32_t EDMA_disableRxChannel(DMA_Handle handle)
     }
 
     return (status);
+}
+
+int32_t EDMA_memCopy(DMA_Handle handle, void *dest, const void *src, uint32_t size)
+{
+    int32_t             status = SystemP_FAILURE;
+    int32_t             chAllocStatus  = SystemP_FAILURE;
+    int32_t             tccAllocStatus = SystemP_FAILURE;
+    int32_t             paramAllocStatus = SystemP_FAILURE;
+    DMA_Config          *dmaCfg;
+    EDMA_Handle         edmaHandler;
+    uint32_t            baseAddr, regionId;
+    uint32_t            dmaCh, tcc, param;
+    EDMACCPaRAMEntry    edmaParam;
+
+    if ((NULL == handle) || (NULL == dest) || (NULL == src) || (0U == size))
+    {
+        status = SystemP_FAILURE;
+    }
+    else
+    {
+        dmaCfg = (DMA_Config *)handle;
+        edmaHandler = *(EDMA_Handle *)dmaCfg->dmaHandle;
+
+        baseAddr = EDMA_getBaseAddr(edmaHandler);
+        regionId = EDMA_getRegionId(edmaHandler);
+
+        /* Use fixed channel HSM_SW_DMA_REQ2 (ch63) — software DMA request,
+         * will not conflict with crypto channels (AES: 16/17, SHA: 9). */
+        dmaCh  = EDMA_MEMCPY_CHANNEL_NUMBER;
+        status = EDMA_allocDmaChannel(edmaHandler, &dmaCh);
+        if (status == SystemP_SUCCESS)
+        {
+            chAllocStatus = SystemP_SUCCESS;
+        }
+
+        if (SystemP_SUCCESS == chAllocStatus)
+        {
+            tcc    = EDMA_RESOURCE_ALLOC_ANY;
+            status = EDMA_allocTcc(edmaHandler, &tcc);
+            if (status == SystemP_SUCCESS)
+            {
+                tccAllocStatus = SystemP_SUCCESS;
+            }
+        }
+
+        if (SystemP_SUCCESS == tccAllocStatus)
+        {
+            param  = EDMA_RESOURCE_ALLOC_ANY;
+            status = EDMA_allocParam(edmaHandler, &param);
+            if (status == SystemP_SUCCESS)
+            {
+                paramAllocStatus = SystemP_SUCCESS;
+            }
+        }
+
+        if (SystemP_SUCCESS == paramAllocStatus)
+        {
+            EDMA_configureChannelRegion(baseAddr, regionId,
+                EDMA_CHANNEL_TYPE_DMA, dmaCh, tcc, param, EDMA_TEST_EVT_QUEUE_NO);
+
+            /* SOC_virtToPhy converts M4F-local addresses to system-bus addresses
+             * required by the EDMA DMA engine. */
+            EDMA_ccPaRAMEntry_init(&edmaParam);
+            edmaParam.srcAddr  = (uint32_t)SOC_virtToPhy((void *)src);
+            edmaParam.destAddr = (uint32_t)SOC_virtToPhy(dest);
+            edmaParam.aCnt     = (uint16_t)(size & 0xFFFFU);
+            edmaParam.bCnt     = (uint16_t)1U;
+            edmaParam.cCnt     = (uint16_t)1U;
+            edmaParam.srcBIdx  = (int16_t)0;
+            edmaParam.destBIdx = (int16_t)0;
+            edmaParam.srcCIdx  = (int16_t)0;
+            edmaParam.destCIdx = (int16_t)0;
+            edmaParam.linkAddr = (uint16_t)EDMA_LINK_ADDRESS;
+            edmaParam.opt     |= (EDMA_OPT_TCINTEN_MASK |
+                ((tcc << EDMA_OPT_TCC_SHIFT) & EDMA_OPT_TCC_MASK));
+
+            EDMA_setPaRAM(baseAddr, param, &edmaParam);
+
+            EDMA_enableTransferRegion(baseAddr, regionId, dmaCh, EDMA_TRIG_MODE_MANUAL);
+
+            while (1U != EDMA_readIntrStatusRegion(baseAddr, regionId, tcc))
+            {
+                /* waiting for transfer completion */
+            }
+
+            EDMA_clrIntrRegion(baseAddr, regionId, tcc);
+
+            status = SystemP_SUCCESS;
+        }
+
+        /* Free resources in reverse order, only if allocated */
+        if (SystemP_SUCCESS == paramAllocStatus)
+        {
+            EDMA_freeParam(edmaHandler, &param);
+        }
+        if (SystemP_SUCCESS == tccAllocStatus)
+        {
+            EDMA_freeTcc(edmaHandler, &tcc);
+        }
+        if (SystemP_SUCCESS == chAllocStatus)
+        {
+            EDMA_freeDmaChannel(edmaHandler, &dmaCh);
+        }
+    }
+
+    return status;
 }

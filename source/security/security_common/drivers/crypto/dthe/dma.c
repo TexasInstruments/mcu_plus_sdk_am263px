@@ -326,6 +326,32 @@ DMA_Return_t DMA_disableRxCh(DMA_Handle handle)
     return (dmaStatus);
 }
 
+DMA_Return_t DMA_memCopy(DMA_Handle handle, void *dest, const void *src, uint32_t size)
+{
+    DMA_Return_t dmaStatus = DMA_RETURN_FAILURE;
+    int32_t dmaModuleStatus = SystemP_FAILURE;
+
+    if(NULL != handle)
+    {
+        DMA_Config *config = (DMA_Config *)handle;
+        if ((NULL != config->dmaFxns) && (NULL != config->dmaFxns->memCopyFxn))
+        {
+            dmaModuleStatus = config->dmaFxns->memCopyFxn(handle, dest, src, size);
+        }
+    }
+
+    if (SystemP_SUCCESS == dmaModuleStatus)
+    {
+        dmaStatus = DMA_RETURN_SUCCESS;
+    }
+    else
+    {
+        dmaStatus = DMA_RETURN_FAILURE;
+    }
+
+    return dmaStatus;
+}
+
 DMA_Return_t DMA_close(DMA_Handle handle)
 {
     DMA_Return_t dmaStatus = DMA_RETURN_FAILURE;

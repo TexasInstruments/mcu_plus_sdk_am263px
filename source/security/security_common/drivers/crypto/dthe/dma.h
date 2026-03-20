@@ -185,6 +185,18 @@ typedef int32_t (*disableRxCh)(DMA_Handle handle);
  */
 typedef int32_t (*waitForRxTransfer)(DMA_Handle handle);
 
+/**
+ *  \brief Callback for memory-to-memory copy using DMA hardware.
+ *
+ *  \param handle [IN] DMA handle to process DMA operations.
+ *  \param dest   [IN] Destination buffer address.
+ *  \param src    [IN] Source buffer address.
+ *  \param size   [IN] Number of bytes to copy.
+ *
+ *  \return SystemP_SUCCESS on success or SystemP_FAILURE on Failure.
+ */
+typedef int32_t (*memCopy)(DMA_Handle handle, void *dest, const void *src, uint32_t size);
+
 /** @} */
 
 /* ========================================================================== */
@@ -214,6 +226,8 @@ typedef struct DMA_Fxns_s
     /**< DMA callback function for disable tx transfer region */
     disableRxCh             disableRxChFxn;
     /**< DMA callback function for disable Rx transfer region */
+    memCopy                 memCopyFxn;
+    /**< DMA callback function for memory-to-memory copy using DMA */
 } DMA_Fxns;
 
 /** \brief DMA instance attributes - used during init time */
@@ -348,6 +362,18 @@ DMA_Return_t DMA_WaitForRxTransfer(DMA_Handle handle);
  * \return DMA_RETURN_SUCCESS on success or DMA_RETURN_FAILURE on Failure.
  */
 DMA_Return_t DMA_disableRxCh(DMA_Handle handle);
+
+/**
+ * \brief Memory-to-memory copy via DMA hardware.
+ *
+ * \param handle [IN]  DMA driver handle from \ref DMA_open
+ * \param dest   [IN]  Destination buffer address.
+ * \param src    [IN]  Source buffer address.
+ * \param size   [IN]  Number of bytes to copy.
+ *
+ * \return DMA_RETURN_SUCCESS on success or DMA_RETURN_FAILURE on Failure.
+ */
+DMA_Return_t DMA_memCopy(DMA_Handle handle, void *dest, const void *src, uint32_t size);
 
 /* ========================================================================== */
 /*                       Static Function Definitions                          */

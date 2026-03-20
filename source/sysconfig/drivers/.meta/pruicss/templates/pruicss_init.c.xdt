@@ -27,6 +27,14 @@
     CSL_REG32_WR(CSL_PRU_ICSSG1_PR1_CFG_SLV_BASE + CSL_ICSSCFG_IEPCLK, 1);
     %       }
     %   }
+    %   if(instance.coreSyncMode) {
+    %       if(instance.instance === "ICSSG0") {
+    CSL_REG32_WR(CSL_PRU_ICSSG0_PR1_CFG_SLV_BASE + CSL_ICSSCFG_CORE_SYNC_REG, 1);
+    %       }
+    %       if(instance.instance === "ICSSG1") {
+    CSL_REG32_WR(CSL_PRU_ICSSG1_PR1_CFG_SLV_BASE + CSL_ICSSCFG_CORE_SYNC_REG, 1);
+    %       }
+    %   }
     %   if(instance.instance === "ICSSG0") {
     % // For EnDat Interface Load Sharing Mode
     %       if(instance.EDLoadSharingMode === "Slice0") {

@@ -38,6 +38,7 @@
 /* ========================================================================== */
 
 #include <drivers/edma.h>
+#include <drivers/soc.h>
 #include <security_common/drivers/crypto/dthe/dma.h>
 #ifdef __cplusplus
 extern "C" {
@@ -145,6 +146,18 @@ int32_t EDMA_WaitForRxTransfer(DMA_Handle handle);
  * \return SystemP_SUCCESS on success or SystemP_SUCCESS_FAILURE on Failure.
  */
 int32_t EDMA_disableRxChannel(DMA_Handle handle);
+
+/**
+ * \brief Memory-to-memory copy using HSM EDMA.
+ *
+ * \param handle [IN]  DMA driver handle
+ * \param dest   [IN]  Destination buffer
+ * \param src    [IN]  Source buffer
+ * \param size   [IN]  Bytes to copy
+ *
+ * \return SystemP_SUCCESS on success or SystemP_FAILURE on Failure.
+ */
+int32_t EDMA_memCopy(DMA_Handle handle, void *dest, const void *src, uint32_t size);
 
 /* ========================================================================== */
 /*                       Static Function Definitions                          */

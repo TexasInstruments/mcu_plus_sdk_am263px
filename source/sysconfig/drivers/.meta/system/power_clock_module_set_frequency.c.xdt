@@ -8,12 +8,12 @@
         % let instance = module.$instances[i];
         % let clockFrequencies = module.getClockFrequencies(instance);
         % clockFrequencies.forEach( function(clockFrequency) {
-        % if (common.getSocName() == "am64x" || common.getSocName() == "am243x") {
-            % if(clockFrequency.clkParentId)
+        % if ((common.getSocName() == "am64x" || common.getSocName() == "am243x")){
+            % if(clockFrequency.clkParentId && (clockFrequency.used === undefined || clockFrequency.used === 1))
             % {
     { `clockFrequency.moduleId`, `clockFrequency.clkId`, `clockFrequency.clkRate`,`clockFrequency.clkParentId`},
             % }
-            % else
+            % else if (clockFrequency.used === undefined || clockFrequency.used === 1)
             % {
     { `clockFrequency.moduleId`, `clockFrequency.clkId`, `clockFrequency.clkRate`, SOC_MODULES_END},
             % }
