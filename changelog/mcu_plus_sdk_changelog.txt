@@ -109907,3 +109907,24 @@ Date:   Mon Mar 23 17:39:47 2026 +0530
  tools/boot/sbl_prebuilt/am64x-sk/default_sbl_ospi.cfg                            | 2 +-
  14 files changed, 14 insertions(+), 14 deletions(-)
 
+========================================
+Changes from build on 2026-03-25 10:20:04
+Previous commit: fc3ba8a32d35637c1bcbd84082756471ee4b2649
+Current commit: 3ff627a7bab4ed219a7116eae2685172e3f4cab4
+========================================
+
+commit 3ff627a7bab4ed219a7116eae2685172e3f4cab4
+Author: Shivank Sharma <s-sharma6@ti.com>
+Date:   Wed Mar 25 11:44:37 2026 +0530
+
+    am26x: AI: fix fan blade anomaly example
+    
+     - fix application logs
+    
+    Fixes: MCUSDK-15399
+    
+    Signed-off-by: Shivank Sharma <s-sharma6@ti.com>
+
+ examples/ai/fan_blade_anomalydetection/fan_blade_anomalydetection.c | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
+
