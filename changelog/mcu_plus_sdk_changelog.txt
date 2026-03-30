@@ -214730,3 +214730,25 @@ Date:   Thu Mar 26 20:58:43 2026 -0500
  tools/sysfw/trace_parser/sysfw_trace_rules.json                             |  5053 ++++
  52382 files changed, 9031039 insertions(+)
 
+========================================
+Changes from build on 2026-03-30 20:47:45
+Previous commit: 02bee336beb8ec6058b908b59e1698fd623bca02
+Current commit: f46989a8c21e7a07b65c689367cd7dab30761121
+========================================
+
+commit f46989a8c21e7a07b65c689367cd7dab30761121
+Author: BensenBernard <b-bernard@ti.com>
+Date:   Thu Mar 26 17:50:43 2026 +0530
+
+    am261x/am263x/am263px: docs: Add documentation to Bypass gel
+    
+    - Add documentation to Bypass gel initialization
+    
+    Fixes: MCUSDK-15277
+    
+    Signed-off-by: Bensen Bernard <b-bernard@ti.com>
+
+ docs_src/docs/api_guide/getting_started/ccs_launch.md | 4 ++++
+ docs_src/docs/api_guide/getting_started/ccs_setup.md  | 4 ++++
+ 2 files changed, 8 insertions(+)
+
