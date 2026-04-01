@@ -143,6 +143,12 @@ Typedefs</h2></td></tr>
 <tr class="memitem:gaff91d2f85a004ae8509bff4429426e39"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gaff91d2f85a004ae8509bff4429426e39">SIPC_FxnCallback</a>) (uint8_t remoteSecCoreId, uint8_t localClientId, uint8_t remoteClientId, uint8_t *msgValue, void *<a class="el" href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a>)</td></tr>
 <tr class="memdesc:gaff91d2f85a004ae8509bff4429426e39"><td class="mdescLeft">&#160;</td><td class="mdescRight">User callback that is invoked when a message is received from a reote core for a given client ID.  <a href="group__DRV__SIPC__NOTIFY__MODULE.html#gaff91d2f85a004ae8509bff4429426e39">More...</a><br /></td></tr>
 <tr class="separator:gaff91d2f85a004ae8509bff4429426e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8f15b433619d39950f2e2640a7f12c3b"><td class="memItemLeft" align="right" valign="top">typedef uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ga8f15b433619d39950f2e2640a7f12c3b">SIPC_coreId</a></td></tr>
+<tr class="memdesc:ga8f15b433619d39950f2e2640a7f12c3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core Ids to identify different cores.  <a href="group__DRV__SIPC__NOTIFY__MODULE.html#ga8f15b433619d39950f2e2640a7f12c3b">More...</a><br /></td></tr>
+<tr class="separator:ga8f15b433619d39950f2e2640a7f12c3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaefef436c99c3106b230a65a137334f61"><td class="memItemLeft" align="right" valign="top">typedef uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gaefef436c99c3106b230a65a137334f61">SIPC_SecCoreId</a></td></tr>
+<tr class="memdesc:gaefef436c99c3106b230a65a137334f61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure host Id to identify different secure hosts. Max number of secure host on AM263x is 2.  <a href="group__DRV__SIPC__NOTIFY__MODULE.html#gaefef436c99c3106b230a65a137334f61">More...</a><br /></td></tr>
+<tr class="separator:gaefef436c99c3106b230a65a137334f61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -151,25 +157,6 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:gaa0d0d9f91fa3e18e46f08d7328b14b91"><td class="mdescLeft">&#160;</td><td class="mdescRight">flags to pass with the SIPC_sendMsg Api which indicates the flow of execution when the write FIFO is full  <a href="group__DRV__SIPC__NOTIFY__MODULE.html#gaa0d0d9f91fa3e18e46f08d7328b14b91">More...</a><br /></td></tr>
 <tr class="separator:gaa0d0d9f91fa3e18e46f08d7328b14b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad5da1faa1249071c597b9dac202f2ae4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gad5da1faa1249071c597b9dac202f2ae4">SIPC_coreId</a> { <br />
-&#160;&#160;<a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4aa782ed37b1959ba8b9bcc5a9a375802a">CORE_ID_R5FSS0_0</a> = 0, 
-<a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4a9eb93bd5b751c8bc5e646ae5b3bdc9e7">CORE_ID_R5FSS0_1</a>, 
-<a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4a058c19c559eaa6efbb81dd0441b788ef">CORE_ID_R5FSS1_0</a>, 
-<a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4aa6245bc0d5345932aca7c681b5024b78">CORE_ID_R5FSS1_1</a>, 
-<br />
-&#160;&#160;<a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4ab266e2d2bed62af155da1d738394afc5">CORE_ID_HSM0_0</a>, 
-<a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4acb3ebf4376a5c7019d8970c5f972efdd">CORE_ID_MAX</a>
-<br />
- }</td></tr>
-<tr class="memdesc:gad5da1faa1249071c597b9dac202f2ae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core Ids to identify different cores.  <a href="group__DRV__SIPC__NOTIFY__MODULE.html#gad5da1faa1249071c597b9dac202f2ae4">More...</a><br /></td></tr>
-<tr class="separator:gad5da1faa1249071c597b9dac202f2ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8602ce075b94d70bcde46634dd6ab8d2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ga8602ce075b94d70bcde46634dd6ab8d2">SIPC_SecCoreId</a> { <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2aec8bd284ef7986d731a488732fbdf2a8">CORE_INDEX_SEC_MASTER_0</a> = 0, 
-<a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2ae268e8479dd36ced622187e6118ac5e9">CORE_INDEX_SEC_MASTER_1</a>, 
-<a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2a7d22d9c30e99359f1c7e59fea1e48ea5">CORE_INDEX_HSM</a>, 
-<a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2ab1f05fc6de9c3cbd433ce5375617e54b">MAX_SEC_CORES_WITH_HSM</a>
- }</td></tr>
-<tr class="memdesc:ga8602ce075b94d70bcde46634dd6ab8d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secure host Id to identify different secure hosts. Max number of secure host on AM263x is 2.  <a href="group__DRV__SIPC__NOTIFY__MODULE.html#ga8602ce075b94d70bcde46634dd6ab8d2">More...</a><br /></td></tr>
-<tr class="separator:ga8602ce075b94d70bcde46634dd6ab8d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="gaff91d2f85a004ae8509bff4429426e39"></a>
@@ -201,6 +188,38 @@ Enumerations</h2></td></tr>
 
 </div>
 </div>
+<a id="ga8f15b433619d39950f2e2640a7f12c3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8f15b433619d39950f2e2640a7f12c3b">&#9670;&nbsp;</a></span>SIPC_coreId</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint32_t <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ga8f15b433619d39950f2e2640a7f12c3b">SIPC_coreId</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core Ids to identify different cores. </p>
+
+</div>
+</div>
+<a id="gaefef436c99c3106b230a65a137334f61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaefef436c99c3106b230a65a137334f61">&#9670;&nbsp;</a></span>SIPC_SecCoreId</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint32_t <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gaefef436c99c3106b230a65a137334f61">SIPC_SecCoreId</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Secure host Id to identify different secure hosts. Max number of secure host on AM263x is 2. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="gaa0d0d9f91fa3e18e46f08d7328b14b91"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaa0d0d9f91fa3e18e46f08d7328b14b91">&#9670;&nbsp;</a></span>SIPC_fifoFlags</h2>
@@ -218,52 +237,6 @@ Enumerations</h2></td></tr>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaa0d0d9f91fa3e18e46f08d7328b14b91a5ab5b6f62f276c42fb21053f20a69e90"></a>ABORT_ON_FIFO_FULL&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ggaa0d0d9f91fa3e18e46f08d7328b14b91abe3472e1d94087a24b4896e018bb6757"></a>WAIT_IF_FIFO_FULL&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-</div>
-</div>
-<a id="gad5da1faa1249071c597b9dac202f2ae4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad5da1faa1249071c597b9dac202f2ae4">&#9670;&nbsp;</a></span>SIPC_coreId</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gad5da1faa1249071c597b9dac202f2ae4">SIPC_coreId</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Core Ids to identify different cores. </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggad5da1faa1249071c597b9dac202f2ae4aa782ed37b1959ba8b9bcc5a9a375802a"></a>CORE_ID_R5FSS0_0&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ggad5da1faa1249071c597b9dac202f2ae4a9eb93bd5b751c8bc5e646ae5b3bdc9e7"></a>CORE_ID_R5FSS0_1&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ggad5da1faa1249071c597b9dac202f2ae4a058c19c559eaa6efbb81dd0441b788ef"></a>CORE_ID_R5FSS1_0&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ggad5da1faa1249071c597b9dac202f2ae4aa6245bc0d5345932aca7c681b5024b78"></a>CORE_ID_R5FSS1_1&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ggad5da1faa1249071c597b9dac202f2ae4ab266e2d2bed62af155da1d738394afc5"></a>CORE_ID_HSM0_0&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ggad5da1faa1249071c597b9dac202f2ae4acb3ebf4376a5c7019d8970c5f972efdd"></a>CORE_ID_MAX&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-</div>
-</div>
-<a id="ga8602ce075b94d70bcde46634dd6ab8d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8602ce075b94d70bcde46634dd6ab8d2">&#9670;&nbsp;</a></span>SIPC_SecCoreId</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ga8602ce075b94d70bcde46634dd6ab8d2">SIPC_SecCoreId</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Secure host Id to identify different secure hosts. Max number of secure host on AM263x is 2. </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga8602ce075b94d70bcde46634dd6ab8d2aec8bd284ef7986d731a488732fbdf2a8"></a>CORE_INDEX_SEC_MASTER_0&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="gga8602ce075b94d70bcde46634dd6ab8d2ae268e8479dd36ced622187e6118ac5e9"></a>CORE_INDEX_SEC_MASTER_1&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="gga8602ce075b94d70bcde46634dd6ab8d2a7d22d9c30e99359f1c7e59fea1e48ea5"></a>CORE_INDEX_HSM&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="gga8602ce075b94d70bcde46634dd6ab8d2ab1f05fc6de9c3cbd433ce5375617e54b"></a>MAX_SEC_CORES_WITH_HSM&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -502,7 +475,7 @@ SystemP_FAILURE, callback un-registration failed, either remoteCoreId or localCl
 </div><div class="memdoc">
 
 <p>Return current core ID. </p>
-<dl class="section return"><dt>Returns</dt><dd>Core ID, see <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gad5da1faa1249071c597b9dac202f2ae4">SIPC_coreId</a> for valid values. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Core ID, see <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ga8f15b433619d39950f2e2640a7f12c3b">SIPC_coreId</a> for valid values. </dd></dl>
 
 </div>
 </div>
@@ -523,7 +496,7 @@ SystemP_FAILURE, callback un-registration failed, either remoteCoreId or localCl
 </div><div class="memdoc">
 
 <p>Return current core sec master ID. </p>
-<dl class="section return"><dt>Returns</dt><dd>Core ID, see <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ga8602ce075b94d70bcde46634dd6ab8d2">SIPC_SecCoreId</a> for valid values. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Core ID, see <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gaefef436c99c3106b230a65a137334f61">SIPC_SecCoreId</a> for valid values. </dd></dl>
 
 </div>
 </div>
@@ -546,7 +519,7 @@ SystemP_FAILURE, callback un-registration failed, either remoteCoreId or localCl
 <p>Check if a core is enabled for SIPC. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">coreId</td><td>[in] Core ID, see <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gad5da1faa1249071c597b9dac202f2ae4">SIPC_coreId</a> for valid values.</td></tr>
+    <tr><td class="paramname">coreId</td><td>[in] Core ID, see <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ga8f15b433619d39950f2e2640a7f12c3b">SIPC_coreId</a> for valid values.</td></tr>
   </table>
   </dd>
 </dl>

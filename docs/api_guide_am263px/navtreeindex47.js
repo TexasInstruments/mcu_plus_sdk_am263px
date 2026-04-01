@@ -1,15 +1,5 @@
 var NAVTREEINDEX47 =
 {
-"group__ENET__MAIN__API.html#ga2839b9900ca12b69e0e2aba8f1414c7b":[19,4,0,4,34],
-"group__ENET__MAIN__API.html#ga2fc2a2cd7bf8881bdc6b0a68cda970f8":[19,4,0,4,52],
-"group__ENET__MAIN__API.html#ga2fe38ed30dc3c43a029231f503b7ef5b":[19,4,0,4,16],
-"group__ENET__MAIN__API.html#ga32873b948e9f39f89b7ff40d3261b87b":[19,4,0,4,61],
-"group__ENET__MAIN__API.html#ga3431e11a2089b5fd51a2059c8e80dc67":[19,4,0,4,79],
-"group__ENET__MAIN__API.html#ga390436cfd9b1c6c2d76e4a181d4fbd4e":[19,4,0,4,28],
-"group__ENET__MAIN__API.html#ga3b00bf14e6844aeb3d597e38c0103e96":[19,4,0,4,27],
-"group__ENET__MAIN__API.html#ga3bbcab21b7e0b60b6435619466af44b1":[19,4,0,4,64],
-"group__ENET__MAIN__API.html#ga3c67a72c3ad192c57763a4acd13e5e75":[19,4,0,4,91],
-"group__ENET__MAIN__API.html#ga40325ec5d06d5d7788ec71609edd7ac0":[19,4,0,4,98],
 "group__ENET__MAIN__API.html#ga40859f551befdba0d34a90a869b7a5aa":[19,4,0,4,77],
 "group__ENET__MAIN__API.html#ga4244317c67802020a93c2ed38c9dd797":[19,4,0,4,18],
 "group__ENET__MAIN__API.html#ga430e2e1ae47bb4d4e2e428403328cb98":[19,4,0,4,102],
@@ -249,5 +239,15 @@ var NAVTREEINDEX47 =
 "group__ENET__MOD__MACPORT.html#ggae010fead937f6641080dad0728577e54ad15f458947ea6c59a1df6341c4c97607":[19,4,0,3,21,4],
 "group__ENET__MOD__MACPORT.html#ggae010fead937f6641080dad0728577e54af2048559d34abdcb2b26271c6e027d0d":[19,4,0,3,21,7],
 "group__ENET__MOD__MACPORT.html#ggae9fcecf4a51faf27590a0576d7ae803fa3d8b72717e469c33a80bda14d5a81921":[19,4,0,3,18,1],
-"group__ENET__MOD__MACPORT.html#ggae9fcecf4a51faf27590a0576d7ae803fa684508d9134197ba0d29b72a387322a5":[19,4,0,3,18,0]
+"group__ENET__MOD__MACPORT.html#ggae9fcecf4a51faf27590a0576d7ae803fa684508d9134197ba0d29b72a387322a5":[19,4,0,3,18,0],
+"group__ENET__MOD__MDIO.html":[19,4,0,5],
+"group__ENET__MOD__MDIO.html#ga0ac0e16ff26820adc4cf6a24ff1beacb":[19,4,0,5,8],
+"group__ENET__MOD__MDIO.html#ga1d5cbba961388ef23893d16f236e740f":[19,4,0,5,10],
+"group__ENET__MOD__MDIO.html#ga3d1296252044e355873ecdb16dd19bab":[19,4,0,5,14],
+"group__ENET__MOD__MDIO.html#ga8011d3a174afba1c442a89d2d8df3205":[19,4,0,5,13],
+"group__ENET__MOD__MDIO.html#ga8e8318b904b9bc8ff82e8455ed93d200":[19,4,0,5,5],
+"group__ENET__MOD__MDIO.html#gab365b3a98cb228e2673c6829d097b320":[19,4,0,5,7],
+"group__ENET__MOD__MDIO.html#gab5224f13ed0ab870182d8154f8039fb5":[19,4,0,5,12],
+"group__ENET__MOD__MDIO.html#gab6a476819ed28e013a47899acb48f786":[19,4,0,5,15],
+"group__ENET__MOD__MDIO.html#gad92cb9ac4fa3e9f0d9ad18e2e3a671b5":[19,4,0,5,6]
 };

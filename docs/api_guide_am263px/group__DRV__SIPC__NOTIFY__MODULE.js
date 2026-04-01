@@ -20,23 +20,11 @@ var group__DRV__SIPC__NOTIFY__MODULE =
       [ "Qfifo", "structSIPC__SwQueue.html#ab2172a9c2368d801cc6875c190fe07e4", null ]
     ] ],
     [ "SIPC_FxnCallback", "group__DRV__SIPC__NOTIFY__MODULE.html#gaff91d2f85a004ae8509bff4429426e39", null ],
+    [ "SIPC_coreId", "group__DRV__SIPC__NOTIFY__MODULE.html#ga8f15b433619d39950f2e2640a7f12c3b", null ],
+    [ "SIPC_SecCoreId", "group__DRV__SIPC__NOTIFY__MODULE.html#gaefef436c99c3106b230a65a137334f61", null ],
     [ "SIPC_fifoFlags", "group__DRV__SIPC__NOTIFY__MODULE.html#gaa0d0d9f91fa3e18e46f08d7328b14b91", [
       [ "ABORT_ON_FIFO_FULL", "group__DRV__SIPC__NOTIFY__MODULE.html#ggaa0d0d9f91fa3e18e46f08d7328b14b91a5ab5b6f62f276c42fb21053f20a69e90", null ],
       [ "WAIT_IF_FIFO_FULL", "group__DRV__SIPC__NOTIFY__MODULE.html#ggaa0d0d9f91fa3e18e46f08d7328b14b91abe3472e1d94087a24b4896e018bb6757", null ]
-    ] ],
-    [ "SIPC_coreId", "group__DRV__SIPC__NOTIFY__MODULE.html#gad5da1faa1249071c597b9dac202f2ae4", [
-      [ "CORE_ID_R5FSS0_0", "group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4aa782ed37b1959ba8b9bcc5a9a375802a", null ],
-      [ "CORE_ID_R5FSS0_1", "group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4a9eb93bd5b751c8bc5e646ae5b3bdc9e7", null ],
-      [ "CORE_ID_R5FSS1_0", "group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4a058c19c559eaa6efbb81dd0441b788ef", null ],
-      [ "CORE_ID_R5FSS1_1", "group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4aa6245bc0d5345932aca7c681b5024b78", null ],
-      [ "CORE_ID_HSM0_0", "group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4ab266e2d2bed62af155da1d738394afc5", null ],
-      [ "CORE_ID_MAX", "group__DRV__SIPC__NOTIFY__MODULE.html#ggad5da1faa1249071c597b9dac202f2ae4acb3ebf4376a5c7019d8970c5f972efdd", null ]
-    ] ],
-    [ "SIPC_SecCoreId", "group__DRV__SIPC__NOTIFY__MODULE.html#ga8602ce075b94d70bcde46634dd6ab8d2", [
-      [ "CORE_INDEX_SEC_MASTER_0", "group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2aec8bd284ef7986d731a488732fbdf2a8", null ],
-      [ "CORE_INDEX_SEC_MASTER_1", "group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2ae268e8479dd36ced622187e6118ac5e9", null ],
-      [ "CORE_INDEX_HSM", "group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2a7d22d9c30e99359f1c7e59fea1e48ea5", null ],
-      [ "MAX_SEC_CORES_WITH_HSM", "group__DRV__SIPC__NOTIFY__MODULE.html#gga8602ce075b94d70bcde46634dd6ab8d2ab1f05fc6de9c3cbd433ce5375617e54b", null ]
     ] ],
     [ "SIPC_Params_init", "group__DRV__SIPC__NOTIFY__MODULE.html#gafdb4148be02e87da0c0e51ed59d99f51", null ],
     [ "SIPC_init", "group__DRV__SIPC__NOTIFY__MODULE.html#ga41b553325afa726d6add36b361d7bdbc", null ],

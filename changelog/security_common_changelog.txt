@@ -218,3 +218,39 @@ Date:   Thu Mar 5 19:39:15 2026 +0530
  updateC29SDK.py                                    |  111 +
  149 files changed, 65705 insertions(+)
 
+========================================
+Changes from build on 2026-04-01 20:47:49
+Previous commit: e99fb358f369d2fa428ffdb8c1cfc5322c0369f8
+Current commit: 0f599896871d90adf524ff870b8b644982c9e857
+========================================
+
+commit 0f599896871d90adf524ff870b8b644982c9e857
+Author: Seema.Khatib <seema.khatib@ti.com>
+Date:   Fri Mar 27 11:03:41 2026 +0530
+
+    f29h85x: misra: MISRA.ETYPE.CATEGORY.DIFFERENT.2012
+    
+    This MISRA rule dictates that the operands
+    of an operator in which the usual arithmetic
+    conversions are performed should have the same
+    
+    Fixes: TIFSMCU-5061
+    
+    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
+
+ drivers/secure_ipc_notify/sipc_notify_src.c             |  6 +++---
+ drivers/secure_ipc_notify/sipc_notify_src.h             |  2 +-
+ drivers/secure_ipc_notify/soc/am261x/sipc_notify_cfg.c  |  6 +++---
+ drivers/secure_ipc_notify/soc/am261x/sipc_notify_cfg.h  | 27 +++++++++++++--------------
+ drivers/secure_ipc_notify/soc/am263px/sipc_notify_cfg.c |  6 +++---
+ drivers/secure_ipc_notify/soc/am263px/sipc_notify_cfg.h | 33 +++++++++++++++++----------------
+ drivers/secure_ipc_notify/soc/am263x/sipc_notify_cfg.c  |  6 +++---
+ drivers/secure_ipc_notify/soc/am263x/sipc_notify_cfg.h  | 32 ++++++++++++++++----------------
+ drivers/secure_ipc_notify/soc/am273x/sipc_notify_cfg.c  |  6 +++---
+ drivers/secure_ipc_notify/soc/am273x/sipc_notify_cfg.h  | 29 ++++++++++++++---------------
+ drivers/secure_ipc_notify/soc/awr294x/sipc_notify_cfg.c |  6 +++---
+ drivers/secure_ipc_notify/soc/awr294x/sipc_notify_cfg.h | 29 ++++++++++++++---------------
+ drivers/secure_ipc_notify/soc/f29h85x/sipc_notify_cfg.c |  8 ++++----
+ drivers/secure_ipc_notify/soc/f29h85x/sipc_notify_cfg.h | 27 +++++++++++++--------------
+ 14 files changed, 110 insertions(+), 113 deletions(-)
+

@@ -105,15 +105,16 @@ extern "C"
  * Core Ids to identify different cores.
  * @ingroup DRV_SIPC_NOTIFY_MODULE
  */
-typedef enum SIPC_CoreId_
-{
-    CORE_ID_R5FSS0_0 = 0,
-    CORE_ID_R5FSS0_1,
-    CORE_ID_R5FSS1_0,
-    CORE_ID_R5FSS1_1,
-    CORE_ID_HSM0_0  ,
-    CORE_ID_MAX
-} SIPC_coreId;
+
+typedef uint32_t SIPC_coreId;
+
+#define CORE_ID_R5FSS0_0 (0U)
+#define CORE_ID_R5FSS0_1 (1U)
+#define CORE_ID_R5FSS1_0 (2U)
+#define CORE_ID_R5FSS1_1 (3U)
+#define CORE_ID_HSM0_0   (4U)
+#define CORE_ID_MAX      (5U)
+
 
 /**
  * @brief
@@ -121,13 +122,13 @@ typedef enum SIPC_CoreId_
  * Max number of secure host on AM263Px is 2.
  * @ingroup DRV_SIPC_NOTIFY_MODULE
  */
-typedef enum SIPC_SecCoreId_
-{
-    CORE_INDEX_SEC_MASTER_0 = 0,
-    CORE_INDEX_SEC_MASTER_1 ,
-    CORE_INDEX_HSM,
-    MAX_SEC_CORES_WITH_HSM
-}SIPC_SecCoreId;
+typedef uint32_t SIPC_SecCoreId;
+
+#define CORE_INDEX_SEC_MASTER_0    (0U)
+#define CORE_INDEX_SEC_MASTER_1    (1U)
+#define CORE_INDEX_HSM             (2U)
+#define MAX_SEC_CORES_WITH_HSM     (3U)
+
 
 #if defined(__ARM_ARCH_7R__)
 

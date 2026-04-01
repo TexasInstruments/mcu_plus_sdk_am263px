@@ -1,15 +1,5 @@
 var NAVTREEINDEX74 =
 {
-"structcb__socket__lldcfg__update__t.html#aa33d311a5cce63b15fc400822e6438eb":[19,12,3,4,3],
-"structcb__socket__lldcfg__update__t.html#aaaa915055a0e0b300996daa26a545bc6":[19,12,3,4,12],
-"structcb__socket__lldcfg__update__t.html#ab893f1e816579aafbdbcfc859a284215":[19,12,3,4,9],
-"structcb__socket__lldcfg__update__t.html#acb1c1ac108a931a96a8e410cdfc5ccd1":[19,12,3,4,2],
-"structcb__socket__lldcfg__update__t.html#aff30dceb8f85cfc5b972ef1ba68aac4a":[19,12,3,4,1],
-"structcb__tilld__port__stats__t.html":[19,12,3,5],
-"structcb__tilld__port__stats__t.html#a2844cc5d40bd0dc115ad398b88293f67":[19,12,3,5,0],
-"structcb__tsn__thread__attr__t.html":[19,12,5,1],
-"structcb__tsn__thread__attr__t.html#a2edec41292af8f344ecb856be5aac77e":[19,12,5,1,0],
-"structcb__tsn__thread__attr__t.html#a78e05e5686745ecbcf67f4fd9644d2ab":[19,12,5,1,1],
 "structcb__tsn__thread__attr__t.html#a933cb0fb7f3490bc96db6a5a5da50180":[19,12,5,1,3],
 "structcb__tsn__thread__attr__t.html#ab859a17727fec43d7cb8914063292e24":[19,12,5,1,2],
 "structcb__waitpoint__t.html":[19,12,5,2],

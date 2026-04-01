@@ -1,15 +1,5 @@
 var NAVTREEINDEX63 =
 {
-"structEDMA__Object.html#a13eab20d6bb601393d4663c08abcd1ee":[19,7,6,9,0],
-"structEDMA__Object.html#a172b15ef69c4142479b958e1e1d1507c":[19,7,6,9,8],
-"structEDMA__Object.html#a3a6f7cb56c580e3f7f0bd205ae19d8b0":[19,7,6,9,5],
-"structEDMA__Object.html#a4be9bd8fe842c8d0f234d969fa86ad17":[19,7,6,9,9],
-"structEDMA__Object.html#a59d3ca94ccb84c00cdb310f554ce665c":[19,7,6,9,3],
-"structEDMA__Object.html#a82ddfb1a67326aeed5039da2d54923ba":[19,7,6,9,1],
-"structEDMA__Object.html#a9a2075dfbef402e43ec24b46eefa710b":[19,7,6,9,7],
-"structEDMA__Object.html#ab77f1ffcca1f855744496bf4270c2d87":[19,7,6,9,2],
-"structEDMA__Object.html#ac9b4fcdcceef76481c3f89773100e7d5":[19,7,6,9,10],
-"structEDMA__Object.html#adc641ef96182f806cb961049bbf1cdc0":[19,7,6,9,11],
 "structEDMA__Object.html#adf744d4012131376e7f2de3f3fa91631":[19,7,6,9,4],
 "structEDMA__Object.html#af2ab95cf657d7399fd60e7f8ba71e40d":[19,7,6,9,6],
 "structEDMA__Params.html":[19,7,6,7],
@@ -249,5 +239,15 @@ var NAVTREEINDEX63 =
 "structEnetPhy__Mdio.html#a1b052cda4dfe8479626db2962b638ef7":[19,4,0,13,14,0],
 "structEnetPhy__Mdio.html#a548a70b4056807f902199a0c0ed448cc":[19,4,0,13,14,5],
 "structEnetPhy__Mdio.html#a90a400312241d823da5e4e2180321743":[19,4,0,13,14,2],
-"structEnetPhy__Mdio.html#adf8aff6f641f4989d9e86b320644d3b0":[19,4,0,13,14,3]
+"structEnetPhy__Mdio.html#adf8aff6f641f4989d9e86b320644d3b0":[19,4,0,13,14,3],
+"structEnetPhy__Mdio.html#ae5726adc4dc388d402253c819845c7b3":[19,4,0,13,14,4],
+"structEnetPhy__Obj.html":[19,4,0,13,16],
+"structEnetPhy__Obj.html#a2e67344e87b4670073386b9d4c879264":[19,4,0,13,16,6],
+"structEnetPhy__Obj.html#a3cb346e8055e88a8bad2abcb6e529a3a":[19,4,0,13,16,8],
+"structEnetPhy__Obj.html#a598b95b4f8f6e5d6cb9d09fdddedf808":[19,4,0,13,16,7],
+"structEnetPhy__Obj.html#a75e7cedadf056e0b0512f286c051b413":[19,4,0,13,16,1],
+"structEnetPhy__Obj.html#a7be549959efd1b2ac45387c2dea1d76f":[19,4,0,13,16,13],
+"structEnetPhy__Obj.html#a850453b51829db99fd0ce5b7eb893e0e":[19,4,0,13,16,10],
+"structEnetPhy__Obj.html#a85e4d163e1873aafc8e19073fa494590":[19,4,0,13,16,12],
+"structEnetPhy__Obj.html#ab09f1f4d15d40dae95f9246946646308":[19,4,0,13,16,11]
 };

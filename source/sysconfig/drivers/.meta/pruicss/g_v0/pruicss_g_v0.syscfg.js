@@ -411,7 +411,9 @@ function validate(inst, report) {
     }
     else
     {
-        if(inst.$name == inst.$module.$instances[0].$name)
+        /*Run the PLL assignment logic when current instance is sysconfig instance 0 
+        or Run the PLL assignment logic for sysconfig instance1 when coreSyncMode for instance 0 is enabled*/
+        if((inst.$name == inst.$module.$instances[0].$name) || (inst.$module.$instances[0].coreSyncMode))
         {
             resolveCoreClockConflicts(inst);
         }
@@ -431,7 +433,9 @@ function validate(inst, report) {
     }
     else
     {
-        if(inst.$name == inst.$module.$instances[0].$name)
+        /*Run the PLL assignment logic when current instance is sysconfig instance 0 
+        or Run the PLL assignment logic for sysconfig instance1 when iepSyncMode for instance 0 is enabled*/
+        if((inst.$name == inst.$module.$instances[0].$name) || (inst.$module.$instances[0].iepSyncMode))
         {
             resolveIepClockConflicts(inst);
         }

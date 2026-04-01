@@ -1,15 +1,5 @@
 var NAVTREEINDEX64 =
 {
-"structEnetPhy__Mdio.html#ae5726adc4dc388d402253c819845c7b3":[19,4,0,13,14,4],
-"structEnetPhy__Obj.html":[19,4,0,13,16],
-"structEnetPhy__Obj.html#a2e67344e87b4670073386b9d4c879264":[19,4,0,13,16,6],
-"structEnetPhy__Obj.html#a3cb346e8055e88a8bad2abcb6e529a3a":[19,4,0,13,16,8],
-"structEnetPhy__Obj.html#a598b95b4f8f6e5d6cb9d09fdddedf808":[19,4,0,13,16,7],
-"structEnetPhy__Obj.html#a75e7cedadf056e0b0512f286c051b413":[19,4,0,13,16,1],
-"structEnetPhy__Obj.html#a7be549959efd1b2ac45387c2dea1d76f":[19,4,0,13,16,13],
-"structEnetPhy__Obj.html#a850453b51829db99fd0ce5b7eb893e0e":[19,4,0,13,16,10],
-"structEnetPhy__Obj.html#a85e4d163e1873aafc8e19073fa494590":[19,4,0,13,16,12],
-"structEnetPhy__Obj.html#ab09f1f4d15d40dae95f9246946646308":[19,4,0,13,16,11],
 "structEnetPhy__Obj.html#aba5c2a6c65120737b943ac37b418f850":[19,4,0,13,16,0],
 "structEnetPhy__Obj.html#abbd01b6771dfd8fd1b87868e208bd672":[19,4,0,13,16,5],
 "structEnetPhy__Obj.html#acf0b022b5945134c1be9da34f3fc7f1f":[19,4,0,13,16,2],
@@ -249,5 +239,15 @@ var NAVTREEINDEX64 =
 "structFlash__DevConfig.html#a1ccea3c82914032656c760a5c28adeb1":[19,1,1,1,14],
 "structFlash__DevConfig.html#a1e640a1a108f1648e1d72cc6910bb19c":[19,1,1,1,12],
 "structFlash__DevConfig.html#a29a81dca04a0df2eee089f7b1f2d9353":[19,1,1,1,15],
-"structFlash__DevConfig.html#a2b291686297c41f37b2c0a1f5fefff52":[19,1,1,1,11]
+"structFlash__DevConfig.html#a2b291686297c41f37b2c0a1f5fefff52":[19,1,1,1,11],
+"structFlash__DevConfig.html#a3b7e99b80e5237d2b0bbf5c9d82b5a69":[19,1,1,1,3],
+"structFlash__DevConfig.html#a3c1371c0b80f704be04ca418c1eb5bab":[19,1,1,1,22],
+"structFlash__DevConfig.html#a47bc6a8e8e5de5fd6368cbca3331885a":[19,1,1,1,29],
+"structFlash__DevConfig.html#a4b9a8b5f73b7208bc365d78539c7c6d5":[19,1,1,1,18],
+"structFlash__DevConfig.html#a506fa24d7ae2fc51c2bedd573f08bacc":[19,1,1,1,8],
+"structFlash__DevConfig.html#a54c68798c25edf92571b16f19c6435f5":[19,1,1,1,9],
+"structFlash__DevConfig.html#a58fcf27c6c42c987fc0f7ccdbf766aa9":[19,1,1,1,7],
+"structFlash__DevConfig.html#a64568ae2281c278d4e88401d2bb4a874":[19,1,1,1,13],
+"structFlash__DevConfig.html#a7cd4f1646878a255c5f42f94fb5f1dce":[19,1,1,1,27],
+"structFlash__DevConfig.html#a80726f5736774c6f94ae2985fe7f37f5":[19,1,1,1,6]
 };

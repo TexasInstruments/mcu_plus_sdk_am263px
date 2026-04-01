@@ -1,15 +1,5 @@
 var NAVTREEINDEX68 =
 {
-"structLIN__Object.html#a15cbff4424623a78c5bb729922fdef5f":[19,7,22,7,1],
-"structLIN__Object.html#a306cc8ffdc409b9444fa160d1d7c7caf":[19,7,22,7,12],
-"structLIN__Object.html#a34c747747450365ce86aeac01f2b12d4":[19,7,22,7,6],
-"structLIN__Object.html#a369ee2383dd9c3abf3d37f96ae0884c5":[19,7,22,7,9],
-"structLIN__Object.html#a3abfc82f7b8f35def3a49da43a42a4d9":[19,7,22,7,10],
-"structLIN__Object.html#a60566f5388f7ccc339cc3bf3b99d30cc":[19,7,22,7,8],
-"structLIN__Object.html#a80e15c7dab47ddf6584b6e71f335d530":[19,7,22,7,15],
-"structLIN__Object.html#a81748a9ee624cec7d6cdb0a56f7abc50":[19,7,22,7,0],
-"structLIN__Object.html#a98574535b3437733a295fae0fd314f3e":[19,7,22,7,11],
-"structLIN__Object.html#a9bf8ef34ca9092f22287155463d57359":[19,7,22,7,13],
 "structLIN__Object.html#ab1966bac6a7d83c845315b876fe26c77":[19,7,22,7,4],
 "structLIN__Object.html#ac33a008ba97e2e1951bfc7faa2e58e28":[19,7,22,7,5],
 "structLIN__Object.html#aca0ebd508eb3699b43a846249ebd80a0":[19,7,22,7,14],
@@ -249,5 +239,15 @@ var NAVTREEINDEX68 =
 "structMCAN__StdMsgIDFilterElement.html":[19,7,26,25],
 "structMCAN__StdMsgIDFilterElement.html#a504660d72a30a2afa1cfa159576b0d81":[19,7,26,25,3],
 "structMCAN__StdMsgIDFilterElement.html#a810be26bca69b7c105bc9a8f445cd0ba":[19,7,26,25,1],
-"structMCAN__StdMsgIDFilterElement.html#aa99907aff6465ce4a2f7b4ba3c468254":[19,7,26,25,0]
+"structMCAN__StdMsgIDFilterElement.html#aa99907aff6465ce4a2f7b4ba3c468254":[19,7,26,25,0],
+"structMCAN__StdMsgIDFilterElement.html#ab0180971b176c6d5b7c558891ed2a2e8":[19,7,26,25,2],
+"structMCAN__TDCConfig.html":[19,7,26,2],
+"structMCAN__TDCConfig.html#a66a3f13a3dc513d32325bb91c20afb5b":[19,7,26,2,1],
+"structMCAN__TDCConfig.html#aadeab20c96e14356e36bf8eaa142f24f":[19,7,26,2,0],
+"structMCAN__TxBufElement.html":[19,7,26,20],
+"structMCAN__TxBufElement.html#a16ab6d944c3606c7001af8614f20ce8d":[19,7,26,20,2],
+"structMCAN__TxBufElement.html#a1a09aea55a081878f79be58687d73ac3":[19,7,26,20,5],
+"structMCAN__TxBufElement.html#a2ba679095ae9a3f3a80fe67d6e6ac976":[19,7,26,20,0],
+"structMCAN__TxBufElement.html#a37463dcdaeefad5c664a77c715770461":[19,7,26,20,9],
+"structMCAN__TxBufElement.html#a3fcc0f7ff296a10df9e019b27a155200":[19,7,26,20,4]
 };

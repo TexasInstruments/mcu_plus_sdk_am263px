@@ -83,7 +83,7 @@ typedef struct SIPC_MailboxConfig_s
  * This is a pre-defined global since this config typically does not need to change based
  * on end user use-cases for this SOC.
  */
-extern SIPC_MailboxConfig gSIPC_SecureHostMboxConfig[CORE_ID_MAX - 1] ;
+extern SIPC_MailboxConfig gSIPC_SecureHostMboxConfig[CORE_ID_MAX - 1U] ;
 /**
  * @brief Global structure that is pre-defined for this SOC to configure any R5 CPU to HSM mailbox communication
  *

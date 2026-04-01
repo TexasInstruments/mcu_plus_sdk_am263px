@@ -47,7 +47,7 @@ typedef struct
                                                  */
     uint32_t                interruptConfigNum; /* number of interrupts to setup, i.e number of element in interruptConfig array */
     /* place holder to store the secure master core information */
-    uint32_t secHostCoreId[MAX_SEC_CORES_WITH_HSM -1];
+    uint32_t secHostCoreId[MAX_SEC_CORES_WITH_HSM -1U];
 } SIPC_Ctrl;
 
 SIPC_Ctrl gSIPC_ctrl;
@@ -65,7 +65,7 @@ static inline void SIPC_setMboxConfig(SIPC_Params *params, uint32_t selfCoreId)
     if (selfCoreId == CORE_ID_HSM0_0 )
     {
         /* Define HSM->R5 tx and R5 -> HSM rx queues */
-        for( secMaster = 0 ; secMaster < (uint8_t)(MAX_SEC_CORES_WITH_HSM - 1); secMaster ++)
+        for( secMaster = 0 ; secMaster < (uint8_t)(MAX_SEC_CORES_WITH_HSM - 1U); secMaster ++)
         {
             /*****************************************************************************/
             /* HSM TX queue setup                                                        */
@@ -406,7 +406,7 @@ int32_t SIPC_init(SIPC_Params *params)
     /* check if current core who is doing sipc init is a secure host or not if not.
      * if not then return init failure */
 
-    for( secMaster = 0 ; secMaster < (uint8_t)(MAX_SEC_CORES_WITH_HSM - 1) ; secMaster ++)
+    for( secMaster = 0 ; secMaster < (uint8_t)(MAX_SEC_CORES_WITH_HSM - 1U) ; secMaster ++)
     {
         if((selfCoreId == params->secHostCoreId[secMaster]) || (selfCoreId == CORE_ID_HSM0_0))
         {

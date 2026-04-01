@@ -57,7 +57,7 @@ uint8_t gCore_Ids[MAX_SEC_CORES_WITH_HSM] =
     CORE_ID_HSM0_0
 };
 /* Pointer to the Queues R5 -> HSM indexed by Sec master core Id */
-SIPC_SwQueue* gSIPC_QueSecureHostToHsm [MAX_SEC_CORES_WITH_HSM - 1] =
+SIPC_SwQueue* gSIPC_QueSecureHostToHsm [MAX_SEC_CORES_WITH_HSM - 1U] =
 {
    CORE0_TO_HSM0_0_SW_QUEUE,
    CORE1_TO_HSM0_0_SW_QUEUE
@@ -73,7 +73,7 @@ SIPC_SwQueue* gSIPC_QueHsmToSecureHost[MAX_SEC_CORES_WITH_HSM - 1] =
 /* Mailbox queues will be dynamically created at runtime via sysconfig similarly as Rpmessage queues are made
  * Pre-defined mailbox config to send message from R5 to HSM
  * based on which core is configured as secure master the swQ data structure will be populated */
-SIPC_MailboxConfig gSIPC_SecureHostMboxConfig[CORE_ID_MAX - 1] =
+SIPC_MailboxConfig gSIPC_SecureHostMboxConfig[CORE_ID_MAX - 1U] =
 {
         { /* with HSM0_0 */
             .writeDoneMailboxBaseAddr = R5FSS0_0_MBOX_READ_DONE_ACK,
@@ -112,7 +112,7 @@ SIPC_MailboxConfig gSIPC_SecureHostMboxConfig[CORE_ID_MAX - 1] =
 
 /* Pre-defined mailbox config to send message from R5 to HSM
  * based on which core is configured as secure master the swQ data structure will be populated */
-SIPC_MailboxConfig gSIPC_HsmMboxConfig[CORE_ID_MAX - 1] =
+SIPC_MailboxConfig gSIPC_HsmMboxConfig[CORE_ID_MAX - 1U] =
 {
     { /* MBOX config with R5FSS0-0 */
         .writeDoneMailboxBaseAddr = HSM0_0_MBOX_READ_DONE_ACK,
