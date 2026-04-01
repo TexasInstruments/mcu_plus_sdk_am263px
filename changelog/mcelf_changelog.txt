@@ -5,3 +5,54 @@ Recent commit history (last 20 commits):
 c8b7063 allsoc: genimage: refactor into SoC-specific variants
 
 Note: Detailed file changes will be shown in subsequent builds when comparing commits
+========================================
+Changes from build on 2026-04-01 04:17:19
+Previous commit: c8b7063656635f127aac2d94c4ce9277ca06f79c (not found in current history)
+Current commit: f3a34e167b15404af8caa797a6309f8458d141a1
+========================================
+
+Note: Previous commit not found - repository may have been rebased or reset.
+Showing current commit details only:
+
+commit f3a34e167b15404af8caa797a6309f8458d141a1
+Author: Aswathi R <a0505177@ti.com>
+Date:   Mon Mar 30 12:44:45 2026 +0530
+
+    am263x/am263px/am261x: infra: restore genimage.py
+    
+    - rename genimage_am26x.py to genimage.py for backwards compatibility
+    
+    Fixes: MCUSDK-15405
+    Signed-off-by: Aswathi R <a-r1@ti.com>
+
+ .gitignore                                         |   7 +
+ README.md                                          |  81 ++++
+ c_modules/gmac/Makefile                            |  25 +
+ .../gmac/dist/gmac.arm64-apple-darwin.darwin.dylib | Bin 0 -> 34008 bytes
+ c_modules/gmac/dist/gmac.mingw32.win32.dll         | Bin 0 -> 33997 bytes
+ c_modules/gmac/dist/gmac.x86_64-linux-gnu.linux.so | Bin 0 -> 20176 bytes
+ .../gmac/dist/gmac.x86_64-w64-mingw32.win32.dll    | Bin 0 -> 59560 bytes
+ c_modules/gmac/gmac.c                              | 378 +++++++++++++++
+ deviceData/AddrTranslate/am263x.json               |  65 +++
+ genimage.py                                        | 247 ++++++++++
+ genimage_am64x.py                                  |  46 ++
+ imports.mak                                        |  25 +
+ modules/__init__.py                                |   0
+ modules/addtranslate.py                            |  55 +++
+ modules/consts.py                                  |  37 ++
+ modules/desc.py                                    |  58 +++
+ modules/elf_structs.py                             | 113 +++++
+ modules/note.py                                    | 158 ++++++
+ modules_am26x/args.py                              | 102 ++++
+ modules_am26x/crypto_hkdf.py                       |  33 ++
+ modules_am26x/eccm.py                              | 161 +++++++
+ modules_am26x/elf.py                               | 422 ++++++++++++++++
+ modules_am26x/gmac_w_ccm.py                        | 530 +++++++++++++++++++++
+ modules_am26x/multicoreelf.py                      | 377 +++++++++++++++
+ modules_am26x/otfaecc_structs.py                   | 100 ++++
+ modules_am64/args.py                               |  44 ++
+ modules_am64/elf.py                                | 302 ++++++++++++
+ modules_am64/multicoreelf.py                       | 104 ++++
+ requirements.txt                                   |   9 +
+ 29 files changed, 3479 insertions(+)
+
