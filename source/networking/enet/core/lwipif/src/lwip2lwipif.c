@@ -392,6 +392,7 @@ int32_t LWIPIF_LWIP_start(Enet_Type enetType, uint32_t instId, struct netif *net
 void LWIPIF_LWIP_setNotifyCallbacks(struct netif *netif, Enet_notify_t *pRxNotify, Enet_notify_t *pTxNotify)
 {
     Lwip2Enet_netif_t* pInterface = (Lwip2Enet_netif_t*)netif->state;
+
     for (uint32_t idx = 0; idx < pInterface->count_hTx; idx++)
     {
         Lwip2Enet_setTxNotifyCallback(pInterface->hTx[idx], pTxNotify);
@@ -491,8 +492,8 @@ void LWIPIF_LWIP_txPktHandler(struct netif *netif)
 
 err_t LWIPIF_LWIP_send(struct netif *netif, struct pbuf *p)
 {
-    /* Get the pointer to the private data */
-    Lwip2Enet_netif_t* pInterface  = (Lwip2Enet_netif_t*) netif->state;
+     /* Get the pointer to the private data */
+    Lwip2Enet_netif_t* pInterface = (Lwip2Enet_netif_t*)netif->state;
     const Enet_MacPort macPort = pInterface->macPort;
     Lwip2Enet_TxHandle hTx = pInterface->hTx[0];
 

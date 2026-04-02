@@ -93,6 +93,8 @@
 
 #if defined (SOC_AM62DX) || defined (SOC_AM62AX)
 #define  CSL_CORE_ID_DM_R5FSS0_0     (CSL_CORE_ID_R5FSS0_0)
+#elif defined (SOC_J722S)
+#define  CSL_CORE_ID_DM_R5FSS0_0     (CSL_CORE_ID_MAIN_R5FSS0_0)
 #else
 #define  CSL_CORE_ID_DM_R5FSS0_0     (CSL_CORE_ID_WKUP_R5FSS0_0)
 #endif

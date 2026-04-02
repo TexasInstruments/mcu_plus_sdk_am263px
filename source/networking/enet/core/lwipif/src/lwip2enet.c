@@ -1051,6 +1051,7 @@ static void Lwip2Enet_submitTxPackets(Lwip2Enet_TxObj *tx,
     int32_t retVal;
 
     retVal = EnetDma_submitTxPktQ(tx->hCh, pSubmitQ);
+
     if (ENET_SOK != retVal)
     {
         Lwip2Enet_print(tx->hLwip2Enet,
@@ -1124,6 +1125,7 @@ void Lwip2Enet_rxPktHandler(Lwip2Enet_RxHandle hRx)
     {
         EnetQueue_initQ(&tempQueue);
         retVal = EnetDma_retrieveRxPktQ(hRx->hFlow, &tempQueue);
+
         if (ENET_SOK != retVal)
         {
             Lwip2Enet_print(hRx->hLwip2Enet,
@@ -1294,7 +1296,7 @@ static uint32_t Lwip2Enet_prepRxPktQ(Lwip2Enet_RxObj *rx,
                     }
                 }
             }
-
+  
             EnetDma_initPktInfo(pCurrDmaPacket);
             EnetQueue_enq(&rx->freeRxPktInfoQ, &pCurrDmaPacket->node);
             LWIP2ENETSTATS_ADDONE(&rx->stats.freeAppPktEnq);
@@ -1575,7 +1577,6 @@ uint32_t Lwip2Enet_retrieveTxPkts(Lwip2Enet_TxHandle hTx)
     int32_t retVal;
 
     LWIP2ENETSTATS_ADDONE(&hTx->stats.pktStats.rawNotifyCnt);
-    packetCount = 0U;
 
     /* Retrieve the used (sent/empty) packets from the channel */
     {
@@ -1607,6 +1608,7 @@ uint32_t Lwip2Enet_retrieveTxPkts(Lwip2Enet_TxHandle hTx)
     {
         Lwip2Enet_updateTxNotifyStats(&hTx->stats.pktStats, packetCount, 0U);
     }
+
     return packetCount;
 }
 
