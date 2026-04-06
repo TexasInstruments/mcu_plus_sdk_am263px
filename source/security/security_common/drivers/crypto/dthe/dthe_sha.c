@@ -466,8 +466,8 @@ DTHE_SHA_Return_t DTHE_HMACSHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrS
             if (ptrShaParams->algoType == DTHE_SHA_ALGO_SHA256)
             {
                 /* SHA256: Outer & Inner Keys are 256bits = 32bytes = 8words */
-                DTHE_SHA_setHMACOuterKey(ptrShaRegs, &hmacPaddedKey[0]);
-                DTHE_SHA_setHMACInnerKey(ptrShaRegs, &hmacPaddedKey[8]);
+                DTHE_SHA_setHMACOuterKey(ptrShaRegs, &hmacPaddedKey[0U]);
+                DTHE_SHA_setHMACInnerKey(ptrShaRegs, &hmacPaddedKey[8U]);
 
                 /* HMAC Processing:-
                 *  - Algorithm Constants are not used
@@ -487,8 +487,8 @@ DTHE_SHA_Return_t DTHE_HMACSHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrS
             else
             {
                 /* SHA512: Outer & Inner Keys are 512bits = 64bytes = 16words */
-                DTHE_SHA512_setHMACOuterKey(ptrShaRegs, &hmacPaddedKey[0]);
-                DTHE_SHA512_setHMACInnerKey(ptrShaRegs, &hmacPaddedKey[16]);
+                DTHE_SHA512_setHMACOuterKey(ptrShaRegs, &hmacPaddedKey[0U]);
+                DTHE_SHA512_setHMACInnerKey(ptrShaRegs, &hmacPaddedKey[16U]);
 
                 /* HMAC Processing:-
                 *  - Algorithm Constants are not used

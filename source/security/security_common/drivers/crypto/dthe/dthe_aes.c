@@ -924,7 +924,7 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
 
                         if (ptrParams->algoType == DTHE_AES_CMAC_MODE)
                         {
-                            inPartialBlock[partialDataSize] = 0x80;
+                            inPartialBlock[partialDataSize] = 0x80U;
                         }
 
                         /* For AES XTS: Implement Cipher Text Stealing (CTS) [Step 1] for partial block if it's not the first block*/
@@ -952,7 +952,7 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
 
                             /*Copy last "complete 16-byte block" output data to tempData buffer*/
                             ptrByteBuf = (uint8_t*)&ptrWordOutputBuffer[(numBlocks-DTHE_AES_ONE)<<2U];
-                            (void)memcpy(&tempData[0], ptrByteBuf, 16);
+                            (void)memcpy(&tempData[0], ptrByteBuf, 16U);
 
                             /*Update pointer to last valid byte of inPartialBlock and fill remaing data from last
                                 output data block at same index to make inPartialBlock 128 bit aligned*/
@@ -1315,10 +1315,10 @@ static void DTHE_AES_setIV(CSL_AesRegs *ptrAesRegs, const uint32_t* ptrIV)
  */
 static inline void DTHE_AES_readIV(CSL_AesRegs *ptrAesRegs, uint32_t* ivReg)
 {
-    ivReg[0] = ptrAesRegs->IV_IN_0;
-    ivReg[1] = ptrAesRegs->IV_IN_1;
-    ivReg[2] = ptrAesRegs->IV_IN_2;
-    ivReg[3] = ptrAesRegs->IV_IN_3;
+    ivReg[0U] = ptrAesRegs->IV_IN_0;
+    ivReg[1U] = ptrAesRegs->IV_IN_1;
+    ivReg[2U] = ptrAesRegs->IV_IN_2;
+    ivReg[3U] = ptrAesRegs->IV_IN_3;
 }
 
 /**
@@ -1403,20 +1403,20 @@ static void DTHE_AES_pollContextReady(CSL_AesRegs *ptrAesRegs)
  */
 static void DTHE_AES_readDataBlock(CSL_AesRegs *ptrAesRegs, uint32_t* ptrData)
 {
-    ptrData[0] = ptrAesRegs->DATA_IN_3;
-    ptrData[1] = ptrAesRegs->DATA_IN_2;
-    ptrData[2] = ptrAesRegs->DATA_IN_1;
-    ptrData[3] = ptrAesRegs->DATA_IN_0;
+    ptrData[0U] = ptrAesRegs->DATA_IN_3;
+    ptrData[1U] = ptrAesRegs->DATA_IN_2;
+    ptrData[2U] = ptrAesRegs->DATA_IN_1;
+    ptrData[3U] = ptrAesRegs->DATA_IN_0;
 
     return;
 }
 
 static void DTHE_AES_readTag(CSL_AesRegs *ptrAesRegs, uint32_t* ptrTag)
 {
-    ptrTag[0] = ptrAesRegs->TAG_OUT_0;
-    ptrTag[1] = ptrAesRegs->TAG_OUT_1;
-    ptrTag[2] = ptrAesRegs->TAG_OUT_2;
-    ptrTag[3] = ptrAesRegs->TAG_OUT_3;
+    ptrTag[0U] = ptrAesRegs->TAG_OUT_0;
+    ptrTag[1U] = ptrAesRegs->TAG_OUT_1;
+    ptrTag[2U] = ptrAesRegs->TAG_OUT_2;
+    ptrTag[3U] = ptrAesRegs->TAG_OUT_3;
 
     return;
 }

@@ -54,7 +54,7 @@ void Crypto_Uint8ToUint32(const uint8_t *source, uint32_t sourceLengthInBytes, u
 
     for (i=0; i< sourceLengthInBytes; i++)
     {
-        t = (t << 8) | source[i];
+        t = (t << 8U) | source[i];
         if ((i & 3U) == 3U) {
             *dest = t;
             dest = dest + 1U;
@@ -63,7 +63,7 @@ void Crypto_Uint8ToUint32(const uint8_t *source, uint32_t sourceLengthInBytes, u
     }
     if ((i & 3U) != 0U)
     {
-        *dest = t << ((4U-(i&3U)) << 3);
+        *dest = t << ((4U-(i&3U)) << 3U);
     }
     return;
 }
@@ -76,9 +76,9 @@ void Crypto_Uint32ToUint8(const uint32_t *src, uint32_t sourceLengthInBytes, uin
     {
         t = *src;
         src = src + 1U;
-        *dest = t >> 24;
-        *(dest + 1U) = t >> 16;
-        *(dest + 2U) = t >> 8;
+        *dest = t >> 24U;
+        *(dest + 1U) = t >> 16U;
+        *(dest + 2U) = t >> 8U;
         *(dest + 3U) = t;
         dest = dest + 4U;
     }
@@ -130,14 +130,14 @@ void Crypto_PKCSPaddingForSign(const uint8_t *shaHash, uint32_t keyLengthInBytes
 
     switch(typeOfAlgo)
     {
-        case 0:
-            shaLen = 20;
+        case 0U:
+            shaLen = 20U;
         break;
-        case 1:
-            shaLen = 32; 
+        case 1U:
+            shaLen = 32U; 
         break;
-        case 2:
-            shaLen = 64; 
+        case 2U:
+            shaLen = 64U; 
         break;
         default:
         break;
@@ -152,7 +152,7 @@ void Crypto_PKCSPaddingForSign(const uint8_t *shaHash, uint32_t keyLengthInBytes
 
     for(i = 0; i< psLen; i++)
     {
-        output[offset+i] = 0xFF;
+        output[offset+i] = 0xFFU;
     }
 
     if (shaLen != 0U)
@@ -175,10 +175,10 @@ void Crypto_PKCSPaddingForSign(const uint8_t *shaHash, uint32_t keyLengthInBytes
 void Crypto_PKCSPaddingForMessage(const uint8_t *message, uint32_t msgLengthInBytes, uint32_t keyLengthInBytes, uint8_t *output)
 {
     uint32_t  i, psLen, offset = 0;
-    uint32_t upper = 99, lower = 1;
-    output[offset] = 0x00;
+    uint32_t upper = 99U, lower = 1U;
+    output[offset] = 0x00U;
     offset++;
-    output[offset] = 0x02;
+    output[offset] = 0x02U;
     offset++;
     psLen = keyLengthInBytes - msgLengthInBytes - 3U;
 

@@ -256,10 +256,10 @@ RNG_Return_t RNG_read(RNG_Handle handle, uint32_t *out)
             ready =  (val & CSL_CP_ACE_TRNG_STATUS_READY_MASK) >> CSL_CP_ACE_TRNG_STATUS_READY_SHIFT;
         }
         /* If data is available, read it into the output buffer */
-        out[0]  = CSL_REG_RD(&pTrngRegs->TRNG_INPUT_0);
-        out[1]  = CSL_REG_RD(&pTrngRegs->TRNG_INPUT_1);
-        out[2]  = CSL_REG_RD(&pTrngRegs->TRNG_INPUT_2);
-        out[3]  = CSL_REG_RD(&pTrngRegs->TRNG_INPUT_3);
+        out[0U]  = CSL_REG_RD(&pTrngRegs->TRNG_INPUT_0);
+        out[1U]  = CSL_REG_RD(&pTrngRegs->TRNG_INPUT_1);
+        out[2U]  = CSL_REG_RD(&pTrngRegs->TRNG_INPUT_2);
+        out[3U]  = CSL_REG_RD(&pTrngRegs->TRNG_INPUT_3);
 
         /*Set the INTACK and go back*/
         CSL_REG_WR(&pTrngRegs->TRNG_STATUS, (CSL_CP_ACE_TRNG_INTACK_READY_ACK_MASK << CSL_CP_ACE_TRNG_INTACK_READY_ACK_SHIFT));

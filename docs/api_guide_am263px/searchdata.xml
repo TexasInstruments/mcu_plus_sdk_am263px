@@ -105684,7 +105684,7 @@
     <field name="name">sipc_notify_mailbox.h</field>
     <field name="url">sipc__notify__mailbox_8h_source.html#l00159</field>
     <field name="keywords"></field>
-    <field name="text">SIPC_mailboxClearAllInt uint32_t mailboxBaseAddr uint32_t addr uint32_t mailboxBaseAddr addr</field>
+    <field name="text">SIPC_mailboxClearAllInt uint32_t mailboxBaseAddr uint32_t addr uint32_t mailboxBaseAddr addr U</field>
   </doc>
   <doc>
     <field name="type">source</field>

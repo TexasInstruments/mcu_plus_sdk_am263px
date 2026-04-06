@@ -254,3 +254,29 @@ Date:   Fri Mar 27 11:03:41 2026 +0530
  drivers/secure_ipc_notify/soc/f29h85x/sipc_notify_cfg.h | 27 +++++++++++++--------------
  14 files changed, 110 insertions(+), 113 deletions(-)
 
+========================================
+Changes from build on 2026-04-06 20:47:48
+Previous commit: 0f599896871d90adf524ff870b8b644982c9e857
+Current commit: ee05138b0510fae1cf6c81d17a120622557837d7
+========================================
+
+commit ee05138b0510fae1cf6c81d17a120622557837d7
+Author: Seema.Khatib <seema.khatib@ti.com>
+Date:   Fri Apr 3 13:12:06 2026 +0530
+
+    f29h85x: CERT: CERT.LITERAL.INT.CONST
+    
+    -Use of literal integer constant
+    
+    Fixes: TIFSMCU-5063
+    
+    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
+
+ drivers/crypto/crypto_util.c                    | 30 +++++++++++++++---------------
+ drivers/crypto/dthe/dthe_aes.c                  | 28 ++++++++++++++--------------
+ drivers/crypto/dthe/dthe_sha.c                  |  8 ++++----
+ drivers/crypto/pke/pke.c                        | 12 ++++++------
+ drivers/crypto/rng/rng.c                        |  8 ++++----
+ drivers/secure_ipc_notify/sipc_notify_mailbox.h |  2 +-
+ 6 files changed, 44 insertions(+), 44 deletions(-)
+

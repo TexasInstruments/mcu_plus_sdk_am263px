@@ -29815,3 +29815,24 @@ Date:   Thu Mar 26 19:55:27 2026 +0530
  utils/include/enet_udmautils.h                                              |   202 +
  6743 files changed, 1194231 insertions(+)
 
+========================================
+Changes from build on 2026-04-06 20:47:54
+Previous commit: 5e300af12f085bc4f09a58a17452f4f347800bae
+Current commit: 3ff7896db3ce93b7b21339d5d813ae07b0c539bd
+========================================
+
+commit 3ff7896db3ce93b7b21339d5d813ae07b0c539bd
+Author: Sai Kiran Lakavath <s-lakavath@ti.com>
+Date:   Mon Apr 6 14:38:28 2026 +0530
+
+    all : enet : Fix include header error
+    
+    - Remove the redundant header include <drivers/dmautils/csl/csl_udmap.h> , as it causes error when dmautils repo is not present
+    
+    Fixes : ETHFW-3417
+    
+    Signed-off-by: Sai Kiran Lakavath <s-lakavath@ti.com>
+
+ src/dma/udma/enet_udma_priv.c | 1 -
+ 1 file changed, 1 deletion(-)
+

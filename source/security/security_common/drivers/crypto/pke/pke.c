@@ -696,11 +696,11 @@ AsymCrypt_Return_t AsymCrypt_EddsaSign(AsymCrypt_Handle handle,
             /* Copy 1st part of privKey hash, and clamp it */
             if (input_curve == ASYM_CRYPT_CURVE_TYPE_EDDSA_25519) {
                 k0[0U] &= 0xF8U;
-                k0[31] &= 0x7FU;
-                k0[31] |= 0x40U;
+                k0[31U] &= 0x7FU;
+                k0[31U] |= 0x40U;
             } else {
                 k0[0U] &= 0xFCU;
-                k0[31] &= 0x00U;
+                k0[31U] &= 0x00U;
                 for (uint8_t i = 1; i <= 31U ; i++) {
                     k0[i] |= 0x80U;
                 }
@@ -858,11 +858,11 @@ AsymCrypt_Return_t AsymCrypt_EddsaGetPubKey(AsymCrypt_Handle handle,
         /*Only first half of privatekey hash is used, clamp the fist half and clear the second half*/
         if (input_curve == ASYM_CRYPT_CURVE_TYPE_EDDSA_25519) {
             privKeyHash[0U] &= 0xF8U;
-            privKeyHash[31] &= 0x7FU;
-            privKeyHash[31] |= 0x40U;
+            privKeyHash[31U] &= 0x7FU;
+            privKeyHash[31U] |= 0x40U;
         } else {
             privKeyHash[0U] &= 0xFCU;
-            privKeyHash[31] &= 0x00U;
+            privKeyHash[31U] &= 0x00U;
             for (uint8_t i = 1; i <= 31U ; i++) {
                 privKeyHash[i] |= 0x80U;
             }

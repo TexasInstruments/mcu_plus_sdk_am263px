@@ -159,7 +159,7 @@ static inline int32_t SIPC_mailboxWrite(uint32_t mailboxBaseAddr, uint32_t wrInt
 static inline void SIPC_mailboxClearAllInt(uint32_t mailboxBaseAddr)
 {
     volatile uint32_t *addr = (uint32_t *)mailboxBaseAddr;
-    *addr = 0x1111111;
+    *addr = 0x1111111U;
 }
 
 static inline uint32_t SIPC_mailboxGetPendingIntr(uint32_t mailboxBaseAddr)
