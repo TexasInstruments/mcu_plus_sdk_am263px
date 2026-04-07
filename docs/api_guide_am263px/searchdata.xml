@@ -107028,838 +107028,866 @@
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00354</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_WDT0</field>
+    <field name="text">SOC_RcmPeripheralId_RTI4</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00358</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_WDT1</field>
+    <field name="text">SOC_RcmPeripheralId_RTI5</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00362</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_WDT2</field>
+    <field name="text">SOC_RcmPeripheralId_RTI6</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00366</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_WDT3</field>
+    <field name="text">SOC_RcmPeripheralId_RTI7</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00370</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_MCSPI0</field>
+    <field name="text">SOC_RcmPeripheralId_WDT0</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00374</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_MCSPI1</field>
+    <field name="text">SOC_RcmPeripheralId_WDT1</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00378</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_MCSPI2</field>
+    <field name="text">SOC_RcmPeripheralId_WDT2</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00382</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_MCSPI3</field>
+    <field name="text">SOC_RcmPeripheralId_WDT3</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00386</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_MCSPI4</field>
+    <field name="text">SOC_RcmPeripheralId_MCSPI0</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00390</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_MCSPI5</field>
+    <field name="text">SOC_RcmPeripheralId_MCSPI1</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00394</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_MCSPI6</field>
+    <field name="text">SOC_RcmPeripheralId_MCSPI2</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00398</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_MCSPI7</field>
+    <field name="text">SOC_RcmPeripheralId_MCSPI3</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00402</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_MMC0</field>
+    <field name="text">SOC_RcmPeripheralId_MCSPI4</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00406</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_ICSSM0_UART0</field>
+    <field name="text">SOC_RcmPeripheralId_MCSPI5</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00410</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_CPTS</field>
+    <field name="text">SOC_RcmPeripheralId_MCSPI6</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00414</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_GPMC</field>
+    <field name="text">SOC_RcmPeripheralId_MCSPI7</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00418</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_CONTROLSS_PLL</field>
+    <field name="text">SOC_RcmPeripheralId_MMC0</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00422</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_I2C</field>
+    <field name="text">SOC_RcmPeripheralId_ICSSM0_UART0</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00426</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_LIN0_UART0</field>
+    <field name="text">SOC_RcmPeripheralId_CPTS</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00430</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_LIN1_UART1</field>
+    <field name="text">SOC_RcmPeripheralId_GPMC</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00434</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_LIN2_UART2</field>
+    <field name="text">SOC_RcmPeripheralId_CONTROLSS_PLL</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00438</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_LIN3_UART3</field>
+    <field name="text">SOC_RcmPeripheralId_I2C</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00442</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_LIN4_UART4</field>
+    <field name="text">SOC_RcmPeripheralId_LIN0_UART0</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00446</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_LIN5_UART5</field>
+    <field name="text">SOC_RcmPeripheralId_LIN1_UART1</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00450</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_MCAN4</field>
+    <field name="text">SOC_RcmPeripheralId_LIN2_UART2</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00454</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_MCAN5</field>
+    <field name="text">SOC_RcmPeripheralId_LIN3_UART3</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00458</field>
     <field name="keywords"></field>
-    <field name="text">SOC_RcmPeripheralId_MCAN6</field>
+    <field name="text">SOC_RcmPeripheralId_LIN4_UART4</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00462</field>
     <field name="keywords"></field>
+    <field name="text">SOC_RcmPeripheralId_LIN5_UART5</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">soc_rcm.h</field>
+    <field name="url">soc__rcm_8h_source.html#l00466</field>
+    <field name="keywords"></field>
+    <field name="text">SOC_RcmPeripheralId_MCAN4</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">soc_rcm.h</field>
+    <field name="url">soc__rcm_8h_source.html#l00470</field>
+    <field name="keywords"></field>
+    <field name="text">SOC_RcmPeripheralId_MCAN5</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">soc_rcm.h</field>
+    <field name="url">soc__rcm_8h_source.html#l00474</field>
+    <field name="keywords"></field>
+    <field name="text">SOC_RcmPeripheralId_MCAN6</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">soc_rcm.h</field>
+    <field name="url">soc__rcm_8h_source.html#l00478</field>
+    <field name="keywords"></field>
     <field name="text">SOC_RcmPeripheralId_MCAN7 SOC_RcmPeripheralId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00471</field>
+    <field name="url">soc__rcm_8h_source.html#l00487</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPeripheralClockSource_e</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00476</field>
+    <field name="url">soc__rcm_8h_source.html#l00492</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPeripheralClockSource_XTALCLK</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00480</field>
+    <field name="url">soc__rcm_8h_source.html#l00496</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPeripheralClockSource_SYS_CLK</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00484</field>
+    <field name="url">soc__rcm_8h_source.html#l00500</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPeripheralClockSource_WUCPUCLK</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00488</field>
+    <field name="url">soc__rcm_8h_source.html#l00504</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPeripheralClockSource_EXT_REFCLK</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00492</field>
+    <field name="url">soc__rcm_8h_source.html#l00508</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPeripheralClockSource_RCCLK10M</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00496</field>
+    <field name="url">soc__rcm_8h_source.html#l00512</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPeripheralClockSource_RCCLK32K</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00500</field>
+    <field name="url">soc__rcm_8h_source.html#l00516</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPeripheralClockSource_CTPS_GENF0</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00504</field>
+    <field name="url">soc__rcm_8h_source.html#l00520</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPeripheralClockSource_DPLL_CORE_HSDIV0_CLKOUT0</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00508</field>
+    <field name="url">soc__rcm_8h_source.html#l00524</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPeripheralClockSource_DPLL_CORE_HSDIV0_CLKOUT1</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00512</field>
+    <field name="url">soc__rcm_8h_source.html#l00528</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPeripheralClockSource_DPLL_CORE_HSDIV0_CLKOUT2</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00516</field>
+    <field name="url">soc__rcm_8h_source.html#l00532</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPeripheralClockSource_DPLL_PER_HSDIV0_CLKOUT0</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00520</field>
+    <field name="url">soc__rcm_8h_source.html#l00536</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPeripheralClockSource_DPLL_PER_HSDIV0_CLKOUT1 SOC_RcmPeripheralClockSource</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00529</field>
+    <field name="url">soc__rcm_8h_source.html#l00545</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPllFoutFreqId_e</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00534</field>
+    <field name="url">soc__rcm_8h_source.html#l00550</field>
     <field name="keywords"></field>
     <field name="text">RCM_PLL_FOUT_FREQID_CLK_2000MHZ</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00538</field>
+    <field name="url">soc__rcm_8h_source.html#l00554</field>
     <field name="keywords"></field>
     <field name="text">RCM_PLL_FOUT_FREQID_CLK_1920MHZ</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00542</field>
+    <field name="url">soc__rcm_8h_source.html#l00558</field>
     <field name="keywords"></field>
     <field name="text">RCM_PLL_FOUT_FREQID_CLK_800MHZ SOC_RcmPllFoutFreqId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00551</field>
+    <field name="url">soc__rcm_8h_source.html#l00567</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmXtalFreqId_e</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00556</field>
+    <field name="url">soc__rcm_8h_source.html#l00572</field>
     <field name="keywords"></field>
     <field name="text">RCM_XTAL_FREQID_CLK_25MHZ SOC_RcmXtalFreqId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00559</field>
+    <field name="url">soc__rcm_8h_source.html#l00575</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPllId_e</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00561</field>
+    <field name="url">soc__rcm_8h_source.html#l00577</field>
     <field name="keywords"></field>
     <field name="text">RCM_PLLID_CORE</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00562</field>
+    <field name="url">soc__rcm_8h_source.html#l00578</field>
     <field name="keywords"></field>
     <field name="text">RCM_PLLID_PER</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00563</field>
+    <field name="url">soc__rcm_8h_source.html#l00579</field>
     <field name="keywords"></field>
     <field name="text">RCM_PLLID_XTALCLK</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00564</field>
+    <field name="url">soc__rcm_8h_source.html#l00580</field>
     <field name="keywords"></field>
     <field name="text">RCM_PLLID_WUCPUCLK</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00565</field>
+    <field name="url">soc__rcm_8h_source.html#l00581</field>
     <field name="keywords"></field>
     <field name="text">RCM_PLLID_RCCLK32K</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00566</field>
+    <field name="url">soc__rcm_8h_source.html#l00582</field>
     <field name="keywords"></field>
     <field name="text">RCM_PLLID_RCCLK10M</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00567</field>
+    <field name="url">soc__rcm_8h_source.html#l00583</field>
     <field name="keywords"></field>
     <field name="text">RCM_PLLID_EXTREFCLK SOC_RcmPllId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00576</field>
+    <field name="url">soc__rcm_8h_source.html#l00592</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPllHSDIVOutId_e</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00581</field>
+    <field name="url">soc__rcm_8h_source.html#l00597</field>
     <field name="keywords"></field>
     <field name="text">RCM_PLLHSDIV_OUT_0</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00585</field>
+    <field name="url">soc__rcm_8h_source.html#l00601</field>
     <field name="keywords"></field>
     <field name="text">RCM_PLLHSDIV_OUT_1</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00589</field>
+    <field name="url">soc__rcm_8h_source.html#l00605</field>
     <field name="keywords"></field>
     <field name="text">RCM_PLLHSDIV_OUT_2</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00593</field>
+    <field name="url">soc__rcm_8h_source.html#l00609</field>
     <field name="keywords"></field>
     <field name="text">RCM_PLLHSDIV_OUT_NONE SOC_RcmPllHSDIVOutId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00597</field>
+    <field name="url">soc__rcm_8h_source.html#l00613</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmClkSrcInfo_s</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00599</field>
+    <field name="url">soc__rcm_8h_source.html#l00615</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPllId pllId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00600</field>
+    <field name="url">soc__rcm_8h_source.html#l00616</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmPllHSDIVOutId hsDivOut SOC_RcmClkSrcInfo</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00603</field>
+    <field name="url">soc__rcm_8h_source.html#l00619</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmXTALInfo_s</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00605</field>
+    <field name="url">soc__rcm_8h_source.html#l00621</field>
     <field name="keywords"></field>
     <field name="text">uint32_t Finp</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00606</field>
+    <field name="url">soc__rcm_8h_source.html#l00622</field>
     <field name="keywords"></field>
     <field name="text">Bool div2flag SOC_RcmXTALInfo</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00609</field>
+    <field name="url">soc__rcm_8h_source.html#l00625</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmADPLLJConfig_s</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00611</field>
+    <field name="url">soc__rcm_8h_source.html#l00627</field>
     <field name="keywords"></field>
     <field name="text">uint32_t N</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00612</field>
+    <field name="url">soc__rcm_8h_source.html#l00628</field>
     <field name="keywords"></field>
     <field name="text">uint32_t M2</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00613</field>
+    <field name="url">soc__rcm_8h_source.html#l00629</field>
     <field name="keywords"></field>
     <field name="text">uint32_t M</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00614</field>
+    <field name="url">soc__rcm_8h_source.html#l00630</field>
     <field name="keywords"></field>
     <field name="text">uint32_t FracM</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00615</field>
+    <field name="url">soc__rcm_8h_source.html#l00631</field>
     <field name="keywords"></field>
     <field name="text">uint32_t Fout</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00616</field>
+    <field name="url">soc__rcm_8h_source.html#l00632</field>
     <field name="keywords"></field>
     <field name="text">uint32_t Finp SOC_RcmADPLLJConfig_t</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00619</field>
+    <field name="url">soc__rcm_8h_source.html#l00635</field>
     <field name="keywords"></field>
     <field name="text"></field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00620</field>
-    <field name="keywords"></field>
-    <field name="text"></field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00621</field>
-    <field name="keywords"></field>
-    <field name="text"></field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00622</field>
-    <field name="keywords"></field>
-    <field name="text"></field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00623</field>
-    <field name="keywords"></field>
-    <field name="text"></field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00628</field>
-    <field name="keywords"></field>
-    <field name="text"></field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00629</field>
-    <field name="keywords"></field>
-    <field name="text"></field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00630</field>
-    <field name="keywords"></field>
-    <field name="text"></field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00631</field>
-    <field name="keywords"></field>
-    <field name="text"></field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00632</field>
-    <field name="keywords"></field>
-    <field name="text"></field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00634</field>
-    <field name="keywords"></field>
-    <field name="text">SOC_RcmPllHsDivOutConfig_s</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00636</field>
     <field name="keywords"></field>
-    <field name="text">uint32_t hsdivOutEnMask</field>
+    <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00637</field>
     <field name="keywords"></field>
-    <field name="text">uint32_t hsDivOutFreqHz RCM_PLL_HSDIV_OUTPUT_COUNT SOC_RcmPllHsDivOutConfig</field>
+    <field name="text"></field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">soc_rcm.h</field>
+    <field name="url">soc__rcm_8h_source.html#l00638</field>
+    <field name="keywords"></field>
+    <field name="text"></field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">soc_rcm.h</field>
+    <field name="url">soc__rcm_8h_source.html#l00639</field>
+    <field name="keywords"></field>
+    <field name="text"></field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">soc_rcm.h</field>
+    <field name="url">soc__rcm_8h_source.html#l00644</field>
+    <field name="keywords"></field>
+    <field name="text"></field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">soc_rcm.h</field>
+    <field name="url">soc__rcm_8h_source.html#l00645</field>
+    <field name="keywords"></field>
+    <field name="text"></field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">soc_rcm.h</field>
+    <field name="url">soc__rcm_8h_source.html#l00646</field>
+    <field name="keywords"></field>
+    <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00647</field>
     <field name="keywords"></field>
-    <field name="text">SOC_rcmCoreApllConfig SOC_RcmPllFoutFreqId outFreqId SOC_RcmPllHsDivOutConfig hsDivCfg</field>
+    <field name="text"></field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">soc_rcm.h</field>
+    <field name="url">soc__rcm_8h_source.html#l00648</field>
+    <field name="keywords"></field>
+    <field name="text"></field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">soc_rcm.h</field>
+    <field name="url">soc__rcm_8h_source.html#l00650</field>
+    <field name="keywords"></field>
+    <field name="text">SOC_RcmPllHsDivOutConfig_s</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
     <field name="url">soc__rcm_8h_source.html#l00652</field>
     <field name="keywords"></field>
+    <field name="text">uint32_t hsdivOutEnMask</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">soc_rcm.h</field>
+    <field name="url">soc__rcm_8h_source.html#l00653</field>
+    <field name="keywords"></field>
+    <field name="text">uint32_t hsDivOutFreqHz RCM_PLL_HSDIV_OUTPUT_COUNT SOC_RcmPllHsDivOutConfig</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">soc_rcm.h</field>
+    <field name="url">soc__rcm_8h_source.html#l00663</field>
+    <field name="keywords"></field>
+    <field name="text">SOC_rcmCoreApllConfig SOC_RcmPllFoutFreqId outFreqId SOC_RcmPllHsDivOutConfig hsDivCfg</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">soc_rcm.h</field>
+    <field name="url">soc__rcm_8h_source.html#l00668</field>
+    <field name="keywords"></field>
     <field name="text">uint32_t SOC_rcmCoreApllRelockPreRequisite</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00657</field>
+    <field name="url">soc__rcm_8h_source.html#l00673</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmSetR5ClockSource uint32_t r5ClkSrc</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00667</field>
+    <field name="url">soc__rcm_8h_source.html#l00683</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmCoreApllHSDivConfig SOC_RcmPllFoutFreqId outFreqId SOC_RcmPllHsDivOutConfig hsDivCfg</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00676</field>
+    <field name="url">soc__rcm_8h_source.html#l00692</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmPerApllConfig SOC_RcmPllFoutFreqId outFreqId SOC_RcmPllHsDivOutConfig hsDivCfg</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00686</field>
+    <field name="url">soc__rcm_8h_source.html#l00702</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmsetR5SysClock uint32_t cr5FreqHz uint32_t sysClkFreqHz uint32_t cpuId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00695</field>
+    <field name="url">soc__rcm_8h_source.html#l00711</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmsetTraceClock uint32_t traceFreqHz</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00704</field>
+    <field name="url">soc__rcm_8h_source.html#l00720</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmsetClkoutClock uint32_t clkout0FreqHz uint32_t clkout1FreqHz</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00719</field>
+    <field name="url">soc__rcm_8h_source.html#l00735</field>
     <field name="keywords"></field>
     <field name="text">int32_t SOC_rcmSetPeripheralClock SOC_RcmPeripheralId periphId SOC_RcmPeripheralClockSource clkSource uint32_t freqHz</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00731</field>
+    <field name="url">soc__rcm_8h_source.html#l00747</field>
     <field name="keywords"></field>
     <field name="text">SOC_RcmResetCause SOC_rcmGetResetCause SOC_Rcmr5fssNum r5fssNum</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00745</field>
+    <field name="url">soc__rcm_8h_source.html#l00761</field>
     <field name="keywords"></field>
     <field name="text">int32_t SOC_rcmEnablePeripheralClock SOC_RcmPeripheralId periphId uint32_t enable</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00756</field>
+    <field name="url">soc__rcm_8h_source.html#l00772</field>
     <field name="keywords"></field>
     <field name="text">int32_t SOC_rcmSetR5Clock uint32_t r5FreqHz uint32_t sysClkFreqHz uint32_t cpuId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00764</field>
+    <field name="url">soc__rcm_8h_source.html#l00780</field>
     <field name="keywords"></field>
     <field name="text">uint32_t SOC_rcmGetR5Clock uint32_t cpuId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00770</field>
+    <field name="url">soc__rcm_8h_source.html#l00786</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmR5ConfigLockStep uint32_t cpuId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00776</field>
+    <field name="url">soc__rcm_8h_source.html#l00792</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmR5ConfigDualCore uint32_t cpuId SOC_rcmSetR5ClockSource uint32_t r5ClkSrc</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00786</field>
+    <field name="url">soc__rcm_8h_source.html#l00802</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmR5SS0TriggerReset</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00792</field>
+    <field name="url">soc__rcm_8h_source.html#l00808</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmCoreR5FUnhalt uint32_t cpuId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00798</field>
+    <field name="url">soc__rcm_8h_source.html#l00814</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmStartMemInitTCMA uint32_t cpuId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00804</field>
+    <field name="url">soc__rcm_8h_source.html#l00820</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmWaitMemInitTCMA uint32_t cpuId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00810</field>
+    <field name="url">soc__rcm_8h_source.html#l00826</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmStartMemInitTCMB uint32_t cpuId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00816</field>
+    <field name="url">soc__rcm_8h_source.html#l00832</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmWaitMemInitTCMB uint32_t cpuId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00821</field>
+    <field name="url">soc__rcm_8h_source.html#l00837</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmMemInitMailboxMemory</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00825</field>
+    <field name="url">soc__rcm_8h_source.html#l00841</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmMemInitL2Memory</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00829</field>
+    <field name="url">soc__rcm_8h_source.html#l00845</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmR5SS0PowerOnReset</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00834</field>
+    <field name="url">soc__rcm_8h_source.html#l00850</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmR5SS1TriggerReset</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00839</field>
+    <field name="url">soc__rcm_8h_source.html#l00855</field>
     <field name="keywords"></field>
     <field name="text">SOC_rcmR5SS1PowerOnReset</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00848</field>
+    <field name="url">soc__rcm_8h_source.html#l00864</field>
     <field name="keywords"></field>
     <field name="text">uint32_t SOC_rcmIsR5FInLockStepMode uint32_t r5fClusterGroupId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00853</field>
+    <field name="url">soc__rcm_8h_source.html#l00869</field>
     <field name="keywords"></field>
     <field name="text">SOC_generateSwWarmReset</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00861</field>
+    <field name="url">soc__rcm_8h_source.html#l00877</field>
     <field name="keywords"></field>
     <field name="text">SOC_configureWarmResetSource uint32_t source</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00868</field>
+    <field name="url">soc__rcm_8h_source.html#l00884</field>
     <field name="keywords"></field>
     <field name="text">SOC_WarmResetCause SOC_getWarmResetCause</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00873</field>
+    <field name="url">soc__rcm_8h_source.html#l00889</field>
     <field name="keywords"></field>
     <field name="text">SOC_clearWarmResetCause</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00880</field>
+    <field name="url">soc__rcm_8h_source.html#l00896</field>
     <field name="keywords"></field>
     <field name="text">SOC_configureWarmResetOutputDelay uint16_t opDelayValue</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00887</field>
+    <field name="url">soc__rcm_8h_source.html#l00903</field>
     <field name="keywords"></field>
     <field name="text">SOC_configureWarmResetInputRiseDelay uint16_t inpRiseDelayValue</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">soc_rcm.h</field>
-    <field name="url">soc__rcm_8h_source.html#l00894</field>
+    <field name="url">soc__rcm_8h_source.html#l00910</field>
     <field name="keywords"></field>
     <field name="text">SOC_configureWarmResetInputFallDelay uint16_t inpFallDelayValue</field>
   </doc>
@@ -198286,6 +198314,34 @@
     <field name="url">group__DRV__SOC__RCM__MODULE.html#gga6674bb5c28889ff80f5a352030bfd78fa3ae45c65ccd0fc0f805ac424a1e3e9b7</field>
     <field name="keywords">SOC_RcmPeripheralId_RTI3 SOC_RcmPeripheralId_RTI3</field>
     <field name="text">Value specifying RTI3</field>
+  </doc>
+  <doc>
+    <field name="type">enumvalue</field>
+    <field name="name">SOC_RcmPeripheralId_RTI4</field>
+    <field name="url">group__DRV__SOC__RCM__MODULE.html#gga6674bb5c28889ff80f5a352030bfd78fa58dab19c4a68bccd0086221d1402e6e5</field>
+    <field name="keywords">SOC_RcmPeripheralId_RTI4 SOC_RcmPeripheralId_RTI4</field>
+    <field name="text">Value specifying RTI4</field>
+  </doc>
+  <doc>
+    <field name="type">enumvalue</field>
+    <field name="name">SOC_RcmPeripheralId_RTI5</field>
+    <field name="url">group__DRV__SOC__RCM__MODULE.html#gga6674bb5c28889ff80f5a352030bfd78fa7aaed83d20bd630240eda091e3dfdb05</field>
+    <field name="keywords">SOC_RcmPeripheralId_RTI5 SOC_RcmPeripheralId_RTI5</field>
+    <field name="text">Value specifying RTI5</field>
+  </doc>
+  <doc>
+    <field name="type">enumvalue</field>
+    <field name="name">SOC_RcmPeripheralId_RTI6</field>
+    <field name="url">group__DRV__SOC__RCM__MODULE.html#gga6674bb5c28889ff80f5a352030bfd78faf598a8c22ddca1d885f1c2f33eb68ab5</field>
+    <field name="keywords">SOC_RcmPeripheralId_RTI6 SOC_RcmPeripheralId_RTI6</field>
+    <field name="text">Value specifying RTI6</field>
+  </doc>
+  <doc>
+    <field name="type">enumvalue</field>
+    <field name="name">SOC_RcmPeripheralId_RTI7</field>
+    <field name="url">group__DRV__SOC__RCM__MODULE.html#gga6674bb5c28889ff80f5a352030bfd78fabbda98a202e4b7bbeb625fc12143ed50</field>
+    <field name="keywords">SOC_RcmPeripheralId_RTI7 SOC_RcmPeripheralId_RTI7</field>
+    <field name="text">Value specifying RTI7</field>
   </doc>
   <doc>
     <field name="type">enumvalue</field>

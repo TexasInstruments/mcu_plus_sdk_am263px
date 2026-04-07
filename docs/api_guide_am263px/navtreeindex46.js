@@ -1,5 +1,9 @@
 var NAVTREEINDEX46 =
 {
+"group__ENETPHY__DP83869.html#ggafb61bccf4ac61ac862a487ca29765783a7980a6535b7d74dd8f46cfd8120cf299":[19,4,0,13,4,2,4],
+"group__ENETPHY__DP83869.html#ggafb61bccf4ac61ac862a487ca29765783a845add548a90b2b8304a9a3d6f3ab8bd":[19,4,0,13,4,2,8],
+"group__ENETPHY__DP83869.html#ggafb61bccf4ac61ac862a487ca29765783abe2e03c5d58613128187b0979fc0f08b":[19,4,0,13,4,2,7],
+"group__ENETPHY__DP83869.html#ggafb61bccf4ac61ac862a487ca29765783ac035aa12f3f01ea473115a2dafd83e36":[19,4,0,13,4,2,3],
 "group__ENETPHY__DP83869.html#ggafb61bccf4ac61ac862a487ca29765783acdfe6cb7cbaa89271bc5c36c44471246":[19,4,0,13,4,2,11],
 "group__ENETPHY__DP83869.html#ggafb61bccf4ac61ac862a487ca29765783af3f6405fe63e29c909bd00884fd0b17a":[19,4,0,13,4,2,2],
 "group__ENETPHY__DP83869.html#ggafb61bccf4ac61ac862a487ca29765783afce2e9c3c717cf7921bb8b12e1862fa9":[19,4,0,13,4,2,0],
@@ -245,9 +249,5 @@ var NAVTREEINDEX46 =
 "group__ENET__MAIN__API.html#ga2fe38ed30dc3c43a029231f503b7ef5b":[19,4,0,4,16],
 "group__ENET__MAIN__API.html#ga32873b948e9f39f89b7ff40d3261b87b":[19,4,0,4,61],
 "group__ENET__MAIN__API.html#ga3431e11a2089b5fd51a2059c8e80dc67":[19,4,0,4,79],
-"group__ENET__MAIN__API.html#ga390436cfd9b1c6c2d76e4a181d4fbd4e":[19,4,0,4,28],
-"group__ENET__MAIN__API.html#ga3b00bf14e6844aeb3d597e38c0103e96":[19,4,0,4,27],
-"group__ENET__MAIN__API.html#ga3bbcab21b7e0b60b6435619466af44b1":[19,4,0,4,64],
-"group__ENET__MAIN__API.html#ga3c67a72c3ad192c57763a4acd13e5e75":[19,4,0,4,91],
-"group__ENET__MAIN__API.html#ga40325ec5d06d5d7788ec71609edd7ac0":[19,4,0,4,98]
+"group__ENET__MAIN__API.html#ga390436cfd9b1c6c2d76e4a181d4fbd4e":[19,4,0,4,28]
 };

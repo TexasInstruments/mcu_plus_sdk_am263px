@@ -29836,3 +29836,25 @@ Date:   Mon Apr 6 14:38:28 2026 +0530
  src/dma/udma/enet_udma_priv.c | 1 -
  1 file changed, 1 deletion(-)
 
+========================================
+Changes from build on 2026-04-07 20:47:59
+Previous commit: 3ff7896db3ce93b7b21339d5d813ae07b0c539bd
+Current commit: e013b0c7eb468dc45c16f9ce6549fdd02fd428a4
+========================================
+
+commit e013b0c7eb468dc45c16f9ce6549fdd02fd428a4
+Author: Yogeshwaran s <y-s1@ti.com>
+Date:   Tue Apr 7 15:18:50 2026 +0530
+
+    all : enet : set perMode param to enable
+    
+    - set the pTxChPrms->perMode to ENET_UDMA_ICSSG_LRE_TX_OFFLOAD_ENABLE in
+    EnetApp_updateTxChInitCfg for icss template
+    
+    Signed-off-by: Yogeshwaran B S <y-s1@ti.com>
+
+ sysconfig/networking/.meta/enet_icss/templates/dma_init_config.c.xdt | 1 +
+ sysconfig/networking/.meta/enet_icss/templates/dma_init_config.h.xdt | 1 +
+ sysconfig/networking/.meta/enet_icss/templates/enet_init.c.xdt       | 1 +
+ 3 files changed, 3 insertions(+)
+

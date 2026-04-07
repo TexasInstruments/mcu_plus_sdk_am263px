@@ -1,5 +1,9 @@
 var NAVTREEINDEX60 =
 {
+"structCpswAle__SetInterVlanCfgInArgs.html#a076684cdd1b9a01276f5aac3451a1295":[19,4,0,1,0,37,1],
+"structCpswAle__SetInterVlanCfgInArgs.html#a1648cef376f374c5c0f22a89f78e3097":[19,4,0,1,0,37,2],
+"structCpswAle__SetInterVlanCfgInArgs.html#a73c77a294d6848aff2b49e6eae2d54a0":[19,4,0,1,0,37,3],
+"structCpswAle__SetInterVlanCfgInArgs.html#a7990a4507187e2f184aeb0eb0286ba14":[19,4,0,1,0,37,0],
 "structCpswAle__SetInterVlanCfgInArgs.html#ab19004b0ea80c0dfeaa9d92e646c81c3":[19,4,0,1,0,37,4],
 "structCpswAle__SetMcastEntryInArgs.html":[19,4,0,1,0,5],
 "structCpswAle__SetMcastEntryInArgs.html#a1d4e18e3b93d950124f665256de58bf3":[19,4,0,1,0,5,0],
@@ -245,9 +249,5 @@ var NAVTREEINDEX60 =
 "structCpswStats__HostPort__2g.html#abf1d78a7031d47ebca1d9e16bc634d99":[19,4,0,9,0,0,19],
 "structCpswStats__HostPort__2g.html#acbe6c8d6c57ddb7aad4ac3508e1afeca":[19,4,0,9,0,0,56],
 "structCpswStats__HostPort__2g.html#acdae80cc5625143efeab23f994c550b3":[19,4,0,9,0,0,52],
-"structCpswStats__HostPort__2g.html#acf81dbf9b4c7c6ec1a7e986b986da9ad":[19,4,0,9,0,0,42],
-"structCpswStats__HostPort__2g.html#ad382abc1e9cf77bfdb628bf38d2d1886":[19,4,0,9,0,0,37],
-"structCpswStats__HostPort__2g.html#ad6791175fafd2f0bf9993c5bfb28352a":[19,4,0,9,0,0,30],
-"structCpswStats__HostPort__2g.html#adabb89fe87756134ea1c5ccc611a66a9":[19,4,0,9,0,0,11],
-"structCpswStats__HostPort__2g.html#ae045a75d7b96b85a71e284469e73fbf1":[19,4,0,9,0,0,21]
+"structCpswStats__HostPort__2g.html#acf81dbf9b4c7c6ec1a7e986b986da9ad":[19,4,0,9,0,0,42]
 };

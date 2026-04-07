@@ -1,5 +1,9 @@
 var NAVTREEINDEX74 =
 {
+"structcb__tilld__port__stats__t.html#a2844cc5d40bd0dc115ad398b88293f67":[19,12,3,5,0],
+"structcb__tsn__thread__attr__t.html":[19,12,5,1],
+"structcb__tsn__thread__attr__t.html#a2edec41292af8f344ecb856be5aac77e":[19,12,5,1,0],
+"structcb__tsn__thread__attr__t.html#a78e05e5686745ecbcf67f4fd9644d2ab":[19,12,5,1,1],
 "structcb__tsn__thread__attr__t.html#a933cb0fb7f3490bc96db6a5a5da50180":[19,12,5,1,3],
 "structcb__tsn__thread__attr__t.html#ab859a17727fec43d7cb8914063292e24":[19,12,5,1,2],
 "structcb__waitpoint__t.html":[19,12,5,2],
