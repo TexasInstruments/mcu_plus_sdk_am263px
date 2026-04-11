@@ -58,7 +58,7 @@
 /*                          Function Declarations                             */
 /* ========================================================================== */
 
-static int32_t EnetApp_addUcastEntry(uint8_t *macAddr);
+/* None */
 
 /* ========================================================================== */
 /*                            Global Variables                                */
@@ -73,49 +73,163 @@ static int32_t EnetApp_addUcastEntry(uint8_t *macAddr);
 BaseType_t EnetCLI_addUcast(char *writeBuffer, size_t writeBufferLen,
         const char *commandString)
 {
+    CpswAle_SetUcastEntryInArgs setUcastInArgs;
     int32_t status;
     uint8_t macAddr[ENET_MAC_ADDR_LEN];
     char *parameter;
     BaseType_t paramLen;
     uint32_t paramCnt = 1;
     uint8_t makeDefault = 0;
+    uint32_t entryIdx;
+    Enet_IoctlPrms prms;
+
+    setUcastInArgs.addr.vlanId = 0U;
+    setUcastInArgs.info.portNum = CPSW_ALE_HOST_PORT_NUM;
+    setUcastInArgs.info.blocked = false;
+    setUcastInArgs.info.secure = false;
+    setUcastInArgs.info.super = false;
+    setUcastInArgs.info.ageable = false;
+    setUcastInArgs.info.trunk = false;
 
     parameter = (char*) FreeRTOS_CLIGetParameter(commandString, paramCnt,
             &paramLen);
+
+    if(parameter == NULL)
+    {
+        snprintf(writeBuffer, writeBufferLen, "Use 'help' command to see Usage\r\n");
+        return pdFALSE;
+    }
+
+    if(strncmp(parameter, "help", paramLen) == 0)
+    {
+        snprintf(writeBuffer, writeBufferLen, ""
+                "\t     <mac address>: unicast mac address\r\n"
+                "\t[-d]              : make default mac address\r\n"
+                "\t[-p] <portNum>    : mac port number\r\n"
+                "\t[-b]              : blocked\r\n"
+                "\t[-sec]            : secure\r\n"
+                "\t[-s]              : super\r\n"
+                "\t[-t]              : trunk\r\n"
+                "\t[-a]              : ageable\r\n"
+                "\t[-vid]<vlanId>    : vlan ID\r\n\n");
+        return pdFALSE;
+    }
+
+    status = EnetAppUtils_macAddrAtoI(parameter, macAddr);
+    if (status)
+    {
+        snprintf(writeBuffer, writeBufferLen, "Invalid MAC address\r\n");
+        return pdFALSE;
+    }
+    EnetUtils_copyMacAddr(&setUcastInArgs.addr.addr[0U], macAddr);
+
+    paramCnt++;
+    parameter = (char*) FreeRTOS_CLIGetParameter(commandString, paramCnt,
+            &paramLen);
+
     while (parameter != NULL)
     {
         if (strncmp(parameter, "-d", paramLen) == 0)
             makeDefault = 1;
-        else
+        else if(strncmp(parameter, "-p", paramLen) == 0)
         {
-            status = EnetAppUtils_macAddrAtoI(parameter, macAddr);
-            if (status)
+            paramCnt++;
+            parameter = (char*) FreeRTOS_CLIGetParameter(commandString, paramCnt,
+                    &paramLen);
+
+            if (parameter == NULL)
             {
-                snprintf(writeBuffer, writeBufferLen, "Invalid Parameter\r\n");
+                snprintf(writeBuffer, writeBufferLen, "Enter Port number\r\n");
                 return pdFALSE;
             }
-            break;
+
+            uint8_t macPortNum = atoi(parameter);
+            macPortNum = CPSW_ALE_ALEPORT_TO_MACPORT(macPortNum);
+            if ((macPortNum >= ENET_MAC_PORT_FIRST) && (macPortNum <= ENET_MAC_PORT_LAST))
+            {
+                setUcastInArgs.info.portNum = macPortNum;
+            }
+            else
+            {
+                snprintf(writeBuffer, writeBufferLen, "Invalid Parameter for -p (mac port number should be between %d and %d only)\r\n", ENET_MAC_PORT_FIRST, ENET_MAC_PORT_LAST);
+                return pdFALSE;
+            }
         }
+        else if(strncmp(parameter, "-b", paramLen) == 0)
+        {
+            setUcastInArgs.info.blocked = true;
+        }
+        else if(strncmp(parameter, "-sec", paramLen) == 0)
+        {
+            setUcastInArgs.info.secure = true;
+        }
+        else if(strncmp(parameter, "-t", paramLen) == 0)
+        {
+            setUcastInArgs.info.trunk = true;
+        }
+        else if(strncmp(parameter, "-a", paramLen) == 0)
+        {
+            setUcastInArgs.info.ageable = true;
+        }
+        else if(strncmp(parameter, "-s", paramLen) == 0)
+        {
+            setUcastInArgs.info.super = true;
+        }
+        else if(strncmp(parameter, "-vid", paramLen) == 0)
+        {
+            paramCnt++;
+            parameter = (char*) FreeRTOS_CLIGetParameter(commandString, paramCnt,
+                    &paramLen);
+
+            if (parameter == NULL)
+            {
+                snprintf(writeBuffer, writeBufferLen, "Enter Vlan ID\r\n");
+                return pdFALSE;
+            }
+
+            if(atoi(parameter) > 0 && atoi(parameter) < 4096)
+            {
+                setUcastInArgs.addr.vlanId = atoi(parameter);
+            }
+            else
+            {
+                snprintf(writeBuffer, writeBufferLen, "Invalid Vlan ID\r\n");
+                return pdFALSE;
+            }
+
+        }
+        else
+        {
+            snprintf(writeBuffer, writeBufferLen, "Invalid Parameter\r\n");
+            return pdFALSE;
+        }
+
         paramCnt++;
         parameter = (char*) FreeRTOS_CLIGetParameter(commandString, paramCnt,
                 &paramLen);
     }
 
-    /* Add unicast entry to ALE */
-    status = EnetApp_addUcastEntry(macAddr);
-    if (status)
-        snprintf(writeBuffer, writeBufferLen,
-                "Failed to add unicast entry to ALE\r\n");
-    else
+    ENET_IOCTL_SET_INOUT_ARGS(&prms, &setUcastInArgs, &entryIdx);
+
+    ENET_IOCTL(EnetApp_inst.hEnet, EnetApp_inst.coreId,
+            CPSW_ALE_IOCTL_ADD_UCAST, &prms, status);
+    if (status != ENET_SOK)
     {
-        snprintf(writeBuffer, writeBufferLen, "Added unicast entry to ALE\r\n");
-        if (makeDefault)
-        {
-            EnetUtils_copyMacAddr(EnetApp_inst.hostMacAddr, macAddr);
-            EnetAppUtils_print("[INF] %s: Default MAC address set to ",
-                    __func__);
-            EnetAppUtils_printMacAddr(EnetApp_inst.hostMacAddr);
-        }
+        EnetAppUtils_print("[ERR] %s: Failed to add unicast entry: %d\r\n",
+                __func__, status);
+        return pdFALSE;
+    }
+    EnetAppUtils_print("[INF] %s: Added Unicast entry with MAC address: ",
+            __func__);
+    EnetAppUtils_printMacAddr(macAddr);
+
+    snprintf(writeBuffer, writeBufferLen, "Added unicast entry to ALE\r\n");
+    if (makeDefault)
+    {
+        EnetUtils_copyMacAddr(EnetApp_inst.hostMacAddr, macAddr);
+        EnetAppUtils_print("[INF] %s: Default MAC address set to ",
+            __func__);
+        EnetAppUtils_printMacAddr(EnetApp_inst.hostMacAddr);
     }
     return pdFALSE;
 }
@@ -148,39 +262,4 @@ BaseType_t EnetCLI_removeUcast(char *writeBuffer, size_t writeBufferLen,
         snprintf(writeBuffer, writeBufferLen,
                 "Removed unicast entry from ALE\r\n");
     return pdFALSE;
-}
-
-/* ========================================================================== */
-/*                   Static Function Definitions                              */
-/* ========================================================================== */
-
-static int32_t EnetApp_addUcastEntry(uint8_t *macAddr)
-{
-    CpswAle_SetUcastEntryInArgs setUcastInArgs;
-    uint32_t entryIdx;
-    Enet_IoctlPrms prms;
-    int32_t status;
-
-    setUcastInArgs.addr.vlanId = 0U;
-    setUcastInArgs.info.portNum = CPSW_ALE_HOST_PORT_NUM;
-    setUcastInArgs.info.blocked = false;
-    setUcastInArgs.info.secure = false;
-    setUcastInArgs.info.super = false;
-    setUcastInArgs.info.ageable = false;
-    setUcastInArgs.info.trunk = false;
-    EnetUtils_copyMacAddr(&setUcastInArgs.addr.addr[0U], macAddr);
-    ENET_IOCTL_SET_INOUT_ARGS(&prms, &setUcastInArgs, &entryIdx);
-
-    ENET_IOCTL(EnetApp_inst.hEnet, EnetApp_inst.coreId,
-            CPSW_ALE_IOCTL_ADD_UCAST, &prms, status);
-    if (status != ENET_SOK)
-    {
-        EnetAppUtils_print("[ERR] %s: Failed to add unicast entry: %d\r\n",
-                __func__, status);
-        return 1;
-    }
-    EnetAppUtils_print("[INF] %s: Added Unicast entry with MAC address: ",
-            __func__);
-    EnetAppUtils_printMacAddr(macAddr);
-    return 0;
 }

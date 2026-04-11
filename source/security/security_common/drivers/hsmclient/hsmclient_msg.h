@@ -111,6 +111,8 @@ extern "C"
 #define HSM_MSG_FLASH_BANK_COPY                  (0x9059)
 /** @brief Program Sec-Cfg to SOC non main flash*/
 #define HSM_MSG_FW_UPDATE_SECCFG                 (0x905AU)
+/** @brief Generic Crypto service ID */
+#define HSM_MSG_CRYPTO_SERVICE                   (0xA001U)
 
 /* message flags */
 

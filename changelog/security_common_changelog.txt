@@ -280,3 +280,77 @@ Date:   Fri Apr 3 13:12:06 2026 +0530
  drivers/secure_ipc_notify/sipc_notify_mailbox.h |  2 +-
  6 files changed, 44 insertions(+), 44 deletions(-)
 
+========================================
+Changes from build on 2026-04-11 20:47:58
+Previous commit: ee05138b0510fae1cf6c81d17a120622557837d7
+Current commit: 192441761fa659fb4c7125964bb141907830b1e3
+========================================
+
+commit 192441761fa659fb4c7125964bb141907830b1e3
+Author: Seema.Khatib <seema.khatib@ti.com>
+Date:   Tue Mar 31 09:24:15 2026 +0530
+
+    f29h85x: misra: MISRA.LITERAL.NULL.PTR.CONST.2012
+    
+    -The macro NULL is the only permitted form of integer null pointer constant.
+    
+    Fixes: TIFSMCU-5072
+    
+    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
+
+ drivers/crypto/dthe/dthe.c | 5 +++--
+ drivers/crypto/pke/pke.c   | 4 ++--
+ drivers/crypto/rng/rng.c   | 5 +++--
+ 3 files changed, 8 insertions(+), 6 deletions(-)
+
+commit 628ded272dbf7e3bd7771876c99328d5a8380f03
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Mon Mar 30 12:06:25 2026 +0530
+
+    am26xx: hsmclient: remove redundant semaphore construction.
+    
+    - Remove the `SemaphoreP_constructBinary` call from
+      `HsmClient_waitForBootNotify`.
+    - Constructing the semaphore inside the HsmClient_register (syscfg).
+    
+    Fixes: MCUSDK-15348
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/hsmclient/soc/am261x/hsmclient_wait_for_boot_notify.c  | 2 --
+ drivers/hsmclient/soc/am263px/hsmclient_wait_for_boot_notify.c | 2 --
+ drivers/hsmclient/soc/am263x/hsmclient_wait_for_boot_notify.c  | 2 --
+ 3 files changed, 6 deletions(-)
+
+commit 2fd081a57fa16c10eea5e7dd4bdd11d2fb250450
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Wed Mar 25 17:06:12 2026 +0530
+
+    am26xx/f29x: HSM: Add handlers for crypto services
+    
+    - Add client API handlers for HSM crypto services
+    
+    Fixes: TIFSMCU-5017, TIFSMCU-5018, TIFSMCU-5019, TIFSMCU-5020
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/hsmclient/hsmclient.c     | 207 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ drivers/hsmclient/hsmclient.h     | 138 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ drivers/hsmclient/hsmclient_msg.h |   2 +
+ 3 files changed, 346 insertions(+), 1 deletion(-)
+
+commit f193878f7c65c0ad57236683b5e0e830b91935eb
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Mon Apr 6 18:04:05 2026 +0530
+
+    am261x: pke_hw: submodule update
+    
+    - Update the pke_hw submodule pointer
+    
+    Fixes: TIFSMCU-5144
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/crypto/pke/hw_include/pke_hw | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+

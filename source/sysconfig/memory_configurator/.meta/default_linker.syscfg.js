@@ -6,12 +6,23 @@ exports = {
     displayName: "Default Linker Config",
 	config: [
         {
+        name: "compiler",
+        displayName: "Choose Compiler",
+        default: "tiarmclang",
+        hidden: (common.getSocName() != "am261x"),
+        options: [{name: "tiarmclang", displayName: "TIARMCLANG"},
+                  {name: "gcc", displayName: "GCC"},
+                  {name: "iar-arm", displayName: "IAR-ARM"}
+                ],
+        },
+        {
             name: "scriptingButton",
             displayName: "Add Default Linker Config",
             buttonText: "CLICK",
             scriptingOnComplete: (inst) => {
                     let memory_regions_count = 0
                     let sections_count = 0
+                    let compiler = inst.compiler 
 
                     if(device == "AM273x"){
                         if(selfCoreName.includes("r5fss0-0") || selfCoreName.includes("r5fss0-1")){
@@ -38,7 +49,11 @@ exports = {
 					else if(device == "AM261x_ZCZ" || device == "AM261x_ZNC" || device == "AM261x_ZEJ" || device == "AM261x_ZFG" || system.deviceData.device == "AM261x_ZFG_400"){
                         if(selfCoreName.includes("r5fss")){
                             memory_regions_count = 11;
-                            sections_count = 12;
+                            if(compiler == "iar-arm"){
+                                sections_count = 10;
+                            } else {
+                                sections_count = 12;
+                            }
                         }
                     }
                     else if(device == "AM64x" || device == "AM243x_ALV_beta" || device == "AM243x_ALX_beta") {
@@ -57,6 +72,7 @@ exports = {
                     }
 
                     let generalInst = scripting.addModule("/memory_configurator/general.syscfg.js", {}, false).addInstance()
+                    system.getScript("/memory_configurator/default_linker_config").populate_general_settings(generalInst, device, compiler)
 
 
                     let regionInst = scripting.addModule("/memory_configurator/region.syscfg.js", {}, false).addInstance()
@@ -69,7 +85,7 @@ exports = {
                     let sectionMod = scripting.addModule("/memory_configurator/section.syscfg.js", {}, false)
                     for(let i=0;i<sections_count;i++){
                         let sectionInst= sectionMod.addInstance()
-                        system.getScript("/memory_configurator/default_linker_config").populate_sections_regions(sectionInst, i+1, device, selfCoreName)
+                        system.getScript("/memory_configurator/default_linker_config").populate_sections_regions(sectionInst, i+1, device, selfCoreName, compiler)
                     }
 
                     if (selfCoreName.includes("m4f")){

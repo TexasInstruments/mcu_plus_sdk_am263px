@@ -1,6 +1,7 @@
 let common   = system.getScript("/common");
 let book_keeping = []
 const memoryRegs = system.getScript("/memory_configurator/helper");
+let general_module = system.modules['/memory_configurator/general'];
 
 let config = [
     {
@@ -12,7 +13,7 @@ let config = [
         displayName: "Type",
         default:"LOAD",
         description:'',
-        options: [{ name: "LOAD" }, { name: "DSECT" }, { name: "COPY" }, { name: "NOLOAD" }, { name: "NOINT" }],
+        options: () => { return getSectionTypeOptions() },
     },
     {
         name: "group",
@@ -23,6 +24,32 @@ let config = [
             inst.$uiState.group_start.hidden = !inst.group
             inst.$uiState.group_end.hidden = !inst.group
         }
+    },
+    {
+        name: "hide_place",
+        displayName: "Hide",
+        default: false,
+        hidden:  true,
+        longDescription:'Check this if all the output sections need to be placed at the start of the region.',
+        getValue: (inst) => {
+             if (general_module !== undefined) {
+                    let instance = general_module.$instances;
+                    let compiler =  instance[0].choose_compiler;
+                    if (compiler === "iar-arm") {
+                        inst.$uiState.place_at_start.hidden = false;
+                        return true;
+                    }
+                }
+                inst.$uiState.place_at_start.hidden = true;
+                return false;
+        }
+    },
+    {
+        name: "place_at_start",
+        displayName: "Place at start of the region",
+        default: false,
+        hidden: false,
+        longDescription:'Check this if all the output sections need to be placed at the start of the region.',
     },
     {
         name: "group_start",
@@ -156,8 +183,22 @@ function validate(inst, report) {
     if(inst.run_memory.length == 0 && !inst.split_across_memories && !inst.select_multiple_regions && inst.load_to_memory=="Memory") {
         report.logError("This field can't be kept empty", inst, "run_memory")
     }
-    if(inst.$ownedBy === undefined && inst.output_section.length == 0) {
+    if(inst.$ownedBy === undefined && inst.output_section != undefined && inst.output_section.length == 0 && inst.type != "STACK") {
         report.logError("Add atleast 1 output section", inst, "output_section")
+    }
+
+    let section_module = system.modules['/memory_configurator/section'];
+    let count = 0;
+    if (section_module !== undefined) {
+        let section_instances = section_module.$instances;
+        _.each(section_instances, instance => {
+            if (instance.type == "STACK") {
+                count = count + 1;
+            }
+        });
+    }
+    if (count > 1 && inst.type == "STACK") {
+        report.logError("Only one STACK section allowed!", inst, "type")
     }
 
     /*
@@ -196,7 +237,7 @@ function addModuleInstances(inst) {
         });
     }
 
-    if(inst.$ownedBy === undefined){
+    if((inst.$ownedBy === undefined) && (inst.type != "STACK")){
         modInstances.push({
             name: "output_section",
             displayName: "Output Sections",
@@ -207,4 +248,31 @@ function addModuleInstances(inst) {
         });
     }
     return modInstances;
+}
+
+function getSectionTypeOptions(){
+    let options = [{ name: "LOAD" }, { name: "DSECT" }, { name: "COPY" }, { name: "NOLOAD" }, { name: "NOINT" }]
+
+    if (general_module !== undefined) {
+
+        let instance = general_module.$instances;
+        let compiler =  instance[0].choose_compiler;
+        if (compiler === "iar-arm") {
+            options.push({ name: "STACK" });
+        }
+    }
+    return options;
+}
+
+function isPlaceInHidden(){
+
+    if (general_module !== undefined) {
+
+        let instance = general_module.$instances;
+        let compiler =  instance[0].choose_compiler;
+        if (compiler === "iar-arm") {
+            return false;
+        }
+    }
+    return true;
 }

@@ -2422,8 +2422,213 @@ int32_t HsmClient_secCfgValidate(HsmClient_t *HsmClient,
     return status;
 }
 
+int32_t HsmClient_CryptoService(HsmClient_t *HsmClient,
+                                 CryptoServiceReq_t *svcReq,
+                                 uint32_t timeout)
+{
+    int32_t  status;
+    uint16_t crcArgs;
+
+    HsmClient->ReqMsg.destClientId = HSM_CLIENT_ID_1;
+    HsmClient->ReqMsg.srcClientId  = HsmClient->ClientId;
+    HsmClient->ReqMsg.flags        = HSM_FLAG_AOP;
+    HsmClient->ReqMsg.serType      = HSM_MSG_CRYPTO_SERVICE;
+    HsmClient->ReqMsg.args         = (void *)(uintptr_t)SOC_virtToPhy(svcReq);
+
+    /* wbInv data buffers while all pointers are still virtual */
+    switch (svcReq->algoId)
+    {
+        case HSM_CRYPTO_SVC_MAC_CMAC:
+        {
+            CMACArgs_t *cmac = (CMACArgs_t *)svcReq->ptrArgs;
+            CacheP_wbInv(cmac->ptrData,
+                         GET_CACHE_ALIGNED_SIZE(cmac->dataLen), CacheP_TYPE_ALL);
+            if (svcReq->subSvcId == HSM_CRYPTO_SVC_MAC_VERIFY)
+            {
+                /* flush expected tag so HSM can read it; CMAC tag is always 16 bytes */
+                CacheP_wbInv(cmac->ptrTag,
+                             GET_CACHE_ALIGNED_SIZE(16U), CacheP_TYPE_ALL);
+            }
+            break;
+        }
+        case HSM_CRYPTO_SVC_MAC_HMAC:
+        {
+            HMACArgs_t *hmac = (HMACArgs_t *)svcReq->ptrArgs;
+            CacheP_wbInv(hmac->ptrData,
+                         GET_CACHE_ALIGNED_SIZE(hmac->dataLen), CacheP_TYPE_ALL);
+            if (svcReq->subSvcId == HSM_CRYPTO_SVC_MAC_VERIFY)
+            {
+                /* flush expected tag so HSM can read it */
+                uint32_t tagSize = (hmac->hashMode == HSM_CRYPTO_HMAC_SHA512) ? 64U : 32U;
+                CacheP_wbInv(hmac->ptrTag,
+                             GET_CACHE_ALIGNED_SIZE(tagSize), CacheP_TYPE_ALL);
+            }
+            break;
+        }
+        case HSM_CRYPTO_SVC_MAC_GMAC:
+        {
+            GMACArgs_t *gmac = (GMACArgs_t *)svcReq->ptrArgs;
+            CacheP_wbInv(gmac->ptrData,
+                         GET_CACHE_ALIGNED_SIZE(gmac->dataLen), CacheP_TYPE_ALL);
+            CacheP_wbInv(gmac->ptrIV,
+                         GET_CACHE_ALIGNED_SIZE(gmac->ivLen), CacheP_TYPE_ALL);
+            if (svcReq->subSvcId == HSM_CRYPTO_SVC_MAC_VERIFY)
+            {
+                /* flush expected tag so HSM can read it; GMAC tag is always 16 bytes */
+                CacheP_wbInv(gmac->ptrTag,
+                             GET_CACHE_ALIGNED_SIZE(16U), CacheP_TYPE_ALL);
+            }
+            break;
+        }
+        default:
+            break;
+    }
+
+    /* convert nested pointers to physical, then wbInv inner struct */
+    switch (svcReq->algoId)
+    {
+        case HSM_CRYPTO_SVC_MAC_CMAC:
+        {
+            CMACArgs_t *cmac = (CMACArgs_t *)svcReq->ptrArgs;
+            cmac->ptrData = (uint8_t *)(uintptr_t)SOC_virtToPhy(cmac->ptrData);
+            cmac->ptrTag  = (uint8_t *)(uintptr_t)SOC_virtToPhy(cmac->ptrTag);
+            CacheP_wbInv(svcReq->ptrArgs,
+                         GET_CACHE_ALIGNED_SIZE(sizeof(CMACArgs_t)), CacheP_TYPE_ALL);
+            break;
+        }
+        case HSM_CRYPTO_SVC_MAC_HMAC:
+        {
+            HMACArgs_t *hmac = (HMACArgs_t *)svcReq->ptrArgs;
+            hmac->ptrData = (uint8_t *)(uintptr_t)SOC_virtToPhy(hmac->ptrData);
+            hmac->ptrTag  = (uint8_t *)(uintptr_t)SOC_virtToPhy(hmac->ptrTag);
+            CacheP_wbInv(svcReq->ptrArgs,
+                         GET_CACHE_ALIGNED_SIZE(sizeof(HMACArgs_t)), CacheP_TYPE_ALL);
+            break;
+        }
+        case HSM_CRYPTO_SVC_MAC_GMAC:
+        {
+            GMACArgs_t *gmac = (GMACArgs_t *)svcReq->ptrArgs;
+            gmac->ptrData = (uint8_t *)(uintptr_t)SOC_virtToPhy(gmac->ptrData);
+            gmac->ptrTag  = (uint8_t *)(uintptr_t)SOC_virtToPhy(gmac->ptrTag);
+            gmac->ptrIV   = (uint8_t *)(uintptr_t)SOC_virtToPhy(gmac->ptrIV);
+            CacheP_wbInv(svcReq->ptrArgs,
+                         GET_CACHE_ALIGNED_SIZE(sizeof(GMACArgs_t)), CacheP_TYPE_ALL);
+            break;
+        }
+        default:
+            break;
+    }
+
+    /* convert outer ptrArgs to physical, CRC, then wbInv outer struct */
+    svcReq->ptrArgs = (void *)(uintptr_t)SOC_virtToPhy(svcReq->ptrArgs);
+    HsmClient->ReqMsg.crcArgs = crc16_ccit((uint8_t *)svcReq, sizeof(CryptoServiceReq_t));
+    CacheP_wbInv(svcReq, GET_CACHE_ALIGNED_SIZE(sizeof(CryptoServiceReq_t)), CacheP_TYPE_ALL);
+
+    /* send to HSM */
+    status = HsmClient_SendAndRecv(HsmClient, timeout);
+
+    if (status == SystemP_SUCCESS)
+    {
+        if (HsmClient->RespFlag == HSM_FLAG_NACK)
+        {
+            DebugP_log("\r\n [HSM_CLIENT] CryptoService request NACKed by HSM server\r\n");
+            status = SystemP_FAILURE;
+        }
+        else
+        {
+            CryptoServiceReq_t *respReq;
+
+            /* phys to virt for outer args, then inv outer struct */
+            HsmClient->RespMsg.args =
+                (void *)SOC_phyToVirt((uint64_t)(uintptr_t)HsmClient->RespMsg.args);
+            CacheP_inv(HsmClient->RespMsg.args,
+                       GET_CACHE_ALIGNED_SIZE(sizeof(CryptoServiceReq_t)), CacheP_TYPE_ALL);
+
+            respReq = (CryptoServiceReq_t *)HsmClient->RespMsg.args;
+
+            /* CRC check while ptrArgs is still physical */
+            crcArgs = crc16_ccit((uint8_t *)respReq, sizeof(CryptoServiceReq_t));
+
+            /* phys to virt for inner ptrArgs, inv inner struct, restore nested pointers, inv written buffers */
+            respReq->ptrArgs =
+                (void *)SOC_phyToVirt((uint64_t)(uintptr_t)respReq->ptrArgs);
+
+            switch (svcReq->algoId)
+            {
+                case HSM_CRYPTO_SVC_MAC_CMAC:
+                {
+                    CMACArgs_t *respCmac = (CMACArgs_t *)respReq->ptrArgs;
+                    CacheP_inv(respReq->ptrArgs,
+                               GET_CACHE_ALIGNED_SIZE(sizeof(CMACArgs_t)), CacheP_TYPE_ALL);
+                    respCmac->ptrData =
+                        (uint8_t *)SOC_phyToVirt((uint64_t)(uintptr_t)respCmac->ptrData);
+                    respCmac->ptrTag =
+                        (uint8_t *)SOC_phyToVirt((uint64_t)(uintptr_t)respCmac->ptrTag);
+                    /* for GENERATE: inv tag buffer to read HSM-written CMAC */
+                    if (svcReq->subSvcId == HSM_CRYPTO_SVC_MAC_GENERATE)
+                    {
+                        CacheP_inv(respCmac->ptrTag,
+                                   GET_CACHE_ALIGNED_SIZE(16U), CacheP_TYPE_ALL);
+                    }
+                    break;
+                }
+                case HSM_CRYPTO_SVC_MAC_HMAC:
+                {
+                    HMACArgs_t *respHmac = (HMACArgs_t *)respReq->ptrArgs;
+                    CacheP_inv(respReq->ptrArgs,
+                               GET_CACHE_ALIGNED_SIZE(sizeof(HMACArgs_t)), CacheP_TYPE_ALL);
+                    respHmac->ptrData =
+                        (uint8_t *)SOC_phyToVirt((uint64_t)(uintptr_t)respHmac->ptrData);
+                    respHmac->ptrTag =
+                        (uint8_t *)SOC_phyToVirt((uint64_t)(uintptr_t)respHmac->ptrTag);
+                    /* for GENERATE: inv tag buffer to read HSM-written HMAC */
+                    if (svcReq->subSvcId == HSM_CRYPTO_SVC_MAC_GENERATE)
+                    {
+                        uint32_t tagSize = (respHmac->hashMode == HSM_CRYPTO_HMAC_SHA512) ? 64U : 32U;
+                        CacheP_inv(respHmac->ptrTag,
+                                   GET_CACHE_ALIGNED_SIZE(tagSize), CacheP_TYPE_ALL);
+                    }
+                    break;
+                }
+                case HSM_CRYPTO_SVC_MAC_GMAC:
+                {
+                    GMACArgs_t *respGmac = (GMACArgs_t *)respReq->ptrArgs;
+                    CacheP_inv(respReq->ptrArgs,
+                               GET_CACHE_ALIGNED_SIZE(sizeof(GMACArgs_t)), CacheP_TYPE_ALL);
+                    respGmac->ptrData =
+                        (uint8_t *)SOC_phyToVirt((uint64_t)(uintptr_t)respGmac->ptrData);
+                    respGmac->ptrTag =
+                        (uint8_t *)SOC_phyToVirt((uint64_t)(uintptr_t)respGmac->ptrTag);
+                    respGmac->ptrIV =
+                        (uint8_t *)SOC_phyToVirt((uint64_t)(uintptr_t)respGmac->ptrIV);
+                    /* for GENERATE: inv tag buffer to read HSM-written GMAC */
+                    if (svcReq->subSvcId == HSM_CRYPTO_SVC_MAC_GENERATE)
+                    {
+                        CacheP_inv(respGmac->ptrTag,
+                                   GET_CACHE_ALIGNED_SIZE(16U), CacheP_TYPE_ALL);
+                    }
+                    break;
+                }
+                default:
+                    break;
+            }
+
+            if (crcArgs == HsmClient->RespMsg.crcArgs)
+            {
+                status = SystemP_SUCCESS;
+            }
+            else
+            {
+                DebugP_log("\r\n [HSM_CLIENT] CRC check for CryptoService response failed\r\n");
+                status = SystemP_FAILURE;
+            }
+        }
+    }
+    return status;
+}
+
 int32_t HsmClient_activeToDormantBankCopy(HsmClient_t *HsmClient,
-                                          FlashBankCopy_t *pFlashBankCopyObject, 
+                                          FlashBankCopy_t *pFlashBankCopyObject,
                                           uint32_t timeout) {
     /* make the message */
     int32_t status;

@@ -133,7 +133,7 @@ $(document).ready(function(){initNavTree('HwiP_8h_source.html',''); initResizabl
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="SystemP_8h.html">kernel/dpl/SystemP.h</a>&gt;</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#if defined(__ARM_ARCH_7R__)</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#if defined(__ARM_ARCH_7R__) || defined(__ARM7R__)</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="comment">/* compile flag to enable or disable save/restore of FPU context in FIQ */</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="comment">// #define HWIP_FPU_CONTEXT_SAVE_RESTORE_ENABLE</span></div>

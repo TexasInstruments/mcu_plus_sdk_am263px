@@ -46,8 +46,6 @@ int32_t HsmClient_waitForBootNotify(HsmClient_t* HsmClient, uint32_t timeout)
 {
     int32_t status ;
 
-    SemaphoreP_constructBinary(&HsmClient->Semaphore,0);
-
     status = SemaphoreP_pend(&HsmClient->Semaphore,timeout);
 
     /* first wait for bootnotify from HsmServer

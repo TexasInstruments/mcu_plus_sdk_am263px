@@ -55,7 +55,9 @@ let config = [
         displayName: "Choose Compiler",
         default: "tiarmclang",
         options: [{name: "tiarmclang", displayName: "TIARMCLANG"},
-                  {name: "gcc", displayName: "GCC"}],
+                  {name: "gcc", displayName: "GCC"},
+                  {name: "iar-arm", displayName: "IAR-ARM"}
+                ],
         // getValue: () => {return checkCompiler()}
     },
     {
@@ -154,6 +156,9 @@ function addModuleInstances(inst) {
     }
     else if (inst.choose_compiler == "gcc") {
         module_name = "memory_configurator/linker_gcc"
+    }
+    else if (inst.choose_compiler == "iar-arm") {
+        module_name = "memory_configurator/linker_iararm"
     }
 
     modInstances.push({

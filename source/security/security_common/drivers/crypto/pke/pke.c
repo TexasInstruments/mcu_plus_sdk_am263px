@@ -54,7 +54,7 @@
 #include <crypto/asym_crypt.h>
 #include <crypto/rng/rng.h>
 #include <modules/crypto/crypto_rng_interface.h>
-
+#include <drivers/hw_include/csl_types.h>
 /* ========================================================================== */
 /*                           Macros & Typedefs                                */
 /* ========================================================================== */
@@ -137,7 +137,7 @@ AsymCrypt_Handle AsymCrypt_open(uint32_t index)
 
     /* Open rng instance */
     pke_rng_handle = gRngHandle;
-    DebugP_assert(pke_rng_handle != NULL);
+    DebugP_assert((pke_rng_handle != NULL_PTR));
 
     (void)RNG_setup(pke_rng_handle);
 

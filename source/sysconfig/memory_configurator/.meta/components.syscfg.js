@@ -23,6 +23,11 @@ if ( (!selfCoreName.includes ("a53")) && (!selfCoreName.includes ("pru")) && (co
                 outputPath: "linker.cmd",
                 alwaysRun: false,
             },
+             {
+                name: "/memory_configurator/templates/linker.icf.xdt",
+                outputPath: "linker.icf",
+                alwaysRun: false,
+            },
             {
                 name: "/memory_configurator/templates/linker_defines.h.xdt",
                 outputPath: "linker_defines.h",

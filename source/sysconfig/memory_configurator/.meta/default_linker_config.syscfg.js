@@ -1566,7 +1566,7 @@ function def_shared_region_name_change(sharedRegionNameChangeInst, device, core)
     }
 }
 
-function def_sections(sectionInst, ind, device, core){
+function def_sections(sectionInst, ind, device, core, compiler){
 
     if( device == "AM273x" ){
         if( core.includes("r5f") ) {
@@ -2165,144 +2165,251 @@ function def_sections(sectionInst, ind, device, core){
         }
     }
 	else if(device == "AM261x_ZCZ" || device == "AM261x_ZNC" || device == "AM261x_ZEJ" || device == "AM261x_ZFG" || system.deviceData.device == "AM261x_ZFG_400"){
-        if( core.includes("r5f") ) {
-            if(ind == 1) {
-                sectionInst.load_memory                  = "R5F_VECS";
-                sectionInst.group                        = false;
-                sectionInst.$name                        = "Vector Table";
-                sectionInst.output_section.create(1);
-                sectionInst.output_section[0].$name      = ".vectors";
-                sectionInst.output_section[0].palignment = true;
+        if (compiler == "iar-arm") {
+            if( core.includes("r5f") ) {
+                if(ind == 1) {
+                    sectionInst.load_memory                  = "R5F_VECS";
+                    sectionInst.group                        = false;
+                    sectionInst.$name                        = "Vector Table";
+                    sectionInst.place_at_start               = true;
+                    sectionInst.output_section.create(1);
+                    sectionInst.output_section[0].$name      = ".intvec";
+                    sectionInst.output_section[0].palignment = true;
+                }
+                else if(ind == 2){
+                    sectionInst.load_memory                  = "OCRAM";
+                    sectionInst.$name                        = "Text Segments";
+                    sectionInst.output_section.create(6);
+                    sectionInst.output_section[0].$name      = ".text.hwi";
+                    sectionInst.output_section[0].palignment = true;
+                    sectionInst.output_section[1].$name      = ".text.cache";
+                    sectionInst.output_section[1].palignment = true;
+                    sectionInst.output_section[2].$name      = ".text.mpu";
+                    sectionInst.output_section[2].palignment = true;
+                    sectionInst.output_section[3].$name      = ".text.boot";
+                    sectionInst.output_section[3].palignment = true;
+                    sectionInst.output_section[4].$name      = ".text.abort";
+                    sectionInst.output_section[4].palignment = true;
+                    sectionInst.output_section[5].$name      = ".text.pmu";
+                    sectionInst.output_section[5].palignment = true;
+                }
+                else if(ind == 3){
+                    sectionInst.load_memory                  = "OCRAM";
+                    sectionInst.$name                        = "Code and Read-Only Data";
+                    sectionInst.output_section.create(4);
+                    sectionInst.output_section[0].$name      = ".text";
+                    sectionInst.output_section[0].palignment = true;
+                    sectionInst.output_section[1].$name      = ".rodata";
+                    sectionInst.output_section[1].palignment = true;
+                    sectionInst.output_section[2].$name      = ".rodata.cfg";
+                    sectionInst.output_section[2].palignment = true;
+                    sectionInst.output_section[3].$name      = ".iar.init_table";
+                    sectionInst.output_section[3].palignment = true;
+                }
+                else if(ind == 4){
+                    sectionInst.load_memory                             = "OCRAM";
+                    sectionInst.$name                                   = "Data & BSS Segment";
+                    sectionInst.output_section.create(3);
+                    sectionInst.output_section[0].$name                 = ".data";
+                    sectionInst.output_section[0].palignment            = true;
+                    sectionInst.output_section[1].$name                 = ".data.pmu";
+                    sectionInst.output_section[1].palignment            = true;
+                    sectionInst.output_section[2].$name                 = ".bss";
+                    sectionInst.output_section[2].output_sections_start = "__BSS_START";
+                    sectionInst.output_section[2].output_sections_end   = "__BSS_END";
+                    sectionInst.output_section[2].palignment            = true;
+                }
+                else if(ind == 5){
+                    sectionInst.load_memory                              = "OCRAM";
+                    sectionInst.$name                                    = "Stack Segments";
+                    sectionInst.type                                     = "STACK";
+                }
+                else if(ind == 6){
+                    sectionInst.load_memory                 = "USER_SHM_MEM";
+                    sectionInst.type                        = "NOLOAD";
+                    sectionInst.$name                       = "User Shared Memory";
+                    sectionInst.group                       = false;
+                    sectionInst.output_section.create(1);
+                    sectionInst.output_section[0].$name     = ".bss.user_shared_mem";
+                    sectionInst.output_section[0].alignment = 0;
+                }
+                else if(ind == 7){
+                    sectionInst.load_memory                 = "LOG_SHM_MEM";
+                    sectionInst.$name                       = "Log Shared Memory";
+                    sectionInst.group                       = false;
+                    sectionInst.type                        = "NOLOAD";
+                    sectionInst.output_section.create(1);
+                    sectionInst.output_section[0].$name     = ".bss.log_shared_mem";
+                    sectionInst.output_section[0].alignment = 0;
+                }
+                else if(ind == 8){
+                    sectionInst.load_memory                 = "RTOS_NORTOS_IPC_SHM_MEM";
+                    sectionInst.type                        = "NOLOAD";
+                    sectionInst.$name                       = "IPC Shared Memory";
+                    sectionInst.group                       = false;
+                    sectionInst.output_section.create(1);
+                    sectionInst.output_section[0].$name     = ".bss.ipc_vring_mem";
+                    sectionInst.output_section[0].alignment = 0;
+                }
+                else if(ind == 9){
+                    sectionInst.load_memory                 = "MAILBOX_HSM";
+                    sectionInst.type                        = "NOLOAD";
+                    sectionInst.$name                       = "SIPC HSM Queue Memory";
+                    sectionInst.group                       = false;
+                    sectionInst.output_section.create(1);
+                    sectionInst.output_section[0].$name     = ".bss.sipc_hsm_queue_mem";
+                    sectionInst.output_section[0].alignment = 0;
+                }
+                else if(ind == 10){
+                    sectionInst.load_memory                 = "MAILBOX_R5F";
+                    sectionInst.$name                       = "SIPC R5F Queue Memory";
+                    sectionInst.group                       = false;
+                    sectionInst.type                        = "NOLOAD";
+                    sectionInst.output_section.create(1);
+                    sectionInst.output_section[0].$name     = ".bss.sipc_secure_host_queue_mem";
+                    sectionInst.output_section[0].alignment = 0;
+                }
             }
-            else if(ind == 2){
-                sectionInst.load_memory                  = "OCRAM";
-                sectionInst.$name                        = "Text Segments";
-                sectionInst.output_section.create(5);
-                sectionInst.output_section[0].$name      = ".text.hwi";
-                sectionInst.output_section[0].palignment = true;
-                sectionInst.output_section[1].$name      = ".text.cache";
-                sectionInst.output_section[1].palignment = true;
-                sectionInst.output_section[2].$name      = ".text.mpu";
-                sectionInst.output_section[2].palignment = true;
-                sectionInst.output_section[3].$name      = ".text.boot";
-                sectionInst.output_section[3].palignment = true;
-                sectionInst.output_section[4].$name      = ".text:abort";
-                sectionInst.output_section[4].palignment = true;
-            }
-            else if(ind == 3){
-                sectionInst.load_memory                  = "OCRAM";
-                sectionInst.$name                        = "Code and Read-Only Data";
-                sectionInst.output_section.create(2);
-                sectionInst.output_section[0].$name      = ".text";
-                sectionInst.output_section[0].palignment = true;
-                sectionInst.output_section[1].$name      = ".rodata";
-                sectionInst.output_section[1].palignment = true;
-            }
-            else if(ind == 4){
-                sectionInst.load_memory                  = "OCRAM";
-                sectionInst.$name                        = "Data Segment";
-                sectionInst.output_section.create(1);
-                sectionInst.output_section[0].$name      = ".data";
-                sectionInst.output_section[0].palignment = true;
-            }
-            else if(ind == 5){
-                sectionInst.load_memory                             = "OCRAM";
-                sectionInst.$name                                   = "Memory Segments";
-                sectionInst.output_section.create(3);
-                sectionInst.output_section[0].$name                 = ".bss";
-                sectionInst.output_section[0].output_sections_start = "__BSS_START";
-                sectionInst.output_section[0].output_sections_end   = "__BSS_END";
-                sectionInst.output_section[0].palignment            = true;
-                sectionInst.output_section[1].$name                 = ".sysmem";
-                sectionInst.output_section[1].palignment            = true;
-                sectionInst.output_section[2].$name                 = ".stack";
-                sectionInst.output_section[2].palignment            = true;
-            }
-            else if(ind == 6){
-                sectionInst.load_memory                              = "OCRAM";
-                sectionInst.$name                                    = "Stack Segments";
-                sectionInst.output_section.create(5);
-                sectionInst.output_section[0].$name                  = ".irqstack";
-                sectionInst.output_section[0].output_sections_start  = "__IRQ_STACK_START";
-                sectionInst.output_section[0].output_sections_end    = "__IRQ_STACK_END";
-                sectionInst.output_section[0].input_section.create(1);
-                sectionInst.output_section[0].input_section[0].$name = ". = . + __IRQ_STACK_SIZE;";
-                sectionInst.output_section[1].$name                  = ".fiqstack";
-                sectionInst.output_section[1].output_sections_start  = "__FIQ_STACK_START";
-                sectionInst.output_section[1].output_sections_end    = "__FIQ_STACK_END";
-                sectionInst.output_section[1].input_section.create(1);
-                sectionInst.output_section[1].input_section[0].$name = ". = . + __FIQ_STACK_SIZE;";
-                sectionInst.output_section[2].$name                  = ".svcstack";
-                sectionInst.output_section[2].output_sections_start  = "__SVC_STACK_START";
-                sectionInst.output_section[2].output_sections_end    = "__SVC_STACK_END";
-                sectionInst.output_section[2].input_section.create(1);
-                sectionInst.output_section[2].input_section[0].$name = ". = . + __SVC_STACK_SIZE;";
-                sectionInst.output_section[3].$name                  = ".abortstack";
-                sectionInst.output_section[3].output_sections_start  = "__ABORT_STACK_START";
-                sectionInst.output_section[3].output_sections_end    = "__ABORT_STACK_END";
-                sectionInst.output_section[3].input_section.create(1);
-                sectionInst.output_section[3].input_section[0].$name = ". = . + __ABORT_STACK_SIZE;";
-                sectionInst.output_section[4].$name                  = ".undefinedstack";
-                sectionInst.output_section[4].output_sections_start  = "__UNDEFINED_STACK_START";
-                sectionInst.output_section[4].output_sections_end    = "__UNDEFINED_STACK_END";
-                sectionInst.output_section[4].input_section.create(1);
-                sectionInst.output_section[4].input_section[0].$name = ". = . + __UNDEFINED_STACK_SIZE;";
-            }
-            else if(ind == 7){
-                sectionInst.load_memory                  = "OCRAM";
-                sectionInst.$name                        = "Initialization and Exception Handling";
-                sectionInst.output_section.create(3);
-                sectionInst.output_section[0].$name      = ".ARM.exidx";
-                sectionInst.output_section[0].palignment = true;
-                sectionInst.output_section[1].$name      = ".init_array";
-                sectionInst.output_section[1].palignment = true;
-                sectionInst.output_section[2].$name      = ".fini_array";
-                sectionInst.output_section[2].palignment = true;
-            }
-            else if(ind == 8){
-                sectionInst.load_memory                 = "USER_SHM_MEM";
-                sectionInst.type                        = "NOLOAD";
-                sectionInst.$name                       = "User Shared Memory";
-                sectionInst.group                       = false;
-                sectionInst.output_section.create(1);
-                sectionInst.output_section[0].$name     = ".bss.user_shared_mem";
-                sectionInst.output_section[0].alignment = 0;
-            }
-            else if(ind == 9){
-                sectionInst.load_memory                 = "LOG_SHM_MEM";
-                sectionInst.$name                       = "Log Shared Memory";
-                sectionInst.group                       = false;
-                sectionInst.type                        = "NOLOAD";
-                sectionInst.output_section.create(1);
-                sectionInst.output_section[0].$name     = ".bss.log_shared_mem";
-                sectionInst.output_section[0].alignment = 0;
-            }
-            else if(ind == 10){
-                sectionInst.load_memory                 = "RTOS_NORTOS_IPC_SHM_MEM";
-                sectionInst.type                        = "NOLOAD";
-                sectionInst.$name                       = "IPC Shared Memory";
-                sectionInst.group                       = false;
-                sectionInst.output_section.create(1);
-                sectionInst.output_section[0].$name     = ".bss.ipc_vring_mem";
-                sectionInst.output_section[0].alignment = 0;
-            }
-            else if(ind == 11){
-                sectionInst.load_memory                 = "MAILBOX_HSM";
-                sectionInst.type                        = "NOLOAD";
-                sectionInst.$name                       = "SIPC HSM Queue Memory";
-                sectionInst.group                       = false;
-                sectionInst.output_section.create(1);
-                sectionInst.output_section[0].$name     = ".bss.sipc_hsm_queue_mem";
-                sectionInst.output_section[0].alignment = 0;
-            }
-            else if(ind == 12){
-                sectionInst.load_memory                 = "MAILBOX_R5F";
-                sectionInst.$name                       = "SIPC R5F Queue Memory";
-                sectionInst.group                       = false;
-                sectionInst.type                        = "NOLOAD";
-                sectionInst.output_section.create(1);
-                sectionInst.output_section[0].$name     = ".bss.sipc_secure_host_queue_mem";
-                sectionInst.output_section[0].alignment = 0;
+        } else {
+            if( core.includes("r5f") ) {
+                if(ind == 1) {
+                    sectionInst.load_memory                  = "R5F_VECS";
+                    sectionInst.group                        = false;
+                    sectionInst.$name                        = "Vector Table";
+                    sectionInst.output_section.create(1);
+                    sectionInst.output_section[0].$name      = ".vectors";
+                    sectionInst.output_section[0].palignment = true;
+                }
+                else if(ind == 2){
+                    sectionInst.load_memory                  = "OCRAM";
+                    sectionInst.$name                        = "Text Segments";
+                    sectionInst.output_section.create(5);
+                    sectionInst.output_section[0].$name      = ".text.hwi";
+                    sectionInst.output_section[0].palignment = true;
+                    sectionInst.output_section[1].$name      = ".text.cache";
+                    sectionInst.output_section[1].palignment = true;
+                    sectionInst.output_section[2].$name      = ".text.mpu";
+                    sectionInst.output_section[2].palignment = true;
+                    sectionInst.output_section[3].$name      = ".text.boot";
+                    sectionInst.output_section[3].palignment = true;
+                    sectionInst.output_section[4].$name      = ".text:abort";
+                    sectionInst.output_section[4].palignment = true;
+                }
+                else if(ind == 3){
+                    sectionInst.load_memory                  = "OCRAM";
+                    sectionInst.$name                        = "Code and Read-Only Data";
+                    sectionInst.output_section.create(2);
+                    sectionInst.output_section[0].$name      = ".text";
+                    sectionInst.output_section[0].palignment = true;
+                    sectionInst.output_section[1].$name      = ".rodata";
+                    sectionInst.output_section[1].palignment = true;
+                }
+                else if(ind == 4){
+                    sectionInst.load_memory                  = "OCRAM";
+                    sectionInst.$name                        = "Data Segment";
+                    sectionInst.output_section.create(1);
+                    sectionInst.output_section[0].$name      = ".data";
+                    sectionInst.output_section[0].palignment = true;
+                }
+                else if(ind == 5){
+                    sectionInst.load_memory                             = "OCRAM";
+                    sectionInst.$name                                   = "Memory Segments";
+                    sectionInst.output_section.create(3);
+                    sectionInst.output_section[0].$name                 = ".bss";
+                    sectionInst.output_section[0].output_sections_start = "__BSS_START";
+                    sectionInst.output_section[0].output_sections_end   = "__BSS_END";
+                    sectionInst.output_section[0].palignment            = true;
+                    sectionInst.output_section[1].$name                 = ".sysmem";
+                    sectionInst.output_section[1].palignment            = true;
+                    sectionInst.output_section[2].$name                 = ".stack";
+                    sectionInst.output_section[2].palignment            = true;
+                }
+                else if(ind == 6){
+                    sectionInst.load_memory                              = "OCRAM";
+                    sectionInst.$name                                    = "Stack Segments";
+                    sectionInst.output_section.create(5);
+                    sectionInst.output_section[0].$name                  = ".irqstack";
+                    sectionInst.output_section[0].output_sections_start  = "__IRQ_STACK_START";
+                    sectionInst.output_section[0].output_sections_end    = "__IRQ_STACK_END";
+                    sectionInst.output_section[0].input_section.create(1);
+                    sectionInst.output_section[0].input_section[0].$name = ". = . + __IRQ_STACK_SIZE;";
+                    sectionInst.output_section[1].$name                  = ".fiqstack";
+                    sectionInst.output_section[1].output_sections_start  = "__FIQ_STACK_START";
+                    sectionInst.output_section[1].output_sections_end    = "__FIQ_STACK_END";
+                    sectionInst.output_section[1].input_section.create(1);
+                    sectionInst.output_section[1].input_section[0].$name = ". = . + __FIQ_STACK_SIZE;";
+                    sectionInst.output_section[2].$name                  = ".svcstack";
+                    sectionInst.output_section[2].output_sections_start  = "__SVC_STACK_START";
+                    sectionInst.output_section[2].output_sections_end    = "__SVC_STACK_END";
+                    sectionInst.output_section[2].input_section.create(1);
+                    sectionInst.output_section[2].input_section[0].$name = ". = . + __SVC_STACK_SIZE;";
+                    sectionInst.output_section[3].$name                  = ".abortstack";
+                    sectionInst.output_section[3].output_sections_start  = "__ABORT_STACK_START";
+                    sectionInst.output_section[3].output_sections_end    = "__ABORT_STACK_END";
+                    sectionInst.output_section[3].input_section.create(1);
+                    sectionInst.output_section[3].input_section[0].$name = ". = . + __ABORT_STACK_SIZE;";
+                    sectionInst.output_section[4].$name                  = ".undefinedstack";
+                    sectionInst.output_section[4].output_sections_start  = "__UNDEFINED_STACK_START";
+                    sectionInst.output_section[4].output_sections_end    = "__UNDEFINED_STACK_END";
+                    sectionInst.output_section[4].input_section.create(1);
+                    sectionInst.output_section[4].input_section[0].$name = ". = . + __UNDEFINED_STACK_SIZE;";
+                }
+                else if(ind == 7){
+                    sectionInst.load_memory                  = "OCRAM";
+                    sectionInst.$name                        = "Initialization and Exception Handling";
+                    sectionInst.output_section.create(3);
+                    sectionInst.output_section[0].$name      = ".ARM.exidx";
+                    sectionInst.output_section[0].palignment = true;
+                    sectionInst.output_section[1].$name      = ".init_array";
+                    sectionInst.output_section[1].palignment = true;
+                    sectionInst.output_section[2].$name      = ".fini_array";
+                    sectionInst.output_section[2].palignment = true;
+                }
+                else if(ind == 8){
+                    sectionInst.load_memory                 = "USER_SHM_MEM";
+                    sectionInst.type                        = "NOLOAD";
+                    sectionInst.$name                       = "User Shared Memory";
+                    sectionInst.group                       = false;
+                    sectionInst.output_section.create(1);
+                    sectionInst.output_section[0].$name     = ".bss.user_shared_mem";
+                    sectionInst.output_section[0].alignment = 0;
+                }
+                else if(ind == 9){
+                    sectionInst.load_memory                 = "LOG_SHM_MEM";
+                    sectionInst.$name                       = "Log Shared Memory";
+                    sectionInst.group                       = false;
+                    sectionInst.type                        = "NOLOAD";
+                    sectionInst.output_section.create(1);
+                    sectionInst.output_section[0].$name     = ".bss.log_shared_mem";
+                    sectionInst.output_section[0].alignment = 0;
+                }
+                else if(ind == 10){
+                    sectionInst.load_memory                 = "RTOS_NORTOS_IPC_SHM_MEM";
+                    sectionInst.type                        = "NOLOAD";
+                    sectionInst.$name                       = "IPC Shared Memory";
+                    sectionInst.group                       = false;
+                    sectionInst.output_section.create(1);
+                    sectionInst.output_section[0].$name     = ".bss.ipc_vring_mem";
+                    sectionInst.output_section[0].alignment = 0;
+                }
+                else if(ind == 11){
+                    sectionInst.load_memory                 = "MAILBOX_HSM";
+                    sectionInst.type                        = "NOLOAD";
+                    sectionInst.$name                       = "SIPC HSM Queue Memory";
+                    sectionInst.group                       = false;
+                    sectionInst.output_section.create(1);
+                    sectionInst.output_section[0].$name     = ".bss.sipc_hsm_queue_mem";
+                    sectionInst.output_section[0].alignment = 0;
+                }
+                else if(ind == 12){
+                    sectionInst.load_memory                 = "MAILBOX_R5F";
+                    sectionInst.$name                       = "SIPC R5F Queue Memory";
+                    sectionInst.group                       = false;
+                    sectionInst.type                        = "NOLOAD";
+                    sectionInst.output_section.create(1);
+                    sectionInst.output_section[0].$name     = ".bss.sipc_secure_host_queue_mem";
+                    sectionInst.output_section[0].alignment = 0;
+                }
             }
         }
     }
@@ -2544,8 +2651,21 @@ function def_sections(sectionInst, ind, device, core){
     }
 }
 
+function def_general_options(generalInst, device, compiler) {
+    if(device == "AM261x_ZCZ" || device == "AM261x_ZNC" || device == "AM261x_ZEJ" || device == "AM261x_ZFG" || system.deviceData.device == "AM261x_ZFG_400"){
+        if(compiler == "tiarmclang"){
+            generalInst.choose_compiler = "tiarmclang";
+        } else if(compiler == "iar-arm"){
+            generalInst.choose_compiler = "iar-arm";
+        } else if(compiler == "gcc"){
+            generalInst.choose_compiler = "gcc";
+        }
+    }
+}
+
 exports = {
     populate_memory_regions: def_memory_regions,
     populate_sections_regions: def_sections,
-    populate_shared_region_name_change: def_shared_region_name_change
+    populate_shared_region_name_change: def_shared_region_name_change,
+    populate_general_settings: def_general_options,
 }

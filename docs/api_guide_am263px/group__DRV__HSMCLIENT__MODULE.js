@@ -133,6 +133,31 @@ var group__DRV__HSMCLIENT__MODULE =
     [ "FlashBankCopy_t", "structFlashBankCopy__t.html", [
       [ "cpuFlashBankType", "structFlashBankCopy__t.html#ad1220dd6b3216f69921bff5b11ed4a74", null ]
     ] ],
+    [ "CryptoServiceReq_t", "structCryptoServiceReq__t.html", [
+      [ "algoId", "structCryptoServiceReq__t.html#a55ea2057a673c7e7ccc44761a3d36807", null ],
+      [ "subSvcId", "structCryptoServiceReq__t.html#a5b98e9119c45ee214619c1148821c59b", null ],
+      [ "keyId", "structCryptoServiceReq__t.html#ab34b8b6d41d975ea984f3d757c5f3331", null ],
+      [ "errCode", "structCryptoServiceReq__t.html#a8adbd05a783d37728e0f129c31f9b46d", null ],
+      [ "ptrArgs", "structCryptoServiceReq__t.html#a1759a5306fdcc869d4dd8fe983d03733", null ]
+    ] ],
+    [ "CMACArgs_t", "structCMACArgs__t.html", [
+      [ "ptrData", "structCMACArgs__t.html#a357c11d508a9bc72727f234ce8907549", null ],
+      [ "dataLen", "structCMACArgs__t.html#ac5d24d39baa181184775edb3adb07c75", null ],
+      [ "ptrTag", "structCMACArgs__t.html#afe13e09091fb834532d9438c05f32651", null ]
+    ] ],
+    [ "HMACArgs_t", "structHMACArgs__t.html", [
+      [ "hashMode", "structHMACArgs__t.html#a8810599c25cde96926297750b3c85bea", null ],
+      [ "ptrData", "structHMACArgs__t.html#ab62009c8ce46fd813387454839ec53ff", null ],
+      [ "dataLen", "structHMACArgs__t.html#a188f59754e3301ecb3a77e4dd10c963b", null ],
+      [ "ptrTag", "structHMACArgs__t.html#afcaa41f26efe48cb3aa647bb0ecfdc5a", null ]
+    ] ],
+    [ "GMACArgs_t", "structGMACArgs__t.html", [
+      [ "ptrData", "structGMACArgs__t.html#a7dc14099a2099e5493d2132002d47a25", null ],
+      [ "dataLen", "structGMACArgs__t.html#a27269ada205d00f0ccf68fafa1d2b4c7", null ],
+      [ "ptrTag", "structGMACArgs__t.html#a39886fed197e423743d67b3706ecbc76", null ],
+      [ "ptrIV", "structGMACArgs__t.html#a2b8608363d9ab312a4d1094743e97533", null ],
+      [ "ivLen", "structGMACArgs__t.html#aa6a727718e9fb1a7fa2fd8f7f2eaec3d", null ]
+    ] ],
     [ "HsmMsg_t_", "structHsmMsg__t__.html", [
       [ "destClientId", "structHsmMsg__t__.html#af7693475522e1a00bad5144d3369373e", null ],
       [ "srcClientId", "structHsmMsg__t__.html#aa2fad9ffe66fecc74ef1ec07402e7993", null ],
@@ -147,6 +172,13 @@ var group__DRV__HSMCLIENT__MODULE =
     [ "HSMRT_LOAD_REQUESTED", "group__DRV__HSMCLIENT__MODULE.html#ga638efa23dd93c2e8e4363f18346bef8d", null ],
     [ "HSMRT_LOAD_FAILED", "group__DRV__HSMCLIENT__MODULE.html#ga92d3271387e20dd0d7a19a1b75fd03a3", null ],
     [ "HSMRT_LOAD_SUCCEEDED", "group__DRV__HSMCLIENT__MODULE.html#gad45cb0a88284e85531b0d6d19cd2ef7a", null ],
+    [ "HSM_CRYPTO_SVC_MAC_CMAC", "group__DRV__HSMCLIENT__MODULE.html#gac2aa278255ffe425a65ab2dca77fbb32", null ],
+    [ "HSM_CRYPTO_SVC_MAC_HMAC", "group__DRV__HSMCLIENT__MODULE.html#ga31f785dc1e5b969568af49c3b953dd63", null ],
+    [ "HSM_CRYPTO_SVC_MAC_GMAC", "group__DRV__HSMCLIENT__MODULE.html#gaa11b7308e28aa5969c5f1237a5c73e92", null ],
+    [ "HSM_CRYPTO_HMAC_SHA256", "group__DRV__HSMCLIENT__MODULE.html#gabde208cfde8f4c3e184a069e980506be", null ],
+    [ "HSM_CRYPTO_HMAC_SHA512", "group__DRV__HSMCLIENT__MODULE.html#ga2eff52e2a637493759a58c49fd00d342", null ],
+    [ "HSM_CRYPTO_SVC_MAC_GENERATE", "group__DRV__HSMCLIENT__MODULE.html#gaa1137cd2a6c85b146d9716c963045199", null ],
+    [ "HSM_CRYPTO_SVC_MAC_VERIFY", "group__DRV__HSMCLIENT__MODULE.html#gab6aabab2d08d4c5e94e88037e24556b3", null ],
     [ "HSM_MSG_GET_VERSION", "group__DRV__HSMCLIENT__MODULE.html#gadf3a90c05d8c1565e696412e009e54d5", null ],
     [ "HSM_MSG_BOOT_NOTIFY", "group__DRV__HSMCLIENT__MODULE.html#ga65e1efbec7ecc3f8a2c27e8a26b9ead0", null ],
     [ "HSM_MSG_GET_UID", "group__DRV__HSMCLIENT__MODULE.html#gac0b1702fe87b12cc7f14360f25b1886d", null ],
@@ -178,6 +210,7 @@ var group__DRV__HSMCLIENT__MODULE =
     [ "HSM_MSG_PROC_AUTH_BOOT_SEC_CFG", "group__DRV__HSMCLIENT__MODULE.html#gaab5435a13c609f9d255749ea551375a7", null ],
     [ "HSM_MSG_FLASH_BANK_COPY", "group__DRV__HSMCLIENT__MODULE.html#ga9b9e4251d86003eb35eadb0f9712430a", null ],
     [ "HSM_MSG_FW_UPDATE_SECCFG", "group__DRV__HSMCLIENT__MODULE.html#ga961b6e9ba945d256aed207d40283f16f", null ],
+    [ "HSM_MSG_CRYPTO_SERVICE", "group__DRV__HSMCLIENT__MODULE.html#ga53441a5d8285223de54f3ae2729a94e7", null ],
     [ "HSM_FLAG_AOP", "group__DRV__HSMCLIENT__MODULE.html#ga0842e3d812796be34207849e8dc8dc3a", null ],
     [ "HSM_FLAG_NAOP", "group__DRV__HSMCLIENT__MODULE.html#ga5f0c48b13ab8d657a61ff359466f16e8", null ],
     [ "HSM_FLAG_ACK", "group__DRV__HSMCLIENT__MODULE.html#gae54cfaab6d2e23b938c84ac9979ad5c3", null ],
@@ -239,5 +272,6 @@ var group__DRV__HSMCLIENT__MODULE =
     [ "HsmClient_readOTFARegions", "group__DRV__HSMCLIENT__MODULE.html#gae655894963d794110ea5de532102ef64", null ],
     [ "HsmClient_secCfgValidate", "group__DRV__HSMCLIENT__MODULE.html#ga6634bc2f8d0d9f5574111f6070838002", null ],
     [ "HsmClient_activeToDormantBankCopy", "group__DRV__HSMCLIENT__MODULE.html#ga2a4fabce99d63a311aab8352a9fe890b", null ],
-    [ "HsmClient_SecCfgUpdate", "group__DRV__HSMCLIENT__MODULE.html#gabe2810b39dc269a55fcca419c65eb87c", null ]
+    [ "HsmClient_SecCfgUpdate", "group__DRV__HSMCLIENT__MODULE.html#gabe2810b39dc269a55fcca419c65eb87c", null ],
+    [ "HsmClient_CryptoService", "group__DRV__HSMCLIENT__MODULE.html#gaad4edba07fb1e870a576a281a48d1472", null ]
 ];

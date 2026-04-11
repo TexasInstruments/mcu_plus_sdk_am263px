@@ -198,6 +198,22 @@ Functions</h2></td></tr>
 <tr class="memitem:gaf111a09439bc716808acefe844cec657"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gaf111a09439bc716808acefe844cec657">I2C_lld_targetIsr</a> (void *<a class="el" href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a>)</td></tr>
 <tr class="memdesc:gaf111a09439bc716808acefe844cec657"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C Target ISR, can be used as IRQ handler in Target mode.  <a href="group__DRV__I2C__LLD__MODULE.html#gaf111a09439bc716808acefe844cec657">More...</a><br /></td></tr>
 <tr class="separator:gaf111a09439bc716808acefe844cec657"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad86903ae8313c24fdeb47431fd329703"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gad86903ae8313c24fdeb47431fd329703">I2CControllerControl</a> (uint32_t baseAddr, uint32_t ctrlMask, uint32_t ctrlCmds)</td></tr>
+<tr class="separator:gad86903ae8313c24fdeb47431fd329703"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac442794faab3ed2eeabfdafc28bccbad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gac442794faab3ed2eeabfdafc28bccbad">I2CSetDataCount</a> (uint32_t baseAddr, uint32_t count)</td></tr>
+<tr class="separator:gac442794faab3ed2eeabfdafc28bccbad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2850223862e77b909b03aed50c541cc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga2850223862e77b909b03aed50c541cc9">I2CControllerStart</a> (uint32_t baseAddr)</td></tr>
+<tr class="separator:ga2850223862e77b909b03aed50c541cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae2efb79ec79ae486b77c32b1f5c610c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gae2efb79ec79ae486b77c32b1f5c610c1">I2CControllerIntEnableEx</a> (uint32_t baseAddr, uint32_t intFlag)</td></tr>
+<tr class="separator:gae2efb79ec79ae486b77c32b1f5c610c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga344e088e32808deed10cd596708fa08e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga344e088e32808deed10cd596708fa08e">I2CControllerTargetAddrSet</a> (uint32_t baseAddr, uint32_t targetAddr)</td></tr>
+<tr class="separator:ga344e088e32808deed10cd596708fa08e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1ed2ab7d6659a78bc49af9c62feb85cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga1ed2ab7d6659a78bc49af9c62feb85cd">I2CControllerIntClearEx</a> (uint32_t baseAddr, uint32_t intFlag)</td></tr>
+<tr class="separator:ga1ed2ab7d6659a78bc49af9c62feb85cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga17397d10d875de60e56a77716251aba4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga17397d10d875de60e56a77716251aba4">I2CModeControl</a> (uint32_t baseAddr, uint32_t ctrlMask, uint32_t ctrlCmds)</td></tr>
+<tr class="separator:ga17397d10d875de60e56a77716251aba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa76889be522130d6f78bcfcc32e394e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gaa76889be522130d6f78bcfcc32e394e6">I2CTargetEnable</a> (uint32_t baseAddr)</td></tr>
+<tr class="separator:gaa76889be522130d6f78bcfcc32e394e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -309,6 +325,100 @@ MACROS used to define the state of the I2C Driver State Machine</h2></td></tr>
 <tr class="memitem:ga2e9dba28b2e7c5d82ea82100a2258512"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga2e9dba28b2e7c5d82ea82100a2258512">I2C_TARGET_RESTART_STATE</a>&#160;&#160;&#160;((uint8_t) 13U)</td></tr>
 <tr class="memdesc:ga2e9dba28b2e7c5d82ea82100a2258512"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C is restarting trasfer in target mode.  <a href="group__DRV__I2C__LLD__MODULE.html#ga2e9dba28b2e7c5d82ea82100a2258512">More...</a><br /></td></tr>
 <tr class="separator:ga2e9dba28b2e7c5d82ea82100a2258512"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
+MACROS for I2CControllerControl mask and command values (ICMDR register)</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp0ebbc569bbefdbcb1ca07f72df97154d"></a><a class="anchor" id="I2C_ControllerControl"></a></p>
+</td></tr>
+<tr class="memitem:ga76fabe7b950daa5ca088d99725e9b57d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga76fabe7b950daa5ca088d99725e9b57d">I2C_CFG_MASK_TX</a>&#160;&#160;&#160;(CSL_I2C_ICMDR_TRX_MASK)</td></tr>
+<tr class="separator:ga76fabe7b950daa5ca088d99725e9b57d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab869a9b40ecfa15524c14bffb3ba4bbb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gab869a9b40ecfa15524c14bffb3ba4bbb">I2C_CFG_MASK_RX</a>&#160;&#160;&#160;(CSL_I2C_ICMDR_TRX_MASK)</td></tr>
+<tr class="separator:gab869a9b40ecfa15524c14bffb3ba4bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga470e41919eed90569be3bca2ac86a73b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga470e41919eed90569be3bca2ac86a73b">I2C_CFG_MASK_STOP</a>&#160;&#160;&#160;(CSL_I2C_ICMDR_STP_MASK)</td></tr>
+<tr class="separator:ga470e41919eed90569be3bca2ac86a73b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga63eb305f8141a70f1e98352b652e20e2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga63eb305f8141a70f1e98352b652e20e2">I2C_CFG_MASK_START</a>&#160;&#160;&#160;(CSL_I2C_ICMDR_STT_MASK)</td></tr>
+<tr class="separator:ga63eb305f8141a70f1e98352b652e20e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga99aea9ed141144920f2197d73c241806"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga99aea9ed141144920f2197d73c241806">I2C_CFG_MASK_RUN_FREE</a>&#160;&#160;&#160;(CSL_I2C_ICMDR_FREE_MASK)</td></tr>
+<tr class="separator:ga99aea9ed141144920f2197d73c241806"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae73bef42c59403cf8d656d5d5b88d877"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gae73bef42c59403cf8d656d5d5b88d877">I2C_CFG_MASK_REPEAT_MODE</a>&#160;&#160;&#160;(CSL_I2C_ICMDR_RM_MASK)</td></tr>
+<tr class="separator:gae73bef42c59403cf8d656d5d5b88d877"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga27048a8075dec23dadbde261f3c5ff7a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga27048a8075dec23dadbde261f3c5ff7a">I2C_CFG_MASK_LOOP_BACK</a>&#160;&#160;&#160;(CSL_I2C_ICMDR_DLB_MASK)</td></tr>
+<tr class="separator:ga27048a8075dec23dadbde261f3c5ff7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa35111ccee5218b5e7e982a5340c15c3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gaa35111ccee5218b5e7e982a5340c15c3">I2C_CFG_MASK_XA</a>&#160;&#160;&#160;(CSL_I2C_ICMDR_XA_MASK)</td></tr>
+<tr class="separator:gaa35111ccee5218b5e7e982a5340c15c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7e90829d49dd2835e9bf23e582e947f5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga7e90829d49dd2835e9bf23e582e947f5">I2C_CFG_CMD_TX</a>&#160;&#160;&#160;(CSL_I2C_ICMDR_TRX_MASK)</td></tr>
+<tr class="separator:ga7e90829d49dd2835e9bf23e582e947f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac7406038f26e88485f738815b07d227e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gac7406038f26e88485f738815b07d227e">I2C_CFG_CMD_RX</a>&#160;&#160;&#160;(0U)</td></tr>
+<tr class="separator:gac7406038f26e88485f738815b07d227e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae4e2d19ab4b5c78652520c008e10ceaf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gae4e2d19ab4b5c78652520c008e10ceaf">I2C_CFG_CMD_STOP</a>&#160;&#160;&#160;(CSL_I2C_ICMDR_STP_MASK)</td></tr>
+<tr class="separator:gae4e2d19ab4b5c78652520c008e10ceaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacb6f79c21f5bb1479ebd014dec31d406"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gacb6f79c21f5bb1479ebd014dec31d406">I2C_CFG_CMD_START</a>&#160;&#160;&#160;(CSL_I2C_ICMDR_STT_MASK)</td></tr>
+<tr class="separator:gacb6f79c21f5bb1479ebd014dec31d406"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga368f7c75a74e623bcb820392f32f6f47"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga368f7c75a74e623bcb820392f32f6f47">I2C_CFG_CMD_RUN_FREE_ON</a>&#160;&#160;&#160;(CSL_I2C_ICMDR_FREE_MASK)</td></tr>
+<tr class="separator:ga368f7c75a74e623bcb820392f32f6f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga03cd431aa95291438ff1a2dc50e85719"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga03cd431aa95291438ff1a2dc50e85719">I2C_CFG_CMD_RUN_FREE_OFF</a>&#160;&#160;&#160;(0U)</td></tr>
+<tr class="separator:ga03cd431aa95291438ff1a2dc50e85719"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8e576dcf8ccde1730ba05d56b7380d83"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga8e576dcf8ccde1730ba05d56b7380d83">I2C_CFG_CMD_REPEAT_MODE_ON</a>&#160;&#160;&#160;(CSL_I2C_ICMDR_RM_MASK)</td></tr>
+<tr class="separator:ga8e576dcf8ccde1730ba05d56b7380d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf11dc4b1c680042a02ed62ee5a3838b1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gaf11dc4b1c680042a02ed62ee5a3838b1">I2C_CFG_CMD_REPEAT_MODE_OFF</a>&#160;&#160;&#160;(0U)</td></tr>
+<tr class="separator:gaf11dc4b1c680042a02ed62ee5a3838b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab4e810e9388a6fb6d85f6d60ead45d7f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gab4e810e9388a6fb6d85f6d60ead45d7f">I2C_CFG_CMD_LOOP_BACK_ON</a>&#160;&#160;&#160;(CSL_I2C_ICMDR_DLB_MASK)</td></tr>
+<tr class="separator:gab4e810e9388a6fb6d85f6d60ead45d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga203a41d60b928315706193a2792f5e8d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga203a41d60b928315706193a2792f5e8d">I2C_CFG_CMD_LOOP_BACK_OFF</a>&#160;&#160;&#160;(0U)</td></tr>
+<tr class="separator:ga203a41d60b928315706193a2792f5e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa1b12ffc57847026ae91ed1613f969bb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gaa1b12ffc57847026ae91ed1613f969bb">I2C_CFG_CMD_10BIT_ADDRESS</a>&#160;&#160;&#160;(<a class="el" href="group__DRV__I2C__LLD__MODULE.html#gaa35111ccee5218b5e7e982a5340c15c3">I2C_CFG_MASK_XA</a>)</td></tr>
+<tr class="separator:gaa1b12ffc57847026ae91ed1613f969bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac57baadd3d0e90dc8c54a0e789fa522d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gac57baadd3d0e90dc8c54a0e789fa522d">I2C_CFG_CMD_7BIT_ADDRESS</a>&#160;&#160;&#160;(0U)</td></tr>
+<tr class="separator:gac57baadd3d0e90dc8c54a0e789fa522d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
+MACROS that can be passed to I2CControllerIntStatusEx and I2CControllerIntClearEx</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp08cfbc6d0831f2f41cbbba1029b3d983"></a><a class="anchor" id="I2C_ControllerIntEnableEx"></a> APIs as int status flag to check and clear interrupt status </p>
+</td></tr>
+<tr class="memitem:gac010109692dc03addb6c00209c915b2c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gac010109692dc03addb6c00209c915b2c">I2C_INT_ARBITRATION_LOST</a>&#160;&#160;&#160;(CSL_I2C_ICSTR_AL_MASK)</td></tr>
+<tr class="separator:gac010109692dc03addb6c00209c915b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3d380029b61a2bd7a3c5688f18b9145e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga3d380029b61a2bd7a3c5688f18b9145e">I2C_INT_NO_ACK</a>&#160;&#160;&#160;(CSL_I2C_ICSTR_NACK_MASK)</td></tr>
+<tr class="separator:ga3d380029b61a2bd7a3c5688f18b9145e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga084b97e99a4c2a54811f695b6699f1e9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga084b97e99a4c2a54811f695b6699f1e9">I2C_INT_ADRR_READY_ACESS</a>&#160;&#160;&#160;(CSL_I2C_ICSTR_ARDY_MASK)</td></tr>
+<tr class="separator:ga084b97e99a4c2a54811f695b6699f1e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadfc05bc3084d9dfc0064885b59e900c0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gadfc05bc3084d9dfc0064885b59e900c0">I2C_INT_RECV_READY</a>&#160;&#160;&#160;(CSL_I2C_ICSTR_ICRRDY_MASK)</td></tr>
+<tr class="separator:gadfc05bc3084d9dfc0064885b59e900c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf28fb48a2ee9f9f68e71d27f76a9573c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gaf28fb48a2ee9f9f68e71d27f76a9573c">I2C_INT_TRANSMIT_READY</a>&#160;&#160;&#160;(CSL_I2C_ICSTR_ICXRDY_MASK)</td></tr>
+<tr class="separator:gaf28fb48a2ee9f9f68e71d27f76a9573c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga72c1d12497392f4dd5ec4ce6400c5200"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga72c1d12497392f4dd5ec4ce6400c5200">I2C_INT_STOP_CONDITION</a>&#160;&#160;&#160;(CSL_I2C_ICSTR_SCD_MASK)</td></tr>
+<tr class="separator:ga72c1d12497392f4dd5ec4ce6400c5200"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga307d7f7e53b9cb878a3e6abf2e82d1ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga307d7f7e53b9cb878a3e6abf2e82d1ba">I2C_INT_ADRR_ZERO</a>&#160;&#160;&#160;(CSL_I2C_ICSTR_AD0_MASK)</td></tr>
+<tr class="separator:ga307d7f7e53b9cb878a3e6abf2e82d1ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4a807e13bcf4abc3a2bb7cfc9a748588"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga4a807e13bcf4abc3a2bb7cfc9a748588">I2C_INT_ADRR_TARGET</a>&#160;&#160;&#160;(CSL_I2C_ICSTR_AAS_MASK)</td></tr>
+<tr class="separator:ga4a807e13bcf4abc3a2bb7cfc9a748588"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4e253549399ea7eec4087006b0381617"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga4e253549399ea7eec4087006b0381617">I2C_INT_TRANSMIT_UNDER_FLOW</a>&#160;&#160;&#160;(CSL_I2C_ICSTR_XSMT_MASK)</td></tr>
+<tr class="separator:ga4e253549399ea7eec4087006b0381617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6592ee43a851ac305d1ee8f832026099"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga6592ee43a851ac305d1ee8f832026099">I2C_INT_RECV_OVER_RUN</a>&#160;&#160;&#160;(CSL_I2C_ICSTR_RSFULL_MASK)</td></tr>
+<tr class="separator:ga6592ee43a851ac305d1ee8f832026099"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4471c913d3fda09badbad20afc12124d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga4471c913d3fda09badbad20afc12124d">I2C_INT_BUS_BUSY</a>&#160;&#160;&#160;(CSL_I2C_ICSTR_BB_MASK)</td></tr>
+<tr class="separator:ga4471c913d3fda09badbad20afc12124d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae2c2b9c60485f98bc64d200d56addec1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gae2c2b9c60485f98bc64d200d56addec1">I2C_INT_NO_ACK_SENT</a>&#160;&#160;&#160;(CSL_I2C_ICSTR_NACKSNT_MASK)</td></tr>
+<tr class="separator:gae2c2b9c60485f98bc64d200d56addec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab79704f5038c229da269a20a8b8e9a04"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gab79704f5038c229da269a20a8b8e9a04">I2C_INT_TARGET_DIRECTION</a>&#160;&#160;&#160;(CSL_I2C_ICSTR_SDIR_MASK)</td></tr>
+<tr class="separator:gab79704f5038c229da269a20a8b8e9a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga061fbfef7aa3a2aa643ea80cb13b36f1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga061fbfef7aa3a2aa643ea80cb13b36f1">I2C_ALL_INTS</a></td></tr>
+<tr class="separator:ga061fbfef7aa3a2aa643ea80cb13b36f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga318a744edfcc633c8c764a5ba3891b09"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga318a744edfcc633c8c764a5ba3891b09">I2C_INT_MASK_ARBITRATION_LOST</a>&#160;&#160;&#160;(CSL_I2C_ICIMR_AL_MASK)</td></tr>
+<tr class="separator:ga318a744edfcc633c8c764a5ba3891b09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0a46425bdb5964ae3eddb305c4a11565"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga0a46425bdb5964ae3eddb305c4a11565">I2C_INT_MASK_NO_ACK</a>&#160;&#160;&#160;(CSL_I2C_ICIMR_NACK_MASK)</td></tr>
+<tr class="separator:ga0a46425bdb5964ae3eddb305c4a11565"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab989d7009c21042e6afb68407c538c9b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#gab989d7009c21042e6afb68407c538c9b">I2C_INT_MASK_ADRR_READY_ACESS</a>&#160;&#160;&#160;(CSL_I2C_ICIMR_ARDY_MASK)</td></tr>
+<tr class="separator:gab989d7009c21042e6afb68407c538c9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6fd89f47e7f3158ffccb13fcacd72370"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga6fd89f47e7f3158ffccb13fcacd72370">I2C_INT_MASK_RECV_READY</a>&#160;&#160;&#160;(CSL_I2C_ICIMR_ICRRDY_MASK)</td></tr>
+<tr class="separator:ga6fd89f47e7f3158ffccb13fcacd72370"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga92e02fb5966f148032b609acb9050beb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga92e02fb5966f148032b609acb9050beb">I2C_INT_MASK_TRANSMIT_READY</a>&#160;&#160;&#160;(CSL_I2C_ICIMR_ICXRDY_MASK)</td></tr>
+<tr class="separator:ga92e02fb5966f148032b609acb9050beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga27331605cc181e808d5928f99037fd74"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga27331605cc181e808d5928f99037fd74">I2C_INT_MASK_STOP_CONDITION</a>&#160;&#160;&#160;(CSL_I2C_ICIMR_SCD_MASK)</td></tr>
+<tr class="separator:ga27331605cc181e808d5928f99037fd74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2fe5c7e49abf77c5196ae9a1551cd058"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga2fe5c7e49abf77c5196ae9a1551cd058">I2C_INT_MASK_ADRR_TARGET</a>&#160;&#160;&#160;(CSL_I2C_ICIMR_AAS_MASK)</td></tr>
+<tr class="separator:ga2fe5c7e49abf77c5196ae9a1551cd058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga82d73287d1ce4c42a0ff04e59089fff6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__I2C__LLD__MODULE.html#ga82d73287d1ce4c42a0ff04e59089fff6">I2C_ALL_INTS_MASK</a></td></tr>
+<tr class="separator:ga82d73287d1ce4c42a0ff04e59089fff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="ga436bc81547d25cbe81ce05723f52b07d"></a>
@@ -645,6 +755,616 @@ MACROS used to define the state of the I2C Driver State Machine</h2></td></tr>
 
 <p>I2C is restarting trasfer in target mode. </p>
 
+</div>
+</div>
+<a id="ga76fabe7b950daa5ca088d99725e9b57d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga76fabe7b950daa5ca088d99725e9b57d">&#9670;&nbsp;</a></span>I2C_CFG_MASK_TX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_MASK_TX&#160;&#160;&#160;(CSL_I2C_ICMDR_TRX_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gab869a9b40ecfa15524c14bffb3ba4bbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab869a9b40ecfa15524c14bffb3ba4bbb">&#9670;&nbsp;</a></span>I2C_CFG_MASK_RX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_MASK_RX&#160;&#160;&#160;(CSL_I2C_ICMDR_TRX_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga470e41919eed90569be3bca2ac86a73b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga470e41919eed90569be3bca2ac86a73b">&#9670;&nbsp;</a></span>I2C_CFG_MASK_STOP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_MASK_STOP&#160;&#160;&#160;(CSL_I2C_ICMDR_STP_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga63eb305f8141a70f1e98352b652e20e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga63eb305f8141a70f1e98352b652e20e2">&#9670;&nbsp;</a></span>I2C_CFG_MASK_START</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_MASK_START&#160;&#160;&#160;(CSL_I2C_ICMDR_STT_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga99aea9ed141144920f2197d73c241806"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga99aea9ed141144920f2197d73c241806">&#9670;&nbsp;</a></span>I2C_CFG_MASK_RUN_FREE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_MASK_RUN_FREE&#160;&#160;&#160;(CSL_I2C_ICMDR_FREE_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gae73bef42c59403cf8d656d5d5b88d877"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae73bef42c59403cf8d656d5d5b88d877">&#9670;&nbsp;</a></span>I2C_CFG_MASK_REPEAT_MODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_MASK_REPEAT_MODE&#160;&#160;&#160;(CSL_I2C_ICMDR_RM_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga27048a8075dec23dadbde261f3c5ff7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga27048a8075dec23dadbde261f3c5ff7a">&#9670;&nbsp;</a></span>I2C_CFG_MASK_LOOP_BACK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_MASK_LOOP_BACK&#160;&#160;&#160;(CSL_I2C_ICMDR_DLB_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gaa35111ccee5218b5e7e982a5340c15c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa35111ccee5218b5e7e982a5340c15c3">&#9670;&nbsp;</a></span>I2C_CFG_MASK_XA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_MASK_XA&#160;&#160;&#160;(CSL_I2C_ICMDR_XA_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga7e90829d49dd2835e9bf23e582e947f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7e90829d49dd2835e9bf23e582e947f5">&#9670;&nbsp;</a></span>I2C_CFG_CMD_TX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_CMD_TX&#160;&#160;&#160;(CSL_I2C_ICMDR_TRX_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gac7406038f26e88485f738815b07d227e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac7406038f26e88485f738815b07d227e">&#9670;&nbsp;</a></span>I2C_CFG_CMD_RX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_CMD_RX&#160;&#160;&#160;(0U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gae4e2d19ab4b5c78652520c008e10ceaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae4e2d19ab4b5c78652520c008e10ceaf">&#9670;&nbsp;</a></span>I2C_CFG_CMD_STOP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_CMD_STOP&#160;&#160;&#160;(CSL_I2C_ICMDR_STP_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gacb6f79c21f5bb1479ebd014dec31d406"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacb6f79c21f5bb1479ebd014dec31d406">&#9670;&nbsp;</a></span>I2C_CFG_CMD_START</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_CMD_START&#160;&#160;&#160;(CSL_I2C_ICMDR_STT_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga368f7c75a74e623bcb820392f32f6f47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga368f7c75a74e623bcb820392f32f6f47">&#9670;&nbsp;</a></span>I2C_CFG_CMD_RUN_FREE_ON</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_CMD_RUN_FREE_ON&#160;&#160;&#160;(CSL_I2C_ICMDR_FREE_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga03cd431aa95291438ff1a2dc50e85719"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga03cd431aa95291438ff1a2dc50e85719">&#9670;&nbsp;</a></span>I2C_CFG_CMD_RUN_FREE_OFF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_CMD_RUN_FREE_OFF&#160;&#160;&#160;(0U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga8e576dcf8ccde1730ba05d56b7380d83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8e576dcf8ccde1730ba05d56b7380d83">&#9670;&nbsp;</a></span>I2C_CFG_CMD_REPEAT_MODE_ON</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_CMD_REPEAT_MODE_ON&#160;&#160;&#160;(CSL_I2C_ICMDR_RM_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gaf11dc4b1c680042a02ed62ee5a3838b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf11dc4b1c680042a02ed62ee5a3838b1">&#9670;&nbsp;</a></span>I2C_CFG_CMD_REPEAT_MODE_OFF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_CMD_REPEAT_MODE_OFF&#160;&#160;&#160;(0U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gab4e810e9388a6fb6d85f6d60ead45d7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab4e810e9388a6fb6d85f6d60ead45d7f">&#9670;&nbsp;</a></span>I2C_CFG_CMD_LOOP_BACK_ON</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_CMD_LOOP_BACK_ON&#160;&#160;&#160;(CSL_I2C_ICMDR_DLB_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga203a41d60b928315706193a2792f5e8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga203a41d60b928315706193a2792f5e8d">&#9670;&nbsp;</a></span>I2C_CFG_CMD_LOOP_BACK_OFF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_CMD_LOOP_BACK_OFF&#160;&#160;&#160;(0U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gaa1b12ffc57847026ae91ed1613f969bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa1b12ffc57847026ae91ed1613f969bb">&#9670;&nbsp;</a></span>I2C_CFG_CMD_10BIT_ADDRESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_CMD_10BIT_ADDRESS&#160;&#160;&#160;(<a class="el" href="group__DRV__I2C__LLD__MODULE.html#gaa35111ccee5218b5e7e982a5340c15c3">I2C_CFG_MASK_XA</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gac57baadd3d0e90dc8c54a0e789fa522d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac57baadd3d0e90dc8c54a0e789fa522d">&#9670;&nbsp;</a></span>I2C_CFG_CMD_7BIT_ADDRESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_CFG_CMD_7BIT_ADDRESS&#160;&#160;&#160;(0U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gac010109692dc03addb6c00209c915b2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac010109692dc03addb6c00209c915b2c">&#9670;&nbsp;</a></span>I2C_INT_ARBITRATION_LOST</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_ARBITRATION_LOST&#160;&#160;&#160;(CSL_I2C_ICSTR_AL_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga3d380029b61a2bd7a3c5688f18b9145e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3d380029b61a2bd7a3c5688f18b9145e">&#9670;&nbsp;</a></span>I2C_INT_NO_ACK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_NO_ACK&#160;&#160;&#160;(CSL_I2C_ICSTR_NACK_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga084b97e99a4c2a54811f695b6699f1e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga084b97e99a4c2a54811f695b6699f1e9">&#9670;&nbsp;</a></span>I2C_INT_ADRR_READY_ACESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_ADRR_READY_ACESS&#160;&#160;&#160;(CSL_I2C_ICSTR_ARDY_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gadfc05bc3084d9dfc0064885b59e900c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadfc05bc3084d9dfc0064885b59e900c0">&#9670;&nbsp;</a></span>I2C_INT_RECV_READY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_RECV_READY&#160;&#160;&#160;(CSL_I2C_ICSTR_ICRRDY_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gaf28fb48a2ee9f9f68e71d27f76a9573c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf28fb48a2ee9f9f68e71d27f76a9573c">&#9670;&nbsp;</a></span>I2C_INT_TRANSMIT_READY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_TRANSMIT_READY&#160;&#160;&#160;(CSL_I2C_ICSTR_ICXRDY_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga72c1d12497392f4dd5ec4ce6400c5200"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga72c1d12497392f4dd5ec4ce6400c5200">&#9670;&nbsp;</a></span>I2C_INT_STOP_CONDITION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_STOP_CONDITION&#160;&#160;&#160;(CSL_I2C_ICSTR_SCD_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga307d7f7e53b9cb878a3e6abf2e82d1ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga307d7f7e53b9cb878a3e6abf2e82d1ba">&#9670;&nbsp;</a></span>I2C_INT_ADRR_ZERO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_ADRR_ZERO&#160;&#160;&#160;(CSL_I2C_ICSTR_AD0_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga4a807e13bcf4abc3a2bb7cfc9a748588"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4a807e13bcf4abc3a2bb7cfc9a748588">&#9670;&nbsp;</a></span>I2C_INT_ADRR_TARGET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_ADRR_TARGET&#160;&#160;&#160;(CSL_I2C_ICSTR_AAS_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga4e253549399ea7eec4087006b0381617"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4e253549399ea7eec4087006b0381617">&#9670;&nbsp;</a></span>I2C_INT_TRANSMIT_UNDER_FLOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_TRANSMIT_UNDER_FLOW&#160;&#160;&#160;(CSL_I2C_ICSTR_XSMT_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga6592ee43a851ac305d1ee8f832026099"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6592ee43a851ac305d1ee8f832026099">&#9670;&nbsp;</a></span>I2C_INT_RECV_OVER_RUN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_RECV_OVER_RUN&#160;&#160;&#160;(CSL_I2C_ICSTR_RSFULL_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga4471c913d3fda09badbad20afc12124d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4471c913d3fda09badbad20afc12124d">&#9670;&nbsp;</a></span>I2C_INT_BUS_BUSY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_BUS_BUSY&#160;&#160;&#160;(CSL_I2C_ICSTR_BB_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gae2c2b9c60485f98bc64d200d56addec1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae2c2b9c60485f98bc64d200d56addec1">&#9670;&nbsp;</a></span>I2C_INT_NO_ACK_SENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_NO_ACK_SENT&#160;&#160;&#160;(CSL_I2C_ICSTR_NACKSNT_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gab79704f5038c229da269a20a8b8e9a04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab79704f5038c229da269a20a8b8e9a04">&#9670;&nbsp;</a></span>I2C_INT_TARGET_DIRECTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_TARGET_DIRECTION&#160;&#160;&#160;(CSL_I2C_ICSTR_SDIR_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga061fbfef7aa3a2aa643ea80cb13b36f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga061fbfef7aa3a2aa643ea80cb13b36f1">&#9670;&nbsp;</a></span>I2C_ALL_INTS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_ALL_INTS</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">                                                (   <a class="code" href="group__DRV__I2C__LLD__MODULE.html#gac010109692dc03addb6c00209c915b2c">I2C_INT_ARBITRATION_LOST</a>        |   \</div>
+<div class="line">                                                I2C_INT_NO_ACK                  |   \</div>
+<div class="line">                                                I2C_INT_ADRR_READY_ACESS        |   \</div>
+<div class="line">                                                I2C_INT_RECV_READY              |   \</div>
+<div class="line">                                                I2C_INT_TRANSMIT_READY          |   \</div>
+<div class="line">                                                I2C_INT_STOP_CONDITION          |   \</div>
+<div class="line">                                                I2C_INT_ADRR_ZERO               |   \</div>
+<div class="line">                                                I2C_INT_ADRR_TARGET             |   \</div>
+<div class="line">                                                I2C_INT_TRANSMIT_UNDER_FLOW     |   \</div>
+<div class="line">                                                I2C_INT_RECV_OVER_RUN           |   \</div>
+<div class="line">                                                I2C_INT_BUS_BUSY                |   \</div>
+<div class="line">                                                I2C_INT_NO_ACK_SENT             |   \</div>
+<div class="line">                                                I2C_INT_TARGET_DIRECTION            \</div>
+<div class="line">                                            )</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga318a744edfcc633c8c764a5ba3891b09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga318a744edfcc633c8c764a5ba3891b09">&#9670;&nbsp;</a></span>I2C_INT_MASK_ARBITRATION_LOST</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_MASK_ARBITRATION_LOST&#160;&#160;&#160;(CSL_I2C_ICIMR_AL_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga0a46425bdb5964ae3eddb305c4a11565"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0a46425bdb5964ae3eddb305c4a11565">&#9670;&nbsp;</a></span>I2C_INT_MASK_NO_ACK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_MASK_NO_ACK&#160;&#160;&#160;(CSL_I2C_ICIMR_NACK_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gab989d7009c21042e6afb68407c538c9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab989d7009c21042e6afb68407c538c9b">&#9670;&nbsp;</a></span>I2C_INT_MASK_ADRR_READY_ACESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_MASK_ADRR_READY_ACESS&#160;&#160;&#160;(CSL_I2C_ICIMR_ARDY_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga6fd89f47e7f3158ffccb13fcacd72370"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6fd89f47e7f3158ffccb13fcacd72370">&#9670;&nbsp;</a></span>I2C_INT_MASK_RECV_READY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_MASK_RECV_READY&#160;&#160;&#160;(CSL_I2C_ICIMR_ICRRDY_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga92e02fb5966f148032b609acb9050beb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga92e02fb5966f148032b609acb9050beb">&#9670;&nbsp;</a></span>I2C_INT_MASK_TRANSMIT_READY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_MASK_TRANSMIT_READY&#160;&#160;&#160;(CSL_I2C_ICIMR_ICXRDY_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga27331605cc181e808d5928f99037fd74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga27331605cc181e808d5928f99037fd74">&#9670;&nbsp;</a></span>I2C_INT_MASK_STOP_CONDITION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_MASK_STOP_CONDITION&#160;&#160;&#160;(CSL_I2C_ICIMR_SCD_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga2fe5c7e49abf77c5196ae9a1551cd058"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2fe5c7e49abf77c5196ae9a1551cd058">&#9670;&nbsp;</a></span>I2C_INT_MASK_ADRR_TARGET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_INT_MASK_ADRR_TARGET&#160;&#160;&#160;(CSL_I2C_ICIMR_AAS_MASK)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga82d73287d1ce4c42a0ff04e59089fff6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga82d73287d1ce4c42a0ff04e59089fff6">&#9670;&nbsp;</a></span>I2C_ALL_INTS_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_ALL_INTS_MASK</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">                                                (   <a class="code" href="group__DRV__I2C__LLD__MODULE.html#ga318a744edfcc633c8c764a5ba3891b09">I2C_INT_MASK_ARBITRATION_LOST</a>   |   \</div>
+<div class="line">                                                I2C_INT_MASK_NO_ACK             |   \</div>
+<div class="line">                                                I2C_INT_MASK_ADRR_READY_ACESS   |   \</div>
+<div class="line">                                                I2C_INT_MASK_RECV_READY         |   \</div>
+<div class="line">                                                I2C_INT_MASK_TRANSMIT_READY     |   \</div>
+<div class="line">                                                I2C_INT_MASK_STOP_CONDITION     |   \</div>
+<div class="line">                                                I2C_INT_MASK_ADRR_TARGET            \</div>
+<div class="line">                                            )</div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -1621,9 +2341,227 @@ MACROS used to define the state of the I2C Driver State Machine</h2></td></tr>
 
 </div>
 </div>
+<a id="gad86903ae8313c24fdeb47431fd329703"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad86903ae8313c24fdeb47431fd329703">&#9670;&nbsp;</a></span>I2CControllerControl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void I2CControllerControl </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baseAddr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>ctrlMask</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>ctrlCmds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gac442794faab3ed2eeabfdafc28bccbad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac442794faab3ed2eeabfdafc28bccbad">&#9670;&nbsp;</a></span>I2CSetDataCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void I2CSetDataCount </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baseAddr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga2850223862e77b909b03aed50c541cc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2850223862e77b909b03aed50c541cc9">&#9670;&nbsp;</a></span>I2CControllerStart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void I2CControllerStart </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baseAddr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gae2efb79ec79ae486b77c32b1f5c610c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae2efb79ec79ae486b77c32b1f5c610c1">&#9670;&nbsp;</a></span>I2CControllerIntEnableEx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void I2CControllerIntEnableEx </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baseAddr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>intFlag</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga344e088e32808deed10cd596708fa08e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga344e088e32808deed10cd596708fa08e">&#9670;&nbsp;</a></span>I2CControllerTargetAddrSet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void I2CControllerTargetAddrSet </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baseAddr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>targetAddr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga1ed2ab7d6659a78bc49af9c62feb85cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1ed2ab7d6659a78bc49af9c62feb85cd">&#9670;&nbsp;</a></span>I2CControllerIntClearEx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void I2CControllerIntClearEx </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baseAddr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>intFlag</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga17397d10d875de60e56a77716251aba4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga17397d10d875de60e56a77716251aba4">&#9670;&nbsp;</a></span>I2CModeControl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void I2CModeControl </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baseAddr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>ctrlMask</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>ctrlCmds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gaa76889be522130d6f78bcfcc32e394e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa76889be522130d6f78bcfcc32e394e6">&#9670;&nbsp;</a></span>I2CTargetEnable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void I2CTargetEnable </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baseAddr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="agroup__DRV__I2C__LLD__MODULE_html_ga318a744edfcc633c8c764a5ba3891b09"><div class="ttname"><a href="group__DRV__I2C__LLD__MODULE.html#ga318a744edfcc633c8c764a5ba3891b09">I2C_INT_MASK_ARBITRATION_LOST</a></div><div class="ttdeci">#define I2C_INT_MASK_ARBITRATION_LOST</div><div class="ttdef"><b>Definition:</b> i2c_lld.h:250</div></div>
 <div class="ttc" id="ai2c__lld_8h_html"><div class="ttname"><a href="i2c__lld_8h.html">i2c_lld.h</a></div><div class="ttdoc">I2C LLD Driver API/interface file.</div></div>
+<div class="ttc" id="agroup__DRV__I2C__LLD__MODULE_html_gac010109692dc03addb6c00209c915b2c"><div class="ttname"><a href="group__DRV__I2C__LLD__MODULE.html#gac010109692dc03addb6c00209c915b2c">I2C_INT_ARBITRATION_LOST</a></div><div class="ttdeci">#define I2C_INT_ARBITRATION_LOST</div><div class="ttdef"><b>Definition:</b> i2c_lld.h:221</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -169,7 +169,7 @@ Example Usage</h1>
 <div class="line">    transaction.<a class="code" href="structUART__Transaction.html#a87807cf6f96d87b1cb4107609baeaae9">args</a>    = NULL;</div>
 <div class="line">    transferOK = <a class="code" href="group__DRV__UART__MODULE.html#ga10c9465c727e535023d9097b8b842bf9">UART_write</a>(gUartHandle, &amp;transaction);</div>
 <div class="line">    <span class="keywordflow">if</span>((<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> != transferOK) ||</div>
-<div class="line">       (<a class="code" href="group__DRV__UART__LLD__MODULE.html#gae17e233f9fa3c0076f5d252a6c4cc5da">UART_TRANSFER_STATUS_SUCCESS</a> != transaction.<a class="code" href="structUART__Transaction.html#a854382b26b213a25665e4176a35b18a5">status</a>))</div>
+<div class="line">       (<a class="code" href="group__DRV__UART__LLD__MODULE.html#gae17e233f9fa3c0076f5d252a6c4cc5da">UART_TRANSFER_STATUS_SUCCESS</a> != transaction.<a class="code" href="structUART__Transaction.html#a86a3a73df2d53ed323ee7da6a3cb9c32">status</a>))</div>
 <div class="line">    {</div>
 <div class="line">        <span class="comment">/* UART transfer failed!! */</span></div>
 <div class="line">        <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(FALSE);</div>
@@ -186,14 +186,14 @@ Example Usage</h1>
 <div class="line">    transaction.<a class="code" href="structUART__Transaction.html#a87807cf6f96d87b1cb4107609baeaae9">args</a>    = NULL;</div>
 <div class="line">    transferOK = <a class="code" href="group__DRV__UART__MODULE.html#gab0f66688faa39bad28c36465ac88c538">UART_read</a>(gUartHandle, &amp;transaction);</div>
 <div class="line">    <span class="keywordflow">if</span>((<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> != transferOK) ||</div>
-<div class="line">       (<a class="code" href="group__DRV__UART__LLD__MODULE.html#gae17e233f9fa3c0076f5d252a6c4cc5da">UART_TRANSFER_STATUS_SUCCESS</a> != transaction.<a class="code" href="structUART__Transaction.html#a854382b26b213a25665e4176a35b18a5">status</a>))</div>
+<div class="line">       (<a class="code" href="group__DRV__UART__LLD__MODULE.html#gae17e233f9fa3c0076f5d252a6c4cc5da">UART_TRANSFER_STATUS_SUCCESS</a> != transaction.<a class="code" href="structUART__Transaction.html#a86a3a73df2d53ed323ee7da6a3cb9c32">status</a>))</div>
 <div class="line">    {</div>
 <div class="line">        <span class="comment">/* UART transfer failed!! */</span></div>
 <div class="line">        <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(FALSE);</div>
 <div class="line">    }</div>
 </div><!-- fragment --><p> Write Non-Blocking Transfer Example </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> write_callback(<a class="code" href="group__DRV__UART__MODULE.html#ga9a2cb7a6a7cd3136a2299f155ebd0a36">UART_Handle</a> handle, <a class="code" href="structUART__Transaction.html">UART_Transaction</a> *trans)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga7824b4e99fe103a171fbc355a1c01c67">DebugP_assertNoLog</a>(<a class="code" href="group__DRV__UART__LLD__MODULE.html#gae17e233f9fa3c0076f5d252a6c4cc5da">UART_TRANSFER_STATUS_SUCCESS</a> == trans-&gt;<a class="code" href="structUART__Transaction.html#a854382b26b213a25665e4176a35b18a5">status</a>);</div>
+<div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga7824b4e99fe103a171fbc355a1c01c67">DebugP_assertNoLog</a>(<a class="code" href="group__DRV__UART__LLD__MODULE.html#gae17e233f9fa3c0076f5d252a6c4cc5da">UART_TRANSFER_STATUS_SUCCESS</a> == trans-&gt;<a class="code" href="structUART__Transaction.html#a86a3a73df2d53ed323ee7da6a3cb9c32">status</a>);</div>
 <div class="line">    gNumBytesWritten = trans-&gt;<a class="code" href="structUART__Transaction.html#a32842a6d05bd3dc31d31a8502da5e190">count</a>;</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga23075425da4d8a65a53209b5fdd3fafe">SemaphoreP_post</a>(&amp;gUartWriteDoneSem);</div>
 <div class="line"> </div>
@@ -214,7 +214,7 @@ Example Usage</h1>
 <div class="line">    transaction.<a class="code" href="structUART__Transaction.html#a87807cf6f96d87b1cb4107609baeaae9">args</a>    = NULL;</div>
 <div class="line">    transferOK = <a class="code" href="group__DRV__UART__MODULE.html#ga10c9465c727e535023d9097b8b842bf9">UART_write</a>(gUartHandle, &amp;transaction);</div>
 <div class="line">    <span class="keywordflow">if</span>((<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> != transferOK) ||</div>
-<div class="line">       (<a class="code" href="group__DRV__UART__LLD__MODULE.html#gae17e233f9fa3c0076f5d252a6c4cc5da">UART_TRANSFER_STATUS_SUCCESS</a> != transaction.<a class="code" href="structUART__Transaction.html#a854382b26b213a25665e4176a35b18a5">status</a>))</div>
+<div class="line">       (<a class="code" href="group__DRV__UART__LLD__MODULE.html#gae17e233f9fa3c0076f5d252a6c4cc5da">UART_TRANSFER_STATUS_SUCCESS</a> != transaction.<a class="code" href="structUART__Transaction.html#a86a3a73df2d53ed323ee7da6a3cb9c32">status</a>))</div>
 <div class="line">    {</div>
 <div class="line">        <span class="comment">/* UART transfer failed!! */</span></div>
 <div class="line">        <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(FALSE);</div>
@@ -228,7 +228,7 @@ Example Usage</h1>
 <div class="line">}</div>
 </div><!-- fragment --><p> Read Non-Blocking Transfer Example </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> read_callback(<a class="code" href="group__DRV__UART__MODULE.html#ga9a2cb7a6a7cd3136a2299f155ebd0a36">UART_Handle</a> handle, <a class="code" href="structUART__Transaction.html">UART_Transaction</a> *trans)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga7824b4e99fe103a171fbc355a1c01c67">DebugP_assertNoLog</a>(<a class="code" href="group__DRV__UART__LLD__MODULE.html#gae17e233f9fa3c0076f5d252a6c4cc5da">UART_TRANSFER_STATUS_SUCCESS</a> == trans-&gt;<a class="code" href="structUART__Transaction.html#a854382b26b213a25665e4176a35b18a5">status</a>);</div>
+<div class="line">    <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga7824b4e99fe103a171fbc355a1c01c67">DebugP_assertNoLog</a>(<a class="code" href="group__DRV__UART__LLD__MODULE.html#gae17e233f9fa3c0076f5d252a6c4cc5da">UART_TRANSFER_STATUS_SUCCESS</a> == trans-&gt;<a class="code" href="structUART__Transaction.html#a86a3a73df2d53ed323ee7da6a3cb9c32">status</a>);</div>
 <div class="line">    gNumBytesRead = trans-&gt;<a class="code" href="structUART__Transaction.html#a32842a6d05bd3dc31d31a8502da5e190">count</a>;</div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga23075425da4d8a65a53209b5fdd3fafe">SemaphoreP_post</a>(&amp;gUartReadDoneSem);</div>
 <div class="line"> </div>
@@ -249,7 +249,7 @@ Example Usage</h1>
 <div class="line">    transaction.<a class="code" href="structUART__Transaction.html#a87807cf6f96d87b1cb4107609baeaae9">args</a>    = NULL;</div>
 <div class="line">    transferOK = <a class="code" href="group__DRV__UART__MODULE.html#gab0f66688faa39bad28c36465ac88c538">UART_read</a>(gUartHandle, &amp;transaction);</div>
 <div class="line">    <span class="keywordflow">if</span>((<a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a> != transferOK) ||</div>
-<div class="line">       (<a class="code" href="group__DRV__UART__LLD__MODULE.html#gae17e233f9fa3c0076f5d252a6c4cc5da">UART_TRANSFER_STATUS_SUCCESS</a> != transaction.<a class="code" href="structUART__Transaction.html#a854382b26b213a25665e4176a35b18a5">status</a>))</div>
+<div class="line">       (<a class="code" href="group__DRV__UART__LLD__MODULE.html#gae17e233f9fa3c0076f5d252a6c4cc5da">UART_TRANSFER_STATUS_SUCCESS</a> != transaction.<a class="code" href="structUART__Transaction.html#a86a3a73df2d53ed323ee7da6a3cb9c32">status</a>))</div>
 <div class="line">    {</div>
 <div class="line">        <span class="comment">/* UART transfer failed!! */</span></div>
 <div class="line">        <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(FALSE);</div>
@@ -274,12 +274,12 @@ API</h1>
 <div class="ttc" id="agroup__DRV__UART__MODULE_html_ga10c9465c727e535023d9097b8b842bf9"><div class="ttname"><a href="group__DRV__UART__MODULE.html#ga10c9465c727e535023d9097b8b842bf9">UART_write</a></div><div class="ttdeci">int32_t UART_write(UART_Handle handle, UART_Transaction *trans)</div><div class="ttdoc">Function to perform UART write operation.</div></div>
 <div class="ttc" id="agroup__DRV__UART__MODULE_html_ga6b49b65f3db709c408dc4db23a68895d"><div class="ttname"><a href="group__DRV__UART__MODULE.html#ga6b49b65f3db709c408dc4db23a68895d">UART_close</a></div><div class="ttdeci">void UART_close(UART_Handle handle)</div><div class="ttdoc">Function to close a UART peripheral specified by the UART handle.</div></div>
 <div class="ttc" id="auart_8h_html"><div class="ttname"><a href="uart_8h.html">uart.h</a></div></div>
+<div class="ttc" id="astructUART__Transaction_html_a86a3a73df2d53ed323ee7da6a3cb9c32"><div class="ttname"><a href="structUART__Transaction.html#a86a3a73df2d53ed323ee7da6a3cb9c32">UART_Transaction::status</a></div><div class="ttdeci">int32_t status</div><div class="ttdef"><b>Definition:</b> uart_lld.h:467</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga7824b4e99fe103a171fbc355a1c01c67"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga7824b4e99fe103a171fbc355a1c01c67">DebugP_assertNoLog</a></div><div class="ttdeci">#define DebugP_assertNoLog(expression)</div><div class="ttdoc">Function to call for assert check, no logs are printed.</div><div class="ttdef"><b>Definition:</b> DebugP.h:199</div></div>
 <div class="ttc" id="agroup__DRV__UART__MODULE_html_ga9a2cb7a6a7cd3136a2299f155ebd0a36"><div class="ttname"><a href="group__DRV__UART__MODULE.html#ga9a2cb7a6a7cd3136a2299f155ebd0a36">UART_Handle</a></div><div class="ttdeci">struct UART_Config_s * UART_Handle</div><div class="ttdef"><b>Definition:</b> uart/v0/uart.h:71</div></div>
 <div class="ttc" id="astructUART__Params_html"><div class="ttname"><a href="structUART__Params.html">UART_Params</a></div><div class="ttdoc">UART Parameters.</div><div class="ttdef"><b>Definition:</b> uart/v0/uart.h:120</div></div>
 <div class="ttc" id="astructUART__Params_html_afadb98d0a0ef6e17240bab79306e7828"><div class="ttname"><a href="structUART__Params.html#afadb98d0a0ef6e17240bab79306e7828">UART_Params::baudRate</a></div><div class="ttdeci">uint32_t baudRate</div><div class="ttdef"><b>Definition:</b> uart/v0/uart.h:121</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SYSTEM_html_ga47e638d7c694e6d42e57b96b071b8a6f"><div class="ttname"><a href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a></div><div class="ttdeci">#define SystemP_SUCCESS</div><div class="ttdoc">Return status when the API execution was successful.</div><div class="ttdef"><b>Definition:</b> SystemP.h:56</div></div>
-<div class="ttc" id="astructUART__Transaction_html_a854382b26b213a25665e4176a35b18a5"><div class="ttname"><a href="structUART__Transaction.html#a854382b26b213a25665e4176a35b18a5">UART_Transaction::status</a></div><div class="ttdeci">uint32_t status</div><div class="ttdef"><b>Definition:</b> uart_lld.h:467</div></div>
 <div class="ttc" id="astructUART__Transaction_html"><div class="ttname"><a href="structUART__Transaction.html">UART_Transaction</a></div><div class="ttdoc">Data structure used with UART_read() and UART_write()</div><div class="ttdef"><b>Definition:</b> uart_lld.h:457</div></div>
 <div class="ttc" id="agroup__DRV__UART__MODULE_html_gab540e9ef2a649eeff29085cfa653d097"><div class="ttname"><a href="group__DRV__UART__MODULE.html#gab540e9ef2a649eeff29085cfa653d097">UART_open</a></div><div class="ttdeci">UART_Handle UART_open(uint32_t index, const UART_Params *prms)</div><div class="ttdoc">This function opens a given UART peripheral.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SEMAPHORE_html_ga23075425da4d8a65a53209b5fdd3fafe"><div class="ttname"><a href="group__KERNEL__DPL__SEMAPHORE.html#ga23075425da4d8a65a53209b5fdd3fafe">SemaphoreP_post</a></div><div class="ttdeci">void SemaphoreP_post(SemaphoreP_Object *obj)</div><div class="ttdoc">Post a semaphore object or unlock a mutex.</div></div>

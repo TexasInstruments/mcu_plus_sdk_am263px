@@ -47,6 +47,7 @@
 #include <drivers/hw_include/cslr.h>
 #include <security_common/drivers/crypto/pka/hw_include/cslr_cp_ace.h>
 #include <drivers/hw_include/cslr_soc.h>
+#include <drivers/hw_include/csl_types.h>
 /* ========================================================================== */
 /*                          Global variables                                  */
 /* ========================================================================== */
@@ -82,7 +83,7 @@ RNG_Handle RNG_open(uint32_t index)
     else
     {
         config = &gRngConfig[index];
-        DebugP_assert(NULL != config->attrs);
+        DebugP_assert((NULL_PTR != config->attrs));
         attrs = config->attrs;
         if(TRUE == attrs->isOpen)
         {
@@ -112,7 +113,7 @@ RNG_Return_t RNG_close(RNG_Handle handle)
     if((NULL != config) && (config->attrs->isOpen != (uint32_t)FALSE))
     {
         attrs = config->attrs;
-        DebugP_assert(NULL != attrs);
+        DebugP_assert((NULL_PTR != attrs));
         attrs->isOpen = FALSE;
         /* TO module disable */
         handle = NULL;

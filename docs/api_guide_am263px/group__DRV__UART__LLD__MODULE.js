@@ -9,7 +9,7 @@ var group__DRV__UART__LLD__MODULE =
       [ "buf", "structUART__Transaction.html#a6c4f6bad66a3b2e1ff61e26c7e958686", null ],
       [ "count", "structUART__Transaction.html#a32842a6d05bd3dc31d31a8502da5e190", null ],
       [ "timeout", "structUART__Transaction.html#aa25597b80a7a7980990841ada040b5bd", null ],
-      [ "status", "structUART__Transaction.html#a854382b26b213a25665e4176a35b18a5", null ],
+      [ "status", "structUART__Transaction.html#a86a3a73df2d53ed323ee7da6a3cb9c32", null ],
       [ "args", "structUART__Transaction.html#a87807cf6f96d87b1cb4107609baeaae9", null ]
     ] ],
     [ "UARTLLD_InitObject", "structUARTLLD__InitObject.html", [

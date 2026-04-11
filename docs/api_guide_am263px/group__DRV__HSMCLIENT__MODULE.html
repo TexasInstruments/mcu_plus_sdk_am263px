@@ -161,6 +161,18 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFlashBankCopy__t.html">FlashBankCopy_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is active bank to dormant bank copy request structure passed to HSM core via SIPC as argument, these parameters are required by the service handler. Valid only for F29x family of devices.  <a href="structFlashBankCopy__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCryptoServiceReq__t.html">CryptoServiceReq_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outer request struct for HSM_MSG_CRYPTO_SERVICE. Note: These services are only available in HSSE mode.  <a href="structCryptoServiceReq__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCMACArgs__t.html">CMACArgs_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Args for CMAC generate and verify Note: These services are only available in HSSE mode.  <a href="structCMACArgs__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHMACArgs__t.html">HMACArgs_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Args for HMAC generate and verify Note: These services are only available in HSSE mode.  <a href="structHMACArgs__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGMACArgs__t.html">GMACArgs_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Args for GMAC generate and verify Note: These services are only available in HSSE mode.  <a href="structGMACArgs__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHsmMsg__t__.html">HsmMsg_t_</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">HSM client / server message format struct.  <a href="structHsmMsg__t__.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -287,6 +299,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gabe2810b39dc269a55fcca419c65eb87c"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gabe2810b39dc269a55fcca419c65eb87c">HsmClient_SecCfgUpdate</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structFirmwareUpdateReq__t.html">FirmwareUpdateReq_t</a> *pFirmwareUpdateObject)</td></tr>
 <tr class="memdesc:gabe2810b39dc269a55fcca419c65eb87c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client request to update device Sec-Cfg Valid only for F29x family of devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#gabe2810b39dc269a55fcca419c65eb87c">More...</a><br /></td></tr>
 <tr class="separator:gabe2810b39dc269a55fcca419c65eb87c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaad4edba07fb1e870a576a281a48d1472"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gaad4edba07fb1e870a576a281a48d1472">HsmClient_CryptoService</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structCryptoServiceReq__t.html">CryptoServiceReq_t</a> *svcReq, uint32_t timeout)</td></tr>
+<tr class="memdesc:gaad4edba07fb1e870a576a281a48d1472"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submit a generic crypto service request to the HSM. Set svcReq-&gt;algoId to the algorithm (HSM_CRYPTO_SVC_MAC_CMAC, etc.) and svcReq-&gt;subSvcId to the operation (HSM_CRYPTO_SVC_MAC_GENERATE, etc.). Set svcReq-&gt;keyId to the keyring index and point svcReq-&gt;ptrArgs at the corresponding args struct (e.g. <a class="el" href="structCMACArgs__t.html" title="Args for CMAC generate and verify Note: These services are only available in HSSE mode.">CMACArgs_t</a>).  <a href="group__DRV__HSMCLIENT__MODULE.html#gaad4edba07fb1e870a576a281a48d1472">More...</a><br /></td></tr>
+<tr class="separator:gaad4edba07fb1e870a576a281a48d1472"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -317,6 +332,27 @@ Macros</h2></td></tr>
 <tr class="memitem:gad45cb0a88284e85531b0d6d19cd2ef7a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gad45cb0a88284e85531b0d6d19cd2ef7a">HSMRT_LOAD_SUCCEEDED</a>&#160;&#160;&#160;(3U)</td></tr>
 <tr class="memdesc:gad45cb0a88284e85531b0d6d19cd2ef7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">HSMRT load has succeeded.  <a href="group__DRV__HSMCLIENT__MODULE.html#gad45cb0a88284e85531b0d6d19cd2ef7a">More...</a><br /></td></tr>
 <tr class="separator:gad45cb0a88284e85531b0d6d19cd2ef7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac2aa278255ffe425a65ab2dca77fbb32"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gac2aa278255ffe425a65ab2dca77fbb32">HSM_CRYPTO_SVC_MAC_CMAC</a>&#160;&#160;&#160;(0x0001U)</td></tr>
+<tr class="memdesc:gac2aa278255ffe425a65ab2dca77fbb32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Algorithm: AES-CMAC.  <a href="group__DRV__HSMCLIENT__MODULE.html#gac2aa278255ffe425a65ab2dca77fbb32">More...</a><br /></td></tr>
+<tr class="separator:gac2aa278255ffe425a65ab2dca77fbb32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga31f785dc1e5b969568af49c3b953dd63"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga31f785dc1e5b969568af49c3b953dd63">HSM_CRYPTO_SVC_MAC_HMAC</a>&#160;&#160;&#160;(0x0002U)</td></tr>
+<tr class="memdesc:ga31f785dc1e5b969568af49c3b953dd63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Algorithm: HMAC.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga31f785dc1e5b969568af49c3b953dd63">More...</a><br /></td></tr>
+<tr class="separator:ga31f785dc1e5b969568af49c3b953dd63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa11b7308e28aa5969c5f1237a5c73e92"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gaa11b7308e28aa5969c5f1237a5c73e92">HSM_CRYPTO_SVC_MAC_GMAC</a>&#160;&#160;&#160;(0x0003U)</td></tr>
+<tr class="memdesc:gaa11b7308e28aa5969c5f1237a5c73e92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Algorithm: GMAC.  <a href="group__DRV__HSMCLIENT__MODULE.html#gaa11b7308e28aa5969c5f1237a5c73e92">More...</a><br /></td></tr>
+<tr class="separator:gaa11b7308e28aa5969c5f1237a5c73e92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabde208cfde8f4c3e184a069e980506be"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gabde208cfde8f4c3e184a069e980506be">HSM_CRYPTO_HMAC_SHA256</a>&#160;&#160;&#160;(0x6U)  /* matches <a class="el" href="group__SECURITY__DTHE__SHA__MODULE.html#ga1cc2a75bc35a38384fcea26817285a5d">DTHE_SHA_ALGO_SHA256</a> */</td></tr>
+<tr class="memdesc:gabde208cfde8f4c3e184a069e980506be"><td class="mdescLeft">&#160;</td><td class="mdescRight">HMAC with SHA-256 (32-byte tag)  <a href="group__DRV__HSMCLIENT__MODULE.html#gabde208cfde8f4c3e184a069e980506be">More...</a><br /></td></tr>
+<tr class="separator:gabde208cfde8f4c3e184a069e980506be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2eff52e2a637493759a58c49fd00d342"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga2eff52e2a637493759a58c49fd00d342">HSM_CRYPTO_HMAC_SHA512</a>&#160;&#160;&#160;(0x4U)  /* matches <a class="el" href="group__SECURITY__DTHE__SHA__MODULE.html#gaad1e3176527bac22f19b95f7ed3e0214">DTHE_SHA_ALGO_SHA512</a> */</td></tr>
+<tr class="memdesc:ga2eff52e2a637493759a58c49fd00d342"><td class="mdescLeft">&#160;</td><td class="mdescRight">HMAC with SHA-512 (64-byte tag)  <a href="group__DRV__HSMCLIENT__MODULE.html#ga2eff52e2a637493759a58c49fd00d342">More...</a><br /></td></tr>
+<tr class="separator:ga2eff52e2a637493759a58c49fd00d342"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa1137cd2a6c85b146d9716c963045199"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gaa1137cd2a6c85b146d9716c963045199">HSM_CRYPTO_SVC_MAC_GENERATE</a>&#160;&#160;&#160;(0x0001U)</td></tr>
+<tr class="memdesc:gaa1137cd2a6c85b146d9716c963045199"><td class="mdescLeft">&#160;</td><td class="mdescRight">MAC: compute tag and write to ptrTag (used for CMAC, HMAC, GMAC)  <a href="group__DRV__HSMCLIENT__MODULE.html#gaa1137cd2a6c85b146d9716c963045199">More...</a><br /></td></tr>
+<tr class="separator:gaa1137cd2a6c85b146d9716c963045199"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab6aabab2d08d4c5e94e88037e24556b3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gab6aabab2d08d4c5e94e88037e24556b3">HSM_CRYPTO_SVC_MAC_VERIFY</a>&#160;&#160;&#160;(0x0002U)</td></tr>
+<tr class="memdesc:gab6aabab2d08d4c5e94e88037e24556b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">MAC: compute tag and compare against ptrTag (used for CMAC, HMAC, GMAC)  <a href="group__DRV__HSMCLIENT__MODULE.html#gab6aabab2d08d4c5e94e88037e24556b3">More...</a><br /></td></tr>
+<tr class="separator:gab6aabab2d08d4c5e94e88037e24556b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadf3a90c05d8c1565e696412e009e54d5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gadf3a90c05d8c1565e696412e009e54d5">HSM_MSG_GET_VERSION</a>&#160;&#160;&#160;(0x0002)</td></tr>
 <tr class="memdesc:gadf3a90c05d8c1565e696412e009e54d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">GetVersion service type ID.  <a href="group__DRV__HSMCLIENT__MODULE.html#gadf3a90c05d8c1565e696412e009e54d5">More...</a><br /></td></tr>
 <tr class="separator:gadf3a90c05d8c1565e696412e009e54d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -410,6 +446,9 @@ Macros</h2></td></tr>
 <tr class="memitem:ga961b6e9ba945d256aed207d40283f16f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga961b6e9ba945d256aed207d40283f16f">HSM_MSG_FW_UPDATE_SECCFG</a>&#160;&#160;&#160;(0x905AU)</td></tr>
 <tr class="memdesc:ga961b6e9ba945d256aed207d40283f16f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Program Sec-Cfg to SOC non main flash.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga961b6e9ba945d256aed207d40283f16f">More...</a><br /></td></tr>
 <tr class="separator:ga961b6e9ba945d256aed207d40283f16f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga53441a5d8285223de54f3ae2729a94e7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga53441a5d8285223de54f3ae2729a94e7">HSM_MSG_CRYPTO_SERVICE</a>&#160;&#160;&#160;(0xA001U)</td></tr>
+<tr class="memdesc:ga53441a5d8285223de54f3ae2729a94e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic Crypto service ID.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga53441a5d8285223de54f3ae2729a94e7">More...</a><br /></td></tr>
+<tr class="separator:ga53441a5d8285223de54f3ae2729a94e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0842e3d812796be34207849e8dc8dc3a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga0842e3d812796be34207849e8dc8dc3a">HSM_FLAG_AOP</a>&#160;&#160;&#160;(0x11)</td></tr>
 <tr class="memdesc:ga0842e3d812796be34207849e8dc8dc3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">HSM FLAG used by HSM client to indicate that it expects ACK messasge from HSM and will wait for a response message.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga0842e3d812796be34207849e8dc8dc3a">More...</a><br /></td></tr>
 <tr class="separator:ga0842e3d812796be34207849e8dc8dc3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -532,6 +571,118 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>HSMRT load has succeeded. </p>
+
+</div>
+</div>
+<a id="gac2aa278255ffe425a65ab2dca77fbb32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac2aa278255ffe425a65ab2dca77fbb32">&#9670;&nbsp;</a></span>HSM_CRYPTO_SVC_MAC_CMAC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSM_CRYPTO_SVC_MAC_CMAC&#160;&#160;&#160;(0x0001U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Algorithm: AES-CMAC. </p>
+
+</div>
+</div>
+<a id="ga31f785dc1e5b969568af49c3b953dd63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga31f785dc1e5b969568af49c3b953dd63">&#9670;&nbsp;</a></span>HSM_CRYPTO_SVC_MAC_HMAC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSM_CRYPTO_SVC_MAC_HMAC&#160;&#160;&#160;(0x0002U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Algorithm: HMAC. </p>
+
+</div>
+</div>
+<a id="gaa11b7308e28aa5969c5f1237a5c73e92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa11b7308e28aa5969c5f1237a5c73e92">&#9670;&nbsp;</a></span>HSM_CRYPTO_SVC_MAC_GMAC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSM_CRYPTO_SVC_MAC_GMAC&#160;&#160;&#160;(0x0003U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Algorithm: GMAC. </p>
+
+</div>
+</div>
+<a id="gabde208cfde8f4c3e184a069e980506be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabde208cfde8f4c3e184a069e980506be">&#9670;&nbsp;</a></span>HSM_CRYPTO_HMAC_SHA256</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSM_CRYPTO_HMAC_SHA256&#160;&#160;&#160;(0x6U)  /* matches <a class="el" href="group__SECURITY__DTHE__SHA__MODULE.html#ga1cc2a75bc35a38384fcea26817285a5d">DTHE_SHA_ALGO_SHA256</a> */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>HMAC with SHA-256 (32-byte tag) </p>
+
+</div>
+</div>
+<a id="ga2eff52e2a637493759a58c49fd00d342"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2eff52e2a637493759a58c49fd00d342">&#9670;&nbsp;</a></span>HSM_CRYPTO_HMAC_SHA512</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSM_CRYPTO_HMAC_SHA512&#160;&#160;&#160;(0x4U)  /* matches <a class="el" href="group__SECURITY__DTHE__SHA__MODULE.html#gaad1e3176527bac22f19b95f7ed3e0214">DTHE_SHA_ALGO_SHA512</a> */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>HMAC with SHA-512 (64-byte tag) </p>
+
+</div>
+</div>
+<a id="gaa1137cd2a6c85b146d9716c963045199"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa1137cd2a6c85b146d9716c963045199">&#9670;&nbsp;</a></span>HSM_CRYPTO_SVC_MAC_GENERATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSM_CRYPTO_SVC_MAC_GENERATE&#160;&#160;&#160;(0x0001U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MAC: compute tag and write to ptrTag (used for CMAC, HMAC, GMAC) </p>
+
+</div>
+</div>
+<a id="gab6aabab2d08d4c5e94e88037e24556b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab6aabab2d08d4c5e94e88037e24556b3">&#9670;&nbsp;</a></span>HSM_CRYPTO_SVC_MAC_VERIFY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSM_CRYPTO_SVC_MAC_VERIFY&#160;&#160;&#160;(0x0002U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MAC: compute tag and compare against ptrTag (used for CMAC, HMAC, GMAC) </p>
 
 </div>
 </div>
@@ -1028,6 +1179,22 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Program Sec-Cfg to SOC non main flash. </p>
+
+</div>
+</div>
+<a id="ga53441a5d8285223de54f3ae2729a94e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga53441a5d8285223de54f3ae2729a94e7">&#9670;&nbsp;</a></span>HSM_MSG_CRYPTO_SERVICE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSM_MSG_CRYPTO_SERVICE&#160;&#160;&#160;(0xA001U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generic Crypto service ID. </p>
 
 </div>
 </div>
@@ -3004,6 +3171,51 @@ Macros</h2></td></tr>
 <li>SystemP_FAILURE if NACK message is received or client id not registered. </li>
 </ol>
 </dd></dl>
+
+</div>
+</div>
+<a id="gaad4edba07fb1e870a576a281a48d1472"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaad4edba07fb1e870a576a281a48d1472">&#9670;&nbsp;</a></span>HsmClient_CryptoService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t HsmClient_CryptoService </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structHsmClient__t.html">HsmClient_t</a> *&#160;</td>
+          <td class="paramname"><em>HsmClient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCryptoServiceReq__t.html">CryptoServiceReq_t</a> *&#160;</td>
+          <td class="paramname"><em>svcReq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Submit a generic crypto service request to the HSM. Set svcReq-&gt;algoId to the algorithm (HSM_CRYPTO_SVC_MAC_CMAC, etc.) and svcReq-&gt;subSvcId to the operation (HSM_CRYPTO_SVC_MAC_GENERATE, etc.). Set svcReq-&gt;keyId to the keyring index and point svcReq-&gt;ptrArgs at the corresponding args struct (e.g. <a class="el" href="structCMACArgs__t.html" title="Args for CMAC generate and verify Note: These services are only available in HSSE mode.">CMACArgs_t</a>). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HsmClient</td><td>[IN] HsmClient object </td></tr>
+    <tr><td class="paramname">svcReq</td><td>[IN/OUT] Pointer to <a class="el" href="structCryptoServiceReq__t.html" title="Outer request struct for HSM_MSG_CRYPTO_SERVICE. Note: These services are only available in HSSE mode...">CryptoServiceReq_t</a>; for generate operations, output is written to ptrTag on success </td></tr>
+    <tr><td class="paramname">timeout</td><td>[IN] Timeout in ticks (SystemP_WAIT_FOREVER to block)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SystemP_SUCCESS on ACK, SystemP_FAILURE on NACK or error. </dd></dl>
 
 </div>
 </div>

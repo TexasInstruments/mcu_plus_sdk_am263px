@@ -44,6 +44,7 @@
 #include <string.h>
 #include <security_common/drivers/crypto/dthe/dthe.h>
 #include <drivers/hw_include/cslr.h>
+#include <drivers/hw_include/csl_types.h>
 
 /* ========================================================================== */
 /*                           Macros & Typedefs                                */
@@ -85,7 +86,7 @@ DTHE_Handle DTHE_open(uint32_t index)
     else
     {
         config = &gDtheConfig[index];
-        DebugP_assert(NULL != config->attrs);
+        DebugP_assert((NULL_PTR != config->attrs));
         attrs = config->attrs;
         if(TRUE == attrs->isOpen)
         {
@@ -123,7 +124,7 @@ DTHE_Return_t DTHE_close(DTHE_Handle handle)
 		if(config->attrs->isOpen != (uint32_t)FALSE)
 		{
 			attrs = config->attrs;
-			DebugP_assert(NULL != attrs);
+			DebugP_assert((NULL_PTR != attrs));
 			attrs->isOpen = FALSE;
 			/* To disable module */
 			handle = NULL;

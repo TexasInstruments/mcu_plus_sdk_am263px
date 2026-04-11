@@ -76,6 +76,38 @@ extern "C"
  */
 #define HSMRT_LOAD_SUCCEEDED (3U)
 
+/* 
+ * -------------------------------------------------------------------------
+ * Algorithm selectors — used in CryptoServiceReq_t.algoId
+ * -------------------------------------------------------------------------
+ */
+/** @brief Algorithm: AES-CMAC */
+#define HSM_CRYPTO_SVC_MAC_CMAC  (0x0001U)
+/** @brief Algorithm: HMAC */
+#define HSM_CRYPTO_SVC_MAC_HMAC  (0x0002U)
+/** @brief Algorithm: GMAC */
+#define HSM_CRYPTO_SVC_MAC_GMAC  (0x0003U)
+
+/* 
+ * -------------------------------------------------------------------------
+ * Hash mode selectors for HMAC — used in HMACArgs_t.hashMode
+ * -------------------------------------------------------------------------
+ */
+/** @brief HMAC with SHA-256 (32-byte tag) */
+#define HSM_CRYPTO_HMAC_SHA256  (0x6U)  /* matches DTHE_SHA_ALGO_SHA256 */
+/** @brief HMAC with SHA-512 (64-byte tag) */
+#define HSM_CRYPTO_HMAC_SHA512  (0x4U)  /* matches DTHE_SHA_ALGO_SHA512 */
+
+/* 
+ * -------------------------------------------------------------------------
+ * Sub-service selectors — used in CryptoServiceReq_t.subSvcId
+ * -------------------------------------------------------------------------
+ */
+/** @brief MAC: compute tag and write to ptrTag (used for CMAC, HMAC, GMAC) */
+#define HSM_CRYPTO_SVC_MAC_GENERATE  (0x0001U)
+/** @brief MAC: compute tag and compare against ptrTag (used for CMAC, HMAC, GMAC) */
+#define HSM_CRYPTO_SVC_MAC_VERIFY    (0x0002U)
+
     /**
      * @brief
      * type for reading HSMRt version.
@@ -397,6 +429,94 @@ typedef struct FlashBankCopy_t_
 {
     uint8_t cpuFlashBankType;  /** CPU for which this service is invoked */
 } FlashBankCopy_t;
+
+/**
+ * @brief
+ * Outer request struct for HSM_MSG_CRYPTO_SERVICE.
+ * Note: These services are only available in HSSE mode
+ *
+ * @param algoId     Algorithm selector: HSM_CRYPTO_SVC_MAC_CMAC, etc.
+ * @param subSvcId   Operation selector: HSM_CRYPTO_SVC_MAC_GENERATE, etc.
+ * @param keyId      Symmetric key index in the HSM keyring (CRC protected).
+ * @param errCode    Error code returned by the HSM Crypto Wrapper on response.
+ * @param ptrArgs    Pointer to the algorithm-specific args struct.
+ */
+typedef struct CryptoServiceReq_t_
+{
+    uint32_t  algoId;     /**< Algorithm selector: HSM_CRYPTO_SVC_MAC_* */
+    uint32_t  subSvcId;   /**< Operation selector: HSM_CRYPTO_SVC_MAC_GENERATE/VERIFY */
+    uint32_t  keyId;      /**< Symmetric key index in the keyring (CRC protected) */
+    uint32_t  errCode;    /**< Error code returned by HSM Crypto Wrapper */
+    void     *ptrArgs;    /**< Algorithm-specific args struct pointer */
+} CryptoServiceReq_t;
+
+/**
+ * @brief
+ * Args for CMAC generate and verify
+ * Note: These services are only available in HSSE mode
+ *
+ * Generate: on return ptrTag holds the full 16-byte AES-CMAC output.
+ * Verify:   ptrTag must contain the expected 16-byte tag.
+ *           ACK if tags match, NACK otherwise.
+ *
+ * @param ptrData  Pointer to input data in shared memory
+ * @param dataLen  Length of input data in bytes
+ * @param ptrTag   Pointer to 16-byte tag buffer (output for generate,
+ *                 expected tag for verify)
+ */
+typedef struct CMACArgs_t_
+{
+    uint8_t  *ptrData;   /**< Pointer to input data in shared memory */
+    uint32_t  dataLen;   /**< Input data length in bytes */
+    uint8_t  *ptrTag;    /**< Pointer to 16-byte MAC tag */
+} CMACArgs_t;
+
+/**
+ * @brief
+ * Args for HMAC generate and verify
+ * Note: These services are only available in HSSE mode
+ *
+ * Generate: on return ptrTag holds the HMAC output
+ *           (32 bytes for SHA-256, 64 bytes for SHA-512).
+ * Verify:   ptrTag must contain the expected tag.
+ *           ACK if tags match, NACK otherwise.
+ *
+ * @param hashMode Hash mode: HSM_CRYPTO_HMAC_SHA256 or HSM_CRYPTO_HMAC_SHA512
+ * @param ptrData  Pointer to input data in shared memory
+ * @param dataLen  Length of input data in bytes
+ * @param ptrTag   Pointer to MAC tag buffer (32 bytes for SHA-256, 64 bytes for SHA-512)
+ */
+typedef struct HMACArgs_t_
+{
+    uint32_t  hashMode;  /**< Hash mode selector: SHA-256 or SHA-512 */
+    uint8_t  *ptrData;   /**< Pointer to input data in shared memory */
+    uint32_t  dataLen;   /**< Input data length in bytes */
+    uint8_t  *ptrTag;    /**< Pointer to MAC tag buffer */
+} HMACArgs_t;
+
+/**
+ * @brief
+ * Args for GMAC generate and verify
+ * Note: These services are only available in HSSE mode
+ * 
+ * Generate: on return ptrTag holds the full 16-byte GMAC output.
+ * Verify:   ptrTag must contain the expected 16-byte tag.
+ *           ACK if tags match, NACK otherwise.
+ *
+ * @param ptrData  Pointer to input data in shared memory
+ * @param dataLen  Length of input data in bytes
+ * @param ptrTag   Pointer to 16-byte tag buffer
+ * @param ptrIV    Pointer to IV buffer
+ * @param ivLen    Length of IV in bytes
+ */
+typedef struct GMACArgs_t_
+{
+    uint8_t  *ptrData;   /**< Pointer to input data in shared memory */
+    uint32_t  dataLen;   /**< Input data length in bytes */
+    uint8_t  *ptrTag;    /**< Pointer to 16-byte tag buffer */
+    uint8_t  *ptrIV;     /**< Pointer to IV buffer */
+    uint32_t  ivLen;     /**< IV length in bytes */
+} GMACArgs_t;
 
     /**
      * @brief
@@ -1001,6 +1121,24 @@ int32_t HsmClient_activeToDormantBankCopy(HsmClient_t *HsmClient,
  */
 int32_t HsmClient_SecCfgUpdate(HsmClient_t *HsmClient,
                                             FirmwareUpdateReq_t *pFirmwareUpdateObject);
+
+/**
+ * @brief  Submit a generic crypto service request to the HSM.
+ *         Set svcReq->algoId to the algorithm (HSM_CRYPTO_SVC_MAC_CMAC, etc.)
+ *         and svcReq->subSvcId to the operation (HSM_CRYPTO_SVC_MAC_GENERATE,
+ *         etc.). Set svcReq->keyId to the keyring index and point svcReq->ptrArgs
+ *         at the corresponding args struct (e.g. CMACArgs_t).
+ *
+ * @param HsmClient  [IN]     HsmClient object
+ * @param svcReq     [IN/OUT] Pointer to CryptoServiceReq_t; for generate
+ *                            operations, output is written to ptrTag on success
+ * @param timeout    [IN]     Timeout in ticks (SystemP_WAIT_FOREVER to block)
+ *
+ * @return SystemP_SUCCESS on ACK, SystemP_FAILURE on NACK or error.
+ */
+int32_t HsmClient_CryptoService(HsmClient_t *HsmClient,
+                                 CryptoServiceReq_t *svcReq,
+                                 uint32_t timeout);
 
 /** @} */
 
