@@ -168,4 +168,23 @@ uint32_t gBootloaderConfigNum = CONFIG_BOOTLOADER_NUM_INSTANCES;
 
 % if((common.getSocName() == "am263x") || (common.getSocName() == "am263px") || (common.getSocName() == "am261x")){
 SecureBoot_Stream_t gSecureBootStreamArray[MAX_SECURE_BOOT_STREAM_LENGTH];
+
+/* Include bootloader_priv.h for Bootloader_resMemSections type */
+#include "drivers/bootloader/bootloader_priv.h"
+
+/* Bootloader Reserved Memory Section - Generated from SysConfig */
+% if(module.$instances[0].enableReservedMemCheck) {
+Bootloader_resMemSections gResMemSection =
+{
+    .numSections = 1U,
+    .memSection[0].memStart = `module.$instances[0].resMemSectionStart`U,
+    .memSection[0].memEnd   = `module.$instances[0].resMemSectionEnd`U,
+};
+% } else {
+/* Reserved memory check is disabled by user configuration */
+Bootloader_resMemSections gResMemSection =
+{
+    .numSections = 0U,
+};
+% }
 %}

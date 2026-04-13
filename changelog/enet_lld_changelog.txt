@@ -30030,3 +30030,34 @@ Date:   Wed Mar 11 15:33:07 2026 +0530
  src/per/firmware/icssg/switch/ethernet_switch_1g_commit_id.txt |   2 +-
  16 files changed, 1164 insertions(+), 1189 deletions(-)
 
+========================================
+Changes from build on 2026-04-13 20:47:54
+Previous commit: e622dedc6e9ddeb4caba26dcc64b5c3985eef1a4
+Current commit: 3c2a056060376c5f2bbd1eb468c575f93fdd6e8f
+========================================
+
+commit 3c2a056060376c5f2bbd1eb468c575f93fdd6e8f
+Author: Sai Kiran Lakavath <s-lakavath@ti.com>
+Date:   Fri Apr 10 14:10:28 2026 +0530
+
+    j722s: sgmii : Sgmii enablement on j722s
+    
+    -Modify xdt for j722s to add sgmii support
+    -Modify macport.c files to enable sgmii macros
+    - The sgmii macros will be enabled if ENET_CFG_CPSW_SGMII and ENET_CFG_CPSW_MACPORT_SGMII are defined as 1 in soc/k3/j722s/enet_soc_cfg.h file
+    -Add rgmii enet layer condition when CPSW_SGMII flag is enabled to get the link up for RGMII too
+    
+    Fixes: ETHFW-3418
+    
+    Signed-off-by: Sai Kiran Lakavath <s-lakavath@ti.com>
+
+ priv/mod/cpsw_macport_priv.h                                                | 23 +++++++++++++++++
+ src/mod/cpsw_macport.c                                                      | 49 +++++++++++++++++++++----------------
+ src/mod/cpsw_macport_ioctl.c                                                | 10 ++++++++
+ src/per/V1/cpsw.c                                                           | 17 +++++++++++++
+ src/per/V1/cpsw_ioctl.c                                                     |  6 ++---
+ .../board/.meta/ethphy_cpsw_icssg/templates/j722s/enet_board_cfg.c.xdt      | 34 +++++++++----------------
+ sysconfig/networking/.meta/enet_cpsw/templates/enet_app_cpsw_cfg.c.xdt      |  4 +++
+ sysconfig/networking/.meta/enet_cpsw/templates/j722s/enet_soc_cfg.c.xdt     |  8 +++++-
+ 8 files changed, 103 insertions(+), 48 deletions(-)
+

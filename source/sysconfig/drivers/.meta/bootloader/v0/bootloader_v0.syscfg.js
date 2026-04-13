@@ -123,6 +123,39 @@ function getConfig(){
             hidden      : false,
             default     : 64,
         });
+
+        // Reserved memory configuration
+        cfg.push({
+            name: "enableReservedMemCheck",
+            displayName: "Enable Reserved Memory Protection",
+            description: "Enable check that prevents application from loading into SBL reserved memory region",
+            default: true,
+            onChange: function(inst, ui) {
+                if(inst.enableReservedMemCheck) {
+                    ui.resMemSectionStart.hidden = false;
+                    ui.resMemSectionEnd.hidden = false;
+                } else {
+                    ui.resMemSectionStart.hidden = true;
+                    ui.resMemSectionEnd.hidden = true;
+                }
+            }
+        });
+
+        cfg.push({
+            name: "resMemSectionStart",
+            displayName: "Reserved Memory - Start Address",
+            description: "Start address of SBL reserved memory region (hex format: 0x70002000)",
+            default: "0x70002000",
+            hidden: false,
+        });
+
+        cfg.push({
+            name: "resMemSectionEnd",
+            displayName: "Reserved Memory - End Address",
+            description: "End address of SBL reserved memory region (hex format: 0x70040000)",
+            default: "0x70040000",
+            hidden: false,
+        });
     }
     if(["am263x", "am263px"].includes(common.getSocName())) {
         cfg.push(
@@ -303,7 +336,39 @@ function validate(inst, report) {
                     }
                 }
             }
-        }     
+        }
+
+        // Validate reserved memory configuration
+        if(inst.enableReservedMemCheck) {
+            let start = inst.resMemSectionStart;
+            let end = inst.resMemSectionEnd;
+
+            if(start.slice(0,2) != "0x" || hexValidate(start.slice(2)) == false) {
+                report.logError("Must be hexadecimal starting with 0x", inst, "resMemSectionStart");
+            }
+            if(end.slice(0,2) != "0x" || hexValidate(end.slice(2)) == false) {
+                report.logError("Must be hexadecimal starting with 0x", inst, "resMemSectionEnd");
+            }
+
+            let startAddr = parseInt(start, 16);
+            let endAddr = parseInt(end, 16);
+
+            if(startAddr >= endAddr) {
+                report.logError("Start address must be less than end address", inst, "resMemSectionStart");
+            }
+
+            // SoC-specific OCRAM bounds validation
+            let validRanges = {
+                "am263x": { min: 0x70000000, max: 0x701FFFFF },
+                "am263px": { min: 0x70000000, max: 0x702FFFFF },
+                "am261x": { min: 0x70000000, max: 0x7017FFFF }
+            };
+            let range = validRanges[common.getSocName()];
+            if(startAddr < range.min || endAddr > range.max) {
+                report.logError(`Must be within 0x${range.min.toString(16).toUpperCase()}-0x${range.max.toString(16).toUpperCase()}`, inst, "resMemSectionStart");
+            }
+        }
+
 
     }
     else if(inst.bootMedia == "MEMORY"){
