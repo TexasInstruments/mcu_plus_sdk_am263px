@@ -21,7 +21,7 @@ var group__SECURITY__DTHE__SHA__MODULE =
       [ "DTHE_SHA_RETURN_FAILURE", "group__SECURITY__DTHE__SHA__MODULE.html#gga00a0fb65e95cfa66c6340105d368f4aaa65b6c67bb7cebb0f62c53692a14062f6", null ]
     ] ],
     [ "DTHE_SHA_open", "group__SECURITY__DTHE__SHA__MODULE.html#ga5be0c218834d5f15060316d3c43fcba8", null ],
-    [ "DTHE_SHA_compute", "group__SECURITY__DTHE__SHA__MODULE.html#ga7f32f5b3c9082c298e0b5eb1aeed3b04", null ],
+    [ "DTHE_SHA_compute", "group__SECURITY__DTHE__SHA__MODULE.html#ga30bdcdcd843f794d92f075d4c9d78299", null ],
     [ "DTHE_HMACSHA_compute", "group__SECURITY__DTHE__SHA__MODULE.html#gad6575f3703d76d860fab48ba9b3dfa56", null ],
     [ "DTHE_SHA_close", "group__SECURITY__DTHE__SHA__MODULE.html#ga1327c79ad8001af59e26ac9ab9561b34", null ]
 ];

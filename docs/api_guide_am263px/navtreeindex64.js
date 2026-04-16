@@ -1,5 +1,6 @@
 var NAVTREEINDEX64 =
 {
+"structEnetMacPort__SetEgressPriorityMapInArgs.html#ad0fca372275708f8b057dc9eb75ae998":[19,4,0,3,6,0],
 "structEnetMacPort__SetIngressDscpPriorityMapInArgs.html":[19,4,0,3,4],
 "structEnetMacPort__SetIngressDscpPriorityMapInArgs.html#a5e867226035960e9900d9fe97b43cfc7":[19,4,0,3,4,1],
 "structEnetMacPort__SetIngressDscpPriorityMapInArgs.html#a9aa3889c93f36b96dce2232238969fed":[19,4,0,3,4,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX64 =
 "structFOTAAgent__Params.html#a9c243924c47e91fc2a0df8dd5cc6cf6c":[19,7,10,1,1],
 "structFOTAAgent__Params.html#aa5934f3c70c5c022983fb70310e209f3":[19,7,10,1,3],
 "structFSS__Config.html":[19,7,14,1],
-"structFSS__Config.html#a87882e19b071650d1a455588d643b914":[19,7,14,1,1],
-"structFSS__Config.html#ae3369aeadf5b10470d4f2eb8e0c84165":[19,7,14,1,0]
+"structFSS__Config.html#a87882e19b071650d1a455588d643b914":[19,7,14,1,1]
 };

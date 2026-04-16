@@ -38,6 +38,7 @@ var NAVTREEINDEX20 =
 "enet_integration_guide_top.html#enet_openport_sequence":[5,1,5,2,2],
 "enet_integration_guide_top.html#enet_pktrxtx_sequence":[5,1,5,2,3],
 "enet_integration_guide_top.html#enetper_specific_handling":[5,1,5,2,8],
+"enet_interface_selection.html":[5,1,15],
 "enet_ioctl_interface.html":[5,1,1],
 "enet_ioctl_interface.html#enet_async_ioctl":[5,1,1,0,1],
 "enet_ioctl_interface.html#enet_ioctl_intro":[5,1,1,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX20 =
 "group__BOARD__FLASH__MODULE.html#ga6c12904c68ffc4c202616c621f36e38f":[19,1,1,33],
 "group__BOARD__FLASH__MODULE.html#ga8697714617a2c5a2898d91f14105df9e":[19,1,1,24],
 "group__BOARD__FLASH__MODULE.html#ga890872ff2aa7b789f54d80ca4ee9f39f":[19,1,1,15],
-"group__BOARD__FLASH__MODULE.html#ga8b34c2e7c8bb97c9d8c8a227e273c138":[19,1,1,32],
-"group__BOARD__FLASH__MODULE.html#ga984ff417303ac4f3939735f93105fb3f":[19,1,1,29]
+"group__BOARD__FLASH__MODULE.html#ga8b34c2e7c8bb97c9d8c8a227e273c138":[19,1,1,32]
 };

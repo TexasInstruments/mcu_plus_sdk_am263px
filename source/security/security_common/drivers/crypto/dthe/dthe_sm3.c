@@ -94,10 +94,10 @@ static void DTHE_SM3_set_length (CSL_EIP52_SM3Regs* ptrSM3Regs, uint64_t length)
 */
 static void DTHE_SM3_pollInput_buff_available(const CSL_EIP52_SM3Regs* ptrSM3Regs)
 {
-    uint32_t     done = 0UL;
+    uint32_t     done = 0U;
 
     /* Loop around till the condition is met: */
-    while (done == 0UL)
+    while (done == 0U)
     {
         done = CSL_FEXTR (ptrSM3Regs->SM3_IO_BUF_CTRL_STAT, 6U, 6U);
     }
@@ -219,10 +219,10 @@ static void DTHE_SM3_set_data_available(CSL_EIP52_SM3Regs* ptrSM3Regs, uint32_t 
 */
 static void DTHE_SM3_pollOutputReady (const CSL_EIP52_SM3Regs* ptrSM3Regs)
 {
-    uint32_t     done = 0UL;
+    uint32_t     done = 0U;
 
     /* Loop around till the condition is met: */
-    while (done == 0UL)
+    while (done == 0U)
     {
         done = CSL_FEXTR (ptrSM3Regs->SM3_IO_BUF_CTRL_STAT, 0U, 0U);
     }
@@ -241,7 +241,7 @@ static void DTHE_SM3_setHashDigest(CSL_EIP52_SM3Regs* ptrSM3Regs, const uint32_t
 {
     uint32_t index;
 
-    for (index = 0UL; index < 8UL; index++)
+    for (index = 0U; index < 8U; index++)
     {
         ptrSM3Regs->SM3_DIGEST_IN[index] = ptrDigest[index];
     }
@@ -261,7 +261,7 @@ static void DTHE_SM3_getHashDigest(const CSL_EIP52_SM3Regs* ptrSM3Regs, uint32_t
 {
     uint32_t index;
 
-    for (index = 0UL; index < 8UL; index++)
+    for (index = 0U; index < 8U; index++)
     {
         ptrDigest[index] = ptrSM3Regs->SM3_DIGEST_OUT[index];
     }

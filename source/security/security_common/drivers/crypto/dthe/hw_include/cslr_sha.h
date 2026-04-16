@@ -47,15 +47,15 @@ extern "C"
  *  The enumeration describes the list of supported algorithms which are
  *  supported by the EIP57T
  */
-typedef enum CSL_EIP57T_SHAAlgo_e
-{
-    CSL_EIP57T_SHAAlgo_MD5      = 0x1,  /**< MD5    */
-    CSL_EIP57T_SHAAlgo_SHA384,          /**< SHA384 */
-    CSL_EIP57T_SHAAlgo_SHA1,            /**< SHA1   */
-    CSL_EIP57T_SHAAlgo_SHA512,          /**< SHA512 */
-    CSL_EIP57T_SHAAlgo_SHA224,          /**< SHA224 */
-    CSL_EIP57T_SHAAlgo_SHA256           /**< SHA256 */
-}CSL_EIP57T_SHAAlgo;
+typedef  uint32_t  CSL_EIP57T_SHAAlgo;
+
+#define     CSL_EIP57T_SHAAlgo_MD5          0x1U  /**< MD5    */
+#define     CSL_EIP57T_SHAAlgo_SHA384       0x2U       /**< SHA384 */
+#define     CSL_EIP57T_SHAAlgo_SHA1         0x3U     /**< SHA1   */
+#define     CSL_EIP57T_SHAAlgo_SHA512       0x4U    /**< SHA512 */
+#define     CSL_EIP57T_SHAAlgo_SHA224       0x5U    /**< SHA224 */
+#define     CSL_EIP57T_SHAAlgo_SHA256       0x6U    /**< SHA256 */
+
 
 /**
  *  Structure type to access the EIP57T SHA Header file.

@@ -1,5 +1,6 @@
 var NAVTREEINDEX60 =
 {
+"structCpswAle__PolicerEntryOutArgs.html#aae73f79acc791c3d48ec60be6583aaf4":[19,4,0,1,0,30,5],
 "structCpswAle__PolicerEntryOutArgs.html#ac0e389118c5d88ba7c42764d80180239":[19,4,0,1,0,30,16],
 "structCpswAle__PolicerEntryOutArgs.html#ac7c734879171766ad06f1eeb0423fa8a":[19,4,0,1,0,30,19],
 "structCpswAle__PolicerEntryOutArgs.html#ad26777c6c48adcfe12ef207d3d4a0fbd":[19,4,0,1,0,30,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX60 =
 "structCpswMacPort__IpTsCfg.html#ac5ee4686cdb444503fcc77c6a0580042":[19,4,0,3,0,4,2],
 "structCpswMacPort__IpTsCfg.html#adb37054bd06a80150d842d30cd4076d7":[19,4,0,3,0,4,1],
 "structCpswMacPort__PortTxShortIpgCfg.html":[19,4,0,3,0,1],
-"structCpswMacPort__PortTxShortIpgCfg.html#a08f232f28ed614361d8137a9d5d90f71":[19,4,0,3,0,1,1],
-"structCpswMacPort__PortTxShortIpgCfg.html#ada1f654b2c61324cf9102d030c6e9cf1":[19,4,0,3,0,1,0]
+"structCpswMacPort__PortTxShortIpgCfg.html#a08f232f28ed614361d8137a9d5d90f71":[19,4,0,3,0,1,1]
 };

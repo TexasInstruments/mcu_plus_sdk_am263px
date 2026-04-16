@@ -354,3 +354,29 @@ Date:   Mon Apr 6 18:04:05 2026 +0530
  drivers/crypto/pke/hw_include/pke_hw | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
+========================================
+Changes from build on 2026-04-16 20:48:13
+Previous commit: 192441761fa659fb4c7125964bb141907830b1e3
+Current commit: a4844abf24db4648c843220d00e8f9c91ad7f5bd
+========================================
+
+commit a4844abf24db4648c843220d00e8f9c91ad7f5bd
+Author: Seema.Khatib <seema.khatib@ti.com>
+Date:   Thu Apr 9 21:40:59 2026 +0530
+
+    f29h85x: misra: MISRA.ETYPE.ASSIGN.2012
+    
+    -An expression value of diffrent type
+     is assigned to an object of essential type 'unsigned int'
+    
+    Fixes: TIFSMCU-5064
+    
+    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
+
+ drivers/crypto/dthe/dthe_sha.c            |  8 ++++----
+ drivers/crypto/dthe/dthe_sha.h            |  2 +-
+ drivers/crypto/dthe/dthe_sm3.c            | 12 ++++++------
+ drivers/crypto/dthe/hw_include/cslr_sha.h | 18 +++++++++---------
+ drivers/crypto/pke/tifs_pke4_random.c     |  2 +-
+ 5 files changed, 21 insertions(+), 21 deletions(-)
+

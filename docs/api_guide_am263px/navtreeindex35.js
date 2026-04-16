@@ -1,5 +1,6 @@
 var NAVTREEINDEX35 =
 {
+"group__DRV__FSI__TX__MODULE.html#ga5628350f8643f8e6a5ccfd8883108364":[19,7,13,50],
 "group__DRV__FSI__TX__MODULE.html#ga58f4af7d91a95dadb07a6ae11d49f5ef":[19,7,13,27],
 "group__DRV__FSI__TX__MODULE.html#ga5c44d3bd84aaa5dc2f3f3d1d97f47fa8":[19,7,13,75],
 "group__DRV__FSI__TX__MODULE.html#ga5d1ce4dc0fe6c4a7e9c859d13529a922":[19,7,13,5],
@@ -248,6 +249,5 @@ var NAVTREEINDEX35 =
 "group__DRV__I2C__HLD__MODULE.html#gab11636302074d67180207ab81ceb323c":[19,7,18,15],
 "group__DRV__I2C__HLD__MODULE.html#gad78db5aecccd790b4e9b5b45cbb05f5b":[19,7,18,23],
 "group__DRV__I2C__HLD__MODULE.html#gadd13e093bc1d2316a49225f98503da43":[19,7,18,7],
-"group__DRV__I2C__HLD__MODULE.html#gadd75c22230842b00010efe1d992b8979":[19,7,18,11],
-"group__DRV__I2C__HLD__MODULE.html#gae72fbbef5977e287d18c7fb842464c6e":[19,7,18,24]
+"group__DRV__I2C__HLD__MODULE.html#gadd75c22230842b00010efe1d992b8979":[19,7,18,11]
 };

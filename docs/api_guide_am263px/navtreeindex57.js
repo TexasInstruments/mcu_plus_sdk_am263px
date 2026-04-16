@@ -1,5 +1,6 @@
 var NAVTREEINDEX57 =
 {
+"group__logging.html#ga337d83c4a3fcc2cda8f67240dd96a2ea":[19,10,2,30],
 "group__logging.html#ga38f9aa11fc7dd3fa9feb753f5ae9c28d":[19,10,2,18],
 "group__logging.html#ga3be8a00e528dcc17ab0320ac05a06c2e":[19,10,2,43],
 "group__logging.html#ga4e879346d0de7e889dfa21dd4df20135":[19,10,2,4],
@@ -248,6 +249,5 @@ var NAVTREEINDEX57 =
 "group__unibase__macros.html#ga2b5d3bf62dc151de1738a1c49f8159ca":[19,10,7,55],
 "group__unibase__macros.html#ga3124350ecf4af6ba642bf83cae83126c":[19,10,7,1],
 "group__unibase__macros.html#ga31f68ff7f36940d4dfb6f0de5e0a02f3":[19,10,7,8],
-"group__unibase__macros.html#ga3e23a27a9b35057ada6800469e436f0a":[19,10,7,48],
-"group__unibase__macros.html#ga4593ad87be4823c76f66768c69491b32":[19,10,7,54]
+"group__unibase__macros.html#ga3e23a27a9b35057ada6800469e436f0a":[19,10,7,48]
 };

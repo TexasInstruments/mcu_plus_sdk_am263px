@@ -144,7 +144,7 @@ DTHE_SHA_Return_t DTHE_SHA_open(DTHE_Handle handle);
  * \return              #DTHE_SHA_RETURN_SUCCESS if requested operation completed.
  *                      #DTHE_SHA_RETURN_FAILURE if requested operation not completed.
  */
-DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaParams, int32_t isLastBlock);
+DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaParams, Bool isLastBlock);
 
 /**
  * \brief               The function is used to execute the HMAC SHA Operations with the specified parameters.

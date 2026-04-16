@@ -1,5 +1,6 @@
 var NAVTREEINDEX63 =
 {
+"structDp83869__Cfg.html#a4c36b118db72f63c1de410f7402d88ae":[19,4,0,13,4,0,7],
 "structDp83869__Cfg.html#a88c77b0f28fcff02522359d5ac4488fd":[19,4,0,13,4,0,8],
 "structDp83869__Cfg.html#a8bc8e841f5a7d7aea2e8d0e2d0c9d642":[19,4,0,13,4,0,9],
 "structDp83869__Cfg.html#a98a9f238ca1a8360f5100ca6f52970c3":[19,4,0,13,4,0,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX63 =
 "structEnetMacPort__SetCreditBasedShaperInArgs.html#a1e23b882368edde3ca4b84ac59f561c5":[19,4,0,3,8,0],
 "structEnetMacPort__SetCreditBasedShaperInArgs.html#a3886970bf6d2966f9a63ac4b79c33b56":[19,4,0,3,8,1],
 "structEnetMacPort__SetEgressPriorityMapInArgs.html":[19,4,0,3,6],
-"structEnetMacPort__SetEgressPriorityMapInArgs.html#a2a044248d238fe43e42d7e62d03c1fbf":[19,4,0,3,6,1],
-"structEnetMacPort__SetEgressPriorityMapInArgs.html#ad0fca372275708f8b057dc9eb75ae998":[19,4,0,3,6,0]
+"structEnetMacPort__SetEgressPriorityMapInArgs.html#a2a044248d238fe43e42d7e62d03c1fbf":[19,4,0,3,6,1]
 };

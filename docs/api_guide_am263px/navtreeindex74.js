@@ -1,5 +1,6 @@
 var NAVTREEINDEX74 =
 {
+"structUInteger48m32.html#ae9fd76106adf10f77981c27128db2266":[19,9,0,5,1],
 "structUScaledNs.html":[19,9,0,9],
 "structUScaledNs.html#a478aabae66962ee696d28a2f57d7d439":[19,9,0,9,2],
 "structUScaledNs.html#a93eb3a141ee6100e434209e14de73c6c":[19,9,0,9,1],

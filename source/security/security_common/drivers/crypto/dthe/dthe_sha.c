@@ -171,7 +171,7 @@ DTHE_SHA_Return_t DTHE_SHA_close(DTHE_Handle handle)
     return (status);
 }
 
-DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaParams, int32_t isLastBlock)
+DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaParams, Bool isLastBlock)
 {
     DTHE_SHA_Return_t       status = DTHE_SHA_RETURN_SUCCESS;
     DMA_Handle              dmaHandle = NULL;
@@ -208,7 +208,7 @@ DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaPa
     }
     /* Sanity Checking: Any data buffer except the last block should be aligned as per
      * the SHA Size. For SHA256 this is 64byte while for SHA512 this should be 128byte */
-    if((status == DTHE_SHA_RETURN_SUCCESS) && (isLastBlock == 0))
+    if((status == DTHE_SHA_RETURN_SUCCESS) && (isLastBlock == FALSE))
     {
         if (ptrShaParams->algoType == DTHE_SHA_ALGO_SHA256)
         {
@@ -253,7 +253,7 @@ DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaPa
         }
 
         /* Is this the last block? */
-        if (isLastBlock == 1)
+        if (isLastBlock == TRUE)
         {
             /* Yes: Close the Hash */
             closeHash = 1U;
@@ -398,7 +398,7 @@ DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaPa
             gDTHESHAdigestCount = DTHE_SHA512_getDigestCount(ptrShaRegs);
         }
 
-        if( isLastBlock == 1 )
+        if( isLastBlock == TRUE )
         {
             /* SHA Computation is in progress: */
             gDTHESHAInProgress = FALSE;

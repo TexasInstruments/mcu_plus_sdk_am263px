@@ -1,5 +1,6 @@
 var NAVTREEINDEX46 =
 {
+"group__ENETPHY__DP83867.html#ggabf70c55354619c5ad2cd74abe0751e0ea1ad1cd95f5d564d23215f0068b970eac":[19,4,0,13,3,4,3],
 "group__ENETPHY__DP83867.html#ggabf70c55354619c5ad2cd74abe0751e0ea34c3e9c9d326b76364743059d6fdb689":[19,4,0,13,3,4,0],
 "group__ENETPHY__DP83867.html#ggabf70c55354619c5ad2cd74abe0751e0ea40f4ccbb0e45fd8e6b197fb1f5eda732":[19,4,0,13,3,4,13],
 "group__ENETPHY__DP83867.html#ggabf70c55354619c5ad2cd74abe0751e0ea4b02fa5738ecec619ac3420d144a012e":[19,4,0,13,3,4,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX46 =
 "group__ENET__DMA__API.html#ga5b288baf72440bf934a52e30d7968f05":[19,4,0,0,21],
 "group__ENET__DMA__API.html#ga61a773d81fbe7271eb7474f5034c305f":[19,4,0,0,41],
 "group__ENET__DMA__API.html#ga6a35e23def97939896888e2a607ad83f":[19,4,0,0,36],
-"group__ENET__DMA__API.html#ga6a80baccc431ce40d5d97a1f0d930252":[19,4,0,0,51],
-"group__ENET__DMA__API.html#ga6d64d44b14d41f10adc07d7da7ed7ea6":[19,4,0,0,25]
+"group__ENET__DMA__API.html#ga6a80baccc431ce40d5d97a1f0d930252":[19,4,0,0,51]
 };

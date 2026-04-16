@@ -1,5 +1,6 @@
 var NAVTREEINDEX65 =
 {
+"structFSS__Config.html#ae3369aeadf5b10470d4f2eb8e0c84165":[19,7,14,1,0],
 "structFSS__ECCRegionConfig.html":[19,7,14,0],
 "structFSS__ECCRegionConfig.html#a38a9c33c3efdd5624a505bb345575a89":[19,7,14,0,2],
 "structFSS__ECCRegionConfig.html#a603f8e6077f5c5f935b47306da8fe5be":[19,7,14,0,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX65 =
 "structI2C__Object.html#a91311572f00321c4e09f9c7211b188d1":[19,7,18,4,3],
 "structI2C__Object.html#a926e5faed22a7e4d797a417301dd0d2f":[19,7,18,4,6],
 "structI2C__Object.html#a9c5bac93e68090c87fafc284eff18e79":[19,7,18,4,7],
-"structI2C__Object.html#ab08fd2d0ee8a59fe0a39dc636e2e50b5":[19,7,18,4,5],
-"structI2C__Object.html#ad6a25967b42125c9b81c9bd8a600b117":[19,7,18,4,9]
+"structI2C__Object.html#ab08fd2d0ee8a59fe0a39dc636e2e50b5":[19,7,18,4,5]
 };
