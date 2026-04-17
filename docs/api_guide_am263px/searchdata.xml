@@ -48683,21 +48683,56 @@
     <field name="name">hsmclient.h</field>
     <field name="url">hsmclient_8h_source.html#l00518</field>
     <field name="keywords"></field>
-    <field name="text">uint32_t ivLen GMACArgs_t int32_t HsmClient_checkAndWaitForBootNotification int32_t HsmClient_init SIPC_Params params</field>
+    <field name="text">uint32_t ivLen GMACArgs_t</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient.h</field>
-    <field name="url">hsmclient_8h_source.html#l00550</field>
+    <field name="url">hsmclient_8h_source.html#l00535</field>
+    <field name="keywords"></field>
+    <field name="text">BankSwapReq_t_</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">hsmclient.h</field>
+    <field name="url">hsmclient_8h_source.html#l00537</field>
+    <field name="keywords"></field>
+    <field name="text">uint8_t c29CpuId</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">hsmclient.h</field>
+    <field name="url">hsmclient_8h_source.html#l00538</field>
+    <field name="keywords"></field>
+    <field name="text">uint8_t syncFlag</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">hsmclient.h</field>
+    <field name="url">hsmclient_8h_source.html#l00539</field>
+    <field name="keywords"></field>
+    <field name="text">uint32_t timeout</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">hsmclient.h</field>
+    <field name="url">hsmclient_8h_source.html#l00541</field>
+    <field name="keywords"></field>
+    <field name="text">uint32_t c29CpuBankSwapVal BankSwapReq_t int32_t HsmClient_checkAndWaitForBootNotification int32_t HsmClient_init SIPC_Params params</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">hsmclient.h</field>
+    <field name="url">hsmclient_8h_source.html#l00573</field>
     <field name="keywords"></field>
     <field name="text">HsmClient_deInit HsmClient_SecureBootQueueInit uint32_t configured_hsm_client_msg_queue_size int32_t HsmClient_getVersion HsmClient_t HsmClient HsmVer_t verId uint32_t timeToWaitInTick int32_t HsmClient_getUID HsmClient_t HsmClient uint8_t uid uint32_t timeout int32_t HsmClient_openDbgFirewall HsmClient_t HsmClient uint8_t cert uint32_t cert_size uint32_t timeout int32_t HsmClient_importKeyring HsmClient_t HsmClient uint8_t cert uint32_t cert_size uint32_t timeout int32_t HsmClient_readOTPRow HsmClient_t HsmClient NvmOtpRead_t readRow int32_t HsmClient_writeOTPRow HsmClient_t HsmClient NvmOtpRowWrite_t writeRow int32_t HsmClient_lockOTPRow HsmClient_t HsmClient NvmOtpRowProt_t rowProt int32_t HsmClient_getOTPRowCount HsmClient_t HsmClient NvmOtpRowCount_t rowCount int32_t HsmClient_getOTPRowProtection HsmClient_t HsmClient NvmOtpRowProt_t rowProt int32_t HsmClient_procAuthBoot HsmClient_t HsmClient uint8_t cert uint32_t cert_size uint32_t timeout int32_t HsmClient_procAuthBootStart HsmClient_t HsmClient SecureBoot_Stream_t secureBootInfo int32_t HsmClient_procAuthBootUpdate HsmClient_t HsmClient SecureBoot_Stream_t secureBootInfo int32_t HsmClient_procAuthBootFinish HsmClient_t HsmClient SecureBoot_Stream_t secureBootInfo int32_t HsmClient_setFirewall HsmClient_t HsmClient FirewallReq_t FirewallReqObj uint32_t timeout int32_t HsmClient_FirewallIntr HsmClient_t HsmClient FirewallIntrReq_t FirewallIntrReqObj uint32_t timeout int32_t HsmClient_keyWriter HsmClient_t HsmClient KeyWriterCertHeader_t certHeader uint32_t timeout int32_t HsmClient_readSWRev HsmClient_t HsmClient SWRev_t readSWRev int32_t HsmClient_writeSWRev HsmClient_t HsmClient SWRev_t writeSWRev int32_t HsmClient_getDKEK HsmClient_t HsmClient DKEK_t getDKEK uint32_t timeout int32_t HsmClient_register HsmClient_t HsmClient uint8_t clientId HsmClient_unregister HsmClient_t HsmClient uint8_t clientId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient.h</field>
-    <field name="url">hsmclient_8h_source.html#l00922</field>
+    <field name="url">hsmclient_8h_source.html#l00945</field>
     <field name="keywords"></field>
-    <field name="text">int32_t HsmClient_waitForBootNotify HsmClient_t HsmClient uint32_t timeToWaitInTicks int32_t Hsmclient_loadHSMRtFirmware HsmClient_t gHSMClient uint8_t pHSMRt_firmware int32_t Hsmclient_loadHSMRtFirmwareNonBlocking uint8_t pHSMRt_firmware int32_t HsmClient_getRandomNum HsmClient_t HsmClient RNGReq_t getRandomNum int32_t HsmClient_firmwareUpdate_CertProcess HsmClient_t HsmClient FirmwareUpdateReq_t pFirmwareUpdateObject int32_t HsmClient_firmwareUpdate_CodeProgram HsmClient_t HsmClient FirmwareUpdateReq_t pFirmwareUpdateObject int32_t HsmClient_firmwareUpdate_CodeVerify HsmClient_t HsmClient FirmwareUpdateReq_t pFirmwareUpdateObject int32_t HsmClient_VerifyROTSwitchingCertificate HsmClient_t HsmClient uint8_t cert uint32_t cert_size uint32_t timeout int32_t HsmClient_UpdateKeyRevsion HsmClient_t HsmClient uint32_t timeout int32_t HsmClient_configOTFARegions HsmClient_t HsmClient OTFA_Config_t OTFA_ConfigInfo uint32_t timeout int32_t HsmClient_readOTFARegions HsmClient_t HsmClient OTFA_readRegion_t OTFA_readRegion uint32_t timeout int32_t HsmClient_secCfgValidate HsmClient_t HsmClient SecCfgValidate_t pSecCfgParams uint32_t timeout int32_t HsmClient_activeToDormantBankCopy HsmClient_t HsmClient FlashBankCopy_t pFlashBankCopyObject uint32_t timeout int32_t HsmClient_SecCfgUpdate HsmClient_t HsmClient FirmwareUpdateReq_t pFirmwareUpdateObject int32_t HsmClient_CryptoService HsmClient_t HsmClient CryptoServiceReq_t svcReq uint32_t timeout</field>
+    <field name="text">int32_t HsmClient_waitForBootNotify HsmClient_t HsmClient uint32_t timeToWaitInTicks int32_t Hsmclient_loadHSMRtFirmware HsmClient_t gHSMClient uint8_t pHSMRt_firmware int32_t Hsmclient_loadHSMRtFirmwareNonBlocking uint8_t pHSMRt_firmware int32_t HsmClient_getRandomNum HsmClient_t HsmClient RNGReq_t getRandomNum int32_t HsmClient_firmwareUpdate_CertProcess HsmClient_t HsmClient FirmwareUpdateReq_t pFirmwareUpdateObject int32_t HsmClient_firmwareUpdate_CodeProgram HsmClient_t HsmClient FirmwareUpdateReq_t pFirmwareUpdateObject int32_t HsmClient_firmwareUpdate_CodeVerify HsmClient_t HsmClient FirmwareUpdateReq_t pFirmwareUpdateObject int32_t HsmClient_VerifyROTSwitchingCertificate HsmClient_t HsmClient uint8_t cert uint32_t cert_size uint32_t timeout int32_t HsmClient_UpdateKeyRevsion HsmClient_t HsmClient uint32_t timeout int32_t HsmClient_configOTFARegions HsmClient_t HsmClient OTFA_Config_t OTFA_ConfigInfo uint32_t timeout int32_t HsmClient_readOTFARegions HsmClient_t HsmClient OTFA_readRegion_t OTFA_readRegion uint32_t timeout int32_t HsmClient_secCfgValidate HsmClient_t HsmClient SecCfgValidate_t pSecCfgParams uint32_t timeout int32_t HsmClient_activeToDormantBankCopy HsmClient_t HsmClient FlashBankCopy_t pFlashBankCopyObject uint32_t timeout int32_t HsmClient_SecCfgUpdate HsmClient_t HsmClient FirmwareUpdateReq_t pFirmwareUpdateObject int32_t HsmClient_CryptoService HsmClient_t HsmClient CryptoServiceReq_t svcReq uint32_t timeout int32_t HsmClient_runTimeBankSwap HsmClient_t HsmClient BankSwapReq_t pBankSwapObject</field>
   </doc>
   <doc>
     <field name="type">source</field>
@@ -48968,203 +49003,217 @@
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00124</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00117</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00133</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00126</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00141</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00135</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00147</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00143</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00150</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00149</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00157</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00152</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00164</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00159</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00171</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00166</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00178</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00173</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00185</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00180</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00192</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00187</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00199</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00194</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00208</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00201</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00217</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00211</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00226</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00221</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00233</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00230</field>
     <field name="keywords"></field>
-    <field name="text">HsmMsg_t_</field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00235</field>
-    <field name="keywords"></field>
-    <field name="text">uint8_t destClientId</field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00236</field>
-    <field name="keywords"></field>
-    <field name="text">uint8_t srcClientId</field>
+    <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
     <field name="url">hsmclient__msg_8h_source.html#l00237</field>
     <field name="keywords"></field>
-    <field name="text">uint8_t flags</field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00238</field>
-    <field name="keywords"></field>
-    <field name="text">uint16_t serType</field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00239</field>
-    <field name="keywords"></field>
-    <field name="text">args</field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00240</field>
-    <field name="keywords"></field>
-    <field name="text">uint16_t crcArgs</field>
-  </doc>
-  <doc>
-    <field name="type">source</field>
-    <field name="name">hsmclient_msg.h</field>
-    <field name="url">hsmclient__msg_8h_source.html#l00241</field>
-    <field name="keywords"></field>
-    <field name="text">uint16_t crcMsg __attribute__ packed HsmMsg_t</field>
+    <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
     <field name="url">hsmclient__msg_8h_source.html#l00244</field>
     <field name="keywords"></field>
-    <field name="text">HSM_ClientIds_</field>
+    <field name="text">HsmMsg_t_</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
     <field name="url">hsmclient__msg_8h_source.html#l00246</field>
     <field name="keywords"></field>
-    <field name="text">HSM_BOOT_NOTIFY_CLIENT_ID</field>
+    <field name="text">uint8_t destClientId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
     <field name="url">hsmclient__msg_8h_source.html#l00247</field>
     <field name="keywords"></field>
-    <field name="text">HSM_CLIENT_ID_1</field>
+    <field name="text">uint8_t srcClientId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
     <field name="url">hsmclient__msg_8h_source.html#l00248</field>
     <field name="keywords"></field>
-    <field name="text">HSM_CLIENT_ID_2</field>
+    <field name="text">uint8_t flags</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
     <field name="url">hsmclient__msg_8h_source.html#l00249</field>
     <field name="keywords"></field>
-    <field name="text">HSM_CLIENT_ID_3</field>
+    <field name="text">uint16_t serType</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">hsmclient_msg.h</field>
     <field name="url">hsmclient__msg_8h_source.html#l00250</field>
+    <field name="keywords"></field>
+    <field name="text">args</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">hsmclient_msg.h</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00251</field>
+    <field name="keywords"></field>
+    <field name="text">uint16_t crcArgs</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">hsmclient_msg.h</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00252</field>
+    <field name="keywords"></field>
+    <field name="text">uint16_t crcMsg __attribute__ packed HsmMsg_t</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">hsmclient_msg.h</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00255</field>
+    <field name="keywords"></field>
+    <field name="text">HSM_ClientIds_</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">hsmclient_msg.h</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00257</field>
+    <field name="keywords"></field>
+    <field name="text">HSM_BOOT_NOTIFY_CLIENT_ID</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">hsmclient_msg.h</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00258</field>
+    <field name="keywords"></field>
+    <field name="text">HSM_CLIENT_ID_1</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">hsmclient_msg.h</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00259</field>
+    <field name="keywords"></field>
+    <field name="text">HSM_CLIENT_ID_2</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">hsmclient_msg.h</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00260</field>
+    <field name="keywords"></field>
+    <field name="text">HSM_CLIENT_ID_3</field>
+  </doc>
+  <doc>
+    <field name="type">source</field>
+    <field name="name">hsmclient_msg.h</field>
+    <field name="url">hsmclient__msg_8h_source.html#l00261</field>
     <field name="keywords"></field>
     <field name="text">HSM_CLIENT_ID_4 HSM_ClientIds_t</field>
   </doc>
@@ -153839,6 +153888,14 @@
     <field name="text">Client request to copy active flash bank contents to dormant flash bank Valid only for F29x family of devices Client request to copy active flash bank contents to dormant flash bank Valid only for F29x family of devices Client request to copy active flash bank contents to dormant flash bank Valid only for F29x family of devices HsmClient IN HsmClient object pFlashBankCopyObject IN Flash Bank copy object timeout IN timeout SystemP_SUCCESS if copy done successfully SystemP_FAILURE if NACK message is received or client id not registered</field>
   </doc>
   <doc>
+    <field name="type">function</field>
+    <field name="name">HsmClient_runTimeBankSwap</field>
+    <field name="args">(HsmClient_t *HsmClient, BankSwapReq_t *pBankSwapObject)</field>
+    <field name="url">group__DRV__HSMCLIENT__MODULE.html#gaaa5ee846577c5404a103d3ee391c4fb6</field>
+    <field name="keywords">HsmClient_runTimeBankSwap HsmClient_runTimeBankSwap HsmClient_runTimeBankSwap</field>
+    <field name="text">Client request to Swap C29 CPU flash banks Valid only for F29x family of devices Client request to Swap C29 CPU flash banks Valid only for F29x family of devices Client request to Swap C29 CPU flash banks Valid only for F29x family of devices HsmClient IN HsmClient object pBankSwapObject IN Pointer to arguments to be passed to HSM core via SIPC SystemP_SUCCESS if message sent successfully SystemP_FAILURE if message not sent</field>
+  </doc>
+  <doc>
     <field name="type">variable</field>
     <field name="name">gHsmrtLoadStatus</field>
     <field name="url">hsmclient_8c.html#af04631aa89cf2fd00226e22bbdc85d85</field>
@@ -154487,6 +154544,13 @@
   </doc>
   <doc>
     <field name="type">define</field>
+    <field name="name">HSM_MSG_BANK_SWAP</field>
+    <field name="url">group__DRV__HSMCLIENT__MODULE.html#ga51f48b5ecad8c29c9ed06e2a5bdfab59</field>
+    <field name="keywords">HSM_MSG_BANK_SWAP HSM_MSG_BANK_SWAP</field>
+    <field name="text">Swap C29 CPU-1/3 flash banks Swap C29 CPU-1/3 flash banks</field>
+  </doc>
+  <doc>
+    <field name="type">define</field>
     <field name="name">HSM_MSG_CRYPTO_SERVICE</field>
     <field name="url">group__DRV__HSMCLIENT__MODULE.html#ga53441a5d8285223de54f3ae2729a94e7</field>
     <field name="keywords">HSM_MSG_CRYPTO_SERVICE HSM_MSG_CRYPTO_SERVICE</field>
@@ -154581,14 +154645,14 @@
     <field name="name">C29_CPU1_FLASH_BANK</field>
     <field name="url">group__DRV__HSMCLIENT__MODULE.html#ga259589a714501cf1e41c76ae13d044f2</field>
     <field name="keywords">C29_CPU1_FLASH_BANK C29_CPU1_FLASH_BANK</field>
-    <field name="text">C29 CPU1 macro to be used while requesting active to dormant flash bank copy Valid only for F29x family of devices C29 CPU1 macro to be used while requesting active to dormant flash bank copy Valid only for F29x family of devices</field>
+    <field name="text">C29 CPU1 macro to be used while requesting active to dormant flash bank copy or C29 CPU flash bank swap services Valid only for F29x family of devices C29 CPU1 macro to be used while requesting active to dormant flash bank copy or C29 CPU flash bank swap services Valid only for F29x family of devices</field>
   </doc>
   <doc>
     <field name="type">define</field>
     <field name="name">C29_CPU3_FLASH_BANK</field>
     <field name="url">group__DRV__HSMCLIENT__MODULE.html#ga71049731bfb2c2f920ef1285adb5ed38</field>
     <field name="keywords">C29_CPU3_FLASH_BANK C29_CPU3_FLASH_BANK</field>
-    <field name="text">C29 CPU3 macro to be used while requesting active to dormant flash bank copy Valid only for F29x family of devices C29 CPU3 macro to be used while requesting active to dormant flash bank copy Valid only for F29x family of devices</field>
+    <field name="text">C29 CPU3 macro to be used while requesting active to dormant flash bank copy or C29 CPU flash bank swap services Valid only for F29x family of devices C29 CPU3 macro to be used while requesting active to dormant flash bank copy or C29 CPU flash bank swap services Valid only for F29x family of devices</field>
   </doc>
   <doc>
     <field name="type">define</field>
@@ -154596,6 +154660,13 @@
     <field name="url">group__DRV__HSMCLIENT__MODULE.html#gacb03d811f9790f24a66ae050489c45bf</field>
     <field name="keywords">HSM_CPU_FLASH_BANK HSM_CPU_FLASH_BANK</field>
     <field name="text">HSM CPU macro to be used while requesting active to dormant flash bank copy Valid only for F29x family of devices HSM CPU macro to be used while requesting active to dormant flash bank copy Valid only for F29x family of devices</field>
+  </doc>
+  <doc>
+    <field name="type">define</field>
+    <field name="name">LFU_BANK_SWAP_READY</field>
+    <field name="url">group__DRV__HSMCLIENT__MODULE.html#gaf550505f67df721988c1550748df77f9</field>
+    <field name="keywords">LFU_BANK_SWAP_READY LFU_BANK_SWAP_READY</field>
+    <field name="text">MACRO used by HSM for LFU synchronizsation MACRO used by HSM for LFU synchronizsation</field>
   </doc>
   <doc>
     <field name="type">enum</field>
@@ -210159,6 +210230,41 @@
     <field name="url">structattribute__pair__t.html#a4788b5f6b4cc2e0c2348925a13e2fdaf</field>
     <field name="keywords">vk_sz attribute_pair_t::vk_sz attribute_pair_t</field>
     <field name="text">size of kv</field>
+  </doc>
+  <doc>
+    <field name="type">struct</field>
+    <field name="name">BankSwapReq_t</field>
+    <field name="url">structBankSwapReq__t.html</field>
+    <field name="keywords">BankSwapReq_t</field>
+    <field name="text">c29CpuId C29 CPU for which flash banks are to be swapped syncFlag Synchronisation flag HSM waits for this flag to be set to a specific value within a given time period post which HSM swaps the flash banks timeout Timeout period for which HSM is supposed to wait c29CpuBankSwapVal C29 CPU bankswap register value read before making swap request to HSM used by C29 CPU only</field>
+  </doc>
+  <doc>
+    <field name="type">variable</field>
+    <field name="name">BankSwapReq_t::c29CpuId</field>
+    <field name="url">structBankSwapReq__t.html#a0b9acad6ce2fcbb2be0e03ff13d698ef</field>
+    <field name="keywords">c29CpuId BankSwapReq_t::c29CpuId BankSwapReq_t</field>
+    <field name="text"></field>
+  </doc>
+  <doc>
+    <field name="type">variable</field>
+    <field name="name">BankSwapReq_t::syncFlag</field>
+    <field name="url">structBankSwapReq__t.html#a755f518c6433b007f35dcb2863480051</field>
+    <field name="keywords">syncFlag BankSwapReq_t::syncFlag BankSwapReq_t</field>
+    <field name="text">C29 CPU for which flash banks are to be swapped</field>
+  </doc>
+  <doc>
+    <field name="type">variable</field>
+    <field name="name">BankSwapReq_t::timeout</field>
+    <field name="url">structBankSwapReq__t.html#ac3b64d7f3ef72077f67fa895e0058b61</field>
+    <field name="keywords">timeout BankSwapReq_t::timeout BankSwapReq_t</field>
+    <field name="text">Synchronisation flag used by HSM to initiate bank swap</field>
+  </doc>
+  <doc>
+    <field name="type">variable</field>
+    <field name="name">BankSwapReq_t::c29CpuBankSwapVal</field>
+    <field name="url">structBankSwapReq__t.html#a6ad6d9f2b61b4c732e86e2589f472ca7</field>
+    <field name="keywords">c29CpuBankSwapVal BankSwapReq_t::c29CpuBankSwapVal BankSwapReq_t</field>
+    <field name="text">Timeout period for which HSM is supposed to wait before exiting server function</field>
   </doc>
   <doc>
     <field name="type">struct</field>

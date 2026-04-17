@@ -518,6 +518,29 @@ typedef struct GMACArgs_t_
     uint32_t  ivLen;     /**< IV length in bytes */
 } GMACArgs_t;
 
+/**
+ * @brief
+ * This is bank swap request structure passed to HSM core via SIPC as
+ * argument, these parameters are required by the service handler.
+ * Valid only for F29x family of devices
+ *
+ * @param c29CpuId               C29 CPU for which flash banks are to be swapped
+ * @param syncFlag               Synchronisation flag, HSM waits for this flag to be set to 
+ *                               a specific value within a given time period, post which HSM
+ *                               swaps the flash banks
+ * @param timeout                Timeout period for which HSM is supposed to wait
+ * @param c29CpuBankSwapVal      C29 CPU bankswap register value read before making swap 
+ *                               request to HSM, used by C29 CPU only
+ */
+typedef struct BankSwapReq_t_
+{
+    uint8_t c29CpuId;           /** C29 CPU for which flash banks are to be swapped */
+    uint8_t syncFlag;           /** Synchronisation flag used by HSM to initiate bank swap */
+    uint32_t timeout;           /** Timeout period for which HSM is supposed to wait
+                                    before exiting server function */
+    uint32_t c29CpuBankSwapVal; /** C29 CPU bankswap register value before making swap request to HSM */
+} BankSwapReq_t;
+
     /**
      * @brief
      * This API waits for HSMRT load if requested
@@ -1139,6 +1162,20 @@ int32_t HsmClient_SecCfgUpdate(HsmClient_t *HsmClient,
 int32_t HsmClient_CryptoService(HsmClient_t *HsmClient,
                                  CryptoServiceReq_t *svcReq,
                                  uint32_t timeout);
+
+/**
+ *  @brief  Client request to Swap C29 CPU flash banks
+ *          Valid only for F29x family of devices
+ *
+ *  @param  HsmClient               [IN] HsmClient object
+ *  @param  pBankSwapObject         [IN] Pointer to arguments to be passed to HSM core via SIPC.
+ * 
+ * @return
+ * 1. SystemP_SUCCESS if message sent successfully
+ * 2. SystemP_FAILURE if message not sent.
+ */
+int32_t HsmClient_runTimeBankSwap(HsmClient_t *HsmClient,
+                            BankSwapReq_t *pBankSwapObject);
 
 /** @} */
 

@@ -2670,3 +2670,39 @@ int32_t HsmClient_activeToDormantBankCopy(HsmClient_t *HsmClient,
     return status;
 }
 
+int32_t HsmClient_runTimeBankSwap(HsmClient_t *HsmClient,
+                            BankSwapReq_t *pBankSwapObject)
+{
+    int32_t status = SystemP_FAILURE;
+    uint32_t timeout = SystemP_WAIT_FOREVER;
+
+    /* Populate destination ID */
+    HsmClient->ReqMsg.destClientId = HSM_CLIENT_ID_1;
+    /* Populate Source ID */
+    HsmClient->ReqMsg.srcClientId = HsmClient->ClientId;
+    /* Populate parameter to wait for acknowledement from HSM or not */
+    HsmClient->ReqMsg.flags = HSM_FLAG_NAOP;
+    /* Populate service ID */
+    HsmClient->ReqMsg.serType = HSM_MSG_BANK_SWAP;
+    /* Calculate CRC arguments */
+    HsmClient->ReqMsg.crcArgs = crc16_ccit((uint8_t *)pBankSwapObject, sizeof(BankSwapReq_t));
+    /* Convert C29 address to HSM readable address */
+    HsmClient->ReqMsg.args = (void *)(uintptr_t)SOC_virtToPhy(pBankSwapObject);
+    /* Send message to HSM */
+    status = HsmClient_SendAndRecv(HsmClient, timeout);
+    /* Check if message was sent successfully */
+    if (SystemP_SUCCESS == status) {
+        /* Check if response received from HSM was correct */
+        if (HsmClient->RespFlag == HSM_FLAG_NACK) {
+            status = SystemP_FAILURE;
+        } else if (HsmClient->RespFlag == HSM_FLAG_ACK) {
+            status = SystemP_SUCCESS;
+        } else {
+            status = SystemP_FAILURE;
+        }
+    } else {
+        /* Do nothing */
+    }
+
+    return status;
+}

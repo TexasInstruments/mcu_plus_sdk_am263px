@@ -1,5 +1,13 @@
 var NAVTREEINDEX63 =
 {
+"structDp83867__Cfg.html#ad303ea0e835c3e036b64c79003bd7bf1":[19,4,0,13,3,0,8],
+"structDp83867__Cfg.html#ae1262cb2055ba0739687cb72c5474cc0":[19,4,0,13,3,0,3],
+"structDp83869__Cfg.html":[19,4,0,13,4,0],
+"structDp83869__Cfg.html#a11e52b11b108d0670cdc17eb4a5f94f0":[19,4,0,13,4,0,4],
+"structDp83869__Cfg.html#a37cd0c1e5be61d7020f37a7e39597697":[19,4,0,13,4,0,3],
+"structDp83869__Cfg.html#a382880fa88e7965eb9ea7a101f83d928":[19,4,0,13,4,0,6],
+"structDp83869__Cfg.html#a3ec31b9d0ac1ef9e972425a5db89597f":[19,4,0,13,4,0,5],
+"structDp83869__Cfg.html#a4241a3681f87e24991508c4ab8aeb827":[19,4,0,13,4,0,2],
 "structDp83869__Cfg.html#a4c36b118db72f63c1de410f7402d88ae":[19,4,0,13,4,0,7],
 "structDp83869__Cfg.html#a88c77b0f28fcff02522359d5ac4488fd":[19,4,0,13,4,0,8],
 "structDp83869__Cfg.html#a8bc8e841f5a7d7aea2e8d0e2d0c9d642":[19,4,0,13,4,0,9],
@@ -241,13 +249,5 @@ var NAVTREEINDEX63 =
 "structEnetMacPort__Interface.html#a3db3e6be82433d2f5d6c86d8abd3e93e":[19,4,0,3,1,1],
 "structEnetMacPort__Interface.html#a506724797a467a263c1a1bddcaabf837":[19,4,0,3,1,0],
 "structEnetMacPort__LinkCfg.html":[19,4,0,3,2],
-"structEnetMacPort__LinkCfg.html#a1de48922a0688d1594234c63bfd9baf1":[19,4,0,3,2,1],
-"structEnetMacPort__LinkCfg.html#a8839c991fe644d6f50f46c6ab23aa684":[19,4,0,3,2,0],
-"structEnetMacPort__QueuePreemptCfg.html":[19,4,0,3,11],
-"structEnetMacPort__QueuePreemptCfg.html#a31d6fb350274be373e6f1951ab41e10e":[19,4,0,3,11,0],
-"structEnetMacPort__SetCreditBasedShaperInArgs.html":[19,4,0,3,8],
-"structEnetMacPort__SetCreditBasedShaperInArgs.html#a1e23b882368edde3ca4b84ac59f561c5":[19,4,0,3,8,0],
-"structEnetMacPort__SetCreditBasedShaperInArgs.html#a3886970bf6d2966f9a63ac4b79c33b56":[19,4,0,3,8,1],
-"structEnetMacPort__SetEgressPriorityMapInArgs.html":[19,4,0,3,6],
-"structEnetMacPort__SetEgressPriorityMapInArgs.html#a2a044248d238fe43e42d7e62d03c1fbf":[19,4,0,3,6,1]
+"structEnetMacPort__LinkCfg.html#a1de48922a0688d1594234c63bfd9baf1":[19,4,0,3,2,1]
 };

@@ -173,6 +173,9 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGMACArgs__t.html">GMACArgs_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Args for GMAC generate and verify Note: These services are only available in HSSE mode.  <a href="structGMACArgs__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBankSwapReq__t.html">BankSwapReq_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is bank swap request structure passed to HSM core via SIPC as argument, these parameters are required by the service handler. Valid only for F29x family of devices.  <a href="structBankSwapReq__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -337,6 +340,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gaad4edba07fb1e870a576a281a48d1472"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gaad4edba07fb1e870a576a281a48d1472">HsmClient_CryptoService</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structCryptoServiceReq__t.html">CryptoServiceReq_t</a> *svcReq, uint32_t timeout)</td></tr>
 <tr class="memdesc:gaad4edba07fb1e870a576a281a48d1472"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submit a generic crypto service request to the HSM. Set svcReq-&gt;algoId to the algorithm (HSM_CRYPTO_SVC_MAC_CMAC, etc.) and svcReq-&gt;subSvcId to the operation (HSM_CRYPTO_SVC_MAC_GENERATE, etc.). Set svcReq-&gt;keyId to the keyring index and point svcReq-&gt;ptrArgs at the corresponding args struct (e.g. <a class="el" href="structCMACArgs__t.html" title="Args for CMAC generate and verify Note: These services are only available in HSSE mode.">CMACArgs_t</a>).  <a href="group__DRV__HSMCLIENT__MODULE.html#gaad4edba07fb1e870a576a281a48d1472">More...</a><br /></td></tr>
 <tr class="separator:gaad4edba07fb1e870a576a281a48d1472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaa5ee846577c5404a103d3ee391c4fb6"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gaaa5ee846577c5404a103d3ee391c4fb6">HsmClient_runTimeBankSwap</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structBankSwapReq__t.html">BankSwapReq_t</a> *pBankSwapObject)</td></tr>
+<tr class="memdesc:gaaa5ee846577c5404a103d3ee391c4fb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client request to Swap C29 CPU flash banks Valid only for F29x family of devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#gaaa5ee846577c5404a103d3ee391c4fb6">More...</a><br /></td></tr>
+<tr class="separator:gaaa5ee846577c5404a103d3ee391c4fb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>

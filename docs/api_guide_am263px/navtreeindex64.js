@@ -1,5 +1,13 @@
 var NAVTREEINDEX64 =
 {
+"structEnetMacPort__LinkCfg.html#a8839c991fe644d6f50f46c6ab23aa684":[19,4,0,3,2,0],
+"structEnetMacPort__QueuePreemptCfg.html":[19,4,0,3,11],
+"structEnetMacPort__QueuePreemptCfg.html#a31d6fb350274be373e6f1951ab41e10e":[19,4,0,3,11,0],
+"structEnetMacPort__SetCreditBasedShaperInArgs.html":[19,4,0,3,8],
+"structEnetMacPort__SetCreditBasedShaperInArgs.html#a1e23b882368edde3ca4b84ac59f561c5":[19,4,0,3,8,0],
+"structEnetMacPort__SetCreditBasedShaperInArgs.html#a3886970bf6d2966f9a63ac4b79c33b56":[19,4,0,3,8,1],
+"structEnetMacPort__SetEgressPriorityMapInArgs.html":[19,4,0,3,6],
+"structEnetMacPort__SetEgressPriorityMapInArgs.html#a2a044248d238fe43e42d7e62d03c1fbf":[19,4,0,3,6,1],
 "structEnetMacPort__SetEgressPriorityMapInArgs.html#ad0fca372275708f8b057dc9eb75ae998":[19,4,0,3,6,0],
 "structEnetMacPort__SetIngressDscpPriorityMapInArgs.html":[19,4,0,3,4],
 "structEnetMacPort__SetIngressDscpPriorityMapInArgs.html#a5e867226035960e9900d9fe97b43cfc7":[19,4,0,3,4,1],
@@ -241,13 +249,5 @@ var NAVTREEINDEX64 =
 "structFOTAAgent__Handle.html#a72f23452766db24111747c7bf716762d":[19,7,10,2,2],
 "structFOTAAgent__Handle.html#a7b02dee51bfba8bd8f5b1d031c7befc2":[19,7,10,2,6],
 "structFOTAAgent__Handle.html#a8531ad42d8d1428bd91e4ac8fb7b6749":[19,7,10,2,4],
-"structFOTAAgent__Handle.html#adc7932a88a4dc42e48ebca98e73fe5d3":[19,7,10,2,8],
-"structFOTAAgent__Handle.html#aef22a610f05eb4a8fc2d238538bdab15":[19,7,10,2,3],
-"structFOTAAgent__Params.html":[19,7,10,1],
-"structFOTAAgent__Params.html#a376593885f3f496254bf055e7352c0ce":[19,7,10,1,0],
-"structFOTAAgent__Params.html#a507bd0732885c1ae83e7b41370e31a79":[19,7,10,1,2],
-"structFOTAAgent__Params.html#a9c243924c47e91fc2a0df8dd5cc6cf6c":[19,7,10,1,1],
-"structFOTAAgent__Params.html#aa5934f3c70c5c022983fb70310e209f3":[19,7,10,1,3],
-"structFSS__Config.html":[19,7,14,1],
-"structFSS__Config.html#a87882e19b071650d1a455588d643b914":[19,7,14,1,1]
+"structFOTAAgent__Handle.html#adc7932a88a4dc42e48ebca98e73fe5d3":[19,7,10,2,8]
 };

@@ -111,6 +111,8 @@ extern "C"
 #define HSM_MSG_FLASH_BANK_COPY                  (0x9059)
 /** @brief Program Sec-Cfg to SOC non main flash*/
 #define HSM_MSG_FW_UPDATE_SECCFG                 (0x905AU)
+/** @brief Swap C29 CPU-1/3 flash banks*/
+#define HSM_MSG_BANK_SWAP                        (0x905BU)
 /** @brief Generic Crypto service ID */
 #define HSM_MSG_CRYPTO_SERVICE                   (0xA001U)
 
@@ -201,7 +203,8 @@ extern "C"
 /**
  * @brief
  * C29 CPU1 macro to be used while requesting 
- * active to dormant flash bank copy
+ * active to dormant flash bank copy or C29 
+ * CPU flash bank swap services.
  * Valid only for F29x family of devices
  *
  */
@@ -210,7 +213,8 @@ extern "C"
 /**
  * @brief
  * C29 CPU3 macro to be used while requesting 
- * active to dormant flash bank copy
+ * active to dormant flash bank copy or C29 
+ * CPU flash bank swap services.
  * Valid only for F29x family of devices
  *
  */
@@ -224,6 +228,13 @@ extern "C"
  *
  */
 #define HSM_CPU_FLASH_BANK    (0x0U)
+
+/**
+ * @brief
+ * MACRO used by HSM for LFU synchronizsation
+ *
+ */
+#define LFU_BANK_SWAP_READY    (0x5AU)
 
 /**
  * @brief

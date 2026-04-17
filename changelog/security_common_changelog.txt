@@ -380,3 +380,27 @@ Date:   Thu Apr 9 21:40:59 2026 +0530
  drivers/crypto/pke/tifs_pke4_random.c     |  2 +-
  5 files changed, 21 insertions(+), 21 deletions(-)
 
+========================================
+Changes from build on 2026-04-17 20:47:54
+Previous commit: a4844abf24db4648c843220d00e8f9c91ad7f5bd
+Current commit: b4151c9343eddc1cf8f19a95b67d5fe5691bf79c
+========================================
+
+commit b4151c9343eddc1cf8f19a95b67d5fe5691bf79c
+Author: Arush Pant <a-pant@ti.com>
+Date:   Mon Mar 23 14:56:55 2026 +0530
+
+    f29x: LFU: add lfu support in HSM client
+    
+    - Add live firmware update support
+      to HSM Client for soc family
+    
+    Fixes: TIFSMCU-4773, TIFSMCU-4774
+    
+    Signed-off-by: Arush Pant <a-pant@ti.com>
+
+ drivers/hsmclient/hsmclient.c     | 36 ++++++++++++++++++++++++++++++++++++
+ drivers/hsmclient/hsmclient.h     | 37 +++++++++++++++++++++++++++++++++++++
+ drivers/hsmclient/hsmclient_msg.h | 15 +++++++++++++--
+ 3 files changed, 86 insertions(+), 2 deletions(-)
+
