@@ -9,6 +9,9 @@
 %   let config = module.getInstanceConfig(instance);
 %   let alternateSettings = module.getAlternateSettingsArray(instance);
 %   let macAddr = config.macAddress.split(':');
+%   if(config.usbClass == "VENDOR") {
+%       continue;
+%   }
 
 #include "tusb.h"
 

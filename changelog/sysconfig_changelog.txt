@@ -6326,3 +6326,28 @@ Date:   Tue Apr 7 16:33:40 2026 +0530
  xbar/.meta/xbar.syscfg.js                          |    8 +
  1553 files changed, 157933 insertions(+)
 
+========================================
+Changes from build on 2026-04-18 07:00:34
+Previous commit: 334d81c45f86e90173f402ad777449669560093a
+Current commit: 3aeed7d26f732669c005e5809f791d7a2b614c0a
+========================================
+
+commit 3aeed7d26f732669c005e5809f791d7a2b614c0a
+Author: Verma <l-verma@ti.com>
+Date:   Wed Apr 1 17:35:32 2026 +0530
+
+    am261x: usb: Add VENDOR class support in SysConfig
+    
+    - Add VENDOR to USB class list in tinyusb_am261x.syscfg.js
+    - Add VENDOR class UI handler in tinyusb_v1.syscfg.js
+    - Skip descriptor auto-generation for VENDOR in template
+    
+    Fixes: MCUSDK-15428
+    
+    Signed-off-by: Lakshya Verma <l-verma@ti.com>
+
+ usb/.meta/tinyusb/soc/tinyusb_am261x.syscfg.js            | 3 +++
+ usb/.meta/tinyusb/templates/tinyusb_usb_descriptors.c.xdt | 3 +++
+ usb/.meta/tinyusb/v1/tinyusb_v1.syscfg.js                 | 7 +++++++
+ 3 files changed, 13 insertions(+)
+

@@ -283,6 +283,13 @@ function onChangeUsbClass(instance, ui) {
         ui.deviceInterfaceName.hidden = false;
         ui.macAddress.hidden = false;
     }
+    else if (usbClass === "VENDOR") {
+        instance.numInterfaces = 1;
+        hideConfigurationDescriptors(ui, true);
+        hideAltSettingsDescriptors(instance, ui, true);
+        ui.deviceInterfaceName.hidden = true;
+        ui.macAddress.hidden = true;
+    }
     else {
         hideConfigurationDescriptors(ui, true);
         hideAltSettingsDescriptors(instance, ui, true);
