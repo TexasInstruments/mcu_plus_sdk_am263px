@@ -139,12 +139,14 @@ Supported Combinations</h1>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Parameter  </th><th class="markdownTableHeadNone">Value   </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">CPU + OS  </td><td class="markdownTableBodyNone">r5fss0-0_freertos, r5fss0-1_freertos   </td></tr>
+<td class="markdownTableBodyNone" rowspan="2">CPU + OS  </td><td class="markdownTableBodyNone">r5fss0-0_freertos   </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Toolchain  </td><td class="markdownTableBodyNone">ti-arm-clang   </td></tr>
+<td class="markdownTableBodyNone">r5fss0-0_nortos   </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Boards  </td><td class="markdownTableBodyNone">am263px-cc, am263px-lp, am263px-cc-addon-auto   </td></tr>
+<td class="markdownTableBodyNone">Toolchain  </td><td class="markdownTableBodyNone">ti-arm-clang   </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Boards  </td><td class="markdownTableBodyNone">am263px-cc, am263px-lp, am263px-cc-addon-auto   </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/enet_layer2_cpsw/V1   </td></tr>
 </table>
 <p>For support on am263px-cc-addon-auto, please refer <a class="el" href="ETHERNET_ADDON_BOARDS_TOP.html">Ethernet Add-on Boards</a></p>
@@ -262,6 +264,7 @@ Sample output for Multiport example</h2>
 <img src="layer2_cpsw_example_wireshark_log.png" alt=""/>
 <div class="caption">
 Wireshark log for Layer 2 CPSW Example</div></div>
+<dl class="section note"><dt>Note</dt><dd>"Enet L2 cpsw Menu" options shall not be available for baremetal version of Layer 2 CPSW example</dd></dl>
 <h2><a class="anchor" id="autotoc_md3030"></a>
 Troubleshooting issues</h2>
 <ul>

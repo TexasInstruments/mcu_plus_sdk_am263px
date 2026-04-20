@@ -2706,3 +2706,95 @@ int32_t HsmClient_runTimeBankSwap(HsmClient_t *HsmClient,
 
     return status;
 }
+
+int32_t HsmClient_getDeviceConfig(HsmClient_t *HsmClient,
+                                   DeviceConfigRead_t *pDeviceConfigObject,
+                                   uint32_t timeout)
+{
+    /* make the message */
+    int32_t status;
+    uint16_t crcArgs;
+    uint16_t crcConfigData;
+
+    /*populate the send message structure */
+    HsmClient->ReqMsg.destClientId = HSM_CLIENT_ID_1;
+    HsmClient->ReqMsg.srcClientId = HsmClient->ClientId;
+
+    /* Always expect acknowledgement from HSM server */
+    HsmClient->ReqMsg.flags = HSM_FLAG_AOP;
+    HsmClient->ReqMsg.serType = HSM_MSG_GET_DEVICE_CONFIG;
+
+    /* Convert pointer argument to physical address */
+    pDeviceConfigObject->configData = (uint32_t *)(uintptr_t)SOC_virtToPhy(pDeviceConfigObject->configData);
+
+    /* Add arg crc */
+    HsmClient->ReqMsg.crcArgs = crc16_ccit((uint8_t *)pDeviceConfigObject, sizeof(DeviceConfigRead_t));
+
+    /* Change the Arguments Address in Physical Address */
+    HsmClient->ReqMsg.args = (void *)(uintptr_t)SOC_virtToPhy(pDeviceConfigObject);
+
+    /*
+       Write back the DeviceConfigRead_t struct and
+       invalidate the cache before passing it to HSM
+    */
+    CacheP_wbInv(pDeviceConfigObject, GET_CACHE_ALIGNED_SIZE(sizeof(DeviceConfigRead_t)), CacheP_TYPE_ALL);
+
+    status = HsmClient_SendAndRecv(HsmClient, timeout);
+    if (status == SystemP_SUCCESS)
+    {
+        /* the device config has been populated by HSM server
+         * if this request has been processed correctly */
+        if (HsmClient->RespFlag == HSM_FLAG_NACK)
+        {
+            status = SystemP_FAILURE;
+        }
+        else
+        {
+            /* Change the Arguments Address back to Virtual Address */
+            HsmClient->RespMsg.args = (void *)SOC_phyToVirt((uint64_t)HsmClient->RespMsg.args);
+
+            /* Invalidate cache to get updated data from HSM */
+            CacheP_inv((void *)HsmClient->RespMsg.args, GET_CACHE_ALIGNED_SIZE(sizeof(DeviceConfigRead_t)), CacheP_TYPE_ALL);
+
+            /* check the integrity of args structure */
+            crcArgs = crc16_ccit((uint8_t *)HsmClient->RespMsg.args, sizeof(DeviceConfigRead_t));
+            if (crcArgs == HsmClient->RespMsg.crcArgs)
+            {
+                /* Convert pointer field back to virtual address */
+                ((DeviceConfigRead_t *)HsmClient->RespMsg.args)->configData = (uint32_t *)SOC_phyToVirt((uint64_t)(((DeviceConfigRead_t *)HsmClient->RespMsg.args)->configData));
+
+                /* Invalidate cache for the config data buffer (use updated configSize from HSM) */
+                CacheP_inv((void *)((DeviceConfigRead_t *)HsmClient->RespMsg.args)->configData,
+                      GET_CACHE_ALIGNED_SIZE(((DeviceConfigRead_t *)HsmClient->RespMsg.args)->configSize), CacheP_TYPE_ALL);
+
+                /* Verify the CRC of the configuration data buffer */
+                crcConfigData = crc16_ccit((uint8_t *)((DeviceConfigRead_t *)HsmClient->RespMsg.args)->configData,
+                                          ((DeviceConfigRead_t *)HsmClient->RespMsg.args)->configSize);
+                if (crcConfigData == ((DeviceConfigRead_t *)HsmClient->RespMsg.args)->configDataCRC)
+                {
+                    status = SystemP_SUCCESS;
+                }
+                else
+                {
+                    status = SystemP_FAILURE;
+                }
+            }
+            else
+            {
+                status = SystemP_FAILURE;
+            }
+        }
+    }
+    /* If failure occur due to some reason */
+    else if (status == SystemP_FAILURE)
+    {
+        status = SystemP_FAILURE;
+    }
+    /* Indicate timeout error */
+    else
+    {
+        status = SystemP_TIMEOUT;
+    }
+    return status;
+}
+

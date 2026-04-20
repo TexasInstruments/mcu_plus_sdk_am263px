@@ -108,6 +108,32 @@ extern "C"
 /** @brief MAC: compute tag and compare against ptrTag (used for CMAC, HMAC, GMAC) */
 #define HSM_CRYPTO_SVC_MAC_VERIFY    (0x0002U)
 
+/* 
+ * -------------------------------------------------------------------------
+ * Service macros — used in DeviceConfigRead_t
+ * -------------------------------------------------------------------------
+ */
+/** @brief Safety configuration (dedFotaInfo, hsmPbistStatus) */
+#define DEVICE_CONFIG_TYPE_SAFETY       (0U)
+
+/** @brief Security configuration (SecCfg validation, SW revisions, boot retry counts) */
+#define DEVICE_CONFIG_TYPE_SECURITY     (1U)
+
+/** @brief Debug configuration (TBD) */
+#define DEVICE_CONFIG_TYPE_DEBUG        (2U)
+
+/** @brief All configuration types */
+#define DEVICE_CONFIG_TYPE_ALL          (0xFFU)
+
+/** @brief Size of Safety configuration data in bytes (2 uint32_t values) */
+#define SIZE_OF_SAFETY_DEVICE_CONFIG       (8U)
+
+/** @brief Size of security configuration data in bytes (11 uint32_t values) */
+#define SIZE_OF_SECURITY_DEVICE_CONFIG     (44U)
+
+/** @brief Size of Debug configuration data in bytes (4 uint32_t values) */
+#define SIZE_OF_DEBUG_DEVICE_CONFIG        (16U)
+
     /**
      * @brief
      * type for reading HSMRt version.
@@ -540,6 +566,103 @@ typedef struct BankSwapReq_t_
                                     before exiting server function */
     uint32_t c29CpuBankSwapVal; /** C29 CPU bankswap register value before making swap request to HSM */
 } BankSwapReq_t;
+
+/*
+ * @brief
+ * Safety configuration structure containing safety-related device information.
+ * Total size: SIZE_OF_SAFETY_DEVICE_CONFIG (8 bytes)
+ */
+typedef struct DeviceConfigSafety_t_
+{
+    uint32_t dedFotaInfo;      /** DED error info in HSM FOTA active bank determination */
+    uint32_t hsmPbistStatus;   /** HSM PBIST status information */
+} DeviceConfigSafety_t;
+
+/**
+ * @brief
+ * Security configuration structure containing security-related device information.
+ *
+ * Layout (in wire order, each field is uint32_t unless noted):
+ *   [F29H85X only]  c29Cpu2SecCfgValidationStatus
+ *   [F29H85X only]  c29Cpu3SecCfgValidationStatus
+ *   [F29P32X only]  c29Cpu2SecCfgValidationStatus
+ *   certSwRevSSU
+ *   certSwRevR5SBL
+ *   certSwRevHSM
+ *   certSwRevApp
+ *   bootRetryCounts  (bits [7:0] = hsmBootRetryCount, bits [15:8] = sblBootRetryCount)
+ *   hsmFirmwareUpdateStatus
+ *   sblFirmwareUpdateStatus
+ *   c29Cpu1FirmwareUpdateStatus
+ *   c29Cpu3FirmwareUpdateStatus
+ *
+ * Total size: SIZE_OF_SECURITY_DEVICE_CONFIG
+ *   F29H85X, F29P32X  = 48 bytes (12 x uint32_t)
+ *   Other    = 40 bytes  (10 x uint32_t)
+ */
+typedef struct DeviceConfigSecurity_t_
+{
+#if defined (SOC_F29H85X)
+    uint32_t c29Cpu2SecCfgValidationStatus; /** C29 CPU-2 Sec-Cfg validation status */
+    uint32_t c29Cpu3SecCfgValidationStatus; /** C29 CPU-3 Sec-Cfg validation status */
+    uint32_t certSwRevSSU;                  /** Software Revision for SSU from Certificate */
+    uint32_t certSwRevR5SBL;                /** Software Revision for R5 SBL from Certificate */
+    uint32_t certSwRevHSM;                  /** Software Revision for HSM Runtime from Certificate */
+    uint32_t certSwRevApp;                  /** Software Revision for Application from Certificate */
+#elif defined (SOC_F29P32X)
+    uint32_t c29Cpu2SecCfgValidationStatus; /** C29 CPU-2 Sec-Cfg validation status */
+    uint32_t reserved1;                     /** Reserved for alignment */
+    uint32_t certSwRevSSU;                  /** Software Revision for SSU from Certificate */
+    uint32_t certSwRevR5SBL;                /** Software Revision for R5 SBL from Certificate */
+    uint32_t certSwRevHSM;                  /** Software Revision for HSM Runtime from Certificate */
+    uint32_t certSwRevApp;                  /** Software Revision for Application from Certificate */
+#else
+    uint32_t reserved1;                     /** Reserved for alignment */
+    uint32_t reserved2;                     /** Reserved for alignment */
+    uint32_t reserved3;                     /** Reserved for alignment */
+    uint32_t reserved4;                     /** Reserved for alignment */
+    uint32_t reserved5;                     /** Reserved for alignment */
+    uint32_t reserved6;                     /** Reserved for alignment */
+#endif
+    uint32_t bootRetryCounts;               /** bits [7:0]  = hsmBootRetryCount,
+                                             *  bits [15:8] = sblBootRetryCount,
+                                             *  bits [31:16] = reserved */
+    uint32_t hsmFirmwareUpdateStatus;       /** HSM firmware update status */
+    uint32_t sblFirmwareUpdateStatus;       /** SBL firmware update status */
+    uint32_t hostCpu1FirmwareUpdateStatus;  /** Host CPU-1 firmware update status */
+    uint32_t hostCpu2FirmwareUpdateStatus;  /** Host CPU-2 (For F29x devices, CPU3) firmware update status */
+} DeviceConfigSecurity_t;
+
+/**
+ * @brief
+ * Debug status structure containing debug access information.
+ * Total size: SIZE_OF_DEBUG_DEVICE_CONFIG (16 bytes)
+ */
+typedef struct DeviceConfigDebug_t_
+{
+    uint32_t publicDebugStatus;             /** Public debug port open/close status */
+    uint32_t publicRegisterAccessStatus;    /** Public debug register access status */
+    uint32_t secureDebugStatus;             /** Secure debug port open/close status */
+    uint32_t secureRegisterAccessStatus;    /** Secure debug register access status */
+} DeviceConfigDebug_t;
+
+/**
+ * @brief
+ * This is device configuration read request structure passed to HSM core via SIPC
+ * as argument, these parameters are required by the service handler
+ *
+ * @param configType               [IN] Type of configuration to read (safety/security/debug/all)
+ * @param configData               [OUT] Pointer to buffer where device configuration will be stored
+ * @param configSize               [IN/OUT] Size of the configuration buffer in bytes (input), actual size returned (output)
+ * @param configDataCRC            [OUT] CRC of the configuration data returned by HSM
+ */
+typedef struct DeviceConfigRead_t_
+{
+    uint32_t configType;            /** Type of configuration to read */
+    uint32_t *configData;           /** Pointer to buffer for device configuration data */
+    uint32_t configSize;            /** Size of configuration buffer (input), actual size (output) */
+    uint16_t configDataCRC;         /** CRC of configuration data */
+} DeviceConfigRead_t;
 
     /**
      * @brief
@@ -1127,8 +1250,8 @@ int32_t HsmClient_secCfgValidate(HsmClient_t *HsmClient,
  * 1. SystemP_SUCCESS if copy done successfully
  * 2. SystemP_FAILURE if NACK message is received or client id not registered.
  */
-int32_t HsmClient_activeToDormantBankCopy(HsmClient_t *HsmClient, 
-                                          FlashBankCopy_t *pFlashBankCopyObject, 
+int32_t HsmClient_activeToDormantBankCopy(HsmClient_t *HsmClient,
+                                          FlashBankCopy_t *pFlashBankCopyObject,
                                           uint32_t timeout);
 
 /**
@@ -1144,6 +1267,24 @@ int32_t HsmClient_activeToDormantBankCopy(HsmClient_t *HsmClient,
  */
 int32_t HsmClient_SecCfgUpdate(HsmClient_t *HsmClient,
                                             FirmwareUpdateReq_t *pFirmwareUpdateObject);
+ 
+ /**
+ * @brief
+ *  Client request to get device configuration from HSM
+ *  This is a blocking call that waits for HSM response
+ *
+ * @param HsmClient                 [IN] HsmClient object
+ * @param pDeviceConfigObject       [IN] Pointer to device config read request structure
+ * @param timeout                   [IN] Timeout in system ticks
+ *
+ * @return
+ * 1. SystemP_SUCCESS if operation successful
+ * 2. SystemP_FAILURE if NACK received or client not registered
+ * 3. SystemP_TIMEOUT if timeout occurs
+ */
+int32_t HsmClient_getDeviceConfig(HsmClient_t *HsmClient,
+                                   DeviceConfigRead_t *pDeviceConfigObject,
+                                   uint32_t timeout);
 
 /**
  * @brief  Submit a generic crypto service request to the HSM.

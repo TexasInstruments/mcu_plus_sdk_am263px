@@ -404,3 +404,188 @@ Date:   Mon Mar 23 14:56:55 2026 +0530
  drivers/hsmclient/hsmclient_msg.h | 15 +++++++++++++--
  3 files changed, 86 insertions(+), 2 deletions(-)
 
+========================================
+Changes from build on 2026-04-20 20:47:58
+Previous commit: b4151c9343eddc1cf8f19a95b67d5fe5691bf79c
+Current commit: bf128efe27d615259a83e41ba7a1f886163c7a28
+========================================
+
+commit bf128efe27d615259a83e41ba7a1f886163c7a28
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Wed Apr 8 17:25:10 2026 +0530
+
+    f29xx: hsmclient: Add device configuration read service
+    
+    Add new HSM service to read device configuration from HSM:
+    - Add HSM_MSG_GET_DEVICE_CONFIG (0x000B) service type definition
+    - Add DeviceConfigRead_t structure for configuration read requests
+    - Add DeviceConfigSafety_t structure for safety-related configuration
+    - Add DeviceConfigSecurity_t structure for security-related configuration
+    - Add DeviceConfigDebug_t structure for debug configuration
+    - Add HsmClient_getDeviceConfig() API to retrieve device configuration
+    - Add support for reading safety info (dedFotaInfo, hsmPbistStatus)
+    - Add support for reading security info (SW revisions, boot retry counts)
+    - Add DEVICE_CONFIG_TYPE_* macros for configuration type filtering
+    
+    The device configuration service allows C29 cores to query HSM for critical
+    device state information including FOTA bank status, PBIST results, software
+    revisions from certificates, and boot retry counters. This enables better
+    runtime decision-making and diagnostics.
+    
+    Fixes: TIFSMCU-4511
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ .gitignore                                                         |    1 +
+ .gitmodules                                                        |    3 +
+ drivers/crypto/asym_crypt.h                                        |  689 ++++++++
+ drivers/crypto/crypto.c                                            |  278 ++++
+ drivers/crypto/crypto.h                                            |  181 +++
+ drivers/crypto/crypto_util.c                                       |  204 +++
+ drivers/crypto/crypto_util.h                                       |  166 ++
+ drivers/crypto/dthe/dma.c                                          |  365 +++++
+ drivers/crypto/dthe/dma.h                                          |  396 +++++
+ drivers/crypto/dthe/dma/device_includes.h                          |   55 +
+ drivers/crypto/dthe/dma/edma/dthe_edma.c                           |  492 ++++++
+ drivers/crypto/dthe/dma/edma/dthe_edma.h                           |  174 ++
+ drivers/crypto/dthe/dma/rtdma/dthe_rtdma.c                         |  419 +++++
+ drivers/crypto/dthe/dma/rtdma/dthe_rtdma.h                         |  173 ++
+ drivers/crypto/dthe/dthe.c                                         |  137 ++
+ drivers/crypto/dthe/dthe.h                                         |  165 ++
+ drivers/crypto/dthe/dthe_aes.c                                     | 1421 ++++++++++++++++
+ drivers/crypto/dthe/dthe_aes.h                                     |  356 ++++
+ drivers/crypto/dthe/dthe_sha.c                                     | 1070 ++++++++++++
+ drivers/crypto/dthe/dthe_sha.h                                     |  176 ++
+ drivers/crypto/dthe/dthe_sm3.c                                     |  603 +++++++
+ drivers/crypto/dthe/dthe_sm3.h                                     |  185 +++
+ drivers/crypto/dthe/dthe_sm4.c                                     |  774 +++++++++
+ drivers/crypto/dthe/dthe_sm4.h                                     |  431 +++++
+ drivers/crypto/dthe/hw_include/cslr_aes.h                          | 1601 ++++++++++++++++++
+ drivers/crypto/dthe/hw_include/cslr_dthe.h                         |   88 +
+ drivers/crypto/dthe/hw_include/cslr_hsm_ctrl.h                     | 2997 ++++++++++++++++++++++++++++++++++
+ drivers/crypto/dthe/hw_include/cslr_sha.h                          |   95 ++
+ drivers/crypto/dthe/hw_include/cslr_sm3.h                          |   78 +
+ drivers/crypto/dthe/hw_include/cslr_sm4.h                          |   85 +
+ drivers/crypto/pka/eip29t2_firmware.c                              | 3836 ++++++++++++++++++++++++++++++++++++++++++++
+ drivers/crypto/pka/eip29t2_firmware.h                              |   70 +
+ drivers/crypto/pka/hw_include/cslr_cp_ace.h                        | 2910 +++++++++++++++++++++++++++++++++
+ drivers/crypto/pka/hw_include/cslr_eip_29t2_ram.h                  | 2029 +++++++++++++++++++++++
+ drivers/crypto/pka/pka.c                                           | 2175 +++++++++++++++++++++++++
+ drivers/crypto/pka/pka.h                                           |  118 ++
+ drivers/crypto/pka/pka_eddsa.c                                     |  966 +++++++++++
+ drivers/crypto/pka/soc/am64x_am243x/eip29t2_firmware.c             | 2800 ++++++++++++++++++++++++++++++++
+ drivers/crypto/pka/soc/am64x_am243x/eip29t2_firmware.h             |   71 +
+ drivers/crypto/pke/hw_include/am261x/pke_baseaddress.h             |   46 +
+ drivers/crypto/pke/hw_include/f29x/pke_baseaddress.h               |   46 +
+ drivers/crypto/pke/hw_include/pke_hw                               |    1 +
+ drivers/crypto/pke/pke.c                                           | 1215 ++++++++++++++
+ drivers/crypto/pke/tifs_pke4_random.c                              |  132 ++
+ drivers/crypto/rng/rng.c                                           |  269 ++++
+ drivers/crypto/rng/rng.h                                           |  186 +++
+ drivers/crypto/sa2ul/sa2ul.c                                       | 2166 +++++++++++++++++++++++++
+ drivers/crypto/sa2ul/sa2ul.h                                       |  611 +++++++
+ drivers/hsmclient/hsmclient.c                                      | 2800 ++++++++++++++++++++++++++++++++
+ drivers/hsmclient/hsmclient.h                                      | 1327 +++++++++++++++
+ drivers/hsmclient/hsmclient_msg.h                                  |  272 ++++
+ drivers/hsmclient/soc/am261x/hsmRtImg.h                            | 1826 +++++++++++++++++++++
+ drivers/hsmclient/soc/am261x/hsmclient_loadhsmrt.c                 |  464 ++++++
+ drivers/hsmclient/soc/am261x/hsmclient_wait_for_boot_notify.c      |   71 +
+ drivers/hsmclient/soc/am261x/tifs_am261x_hs_fs.hsmimage.bin        |  Bin 0 -> 28003 bytes
+ drivers/hsmclient/soc/am263px/hsmRtImg.h                           | 2771 ++++++++++++++++++++++++++++++++
+ drivers/hsmclient/soc/am263px/hsmclient_loadhsmrt.c                |  470 ++++++
+ drivers/hsmclient/soc/am263px/hsmclient_wait_for_boot_notify.c     |   71 +
+ drivers/hsmclient/soc/am263px/tifs_am263px_hs_fs.hsmimage.bin      |  Bin 0 -> 43124 bytes
+ drivers/hsmclient/soc/am263x/hsmRtImg.h                            | 2724 +++++++++++++++++++++++++++++++
+ drivers/hsmclient/soc/am263x/hsmclient_loadhsmrt.c                 |  470 ++++++
+ drivers/hsmclient/soc/am263x/hsmclient_wait_for_boot_notify.c      |   71 +
+ drivers/hsmclient/soc/am263x/tifs_am263x_hs_fs.hsmimage.bin        |  Bin 0 -> 42372 bytes
+ drivers/hsmclient/soc/am273x/hsmRtImg.h                            | 3797 +++++++++++++++++++++++++++++++++++++++++++
+ drivers/hsmclient/soc/am273x/hsmRtImg_1_1.h                        | 2267 ++++++++++++++++++++++++++
+ drivers/hsmclient/soc/am273x/hsmRtImg_1_2.h                        | 2214 +++++++++++++++++++++++++
+ drivers/hsmclient/soc/am273x/hsmclient_loadhsmrt.c                 |  340 ++++
+ drivers/hsmclient/soc/am273x/hsmclient_wait_for_boot_notify.c      |   73 +
+ drivers/hsmclient/soc/am273x/tifs-1_2.bin                          |  Bin 0 -> 34500 bytes
+ drivers/hsmclient/soc/am273x/tifs_am273x_hs_fs.hsmimage.bin        |  Bin 0 -> 63503 bytes
+ drivers/hsmclient/soc/awr294x/hsmRtImg.h                           | 2003 +++++++++++++++++++++++
+ drivers/hsmclient/soc/awr294x/hsmclient_loadhsmrt.c                |  325 ++++
+ drivers/hsmclient/soc/f29h85x/hsmclient_loadhsmrt.c                |  358 +++++
+ drivers/hsmclient/soc/f29h85x/hsmclient_wait_for_boot_notify.c     |   66 +
+ drivers/hsmclient/utils/hsmclient_utils.c                          |  695 ++++++++
+ drivers/hsmclient/utils/hsmclient_utils.h                          |  160 ++
+ drivers/secure_ipc_notify/sipc_notify.h                            |  226 +++
+ drivers/secure_ipc_notify/sipc_notify_mailbox.h                    |  192 +++
+ drivers/secure_ipc_notify/sipc_notify_src.c                        |  555 +++++++
+ drivers/secure_ipc_notify/sipc_notify_src.h                        |  128 ++
+ drivers/secure_ipc_notify/soc/am261x/sipc_notify_cfg.c             |  176 ++
+ drivers/secure_ipc_notify/soc/am261x/sipc_notify_cfg.h             |  156 ++
+ drivers/secure_ipc_notify/soc/am263px/sipc_notify_cfg.c            |  229 +++
+ drivers/secure_ipc_notify/soc/am263px/sipc_notify_cfg.h            |  170 ++
+ drivers/secure_ipc_notify/soc/am263x/sipc_notify_cfg.c             |  229 +++
+ drivers/secure_ipc_notify/soc/am263x/sipc_notify_cfg.h             |  169 ++
+ drivers/secure_ipc_notify/soc/am273x/sipc_notify_cfg.c             |  200 +++
+ drivers/secure_ipc_notify/soc/am273x/sipc_notify_cfg.h             |  168 ++
+ drivers/secure_ipc_notify/soc/awr294x/sipc_notify_cfg.c            |  181 +++
+ drivers/secure_ipc_notify/soc/awr294x/sipc_notify_cfg.h            |  167 ++
+ drivers/secure_ipc_notify/soc/f29h85x/sipc_notify_cfg.c            |  177 ++
+ drivers/secure_ipc_notify/soc/f29h85x/sipc_notify_cfg.h            |  181 +++
+ drivers/secure_ipc_notify/soc/sipc_notify_soc.h                    |   61 +
+ tools/boot/signing/app_degenerateKey.pem                           |   51 +
+ tools/boot/signing/appimage_x509_cert_gen.py                       |  283 ++++
+ tools/boot/signing/bmpk/mcu_custMpk_brainpool512.pem               |   10 +
+ tools/boot/signing/bmpk/mcu_custMpk_secp256r1.pem                  |    8 +
+ tools/boot/signing/bmpk/mcu_custMpk_secp384r1.pem                  |    9 +
+ tools/boot/signing/bmpk/mcu_custMpk_secp521r1.pem                  |   10 +
+ tools/boot/signing/bmpk/mcu_custmpk_rsa4k.pem                      |   51 +
+ tools/boot/signing/custBmpk_am64x_am243x.pem                       |   51 +
+ tools/boot/signing/custBmpk_am64x_am243x.txt                       |    1 +
+ tools/boot/signing/custMek_am64x_am243x.txt                        |    1 +
+ tools/boot/signing/custMpk_am64x_am243x.pem                        |   51 +
+ tools/boot/signing/custMpk_am64x_am243x_secp384r1.pem              |    6 +
+ tools/boot/signing/dualCertGen.py                                  |  165 ++
+ tools/boot/signing/hkdf.py                                         |   32 +
+ tools/boot/signing/k3_dev_mpk.pem                                  |   84 +
+ tools/boot/signing/kd_salt.txt                                     |    1 +
+ tools/boot/signing/mcu_appimage_x509_cert_gen.py                   |  422 +++++
+ tools/boot/signing/mcu_custBmpk.pem                                |   51 +
+ tools/boot/signing/mcu_custMek.key                                 |    2 +
+ tools/boot/signing/mcu_custMpk.pem                                 |   51 +
+ tools/boot/signing/mcu_custMpk_brainpool512.pem                    |   10 +
+ tools/boot/signing/mcu_custMpk_secp256r1.pem                       |    8 +
+ tools/boot/signing/mcu_custMpk_secp384r1.pem                       |    9 +
+ tools/boot/signing/mcu_custMpk_secp521r1.pem                       |   10 +
+ tools/boot/signing/mcu_gpkey.pem                                   |   51 +
+ tools/boot/signing/mcu_rom_image_gen.py                            |  686 ++++++++
+ tools/boot/signing/rom_degenerateKey.pem                           |   10 +
+ tools/boot/signing/rom_image_gen.py                                |  354 ++++
+ tools/boot/signing/x509CertificateGen.ps1                          |  195 +++
+ tools/boot/signing/x509CertificateGen.sh                           |  542 +++++++
+ tools/boot/signing/x509template.txt                                |   76 +
+ tools/boot/signing/x509template_boardcfg.txt                       |   36 +
+ tools/keyring_cert/aux_keys/aes128.key                             |    1 +
+ tools/keyring_cert/aux_keys/aes192.key                             |  Bin 0 -> 24 bytes
+ tools/keyring_cert/aux_keys/aes256.key                             |    2 +
+ tools/keyring_cert/aux_keys/brainpoolp512r1_private.pem            |    7 +
+ tools/keyring_cert/aux_keys/brainpoolp512r1_public.pem             |    6 +
+ tools/keyring_cert/aux_keys/prime256v1_private.pem                 |    5 +
+ tools/keyring_cert/aux_keys/prime265v1_public.pem                  |    4 +
+ tools/keyring_cert/aux_keys/public2k.pem                           |    9 +
+ tools/keyring_cert/aux_keys/public3k.pem                           |   11 +
+ tools/keyring_cert/aux_keys/public4k.pem                           |   14 +
+ tools/keyring_cert/aux_keys/rsa_private2k.pem                      |   27 +
+ tools/keyring_cert/aux_keys/rsa_private3k.pem                      |   39 +
+ tools/keyring_cert/aux_keys/rsa_private4k.pem                      |   51 +
+ tools/keyring_cert/aux_keys/secp384r1_private.pem                  |    6 +
+ tools/keyring_cert/aux_keys/secp384r1_public.pem                   |    5 +
+ tools/keyring_cert/aux_keys/secp521r1_private.pem                  |    7 +
+ tools/keyring_cert/aux_keys/secp521r1_public.pem                   |    6 +
+ tools/keyring_cert/bin2c.py                                        |  191 +++
+ tools/keyring_cert/hkdf.py                                         |   22 +
+ tools/keyring_cert/kd_salt.txt                                     |    1 +
+ tools/keyring_cert/keyringCert.h                                   |  208 +++
+ tools/keyring_cert/keyring_cert_gen.py                             |  461 ++++++
+ tools/keyring_cert/keys.json                                       |   61 +
+ tools/keyring_cert/readme.md                                       |  195 +++
+ tools/root_of_trust_switching_cert/root_of_trust_switching_cert.py |  233 +++
+ updateC29SDK.py                                                    |  111 ++
+ 151 files changed, 67515 insertions(+)
+

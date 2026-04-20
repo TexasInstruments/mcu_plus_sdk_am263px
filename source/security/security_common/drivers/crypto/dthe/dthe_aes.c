@@ -794,7 +794,6 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
                 if (((ptrParams->streamState == DTHE_AES_ONE_SHOT_SUPPORT) ||\
                     (ptrParams->streamState == DTHE_AES_STREAM_FINISH)) &&\
                     (ptrParams->algoType == DTHE_AES_XTS_MODE) &&\
-                    (ptrParams->opType == DTHE_AES_DECRYPT) &&\
                     (partialDataSize != 0U))
                 {
                     /*CTS is required in XTS decryption if partial data present, so process with edma till second-last complete block only
@@ -835,7 +834,7 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
                     (void)DMA_WaitForTxTransfer(dmaHandle);
 
                     DTHE_AES_setDMAInputRequestStatus(ptrAesRegs, 0);
-                    if((ptrParams->algoType != DTHE_AES_CBC_MAC_MODE)&&(ptrParams->algoType != DTHE_AES_CMAC_MODE)&&(ptrParams->algoType == DTHE_AES_GHASH_ONLY_MODE))
+                    if((ptrParams->algoType != DTHE_AES_CBC_MAC_MODE)&&(ptrParams->algoType != DTHE_AES_CMAC_MODE)&&(ptrParams->algoType != DTHE_AES_GHASH_ONLY_MODE))
                     {
                         DTHE_AES_setDMAOutputRequestStatus(ptrAesRegs, 0);
                     }

@@ -164,6 +164,35 @@ var group__DRV__HSMCLIENT__MODULE =
       [ "timeout", "structBankSwapReq__t.html#ac3b64d7f3ef72077f67fa895e0058b61", null ],
       [ "c29CpuBankSwapVal", "structBankSwapReq__t.html#a6ad6d9f2b61b4c732e86e2589f472ca7", null ]
     ] ],
+    [ "DeviceConfigSafety_t", "structDeviceConfigSafety__t.html", [
+      [ "dedFotaInfo", "structDeviceConfigSafety__t.html#a5c46d4ef1c25781495407f9afaa36114", null ],
+      [ "hsmPbistStatus", "structDeviceConfigSafety__t.html#a38e38d58956e2f65ece591abc361b0c6", null ]
+    ] ],
+    [ "DeviceConfigSecurity_t", "structDeviceConfigSecurity__t.html", [
+      [ "reserved1", "structDeviceConfigSecurity__t.html#a4fdd0f2aec4debfa7c61ae7ff2fc23c2", null ],
+      [ "reserved2", "structDeviceConfigSecurity__t.html#aad03f8a14f9674125a5ad4bd6622f222", null ],
+      [ "reserved3", "structDeviceConfigSecurity__t.html#ad692fc1e33cfd72c186e475335d36714", null ],
+      [ "reserved4", "structDeviceConfigSecurity__t.html#a7b433170190a4f86b878bd475dd66517", null ],
+      [ "reserved5", "structDeviceConfigSecurity__t.html#a9d07ee1a4375abcf9bf5505693aea4e9", null ],
+      [ "reserved6", "structDeviceConfigSecurity__t.html#aa851e637d68fed00cd8dd771c6253c45", null ],
+      [ "bootRetryCounts", "structDeviceConfigSecurity__t.html#ad76ba4a1fcc0d6d77e8c56241c8dea30", null ],
+      [ "hsmFirmwareUpdateStatus", "structDeviceConfigSecurity__t.html#a89fc06cb03b97f26a8ddd11dab696f9a", null ],
+      [ "sblFirmwareUpdateStatus", "structDeviceConfigSecurity__t.html#ab03bf304d0e4c5d5375494ae47c3c41f", null ],
+      [ "hostCpu1FirmwareUpdateStatus", "structDeviceConfigSecurity__t.html#a30ca3e786cb7b6dc268eb7f0f701558b", null ],
+      [ "hostCpu2FirmwareUpdateStatus", "structDeviceConfigSecurity__t.html#a6f74e86ae8a3229d540e172d0ee23bfc", null ]
+    ] ],
+    [ "DeviceConfigDebug_t", "structDeviceConfigDebug__t.html", [
+      [ "publicDebugStatus", "structDeviceConfigDebug__t.html#adeb693c07860a8e0db2e9dba29d5ad2d", null ],
+      [ "publicRegisterAccessStatus", "structDeviceConfigDebug__t.html#a46c3bcf555531cf6ad9b51f22a1114ac", null ],
+      [ "secureDebugStatus", "structDeviceConfigDebug__t.html#afafbd5e2704f2d36ac1e0afc883101d9", null ],
+      [ "secureRegisterAccessStatus", "structDeviceConfigDebug__t.html#a00fdb92089cceabd4815e6c06ce7bf50", null ]
+    ] ],
+    [ "DeviceConfigRead_t", "structDeviceConfigRead__t.html", [
+      [ "configType", "structDeviceConfigRead__t.html#a7e05796eb66be7f126bb6ddd9561106a", null ],
+      [ "configData", "structDeviceConfigRead__t.html#ae0d95f7ff3c9a793d669e5705992bdb4", null ],
+      [ "configSize", "structDeviceConfigRead__t.html#a99cb7e56bb060dc78211bd587b82614f", null ],
+      [ "configDataCRC", "structDeviceConfigRead__t.html#ac80a9388a2978b38f7be5d598f0917b6", null ]
+    ] ],
     [ "HsmMsg_t_", "structHsmMsg__t__.html", [
       [ "destClientId", "structHsmMsg__t__.html#af7693475522e1a00bad5144d3369373e", null ],
       [ "srcClientId", "structHsmMsg__t__.html#aa2fad9ffe66fecc74ef1ec07402e7993", null ],
@@ -185,8 +214,16 @@ var group__DRV__HSMCLIENT__MODULE =
     [ "HSM_CRYPTO_HMAC_SHA512", "group__DRV__HSMCLIENT__MODULE.html#ga2eff52e2a637493759a58c49fd00d342", null ],
     [ "HSM_CRYPTO_SVC_MAC_GENERATE", "group__DRV__HSMCLIENT__MODULE.html#gaa1137cd2a6c85b146d9716c963045199", null ],
     [ "HSM_CRYPTO_SVC_MAC_VERIFY", "group__DRV__HSMCLIENT__MODULE.html#gab6aabab2d08d4c5e94e88037e24556b3", null ],
+    [ "DEVICE_CONFIG_TYPE_SAFETY", "group__DRV__HSMCLIENT__MODULE.html#gaff7606fa68f0489756c927e5cfcdbf02", null ],
+    [ "DEVICE_CONFIG_TYPE_SECURITY", "group__DRV__HSMCLIENT__MODULE.html#ga127f66460806144504d3b2a2ea3ad2cd", null ],
+    [ "DEVICE_CONFIG_TYPE_DEBUG", "group__DRV__HSMCLIENT__MODULE.html#ga1beee330807cd054fc7adeabb1f09921", null ],
+    [ "DEVICE_CONFIG_TYPE_ALL", "group__DRV__HSMCLIENT__MODULE.html#ga18810511dc8421fbd24c634df97f7f0c", null ],
+    [ "SIZE_OF_SAFETY_DEVICE_CONFIG", "group__DRV__HSMCLIENT__MODULE.html#ga0342b7b772b43474a2b05fa9209edc96", null ],
+    [ "SIZE_OF_SECURITY_DEVICE_CONFIG", "group__DRV__HSMCLIENT__MODULE.html#ga6d3d50ffcb8e21556e33c4e0743ec349", null ],
+    [ "SIZE_OF_DEBUG_DEVICE_CONFIG", "group__DRV__HSMCLIENT__MODULE.html#gac49c5318ff69dc65adedd4d2de8fa2fe", null ],
     [ "HSM_MSG_GET_VERSION", "group__DRV__HSMCLIENT__MODULE.html#gadf3a90c05d8c1565e696412e009e54d5", null ],
     [ "HSM_MSG_BOOT_NOTIFY", "group__DRV__HSMCLIENT__MODULE.html#ga65e1efbec7ecc3f8a2c27e8a26b9ead0", null ],
+    [ "HSM_MSG_GET_DEVICE_CONFIG", "group__DRV__HSMCLIENT__MODULE.html#ga87249521592344da697dfa65f684f460", null ],
     [ "HSM_MSG_GET_UID", "group__DRV__HSMCLIENT__MODULE.html#gac0b1702fe87b12cc7f14360f25b1886d", null ],
     [ "HSM_MSG_OPEN_DBG_FIREWALLS", "group__DRV__HSMCLIENT__MODULE.html#ga9f8b9d794ea45b3b84c8444ac55a6a92", null ],
     [ "HSM_MSG_READ_OTP_ROW", "group__DRV__HSMCLIENT__MODULE.html#ga284c1488f234b5606461d997e1369b7f", null ],
@@ -281,6 +318,7 @@ var group__DRV__HSMCLIENT__MODULE =
     [ "HsmClient_secCfgValidate", "group__DRV__HSMCLIENT__MODULE.html#ga6634bc2f8d0d9f5574111f6070838002", null ],
     [ "HsmClient_activeToDormantBankCopy", "group__DRV__HSMCLIENT__MODULE.html#ga2a4fabce99d63a311aab8352a9fe890b", null ],
     [ "HsmClient_SecCfgUpdate", "group__DRV__HSMCLIENT__MODULE.html#gabe2810b39dc269a55fcca419c65eb87c", null ],
+    [ "HsmClient_getDeviceConfig", "group__DRV__HSMCLIENT__MODULE.html#gab86209b718b0ffd17871e0d1c5354a75", null ],
     [ "HsmClient_CryptoService", "group__DRV__HSMCLIENT__MODULE.html#gaad4edba07fb1e870a576a281a48d1472", null ],
     [ "HsmClient_runTimeBankSwap", "group__DRV__HSMCLIENT__MODULE.html#gaaa5ee846577c5404a103d3ee391c4fb6", null ]
 ];

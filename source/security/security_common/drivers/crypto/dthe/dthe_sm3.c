@@ -43,6 +43,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <crypto/dthe/dthe_sm3.h>
+#include <security_common/drivers/crypto/dthe/dma.h>
 
 /* ========================================================================== */
 /*                           Global variables                                */
@@ -68,6 +69,7 @@ static void DTHE_SM3_setHashMode(CSL_EIP52_SM3Regs* ptrSM3Regs, uint32_t hash_se
 static void DTHE_SM3_setHashLength_lower(CSL_EIP52_SM3Regs* ptrSM3Regs, uint32_t length);
 static void DTHE_SM3_setHashLength_upper(CSL_EIP52_SM3Regs* ptrSM3Regs, uint32_t length);
 static void DTHE_SM3_set_autoctrl(CSL_EIP52_SM3Regs* ptrSM3Regs, uint32_t auto_trigger);
+static void DTHE_SM3_setDMA(CSL_EIP52_SM3Regs* ptrSM3Regs, uint8_t dmaStatus);
 static void DTHE_SM3_writeDataBlock(CSL_EIP52_SM3Regs* ptrSM3Regs, const uint32_t* ptrDataBlock, uint64_t blockSize);
 static void DTHE_SM3_set_data_available(CSL_EIP52_SM3Regs* ptrSM3Regs, uint32_t all_input_available);
 static void DTHE_SM3_pollOutputReady (const CSL_EIP52_SM3Regs* ptrSM3Regs);
@@ -155,17 +157,32 @@ static void DTHE_SM3_setHashLength_upper(CSL_EIP52_SM3Regs* ptrSM3Regs, uint32_t
 /**
  * \brief Enable register for the different dma request lines and the automatic trigger of the core.
  * When set to 1, dma requests or sm3_intr will assert to request new push or pop of data.
- * 
+ *
  * \param ptrSM3Regs       Pointer to the EIP52 SM3 Registers
  * \param  auto_trigger       Flag which is used to enable(1)/disable(0) the auto_ctrl
- * 
- * 
+ *
+ *
 */
 static void DTHE_SM3_set_autoctrl(CSL_EIP52_SM3Regs* ptrSM3Regs, uint32_t auto_trigger)
 {
     CSL_FINSR(ptrSM3Regs->SM3_SYSCONFIG, 0U, 0U, auto_trigger);
 
     return;
+}
+
+
+/**
+ * \brief The function is used to enable/disable the DMA
+ *
+ * \param  ptrSM3Regs      Pointer to the EIP52 SM3 Registers
+ *
+ * \param  dmaStatus       Flag which is used to enable(1)/disable(0) the DMA operation
+ *
+ */
+static void DTHE_SM3_setDMA(CSL_EIP52_SM3Regs* ptrSM3Regs, uint8_t dmaStatus)
+{
+    /* DMA_en */
+    CSL_FINSR(ptrSM3Regs->SM3_SYSCONFIG, 5U, 5U, (((uint32_t)0) | dmaStatus));
 }
 
 
@@ -378,12 +395,14 @@ DTHE_SM3_Return_t DTHE_SM3_close(DTHE_Handle handle)
 DTHE_SM3_Return_t DTHE_SM3_compute(DTHE_Handle handle, DTHE_SM3_Params* ptrSm3Params, DTHE_SM3_LastBlockState_t isLastBlock)
 {
     DTHE_SM3_Return_t       status       = DTHE_SM3_RETURN_FAILURE;
+    DMA_Handle              dmaHandle    = NULL;
     uint64_t                index        = 0ULL;
     uint64_t                numBlocks    = 0ULL;
     uint64_t                blockSize    = 0ULL;
     uint64_t                dataLenWords = 0ULL;
     uint64_t                dataLenBytes = 0ULL;
-    uint32_t                numPartialWords, numPartialBlocks = 0U;
+    uint32_t                numPartialWords = 0U;
+    uint32_t                numPartialBlocks = 0U;
     uint8_t                 shiftSize;
 
     DTHE_Config             *config = (DTHE_Config *)NULL;
@@ -484,19 +503,54 @@ DTHE_SM3_Return_t DTHE_SM3_compute(DTHE_Handle handle, DTHE_SM3_Params* ptrSm3Pa
         {
             /* write first block */
             DTHE_SM3_writeDataBlock(ptrSm3Regs, &ptrSm3Params->ptrDataBuffer[0U], blockSize);
-            
+
             /* write data in ava and ctrl valid */
             DTHE_SM3_set_data_available(ptrSm3Regs, 0x126U);
 
             /*intermediate blocks*/
-            for (index = 1ULL; index < (numBlocks-1ULL); index++)
+            if ((config->dmaEnable == DMA_ENABLE) && ((numBlocks - 1ULL) > 1ULL))
             {
-                /* wait until input buffer available for writing by host */
-                DTHE_SM3_pollInput_buff_available(ptrSm3Regs);
-                /* write the input data */
-                DTHE_SM3_writeDataBlock(ptrSm3Regs, &ptrSm3Params->ptrDataBuffer[index << shiftSize], blockSize);
-                /* set only teh data in and in ava bit */
-                DTHE_SM3_set_data_available(ptrSm3Regs, 0x006U);
+                uint16_t dmaNumBlocks = (uint16_t)(numBlocks - 2ULL);
+
+                dmaHandle = DMA_open(0);
+
+                (void)DMA_Config_TxChannel(dmaHandle, &ptrSm3Params->ptrDataBuffer[1U << shiftSize], (uint32_t *)&ptrSm3Regs->SM3_DATA_IN[0], dmaNumBlocks, (uint16_t)blockSize, DMA_SM3_ENABLE);
+
+                /* Enable auto control and DMA mode BEFORE starting DMA transfer.
+                 * This ensures the SM3 engine can generate DMA requests when ready
+                 * for the next block after processing block 0. */
+                DTHE_SM3_set_autoctrl(ptrSm3Regs, 1U);
+                DTHE_SM3_setDMA(ptrSm3Regs, 1U);
+
+                /* Enable the transfer region (starts DMA) */
+                (void)DMA_enableTxTransferRegion(dmaHandle);
+
+                /* Wait for DMA transfer to complete */
+                (void)DMA_WaitForTxTransfer(dmaHandle);
+
+                /* Disable DMA mode */
+                DTHE_SM3_setDMA(ptrSm3Regs, 0U);
+
+                /* Disable auto control */
+                DTHE_SM3_set_autoctrl(ptrSm3Regs, 0U);
+
+                (void)DMA_disableTxCh(dmaHandle);
+
+                /* Update index to skip DMA processed blocks */
+                index = numBlocks - 1ULL;
+            }
+            else
+            {
+                for (index = 1ULL; index < (numBlocks-1ULL); index++)
+                {
+                    /* wait until input buffer available for writing by host */
+                    DTHE_SM3_pollInput_buff_available(ptrSm3Regs);
+                    /* write the input data */
+                    DTHE_SM3_writeDataBlock(ptrSm3Regs, &ptrSm3Params->ptrDataBuffer[index << shiftSize], blockSize);
+                    /* set only teh data in and in ava bit */
+                    DTHE_SM3_set_data_available(ptrSm3Regs, 0x006U);
+                }
+                index = numBlocks - 1ULL;
             }
 
             /*check for the partial data blocks*/

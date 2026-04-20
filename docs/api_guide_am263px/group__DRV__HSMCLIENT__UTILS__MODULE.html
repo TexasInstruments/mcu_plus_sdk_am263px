@@ -102,6 +102,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga1bb7314746335adfeeb9a8c05bdc4667"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga1bb7314746335adfeeb9a8c05bdc4667">HsmClient_parseVersion</a> (HsmVer_t *tifsMcuVer, char *parsedVer)</td></tr>
 <tr class="memdesc:ga1bb7314746335adfeeb9a8c05bdc4667"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses Version string.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga1bb7314746335adfeeb9a8c05bdc4667">More...</a><br /></td></tr>
 <tr class="separator:ga1bb7314746335adfeeb9a8c05bdc4667"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gada23a2c4588f96c8c2405b01bad1278b"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gada23a2c4588f96c8c2405b01bad1278b">HsmClient_parseDeviceConfig</a> (uint32_t configType, uint32_t *configData, uint32_t configSize, char *parsedConfig)</td></tr>
+<tr class="memdesc:gada23a2c4588f96c8c2405b01bad1278b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses Device Configuration data into a human-readable string.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gada23a2c4588f96c8c2405b01bad1278b">More...</a><br /></td></tr>
+<tr class="separator:gada23a2c4588f96c8c2405b01bad1278b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -144,6 +147,48 @@ Macros</h2></td></tr>
 <tr class="memitem:ga51af79d782018b7298836221bf4fbd70"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga51af79d782018b7298836221bf4fbd70">BIN_TYPE_OTPKW</a>&#160;&#160;&#160;0x33</td></tr>
 <tr class="memdesc:ga51af79d782018b7298836221bf4fbd70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binary type flag for OTPKW.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga51af79d782018b7298836221bf4fbd70">More...</a><br /></td></tr>
 <tr class="separator:ga51af79d782018b7298836221bf4fbd70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaff7606fa68f0489756c927e5cfcdbf02"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gaff7606fa68f0489756c927e5cfcdbf02">DEVICE_CONFIG_TYPE_SAFETY</a>&#160;&#160;&#160;(0U)</td></tr>
+<tr class="memdesc:gaff7606fa68f0489756c927e5cfcdbf02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device configuration type - Safety configuration.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gaff7606fa68f0489756c927e5cfcdbf02">More...</a><br /></td></tr>
+<tr class="separator:gaff7606fa68f0489756c927e5cfcdbf02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga127f66460806144504d3b2a2ea3ad2cd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga127f66460806144504d3b2a2ea3ad2cd">DEVICE_CONFIG_TYPE_SECURITY</a>&#160;&#160;&#160;(1U)</td></tr>
+<tr class="memdesc:ga127f66460806144504d3b2a2ea3ad2cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device configuration type - Security configuration.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga127f66460806144504d3b2a2ea3ad2cd">More...</a><br /></td></tr>
+<tr class="separator:ga127f66460806144504d3b2a2ea3ad2cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1beee330807cd054fc7adeabb1f09921"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga1beee330807cd054fc7adeabb1f09921">DEVICE_CONFIG_TYPE_DEBUG</a>&#160;&#160;&#160;(2U)</td></tr>
+<tr class="memdesc:ga1beee330807cd054fc7adeabb1f09921"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device configuration type - Debug configuration.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga1beee330807cd054fc7adeabb1f09921">More...</a><br /></td></tr>
+<tr class="separator:ga1beee330807cd054fc7adeabb1f09921"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga18810511dc8421fbd24c634df97f7f0c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga18810511dc8421fbd24c634df97f7f0c">DEVICE_CONFIG_TYPE_ALL</a>&#160;&#160;&#160;(0xFFU)</td></tr>
+<tr class="memdesc:ga18810511dc8421fbd24c634df97f7f0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device configuration type - All configuration types.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga18810511dc8421fbd24c634df97f7f0c">More...</a><br /></td></tr>
+<tr class="separator:ga18810511dc8421fbd24c634df97f7f0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga54d38e1220110b623959aa742f641ebc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga54d38e1220110b623959aa742f641ebc">FW_UPDATE_COMPLETE</a>&#160;&#160;&#160;(0x5A5A5A5AU)</td></tr>
+<tr class="memdesc:ga54d38e1220110b623959aa742f641ebc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Firmware update complete value.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga54d38e1220110b623959aa742f641ebc">More...</a><br /></td></tr>
+<tr class="separator:ga54d38e1220110b623959aa742f641ebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga57db0e08c9bf86fc2a0e1e64ed28d16d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga57db0e08c9bf86fc2a0e1e64ed28d16d">SECCFG_VALIDATION_SUCCESS</a>&#160;&#160;&#160;(0x5A5A5A5AU)</td></tr>
+<tr class="memdesc:ga57db0e08c9bf86fc2a0e1e64ed28d16d"><td class="mdescLeft">&#160;</td><td class="mdescRight">SecCfg validation success value.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga57db0e08c9bf86fc2a0e1e64ed28d16d">More...</a><br /></td></tr>
+<tr class="separator:ga57db0e08c9bf86fc2a0e1e64ed28d16d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf350ccdc236268308707ce04a051e12a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gaf350ccdc236268308707ce04a051e12a">DEBUG_STATUS_DISABLED</a>&#160;&#160;&#160;(0x5A5A5A5AU)</td></tr>
+<tr class="memdesc:gaf350ccdc236268308707ce04a051e12a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug status disabled value.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gaf350ccdc236268308707ce04a051e12a">More...</a><br /></td></tr>
+<tr class="separator:gaf350ccdc236268308707ce04a051e12a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad3396342df11779f5a005a32723d351c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gad3396342df11779f5a005a32723d351c">DEBUG_STATUS_ENABLED</a>&#160;&#160;&#160;(0xA5A5A5A5U)</td></tr>
+<tr class="memdesc:gad3396342df11779f5a005a32723d351c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug status enabled value.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gad3396342df11779f5a005a32723d351c">More...</a><br /></td></tr>
+<tr class="separator:gad3396342df11779f5a005a32723d351c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab1dbd6d2ef0fbac64acd1ac43514b883"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gab1dbd6d2ef0fbac64acd1ac43514b883">BOTH_BANK_INVALID</a>&#160;&#160;&#160;(0x0000FFFFU)</td></tr>
+<tr class="memdesc:gab1dbd6d2ef0fbac64acd1ac43514b883"><td class="mdescLeft">&#160;</td><td class="mdescRight">Both banks invalid.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gab1dbd6d2ef0fbac64acd1ac43514b883">More...</a><br /></td></tr>
+<tr class="separator:gab1dbd6d2ef0fbac64acd1ac43514b883"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaaf1b9e6c87e8ec0a172a8922a99d97c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gaaaf1b9e6c87e8ec0a172a8922a99d97c">BOTH_BANKS_VALID</a>&#160;&#160;&#160;(0x0000B0B1U)</td></tr>
+<tr class="memdesc:gaaaf1b9e6c87e8ec0a172a8922a99d97c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Both banks valid.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gaaaf1b9e6c87e8ec0a172a8922a99d97c">More...</a><br /></td></tr>
+<tr class="separator:gaaaf1b9e6c87e8ec0a172a8922a99d97c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa74e16cc10581e2d303fc1af5a895b16"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gaa74e16cc10581e2d303fc1af5a895b16">ONLY_BANK0_VALID</a>&#160;&#160;&#160;(0x0000B0FFU)</td></tr>
+<tr class="memdesc:gaa74e16cc10581e2d303fc1af5a895b16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Only Bank0 valid.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gaa74e16cc10581e2d303fc1af5a895b16">More...</a><br /></td></tr>
+<tr class="separator:gaa74e16cc10581e2d303fc1af5a895b16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga03da7ccaea1f7dce1ac92b32439892f1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga03da7ccaea1f7dce1ac92b32439892f1">ONLY_BANK1_VALID</a>&#160;&#160;&#160;(0x0000FFB1U)</td></tr>
+<tr class="memdesc:ga03da7ccaea1f7dce1ac92b32439892f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Only Bank1 valid.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga03da7ccaea1f7dce1ac92b32439892f1">More...</a><br /></td></tr>
+<tr class="separator:ga03da7ccaea1f7dce1ac92b32439892f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabce22596b06ff7d5c0787e687067b6c7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gabce22596b06ff7d5c0787e687067b6c7">BANK0_ACTIVE_VAL</a>&#160;&#160;&#160;(0xC9U)</td></tr>
+<tr class="memdesc:gabce22596b06ff7d5c0787e687067b6c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bank0 active value.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gabce22596b06ff7d5c0787e687067b6c7">More...</a><br /></td></tr>
+<tr class="separator:gabce22596b06ff7d5c0787e687067b6c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae469e677d93d02bc30271538ff57af73"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gae469e677d93d02bc30271538ff57af73">BANK1_ACTIVE_VAL</a>&#160;&#160;&#160;(0x36U)</td></tr>
+<tr class="memdesc:gae469e677d93d02bc30271538ff57af73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bank1 active value.  <a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gae469e677d93d02bc30271538ff57af73">More...</a><br /></td></tr>
+<tr class="separator:gae469e677d93d02bc30271538ff57af73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="ga4b3ff4638f3cdf4a6129674923cec70c"></a>
@@ -354,6 +399,230 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a id="gaff7606fa68f0489756c927e5cfcdbf02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaff7606fa68f0489756c927e5cfcdbf02">&#9670;&nbsp;</a></span>DEVICE_CONFIG_TYPE_SAFETY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEVICE_CONFIG_TYPE_SAFETY&#160;&#160;&#160;(0U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Device configuration type - Safety configuration. </p>
+
+</div>
+</div>
+<a id="ga127f66460806144504d3b2a2ea3ad2cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga127f66460806144504d3b2a2ea3ad2cd">&#9670;&nbsp;</a></span>DEVICE_CONFIG_TYPE_SECURITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEVICE_CONFIG_TYPE_SECURITY&#160;&#160;&#160;(1U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Device configuration type - Security configuration. </p>
+
+</div>
+</div>
+<a id="ga1beee330807cd054fc7adeabb1f09921"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1beee330807cd054fc7adeabb1f09921">&#9670;&nbsp;</a></span>DEVICE_CONFIG_TYPE_DEBUG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEVICE_CONFIG_TYPE_DEBUG&#160;&#160;&#160;(2U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Device configuration type - Debug configuration. </p>
+
+</div>
+</div>
+<a id="ga18810511dc8421fbd24c634df97f7f0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga18810511dc8421fbd24c634df97f7f0c">&#9670;&nbsp;</a></span>DEVICE_CONFIG_TYPE_ALL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEVICE_CONFIG_TYPE_ALL&#160;&#160;&#160;(0xFFU)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Device configuration type - All configuration types. </p>
+
+</div>
+</div>
+<a id="ga54d38e1220110b623959aa742f641ebc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga54d38e1220110b623959aa742f641ebc">&#9670;&nbsp;</a></span>FW_UPDATE_COMPLETE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FW_UPDATE_COMPLETE&#160;&#160;&#160;(0x5A5A5A5AU)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Firmware update complete value. </p>
+
+</div>
+</div>
+<a id="ga57db0e08c9bf86fc2a0e1e64ed28d16d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga57db0e08c9bf86fc2a0e1e64ed28d16d">&#9670;&nbsp;</a></span>SECCFG_VALIDATION_SUCCESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SECCFG_VALIDATION_SUCCESS&#160;&#160;&#160;(0x5A5A5A5AU)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SecCfg validation success value. </p>
+
+</div>
+</div>
+<a id="gaf350ccdc236268308707ce04a051e12a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf350ccdc236268308707ce04a051e12a">&#9670;&nbsp;</a></span>DEBUG_STATUS_DISABLED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_STATUS_DISABLED&#160;&#160;&#160;(0x5A5A5A5AU)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Debug status disabled value. </p>
+
+</div>
+</div>
+<a id="gad3396342df11779f5a005a32723d351c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad3396342df11779f5a005a32723d351c">&#9670;&nbsp;</a></span>DEBUG_STATUS_ENABLED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_STATUS_ENABLED&#160;&#160;&#160;(0xA5A5A5A5U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Debug status enabled value. </p>
+
+</div>
+</div>
+<a id="gab1dbd6d2ef0fbac64acd1ac43514b883"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab1dbd6d2ef0fbac64acd1ac43514b883">&#9670;&nbsp;</a></span>BOTH_BANK_INVALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BOTH_BANK_INVALID&#160;&#160;&#160;(0x0000FFFFU)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Both banks invalid. </p>
+
+</div>
+</div>
+<a id="gaaaf1b9e6c87e8ec0a172a8922a99d97c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaaf1b9e6c87e8ec0a172a8922a99d97c">&#9670;&nbsp;</a></span>BOTH_BANKS_VALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BOTH_BANKS_VALID&#160;&#160;&#160;(0x0000B0B1U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Both banks valid. </p>
+
+</div>
+</div>
+<a id="gaa74e16cc10581e2d303fc1af5a895b16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa74e16cc10581e2d303fc1af5a895b16">&#9670;&nbsp;</a></span>ONLY_BANK0_VALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ONLY_BANK0_VALID&#160;&#160;&#160;(0x0000B0FFU)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Only Bank0 valid. </p>
+
+</div>
+</div>
+<a id="ga03da7ccaea1f7dce1ac92b32439892f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga03da7ccaea1f7dce1ac92b32439892f1">&#9670;&nbsp;</a></span>ONLY_BANK1_VALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ONLY_BANK1_VALID&#160;&#160;&#160;(0x0000FFB1U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Only Bank1 valid. </p>
+
+</div>
+</div>
+<a id="gabce22596b06ff7d5c0787e687067b6c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabce22596b06ff7d5c0787e687067b6c7">&#9670;&nbsp;</a></span>BANK0_ACTIVE_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BANK0_ACTIVE_VAL&#160;&#160;&#160;(0xC9U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bank0 active value. </p>
+
+</div>
+</div>
+<a id="gae469e677d93d02bc30271538ff57af73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae469e677d93d02bc30271538ff57af73">&#9670;&nbsp;</a></span>BANK1_ACTIVE_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BANK1_ACTIVE_VAL&#160;&#160;&#160;(0x36U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bank1 active value. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga1bb7314746335adfeeb9a8c05bdc4667"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga1bb7314746335adfeeb9a8c05bdc4667">&#9670;&nbsp;</a></span>HsmClient_parseVersion()</h2>
@@ -390,6 +659,58 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>status returns System_SUCCESS on successful parsing, else System_FAILURE. </dd></dl>
+
+</div>
+</div>
+<a id="gada23a2c4588f96c8c2405b01bad1278b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gada23a2c4588f96c8c2405b01bad1278b">&#9670;&nbsp;</a></span>HsmClient_parseDeviceConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t HsmClient_parseDeviceConfig </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>configType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>configData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>configSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>parsedConfig</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parses Device Configuration data into a human-readable string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">configType</td><td>Type of configuration (safety/security/debug/all) </td></tr>
+    <tr><td class="paramname">configData</td><td>Pointer to configuration data buffer </td></tr>
+    <tr><td class="paramname">configSize</td><td>Size of configuration data in bytes </td></tr>
+    <tr><td class="paramname">parsedConfig</td><td>Pointer to output string buffer</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>status returns SystemP_SUCCESS on successful parsing, else SystemP_FAILURE. </dd></dl>
 
 </div>
 </div>

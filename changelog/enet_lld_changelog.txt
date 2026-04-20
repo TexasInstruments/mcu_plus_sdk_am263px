@@ -30061,3 +30061,132 @@ Date:   Fri Apr 10 14:10:28 2026 +0530
  sysconfig/networking/.meta/enet_cpsw/templates/j722s/enet_soc_cfg.c.xdt     |  8 +++++-
  8 files changed, 103 insertions(+), 48 deletions(-)
 
+========================================
+Changes from build on 2026-04-20 20:48:05
+Previous commit: 3c2a056060376c5f2bbd1eb468c575f93fdd6e8f
+Current commit: cfa0775628211c07cd47db6836b134c901350e4e
+========================================
+
+commit cfa0775628211c07cd47db6836b134c901350e4e
+Author: Kalyan Vagvala <k-vagvala@ti.com>
+Date:   Sun Apr 5 12:51:39 2026 +0530
+
+    am26xx: ENET: Enable layer 2 nortos example
+    
+    - Enable Layer 2 nortos example
+    
+    Fixes: MCUSDK-15411
+    
+    Signed-off-by: Kalyan Vagvala <k-vagvala@ti.com>
+
+ examples/enet_layer2_cpsw/.project/project_am261x.js                        |  60 +++++-
+ examples/enet_layer2_cpsw/.project/project_am263px.js                       |  60 +++++-
+ examples/enet_layer2_cpsw/.project/project_am263x.js                        |  59 +++++-
+ examples/enet_layer2_cpsw/V1/l2_cpsw_cfg.c                                  |  80 ++++++++
+ examples/enet_layer2_cpsw/V1/l2_cpsw_cfg.h                                  |   3 +
+ examples/enet_layer2_cpsw/V1/l2_cpsw_dataflow.c                             |   9 +-
+ examples/enet_layer2_cpsw/V1/l2_cpsw_main.c                                 |  11 +-
+ examples/enet_layer2_cpsw/am261x-lp/r5fss0-0_nortos/example.syscfg          | 262 +++++++++++++++++++++++++
+ examples/enet_layer2_cpsw/am261x-lp/r5fss0-0_nortos/main.c                  |  65 +++++++
+ .../am261x-lp/r5fss0-0_nortos/ti-arm-clang/example.projectspec              | 134 +++++++++++++
+ examples/enet_layer2_cpsw/am261x-lp/r5fss0-0_nortos/ti-arm-clang/makefile   | 377 ++++++++++++++++++++++++++++++++++++
+ .../enet_layer2_cpsw/am261x-lp/r5fss0-0_nortos/ti-arm-clang/makefile.defs   |  14 ++
+ .../am261x-lp/r5fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       | 109 +++++++++++
+ .../am261x-lp/r5fss0-0_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../enet_layer2_cpsw/am261x-lp/r5fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs |   8 +
+ examples/enet_layer2_cpsw/am261x-som/r5fss0-0_nortos/example.syscfg         | 269 +++++++++++++++++++++++++
+ examples/enet_layer2_cpsw/am261x-som/r5fss0-0_nortos/main.c                 |  65 +++++++
+ .../am261x-som/r5fss0-0_nortos/ti-arm-clang/example.projectspec             | 134 +++++++++++++
+ examples/enet_layer2_cpsw/am261x-som/r5fss0-0_nortos/ti-arm-clang/makefile  | 377 ++++++++++++++++++++++++++++++++++++
+ .../enet_layer2_cpsw/am261x-som/r5fss0-0_nortos/ti-arm-clang/makefile.defs  |  14 ++
+ .../am261x-som/r5fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen      | 109 +++++++++++
+ .../am261x-som/r5fss0-0_nortos/ti-arm-clang/makefile_projectspec            |  17 ++
+ .../am261x-som/r5fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs                 |   8 +
+ .../am263px-cc-dp83869/am263px-cc/r5fss0-0_nortos/example.syscfg            | 264 +++++++++++++++++++++++++
+ .../enet_layer2_cpsw/am263px-cc-dp83869/am263px-cc/r5fss0-0_nortos/main.c   |  65 +++++++
+ .../am263px-cc/r5fss0-0_nortos/ti-arm-clang/example.projectspec             | 134 +++++++++++++
+ .../am263px-cc-dp83869/am263px-cc/r5fss0-0_nortos/ti-arm-clang/makefile     | 377 ++++++++++++++++++++++++++++++++++++
+ .../am263px-cc/r5fss0-0_nortos/ti-arm-clang/makefile.defs                   |  14 ++
+ .../am263px-cc/r5fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen      | 109 +++++++++++
+ .../am263px-cc/r5fss0-0_nortos/ti-arm-clang/makefile_projectspec            |  17 ++
+ .../am263px-cc/r5fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs                 |   8 +
+ .../am263px-lp-dp83869/am263px-lp/r5fss0-0_nortos/example.syscfg            | 266 +++++++++++++++++++++++++
+ .../enet_layer2_cpsw/am263px-lp-dp83869/am263px-lp/r5fss0-0_nortos/main.c   |  65 +++++++
+ .../am263px-lp/r5fss0-0_nortos/ti-arm-clang/example.projectspec             | 134 +++++++++++++
+ .../am263px-lp-dp83869/am263px-lp/r5fss0-0_nortos/ti-arm-clang/makefile     | 377 ++++++++++++++++++++++++++++++++++++
+ .../am263px-lp/r5fss0-0_nortos/ti-arm-clang/makefile.defs                   |  14 ++
+ .../am263px-lp/r5fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen      | 109 +++++++++++
+ .../am263px-lp/r5fss0-0_nortos/ti-arm-clang/makefile_projectspec            |  17 ++
+ .../am263px-lp/r5fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs                 |   8 +
+ examples/enet_layer2_cpsw/am263x-cc/r5fss0-0_nortos/example.syscfg          | 267 +++++++++++++++++++++++++
+ examples/enet_layer2_cpsw/am263x-cc/r5fss0-0_nortos/main.c                  |  65 +++++++
+ .../am263x-cc/r5fss0-0_nortos/ti-arm-clang/example.projectspec              | 134 +++++++++++++
+ examples/enet_layer2_cpsw/am263x-cc/r5fss0-0_nortos/ti-arm-clang/makefile   | 377 ++++++++++++++++++++++++++++++++++++
+ .../enet_layer2_cpsw/am263x-cc/r5fss0-0_nortos/ti-arm-clang/makefile.defs   |  14 ++
+ .../am263x-cc/r5fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       | 109 +++++++++++
+ .../am263x-cc/r5fss0-0_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../enet_layer2_cpsw/am263x-cc/r5fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs |   8 +
+ examples/enet_layer2_cpsw/am263x-lp/r5fss0-0_nortos/example.syscfg          | 275 ++++++++++++++++++++++++++
+ examples/enet_layer2_cpsw/am263x-lp/r5fss0-0_nortos/main.c                  |  65 +++++++
+ .../am263x-lp/r5fss0-0_nortos/ti-arm-clang/example.projectspec              | 134 +++++++++++++
+ examples/enet_layer2_cpsw/am263x-lp/r5fss0-0_nortos/ti-arm-clang/makefile   | 377 ++++++++++++++++++++++++++++++++++++
+ .../enet_layer2_cpsw/am263x-lp/r5fss0-0_nortos/ti-arm-clang/makefile.defs   |  14 ++
+ .../am263x-lp/r5fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       | 109 +++++++++++
+ .../am263x-lp/r5fss0-0_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../enet_layer2_cpsw/am263x-lp/r5fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs |   8 +
+ 55 files changed, 6221 insertions(+), 8 deletions(-)
+
+commit e438871b0edb4f08709501cc7d92321b154c0834
+Author: Surbhi Kapoor <s-kapoor1@ti.com>
+Date:   Wed Apr 1 11:58:09 2026 +0530
+
+    am263px: Enet: XIP support
+    
+    Add XIP support for lwip example
+    
+    Fixes: MCUSDK-13571
+    
+    Signed-off-by: Surbhi Kapoor <s-kapoor1@ti.com>
+
+ examples/lwip/enet_lwip_cpsw_xip/.project/project.js                        |   14 +
+ examples/lwip/enet_lwip_cpsw_xip/.project/project_am261x.js                 |  221 ++++++
+ examples/lwip/enet_lwip_cpsw_xip/.project/project_am263px.js                |  218 ++++++
+ .../lwip/enet_lwip_cpsw_xip/am261x-som/r5fss0-0_freertos/example.syscfg     |  305 +++++++++
+ examples/lwip/enet_lwip_cpsw_xip/am261x-som/r5fss0-0_freertos/main.c        |   99 +++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec           |  186 +++++
+ .../enet_lwip_cpsw_xip/am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile   |  415 +++++++++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile.defs                 |   14 +
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  109 +++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |   17 +
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |    8 +
+ .../am263px-cc-dp83869/am263px-cc/r5fss0-0_freertos/example.syscfg          |  286 ++++++++
+ .../am263px-cc-dp83869/am263px-cc/r5fss0-0_freertos/main.c                  |   99 +++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec           |  159 +++++
+ .../am263px-cc-dp83869/am263px-cc/r5fss0-0_freertos/ti-arm-clang/makefile   |  414 +++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/makefile.defs                 |   14 +
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  109 +++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |   17 +
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |    8 +
+ examples/lwip/enet_lwip_cpsw_xip/extPhyMgmt/dp83867.c                       |  700 +++++++++++++++++++
+ examples/lwip/enet_lwip_cpsw_xip/extPhyMgmt/dp83867.h                       |  262 +++++++
+ examples/lwip/enet_lwip_cpsw_xip/extPhyMgmt/dp83867_priv.h                  |  254 +++++++
+ examples/lwip/enet_lwip_cpsw_xip/extPhyMgmt/dp83869.c                       |  703 +++++++++++++++++++
+ examples/lwip/enet_lwip_cpsw_xip/extPhyMgmt/dp83869.h                       |  262 +++++++
+ examples/lwip/enet_lwip_cpsw_xip/extPhyMgmt/dp83869_priv.h                  |  262 +++++++
+ examples/lwip/enet_lwip_cpsw_xip/extPhyMgmt/enetextphy.c                    | 1295 +++++++++++++++++++++++++++++++++++
+ examples/lwip/enet_lwip_cpsw_xip/extPhyMgmt/enetextphy.h                    |  835 ++++++++++++++++++++++
+ examples/lwip/enet_lwip_cpsw_xip/extPhyMgmt/enetextphy_phymdio_dflt.c       |  354 ++++++++++
+ examples/lwip/enet_lwip_cpsw_xip/extPhyMgmt/enetextphy_phymdio_dflt.h       |  101 +++
+ examples/lwip/enet_lwip_cpsw_xip/extPhyMgmt/enetextphy_priv.h               |  255 +++++++
+ examples/lwip/enet_lwip_cpsw_xip/extPhyMgmt/generic_phy.c                   |  211 ++++++
+ examples/lwip/enet_lwip_cpsw_xip/extPhyMgmt/generic_phy.h                   |  219 ++++++
+ examples/lwip/enet_lwip_cpsw_xip/lwipcfg.h                                  |   78 +++
+ examples/lwip/enet_lwip_cpsw_xip/test.c                                     |  807 ++++++++++++++++++++++
+ examples/lwip/enet_lwip_cpsw_xip/test_enet.c                                |  457 ++++++++++++
+ examples/lwip/enet_lwip_cpsw_xip/test_enet_cpsw.c                           |  437 ++++++++++++
+ examples/lwip/enet_lwip_cpsw_xip/test_enet_extphy.h                         |   87 +++
+ examples/lwip/enet_lwip_cpsw_xip/test_enet_lwip.h                           |  144 ++++
+ examples/lwip/enet_lwip_cpsw_xip/udp_iperf.c                                |  396 +++++++++++
+ examples/lwip/enet_lwip_cpsw_xip/udp_iperf.h                                |  102 +++
+ 40 files changed, 10933 insertions(+)
+

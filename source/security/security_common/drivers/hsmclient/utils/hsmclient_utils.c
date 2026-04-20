@@ -232,5 +232,464 @@ int32_t HsmClient_parseVersion(HsmVer_t *tifsMcuVer, char* parsedVer)
 	parsedVer[strlen(parsedVer)] = '\0';
 	status = SystemP_SUCCESS;
 
-    return status;
+	   return status;
+}
+
+int32_t HsmClient_parseDeviceConfig(uint32_t configType, uint32_t *configData,
+	                                   uint32_t configSize, char* parsedConfig)
+{
+	   int32_t status = SystemP_FAILURE;
+	   uint32_t index = 0U;
+	   uint32_t expectedSize = 0U;
+	   
+	   if ((configData == NULL) || (parsedConfig == NULL) || (configSize == 0U))
+	   {
+	       return SystemP_FAILURE;
+	   }
+	   
+	   /* Initialize output string */
+	   parsedConfig[0] = '\0';
+	   
+	   switch (configType)
+	   {
+	       case DEVICE_CONFIG_TYPE_SAFETY:
+	           /* Safety config: dedFotaInfo + hsmPbistStatus */
+	           expectedSize = SIZE_OF_SAFETY_DEVICE_CONFIG;
+	           
+	           if (configSize == expectedSize)
+	           {
+	               uint32_t lowerBits, upperBits;
+	               uint8_t first;
+	               
+	               strcat(parsedConfig, "\r\n[Safety Configuration]");
+	               strcat(parsedConfig, "\r\n  dedFotaInfo       = 0x");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	               
+	               /* Interpret dedFotaInfo */
+	               lowerBits = configData[index] & 0xFFFFU;
+	               upperBits = (configData[index] >> 16U) & 0xFFU;
+	               strcat(parsedConfig, " (");
+	               if (lowerBits == BOTH_BANK_INVALID) {
+	                   strcat(parsedConfig, "Both Banks Invalid");
+	               } else if (lowerBits == BOTH_BANKS_VALID) {
+	                   strcat(parsedConfig, "Both Banks Valid");
+	               } else if (lowerBits == ONLY_BANK0_VALID) {
+	                   strcat(parsedConfig, "Only Bank0 Valid");
+	               } else if (lowerBits == ONLY_BANK1_VALID) {
+	                   strcat(parsedConfig, "Only Bank1 Valid");
+	               } else {
+	                   strcat(parsedConfig, "Unknown Bank Status");
+	               }
+	               strcat(parsedConfig, ", Active: ");
+	               if (upperBits == BANK0_ACTIVE_VAL) {
+	                   strcat(parsedConfig, "Bank0");
+	               } else if (upperBits == BANK1_ACTIVE_VAL) {
+	                   strcat(parsedConfig, "Bank1");
+	               } else {
+	                   strcat(parsedConfig, "Unknown");
+	               }
+	               strcat(parsedConfig, ")");
+	               index++;
+	               
+	               strcat(parsedConfig, "\r\n  hsmPbistStatus    = 0x");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	               
+	               /* Interpret hsmPbistStatus */
+	               strcat(parsedConfig, " (");
+	               if (configData[index] == 0U) {
+	                   strcat(parsedConfig, "Not Run");
+	               } else {
+	                   first = 1U;
+	                   if (configData[index] & (1U << 0U)) {
+	                       strcat(parsedConfig, "PBISTROM");
+	                       first = 0U;
+	                   }
+	                   if (configData[index] & (1U << 1U)) {
+	                       if (!first) strcat(parsedConfig, ", ");
+	                       strcat(parsedConfig, "SECRAM");
+	                       first = 0U;
+	                   }
+	                   if (configData[index] & (1U << 2U)) {
+	                       if (!first) strcat(parsedConfig, ", ");
+	                       strcat(parsedConfig, "BANK0");
+	                       first = 0U;
+	                   }
+	                   if (configData[index] & (1U << 3U)) {
+	                       if (!first) strcat(parsedConfig, ", ");
+	                       strcat(parsedConfig, "BANK1");
+	                       first = 0U;
+	                   }
+	                   if (configData[index] & (1U << 4U)) {
+	                       if (!first) strcat(parsedConfig, ", ");
+	                       strcat(parsedConfig, "BANK2");
+	                       first = 0U;
+	                   }
+	                   if (configData[index] & (1U << 5U)) {
+	                       if (!first) strcat(parsedConfig, ", ");
+	                       strcat(parsedConfig, "BANK3");
+	                       first = 0U;
+	                   }
+	                   strcat(parsedConfig, " Passed");
+	               }
+	               strcat(parsedConfig, ")");
+	               
+	               status = SystemP_SUCCESS;
+	           }
+	           break;
+	           
+	       case DEVICE_CONFIG_TYPE_SECURITY:
+	           /* Security config size varies by SOC */
+	           expectedSize = SIZE_OF_SECURITY_DEVICE_CONFIG;
+	           
+	           if (configSize == expectedSize)
+	           {
+	               strcat(parsedConfig, "\r\n[Security Configuration]");
+	               
+#if defined (SOC_F29H85X)
+	               strcat(parsedConfig, "\r\n  C29 CPU2 SecCfg Validation = 0x");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	               strcat(parsedConfig, (configData[index] == SECCFG_VALIDATION_SUCCESS) ? " (SUCCESS)" : " (FAILURE)");
+	               index++;
+	               
+	               strcat(parsedConfig, "\r\n  C29 CPU3 SecCfg Validation = 0x");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	               strcat(parsedConfig, (configData[index] == SECCFG_VALIDATION_SUCCESS) ? " (SUCCESS)" : " (FAILURE)");
+	               index++;
+#elif defined (SOC_F29P32X)
+	               strcat(parsedConfig, "\r\n  C29 CPU2 SecCfg Validation = 0x");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	               strcat(parsedConfig, (configData[index] == SECCFG_VALIDATION_SUCCESS) ? " (SUCCESS)" : " (FAILURE)");
+	               index++;
+				   index++; // reserved value, skip
+#endif
+	               
+	               strcat(parsedConfig, "\r\n  SW Revision SSU   = ");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	               index++;
+	               
+	               strcat(parsedConfig, "\r\n  SW Revision SBL = ");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	               index++;
+	               
+	               strcat(parsedConfig, "\r\n  SW Revision HSM   = ");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	               index++;
+
+				   strcat(parsedConfig, "\r\n  SW Revision APP   = ");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	               index++;
+	               
+	               strcat(parsedConfig, "\r\n  Boot Retry Counts = 0x");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	               strcat(parsedConfig, " (HSM: ");
+	               lib_itoa(configData[index] & 0xFFU, (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	               strcat(parsedConfig, ", SBL: ");
+	               lib_itoa((configData[index] >> 8U) & 0xFFU, (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	               strcat(parsedConfig, ")");
+	               index++;
+	               
+	               strcat(parsedConfig, "\r\n  HSM FW Update Status  = 0x");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	               strcat(parsedConfig, (configData[index] == FW_UPDATE_COMPLETE) ? " (Complete)" : " (Incomplete)");
+	               index++;
+	               
+	               strcat(parsedConfig, "\r\n  SBL FW Update Status  = 0x");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	               strcat(parsedConfig, (configData[index] == FW_UPDATE_COMPLETE) ? " (Complete)" : " (Incomplete)");
+	               index++;
+	               
+	               strcat(parsedConfig, "\r\n  C29 CPU1 FW Update Status = 0x");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	               strcat(parsedConfig, (configData[index] == FW_UPDATE_COMPLETE) ? " (Complete)" : " (Incomplete)");
+	               index++;
+	               
+	               strcat(parsedConfig, "\r\n  C29 CPU3 FW Update Status = 0x");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	               strcat(parsedConfig, (configData[index] == FW_UPDATE_COMPLETE) ? " (Complete)" : " (Incomplete)");
+	               
+	               status = SystemP_SUCCESS;
+	           }
+	           break;
+	           
+	       case DEVICE_CONFIG_TYPE_DEBUG:
+	           /* Debug config: 4 debug status fields */
+	           expectedSize = SIZE_OF_DEBUG_DEVICE_CONFIG;
+	           
+	           if (configSize == expectedSize)
+	           {
+	               strcat(parsedConfig, "\r\n[Debug Configuration]");
+	               strcat(parsedConfig, "\r\n  Public Debug Status       = 0x");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	               if (configData[index] == DEBUG_STATUS_DISABLED) {
+	                   strcat(parsedConfig, " (Disabled)");
+	               } else if (configData[index] == DEBUG_STATUS_ENABLED) {
+	                   strcat(parsedConfig, " (Enabled)");
+	               } else {
+	                   strcat(parsedConfig, " (Unknown)");
+	               }
+	               index++;
+	               
+	               strcat(parsedConfig, "\r\n  Public Reg Access Status  = 0x");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	               if (configData[index] == DEBUG_STATUS_DISABLED) {
+	                   strcat(parsedConfig, " (Disabled)");
+	               } else if (configData[index] == DEBUG_STATUS_ENABLED) {
+	                   strcat(parsedConfig, " (Enabled)");
+	               } else {
+	                   strcat(parsedConfig, " (Unknown)");
+	               }
+	               index++;
+	               
+	               strcat(parsedConfig, "\r\n  Secure Debug Status       = 0x");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	               if (configData[index] == DEBUG_STATUS_DISABLED) {
+	                   strcat(parsedConfig, " (Disabled)");
+	               } else if (configData[index] == DEBUG_STATUS_ENABLED) {
+	                   strcat(parsedConfig, " (Enabled)");
+	               } else {
+	                   strcat(parsedConfig, " (Unknown)");
+	               }
+	               index++;
+	               
+	               strcat(parsedConfig, "\r\n  Secure Reg Access Status  = 0x");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	               if (configData[index] == DEBUG_STATUS_DISABLED) {
+	                   strcat(parsedConfig, " (Disabled)");
+	               } else if (configData[index] == DEBUG_STATUS_ENABLED) {
+	                   strcat(parsedConfig, " (Enabled)");
+	               } else {
+	                   strcat(parsedConfig, " (Unknown)");
+	               }
+	               
+	               status = SystemP_SUCCESS;
+	           }
+	           break;
+	           
+	       case DEVICE_CONFIG_TYPE_ALL:
+	           /* All config types combined */
+	           {
+	               uint32_t totalSize = SIZE_OF_SAFETY_DEVICE_CONFIG +
+	                                    SIZE_OF_SECURITY_DEVICE_CONFIG +
+	                                    SIZE_OF_DEBUG_DEVICE_CONFIG;
+	               
+	               if (configSize == totalSize)
+	               {
+	                   /* Parse safety configuration */
+	                   uint32_t lowerBits, upperBits;
+	                   uint8_t first;
+	                   
+	                   strcat(parsedConfig, "\r\n[Safety Configuration]");
+	                   strcat(parsedConfig, "\r\n  dedFotaInfo       = 0x");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	                   
+	                   /* Interpret dedFotaInfo */
+	                   lowerBits = configData[index] & 0xFFFFU;
+	                   upperBits = (configData[index] >> 16U) & 0xFFU;
+	                   strcat(parsedConfig, " (");
+	                   if (lowerBits == BOTH_BANK_INVALID) {
+	                       strcat(parsedConfig, "Both Banks Invalid");
+	                   } else if (lowerBits == BOTH_BANKS_VALID) {
+	                       strcat(parsedConfig, "Both Banks Valid");
+	                   } else if (lowerBits == ONLY_BANK0_VALID) {
+	                       strcat(parsedConfig, "Only Bank0 Valid");
+	                   } else if (lowerBits == ONLY_BANK1_VALID) {
+	                       strcat(parsedConfig, "Only Bank1 Valid");
+	                   } else {
+	                       strcat(parsedConfig, "Unknown Bank Status");
+	                   }
+	                   strcat(parsedConfig, ", Active: ");
+	                   if (upperBits == BANK0_ACTIVE_VAL) {
+	                       strcat(parsedConfig, "Bank0");
+	                   } else if (upperBits == BANK1_ACTIVE_VAL) {
+	                       strcat(parsedConfig, "Bank1");
+	                   } else {
+	                       strcat(parsedConfig, "Unknown");
+	                   }
+	                   strcat(parsedConfig, ")");
+	                   index++;
+	                   
+	                   strcat(parsedConfig, "\r\n  hsmPbistStatus    = 0x");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	                   
+	                   /* Interpret hsmPbistStatus */
+	                   strcat(parsedConfig, " (");
+	                   if (configData[index] == 0U) {
+	                       strcat(parsedConfig, "Not Run");
+	                   } else {
+	                       first = 1U;
+	                       if (configData[index] & (1U << 0U)) {
+	                           strcat(parsedConfig, "PBISTROM");
+	                           first = 0U;
+	                       }
+	                       if (configData[index] & (1U << 1U)) {
+	                           if (!first) strcat(parsedConfig, ", ");
+	                           strcat(parsedConfig, "SECRAM");
+	                           first = 0U;
+	                       }
+	                       if (configData[index] & (1U << 2U)) {
+	                           if (!first) strcat(parsedConfig, ", ");
+	                           strcat(parsedConfig, "BANK0");
+	                           first = 0U;
+	                       }
+	                       if (configData[index] & (1U << 3U)) {
+	                           if (!first) strcat(parsedConfig, ", ");
+	                           strcat(parsedConfig, "BANK1");
+	                           first = 0U;
+	                       }
+	                       if (configData[index] & (1U << 4U)) {
+	                           if (!first) strcat(parsedConfig, ", ");
+	                           strcat(parsedConfig, "BANK2");
+	                           first = 0U;
+	                       }
+	                       if (configData[index] & (1U << 5U)) {
+	                           if (!first) strcat(parsedConfig, ", ");
+	                           strcat(parsedConfig, "BANK3");
+	                           first = 0U;
+	                       }
+	                       strcat(parsedConfig, " Passed");
+	                   }
+	                   strcat(parsedConfig, ")");
+	                   index++;
+	                   
+	                   /* Parse security configuration */
+	                   strcat(parsedConfig, "\r\n[Security Configuration]");
+	                   
+#if defined (SOC_F29H85X)
+	                   strcat(parsedConfig, "\r\n  C29 CPU2 SecCfg Validation = 0x");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	                   strcat(parsedConfig, (configData[index] == SECCFG_VALIDATION_SUCCESS) ? " (SUCCESS)" : " (FAILURE)");
+	                   index++;
+	                   
+	                   strcat(parsedConfig, "\r\n  C29 CPU3 SecCfg Validation = 0x");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	                   strcat(parsedConfig, (configData[index] == SECCFG_VALIDATION_SUCCESS) ? " (SUCCESS)" : " (FAILURE)");
+	                   index++;
+
+					   strcat(parsedConfig, "\r\n  SW Revision SSU   = ");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	                   index++;
+	                   
+	                   strcat(parsedConfig, "\r\n  SW Revision SBL = ");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	                   index++;
+	                   
+	                   strcat(parsedConfig, "\r\n  SW Revision HSM   = ");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	                   index++;
+					   
+					   strcat(parsedConfig, "\r\n  SW Revision APP   = ");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	                   index++;
+
+#elif defined (SOC_F29P32X)
+	                   strcat(parsedConfig, "\r\n  C29 CPU2 SecCfg Validation = 0x");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	                   strcat(parsedConfig, (configData[index] == SECCFG_VALIDATION_SUCCESS) ? " (SUCCESS)" : " (FAILURE)");
+	                   index++;
+					   index++;	// reserved value, skip
+
+					   strcat(parsedConfig, "\r\n  SW Revision SSU   = ");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	                   index++;
+	                   
+	                   strcat(parsedConfig, "\r\n  SW Revision SBL = ");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	                   index++;
+	                   
+	                   strcat(parsedConfig, "\r\n  SW Revision HSM   = ");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	                   index++;
+					   
+					   strcat(parsedConfig, "\r\n  SW Revision APP   = ");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	                   index++;
+#else
+					   index = index + 6U;	// reserved value, skip
+#endif
+
+	                   strcat(parsedConfig, "\r\n  Boot Retry Counts = 0x");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	                   strcat(parsedConfig, " (HSM: ");
+	                   lib_itoa(configData[index] & 0xFFU, (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	                   strcat(parsedConfig, ", SBL: ");
+	                   lib_itoa((configData[index] >> 8U) & 0xFFU, (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	                   strcat(parsedConfig, ")");
+	                   index++;
+	                   
+	                   strcat(parsedConfig, "\r\n  HSM FW Update Status  = 0x");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	                   strcat(parsedConfig, (configData[index] == FW_UPDATE_COMPLETE) ? " (Complete)" : " (Incomplete)");
+	                   index++;
+	                   
+	                   strcat(parsedConfig, "\r\n  SBL FW Update Status  = 0x");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	                   strcat(parsedConfig, (configData[index] == FW_UPDATE_COMPLETE) ? " (Complete)" : " (Incomplete)");
+	                   index++;
+	                   
+	                   strcat(parsedConfig, "\r\n  C29 CPU1 FW Update Status = 0x");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	                   strcat(parsedConfig, (configData[index] == FW_UPDATE_COMPLETE) ? " (Complete)" : " (Incomplete)");
+	                   index++;
+	                   
+	                   strcat(parsedConfig, "\r\n  C29 CPU3 FW Update Status = 0x");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	                   strcat(parsedConfig, (configData[index] == FW_UPDATE_COMPLETE) ? " (Complete)" : " (Incomplete)");
+	                   index++;
+	                   
+	                   /* Parse debug configuration */
+	                   strcat(parsedConfig, "\r\n[Debug Configuration]");
+	                   strcat(parsedConfig, "\r\n  Public Debug Status       = 0x");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	                   if (configData[index] == DEBUG_STATUS_DISABLED) {
+	                       strcat(parsedConfig, " (Disabled)");
+	                   } else if (configData[index] == DEBUG_STATUS_ENABLED) {
+	                       strcat(parsedConfig, " (Enabled)");
+	                   } else {
+	                       strcat(parsedConfig, " (Unknown)");
+	                   }
+	                   index++;
+	                   
+	                   strcat(parsedConfig, "\r\n  Public Reg Access Status  = 0x");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	                   if (configData[index] == DEBUG_STATUS_DISABLED) {
+	                       strcat(parsedConfig, " (Disabled)");
+	                   } else if (configData[index] == DEBUG_STATUS_ENABLED) {
+	                       strcat(parsedConfig, " (Enabled)");
+	                   } else {
+	                       strcat(parsedConfig, " (Unknown)");
+	                   }
+	                   index++;
+	                   
+	                   strcat(parsedConfig, "\r\n  Secure Debug Status       = 0x");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	                   if (configData[index] == DEBUG_STATUS_DISABLED) {
+	                       strcat(parsedConfig, " (Disabled)");
+	                   } else if (configData[index] == DEBUG_STATUS_ENABLED) {
+	                       strcat(parsedConfig, " (Enabled)");
+	                   } else {
+	                       strcat(parsedConfig, " (Unknown)");
+	                   }
+	                   index++;
+	                   
+	                   strcat(parsedConfig, "\r\n  Secure Reg Access Status  = 0x");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+	                   if (configData[index] == DEBUG_STATUS_DISABLED) {
+	                       strcat(parsedConfig, " (Disabled)");
+	                   } else if (configData[index] == DEBUG_STATUS_ENABLED) {
+	                       strcat(parsedConfig, " (Enabled)");
+	                   } else {
+	                       strcat(parsedConfig, " (Unknown)");
+	                   }
+	                   
+	                   status = SystemP_SUCCESS;
+	               }
+	           }
+	           break;
+	           
+	       default:
+	           status = SystemP_FAILURE;
+	           break;
+	   }
+	   
+	   return status;
 }

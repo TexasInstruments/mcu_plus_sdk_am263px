@@ -53,6 +53,8 @@ extern "C"
 #define HSM_MSG_GET_VERSION                      (0x0002)
 /** @brief Boot Notify service type ID */
 #define HSM_MSG_BOOT_NOTIFY                      (0x000A)
+/** @brief Get device configuration from HSM*/
+#define HSM_MSG_GET_DEVICE_CONFIG                (0x000B)
 /** @brief Get UID service type ID */
 #define HSM_MSG_GET_UID                          (0x9021)
 /** @brief Open Debug Firewalls service type ID */

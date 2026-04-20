@@ -13,5 +13,20 @@ var group__DRV__HSMCLIENT__UTILS__MODULE =
     [ "BIN_TYPE_STANDARD", "group__DRV__HSMCLIENT__UTILS__MODULE.html#ga58a57a20dd1fc1503fa83300d706cd10", null ],
     [ "BIN_TYPE_CUSTOM", "group__DRV__HSMCLIENT__UTILS__MODULE.html#gae5d05320dff52f510ba5dc5858ae0256", null ],
     [ "BIN_TYPE_OTPKW", "group__DRV__HSMCLIENT__UTILS__MODULE.html#ga51af79d782018b7298836221bf4fbd70", null ],
-    [ "HsmClient_parseVersion", "group__DRV__HSMCLIENT__UTILS__MODULE.html#ga1bb7314746335adfeeb9a8c05bdc4667", null ]
+    [ "DEVICE_CONFIG_TYPE_SAFETY", "group__DRV__HSMCLIENT__UTILS__MODULE.html#gaff7606fa68f0489756c927e5cfcdbf02", null ],
+    [ "DEVICE_CONFIG_TYPE_SECURITY", "group__DRV__HSMCLIENT__UTILS__MODULE.html#ga127f66460806144504d3b2a2ea3ad2cd", null ],
+    [ "DEVICE_CONFIG_TYPE_DEBUG", "group__DRV__HSMCLIENT__UTILS__MODULE.html#ga1beee330807cd054fc7adeabb1f09921", null ],
+    [ "DEVICE_CONFIG_TYPE_ALL", "group__DRV__HSMCLIENT__UTILS__MODULE.html#ga18810511dc8421fbd24c634df97f7f0c", null ],
+    [ "FW_UPDATE_COMPLETE", "group__DRV__HSMCLIENT__UTILS__MODULE.html#ga54d38e1220110b623959aa742f641ebc", null ],
+    [ "SECCFG_VALIDATION_SUCCESS", "group__DRV__HSMCLIENT__UTILS__MODULE.html#ga57db0e08c9bf86fc2a0e1e64ed28d16d", null ],
+    [ "DEBUG_STATUS_DISABLED", "group__DRV__HSMCLIENT__UTILS__MODULE.html#gaf350ccdc236268308707ce04a051e12a", null ],
+    [ "DEBUG_STATUS_ENABLED", "group__DRV__HSMCLIENT__UTILS__MODULE.html#gad3396342df11779f5a005a32723d351c", null ],
+    [ "BOTH_BANK_INVALID", "group__DRV__HSMCLIENT__UTILS__MODULE.html#gab1dbd6d2ef0fbac64acd1ac43514b883", null ],
+    [ "BOTH_BANKS_VALID", "group__DRV__HSMCLIENT__UTILS__MODULE.html#gaaaf1b9e6c87e8ec0a172a8922a99d97c", null ],
+    [ "ONLY_BANK0_VALID", "group__DRV__HSMCLIENT__UTILS__MODULE.html#gaa74e16cc10581e2d303fc1af5a895b16", null ],
+    [ "ONLY_BANK1_VALID", "group__DRV__HSMCLIENT__UTILS__MODULE.html#ga03da7ccaea1f7dce1ac92b32439892f1", null ],
+    [ "BANK0_ACTIVE_VAL", "group__DRV__HSMCLIENT__UTILS__MODULE.html#gabce22596b06ff7d5c0787e687067b6c7", null ],
+    [ "BANK1_ACTIVE_VAL", "group__DRV__HSMCLIENT__UTILS__MODULE.html#gae469e677d93d02bc30271538ff57af73", null ],
+    [ "HsmClient_parseVersion", "group__DRV__HSMCLIENT__UTILS__MODULE.html#ga1bb7314746335adfeeb9a8c05bdc4667", null ],
+    [ "HsmClient_parseDeviceConfig", "group__DRV__HSMCLIENT__UTILS__MODULE.html#gada23a2c4588f96c8c2405b01bad1278b", null ]
 ];

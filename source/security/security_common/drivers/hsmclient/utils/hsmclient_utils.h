@@ -87,6 +87,39 @@ extern "C" {
 /** @brief Binary type flag for OTPKW */
 #define BIN_TYPE_OTPKW      0x33
 
+/** @brief Device configuration type - Safety configuration */
+#define DEVICE_CONFIG_TYPE_SAFETY       (0U)
+/** @brief Device configuration type - Security configuration */
+#define DEVICE_CONFIG_TYPE_SECURITY     (1U)
+/** @brief Device configuration type - Debug configuration */
+#define DEVICE_CONFIG_TYPE_DEBUG        (2U)
+/** @brief Device configuration type - All configuration types */
+#define DEVICE_CONFIG_TYPE_ALL          (0xFFU)
+
+/* Value interpretation macros */
+/** @brief Firmware update complete value */
+#define FW_UPDATE_COMPLETE              (0x5A5A5A5AU)
+/** @brief SecCfg validation success value */
+#define SECCFG_VALIDATION_SUCCESS       (0x5A5A5A5AU)
+/** @brief Debug status disabled value */
+#define DEBUG_STATUS_DISABLED           (0x5A5A5A5AU)
+/** @brief Debug status enabled value */
+#define DEBUG_STATUS_ENABLED            (0xA5A5A5A5U)
+
+/* dedFotaInfo value definitions */
+/** @brief Both banks invalid */
+#define BOTH_BANK_INVALID               (0x0000FFFFU)
+/** @brief Both banks valid */
+#define BOTH_BANKS_VALID                (0x0000B0B1U)
+/** @brief Only Bank0 valid */
+#define ONLY_BANK0_VALID                (0x0000B0FFU)
+/** @brief Only Bank1 valid */
+#define ONLY_BANK1_VALID                (0x0000FFB1U)
+/** @brief Bank0 active value */
+#define BANK0_ACTIVE_VAL                (0xC9U)
+/** @brief Bank1 active value */
+#define BANK1_ACTIVE_VAL                (0x36U)
+
 typedef union HsmVer_t_ HsmVer_t;
 
 /* ========================================================================== */
@@ -103,6 +136,20 @@ typedef union HsmVer_t_ HsmVer_t;
  *			else System_FAILURE.
  */
 int32_t HsmClient_parseVersion(HsmVer_t *tifsMcuVer, char* parsedVer);
+
+/**
+ * \brief Parses Device Configuration data into a human-readable string.
+ *
+ * \param configType Type of configuration (safety/security/debug/all)
+ * \param configData Pointer to configuration data buffer
+ * \param configSize Size of configuration data in bytes
+ * \param parsedConfig Pointer to output string buffer
+ *
+ * \returns status returns SystemP_SUCCESS on successful parsing,
+ *			else SystemP_FAILURE.
+ */
+int32_t HsmClient_parseDeviceConfig(uint32_t configType, uint32_t *configData,
+                                    uint32_t configSize, char* parsedConfig);
 
 /** @} */
 

@@ -167,23 +167,57 @@ $(document).ready(function(){initNavTree('hsmclient__utils_8h_source.html',''); 
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
 <div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga51af79d782018b7298836221bf4fbd70">   88</a></span>&#160;<span class="preprocessor">#define BIN_TYPE_OTPKW      0x33</span></div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword">typedef</span> <span class="keyword">union </span><a class="code" href="unionHsmVer__t__.html">HsmVer_t_</a> HsmVer_t;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">/*                             Function Declaration                           */</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;int32_t <a class="code" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga1bb7314746335adfeeb9a8c05bdc4667">HsmClient_parseVersion</a>(HsmVer_t *tifsMcuVer, <span class="keywordtype">char</span>* parsedVer);</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gaff7606fa68f0489756c927e5cfcdbf02">   91</a></span>&#160;<span class="preprocessor">#define DEVICE_CONFIG_TYPE_SAFETY       (0U)</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga127f66460806144504d3b2a2ea3ad2cd">   93</a></span>&#160;<span class="preprocessor">#define DEVICE_CONFIG_TYPE_SECURITY     (1U)</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga1beee330807cd054fc7adeabb1f09921">   95</a></span>&#160;<span class="preprocessor">#define DEVICE_CONFIG_TYPE_DEBUG        (2U)</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga18810511dc8421fbd24c634df97f7f0c">   97</a></span>&#160;<span class="preprocessor">#define DEVICE_CONFIG_TYPE_ALL          (0xFFU)</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">/* Value interpretation macros */</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga54d38e1220110b623959aa742f641ebc">  101</a></span>&#160;<span class="preprocessor">#define FW_UPDATE_COMPLETE              (0x5A5A5A5AU)</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga57db0e08c9bf86fc2a0e1e64ed28d16d">  103</a></span>&#160;<span class="preprocessor">#define SECCFG_VALIDATION_SUCCESS       (0x5A5A5A5AU)</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gaf350ccdc236268308707ce04a051e12a">  105</a></span>&#160;<span class="preprocessor">#define DEBUG_STATUS_DISABLED           (0x5A5A5A5AU)</span></div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gad3396342df11779f5a005a32723d351c">  107</a></span>&#160;<span class="preprocessor">#define DEBUG_STATUS_ENABLED            (0xA5A5A5A5U)</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">/* dedFotaInfo value definitions */</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gab1dbd6d2ef0fbac64acd1ac43514b883">  111</a></span>&#160;<span class="preprocessor">#define BOTH_BANK_INVALID               (0x0000FFFFU)</span></div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HSM_CLIENT_UTILS_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gaaaf1b9e6c87e8ec0a172a8922a99d97c">  113</a></span>&#160;<span class="preprocessor">#define BOTH_BANKS_VALID                (0x0000B0B1U)</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gaa74e16cc10581e2d303fc1af5a895b16">  115</a></span>&#160;<span class="preprocessor">#define ONLY_BANK0_VALID                (0x0000B0FFU)</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga03da7ccaea1f7dce1ac92b32439892f1">  117</a></span>&#160;<span class="preprocessor">#define ONLY_BANK1_VALID                (0x0000FFB1U)</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gabce22596b06ff7d5c0787e687067b6c7">  119</a></span>&#160;<span class="preprocessor">#define BANK0_ACTIVE_VAL                (0xC9U)</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gae469e677d93d02bc30271538ff57af73">  121</a></span>&#160;<span class="preprocessor">#define BANK1_ACTIVE_VAL                (0x36U)</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="keyword">typedef</span> <span class="keyword">union </span><a class="code" href="unionHsmVer__t__.html">HsmVer_t_</a> HsmVer_t;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">/*                             Function Declaration                           */</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;int32_t <a class="code" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga1bb7314746335adfeeb9a8c05bdc4667">HsmClient_parseVersion</a>(HsmVer_t *tifsMcuVer, <span class="keywordtype">char</span>* parsedVer);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;int32_t <a class="code" href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gada23a2c4588f96c8c2405b01bad1278b">HsmClient_parseDeviceConfig</a>(uint32_t configType, uint32_t *configData,</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                                    uint32_t configSize, <span class="keywordtype">char</span>* parsedConfig);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;}</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HSM_CLIENT_UTILS_H_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aunionHsmVer__t___html"><div class="ttname"><a href="unionHsmVer__t__.html">HsmVer_t_</a></div><div class="ttdoc">type for reading HSMRt version.</div><div class="ttdef"><b>Definition:</b> hsmclient.h:117</div></div>
+<div class="ttc" id="aunionHsmVer__t___html"><div class="ttname"><a href="unionHsmVer__t__.html">HsmVer_t_</a></div><div class="ttdoc">type for reading HSMRt version.</div><div class="ttdef"><b>Definition:</b> hsmclient.h:143</div></div>
 <div class="ttc" id="agroup__DRV__HSMCLIENT__UTILS__MODULE_html_ga1bb7314746335adfeeb9a8c05bdc4667"><div class="ttname"><a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#ga1bb7314746335adfeeb9a8c05bdc4667">HsmClient_parseVersion</a></div><div class="ttdeci">int32_t HsmClient_parseVersion(HsmVer_t *tifsMcuVer, char *parsedVer)</div><div class="ttdoc">Parses Version string.</div><div class="ttdef"><b>Definition:</b> hsmclient_utils.c:208</div></div>
+<div class="ttc" id="agroup__DRV__HSMCLIENT__UTILS__MODULE_html_gada23a2c4588f96c8c2405b01bad1278b"><div class="ttname"><a href="group__DRV__HSMCLIENT__UTILS__MODULE.html#gada23a2c4588f96c8c2405b01bad1278b">HsmClient_parseDeviceConfig</a></div><div class="ttdeci">int32_t HsmClient_parseDeviceConfig(uint32_t configType, uint32_t *configData, uint32_t configSize, char *parsedConfig)</div><div class="ttdoc">Parses Device Configuration data into a human-readable string.</div><div class="ttdef"><b>Definition:</b> hsmclient_utils.c:238</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
