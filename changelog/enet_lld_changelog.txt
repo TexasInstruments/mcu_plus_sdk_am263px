@@ -30190,3 +30190,22 @@ Date:   Wed Apr 1 11:58:09 2026 +0530
  examples/lwip/enet_lwip_cpsw_xip/udp_iperf.h                                |  102 +++
  40 files changed, 10933 insertions(+)
 
+========================================
+Changes from build on 2026-04-21 16:44:05
+Previous commit: cfa0775628211c07cd47db6836b134c901350e4e
+Current commit: 41488355795f507e648d7690f7e6c983f0757548
+========================================
+
+commit 41488355795f507e648d7690f7e6c983f0757548
+Author: Surbhi Kapoor <s-kapoor1@ti.com>
+Date:   Mon Apr 20 11:36:37 2026 +0530
+
+    am263px: enet: Add missed file
+    
+    Add missing files
+    
+    Signed-off-by: Surbhi Kapoor <s-kapoor1@ti.com>
+
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+

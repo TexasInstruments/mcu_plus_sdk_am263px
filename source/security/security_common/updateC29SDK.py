@@ -53,15 +53,23 @@ components = [
 # List of excluded folders and files
 excluded_folders = ["edma"]
 excluded_files = ["cslr_hsm_ctrl.h"]
+included_files = ["hkdf.py", "kd_salt.txt", "mcu_custBmpk.pem", "mcu_custMek.key", "mcu_custMpk_brainpool512.pem", "mcu_custMpk_secp256r1.pem", "mcu_custMpk_secp384r1.pem", "mcu_custMpk_secp521r1.pem", "mcu_custMpk.pem", "mcu_gpkey.pem", "mcu_rom_image_gen.py"]
 
 for device in devices :
 
     #copy tools/boot folder inside tools/boot
-    src_path = os.path.join("tools", "boot")
-    dest_path = os.path.join(sdk_folder, "mcu_sdk_" + device, "tools", "boot")
+    src_path = os.path.join("tools", "boot", "signing")
+    dest_path = os.path.join(sdk_folder, "mcu_sdk_" + device, "tools", "boot", "signing")
+    #Check if destination directory exists
     if os.path.exists(dest_path):
+        #delete destination directory
         shutil.rmtree(dest_path)
-    shutil.copytree(src_path, dest_path)
+        #make expty destination directory
+        os.makedirs(dest_path)
+    for file in included_files:
+        src_file_path = os.path.join(src_path, file)
+        dst_file_path = os.path.join(dest_path, file)
+        shutil.copy(src_file_path, dst_file_path)
 
     #copy the specified components from drivers folder to sdk/source/security.
     #copy only the required soc folders. And update the include paths

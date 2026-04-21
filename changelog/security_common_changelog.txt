@@ -589,3 +589,25 @@ Date:   Wed Apr 8 17:25:10 2026 +0530
  updateC29SDK.py                                                    |  111 ++
  151 files changed, 67515 insertions(+)
 
+========================================
+Changes from build on 2026-04-21 16:43:58
+Previous commit: bf128efe27d615259a83e41ba7a1f886163c7a28
+Current commit: dc39cf21cc2b55a1ee1264495a508cdc89b639e0
+========================================
+
+commit dc39cf21cc2b55a1ee1264495a508cdc89b639e0
+Author: Arush Pant <a-pant@ti.com>
+Date:   Mon Apr 20 18:21:52 2026 +0530
+
+    f29x: script: update c29 script
+    
+    - Updates updateC29SDK.py script
+      to copy necessary files to SDK
+    
+    Fixes: TIFSMCU-5233
+    
+    Signed-off-by: Arush Pant <a-pant@ti.com>
+
+ updateC29SDK.py | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
+
