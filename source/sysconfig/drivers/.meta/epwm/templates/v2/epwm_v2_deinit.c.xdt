@@ -1,0 +1,22 @@
+%%{
+    let module = system.modules['/drivers/epwm/epwm'];
+    let common = system.getScript("/common");
+%%}
+    /* EPWM */
+    {
+        /* Disable peripheral clocks for the selected ePWM */
+% if (module != null) {
+    % for(let i = 0; i < module.$instances.length; i++) {
+        % let instance = module.$instances[i];
+        % let config = module.getInstanceConfig(instance);
+        /* Disable peripheral clocks for `instance.$name` */
+        % for(let clkIdx = 0; clkIdx < config.clockIds.length; clkIdx++) {
+        int32_t status = SOC_rcmSetPeripheralClock(`config.clockIds[clkIdx]`, SOC_RcmPeripheralClockSource_SYS_CLK, 0U);
+        if (status != SystemP_SUCCESS)
+        {
+            DebugP_logError("Failed to disable clock for `instance.$name`\r\n");
+        }
+        % }
+    % }
+% }
+    }

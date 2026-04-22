@@ -1,0 +1,13 @@
+%%{
+    let common = system.getScript("/common");
+    let module = system.modules['/drivers/epwm/epwm'];
+%%}
+/*
+ * EPWM
+ */
+
+/* EPWM Function Prototypes */
+void Drivers_epwmInit(void);
+void Drivers_epwmDeinit(void);
+void Drivers_epwmOpen(void);
+void Drivers_epwmClose(void);

@@ -1,0 +1,6 @@
+%%{
+    let common = system.getScript("/common");
+    let module = system.modules['/drivers/epwm/epwm'];
+%%}
+    /* EPWM Close */
+    Drivers_epwmClose();

@@ -1,0 +1,24 @@
+%%{
+    let module = system.modules['/drivers/epwm/epwm'];
+    let common = system.getScript("/common");
+%%}
+/*
+ * EPWM
+ */
+% if (module != null) {
+
+/* EPWM Instance Macros */
+% for(let i = 0; i < module.$instances.length; i++) {
+    % let instance = module.$instances[i];
+    % let config = module.getInstanceConfig(instance);
+#define `instance.$name`_BASE_ADDR         (`config.baseAddr`)
+#define `instance.$name`_INTR              (`config.intrNum`)
+#define `instance.$name`_INTR_IS_PULSE     (0U)
+#define `instance.$name`_TRIP_INTR         (`config.tripIntrNum`)
+#define `instance.$name`_FCLK              (`config.funcClk`U)
+
+% }
+
+#define CONFIG_EPWM_NUM_INSTANCES (`module.$instances.length`U)
+
+% }
