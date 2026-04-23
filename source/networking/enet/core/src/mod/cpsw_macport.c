@@ -1302,7 +1302,6 @@ static int32_t CpswMacPort_configSgmii(CSL_CpsgmiiRegs *sgmiiRegs,
                                        const EnetMacPort_LinkCfg *linkCfg)
 {
     CSL_SGMII_ADVABILITY sgmiiAdvAbility;
-    CSL_SGMII_STATUS sgmiiStatus;
     uint32_t portNum = ENET_MACPORT_NORM(macPort);
     uint32_t portId = ENET_MACPORT_ID(macPort);
     int32_t status = ENET_SOK;
@@ -1382,12 +1381,8 @@ static int32_t CpswMacPort_configSgmii(CSL_CpsgmiiRegs *sgmiiRegs,
         CSL_SGMII_enableMasterMode(sgmiiRegs, portNum);
         CSL_SGMII_disableAutoNegotiation(sgmiiRegs, portNum);
 
-        /* Wait for SGMII link */
-        do
-        {
-            CSL_SGMII_getStatus(sgmiiRegs, portNum, &sgmiiStatus);
-        }
-        while (sgmiiStatus.bIsLinkUp != 1U);
+        /*Removed the wait for SGMII linkup
+        TODO: need to add the logic in Cpsw_periodicTick API*/
 
         status = ENET_SOK;
     }
@@ -1512,6 +1507,8 @@ static int32_t CpswMacPort_checkSgmiiStatus(CSL_CpsgmiiRegs *sgmiiRegs,
                 /* Get link partner speed/duplexity */
                 CSL_SGMII_getLinkPartnerAdvAbility(sgmiiRegs, portNum, &sgmiiAdvAbility);
             }
+            ENETTRACE_VAR(*CpswMacPort_gSgmiiSpeedNames);
+            ENETTRACE_VAR(*CpswMacPort_gSgmiiDuplexNames);
 
             ENETTRACE_INFO("MAC %u: SGMII link parter config port: link %s: %s %s\n",
                            portId, sgmiiAdvAbility.bLinkUp ? "up" : "down",
