@@ -175,6 +175,7 @@ DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaPa
 {
     DTHE_SHA_Return_t       status = DTHE_SHA_RETURN_SUCCESS;
     DMA_Handle              dmaHandle = NULL;
+    DMA_Return_t            dmaStatus = DMA_RETURN_FAILURE;
     uint32_t                index = 0U;
     uint32_t                dataLenWords;
     uint32_t                dataLenBytes;
@@ -316,8 +317,11 @@ DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaPa
         if ((config->dmaEnable == DMA_ENABLE) && (numBlocks > 0U))
         {
             dmaHandle = DMA_open(0);
+            dmaStatus = DMA_Config_TxChannel(dmaHandle, ptrShaParams->ptrDataBuffer, (uint32_t *)&ptrShaRegs->DATA_IN[0], numBlocks, blockSize, DMA_SHA_ENABLE);
+        }
 
-            (void)DMA_Config_TxChannel(dmaHandle, ptrShaParams->ptrDataBuffer, (uint32_t *)&ptrShaRegs->DATA_IN[0], numBlocks, blockSize, DMA_SHA_ENABLE);
+        if (dmaStatus == DMA_RETURN_SUCCESS)
+        {
 
             /* Compute the number of full blocks which need to be processed: */
             (void)DMA_enableTxTransferRegion(dmaHandle);
@@ -325,7 +329,7 @@ DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaPa
             DTHE_SHA_setDMA(ptrShaRegs, 1);
 
             (void)DMA_WaitForTxTransfer(dmaHandle);
-            
+
             DTHE_SHA_setDMA(ptrShaRegs, 0);
 
             (void)DMA_disableTxCh(dmaHandle);
@@ -416,6 +420,7 @@ DTHE_SHA_Return_t DTHE_HMACSHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrS
 {
     DTHE_SHA_Return_t       status = DTHE_SHA_RETURN_FAILURE;
     DMA_Handle              dmaHandle = NULL;
+    DMA_Return_t            dmaStatus = DMA_RETURN_FAILURE;
     uint32_t                index;
     uint32_t                dataLenWords;
     uint32_t                dataLenBytes;
@@ -518,8 +523,11 @@ DTHE_SHA_Return_t DTHE_HMACSHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrS
             if ((config->dmaEnable == DMA_ENABLE) && (numBlocks > 0U))
             {
                 dmaHandle = DMA_open(0);
+                dmaStatus = DMA_Config_TxChannel(dmaHandle, ptrShaParams->ptrDataBuffer, (uint32_t *)&ptrShaRegs->DATA_IN[0], numBlocks, blockSize, DMA_SHA_ENABLE);
+            }
 
-                (void)DMA_Config_TxChannel(dmaHandle, ptrShaParams->ptrDataBuffer, (uint32_t *)&ptrShaRegs->DATA_IN[0], numBlocks, blockSize, DMA_SHA_ENABLE);
+            if (dmaStatus == DMA_RETURN_SUCCESS)
+            {
 
                 /* Compute the number of full blocks which need to be processed: */
                 (void)DMA_enableTxTransferRegion(dmaHandle);

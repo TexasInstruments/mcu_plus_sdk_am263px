@@ -402,6 +402,7 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
     DTHE_Attrs        *attrs  = NULL;
     CSL_AesRegs     *ptrAesRegs;
     DMA_Handle      dmaHandle = NULL;
+    DMA_Return_t    dmaTxStatus = DMA_RETURN_FAILURE;
     uint32_t*       ptrWordInputBuffer;
     uint32_t*       ptrWordOutputBuffer;
     uint32_t        dataLenWords;
@@ -672,22 +673,25 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
                             numBlocks = (ptrParams->aadLength)/DTHE_AES_BLOCK_LENGTH;
                             partialDataSize = (ptrParams->aadLength)%DTHE_AES_BLOCK_LENGTH;
 
+                            dmaTxStatus = DMA_RETURN_FAILURE;
                             if ( (config->dmaEnable == DMA_ENABLE) && (numBlocks > 0U) )
                             {
                                 /* Open DMA channel for AES AAD */
                                 dmaHandle = DMA_open(0);
-                                
-                                /* Configure DMA channel to transfer the data to Data Register */
-                                (void)DMA_Config_TxChannel(dmaHandle, ptrWordInputBuffer, (uint32_t *)&ptrAesRegs->DATA_IN_3, numBlocks, 0U, DMA_AES_ENABLE);
-                                
+                                dmaTxStatus = DMA_Config_TxChannel(dmaHandle, ptrWordInputBuffer, (uint32_t *)&ptrAesRegs->DATA_IN_3, numBlocks, 0U, DMA_AES_ENABLE);
+                            }
+
+                            if (dmaTxStatus == DMA_RETURN_SUCCESS)
+                            {
                                 /* Clear all the DMA interrupts */
                                 DTHE_AES_clearAllInterrupts(ptrAesRegs);
 
+                                /* Enable AES DMA input request before arming RTDMA so the
+                                 * trigger is already pending when DMA_startChannel is called. */
+                                DTHE_AES_setDMAInputRequestStatus(ptrAesRegs, 1);
+
                                 /* Enable the transfer region */
                                 (void)DMA_enableTxTransferRegion(dmaHandle);
-
-                                /* Force the first trigger */
-                                DTHE_AES_setDMAInputRequestStatus(ptrAesRegs, 1);
 
                                 /* Poll for completion */
                                 (void)DMA_WaitForTxTransfer(dmaHandle);
@@ -804,12 +808,15 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
                     processCtsBlk = AES_XTS_LAST_BLOCK_TRUE;
                 }
 
+                dmaTxStatus = DMA_RETURN_FAILURE;
                 if ( (config->dmaEnable == DMA_ENABLE) && (numBlocks > 0U))
-                {                   
+                {
                     dmaHandle = DMA_open(0);
+                    dmaTxStatus = DMA_Config_TxChannel(dmaHandle, ptrWordInputBuffer, (uint32_t *)&ptrAesRegs->DATA_IN_3, numBlocks, 0U, DMA_AES_ENABLE);
+                }
 
-                    (void)DMA_Config_TxChannel(dmaHandle, ptrWordInputBuffer, (uint32_t *)&ptrAesRegs->DATA_IN_3, numBlocks, 0U, DMA_AES_ENABLE);
-
+                if (dmaTxStatus == DMA_RETURN_SUCCESS)
+                {
                     if((ptrParams->algoType != DTHE_AES_CBC_MAC_MODE)&&(ptrParams->algoType != DTHE_AES_CMAC_MODE)&&(ptrParams->algoType != DTHE_AES_GHASH_ONLY_MODE))
                     {
                         (void)DMA_Config_RxChannel(dmaHandle, (uint32_t *)&ptrAesRegs->DATA_IN_3, ptrWordOutputBuffer, numBlocks);

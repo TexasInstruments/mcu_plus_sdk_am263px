@@ -396,6 +396,7 @@ DTHE_SM3_Return_t DTHE_SM3_compute(DTHE_Handle handle, DTHE_SM3_Params* ptrSm3Pa
 {
     DTHE_SM3_Return_t       status       = DTHE_SM3_RETURN_FAILURE;
     DMA_Handle              dmaHandle    = NULL;
+    DMA_Return_t            dmaStatus    = DMA_RETURN_FAILURE;
     uint64_t                index        = 0ULL;
     uint64_t                numBlocks    = 0ULL;
     uint64_t                blockSize    = 0ULL;
@@ -513,17 +514,19 @@ DTHE_SM3_Return_t DTHE_SM3_compute(DTHE_Handle handle, DTHE_SM3_Params* ptrSm3Pa
                 uint16_t dmaNumBlocks = (uint16_t)(numBlocks - 2ULL);
 
                 dmaHandle = DMA_open(0);
+                dmaStatus = DMA_Config_TxChannel(dmaHandle, &ptrSm3Params->ptrDataBuffer[1U << shiftSize], (uint32_t *)&ptrSm3Regs->SM3_DATA_IN[0], dmaNumBlocks, (uint16_t)blockSize, DMA_SM3_ENABLE);
+            }
 
-                (void)DMA_Config_TxChannel(dmaHandle, &ptrSm3Params->ptrDataBuffer[1U << shiftSize], (uint32_t *)&ptrSm3Regs->SM3_DATA_IN[0], dmaNumBlocks, (uint16_t)blockSize, DMA_SM3_ENABLE);
-
+            if (dmaStatus == DMA_RETURN_SUCCESS)
+            {
                 /* Enable auto control and DMA mode BEFORE starting DMA transfer.
                  * This ensures the SM3 engine can generate DMA requests when ready
                  * for the next block after processing block 0. */
                 DTHE_SM3_set_autoctrl(ptrSm3Regs, 1U);
-                DTHE_SM3_setDMA(ptrSm3Regs, 1U);
 
                 /* Enable the transfer region (starts DMA) */
                 (void)DMA_enableTxTransferRegion(dmaHandle);
+                DTHE_SM3_setDMA(ptrSm3Regs, 1U);
 
                 /* Wait for DMA transfer to complete */
                 (void)DMA_WaitForTxTransfer(dmaHandle);
@@ -541,6 +544,7 @@ DTHE_SM3_Return_t DTHE_SM3_compute(DTHE_Handle handle, DTHE_SM3_Params* ptrSm3Pa
             }
             else
             {
+                /* DMA not available or source address not aligned: use CPU path. */
                 for (index = 1ULL; index < (numBlocks-1ULL); index++)
                 {
                     /* wait until input buffer available for writing by host */

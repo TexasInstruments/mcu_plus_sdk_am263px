@@ -154,6 +154,12 @@ int32_t RTDMA_Config_TxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t
     {
         status = SystemP_FAILURE;
     }
+    else if(((uint32_t)srcAddress & 0x3U) != 0U)
+    {
+        /* DMA_CFG_SIZE_32BIT requires a 4-byte-aligned source address.
+         * Return failure so the caller can fall back to the CPU path. */
+        status = SystemP_FAILURE;
+    }
     else
     {
         /* Handle is already the pointer to gRtdmaHandle array, not DMA_Config */

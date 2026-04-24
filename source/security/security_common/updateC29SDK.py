@@ -60,12 +60,10 @@ for device in devices :
     #copy tools/boot folder inside tools/boot
     src_path = os.path.join("tools", "boot", "signing")
     dest_path = os.path.join(sdk_folder, "mcu_sdk_" + device, "tools", "boot", "signing")
-    #Check if destination directory exists
-    if os.path.exists(dest_path):
-        #delete destination directory
-        shutil.rmtree(dest_path)
-        #make expty destination directory
-        os.makedirs(dest_path)
+    #delete destination directory
+    shutil.rmtree(dest_path, ignore_errors=True)
+    #make empty destination directory
+    os.makedirs(dest_path)
     for file in included_files:
         src_file_path = os.path.join(src_path, file)
         dst_file_path = os.path.join(dest_path, file)
