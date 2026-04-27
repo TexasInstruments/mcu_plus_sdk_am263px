@@ -1,5 +1,13 @@
 var NAVTREEINDEX45 =
 {
+"group__DRV__SOC__XBAR__MODULE.html#gab969c1e40742362c35f16d4b391e67dc":[18,7,41,1,33],
+"group__DRV__SOC__XBAR__MODULE.html#gabac0e46886c495bf63cfc7bfaea5b6c3":[18,7,41,1,18],
+"group__DRV__SOC__XBAR__MODULE.html#gabb1432ac16e6db1b519e7bc94dce2798":[18,7,41,1,23],
+"group__DRV__SOC__XBAR__MODULE.html#gabf4603868550a1eaba9c276fb81b470c":[18,7,41,1,29],
+"group__DRV__SOC__XBAR__MODULE.html#gaca288504be925c81ba48c86ebca0cf49":[18,7,41,1,9],
+"group__DRV__SOC__XBAR__MODULE.html#gad37b502083d96151a3dc0f73ee63dd38":[18,7,41,1,37],
+"group__DRV__SOC__XBAR__MODULE.html#gaf582488b6579603db5fcc74d10928b78":[18,7,41,1,38],
+"group__DRV__SOC__XBAR__MODULE.html#gaf8e07a1b6e7f74d7b54cafe82dddbe99":[18,7,41,1,5],
 "group__DRV__SPINLOCK__MODULE.html":[18,7,42],
 "group__DRV__SPINLOCK__MODULE.html#ga087cba22301176f92bd374a9fcedcdc6":[18,7,42,5],
 "group__DRV__SPINLOCK__MODULE.html#ga6905b94613cfa60a61683b510423eee7":[18,7,42,3],
@@ -241,13 +249,5 @@ var NAVTREEINDEX45 =
 "group__ENETPHY__DP83826.html#ga56c3b33812b542a7a9733368d4497b28":[18,4,0,13,2,3],
 "group__ENETPHY__DP83826.html#ga59b91d618e0adfe95a67d4ac70fc8c8a":[18,4,0,13,2,2],
 "group__ENETPHY__DP83826.html#ga78387c2b2975f3e7219cfc11395a7b98":[18,4,0,13,2,4],
-"group__ENETPHY__DP83826.html#gae2bbff63556e7284a15155eccaaf41bd":[18,4,0,13,2,6],
-"group__ENETPHY__DP83826.html#gae39a4e6492e1da2eeba4eb9edd981496":[18,4,0,13,2,5],
-"group__ENETPHY__DP83826.html#gaeea41c39889777db5927a4fc3afbc2bf":[18,4,0,13,2,1],
-"group__ENETPHY__DP83867.html":[18,4,0,13,3],
-"group__ENETPHY__DP83867.html#ga25861afdc22d78df216771a6f9cb3538":[18,4,0,13,3,8],
-"group__ENETPHY__DP83867.html#ga304aac6fd8cf554d7c01fd8e8a659e66":[18,4,0,13,3,5],
-"group__ENETPHY__DP83867.html#ga468c40996e9ce12162624c563e87b0da":[18,4,0,13,3,2],
-"group__ENETPHY__DP83867.html#ga640d9279e9396845779aec388d54994a":[18,4,0,13,3,6],
-"group__ENETPHY__DP83867.html#ga81fdc84ba3c082707228c5e41288b2a5":[18,4,0,13,3,1]
+"group__ENETPHY__DP83826.html#gae2bbff63556e7284a15155eccaaf41bd":[18,4,0,13,2,6]
 };

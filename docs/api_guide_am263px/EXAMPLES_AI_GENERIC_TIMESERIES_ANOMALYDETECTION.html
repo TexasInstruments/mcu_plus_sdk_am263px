@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('EXAMPLES_AI_GENERIC_TIMESERIES_ANOMALY
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3801">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md3809">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_AI_GENERIC_TIMESERIES_ANOMALYDETECTION_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3802">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3803">Dataset</a></li>
-<li class="level2"><a href="#autotoc_md3804">Model Architecture</a></li>
-<li class="level2"><a href="#autotoc_md3805">Input Features</a></li>
-<li class="level2"><a href="#autotoc_md3806">Output</a></li>
+<li class="level1"><a href="#autotoc_md3810">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3811">Dataset</a></li>
+<li class="level2"><a href="#autotoc_md3812">Model Architecture</a></li>
+<li class="level2"><a href="#autotoc_md3813">Input Features</a></li>
+<li class="level2"><a href="#autotoc_md3814">Output</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3807">Feature Extraction Configuration</a></li>
-<li class="level1"><a href="#autotoc_md3808">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3809">See Also</a></li>
-<li class="level1"><a href="#autotoc_md3810">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3815">Feature Extraction Configuration</a></li>
+<li class="level1"><a href="#autotoc_md3816">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3817">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3818">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_ai_generic_timeseries_anomalydetection"></a></p>
-<h1><a class="anchor" id="autotoc_md3801"></a>
+<h1><a class="anchor" id="autotoc_md3809"></a>
 Introduction</h1>
 <p>Generic Timeseries Anomaly Detection is a hello world example for understanding usage of autoencoder-based AI models for anomaly detection on TI MCU. This project demonstrates implementation of an AI-based anomaly detection system on AM26x microcontrollers using a simple synthetic waveform dataset.</p>
 <p>Unlike classification models, the autoencoder is trained only on normal data and learns to reconstruct normal patterns. At inference, the reconstruction error between the input and output is compared against a threshold - a high error indicates an anomaly.</p>
@@ -125,9 +125,9 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/ai/generic_timeseries_anomalydetection/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3802"></a>
+<h1><a class="anchor" id="autotoc_md3810"></a>
 Dataset and Model Details</h1>
-<h2><a class="anchor" id="autotoc_md3803"></a>
+<h2><a class="anchor" id="autotoc_md3811"></a>
 Dataset</h2>
 <p>TI has created a synthetic waveform dataset based on a combined sinusoidal pattern. The normal signal follows y = 1.2 sin(2*pi*f*t) + 0.8 cos(2*pi*f*t) with a base frequency of 1.0 Hz.</p>
 <table class="markdownTable">
@@ -149,10 +149,10 @@ Dataset</h2>
 <li><b>Anomaly</b>: Includes four types of deviations - faster frequency, slower frequency, higher amplitude, and lower amplitude</li>
 </ul>
 <p><b>Important:</b> For anomaly detection, the model is trained only on normal data. Anomaly samples are used exclusively for testing.</p>
-<h2><a class="anchor" id="autotoc_md3804"></a>
+<h2><a class="anchor" id="autotoc_md3812"></a>
 Model Architecture</h2>
 <p>This autoencoder model <code>AD_17k</code> contains approximately 17,000 parameters. The encoder compresses the input signal into a compact representation, and the decoder reconstructs the signal. During training, the model learns to reconstruct normal patterns with low error. When presented with an anomalous signal, the reconstruction error is significantly higher.</p>
-<h2><a class="anchor" id="autotoc_md3805"></a>
+<h2><a class="anchor" id="autotoc_md3813"></a>
 Input Features</h2>
 <p>The model takes 4D input (N,C,H,W):</p><ul>
 <li>N (1): batch size which is restricted to 1</li>
@@ -160,7 +160,7 @@ Input Features</h2>
 <li>H (100): samples of timeseries signal which is 100 in this example</li>
 <li>W (1): width of samples is restricted to 1 for timeseries applications</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3806"></a>
+<h2><a class="anchor" id="autotoc_md3814"></a>
 Output</h2>
 <p>Unlike classification models that output class probabilities, this model produces a reconstructed signal of the same shape as the input (1, 1, 100, 1). The reconstruction error (Mean Squared Error between input and output) is then compared against a threshold:</p>
 <div class="fragment"><div class="line">if reconstruction_error &gt; threshold:</div>
@@ -168,7 +168,7 @@ Output</h2>
 <div class="line">else:</div>
 <div class="line">    -&gt; NORMAL</div>
 </div><!-- fragment --><p>The threshold value is stored in <code>user_input_config.h</code> as <code>RECONSTRUCTION_ERROR_THRESHOLD</code>.</p>
-<h1><a class="anchor" id="autotoc_md3807"></a>
+<h1><a class="anchor" id="autotoc_md3815"></a>
 Feature Extraction Configuration</h1>
 <p>For this anomaly detection task, the raw signal with downsampling and simple windowing approach produces the best results. The autoencoder learns to reconstruct the temporal shape of the raw waveform, so preserving the original signal structure is critical.</p>
 <p>Key configuration parameters in <code>user_input_config.h</code>:</p><ul>
@@ -177,7 +177,7 @@ Feature Extraction Configuration</h1>
 <li><b>FE_VARIABLES</b> (1): Single channel input</li>
 <li><b>RECONSTRUCTION_ERROR_THRESHOLD</b>: Threshold for anomaly decision</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3808"></a>
+<h1><a class="anchor" id="autotoc_md3816"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -185,10 +185,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>The application will run inference on test vectors, compute reconstruction error, and classify as Normal or Anomaly</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3809"></a>
+<h1><a class="anchor" id="autotoc_md3817"></a>
 See Also</h1>
 <p><a class="el" href="EXAMPLES_AI.html">AI Examples</a></p>
-<h1><a class="anchor" id="autotoc_md3810"></a>
+<h1><a class="anchor" id="autotoc_md3818"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">Generic Timeseries Anomaly Detection Example Started ...</div>
 <div class="line">Feature extraction mismatches 0</div>

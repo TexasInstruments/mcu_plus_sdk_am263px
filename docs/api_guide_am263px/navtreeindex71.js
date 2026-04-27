@@ -1,5 +1,13 @@
 var NAVTREEINDEX71 =
 {
+"structOTFA__Config__t.html#aae9b1fe56ace4712160ea79238b203a3":[18,7,16,17,2],
+"structOTFA__Config__t.html#ac57d9ff49cbb848e026bf4a518dcd262":[18,7,16,17,1],
+"structOTFA__Config__t.html#af0af656c74b9d1d3eb6c5243c9421efc":[18,7,16,17,0],
+"structOTFA__Region__t.html":[18,7,16,15],
+"structOTFA__Region__t.html#a1435efd6cd94f12f15ab7abd82d5f6b1":[18,7,16,15,1],
+"structOTFA__Region__t.html#a1c5d1c86503c7f6a134d5b141ea9b2c9":[18,7,16,15,8],
+"structOTFA__Region__t.html#a236b3066e5cde785b75cf16ad3b7455c":[18,7,16,15,0],
+"structOTFA__Region__t.html#a4fb86253339968bc95bece68df15903a":[18,7,16,15,10],
 "structOTFA__Region__t.html#a7cdd18580fb63bba643053b27ff7e276":[18,7,16,15,9],
 "structOTFA__Region__t.html#a8d6ffb1fbb7f52f5032522729474d0ca":[18,7,16,15,4],
 "structOTFA__Region__t.html#aa4d71b5db9af35fc8fdf5623d6cbe064":[18,7,16,15,7],
@@ -241,13 +249,5 @@ var NAVTREEINDEX71 =
 "structSDL__DCC__config.html#a335c382fe52147cd3562044fa4da43b0":[18,6,3,0,0,0,2],
 "structSDL__DCC__config.html#a56d8fbedd045389f51d2676363f117da":[18,6,3,0,0,0,5],
 "structSDL__DCC__config.html#a8fbeb1e93da8fa6fa572739f9ceee7c4":[18,6,3,0,0,0,1],
-"structSDL__DCC__config.html#aa75d781f96b105d72f41e3009238aac7":[18,6,3,0,0,0,0],
-"structSDL__DCC__staticRegs.html":[18,6,3,0,0,2],
-"structSDL__DCC__staticRegs.html#a2b1e0725b945fe8be302ea3947b1beb8":[18,6,3,0,0,2,4],
-"structSDL__DCC__staticRegs.html#a58f5b1429a4ec12a1d5cb5aa3e3a9d5b":[18,6,3,0,0,2,3],
-"structSDL__DCC__staticRegs.html#a9c8bbcef4dbfda7884d408095afbf49a":[18,6,3,0,0,2,0],
-"structSDL__DCC__staticRegs.html#aad9d58605ae3fc910dc838e34e3f0714":[18,6,3,0,0,2,5],
-"structSDL__DCC__staticRegs.html#ad3246bb4706e7b1393f0d7aa92e3216f":[18,6,3,0,0,2,1],
-"structSDL__DCC__staticRegs.html#afaf41ffb92e88f6dcbbef9081734b8f8":[18,6,3,0,0,2,2],
-"structSDL__DPL__HwipParams.html":[18,6,2,1]
+"structSDL__DCC__config.html#aa75d781f96b105d72f41e3009238aac7":[18,6,3,0,0,0,0]
 };

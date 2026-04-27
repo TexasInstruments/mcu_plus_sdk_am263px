@@ -1,5 +1,13 @@
 var NAVTREEINDEX65 =
 {
+"structEnetTimeSync__GetEthTimestampInArgs.html#abe0e1ea705f2933923d5f61f6d2e727c":[18,4,0,11,4,0],
+"structEnetTimeSync__TimestampAdj.html":[18,4,0,11,3],
+"structEnetTimeSync__TimestampAdj.html#a9f32f3ded446ad7b569018c4459e8088":[18,4,0,11,3,1],
+"structEnetTimeSync__TimestampAdj.html#afb1378be9ebeef9ff0ccc5e0702e633b":[18,4,0,11,3,0],
+"structEnetTimeSync__setTimestamp.html":[18,4,0,11,2],
+"structEnetTimeSync__setTimestamp.html#a1ec2388d79ab241f56f6b6b3a59db8d7":[18,4,0,11,2,2],
+"structEnetTimeSync__setTimestamp.html#a3dd5a16cde4bb0b1641939fc940790e8":[18,4,0,11,2,0],
+"structEnetTimeSync__setTimestamp.html#a4ab73d200c9efc20eb04b696cab2b603":[18,4,0,11,2,1],
 "structEnet__IoctlPrms.html":[18,4,0,4,0],
 "structEnet__IoctlPrms.html#a4ffece87c4e8a2e15850530ac6205301":[18,4,0,4,0,2],
 "structEnet__IoctlPrms.html#ae147cfa86656f1e95d37d124252b25d1":[18,4,0,4,0,0],
@@ -241,13 +249,5 @@ var NAVTREEINDEX65 =
 "structI2CLLD__Object.html#a2fb8d10c7dedcd0fa9a241d4411f4b3d":[18,7,19,6,22],
 "structI2CLLD__Object.html#a3040f1e3f2482175863c7bf4eaee3ca1":[18,7,19,6,23],
 "structI2CLLD__Object.html#a33b806d1d240b0d6252676ab9c796500":[18,7,19,6,2],
-"structI2CLLD__Object.html#a39d2e1ca8e1e8e0ec54d1fb9efd926d0":[18,7,19,6,8],
-"structI2CLLD__Object.html#a41767fa6883cb21e42975549f12342b2":[18,7,19,6,25],
-"structI2CLLD__Object.html#a4a5030ce27781fd19005b8b655c870b4":[18,7,19,6,11],
-"structI2CLLD__Object.html#a59849a4919bab039875e5b977dfbce24":[18,7,19,6,19],
-"structI2CLLD__Object.html#a72103eb960aef567a34946d9ec941b36":[18,7,19,6,20],
-"structI2CLLD__Object.html#a82bd8a36474df06f961faa1982bc7400":[18,7,19,6,21],
-"structI2CLLD__Object.html#a848ef7a2478ff779faaee8bfe9b29592":[18,7,19,6,4],
-"structI2CLLD__Object.html#a8586d0567f1325562ef70513e83b0184":[18,7,19,6,18],
-"structI2CLLD__Object.html#a8733678ad40012463a4096b07cc6c4b0":[18,7,19,6,3]
+"structI2CLLD__Object.html#a39d2e1ca8e1e8e0ec54d1fb9efd926d0":[18,7,19,6,8]
 };

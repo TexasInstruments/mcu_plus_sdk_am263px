@@ -1,5 +1,13 @@
 var NAVTREEINDEX64 =
 {
+"structEnetCpdma__SGListEntry.html#a38f22dc244d844d635088672ee921a46":[18,4,0,0,0,1,1,1],
+"structEnetCpdma__SGListEntry.html#a413ebc547f330a5d2098bc247c00c09f":[18,4,0,0,0,1,1,4],
+"structEnetCpdma__SGListEntry.html#a9cb8025fe03dc36d8f47ccaf3c4d8a84":[18,4,0,0,0,1,1,3],
+"structEnetCpdma__SGListEntry.html#afb54543706ee40725e1d72f6a7b0bfdd":[18,4,0,0,0,1,1,2],
+"structEnetDma__CbStats.html":[18,4,0,0,2,0],
+"structEnetDma__CbStats.html#a01f51c16a373a3aa1e8b1690027ca2b7":[18,4,0,0,2,0,0],
+"structEnetDma__CbStats.html#a0273c625d22d70160b33f9b21c2b548c":[18,4,0,0,2,0,8],
+"structEnetDma__CbStats.html#a0b0d3a9e068829105ce6811de0931b34":[18,4,0,0,2,0,10],
 "structEnetDma__CbStats.html#a332195f9d7e1e71aa63eaa2318a6527e":[18,4,0,0,2,0,1],
 "structEnetDma__CbStats.html#a65bd2674d32b2255b738f45360a89f3f":[18,4,0,0,2,0,7],
 "structEnetDma__CbStats.html#a69802774a4c74dd1ff0323382abe55b2":[18,4,0,0,2,0,9],
@@ -241,13 +249,5 @@ var NAVTREEINDEX64 =
 "structEnetTimeSync__GetEthTimestampInArgs.html":[18,4,0,11,4],
 "structEnetTimeSync__GetEthTimestampInArgs.html#a5eb987a8093cb7762d1210a5cbca7558":[18,4,0,11,4,1],
 "structEnetTimeSync__GetEthTimestampInArgs.html#a92848c0246b4b1014236ef3a8949b9c3":[18,4,0,11,4,2],
-"structEnetTimeSync__GetEthTimestampInArgs.html#aa9372a0c922633486c63ecc1c1063f97":[18,4,0,11,4,3],
-"structEnetTimeSync__GetEthTimestampInArgs.html#abe0e1ea705f2933923d5f61f6d2e727c":[18,4,0,11,4,0],
-"structEnetTimeSync__TimestampAdj.html":[18,4,0,11,3],
-"structEnetTimeSync__TimestampAdj.html#a9f32f3ded446ad7b569018c4459e8088":[18,4,0,11,3,1],
-"structEnetTimeSync__TimestampAdj.html#afb1378be9ebeef9ff0ccc5e0702e633b":[18,4,0,11,3,0],
-"structEnetTimeSync__setTimestamp.html":[18,4,0,11,2],
-"structEnetTimeSync__setTimestamp.html#a1ec2388d79ab241f56f6b6b3a59db8d7":[18,4,0,11,2,2],
-"structEnetTimeSync__setTimestamp.html#a3dd5a16cde4bb0b1641939fc940790e8":[18,4,0,11,2,0],
-"structEnetTimeSync__setTimestamp.html#a4ab73d200c9efc20eb04b696cab2b603":[18,4,0,11,2,1]
+"structEnetTimeSync__GetEthTimestampInArgs.html#aa9372a0c922633486c63ecc1c1063f97":[18,4,0,11,4,3]
 };

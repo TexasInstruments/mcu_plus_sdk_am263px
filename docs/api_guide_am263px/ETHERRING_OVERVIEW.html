@@ -155,15 +155,29 @@ Generating Ethernet packet with non continuous buffers for Header addition. </li
 Duplicate packet Rejection on Reception side(Duplicate Packet Rejection)</h1>
 <div style="display: flex; align-items: center;"> <div style="flex: 1; text-align: left; max-width: 65%;"> <ul>
 <li>
-<b>Custom Header Data</b>: Ethernet packets contain custom header data to facilitate duplicate rejection. </li>
+<b>Packet Detection Flow</b>: SequenceID-based duplicate detection using per-node state tracking. Each node maintains last accepted sequence number and 64-bit history bitmap. </li>
 <li>
-<b>Look-up Table</b>: The look-up table stores key with tuples of {Source Mac Address ,Sequence Number} and Entries denoting the count of packet received. </li>
+<b>Per-node State</b>: Tracks recSeqNum (last accepted sequence), seqHistory (64-bit bitmap), and initialization flag for each data stream identified by MAC address. </li>
 <li>
-<b>Duplicate Rejection</b>: Duplicate packets are rejected using look-up table Entries. </li>
+<b>Five Detection Cases</b>: <ol>
 <li>
-<b>Periodic Look-up table clearance</b>: Look-up table entries are periodically cleared to receive original Ethernet packets in case of single point wire failure. </li>
+In-Order/Future Packet (seqDiff &gt; 0) - Accept and shift window forward </li>
+<li>
+Out-of-Order Within Window (seqDiff &lt; 0) - Check bitmap for prior receipt </li>
+<li>
+Too Old/Beyond Window - Reject as stale duplicate </li>
+<li>
+Exact Duplicate (seqDiff = 0) - Reject immediate duplicate </li>
+<li>
+Large Forward Gap - Reject as potential desynchronization </li>
+</ol>
+</li>
+<li>
+<b>Wraparound Handling</b>: 8-bit sequence numbers wrap at 256 with signed arithmetic boundary adjustment. </li>
+<li>
+<b>Statistics Tracking</b>: Maintains counts for original packets, duplicates rejected, and out-of-order packets accepted. </li>
 </ul>
-</div> <div style="flex: 1; text-align: right; max-width: 75%;"> <img src="etherring_duplicate_rejection.png" alt="CAN to Ethernet" style="width: 90%;" class="inline"/> </div> </div> </div></div><!-- contents -->
+</div> <div style="flex: 1; text-align: right; max-width: 75%;"> <img src="etherring_pkt_detection_flow.png" alt="Packet Detection Flow" style="width: 110%;" class="inline"/> </div> </div> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.8.11-->

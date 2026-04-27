@@ -1,5 +1,13 @@
 var NAVTREEINDEX44 =
 {
+"group__DRV__SOC__MODULE.html#ga93f7842c591a1dcb99a4a134878939ce":[18,7,41,83],
+"group__DRV__SOC__MODULE.html#ga9591d4c088fd1d856ad9602c53e7ce18":[18,7,41,74],
+"group__DRV__SOC__MODULE.html#ga9599fdc0f6dbc61274c1144c3a559369":[18,7,41,12],
+"group__DRV__SOC__MODULE.html#ga9657e395c34c87f84b660a663eb2b3e1":[18,7,41,8],
+"group__DRV__SOC__MODULE.html#ga9704df12865db93adaf20edfa72216b8":[18,7,41,44],
+"group__DRV__SOC__MODULE.html#ga97c6d618660b47bf42f1245354c9e031":[18,7,41,87],
+"group__DRV__SOC__MODULE.html#ga98261b7e1ddbc5a9b96427d45954d2c4":[18,7,41,18],
+"group__DRV__SOC__MODULE.html#ga9a3dd12ed6ec3bce4b786744c5cb134d":[18,7,41,100],
 "group__DRV__SOC__MODULE.html#ga9bc386272e1f7a83646e95cf379a97d3":[18,7,41,29],
 "group__DRV__SOC__MODULE.html#ga9c881e52ab6118eccbd3e4ad1a1a36f3":[18,7,41,19],
 "group__DRV__SOC__MODULE.html#ga9c9c6edc9ec224d86a0fd65bf7701f9f":[18,7,41,46],
@@ -241,13 +249,5 @@ var NAVTREEINDEX44 =
 "group__DRV__SOC__XBAR__MODULE.html#gaa57e28a7153f30e811a2fc1340a0bf61":[18,7,41,1,24],
 "group__DRV__SOC__XBAR__MODULE.html#gaace488983821bcee0e8d41f6c6b659e3":[18,7,41,1,13],
 "group__DRV__SOC__XBAR__MODULE.html#gaad753677ce1bb768961fedd511c5a834":[18,7,41,1,8],
-"group__DRV__SOC__XBAR__MODULE.html#gaae8517f12226659eaefc360800bd9685":[18,7,41,1,15],
-"group__DRV__SOC__XBAR__MODULE.html#gab969c1e40742362c35f16d4b391e67dc":[18,7,41,1,33],
-"group__DRV__SOC__XBAR__MODULE.html#gabac0e46886c495bf63cfc7bfaea5b6c3":[18,7,41,1,18],
-"group__DRV__SOC__XBAR__MODULE.html#gabb1432ac16e6db1b519e7bc94dce2798":[18,7,41,1,23],
-"group__DRV__SOC__XBAR__MODULE.html#gabf4603868550a1eaba9c276fb81b470c":[18,7,41,1,29],
-"group__DRV__SOC__XBAR__MODULE.html#gaca288504be925c81ba48c86ebca0cf49":[18,7,41,1,9],
-"group__DRV__SOC__XBAR__MODULE.html#gad37b502083d96151a3dc0f73ee63dd38":[18,7,41,1,37],
-"group__DRV__SOC__XBAR__MODULE.html#gaf582488b6579603db5fcc74d10928b78":[18,7,41,1,38],
-"group__DRV__SOC__XBAR__MODULE.html#gaf8e07a1b6e7f74d7b54cafe82dddbe99":[18,7,41,1,5]
+"group__DRV__SOC__XBAR__MODULE.html#gaae8517f12226659eaefc360800bd9685":[18,7,41,1,15]
 };

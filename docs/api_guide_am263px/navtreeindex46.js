@@ -1,5 +1,13 @@
 var NAVTREEINDEX46 =
 {
+"group__ENETPHY__DP83826.html#gae39a4e6492e1da2eeba4eb9edd981496":[18,4,0,13,2,5],
+"group__ENETPHY__DP83826.html#gaeea41c39889777db5927a4fc3afbc2bf":[18,4,0,13,2,1],
+"group__ENETPHY__DP83867.html":[18,4,0,13,3],
+"group__ENETPHY__DP83867.html#ga25861afdc22d78df216771a6f9cb3538":[18,4,0,13,3,8],
+"group__ENETPHY__DP83867.html#ga304aac6fd8cf554d7c01fd8e8a659e66":[18,4,0,13,3,5],
+"group__ENETPHY__DP83867.html#ga468c40996e9ce12162624c563e87b0da":[18,4,0,13,3,2],
+"group__ENETPHY__DP83867.html#ga640d9279e9396845779aec388d54994a":[18,4,0,13,3,6],
+"group__ENETPHY__DP83867.html#ga81fdc84ba3c082707228c5e41288b2a5":[18,4,0,13,3,1],
 "group__ENETPHY__DP83867.html#ga9fc07d3f0ecac85f48d26c6031177a86":[18,4,0,13,3,7],
 "group__ENETPHY__DP83867.html#gaab744b14935eb184eb5883bc2974be3c":[18,4,0,13,3,3],
 "group__ENETPHY__DP83867.html#gaadf87e7ded224a1b536016988f04c36b":[18,4,0,13,3,12],
@@ -241,13 +249,5 @@ var NAVTREEINDEX46 =
 "group__ENET__CPDMA__API.html#gaab7b04d374e407b5625d598bf8b51814":[18,4,0,0,0,7],
 "group__ENET__CPDMA__API.html#gab2c3c8aeec9462225f72f16f4442a08b":[18,4,0,0,0,11],
 "group__ENET__CPDMA__API.html#gaba6c000019a0221ba4f46ce030c15663":[18,4,0,0,0,13],
-"group__ENET__CPDMA__API.html#gac08045040149b7605ae86a618c7f8889":[18,4,0,0,0,28],
-"group__ENET__CPDMA__API.html#gacb42d82f70cbee0e019d6a49e9dded8e":[18,4,0,0,0,9],
-"group__ENET__CPDMA__API.html#gacc9aa8af2dffe665c06df5b01d11f841":[18,4,0,0,0,26],
-"group__ENET__CPDMA__API.html#gacdb136fa24c2c62608132dca6d52dad3":[18,4,0,0,0,2],
-"group__ENET__CPDMA__API.html#gad0677edcfeda4493259234023cd74d92":[18,4,0,0,0,27],
-"group__ENET__CPDMA__API.html#gaf5c5790944321de74ff89595ea0730b8":[18,4,0,0,0,8],
-"group__ENET__CPDMA__CONFIG__DEFS.html":[18,4,0,0,0,0],
-"group__ENET__CPDMA__CONFIG__DEFS.html#ga4dded933b8b519dfc533053be16b6fa5":[18,4,0,0,0,0,10],
-"group__ENET__CPDMA__PKT.html":[18,4,0,0,0,1]
+"group__ENET__CPDMA__API.html#gac08045040149b7605ae86a618c7f8889":[18,4,0,0,0,28]
 };

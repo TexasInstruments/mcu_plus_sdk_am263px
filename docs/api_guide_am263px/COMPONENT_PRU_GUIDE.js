@@ -1,25 +1,25 @@
 var COMPONENT_PRU_GUIDE =
 [
-    [ "Overview", "COMPONENT_PRU_GUIDE.html#autotoc_md3979", null ],
-    [ "Detailed Information", "COMPONENT_PRU_GUIDE.html#autotoc_md3980", null ],
+    [ "Overview", "COMPONENT_PRU_GUIDE.html#autotoc_md3987", null ],
+    [ "Detailed Information", "COMPONENT_PRU_GUIDE.html#autotoc_md3988", null ],
     [ "Introduction", "COMPONENT_PRU_GUIDE_INTRO.html", [
-      [ "PRU_ICSSM Subsystem", "COMPONENT_PRU_GUIDE_INTRO.html#autotoc_md3981", null ],
-      [ "PRU Core", "COMPONENT_PRU_GUIDE_INTRO.html#autotoc_md3982", null ],
-      [ "PRU Instruction Set", "COMPONENT_PRU_GUIDE_INTRO.html#autotoc_md3983", null ],
-      [ "PRU Register Addressing", "COMPONENT_PRU_GUIDE_INTRO.html#autotoc_md3984", null ],
-      [ "PRU Broadside Accelerators", "COMPONENT_PRU_GUIDE_INTRO.html#autotoc_md3985", null ],
-      [ "PRU I/O Control Modes", "COMPONENT_PRU_GUIDE_INTRO.html#autotoc_md3986", null ]
+      [ "PRU_ICSSM Subsystem", "COMPONENT_PRU_GUIDE_INTRO.html#autotoc_md3989", null ],
+      [ "PRU Core", "COMPONENT_PRU_GUIDE_INTRO.html#autotoc_md3990", null ],
+      [ "PRU Instruction Set", "COMPONENT_PRU_GUIDE_INTRO.html#autotoc_md3991", null ],
+      [ "PRU Register Addressing", "COMPONENT_PRU_GUIDE_INTRO.html#autotoc_md3992", null ],
+      [ "PRU Broadside Accelerators", "COMPONENT_PRU_GUIDE_INTRO.html#autotoc_md3993", null ],
+      [ "PRU I/O Control Modes", "COMPONENT_PRU_GUIDE_INTRO.html#autotoc_md3994", null ]
     ] ],
     [ "Programming", "COMPONENT_PRU_GUIDE_PROG.html", [
-      [ "PRU Firmware Development", "COMPONENT_PRU_GUIDE_PROG.html#autotoc_md3987", [
-        [ "Supported Languages", "COMPONENT_PRU_GUIDE_PROG.html#autotoc_md3988", null ],
-        [ "Example Project", "COMPONENT_PRU_GUIDE_PROG.html#autotoc_md3989", null ],
-        [ "Building Project", "COMPONENT_PRU_GUIDE_PROG.html#autotoc_md3990", null ]
+      [ "PRU Firmware Development", "COMPONENT_PRU_GUIDE_PROG.html#autotoc_md3995", [
+        [ "Supported Languages", "COMPONENT_PRU_GUIDE_PROG.html#autotoc_md3996", null ],
+        [ "Example Project", "COMPONENT_PRU_GUIDE_PROG.html#autotoc_md3997", null ],
+        [ "Building Project", "COMPONENT_PRU_GUIDE_PROG.html#autotoc_md3998", null ]
       ] ],
-      [ "PRU-ICSS Driver APIs (- R5F side)", "COMPONENT_PRU_GUIDE_PROG.html#autotoc_md3991", null ]
+      [ "PRU-ICSS Driver APIs (- R5F side)", "COMPONENT_PRU_GUIDE_PROG.html#autotoc_md3999", null ]
     ] ],
     [ "Libraries", "COMPONENT_PRU_GUIDE_LIBS.html", [
-      [ "Assembly Library files", "COMPONENT_PRU_GUIDE_LIBS.html#autotoc_md3993", null ],
-      [ "C Library files", "COMPONENT_PRU_GUIDE_LIBS.html#autotoc_md3994", null ]
+      [ "Assembly Library files", "COMPONENT_PRU_GUIDE_LIBS.html#autotoc_md4001", null ],
+      [ "C Library files", "COMPONENT_PRU_GUIDE_LIBS.html#autotoc_md4002", null ]
     ] ]
 ];

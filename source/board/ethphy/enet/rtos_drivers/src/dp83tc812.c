@@ -55,7 +55,7 @@
 #define DP83TC812_REV_CS2                     (1U)
 #define DP83TC813_MODEL                       (0x21U)
 #define DP83TC814_MODEL                       (0x26U)
-#define DP83TC815_MODEL                       (0x20U)
+#define DP83TC815_MODEL                       (0x2EU)
 
 /* ========================================================================== */
 /*                         Structure Declarations                             */
@@ -212,6 +212,7 @@ bool Dp83tc812_isMacModeSupported(EthPhyDrv_Handle hPhy,
     switch (mii)
     {
         case PHY_MAC_MII_MII:
+            supported = true;
             break;
         case PHY_MAC_MII_GMII:
             break;
@@ -219,6 +220,9 @@ bool Dp83tc812_isMacModeSupported(EthPhyDrv_Handle hPhy,
             supported = true;
             break;
         case PHY_MAC_MII_SGMII:
+            supported = true;
+            break;
+        case PHY_MAC_MII_RMII:
             supported = true;
             break;
         default:
@@ -781,10 +785,10 @@ int32_t Dp83tc812_getSpeedDuplex (EthPhyDrv_Handle hPhy, Phy_Link_SpeedDuplex* p
     Phy_RegAccessCb_t* pRegAccessApi = PhyPriv_getRegAccessApi(hPhy);
 
     /* Restart is complete when RESET bit has self-cleared */
-    status = pRegAccessApi->EnetPhy_readReg(pRegAccessApi->pArgs, DP83TC812_PHYSTS, &val);
+    status = pRegAccessApi->EnetPhy_readReg(pRegAccessApi->pArgs, PHY_BMSR, &val);
     if (status == PHY_SOK)
     {
-        if (val & DP83TC812_PHYSTS_LINK)
+        if (val & PHY_BIT(2))
         {
             speed = 100;
             *pConfig = PHY_LINK_FD100;

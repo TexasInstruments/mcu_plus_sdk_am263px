@@ -830,8 +830,10 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
                         (void)DMA_enableRxTransferRegion(dmaHandle);
                     }
 
-                    (void)DMA_enableTxTransferRegion(dmaHandle);
+                    /* Enable AES DMA input request before arming DMA so the
+                     * trigger is already pending when DMA_startChannel is called. */
                     DTHE_AES_setDMAInputRequestStatus(ptrAesRegs, 1);
+                    (void)DMA_enableTxTransferRegion(dmaHandle);
 
                     if((ptrParams->algoType != DTHE_AES_CBC_MAC_MODE)&&(ptrParams->algoType != DTHE_AES_CMAC_MODE)&&(ptrParams->algoType != DTHE_AES_GHASH_ONLY_MODE))
                     {

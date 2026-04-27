@@ -523,10 +523,10 @@ DTHE_SM3_Return_t DTHE_SM3_compute(DTHE_Handle handle, DTHE_SM3_Params* ptrSm3Pa
                  * This ensures the SM3 engine can generate DMA requests when ready
                  * for the next block after processing block 0. */
                 DTHE_SM3_set_autoctrl(ptrSm3Regs, 1U);
-
+                DTHE_SM3_setDMA(ptrSm3Regs, 1U);
+                
                 /* Enable the transfer region (starts DMA) */
                 (void)DMA_enableTxTransferRegion(dmaHandle);
-                DTHE_SM3_setDMA(ptrSm3Regs, 1U);
 
                 /* Wait for DMA transfer to complete */
                 (void)DMA_WaitForTxTransfer(dmaHandle);

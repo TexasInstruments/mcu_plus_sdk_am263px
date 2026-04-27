@@ -1,5 +1,13 @@
 var NAVTREEINDEX74 =
 {
+"structUART__Object.html#a4006a41115821630adbad6d9c173df73":[18,7,45,3,1],
+"structUART__Object.html#a4706c02fe2439395349ae11e79a060a1":[18,7,45,3,6],
+"structUART__Object.html#a4b0a61eae984fd48596674767e967b57":[18,7,45,3,15],
+"structUART__Object.html#a4eff638569bc7329a88a675f9c2f359d":[18,7,45,3,13],
+"structUART__Object.html#a5929c46fa8856ff890f1723ca5208770":[18,7,45,3,2],
+"structUART__Object.html#a65a97390c883c377ebe2a2287e5336d2":[18,7,45,3,5],
+"structUART__Object.html#a6da82a0d8fee041df1cac2e6d65813dc":[18,7,45,3,23],
+"structUART__Object.html#a766fd9d42ac0da5fb95ddfdc3c30b2df":[18,7,45,3,11],
 "structUART__Object.html#a7f0c9ff202a6b1cdfc7f731c82b9e638":[18,7,45,3,7],
 "structUART__Object.html#a817485bbbdfc8d6b14575c5dfe690165":[18,7,45,3,16],
 "structUART__Object.html#a8ad77ab3484772cc67f4837a217d3f0b":[18,7,45,3,3],

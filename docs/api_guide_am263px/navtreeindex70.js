@@ -1,5 +1,13 @@
 var NAVTREEINDEX70 =
 {
+"structMCSPI__ChObject.html#a5d183ba286fe0c4f62da6bc52c4caa54":[18,7,28,5,11],
+"structMCSPI__ChObject.html#a62f745efef801652f71aa324ec259f59":[18,7,28,5,16],
+"structMCSPI__ChObject.html#a6ad7ceb26a205935ed4ce77663480625":[18,7,28,5,0],
+"structMCSPI__ChObject.html#a7461a33673726d45b3eec2477d1a7f6a":[18,7,28,5,8],
+"structMCSPI__ChObject.html#a91cc119965f96863de731956dc3110b7":[18,7,28,5,15],
+"structMCSPI__ChObject.html#aa0e573d2c56b10de0063131d844933f9":[18,7,28,5,14],
+"structMCSPI__ChObject.html#aa9b72de047a8402805da245d0f493751":[18,7,28,5,12],
+"structMCSPI__ChObject.html#aaac7d77c9f3d64f580bf5100b5d8bb8f":[18,7,28,5,3],
 "structMCSPI__ChObject.html#aacd855742351960e01a600e4a154e86a":[18,7,28,5,7],
 "structMCSPI__ChObject.html#ad70b6ace4b82262aebc6ef23ac443079":[18,7,28,5,9],
 "structMCSPI__ChObject.html#af8287dadf750691a12086d7e9054246a":[18,7,28,5,13],
@@ -241,13 +249,5 @@ var NAVTREEINDEX70 =
 "structOSPI__Object.html#ac59e394de833441bb1e9d28db10d6e5b":[18,7,33,3,3],
 "structOTFA__Config__t.html":[18,7,16,17],
 "structOTFA__Config__t.html#a278cf42eedc223b75bc24988de8242d2":[18,7,16,17,4],
-"structOTFA__Config__t.html#a523e667f9c6cef57b463c68a74b5239c":[18,7,16,17,3],
-"structOTFA__Config__t.html#aae9b1fe56ace4712160ea79238b203a3":[18,7,16,17,2],
-"structOTFA__Config__t.html#ac57d9ff49cbb848e026bf4a518dcd262":[18,7,16,17,1],
-"structOTFA__Config__t.html#af0af656c74b9d1d3eb6c5243c9421efc":[18,7,16,17,0],
-"structOTFA__Region__t.html":[18,7,16,15],
-"structOTFA__Region__t.html#a1435efd6cd94f12f15ab7abd82d5f6b1":[18,7,16,15,1],
-"structOTFA__Region__t.html#a1c5d1c86503c7f6a134d5b141ea9b2c9":[18,7,16,15,8],
-"structOTFA__Region__t.html#a236b3066e5cde785b75cf16ad3b7455c":[18,7,16,15,0],
-"structOTFA__Region__t.html#a4fb86253339968bc95bece68df15903a":[18,7,16,15,10]
+"structOTFA__Config__t.html#a523e667f9c6cef57b463c68a74b5239c":[18,7,16,17,3]
 };

@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('EXAMPLES_AI_MOTOR_FAULT.html',''); ini
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3811">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md3819">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_AI_MOTOR_FAULT_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3812">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3813">Dataset</a></li>
-<li class="level2"><a href="#autotoc_md3814">Model Architecture</a></li>
-<li class="level2"><a href="#autotoc_md3815">Input Features</a></li>
-<li class="level2"><a href="#autotoc_md3816">Output</a></li>
+<li class="level1"><a href="#autotoc_md3820">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3821">Dataset</a></li>
+<li class="level2"><a href="#autotoc_md3822">Model Architecture</a></li>
+<li class="level2"><a href="#autotoc_md3823">Input Features</a></li>
+<li class="level2"><a href="#autotoc_md3824">Output</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3817">Feature Extraction Configuration</a></li>
-<li class="level1"><a href="#autotoc_md3818">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3819">See Also</a></li>
-<li class="level1"><a href="#autotoc_md3820">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3825">Feature Extraction Configuration</a></li>
+<li class="level1"><a href="#autotoc_md3826">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3827">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3828">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_ai_motor_fault"></a></p>
-<h1><a class="anchor" id="autotoc_md3811"></a>
+<h1><a class="anchor" id="autotoc_md3819"></a>
 Introduction</h1>
 <p>Vibration analysis is a key diagnostic tool for identifying bearing faults in machinery. When bearings deteriorate, their smooth motion becomes erratic, causing increased vibration levels. While basic time-domain measurements provide limited information, frequency analysis can pinpoint which specific component is failing, allowing engineers to anticipate critical failures and schedule repairs before catastrophic breakdowns occur.</p>
 <p>This project demonstrates implementation of an AI-based motor fault detection system on AM26x microcontrollers. It showcases how to deploy machine learning models for real-time mechanical motor fault classification in embedded systems, helping prevent hazards through early detection of motor faults.</p>
@@ -125,9 +125,9 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/ai/motor_fault/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3812"></a>
+<h1><a class="anchor" id="autotoc_md3820"></a>
 Dataset and Model Details</h1>
-<h2><a class="anchor" id="autotoc_md3813"></a>
+<h2><a class="anchor" id="autotoc_md3821"></a>
 Dataset</h2>
 <p>TI has created a specialized motor fault dataset containing vibrational measurements. The dataset is divided into six classes representing different bearing conditions.</p>
 <table class="markdownTable">
@@ -152,10 +152,10 @@ Dataset</h2>
 <li>Class 4: Bearing No Lubrication</li>
 <li>Class 5: Bearing Localized Fault</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3814"></a>
+<h2><a class="anchor" id="autotoc_md3822"></a>
 Model Architecture</h2>
 <p>This lightweight classification model contains approximately 1,000 parameters and follows a streamlined architecture consisting of four convolutional layers (each enhanced with BatchNorm and ReLU activation functions) followed by a single linear layer.</p>
-<h2><a class="anchor" id="autotoc_md3815"></a>
+<h2><a class="anchor" id="autotoc_md3823"></a>
 Input Features</h2>
 <p>The model takes 4D input (N,C,H,W):</p><ul>
 <li>N (1): batch size which is restricted to 1</li>
@@ -163,10 +163,10 @@ Input Features</h2>
 <li>H (128): samples of timeseries vibrations which is 128 in this example</li>
 <li>W (1): width of samples is restricted to 1 for timeseries applications</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3816"></a>
+<h2><a class="anchor" id="autotoc_md3824"></a>
 Output</h2>
 <p>This model produces a 1D output representing the six possible classes. The position of the highest value in this output indicates the classification result.</p>
-<h1><a class="anchor" id="autotoc_md3817"></a>
+<h1><a class="anchor" id="autotoc_md3825"></a>
 Feature Extraction Configuration</h1>
 <p>Feature extraction transforms raw vibration data into meaningful inputs for the AI model. The feature extraction pipeline uses FFT to identify frequencies, followed by binning and logarithmic scaling.</p>
 <p>Configuration flags in <code>user_input_config.h</code>:</p><ul>
@@ -178,7 +178,7 @@ Feature Extraction Configuration</h1>
 <li><b>FE_CONCAT</b>: Combines outputs from 8 frames for temporal context</li>
 </ul>
 <p>The pipeline takes a 256-sample frame, computes FFT (129 outputs), removes DC (128), bins to 16 features, and concatenates 8 frames for 128 total features per channel.</p>
-<h1><a class="anchor" id="autotoc_md3818"></a>
+<h1><a class="anchor" id="autotoc_md3826"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -186,10 +186,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>The application will run inference on test vectors and classify bearing condition</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3819"></a>
+<h1><a class="anchor" id="autotoc_md3827"></a>
 See Also</h1>
 <p><a class="el" href="EXAMPLES_AI.html">AI Examples</a></p>
-<h1><a class="anchor" id="autotoc_md3820"></a>
+<h1><a class="anchor" id="autotoc_md3828"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">Motor Fault Detection Example Started ...</div>
 <div class="line">Feature extraction mismatches 0</div>

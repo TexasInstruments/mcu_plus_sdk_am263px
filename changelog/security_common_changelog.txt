@@ -786,3 +786,25 @@ Date:   Thu Apr 23 22:52:27 2026 +0530
  updateC29SDK.py                                    |  117 +
  151 files changed, 67546 insertions(+)
 
+========================================
+Changes from build on 2026-04-27 20:48:19
+Previous commit: 6c12a2ef352771ef497e82a52d9f1f1a7e659fb3
+Current commit: 31e4c6b9fd03a8fb8dcc138abea1b14013632880
+========================================
+
+commit 31e4c6b9fd03a8fb8dcc138abea1b14013632880
+Author: Aditya Singal <a-singal@ti.com>
+Date:   Mon Apr 27 17:13:13 2026 +0530
+
+    f29h85x: dma: Fix DMA ordering issue
+    
+    -Fixed the wrong ordering of DMA setting and Transfer Enable
+    
+    Fixes: TIFSMCU-4652, TIFSMCU-4663, TIFSMCU-4668
+    Signed-off-by: Aditya Singal <a-singal@ti.com>
+
+ drivers/crypto/dthe/dthe_aes.c | 4 +++-
+ drivers/crypto/dthe/dthe_sha.c | 6 ++----
+ drivers/crypto/dthe/dthe_sm3.c | 4 ++--
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+

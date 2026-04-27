@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('EXAMPLES_AI_ARC_FAULT.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3821">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md3829">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_AI_ARC_FAULT_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3822">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3823">Dataset</a></li>
-<li class="level2"><a href="#autotoc_md3824">Model Architecture</a></li>
-<li class="level2"><a href="#autotoc_md3825">Input Features</a></li>
-<li class="level2"><a href="#autotoc_md3826">Output</a></li>
+<li class="level1"><a href="#autotoc_md3830">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3831">Dataset</a></li>
+<li class="level2"><a href="#autotoc_md3832">Model Architecture</a></li>
+<li class="level2"><a href="#autotoc_md3833">Input Features</a></li>
+<li class="level2"><a href="#autotoc_md3834">Output</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3827">Feature Extraction Configuration</a></li>
-<li class="level1"><a href="#autotoc_md3828">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3829">See Also</a></li>
-<li class="level1"><a href="#autotoc_md3830">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3835">Feature Extraction Configuration</a></li>
+<li class="level1"><a href="#autotoc_md3836">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3837">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3838">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_ai_arc_fault"></a></p>
-<h1><a class="anchor" id="autotoc_md3821"></a>
+<h1><a class="anchor" id="autotoc_md3829"></a>
 Introduction</h1>
 <p>An arc fault is an unintended electrical discharge that occurs when electrical current flows through the air between conductors or from a conductor to ground. Arc faults generate intense heat that can ignite surrounding materials and cause electrical fires. Unlike short circuits that typically trigger circuit breakers immediately, arc faults may draw current below the trip threshold while still producing dangerous heat. In DC systems like solar installations, arc faults are particularly concerning as they can sustain more easily than in AC systems.</p>
 <p>This project demonstrates implementation of an AI-based arc fault detection system on AM26x microcontrollers. It showcases how to deploy machine learning models for real-time electrical arc fault classification in embedded systems, helping prevent electrical hazards through early detection.</p>
@@ -125,9 +125,9 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/ai/arc_fault/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3822"></a>
+<h1><a class="anchor" id="autotoc_md3830"></a>
 Dataset and Model Details</h1>
-<h2><a class="anchor" id="autotoc_md3823"></a>
+<h2><a class="anchor" id="autotoc_md3831"></a>
 Dataset</h2>
 <p>TI has created a specialized arc fault dataset containing DC current measurements under various voltage and current configurations.</p>
 <table class="markdownTable">
@@ -150,10 +150,10 @@ Dataset</h2>
 <li>Class 0: Normal Operation</li>
 <li>Class 1: Arc Fault</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3824"></a>
+<h2><a class="anchor" id="autotoc_md3832"></a>
 Model Architecture</h2>
 <p>This lightweight classification model <code>CLS_1k_NPU</code> contains approximately 1,000 parameters and follows a streamlined architecture consisting of four convolutional layers (each enhanced with BatchNorm and ReLU activation functions) followed by a single linear layer.</p>
-<h2><a class="anchor" id="autotoc_md3825"></a>
+<h2><a class="anchor" id="autotoc_md3833"></a>
 Input Features</h2>
 <p>The model takes 4D input (N,C,H,W):</p><ul>
 <li>N (1): batch size which is restricted to 1</li>
@@ -161,10 +161,10 @@ Input Features</h2>
 <li>H (256): samples of timeseries DC current which is 256 in this example</li>
 <li>W (1): width of samples is restricted to 1 for timeseries applications</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3826"></a>
+<h2><a class="anchor" id="autotoc_md3834"></a>
 Output</h2>
 <p>This model produces a 1D output representing the two possible classes - normal operation or arc fault condition - providing a straightforward binary classification decision.</p>
-<h1><a class="anchor" id="autotoc_md3827"></a>
+<h1><a class="anchor" id="autotoc_md3835"></a>
 Feature Extraction Configuration</h1>
 <p>The feature extraction pipeline is configured for frequency analysis of DC current signals:</p>
 <ul>
@@ -176,7 +176,7 @@ Feature Extraction Configuration</h1>
 <li><b>FE_CONCAT</b>: Combines outputs from multiple frames</li>
 </ul>
 <p>The pipeline takes 1024-sample frames, computes FFT, and bins to 256 features. Arc faults exhibit distinctive frequency signatures that differ from normal operation.</p>
-<h1><a class="anchor" id="autotoc_md3828"></a>
+<h1><a class="anchor" id="autotoc_md3836"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -184,10 +184,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>The application will classify current readings as normal or arc fault</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3829"></a>
+<h1><a class="anchor" id="autotoc_md3837"></a>
 See Also</h1>
 <p><a class="el" href="EXAMPLES_AI.html">AI Examples</a></p>
-<h1><a class="anchor" id="autotoc_md3830"></a>
+<h1><a class="anchor" id="autotoc_md3838"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">Arc Fault Detection Example Started ...</div>
 <div class="line">Feature extraction mismatches 0</div>
