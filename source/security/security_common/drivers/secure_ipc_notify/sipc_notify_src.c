@@ -93,27 +93,30 @@ static inline void SIPC_setMboxConfig(SIPC_Params *params, uint32_t selfCoreId)
     }
     else
     {
-        /*****************************************************************************/
-        /* R5 TX queue setup                                                        */
-        /*****************************************************************************/
-        pMailboxConfig = &gSIPC_SecureHostMboxConfig[selfCoreId];
-        pMailboxConfig->swQ = gSIPC_QueSecureHostToHsm[gSIPC_ctrl.selfSecHostId];
-        pMailboxConfig->swQ->wrIdx = 0 ;
-        pMailboxConfig->swQ->rdIdx = 0 ;
-        pMailboxConfig->swQ->EleSize = params->ipcQueue_eleSize_inBytes;
-        pMailboxConfig->swQ->Qlength = params->ipcQueue_length ;
-        pMailboxConfig->swQ->Qfifo = (uint8_t*)((uint32_t)SOC_virtToPhy((void *)params->tx_SipcQueues[CORE_INDEX_HSM]));
+        if(selfCoreId < CORE_ID_MAX)
+        {
+            /*****************************************************************************/
+            /* R5 TX queue setup                                                        */
+            /*****************************************************************************/
+            pMailboxConfig = &gSIPC_SecureHostMboxConfig[selfCoreId];
+            pMailboxConfig->swQ = gSIPC_QueSecureHostToHsm[gSIPC_ctrl.selfSecHostId];
+            pMailboxConfig->swQ->wrIdx = 0 ;
+            pMailboxConfig->swQ->rdIdx = 0 ;
+            pMailboxConfig->swQ->EleSize = params->ipcQueue_eleSize_inBytes;
+            pMailboxConfig->swQ->Qlength = params->ipcQueue_length ;
+            pMailboxConfig->swQ->Qfifo = (uint8_t*)((uint32_t)SOC_virtToPhy((void *)params->tx_SipcQueues[CORE_INDEX_HSM]));
 
-        /*****************************************************************************/
-        /* R5 RX queue setup                                                        */
-        /*****************************************************************************/
-        pMailboxConfig = &gSIPC_HsmMboxConfig[selfCoreId];
-        pMailboxConfig->swQ = gSIPC_QueHsmToSecureHost[gSIPC_ctrl.selfSecHostId];
-        pMailboxConfig->swQ->wrIdx = 0 ;
-        pMailboxConfig->swQ->rdIdx = 0 ;
-        pMailboxConfig->swQ->EleSize = params->ipcQueue_eleSize_inBytes;
-        pMailboxConfig->swQ->Qlength = params->ipcQueue_length ;
-        pMailboxConfig->swQ->Qfifo = (uint8_t*)((uint32_t)SOC_virtToPhy((void *)params->rx_SipcQueues[CORE_INDEX_HSM]));
+            /*****************************************************************************/
+            /* R5 RX queue setup                                                        */
+            /*****************************************************************************/
+            pMailboxConfig = &gSIPC_HsmMboxConfig[selfCoreId];
+            pMailboxConfig->swQ = gSIPC_QueHsmToSecureHost[gSIPC_ctrl.selfSecHostId];
+            pMailboxConfig->swQ->wrIdx = 0 ;
+            pMailboxConfig->swQ->rdIdx = 0 ;
+            pMailboxConfig->swQ->EleSize = params->ipcQueue_eleSize_inBytes;
+            pMailboxConfig->swQ->Qlength = params->ipcQueue_length ;
+            pMailboxConfig->swQ->Qfifo = (uint8_t*)((uint32_t)SOC_virtToPhy((void *)params->rx_SipcQueues[CORE_INDEX_HSM]));
+        }
     }
 }
 
@@ -195,8 +198,11 @@ static inline void SIPC_getIntrConfig(uint32_t selfCoreId ,SIPC_InterruptConfig 
     /* Extern globals that are specific to this core */
     extern SIPC_InterruptConfig gSIPC_InterruptConfig[INTR_CFG_NUM_MAX][CORE_ID_MAX];
 
-    *interruptConfig = &gSIPC_InterruptConfig[intrCfgNum][selfCoreId];
-    *interruptConfigNum = intrCfgNum ;
+    if ((selfCoreId < CORE_ID_MAX) && ((uint32_t)intrCfgNum < INTR_CFG_NUM_MAX))
+    {
+        *interruptConfig = &gSIPC_InterruptConfig[intrCfgNum][selfCoreId];
+        *interruptConfigNum = intrCfgNum ;
+    }
 }
 
 /* Get the queue pointer to read data from core = remoteSecCoreId */

@@ -92,19 +92,19 @@ $(document).ready(function(){initNavTree('EXAMPLES_AI_IMU_SENSOR_DATA_CAPTURE.ht
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3899">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md3963">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_AI_IMU_SENSOR_DATA_CAPTURE_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3900">Hardware Requirements</a></li>
-<li class="level1"><a href="#autotoc_md3901">External Connections</a></li>
-<li class="level1"><a href="#autotoc_md3902">Application Overview</a></li>
-<li class="level1"><a href="#autotoc_md3903">Dependencies</a></li>
-<li class="level1"><a href="#autotoc_md3904">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3905">See Also</a></li>
-<li class="level1"><a href="#autotoc_md3906">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3964">Hardware Requirements</a></li>
+<li class="level1"><a href="#autotoc_md3965">External Connections</a></li>
+<li class="level1"><a href="#autotoc_md3966">Application Overview</a></li>
+<li class="level1"><a href="#autotoc_md3967">Dependencies</a></li>
+<li class="level1"><a href="#autotoc_md3968">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3969">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3970">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_ai_imu_sensor_data_capture"></a></p>
-<h1><a class="anchor" id="autotoc_md3899"></a>
+<h1><a class="anchor" id="autotoc_md3963"></a>
 Introduction</h1>
 <p>This example demonstrates real-time accelerometer-based activity classification using the BMI270 sensor on the TIDA-010997 booster pack. It showcases both data capture for dataset building and live inference preview capabilities, enabling seamless integration with Edge AI Studio.</p>
 <p>The following modes are supported:</p><ul>
@@ -125,17 +125,17 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/ai/imu_sensor_data_capture/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3900"></a>
+<h1><a class="anchor" id="autotoc_md3964"></a>
 Hardware Requirements</h1>
 <ul>
 <li>TIDA-010997 Edge AI Sensor Boosterpack</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3901"></a>
+<h1><a class="anchor" id="autotoc_md3965"></a>
 External Connections</h1>
 <ul>
 <li>Mount TIDA-010997 Edge AI Sensor Boosterpack on BoosterPack Headers Site 1 (J1/J3 and J2/J4).</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3902"></a>
+<h1><a class="anchor" id="autotoc_md3966"></a>
 Application Overview</h1>
 <p>This example supports dual-mode operation controlled by Edge AI Studio:</p><ol type="1">
 <li><b>DATA_ACQUISITION mode</b>: Streams raw 3-axis accelerometer samples (6 bytes per sample: X, Y, Z as INT16)</li>
@@ -146,13 +146,13 @@ Application Overview</h1>
 <li>Class 1: Smooth</li>
 </ul>
 <p>Test vectors are provided for validation and reference testing purposes.</p>
-<h1><a class="anchor" id="autotoc_md3903"></a>
+<h1><a class="anchor" id="autotoc_md3967"></a>
 Dependencies</h1>
 <ul>
 <li>Edge AI Studio (for live capture and preview modes)</li>
 <li>BMI270 sensor hardware (TIDA-010997 booster pack)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3904"></a>
+<h1><a class="anchor" id="autotoc_md3968"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -161,10 +161,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>For live capture or live preview mode, connect Edge AI Studio to the device via UART</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3905"></a>
+<h1><a class="anchor" id="autotoc_md3969"></a>
 See Also</h1>
 <p><a class="el" href="EXAMPLES_AI.html">AI Examples</a></p>
-<h1><a class="anchor" id="autotoc_md3906"></a>
+<h1><a class="anchor" id="autotoc_md3970"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">==========================================================</div>
 <div class="line">[IMU] IMU Sensor Data Capture Example (Dual-Mode DAP)</div>

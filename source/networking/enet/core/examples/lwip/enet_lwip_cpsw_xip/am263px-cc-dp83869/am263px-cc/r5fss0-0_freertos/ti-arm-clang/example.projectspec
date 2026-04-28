@@ -12,7 +12,7 @@
     <project
         title="Enet Lwip Cpsw Xip"
         name = "enet_lwip_cpsw_xip_am263px-cc-dp83869_am263px-cc_r5fss0-0_freertos_ti-arm-clang"
-        products="sysconfig;com.ti.MCU_PLUS_SDK_AM263PX"
+        products="sysconfig;MCU-PLUS-SDK-AM263PX"
         configurations="
             Release,
             Debug,

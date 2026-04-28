@@ -808,3 +808,22 @@ Date:   Mon Apr 27 17:13:13 2026 +0530
  drivers/crypto/dthe/dthe_sm3.c | 4 ++--
  3 files changed, 7 insertions(+), 7 deletions(-)
 
+========================================
+Changes from build on 2026-04-28 20:47:54
+Previous commit: 31e4c6b9fd03a8fb8dcc138abea1b14013632880
+Current commit: 742bce3c708fe5d5f53c121a3632126feaea8e9c
+========================================
+
+commit 742bce3c708fe5d5f53c121a3632126feaea8e9c
+Author: Anand Kulkarni <a-kulkarni@ti.com>
+Date:   Mon Apr 27 12:54:58 2026 +0530
+
+    f29h85x: Misra critical issue fix
+    
+    Fixes: C29SDK-226
+    
+    Signed-off-by: Anand Kulkarni <a-kulkarni@ti.com>
+
+ drivers/secure_ipc_notify/sipc_notify_src.c | 52 +++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 29 insertions(+), 23 deletions(-)
+

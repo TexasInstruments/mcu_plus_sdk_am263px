@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('EXAMPLES_AI_TORQUE_MEASUREMENT.html','
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3859">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md3923">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_AI_TORQUE_MEASUREMENT_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3860">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3861">Dataset</a></li>
-<li class="level2"><a href="#autotoc_md3862">Model Architecture</a></li>
-<li class="level2"><a href="#autotoc_md3863">Input Features</a></li>
-<li class="level2"><a href="#autotoc_md3864">Output</a></li>
+<li class="level1"><a href="#autotoc_md3924">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3925">Dataset</a></li>
+<li class="level2"><a href="#autotoc_md3926">Model Architecture</a></li>
+<li class="level2"><a href="#autotoc_md3927">Input Features</a></li>
+<li class="level2"><a href="#autotoc_md3928">Output</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3865">Feature Extraction Configuration</a></li>
-<li class="level1"><a href="#autotoc_md3866">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3867">See Also</a></li>
-<li class="level1"><a href="#autotoc_md3868">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3929">Feature Extraction Configuration</a></li>
+<li class="level1"><a href="#autotoc_md3930">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3931">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3932">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_ai_torque_measurement"></a></p>
-<h1><a class="anchor" id="autotoc_md3859"></a>
+<h1><a class="anchor" id="autotoc_md3923"></a>
 Introduction</h1>
 <p>Predicting rotor torque in motors presents a significant engineering challenge: direct measurement requires costly sensors that add weight, a critical concern for electric vehicles striving for efficiency. While traditional statistical methods for estimating rotor torque exist, they are limited by the need for domain expertise and motor-specific tuning.</p>
 <p>This project leverages deep learning to efficiently predict rotor torque in Permanent Magnet Synchronous Motors (PMSM), enabling a substantial reduction in the hardware sensors required for motor instrumentation and control.</p>
@@ -125,9 +125,9 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/ai/torque_measurement/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3860"></a>
+<h1><a class="anchor" id="autotoc_md3924"></a>
 Dataset and Model Details</h1>
-<h2><a class="anchor" id="autotoc_md3861"></a>
+<h2><a class="anchor" id="autotoc_md3925"></a>
 Dataset</h2>
 <p>The dataset contains sensor measurements collected from a PMSM running on a controlled test bench. The measurements were collected by the LEA department at Paderborn University at 2 Hz sampling rate.</p>
 <table class="markdownTable">
@@ -149,10 +149,10 @@ Dataset</h2>
 <td class="markdownTableBodyNone"><code>torque</code>  </td><td class="markdownTableBodyNone">Torque induced by current (target)   </td></tr>
 </table>
 <p>The model uses a subset of easily measurable inputs: Ambient temperature, Coolant temperature, Voltage components (u_d, u_q), and Phase current magnitude to predict torque.</p>
-<h2><a class="anchor" id="autotoc_md3862"></a>
+<h2><a class="anchor" id="autotoc_md3926"></a>
 Model Architecture</h2>
 <p>This regression model <code>REGR_10k</code> contains approximately 10,000 parameters with three convolutional layers (each with BatchNorm and ReLU) followed by two linear layers.</p>
-<h2><a class="anchor" id="autotoc_md3863"></a>
+<h2><a class="anchor" id="autotoc_md3927"></a>
 Input Features</h2>
 <p>The model takes 4D input (N,C,H,W):</p><ul>
 <li>N (1): batch size which is restricted to 1</li>
@@ -160,16 +160,16 @@ Input Features</h2>
 <li>H (128): samples of timeseries data</li>
 <li>W (1): width of samples is restricted to 1 for timeseries applications</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3864"></a>
+<h2><a class="anchor" id="autotoc_md3928"></a>
 Output</h2>
 <p>This model produces a 1D output representing the continuous value of torque.</p>
-<h1><a class="anchor" id="autotoc_md3865"></a>
+<h1><a class="anchor" id="autotoc_md3929"></a>
 Feature Extraction Configuration</h1>
 <p>For this torque measurement system, no FFT or frequency-domain feature extraction is applied. The model uses normalization to convert floating point input into fixed point for efficient inference.</p>
 <p>Configuration in <code>user_input_config.h</code>:</p><ul>
 <li><b>SKIP_NORMALIZE</b>: Converts floating point input into fixed point input for the AI model</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3866"></a>
+<h1><a class="anchor" id="autotoc_md3930"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -177,10 +177,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>The application will predict torque values and compare against expected outputs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3867"></a>
+<h1><a class="anchor" id="autotoc_md3931"></a>
 See Also</h1>
 <p><a class="el" href="EXAMPLES_AI.html">AI Examples</a></p>
-<h1><a class="anchor" id="autotoc_md3868"></a>
+<h1><a class="anchor" id="autotoc_md3932"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">Torque Measurement Example Started ...</div>
 <div class="line">Feature extraction mismatches 0</div>

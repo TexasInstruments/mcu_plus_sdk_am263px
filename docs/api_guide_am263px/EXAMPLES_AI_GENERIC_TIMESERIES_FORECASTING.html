@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('EXAMPLES_AI_GENERIC_TIMESERIES_FORECAS
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3799">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md3863">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_AI_GENERIC_TIMESERIES_FORECASTING_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3800">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3801">Dataset</a></li>
-<li class="level2"><a href="#autotoc_md3802">Model Architecture</a></li>
-<li class="level2"><a href="#autotoc_md3803">Input Features</a></li>
-<li class="level2"><a href="#autotoc_md3804">Output</a></li>
+<li class="level1"><a href="#autotoc_md3864">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3865">Dataset</a></li>
+<li class="level2"><a href="#autotoc_md3866">Model Architecture</a></li>
+<li class="level2"><a href="#autotoc_md3867">Input Features</a></li>
+<li class="level2"><a href="#autotoc_md3868">Output</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3805">Feature Extraction Configuration</a></li>
-<li class="level1"><a href="#autotoc_md3806">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3807">See Also</a></li>
-<li class="level1"><a href="#autotoc_md3808">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3869">Feature Extraction Configuration</a></li>
+<li class="level1"><a href="#autotoc_md3870">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3871">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3872">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_ai_generic_timeseries_forecasting"></a></p>
-<h1><a class="anchor" id="autotoc_md3799"></a>
+<h1><a class="anchor" id="autotoc_md3863"></a>
 Introduction</h1>
 <p>Time series forecasting is the process of predicting future values based on historical observations of sequential data. It is widely used across industrial, appliance, and automotive domains from estimating energy consumption patterns to forecasting temperature variations in cooling systems and predicting motor operating conditions.</p>
 <p>This project serves as an introduction to Timeseries Forecasting on AM26x microcontrollers. It uses a simple simulated thermostat dataset, demonstrating the complete end-to-end development chain: from training and exporting a model using TinyML ModelZoo to deploying and running inference on-device.</p>
@@ -125,9 +125,9 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/ai/generic_timeseries_forecasting/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3800"></a>
+<h1><a class="anchor" id="autotoc_md3864"></a>
 Dataset and Model Details</h1>
-<h2><a class="anchor" id="autotoc_md3801"></a>
+<h2><a class="anchor" id="autotoc_md3865"></a>
 Dataset</h2>
 <p>This example uses a simulated thermostat dataset that models room temperature controlled by an ON/OFF heater with hysteresis. The heater turns ON when temperature drops below 20C and turns OFF when it rises above 24C.</p>
 <table class="markdownTable">
@@ -144,10 +144,10 @@ Dataset</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><b>Temperature Range</b>  </td><td class="markdownTableBodyNone">~19.7C to ~24.1C   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md3802"></a>
+<h2><a class="anchor" id="autotoc_md3866"></a>
 Model Architecture</h2>
 <p>The model used is <code>FCST_LSTM10</code>, a lightweight single-layer LSTM (Long Short-Term Memory) network with a hidden size of 10 and approximately 542 trainable parameters. LSTM networks are well-suited for time series forecasting because their gating mechanisms can learn long-term dependencies in sequential data.</p>
-<h2><a class="anchor" id="autotoc_md3803"></a>
+<h2><a class="anchor" id="autotoc_md3867"></a>
 Input Features</h2>
 <p>The model takes 4D input (N,C,H,W):</p><ul>
 <li>N (1): batch size, restricted to 1</li>
@@ -155,14 +155,14 @@ Input Features</h2>
 <li>H (32): number of historical timesteps (frame size) used for prediction</li>
 <li>W (1): width, restricted to 1 for timeseries applications</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3804"></a>
+<h2><a class="anchor" id="autotoc_md3868"></a>
 Output</h2>
 <p>The model produces an output tensor of shape (1, 2), representing the predicted temperature values for the next 2 timesteps (forecast horizon = 2). Unlike classification models that output discrete class labels, this forecasting model outputs continuous values representing future temperature.</p>
-<h1><a class="anchor" id="autotoc_md3805"></a>
+<h1><a class="anchor" id="autotoc_md3869"></a>
 Feature Extraction Configuration</h1>
 <p>For this forecasting task, a SimpleWindow transform is used which segments the continuous temperature stream into fixed-length windows of 32 consecutive timesteps with a stride of 10%. Each window becomes one input sample, with the next 2 timesteps serving as the forecast target.</p>
 <p>No FFT, binning, or log scaling is applied - the LSTM model learns directly from the raw temperature values.</p>
-<h1><a class="anchor" id="autotoc_md3806"></a>
+<h1><a class="anchor" id="autotoc_md3870"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -170,10 +170,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>The application will run inference on test vectors and display forecasted values</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3807"></a>
+<h1><a class="anchor" id="autotoc_md3871"></a>
 See Also</h1>
 <p><a class="el" href="EXAMPLES_AI.html">AI Examples</a></p>
-<h1><a class="anchor" id="autotoc_md3808"></a>
+<h1><a class="anchor" id="autotoc_md3872"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">Generic Timeseries Forecasting Example Started ...</div>
 <div class="line">All tests have passed!!</div>

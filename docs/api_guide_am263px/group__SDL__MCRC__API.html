@@ -207,7 +207,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga8bac1d67b624abc60c2758db5756c976"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to get the MCRC register address for given Channel.  <a href="group__SDL__MCRC__API.html#ga8bac1d67b624abc60c2758db5756c976">More...</a><br /></td></tr>
 <tr class="separator:ga8bac1d67b624abc60c2758db5756c976"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa5a3b2200f07c19c615eedac78a0b8f9"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__MCRC__API.html#gaa5a3b2200f07c19c615eedac78a0b8f9">SDL_MCRC_configCRCType</a> (<a class="el" href="group__SDL__MCRC__API.html#ga5e77dd123e1ffb3b90e931cf6aa87259">SDL_MCRC_InstType</a> instance, <a class="el" href="group__SDL__MCRC__API.html#gacfd31cada007ff764503c13eb197de32">SDL_MCRC_Channel_t</a> channel)</td></tr>
-<tr class="memdesc:gaa5a3b2200f07c19c615eedac78a0b8f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to configure the MCRC type for given Channel.  <a href="group__SDL__MCRC__API.html#gaa5a3b2200f07c19c615eedac78a0b8f9">More...</a><br /></td></tr>
+<tr class="memdesc:gaa5a3b2200f07c19c615eedac78a0b8f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to configure the MCRC type for given Channel. Legacy API for devices other than AM273X and AWR294X.  <a href="group__SDL__MCRC__API.html#gaa5a3b2200f07c19c615eedac78a0b8f9">More...</a><br /></td></tr>
 <tr class="separator:gaa5a3b2200f07c19c615eedac78a0b8f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga04e49d4d5b9c0177fc26df35fba120bd"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__MCRC__API.html#ga04e49d4d5b9c0177fc26df35fba120bd">SDL_MCRC_getBaseaddr</a> (<a class="el" href="group__SDL__MCRC__API.html#ga5e77dd123e1ffb3b90e931cf6aa87259">SDL_MCRC_InstType</a> instance, uint32_t *baseAddr)</td></tr>
 <tr class="memdesc:ga04e49d4d5b9c0177fc26df35fba120bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to get the base address of the instance.  <a href="group__SDL__MCRC__API.html#ga04e49d4d5b9c0177fc26df35fba120bd">More...</a><br /></td></tr>
@@ -1890,7 +1890,7 @@ CRC Byte Swap</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This API is used to configure the MCRC type for given Channel. </p>
+<p>This API is used to configure the MCRC type for given Channel. Legacy API for devices other than AM273X and AWR294X. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">instance</td><td>MCRC instance either MCU or Main. </td></tr>
@@ -1898,7 +1898,8 @@ CRC Byte Swap</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>status SDL_PASS: success SDL_EBADARGS: failure, indicate the bad input arguments </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>status SDL_PASS: success SDL_EBADARGS: failure, indicate the bad input arguments</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This legacy API only supports 64-bit CRC type configuration. For AM273X and AWR294X, use the new API signature with <a class="el" href="structSDL__MCRC__Config__t.html" title="CRC Configuration.">SDL_MCRC_Config_t</a>. </dd></dl>
 
 </div>
 </div>

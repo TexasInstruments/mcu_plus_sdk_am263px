@@ -92,28 +92,29 @@ $(document).ready(function(){initNavTree('enetlld_performance.html',''); initRes
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1361">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md1362">Setup Details</a></li>
-<li class="level1"><a href="#autotoc_md1363">Layer 2 Performance</a><ul><li class="level2"><a href="#autotoc_md1364">Configuration Details</a></li>
-<li class="level2"><a href="#autotoc_md1365">Layer 2 Latency</a></li>
+<ul><li class="level1"><a href="#autotoc_md1399">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md1400">Setup Details</a></li>
+<li class="level1"><a href="#autotoc_md1401">Layer 2 Performance</a><ul><li class="level2"><a href="#autotoc_md1402">Configuration Details</a></li>
+<li class="level2"><a href="#autotoc_md1403">Layer 2 Latency</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1366">TCP/IP Performance</a><ul><li class="level2"><a href="#autotoc_md1367">Configuration Details</a><ul><li class="level3"><a href="#autotoc_md1368">TCP Throughput</a></li>
-<li class="level3"><a href="#autotoc_md1369">UDP Throughput</a></li>
+<li class="level1"><a href="#autotoc_md1404">TCP/IP Performance</a><ul><li class="level2"><a href="#autotoc_md1405">Configuration Details</a><ul><li class="level3"><a href="#autotoc_md1406">TCP Throughput</a></li>
+<li class="level3"><a href="#autotoc_md1407">UDP Throughput</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1370">Ether-Ring Performance</a></li>
-<li class="level1"><a href="#autotoc_md1371">Ether-Ring Round Trip Latency with CAN(Vehicle) traffic</a></li>
-<li class="level1"><a href="#autotoc_md1372">See Also</a></li>
+<li class="level1"><a href="#autotoc_md1408">Ether-Ring Performance</a></li>
+<li class="level1"><a href="#autotoc_md1409">Ether-Ring Round Trip Latency with CAN(Vehicle) traffic</a></li>
+<li class="level1"><a href="#networking_xip_performance">XIP Performance</a></li>
+<li class="level1"><a href="#autotoc_md1410">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_enet_lld_enet_cpsw_performance_am263px"></a> </p>
-<h1><a class="anchor" id="autotoc_md1361"></a>
+<h1><a class="anchor" id="autotoc_md1399"></a>
 Introduction</h1>
 <p>This section provides the performance numbers of Ethernet drivers using CPSW peripheral in MCU+ SDK</p>
-<h1><a class="anchor" id="autotoc_md1362"></a>
+<h1><a class="anchor" id="autotoc_md1400"></a>
 Setup Details</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -127,13 +128,13 @@ Setup Details</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Cache status  </td><td class="markdownTableBodyNone">Enabled   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1363"></a>
+<h1><a class="anchor" id="autotoc_md1401"></a>
 Layer 2 Performance</h1>
 <p> <style>div.image img[src="CPSW_latency_measurement_diagram.bmp"]{width:30%}</style> </p><div class="image">
 <img src="CPSW_latency_measurement_diagram.bmp" alt=""/>
 <div class="caption">
 Latency defination</div></div>
-<h2><a class="anchor" id="autotoc_md1364"></a>
+<h2><a class="anchor" id="autotoc_md1402"></a>
 Configuration Details</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -166,7 +167,7 @@ Configuration Details</h2>
 </table>
 <p><br  />
  </p>
-<h2><a class="anchor" id="autotoc_md1365"></a>
+<h2><a class="anchor" id="autotoc_md1403"></a>
 Layer 2 Latency</h2>
 <table class="doxtable">
 <tr>
@@ -179,9 +180,9 @@ Layer 2 Latency</h2>
 <tr>
 <td>TX Latency </td><td>13225 </td><td>384 </td><td>13609  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1366"></a>
+<h1><a class="anchor" id="autotoc_md1404"></a>
 TCP/IP Performance</h1>
-<h2><a class="anchor" id="autotoc_md1367"></a>
+<h2><a class="anchor" id="autotoc_md1405"></a>
 Configuration Details</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -218,7 +219,7 @@ Configuration Details</h2>
 </table>
 <p><br  />
 </p>
-<h3><a class="anchor" id="autotoc_md1368"></a>
+<h3><a class="anchor" id="autotoc_md1406"></a>
 TCP Throughput</h3>
 <table class="doxtable">
 <tr>
@@ -241,7 +242,7 @@ TCP Throughput</h3>
  $<code>iperf -c &lt;evm_ip&gt; -d</code><br  />
  </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1369"></a>
+<h3><a class="anchor" id="autotoc_md1407"></a>
 UDP Throughput</h3>
 <table class="doxtable">
 <tr>
@@ -277,7 +278,7 @@ where &lt;bw&gt; is 25M, 50M, 100M, etc<br  />
 where &lt;bw&gt; is 25M, 50M, 100M, etc<br  />
  </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1370"></a>
+<h1><a class="anchor" id="autotoc_md1408"></a>
 Ether-Ring Performance</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -289,7 +290,7 @@ Ether-Ring Performance</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Profile-C(Symmetric Traffic)  </td><td class="markdownTableBodyNone">27  </td><td class="markdownTableBodyNone">80   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1371"></a>
+<h1><a class="anchor" id="autotoc_md1409"></a>
 Ether-Ring Round Trip Latency with CAN(Vehicle) traffic</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -297,7 +298,40 @@ Ether-Ring Round Trip Latency with CAN(Vehicle) traffic</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">2000  </td><td class="markdownTableBodyNone">561  </td><td class="markdownTableBodyNone">569   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1372"></a>
+<h1><a class="anchor" id="networking_xip_performance"></a>
+XIP Performance</h1>
+<p>Lwip Application size: 796KB</p>
+<p>FLASH: 201KB </p><table class="doxtable">
+<tr>
+<td style="text-align: center;"><b>Region</b> </td><td style="text-align: center;"><b>Memory</b>  </td></tr>
+<tr>
+<td>.text </td><td>159KB  </td></tr>
+<tr>
+<td>.rodata&#160; </td><td>42KB  </td></tr>
+</table>
+<p>OCRAM: 595KB </p><table class="doxtable">
+<tr>
+<td style="text-align: center;"><b>Region</b> </td><td style="text-align: center;"><b>Memory</b>  </td></tr>
+<tr>
+<td>.bss </td><td>471KB  </td></tr>
+<tr>
+<td>.sysmem </td><td>34KB  </td></tr>
+<tr>
+<td>.data </td><td>23KB  </td></tr>
+<tr>
+<td>.stack </td><td>8KB  </td></tr>
+<tr>
+<td>misc </td><td>59KB  </td></tr>
+</table>
+<table class="doxtable">
+<tr>
+<td style="text-align: center;"><b>Board POV</b> </td><td style="text-align: center;"><b>MSRAM - OOB</b> </td><td style="text-align: center;"><b>XIP : text and ro data in flash</b> </td><td style="text-align: center;"><b>Opti-flash: RL2 8KB</b> </td><td style="text-align: center;"><b>Opti-flash: RL2 16KB</b> </td><td style="text-align: center;"><b>Opti-flash: RL2 32KB</b> </td><td style="text-align: center;"><b>Opti-flash: RL2 64KB</b> </td><td style="text-align: center;"><b>Opti-flash: RL2 128KB</b>  </td></tr>
+<tr>
+<td>UDP Tx&#160; </td><td>262Mbps at 100% CPU load </td><td>114Mbps at 100% CPU load </td><td>212Mbps at 100% CPU load </td><td>249Mbps at 100% CPU load </td><td>258Mbps at 100% CPU load </td><td>262Mbps at 100% CPU load </td><td>262Mbps at 100% CPU load  </td></tr>
+<tr>
+<td>UDP Rx </td><td>116Mbps ~1% pkt drop&#160;92% CPU load </td><td>39Mbps&#160; ~1% pkt drop&#160;97% CPU load </td><td>53Mbps&#160; ~1% pkt drop&#160;98% CPU load </td><td>82Mbps ~1% pkt drop 99% CPU load </td><td>110Mbps ~1% pkt drop&#160;90% CPU load </td><td>110Mbps ~1% pkt drop&#160;88% CPU load </td><td>116Mbps ~1% pkt drop&#160;92% CPU load  </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md1410"></a>
 See Also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> <a class="el" href="EXAMPLES_ENET_LWIP_CPSW.html">Enet Lwip CPSW Example</a> <a class="el" href="EXAMPLES_ENET_CPSW_ETHERRING_CAN.html">Enet CPSW Ether-Ring CAN Example</a> <a class="el" href="EXAMPLES_ENET_CPSW_ETHERRING_TRAFFICGEN.html">Enet CPSW Ether-Ring Real-time and LWIP Traffic Generator Application</a> <a class="el" href="EXAMPLES_ENET_CPSW_ETHERRING.html">Enet CPSW Ether-Ring TSN Example</a> </p>
 </div></div><!-- contents -->
