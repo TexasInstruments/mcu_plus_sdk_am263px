@@ -36,6 +36,8 @@
             {
                 DebugP_log("Core%d is Reset.\r\n",i);
                 DebugP_log("STC is done Successfully & Passed for R5F%d.\r\n",i);
+                /* Enable IRQ back */
+                HwiP_enable();
                 break;
             }
             case SDL_STC_COMPLETED_FAILURE:

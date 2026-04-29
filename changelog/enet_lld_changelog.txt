@@ -50782,3 +50782,45 @@ Date:   Thu Apr 23 14:40:08 2026 +0530
  utils/include/enet_udmautils.h                     |   202 +
  6835 files changed, 1213364 insertions(+)
 
+========================================
+Changes from build on 2026-04-29 20:48:15
+Previous commit: 74cd4e4fafb7159fc64c305bc71f1c8cfb98ac76
+Current commit: 46ca205cadb6665e863aecc02acc773418c3df02
+========================================
+
+commit 46ca205cadb6665e863aecc02acc773418c3df02
+Author: Gouri Siva M <g-t1@ti.com>
+Date:   Tue Apr 28 13:45:43 2026 +0530
+
+    am263px: ENET: update board cfg in syscfg
+    
+     - Update industrial and automotive phy info in syscfg of enet_cli_app
+    
+    Fixes: MCUSDK-15345
+    
+    Signed-off-by: Gouri Siva M <g-m1@ti.com>
+
+ .../enet_cli_app/am263px-cc-dp83826/am263px-cc/r5fss0-0_freertos/example.syscfg  | 12 +++++++-----
+ .../am263px-cc-dp83tg720/am263px-cc/r5fss0-0_freertos/example.syscfg             | 12 +++++++-----
+ .../am263px-cc-dp83826/am263px-cc/r5fss0-0_freertos/example.syscfg               | 12 +++++++-----
+ .../am263px-cc-dp83tg720/am263px-cc/r5fss0-0_freertos/example.syscfg             | 12 +++++++-----
+ .../am263px-cc-dp83826/am263px-cc/r5fss0-0_freertos/example.syscfg               | 12 +++++++-----
+ 5 files changed, 35 insertions(+), 25 deletions(-)
+
+commit 64041f7bf2672de93d7503aef753d8e5da3e4a4f
+Author: Ranga Rakesh Jonnalagadda <r-jonnalagadda@ti.com>
+Date:   Tue Apr 28 20:07:24 2026 +0530
+
+    enet: am263x/am263px: Unlock MMRs for MSS Control reg access
+    
+    - Unlock MMRs for MSS Control reg access
+    
+    Fixes: MCUSDK-15494
+    
+    Signed-off-by: Ranga Rakesh Jonnalagadda <r-jonnalagadda@ti.com>
+
+ sysconfig/board/.meta/ethphy_cpsw_icssg/templates/am261x/enet_board_cfg.c.xdt  | 4 +++-
+ sysconfig/board/.meta/ethphy_cpsw_icssg/templates/am263px/enet_board_cfg.c.xdt | 2 ++
+ sysconfig/board/.meta/ethphy_cpsw_icssg/templates/am263x/enet_board_cfg.c.xdt  | 2 ++
+ 3 files changed, 7 insertions(+), 1 deletion(-)
+

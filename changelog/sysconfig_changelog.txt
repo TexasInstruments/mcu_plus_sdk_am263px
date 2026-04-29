@@ -7939,3 +7939,27 @@ Date:   Wed Feb 4 21:29:50 2026 +0530
  xbar/.meta/xbar.syscfg.js                                                   |    8 +
  1567 files changed, 160557 insertions(+)
 
+========================================
+Changes from build on 2026-04-29 20:46:30
+Previous commit: a6598caf42735d0ff317bc252a0f3db3e25252e7
+Current commit: 9ad3f0e0efff81df9fa89c1d226f2f9624082e70
+========================================
+
+commit 9ad3f0e0efff81df9fa89c1d226f2f9624082e70
+Author: Rajesh Chinnasamy <rajesh.chinnasamy@ti.com>
+Date:   Tue Apr 21 00:08:19 2026 +0530
+
+    am26xx: lbist/ospi: enable syscfg for mcu_lbist
+    
+     - Earlier MCU_LBIST is enabled for SBL_NULL example only. Based on
+       customer concern, bug PROC_SDL-9800 raised to add support on OSPI
+       example as well.
+     - Enabled Syscfg for MCU_LBIST in OSPI boot example.
+    
+    Fixes: PROC_SDL-9800
+    
+    Signed-off-by: Rajesh Chinnasamy <rajesh.chinnasamy@ti.com>
+
+ drivers/.meta/mcu_lbist/templates/mcu_lbist_init.c.xdt | 2 ++
+ 1 file changed, 2 insertions(+)
+
