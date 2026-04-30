@@ -109,16 +109,17 @@ int32_t EDMA_WaitForTxTransfer(DMA_Handle handle);
 int32_t EDMA_disableTxChannel(DMA_Handle handle);
 
 /**
- *  \brief This EDMA api implemented to configure EDMA config TX channel.
+ *  \brief This EDMA api implemented to configure EDMA config RX channel.
  *
  *  \param handle    [IN] DMA driver handle from \ref DMA_open
  *  \param srcAddress [IN] Source address for EDMA transfer.
  *  \param dstAddress [IN] Destination address for EDMA transfer.
  *  \param numBlocks [IN] Number of block to transfer.
- *  
+ *  \param operationType [IN] Operation type (DMA_AES_ENABLE or DMA_SM4_ENABLE).
+ *
  *  \return SystemP_SUCCESS on success or SystemP_SUCCESS_FAILURE on Failure.
  */
-int32_t EDMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks);
+int32_t EDMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks, int32_t operationType);
 
 /**
  * \brief This EDMA api implemented to enable Rx Transfer Region.

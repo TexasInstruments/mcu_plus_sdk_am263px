@@ -178,7 +178,7 @@ DMA_Return_t DMA_disableTxCh(DMA_Handle handle)
     {
         DMA_Config *config = (DMA_Config *) handle;
 
-        if(config && config->dmaFxns && config->dmaFxns->enableRxTransferRegionFxn)
+        if(config && config->dmaFxns && config->dmaFxns->disableTxChFxn)
         {
 
             dmaModuleStatus = config->dmaFxns->disableTxChFxn(config->dmaHandle);
@@ -201,7 +201,7 @@ DMA_Return_t DMA_disableTxCh(DMA_Handle handle)
     return (dmaStatus);
 }
 
-DMA_Return_t DMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks)
+DMA_Return_t DMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks, int32_t operationType)
 {
     DMA_Return_t dmaStatus = DMA_RETURN_FAILURE;
     int32_t dmaModuleStatus = SystemP_FAILURE;
@@ -211,7 +211,7 @@ DMA_Return_t DMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint3
         DMA_Config *config = (DMA_Config *) handle;
         if(config && config->dmaFxns && config->dmaFxns->cfgDmaRxChFxn)
         {
-            dmaModuleStatus = config->dmaFxns->cfgDmaRxChFxn(config->dmaHandle, srcAddress, dstAddress, numBlocks);
+            dmaModuleStatus = config->dmaFxns->cfgDmaRxChFxn(config->dmaHandle, srcAddress, dstAddress, numBlocks, operationType);
         }
     }
 
@@ -303,7 +303,7 @@ DMA_Return_t DMA_disableRxCh(DMA_Handle handle)
     {
         DMA_Config *config = (DMA_Config *) handle;
 
-        if(config && config->dmaFxns && config->dmaFxns->enableRxTransferRegionFxn)
+        if(config && config->dmaFxns && config->dmaFxns->disableRxChFxn)
         {
 
             dmaModuleStatus = config->dmaFxns->disableRxChFxn(config->dmaHandle);

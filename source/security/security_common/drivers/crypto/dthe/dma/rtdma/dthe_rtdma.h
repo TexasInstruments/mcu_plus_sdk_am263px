@@ -126,10 +126,11 @@ int32_t RTDMA_disableTxChannel(DMA_Handle handle);
  *  \param srcAddress [IN] Source address for RTDMA transfer.
  *  \param dstAddress [IN] Destination address for RTDMA transfer.
  *  \param numBlocks [IN] Number of block to transfer.
+ *  \param operationType [IN] Operation type (DMA_AES_ENABLE or DMA_SM4_ENABLE).
  *
  *  \return SystemP_SUCCESS on success or SystemP_FAILURE on Failure.
  */
-int32_t RTDMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks);
+int32_t RTDMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks, int32_t operationType);
 
 /**
  * \brief This RTDMA api implemented to enable Rx Transfer Region.

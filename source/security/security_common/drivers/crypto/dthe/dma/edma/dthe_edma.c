@@ -238,11 +238,12 @@ int32_t EDMA_WaitForTxTransfer(DMA_Handle handle)
 
     return (status);
 }
-int32_t EDMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks)
+int32_t EDMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks, int32_t operationType)
 {
     int32_t         status = SystemP_FAILURE;
     DMA_Config      *dmaCfg;
-    EDMA_Handle     edmaHandler; 
+    EDMA_Handle     edmaHandler;
+    (void)operationType; /* Currently only AES is supported on EDMA platforms */
     if(NULL == handle)
     {
         status  = SystemP_FAILURE;

@@ -827,3 +827,35 @@ Date:   Mon Apr 27 12:54:58 2026 +0530
  drivers/secure_ipc_notify/sipc_notify_src.c | 52 +++++++++++++++++++++++++++++-----------------------
  1 file changed, 29 insertions(+), 23 deletions(-)
 
+========================================
+Changes from build on 2026-04-30 20:48:58
+Previous commit: 742bce3c708fe5d5f53c121a3632126feaea8e9c
+Current commit: d624aacd069fde7106363f03811ec47c82e2a1fb
+========================================
+
+commit d624aacd069fde7106363f03811ec47c82e2a1fb
+Author: Aditya Singal <a-singal@ti.com>
+Date:   Thu Mar 26 13:10:30 2026 +0530
+
+    f29x: dthe: Add support for SM4 with HSM RTDMA
+    
+    -Added RTDMA driver in TIFS build system for SM4
+    -Modified RX Channel to add support for SM4
+    -Fixed SM4 bug for wrong opType check
+    -Fixed DMA bug for wrong NULL guard check
+    
+    Fixes: TIFSMCU-5301, TIFSMCU-5302, TIFSMCU-4672, TIFSMCU-4674,
+    TIFSMCU-4675, TIFSMCU-4676, TIFSMCU-4677, TIFSMCU-4678
+    
+    Signed-off-by: Aditya Singal <a-singal@ti.com>
+
+ drivers/crypto/dthe/dma.c                  |   8 +--
+ drivers/crypto/dthe/dma.h                  |  12 +++--
+ drivers/crypto/dthe/dma/edma/dthe_edma.c   |   5 +-
+ drivers/crypto/dthe/dma/edma/dthe_edma.h   |   7 +--
+ drivers/crypto/dthe/dma/rtdma/dthe_rtdma.c | 143 +++++++++++++++++++++++++++++++++++-----------------
+ drivers/crypto/dthe/dma/rtdma/dthe_rtdma.h |   3 +-
+ drivers/crypto/dthe/dthe_aes.c             |   2 +-
+ drivers/crypto/dthe/dthe_sm4.c             | 188 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----
+ 8 files changed, 298 insertions(+), 70 deletions(-)
+
