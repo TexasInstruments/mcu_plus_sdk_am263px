@@ -1,5 +1,6 @@
 var NAVTREEINDEX59 =
 {
+"structCANFD__Attrs.html#a6f03891811a55ba0b7ea44d35dc0c872":[18,7,2,12,0],
 "structCANFD__Attrs.html#a88dbd0f0becbc49ee3b872144c7825fc":[18,7,2,12,3],
 "structCANFD__Attrs.html#a8cc28158f3b5304e4bc42e2e2e177ade":[18,7,2,12,7],
 "structCANFD__Attrs.html#a98c7f3c3c45060524aa2d6d81e54b152":[18,7,2,12,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX59 =
 "structCpswAle__GetBcastMcastRateLimitOutArgs.html#a5d85abb1a313cc7ea87e11a4156d4926":[18,4,0,1,0,24,0],
 "structCpswAle__GetBcastMcastRateLimitOutArgs.html#aa0423d73bd384107b1a6e75a05ce1e72":[18,4,0,1,0,24,1],
 "structCpswAle__GetBcastMcastRateLimitOutArgs.html#abe270dcd71e6f20b3cc7c710c16a0ce1":[18,4,0,1,0,24,2],
-"structCpswAle__GetBcastMcastRateLimitOutArgs.html#ae29cf377fa9f1cd6231b1fc875c8d3b6":[18,4,0,1,0,24,3],
-"structCpswAle__GetMcastEntryInArgs.html":[18,4,0,1,0,6]
+"structCpswAle__GetBcastMcastRateLimitOutArgs.html#ae29cf377fa9f1cd6231b1fc875c8d3b6":[18,4,0,1,0,24,3]
 };

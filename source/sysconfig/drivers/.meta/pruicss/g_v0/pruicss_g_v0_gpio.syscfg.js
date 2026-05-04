@@ -2,6 +2,8 @@
 let common = system.getScript("/common");
 
 let pruicss_top_module_name = "/drivers/pruicss/g_v0/pruicss_g_v0_gpio";
+let is_am64x_soc =  (common.getSocName() == "am64x") ? true : false;
+let is_am243x_soc = (common.getSocName() == "am243x") ? true : false;
 
 let pruicss_top_module = {
     displayName: "PRU (ICSS) IO Settings",
@@ -34,9 +36,8 @@ function validate(inst, report) {
 }
 
 function moduleInstances(instance) {
-    let device = common.getDeviceName();
     let modInstances = new Array();
-    if((device === "am64x-evm") || (device === "am243x-evm") || (device === "am243x-lp"))
+    if((is_am64x_soc) || (is_am243x_soc))
     {
         modInstances.push({
             name: "PruGPIO",

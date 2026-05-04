@@ -2,10 +2,9 @@
 let common = system.getScript("/common");
 let pinmux = system.getScript("/drivers/pinmux/pinmux");
 
-let device = common.getDeviceName();
-let is_am263x_soc = (device === "am263x-cc") ? true : false;
-let is_am263px_soc = (device === "am263px-cc") ? true : false;
-let is_am261x_soc = (device === "am261x-lp" || device === "am261x-som") ? true : false;
+let is_am263x_soc = (common.getSocName() == "am263x") ? true : false;
+let is_am263px_soc = (common.getSocName() == "am263px") ? true : false;
+let is_am261x_soc = (common.getSocName() == "am261x") ? true : false;
 
 function getInterfaceName(inst, peripheralName)
 {
@@ -44,7 +43,6 @@ function getPeripheralRequirements(inst, peripheralName)
     let interfaceName = getInterfaceName(inst, peripheralName);
     let pinList = getInterfacePinList(inst, peripheralName);
     let resources = [];
-    let device = common.getDeviceName();
 
     for(let pin of pinList)
     {

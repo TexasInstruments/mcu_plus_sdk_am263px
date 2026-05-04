@@ -160,6 +160,7 @@ var ENET_LLD =
       [ "Need for sysconfig", "enet_migration_guide_top.html#NeedForSysconfig", null ],
       [ "Enet Driver Initialization Sequence Change", "enet_migration_guide_top.html#EnetInitSeqChange", null ],
       [ "Enet DMA channel open changes", "enet_migration_guide_top.html#EnetDmaChOpenChange", null ],
+      [ "Enet DMA channel override Enable", "enet_migration_guide_top.html#EnetDmaChOverrideChange", null ],
       [ "Runtime Control API (Enet_ioctl) change", "enet_migration_guide_top.html#EnetIoctlChange", null ],
       [ "Packet Transmit/Receive API related changes", "enet_migration_guide_top.html#PacketTxRxChange", null ],
       [ "Custom Board Support", "enet_migration_guide_top.html#CustomBoardSupport", null ],

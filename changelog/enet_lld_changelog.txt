@@ -57679,3 +57679,29 @@ Date:   Thu Apr 30 10:36:21 2026 +0530
  utils/include/enet_udmautils.h                                              |   202 +
  6835 files changed, 1213380 insertions(+)
 
+========================================
+Changes from build on 2026-05-04 21:01:07
+Previous commit: 6226a6d61a66116ad7468b3522ffff92469a202f
+Current commit: 4d23e85def0cbccaf2410bcf7599f9c4675a0dce
+========================================
+
+commit 4d23e85def0cbccaf2410bcf7599f9c4675a0dce
+Author: Gouri Siva M <g-t1@ti.com>
+Date:   Wed Apr 29 17:53:32 2026 +0530
+
+    am26x/awr294x/am273x: ENET: removing tx and rx interrupt pacing in syscfg
+    
+     - Removing dummy Tx and Rx interrupt pacing configuration tab from syscfg
+       for CPDMA devices
+    
+    Fixes: MCUSDK-15345
+    
+    Signed-off-by: Gouri Siva M <g-m1@ti.com>
+
+ sysconfig/networking/.meta/enet_cpsw/am261x/enet_cpsw_am261x.syscfg.js   | 14 --------------
+ sysconfig/networking/.meta/enet_cpsw/am263px/enet_cpsw_am263px.syscfg.js | 14 --------------
+ sysconfig/networking/.meta/enet_cpsw/am263x/enet_cpsw_am263x.syscfg.js   | 14 --------------
+ sysconfig/networking/.meta/enet_cpsw/am273x/enet_cpsw_am273x.syscfg.js   | 14 --------------
+ sysconfig/networking/.meta/enet_cpsw/awr294x/enet_cpsw_awr294x.syscfg.js | 14 --------------
+ 5 files changed, 70 deletions(-)
+

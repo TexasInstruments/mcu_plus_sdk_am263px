@@ -1,5 +1,6 @@
 var NAVTREEINDEX68 =
 {
+"structIcssgTimeSync__Cfg.html":[18,4,0,11,1,0],
 "structIcssgTimeSync__Cfg.html#a2453aebd6ccf802483fa0f6db0e9c960":[18,4,0,11,1,0,1],
 "structIcssgTimeSync__Cfg.html#adccbb02e84721f2d40214ce4beab401d":[18,4,0,11,1,0,2],
 "structIcssgTimeSync__Cfg.html#ade63d49e17b5c99052d6ffb365b65afe":[18,4,0,11,1,0,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX68 =
 "structLLDEnetCfg__t.html#a0cd8e0eeb7e38577a937de8a00d0208c":[18,3,4,15],
 "structLLDEnetCfg__t.html#a0de61d36fd81409b3b4e005d9e6bd305":[18,3,4,12],
 "structLLDEnetCfg__t.html#a0e489ca58a285aecc8e9d0e61b14fe58":[18,3,4,5],
-"structLLDEnetCfg__t.html#a1599de121aed8e2168fa83e00630eba6":[18,3,4,9],
-"structLLDEnetCfg__t.html#a1f2f9580379c715ccad66701ca606b01":[18,3,4,17]
+"structLLDEnetCfg__t.html#a1599de121aed8e2168fa83e00630eba6":[18,3,4,9]
 };

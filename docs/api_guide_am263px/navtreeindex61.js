@@ -1,5 +1,6 @@
 var NAVTREEINDEX61 =
 {
+"structCpswCpts__Cfg.html#ac35468e43ae494e7ef01f32284926bdd":[18,4,0,11,0,8,2],
 "structCpswCpts__EstEvent.html":[18,4,0,11,0,2],
 "structCpswCpts__EstEvent.html#a699d4d59409ed76183c5dbd7c57f6ea7":[18,4,0,11,0,2,0],
 "structCpswCpts__EstEvent.html#a987f709a3bad9a100a52fff9707686b7":[18,4,0,11,0,2,5],
@@ -248,6 +249,5 @@ var NAVTREEINDEX61 =
 "structCpswStats__MacPort__2g.html#a050333aa652695e52f4faecb20617a68":[18,4,0,9,0,1,53],
 "structCpswStats__MacPort__2g.html#a05b212a691f9fe2a8a900fc6ed8b0224":[18,4,0,9,0,1,46],
 "structCpswStats__MacPort__2g.html#a0752ed582e16d3f6ae8de9f4655c192a":[18,4,0,9,0,1,44],
-"structCpswStats__MacPort__2g.html#a105919f21902d512f831502a1a0862ad":[18,4,0,9,0,1,63],
-"structCpswStats__MacPort__2g.html#a17bd9c940e28319e7ca6a537e1c362f1":[18,4,0,9,0,1,48]
+"structCpswStats__MacPort__2g.html#a105919f21902d512f831502a1a0862ad":[18,4,0,9,0,1,63]
 };

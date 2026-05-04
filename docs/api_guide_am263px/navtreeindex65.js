@@ -1,5 +1,6 @@
 var NAVTREEINDEX65 =
 {
+"structEnetRm__FreeHwPushInArgs.html#a9bbe9ae871ca3980c3c7ff16665c2eb2":[18,4,0,8,13,1],
 "structEnetRm__FreeMacAddrInArgs.html":[18,4,0,8,10],
 "structEnetRm__FreeMacAddrInArgs.html#a8a8324f90da7fb358eba06f588fad884":[18,4,0,8,10,1],
 "structEnetRm__FreeMacAddrInArgs.html#ab5aaebd0400086ed85cd33bd5dd33215":[18,4,0,8,10,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX65 =
 "structFlash__Params.html#af84f256d7f327843ed0ea6abdd7a59c8":[18,1,1,2,0],
 "structGMACArgs__t.html":[18,7,16,23],
 "structGMACArgs__t.html#a27269ada205d00f0ccf68fafa1d2b4c7":[18,7,16,23,1],
-"structGMACArgs__t.html#a2b8608363d9ab312a4d1094743e97533":[18,7,16,23,3],
-"structGMACArgs__t.html#a39886fed197e423743d67b3706ecbc76":[18,7,16,23,2]
+"structGMACArgs__t.html#a2b8608363d9ab312a4d1094743e97533":[18,7,16,23,3]
 };

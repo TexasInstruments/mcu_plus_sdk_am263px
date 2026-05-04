@@ -1,5 +1,6 @@
 var NAVTREEINDEX71 =
 {
+"structMpuP__RegionAttrs.html#aaf0d4109441aece51e4b3eb45f3937f4":[18,2,8,0,1],
 "structMpuP__RegionAttrs.html#ab195927ac0785281814ea8ed9655d74f":[18,2,8,0,4],
 "structMpuP__RegionAttrs.html#ab46c17708f3e9ad2528b3833645078a7":[18,2,8,0,0],
 "structMpuP__RegionAttrs.html#adf890716167d45fd7e57803bfa95b3c2":[18,2,8,0,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX71 =
 "structRDC__configParams.html#a601ac8dd6d613987d9796476e5c77a47":[18,7,38,11,2],
 "structRDC__configParams.html#a829b8bb89796df43eef8d72e5ba4ac4a":[18,7,38,11,11],
 "structRDC__configParams.html#a99bd47cbe8e6fa2a46bb414a05d3e05a":[18,7,38,11,7],
-"structRDC__configParams.html#aa5ccd1000908d5c910a173334e5f19ea":[18,7,38,11,6],
-"structRDC__configParams.html#ab1254b7fcba9cdacdf185542d74b3529":[18,7,38,11,5]
+"structRDC__configParams.html#aa5ccd1000908d5c910a173334e5f19ea":[18,7,38,11,6]
 };

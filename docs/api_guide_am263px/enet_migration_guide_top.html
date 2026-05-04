@@ -96,6 +96,7 @@ $(document).ready(function(){initNavTree('enet_migration_guide_top.html',''); in
 <li class="level1"><a href="#NeedForSysconfig">Need for sysconfig</a></li>
 <li class="level1"><a href="#EnetInitSeqChange">Enet Driver Initialization Sequence Change</a></li>
 <li class="level1"><a href="#EnetDmaChOpenChange">Enet DMA channel open changes</a></li>
+<li class="level1"><a href="#EnetDmaChOverrideChange">Enet DMA channel override Enable</a></li>
 <li class="level1"><a href="#EnetIoctlChange">Runtime Control API (Enet_ioctl) change</a></li>
 <li class="level1"><a href="#PacketTxRxChange">Packet Transmit/Receive API related changes</a><ul><ul><li class="level3"><a href="#autotoc_md1389">Scatter Gather list related change</a></li>
 <li class="level3"><a href="#autotoc_md1390">DisableCacheOps related change</a></li>
@@ -258,6 +259,16 @@ Enet DMA channel open changes</h1>
 <li><a href="./txsg_test_dma_original.c">txsg_test_dma_original.c</a></li>
 <li><a href="./txsg_test_dma_modified.c">txsg_test_dma_modified.c</a></li>
 </ul>
+<p><a class="el" href="enet_migration_guide_top.html">Back To Top</a></p>
+<h1><a class="anchor" id="EnetDmaChOverrideChange"></a>
+Enet DMA channel override Enable</h1>
+<hr  />
+<p>Impact: The DMA channel override flag can be enabled through sysconfig for CPDMA devices</p>
+<p>DMA Channel Override flag is enabled for ALE to classify packets into different channels based on classification match</p>
+<p>Sysconfig Enable DMA channel override Flag <br  />
+ <img src="DMA_channel_override_syscfg.png" alt="" class="inline" title="CPDMASyscfg"/>   </p>
+<p><br  />
+</p>
 <p><a class="el" href="enet_migration_guide_top.html">Back To Top</a></p>
 <h1><a class="anchor" id="EnetIoctlChange"></a>
 Runtime Control API (Enet_ioctl) change</h1>

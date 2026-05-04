@@ -1,6 +1,5 @@
 let common = system.getScript("/common");
 let pinmux = system.getScript("/drivers/pinmux/pinmux");
-let soc = system.getScript(`/drivers/pinmux/pinmux_${common.getSocName()}`);
 
 function getInterfaceName(inst, peripheralName)
 {

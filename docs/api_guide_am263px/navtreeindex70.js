@@ -1,5 +1,6 @@
 var NAVTREEINDEX70 =
 {
+"structMCAN__TxFIFOStatus.html#a83fbadadfc6d4ec7cc8d4db9340b66a0":[18,7,26,12,1],
 "structMCAN__TxFIFOStatus.html#ab28e70e1ed8c7dc54ac1dd3c55c2104e":[18,7,26,12,0],
 "structMCAN__TxFIFOStatus.html#ad0c8e268f4e0062a3c978e9317908c4d":[18,7,26,12,2],
 "structMCAN__TxFIFOStatus.html#af3b12a9fe39acf52b21ae333df02a347":[18,7,26,12,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX70 =
 "structMpuP__Config.html#ad511e15b411d93ce40bdea92ec9009f3":[18,2,8,2,0],
 "structMpuP__RegionAttrs.html":[18,2,8,0],
 "structMpuP__RegionAttrs.html#a13f61570f6341ed0c5d79282ce03146c":[18,2,8,0,7],
-"structMpuP__RegionAttrs.html#a25235e0955939a9c7537a088092eb6cf":[18,2,8,0,5],
-"structMpuP__RegionAttrs.html#aaf0d4109441aece51e4b3eb45f3937f4":[18,2,8,0,1]
+"structMpuP__RegionAttrs.html#a25235e0955939a9c7537a088092eb6cf":[18,2,8,0,5]
 };

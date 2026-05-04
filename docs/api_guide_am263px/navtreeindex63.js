@@ -1,5 +1,6 @@
 var NAVTREEINDEX63 =
 {
+"structDTHE__Attrs.html#aa9d3024b3d4f2dfe18d9c0d7f977fa27":[18,8,0,1,0],
 "structDTHE__Attrs.html#ad65ef5b696232b5f715dab93cfca30d3":[18,8,0,1,3],
 "structDTHE__Attrs.html#affd90649b4461aef785b4d128f8ce6b5":[18,8,0,1,4],
 "structDTHE__Config.html":[18,8,0,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX63 =
 "structEPWM__SignalParams.html":[18,7,7,0],
 "structEPWM__SignalParams.html#a0052d14c4707bd75545443eda47f199e":[18,7,7,0,0],
 "structEPWM__SignalParams.html#a37194c66eb7c7a41247c4f985a12d7be":[18,7,7,0,6],
-"structEPWM__SignalParams.html#a6fe9fbf25b762fbdea949ce8e2af5d42":[18,7,7,0,2],
-"structEPWM__SignalParams.html#ab94e6f9752e9876cd76a42d5468300f1":[18,7,7,0,7]
+"structEPWM__SignalParams.html#a6fe9fbf25b762fbdea949ce8e2af5d42":[18,7,7,0,2]
 };

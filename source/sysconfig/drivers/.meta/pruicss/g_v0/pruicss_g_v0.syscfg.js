@@ -1,7 +1,8 @@
 
 let common = system.getScript("/common");
-let pinmux = system.getScript("/drivers/pinmux/pinmux");
 let soc = system.getScript(`/drivers/pruicss/soc/pruicss_${common.getSocName()}`);
+let is_am64x_soc =  (common.getSocName() == "am64x") ? true : false;
+let is_am243x_soc = (common.getSocName() == "am243x") ? true : false;
 
 function getConfigArr() {
     return soc.getConfigArr();
@@ -400,7 +401,6 @@ function assignNonConflictingClockParents(config0, config1, possibleConfiguratio
 
 function validate(inst, report) {
     common.validate.checkSameInstanceName(inst, report);
-    let device = common.getDeviceName();
     let configArr = getConfigArr();
     let config = configArr.find(o => o.name === inst.instance);
     /*If PRU clock frequency is 250MHZ then coreSyncMode is auto enabled, So TISCI_DEV_PRU_ICSSG0_CORE_CLK_PARENT_HSDIV4_16FFT_MAIN_2_HSDIVOUT0_CLK,
@@ -449,9 +449,8 @@ function validate(inst, report) {
 }
 
 function moduleInstances(instance) {
-    let device = common.getDeviceName();
     let modInstances = new Array();
-    if((device === "am64x-evm") || (device === "am243x-evm") || (device === "am243x-lp"))
+    if((is_am64x_soc) || (is_am243x_soc))
     {
          modInstances.push({
              name: "AdditionalICSSSettings",
@@ -466,10 +465,6 @@ function moduleInstances(instance) {
              defaultInstanceCount: 1,
              maxInstanceCount: 1,
          });
-    }
-
-    if((device === "am64x-evm") || (device === "am243x-evm") || (device === "am243x-lp"))
-    {
         // Interrupt Mapping:
         let submodule = "/drivers/pruicss/icss_intc/";
         if(instance.instance === "ICSSG0")

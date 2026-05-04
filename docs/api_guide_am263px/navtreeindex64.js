@@ -1,5 +1,6 @@
 var NAVTREEINDEX64 =
 {
+"structEPWM__SignalParams.html#ab94e6f9752e9876cd76a42d5468300f1":[18,7,7,0,7],
 "structEPWM__SignalParams.html#abc589f797d6d517545628f7a702353d5":[18,7,7,0,3],
 "structEPWM__SignalParams.html#ac6e6281fd80b9750587a89ec1250b156":[18,7,7,0,5],
 "structEPWM__SignalParams.html#acf8e2fa1daeea782f8f27836550208d9":[18,7,7,0,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX64 =
 "structEnetRm__AllocRxFlowInArgs.html#a2704f1f39821355ae442e08774d3692e":[18,4,0,8,5,1],
 "structEnetRm__AllocRxFlowInArgs.html#a848ce236d3374fbe98452c50c4244357":[18,4,0,8,5,0],
 "structEnetRm__FreeHwPushInArgs.html":[18,4,0,8,13],
-"structEnetRm__FreeHwPushInArgs.html#a772231ca554371265c59ff9eddb629a4":[18,4,0,8,13,0],
-"structEnetRm__FreeHwPushInArgs.html#a9bbe9ae871ca3980c3c7ff16665c2eb2":[18,4,0,8,13,1]
+"structEnetRm__FreeHwPushInArgs.html#a772231ca554371265c59ff9eddb629a4":[18,4,0,8,13,0]
 };

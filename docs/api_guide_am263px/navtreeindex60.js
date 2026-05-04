@@ -1,5 +1,6 @@
 var NAVTREEINDEX60 =
 {
+"structCpswAle__GetMcastEntryInArgs.html":[18,4,0,1,0,6],
 "structCpswAle__GetMcastEntryInArgs.html#a5cb0859c3837d4b681e218c6dc0aedd1":[18,4,0,1,0,6,1],
 "structCpswAle__GetMcastEntryInArgs.html#ac00b2295a4579dab3aa44af317265e65":[18,4,0,1,0,6,0],
 "structCpswAle__GetMcastEntryOutArgs.html":[18,4,0,1,0,7],
@@ -248,6 +249,5 @@ var NAVTREEINDEX60 =
 "structCpswCpts__Cfg.html#a3120d6957885e2d83e16495ae64066fc":[18,4,0,11,0,8,4],
 "structCpswCpts__Cfg.html#a56f8f9e25ac1051f2da900456ea90860":[18,4,0,11,0,8,0],
 "structCpswCpts__Cfg.html#a6484159736a6c43765222d41ae7ecf9d":[18,4,0,11,0,8,1],
-"structCpswCpts__Cfg.html#a7b22dcb0a4da5ae0ebafe16e5d7d1970":[18,4,0,11,0,8,3],
-"structCpswCpts__Cfg.html#ac35468e43ae494e7ef01f32284926bdd":[18,4,0,11,0,8,2]
+"structCpswCpts__Cfg.html#a7b22dcb0a4da5ae0ebafe16e5d7d1970":[18,4,0,11,0,8,3]
 };

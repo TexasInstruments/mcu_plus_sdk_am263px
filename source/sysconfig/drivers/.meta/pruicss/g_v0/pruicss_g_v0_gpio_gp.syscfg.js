@@ -27,7 +27,6 @@ function getPeripheralRequirements(inst, peripheralName)
     let interfaceName = getInterfaceName(inst, peripheralName);
     let pinList = getInterfacePinList(inst, peripheralName);
     let resources = [];
-    let device = common.getDeviceName();
 
     for(let pin of pinList)
     {

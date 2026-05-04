@@ -121,11 +121,11 @@ let mcasp_module = {
             name: "transferMode",
             displayName: "Mode of Transfer",
             default: "DMA",
+            readOnly: true,
             options: [
-                { name: "INTERRUPT", displayName: "Interrupt" },
                 { name: "DMA", displayName: "DMA" },
             ],
-            description: "Mode of transfer as polled/Interrupt CPU or DMA",
+            description: "Mode of transfer as DMA",
         },
         {
             name: "enableLoopback",
