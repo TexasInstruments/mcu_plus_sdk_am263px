@@ -1,5 +1,13 @@
 var NAVTREEINDEX75 =
 {
+"structlld__ethhdr.html":[18,12,3,1],
+"structlld__ethhdr.html#a6b3191f3fc8d257434ca0aa2a59b30c9":[18,12,3,1,0],
+"structlld__ethhdr.html#a8fcb9c07203f61eab04af4ae6d1f5670":[18,12,3,1,1],
+"structlld__ethhdr.html#aa70d2111c5867ca3f65ba407ef894478":[18,12,3,1,2],
+"structlld__sockaddr.html":[18,12,3,2],
+"structlld__sockaddr.html#a107b22c3e0022079e4f7ad0370f4c597":[18,12,3,2,3],
+"structlld__sockaddr.html#a5460ac45897b29ab0091a80f03f65836":[18,12,3,2,2],
+"structlld__sockaddr.html#a813f84090820e57b70e7e137e78013dd":[18,12,3,2,0],
 "structlld__sockaddr.html#af7dc3639930ca153756bc3b12624bac8":[18,12,3,2,1],
 "structub__list.html":[18,10,3,2],
 "structub__list.html#a062ae19fefab2bee410760dac1f8a91d":[18,10,3,2,2],

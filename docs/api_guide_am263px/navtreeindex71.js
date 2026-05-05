@@ -1,5 +1,13 @@
 var NAVTREEINDEX71 =
 {
+"structMdio__Cfg.html#af75342f0cb46f0a9ebea170c28315ae6":[18,4,0,5,0,0,0],
+"structMpuP__Config.html":[18,2,8,2],
+"structMpuP__Config.html#a43876b17c98f2125ddb2d2519b6a8bad":[18,2,8,2,2],
+"structMpuP__Config.html#ad48d592f6021b70e4a485883e5d864fe":[18,2,8,2,1],
+"structMpuP__Config.html#ad511e15b411d93ce40bdea92ec9009f3":[18,2,8,2,0],
+"structMpuP__RegionAttrs.html":[18,2,8,0],
+"structMpuP__RegionAttrs.html#a13f61570f6341ed0c5d79282ce03146c":[18,2,8,0,7],
+"structMpuP__RegionAttrs.html#a25235e0955939a9c7537a088092eb6cf":[18,2,8,0,5],
 "structMpuP__RegionAttrs.html#aaf0d4109441aece51e4b3eb45f3937f4":[18,2,8,0,1],
 "structMpuP__RegionAttrs.html#ab195927ac0785281814ea8ed9655d74f":[18,2,8,0,4],
 "structMpuP__RegionAttrs.html#ab46c17708f3e9ad2528b3833645078a7":[18,2,8,0,0],
@@ -241,13 +249,5 @@ var NAVTREEINDEX71 =
 "structQueueP__Elem.html#ad46f57847aa6b31131655fa13080e909":[18,2,9,0,0],
 "structQueueP__Object.html":[18,2,9,1],
 "structQueueP__Object.html#a950631ac5b7e7af1fa1716db865755a4":[18,2,9,1,0],
-"structRDC__configParams.html":[18,7,38,11],
-"structRDC__configParams.html#a09d71cb4fa697a7c76f44d120e0a68a2":[18,7,38,11,3],
-"structRDC__configParams.html#a1ceeaaf208066a7a95b24d45bc9711c9":[18,7,38,11,13],
-"structRDC__configParams.html#a4122de82cb76641bf1e46afea36658c1":[18,7,38,11,14],
-"structRDC__configParams.html#a4568f55accfd14bf8e4e75e68c621c84":[18,7,38,11,12],
-"structRDC__configParams.html#a601ac8dd6d613987d9796476e5c77a47":[18,7,38,11,2],
-"structRDC__configParams.html#a829b8bb89796df43eef8d72e5ba4ac4a":[18,7,38,11,11],
-"structRDC__configParams.html#a99bd47cbe8e6fa2a46bb414a05d3e05a":[18,7,38,11,7],
-"structRDC__configParams.html#aa5ccd1000908d5c910a173334e5f19ea":[18,7,38,11,6]
+"structRDC__configParams.html":[18,7,38,11]
 };

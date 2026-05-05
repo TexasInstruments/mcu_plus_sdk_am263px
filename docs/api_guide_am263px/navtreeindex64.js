@@ -1,5 +1,13 @@
 var NAVTREEINDEX64 =
 {
+"structEEPROM__Object.html#ad8d1bfda8d1ccb9c3aa494860b58e3d4":[18,1,2,4,1],
+"structEEPROM__Params__s.html":[18,1,2,0],
+"structEEPROM__Params__s.html#a424ab348295254ac373772bf7a92b23f":[18,1,2,0,0],
+"structEEPROM__Params__s.html#a6818a21fac4c1b8750145e71dc48a8ea":[18,1,2,0,1],
+"structEPWM__SignalParams.html":[18,7,7,0],
+"structEPWM__SignalParams.html#a0052d14c4707bd75545443eda47f199e":[18,7,7,0,0],
+"structEPWM__SignalParams.html#a37194c66eb7c7a41247c4f985a12d7be":[18,7,7,0,6],
+"structEPWM__SignalParams.html#a6fe9fbf25b762fbdea949ce8e2af5d42":[18,7,7,0,2],
 "structEPWM__SignalParams.html#ab94e6f9752e9876cd76a42d5468300f1":[18,7,7,0,7],
 "structEPWM__SignalParams.html#abc589f797d6d517545628f7a702353d5":[18,7,7,0,3],
 "structEPWM__SignalParams.html#ac6e6281fd80b9750587a89ec1250b156":[18,7,7,0,5],
@@ -241,13 +249,5 @@ var NAVTREEINDEX64 =
 "structEnetRm__AllocHwPushOutArgs.html":[18,4,0,8,12],
 "structEnetRm__AllocHwPushOutArgs.html#a3c930a2af871fd575f9d0ed90bc7dcb1":[18,4,0,8,12,0],
 "structEnetRm__AllocMacAddrOutArgs.html":[18,4,0,8,7],
-"structEnetRm__AllocMacAddrOutArgs.html#ad6ccb4ff9f9a1c8ebbb5da31553f1a6f":[18,4,0,8,7,0],
-"structEnetRm__AllocRxFlow.html":[18,4,0,8,6],
-"structEnetRm__AllocRxFlow.html#ac59a0dc8031ceb00a92a4f66060e5f24":[18,4,0,8,6,1],
-"structEnetRm__AllocRxFlow.html#ac9ed8efcaaa608c7ce0f95b28e10e66a":[18,4,0,8,6,0],
-"structEnetRm__AllocRxFlowInArgs.html":[18,4,0,8,5],
-"structEnetRm__AllocRxFlowInArgs.html#a2704f1f39821355ae442e08774d3692e":[18,4,0,8,5,1],
-"structEnetRm__AllocRxFlowInArgs.html#a848ce236d3374fbe98452c50c4244357":[18,4,0,8,5,0],
-"structEnetRm__FreeHwPushInArgs.html":[18,4,0,8,13],
-"structEnetRm__FreeHwPushInArgs.html#a772231ca554371265c59ff9eddb629a4":[18,4,0,8,13,0]
+"structEnetRm__AllocMacAddrOutArgs.html#ad6ccb4ff9f9a1c8ebbb5da31553f1a6f":[18,4,0,8,7,0]
 };

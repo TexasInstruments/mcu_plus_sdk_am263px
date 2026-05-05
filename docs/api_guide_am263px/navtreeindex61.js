@@ -1,5 +1,13 @@
 var NAVTREEINDEX61 =
 {
+"structCpswAle__VlanIdInfo.html":[18,4,0,1,0,8],
+"structCpswAle__VlanIdInfo.html#a0a0c109120841ca1c0c6b5ec4bd5017b":[18,4,0,1,0,8,0],
+"structCpswAle__VlanIdInfo.html#ade88a2a89f09e5f1ec7139a6cbad5562":[18,4,0,1,0,8,1],
+"structCpswCpts__Cfg.html":[18,4,0,11,0,8],
+"structCpswCpts__Cfg.html#a3120d6957885e2d83e16495ae64066fc":[18,4,0,11,0,8,4],
+"structCpswCpts__Cfg.html#a56f8f9e25ac1051f2da900456ea90860":[18,4,0,11,0,8,0],
+"structCpswCpts__Cfg.html#a6484159736a6c43765222d41ae7ecf9d":[18,4,0,11,0,8,1],
+"structCpswCpts__Cfg.html#a7b22dcb0a4da5ae0ebafe16e5d7d1970":[18,4,0,11,0,8,3],
 "structCpswCpts__Cfg.html#ac35468e43ae494e7ef01f32284926bdd":[18,4,0,11,0,8,2],
 "structCpswCpts__EstEvent.html":[18,4,0,11,0,2],
 "structCpswCpts__EstEvent.html#a699d4d59409ed76183c5dbd7c57f6ea7":[18,4,0,11,0,2,0],
@@ -241,13 +249,5 @@ var NAVTREEINDEX61 =
 "structCpswStats__HostPort__Ng.html#af485ce1dc3fef6ff80aabcbc754feca0":[18,4,0,9,0,2,0],
 "structCpswStats__HostPort__Ng.html#af4cb338eacd231ecdc097f5315f10bab":[18,4,0,9,0,2,46],
 "structCpswStats__HostPort__Ng.html#af782bfcba6e6a0dfed709d2e13ec4cb9":[18,4,0,9,0,2,10],
-"structCpswStats__HostPort__Ng.html#afa65e366ec91131a5c7886cf4dac05d1":[18,4,0,9,0,2,49],
-"structCpswStats__HostPort__Ng.html#afb78295dc6419e4806a4ec18db9a743c":[18,4,0,9,0,2,48],
-"structCpswStats__HostPort__Ng.html#afdafcb28035b7f643c0625e27109137e":[18,4,0,9,0,2,19],
-"structCpswStats__MacPort__2g.html":[18,4,0,9,0,1],
-"structCpswStats__MacPort__2g.html#a020a4a4dc9cecea3b297ee8396a5d882":[18,4,0,9,0,1,66],
-"structCpswStats__MacPort__2g.html#a050333aa652695e52f4faecb20617a68":[18,4,0,9,0,1,53],
-"structCpswStats__MacPort__2g.html#a05b212a691f9fe2a8a900fc6ed8b0224":[18,4,0,9,0,1,46],
-"structCpswStats__MacPort__2g.html#a0752ed582e16d3f6ae8de9f4655c192a":[18,4,0,9,0,1,44],
-"structCpswStats__MacPort__2g.html#a105919f21902d512f831502a1a0862ad":[18,4,0,9,0,1,63]
+"structCpswStats__HostPort__Ng.html#afa65e366ec91131a5c7886cf4dac05d1":[18,4,0,9,0,2,49]
 };

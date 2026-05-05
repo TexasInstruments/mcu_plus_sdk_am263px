@@ -1,5 +1,13 @@
 var NAVTREEINDEX27 =
 {
+"group__DRV__ECAP__MODULE.html#gga50d62d237fd7f51387dd4a5dea22a0feadeccfdd6e6e57b9a25ab74224702d2e1":[18,7,5,24,131],
+"group__DRV__ECAP__MODULE.html#gga50d62d237fd7f51387dd4a5dea22a0feae01eccd4c0a60b55d8f3f121ede62f20":[18,7,5,24,231],
+"group__DRV__ECAP__MODULE.html#gga50d62d237fd7f51387dd4a5dea22a0feae0420765d6b543f611afda1455dbd68d":[18,7,5,24,205],
+"group__DRV__ECAP__MODULE.html#gga50d62d237fd7f51387dd4a5dea22a0feae117715e9216b6c946ba0dd2fb36d084":[18,7,5,24,35],
+"group__DRV__ECAP__MODULE.html#gga50d62d237fd7f51387dd4a5dea22a0feae1e91ef14ab30cd6363cdbff2d82907f":[18,7,5,24,31],
+"group__DRV__ECAP__MODULE.html#gga50d62d237fd7f51387dd4a5dea22a0feae2d32f95ad67417dc18260c7e7285a6a":[18,7,5,24,85],
+"group__DRV__ECAP__MODULE.html#gga50d62d237fd7f51387dd4a5dea22a0feae3056db218f47b91ca13db6af8ae2733":[18,7,5,24,227],
+"group__DRV__ECAP__MODULE.html#gga50d62d237fd7f51387dd4a5dea22a0feae416c0da747040166132307015e11cfb":[18,7,5,24,204],
 "group__DRV__ECAP__MODULE.html#gga50d62d237fd7f51387dd4a5dea22a0feae4a9701349e3416dd51629ceed8237e9":[18,7,5,24,185],
 "group__DRV__ECAP__MODULE.html#gga50d62d237fd7f51387dd4a5dea22a0feae4dd2a950c109d5eb12621bb0534a586":[18,7,5,24,129],
 "group__DRV__ECAP__MODULE.html#gga50d62d237fd7f51387dd4a5dea22a0feae6f45952fe4e6ffaa8d83749624e9360":[18,7,5,24,154],
@@ -241,13 +249,5 @@ var NAVTREEINDEX27 =
 "group__DRV__EDMA__MODULE.html#ga79ad7e35a236dac36457970618cf83d0":[18,7,6,68],
 "group__DRV__EDMA__MODULE.html#ga7bacef03e9220bb86980fa83bd74bd40":[18,7,6,74],
 "group__DRV__EDMA__MODULE.html#ga7da03dc905d0f7fb3441a4b259ac5ed6":[18,7,6,90],
-"group__DRV__EDMA__MODULE.html#ga813cbd48bdf9b3ece35e60961b392512":[18,7,6,66],
-"group__DRV__EDMA__MODULE.html#ga81615de918e1d1be34630c77ee15244e":[18,7,6,122],
-"group__DRV__EDMA__MODULE.html#ga816e6f98a455464b314c1862e4886e4d":[18,7,6,96],
-"group__DRV__EDMA__MODULE.html#ga855d046bd51c9a43b91c31d31f47873b":[18,7,6,47],
-"group__DRV__EDMA__MODULE.html#ga8b31465deaa12aedb9709229f64328b1":[18,7,6,150],
-"group__DRV__EDMA__MODULE.html#ga8b4c46e6bc58374a858886d7437a4087":[18,7,6,88],
-"group__DRV__EDMA__MODULE.html#ga8d8920baa2258ebb5ed584bc8a35c378":[18,7,6,21],
-"group__DRV__EDMA__MODULE.html#ga8e3dc80b5b9842c70e59076c642f4d76":[18,7,6,154],
-"group__DRV__EDMA__MODULE.html#ga8f3cc1aff0f3877733d957ec207ea6dd":[18,7,6,99]
+"group__DRV__EDMA__MODULE.html#ga813cbd48bdf9b3ece35e60961b392512":[18,7,6,66]
 };

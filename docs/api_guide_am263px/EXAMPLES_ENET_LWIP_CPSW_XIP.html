@@ -92,46 +92,46 @@ $(document).ready(function(){initNavTree('EXAMPLES_ENET_LWIP_CPSW_XIP.html','');
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3035">Introduction</a><ul><li class="level2"><a href="#autotoc_md3036">What is XIP (Execute-In-Place)?</a></li>
+<ul><li class="level1"><a href="#autotoc_md3043">Introduction</a><ul><li class="level2"><a href="#autotoc_md3044">What is XIP (Execute-In-Place)?</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3037">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3038">Key Differences from Standard enet_lwip_cpsw Example</a><ul><li class="level2"><a href="#autotoc_md3039">Memory Configuration</a></li>
-<li class="level2"><a href="#autotoc_md3040">Build Artifacts</a></li>
-<li class="level2"><a href="#autotoc_md3041">Flashing Procedure</a></li>
-<li class="level2"><a href="#autotoc_md3042">Performance Considerations</a></li>
+<li class="level1"><a href="#autotoc_md3045">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md3046">Key Differences from Standard enet_lwip_cpsw Example</a><ul><li class="level2"><a href="#autotoc_md3047">Memory Configuration</a></li>
+<li class="level2"><a href="#autotoc_md3048">Build Artifacts</a></li>
+<li class="level2"><a href="#autotoc_md3049">Flashing Procedure</a></li>
+<li class="level2"><a href="#autotoc_md3050">Performance Considerations</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3043">Packet Pool Configuration</a></li>
-<li class="level1"><a href="#autotoc_md3044">Configuring Syscfg</a><ul><li class="level2"><a href="#autotoc_md3045">XIP-Specific Configuration</a></li>
+<li class="level1"><a href="#autotoc_md3051">Packet Pool Configuration</a></li>
+<li class="level1"><a href="#autotoc_md3052">Configuring Syscfg</a><ul><li class="level2"><a href="#autotoc_md3053">XIP-Specific Configuration</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3046">Iperf using LWIP</a><ul><li class="level2"><a href="#autotoc_md3047">Important Iperf Arguments:</a></li>
+<li class="level1"><a href="#autotoc_md3054">Iperf using LWIP</a><ul><li class="level2"><a href="#autotoc_md3055">Important Iperf Arguments:</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3048">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3049">To Configure Static IP</a></li>
-<li class="level2"><a href="#autotoc_md3050">Build the example</a></li>
-<li class="level2"><a href="#autotoc_md3051">HW Setup</a></li>
-<li class="level2"><a href="#autotoc_md3052">Create a network between EVM and host PC</a></li>
-<li class="level2"><a href="#autotoc_md3053">Flash the example</a></li>
-<li class="level2"><a href="#autotoc_md3054">Run the example</a></li>
-<li class="level2"><a href="#autotoc_md3055">Sample output for CPSW XIP example</a></li>
-<li class="level2"><a href="#autotoc_md3056">Communicate with the EVM using ethernet</a></li>
-<li class="level2"><a href="#autotoc_md3057">Measuring the throughput using Iperf:</a></li>
+<li class="level1"><a href="#autotoc_md3056">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3057">To Configure Static IP</a></li>
+<li class="level2"><a href="#autotoc_md3058">Build the example</a></li>
+<li class="level2"><a href="#autotoc_md3059">HW Setup</a></li>
+<li class="level2"><a href="#autotoc_md3060">Create a network between EVM and host PC</a></li>
+<li class="level2"><a href="#autotoc_md3061">Flash the example</a></li>
+<li class="level2"><a href="#autotoc_md3062">Run the example</a></li>
+<li class="level2"><a href="#autotoc_md3063">Sample output for CPSW XIP example</a></li>
+<li class="level2"><a href="#autotoc_md3064">Communicate with the EVM using ethernet</a></li>
+<li class="level2"><a href="#autotoc_md3065">Measuring the throughput using Iperf:</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3058">Performance</a><ul><li class="level2"><a href="#autotoc_md3059">Troubleshooting issues</a></li>
+<li class="level1"><a href="#autotoc_md3066">Performance</a><ul><li class="level2"><a href="#autotoc_md3067">Troubleshooting issues</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3060">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3068">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_enet_lwip_cpsw_xip"></a></p>
-<h1><a class="anchor" id="autotoc_md3035"></a>
+<h1><a class="anchor" id="autotoc_md3043"></a>
 Introduction</h1>
 <dl class="section note"><dt>Note</dt><dd>lwIP features are made available as is from public lwIP project. SDK configuration may only enable and exercise a subset of these features.</dd></dl>
 <p>This example is an Execute-In-Place (XIP) variant of the standard Enet Lwip CPSW example (<a class="el" href="EXAMPLES_ENET_LWIP_CPSW.html">Enet Lwip CPSW Example</a>). It demonstrates a TCP/UDP IP application using the LwIP networking stack coupled with ethernet driver (ENET), where the application code executes directly from flash memory instead of being copied to RAM.</p>
-<h2><a class="anchor" id="autotoc_md3036"></a>
+<h2><a class="anchor" id="autotoc_md3044"></a>
 What is XIP (Execute-In-Place)?</h2>
 <p>XIP allows the processor to execute code directly from external flash memory (OSPI) without first copying it to internal RAM. This provides several benefits:</p><ul>
 <li><b>Reduced RAM Usage</b>: Code sections remain in flash, freeing up RAM for data and buffers</li>
@@ -149,7 +149,7 @@ What is XIP (Execute-In-Place)?</h2>
 <li>Allows user to run and test basic networking features like DHCP, ping, iperf with TCP/UDP</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>This example cannot be run using CCS boot mode. Flash the image using UART/QSPI boot mode via the uniflash script.</dd></dl>
-<h1><a class="anchor" id="autotoc_md3037"></a>
+<h1><a class="anchor" id="autotoc_md3045"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -163,10 +163,10 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/lwip/enet_lwip_cpsw_xip   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3038"></a>
+<h1><a class="anchor" id="autotoc_md3046"></a>
 Key Differences from Standard enet_lwip_cpsw Example</h1>
 <p>The XIP variant has the following key differences:</p>
-<h2><a class="anchor" id="autotoc_md3039"></a>
+<h2><a class="anchor" id="autotoc_md3047"></a>
 Memory Configuration</h2>
 <ul>
 <li><b>Code Placement</b>: <code>.text</code> section is placed in FLASH region (starting at 0x60100000) instead of OCRAM</li>
@@ -175,29 +175,29 @@ Memory Configuration</h2>
 <li><b>Reduced Flash Size for Non-XIP</b>: FLASH region for non-XIP sections is reduced from 0x80000 to 0x40000 bytes</li>
 <li><b>Additional Sections</b>: <code>.cfg.rodata</code> and <code>cio</code> sections are also configured for XIP</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3040"></a>
+<h2><a class="anchor" id="autotoc_md3048"></a>
 Build Artifacts</h2>
 <p>The build process generates two binary files:</p><ul>
 <li>**<code>&lt;filename&gt;.mcelf</code>**: Main bootable image containing critical code and data loaded to RAM</li>
 <li>**<code>&lt;filename&gt;.mcelf_xip</code>**: XIP image containing code and read-only data that executes from flash</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3041"></a>
+<h2><a class="anchor" id="autotoc_md3049"></a>
 Flashing Procedure</h2>
 <p>Both images must be flashed:</p><ul>
 <li>The <code>.mcelf</code> file is flashed at offset 0x81000 using <code>--operation=flash-sector-write</code></li>
 <li>The <code>.mcelf_xip</code> file is flashed using <code>--operation=flash-mcelf-xip</code> which places sections at addresses specified within the image</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3042"></a>
+<h2><a class="anchor" id="autotoc_md3050"></a>
 Performance Considerations</h2>
 <ul>
 <li><b>RAM Savings</b>: Significant reduction in RAM usage as code executes from flash</li>
 <li><b>Execution Speed</b>: Flash execution may be slower than RAM execution, but OSPI performance is optimized</li>
 <li><b>Time-Critical Code</b>: Interrupt handlers and critical functions remain in OCRAM for performance</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3043"></a>
+<h1><a class="anchor" id="autotoc_md3051"></a>
 Packet Pool Configuration</h1>
 <p>To change packet pool configuration from syscfg, please refer to <a class="el" href="PACKETPOOL_CONFIG_TOP.html">Ethernet Packet Pool Allocation Guidelines</a></p>
-<h1><a class="anchor" id="autotoc_md3044"></a>
+<h1><a class="anchor" id="autotoc_md3052"></a>
 Configuring Syscfg</h1>
 <p>Following Syscfg option allows flexibility to configure memory footprint based on the required use case like: Number of DMA descriptors and buffering.</p>
 <ul>
@@ -242,7 +242,7 @@ Configuring Syscfg</h1>
 <td>Netif instance </td><td>TI Networking / Enet (CPSW) / LWIP Interface config </td><td>No of netifs allocated by the example.<br  />
  Only one netif should be set to default when more than one netif is allocated.  </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md3045"></a>
+<h2><a class="anchor" id="autotoc_md3053"></a>
 XIP-Specific Configuration</h2>
 <p>The XIP example includes additional memory configuration in syscfg:</p>
 <ul>
@@ -251,7 +251,7 @@ XIP-Specific Configuration</h2>
 <li><b>Code and Read-Only Data Sections</b>: <code>.text</code> and <code>.rodata</code> sections are placed in FLASH region instead of OCRAM</li>
 <li><b>Additional Text Sections</b>: <code>.cfg.rodata</code> and <code>cio</code> sections are also placed in FLASH for XIP</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3046"></a>
+<h1><a class="anchor" id="autotoc_md3054"></a>
 Iperf using LWIP</h1>
 <ul>
 <li>Iperf is a tool for network performance measurement and tuning. It is a cross-platform tool that can produce standardized performance measurements for any network. Iperf has client and server functionality, and can create data streams to measure the throughput between the two ends in one or both directions.</li>
@@ -263,7 +263,7 @@ Iperf using LWIP</h1>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3047"></a>
+<h2><a class="anchor" id="autotoc_md3055"></a>
 Important Iperf Arguments:</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -291,28 +291,28 @@ Important Iperf Arguments:</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">-V  </td><td class="markdownTableBodyNone">Used when IPv6 address is used instead of IPv4   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3048"></a>
+<h1><a class="anchor" id="autotoc_md3056"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md3049"></a>
+<h2><a class="anchor" id="autotoc_md3057"></a>
 To Configure Static IP</h2>
 <p>Modify code in file <code>lwipcfg.h</code> file as below to set USE_DHCP and USE_AUTOIP as '0' </p><div class="fragment"><div class="line">/* uncomment the next two lines for Static IP */</div>
 <div class="line">-//#define USE_DHCP     0</div>
 <div class="line">-//#define USE_AUTOIP  0</div>
 <div class="line">+#define USE_DHCP     0</div>
 <div class="line">+#define USE_AUTOIP  0</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3050"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3058"></a>
 Build the example</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3051"></a>
+<h2><a class="anchor" id="autotoc_md3059"></a>
 HW Setup</h2>
 <dl class="section note"><dt>Note</dt><dd>Make sure you have setup the EVM with cable connections as shown here, <a class="el" href="EVM_SETUP_PAGE.html">EVM Setup</a>. In addition do below steps.</dd></dl>
 <ul>
 <li>Connect an Ethernet cable to the SOM from host PC to the appropriate RGMII port</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3052"></a>
+<h2><a class="anchor" id="autotoc_md3060"></a>
 Create a network between EVM and host PC</h2>
 <ul>
 <li>The EVM will get an IP address using DHCP, so make sure to connect the other end of the cable to a network which has a DHCP server running.</li>
@@ -326,13 +326,13 @@ Local network between PC and EVM</div></div>
 <li>To check the router connection with host PC, recommend to disconnect all other networking connections on the PC, sometimes you may need to disable firewall SW, and make sure the router is able to assign a IP address to your host PC</li>
 <li>After we run the example on the EVM (next step), the EVM will similarly be assigned a IP address, and then host can communicate with the EVM using the assigned IP address.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3053"></a>
+<h2><a class="anchor" id="autotoc_md3061"></a>
 Flash the example</h2>
 <dl class="section attention"><dt>Attention</dt><dd>XIP applications require special flashing procedure. Both the main image and XIP image must be flashed.</dd></dl>
 <ul>
 <li>Refer to <a class="el" href="GETTING_STARTED_FLASH.html">Flash a Hello World example</a> for more details on flashing applications.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3054"></a>
+<h2><a class="anchor" id="autotoc_md3062"></a>
 Run the example</h2>
 <dl class="section attention"><dt>Attention</dt><dd>If you need to reload and run again, a CPU power-cycle is MUST</dd></dl>
 <ul>
@@ -340,7 +340,7 @@ Run the example</h2>
 <li>You will see logs in the UART terminal as shown in the next section</li>
 <li>Note the IP address seen in the log, this is what we will use to communicate with the EVM</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3055"></a>
+<h2><a class="anchor" id="autotoc_md3063"></a>
 Sample output for CPSW XIP example</h2>
 <div class="fragment"><div class="line">==========================</div>
 <div class="line">      ENET LWIP App</div>
@@ -358,7 +358,7 @@ Sample output for CPSW XIP example</h2>
 <div class="line">link_callback==UP</div>
 <div class="line">status_callback==UP, local interface IP is 192.168.1.100</div>
 <div class="line">      5. 34s : CPU load =   2.04 %</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3056"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3064"></a>
 Communicate with the EVM using ethernet</h2>
 <ul>
 <li>Firstly you can try to reach the EVM using ping as shown below, using a command shell on the host PC <pre class="fragment">  &gt; ping 192.168.1.100
@@ -371,7 +371,7 @@ Communicate with the EVM using ethernet</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3057"></a>
+<h2><a class="anchor" id="autotoc_md3065"></a>
 Measuring the throughput using Iperf:</h2>
 <ul>
 <li>Once we get the IP after running the example, we can use following iperf command on windows to get the throughput.<ul>
@@ -379,10 +379,10 @@ Measuring the throughput using Iperf:</h2>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3058"></a>
+<h1><a class="anchor" id="autotoc_md3066"></a>
 Performance</h1>
 <p>Refer this page for XIP performance benchmarking: <a class="el" href="enetlld_performance.html#networking_xip_performance">XIP Performance</a></p>
-<h2><a class="anchor" id="autotoc_md3059"></a>
+<h2><a class="anchor" id="autotoc_md3067"></a>
 Troubleshooting issues</h2>
 <ul>
 <li>To ensure compatibility with CPSW RGMII2 port on am263px-cc board, make sure that SW-15(switch) should be set to <code>LOW</code> for board versions(E2/A/B versions). This configuration ensures seamless out-of-box support and functionality with the CPSW RGMII2 port on the specified versions.</li>
@@ -406,7 +406,7 @@ Troubleshooting issues</h2>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3060"></a>
+<h1><a class="anchor" id="autotoc_md3068"></a>
 See Also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> <a class="el" href="EXAMPLES_ENET_LWIP_CPSW.html">Enet Lwip CPSW Example</a> </p>
 </div></div><!-- contents -->

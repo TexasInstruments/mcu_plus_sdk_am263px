@@ -1,5 +1,13 @@
 var NAVTREEINDEX31 =
 {
+"group__DRV__EPWM__MODULE.html#gaa9e3e33d26bb8520a160b7ae173d3bd6":[18,7,7,24],
+"group__DRV__EPWM__MODULE.html#gaabaad50d44d12d447e8fee8c9e492b8c":[18,7,7,207],
+"group__DRV__EPWM__MODULE.html#gaabe6b8045a725a117e22a35ae4c69cf8":[18,7,7,37],
+"group__DRV__EPWM__MODULE.html#gaabfba465ebc5eb3cee724be8a20e960b":[18,7,7,271],
+"group__DRV__EPWM__MODULE.html#gaacd8643d8316965d6af1d09c460be9f9":[18,7,7,349],
+"group__DRV__EPWM__MODULE.html#gaad140e6ca449913bbb3fb903850c5193":[18,7,7,346],
+"group__DRV__EPWM__MODULE.html#gaad5460331030562c09f7e800b61039b5":[18,7,7,131],
+"group__DRV__EPWM__MODULE.html#gaad6187b74e0a61f2235aeec21b50329f":[18,7,7,392],
 "group__DRV__EPWM__MODULE.html#gaad754921d3eb1d62906da9fd39bb090e":[18,7,7,339],
 "group__DRV__EPWM__MODULE.html#gaad7bfbe616f52d76c919c2c85ff15b03":[18,7,7,429],
 "group__DRV__EPWM__MODULE.html#gaaf26e6795796c46daaca5183bd5b3da6":[18,7,7,168],
@@ -241,13 +249,5 @@ var NAVTREEINDEX31 =
 "group__DRV__EPWM__MODULE.html#gga3f83eee98da731f172e6a95b01491d10ac8dc2360b03548867260ed4064face58":[18,7,7,232,2],
 "group__DRV__EPWM__MODULE.html#gga3f83eee98da731f172e6a95b01491d10acf57d6bf9ad9ef4998c22fa293b0faae":[18,7,7,232,3],
 "group__DRV__EPWM__MODULE.html#gga3f83eee98da731f172e6a95b01491d10adfb73c4742edd58bd6463a0ac561520a":[18,7,7,232,7],
-"group__DRV__EPWM__MODULE.html#gga3f8a6fa496dd6c806bc8ab6929ea4cb9ac3beacc6f95268be88e71d94842c23f9":[18,7,7,247,1],
-"group__DRV__EPWM__MODULE.html#gga3f8a6fa496dd6c806bc8ab6929ea4cb9afbc57f0f9e5de90e53baf1f97cc6bcc8":[18,7,7,247,0],
-"group__DRV__EPWM__MODULE.html#gga418c2ddef9a99bf67d9f65a0c7b08cd6a16cdd161df5790f80b6fb1ab62247e9f":[18,7,7,231,0],
-"group__DRV__EPWM__MODULE.html#gga418c2ddef9a99bf67d9f65a0c7b08cd6a188271ebe9f78d68b5585c2463d38065":[18,7,7,231,1],
-"group__DRV__EPWM__MODULE.html#gga47b59889afc50e718969e408b5e69405a14825c81d851b6569f87fd05ccc6eef9":[18,7,7,254,3],
-"group__DRV__EPWM__MODULE.html#gga47b59889afc50e718969e408b5e69405a50ddbf4e1acc67db794af98af07e0de9":[18,7,7,254,2],
-"group__DRV__EPWM__MODULE.html#gga47b59889afc50e718969e408b5e69405adfdbead21db20bd8bffd811efb0f16d3":[18,7,7,254,0],
-"group__DRV__EPWM__MODULE.html#gga47b59889afc50e718969e408b5e69405aeccc0b2ebfac839104af09d09e1a8ef4":[18,7,7,254,1],
-"group__DRV__EPWM__MODULE.html#gga4886fa04ac07b2b5c4b9225260d90066a5cab283788011b7fb386e06bbe6d1a83":[18,7,7,277,0]
+"group__DRV__EPWM__MODULE.html#gga3f8a6fa496dd6c806bc8ab6929ea4cb9ac3beacc6f95268be88e71d94842c23f9":[18,7,7,247,1]
 };

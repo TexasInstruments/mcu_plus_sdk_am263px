@@ -1,5 +1,13 @@
 var NAVTREEINDEX21 =
 {
+"enetphy_guide_top.html#mac_to_mac_mode":[5,1,3,2,4],
+"enetphy_link_config_top.html":[5,1,2],
+"enetphy_link_config_top.html#enetphy_link_autoneg":[5,1,2,0,1],
+"enetphy_link_config_top.html#enetphy_link_config_guidelines":[5,1,2,0],
+"enetphy_link_config_top.html#enetphy_link_manual":[5,1,2,0,0],
+"enetphy_link_config_top.html#enetphy_link_manual_full_duplex":[5,1,2,0,0,1],
+"enetphy_link_config_top.html#enetphy_link_manual_half_duplex":[5,1,2,0,0,0],
+"enetphy_link_config_top.html#enetphy_link_strapping":[5,1,2,0,2],
 "group__BOARD__EEPROM__MODULE.html":[18,1,2],
 "group__BOARD__EEPROM__MODULE.html#ga0b9c545f8bb83dd9a6e11858ffb3bb42":[18,1,2,16],
 "group__BOARD__EEPROM__MODULE.html#ga217fa89d4abbc7fbd48c6340e4b822b6":[18,1,2,11],
@@ -241,13 +249,5 @@ var NAVTREEINDEX21 =
 "group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98ad1aba8968baf7d278fecedb242e2121d":[18,4,0,1,0,92,42],
 "group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98ad6bad0d8b93fe0611db8fc3a22747b5d":[18,4,0,1,0,92,19],
 "group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98adf6895a98ad4681a36f28058583acbba":[18,4,0,1,0,92,9],
-"group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98adfe7e862550418b44873c8e4048400be":[18,4,0,1,0,92,8],
-"group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98ae7499e3be3d3a6d608319aa363f21f60":[18,4,0,1,0,92,3],
-"group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98aedfeb3b0c106b37b5d1a6f37a9b30fa3":[18,4,0,1,0,92,38],
-"group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98af131cb15d2e3d322f81ec1484b2f555a":[18,4,0,1,0,92,7],
-"group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98af4c00affa8ce22df46aec0bdb0ab99c8":[18,4,0,1,0,92,27],
-"group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98af9c54fa457f4e2669c83d3f2df87dabb":[18,4,0,1,0,92,41],
-"group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98afbed64ea8c8bf894d3500057ec3442bd":[18,4,0,1,0,92,17],
-"group__CPSW__ALE__MOD.html#ggadee9f7b7204708e1c35e0509b1b1d622a165d57f275eb8c71048a43786e341a61":[18,4,0,1,0,99,1],
-"group__CPSW__ALE__MOD.html#ggadee9f7b7204708e1c35e0509b1b1d622a851912d59386ab70f0d278e8cc1bbc76":[18,4,0,1,0,99,3]
+"group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98adfe7e862550418b44873c8e4048400be":[18,4,0,1,0,92,8]
 };
