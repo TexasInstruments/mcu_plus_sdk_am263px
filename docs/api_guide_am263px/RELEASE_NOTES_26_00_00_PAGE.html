@@ -175,6 +175,10 @@ New in this Release</h1>
 <td class="markdownTableBodyNone">Sensor BoosterPack integration for Edge AI  </td><td class="markdownTableBodyNone">AI   </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Device Agent Protocol (DAP) for Edge AI Studio communication  </td><td class="markdownTableBodyNone">AI   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Baremetal Layer-2 packet transfer and reception example  </td><td class="markdownTableBodyNone">Networking   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">XIP+RL2 Networking example support on Lwip  </td><td class="markdownTableBodyNone">Networking   </td></tr>
 </table>
 <h1><a class="anchor" id="autotoc_md273"></a>
 Modules Not tested/supported in this release</h1>
@@ -470,6 +474,12 @@ Fixed Issues</h2>
 <td>PROC_SDL-9795 </td><td>PBIST is performing multiple times for L2_1 Memory i.e. in ROM and SDL </td><td>SDL </td><td>11.01.00 onwards </td><td>AM263Px </td><td>Removed PBISTROM and MSS_L2_1 in SDL code as redundant when compare ROM test.  </td></tr>
 <tr>
 <td>PROC_SDL-9702 </td><td>MSS_L2 memory not cleared for bank 4 and 5 </td><td>SDL </td><td>11.01.00 onwards </td><td>AM263Px </td><td>Fixed in example.  </td></tr>
+<tr>
+<td>MCUSDK-13513 </td><td>AM263Px, AM261x: UDP IPERF TX is unstable with 100Mbps link speed </td><td>Networking </td><td>10.00.01 onwards </td><td>AM263Px, AM261x </td><td>Fixed the unstability on the lwip interface layer  </td></tr>
+<tr>
+<td>MCUSDK-15334 </td><td>AM26x: Build errors for networking examples in CCS </td><td>Networking </td><td>11.01.00 onwards </td><td>AM263x, AM263Px, AM261x </td><td>Added linker failure related files to CCS projectspec build  </td></tr>
+<tr>
+<td>MCUSDK-15232 </td><td>AM26x: NORTOS LwIP example does not handle second port operations </td><td>Networking </td><td>11.01.00 onwards </td><td>AM263x, AM263Px, AM261x </td><td>Added Netif for the second port  </td></tr>
 </table>
 <h2><a class="anchor" id="autotoc_md288"></a>
 Known Issues</h2>
@@ -515,8 +525,6 @@ Known Issues</h2>
 <tr>
 <td>MCUSDK-14883 </td><td>AM263x, AM263Px: SBL: RPRC descoping broke SBL over Ethernet example </td><td>Networking </td><td>11.00.00 onwards </td><td>-  </td></tr>
 <tr>
-<td>MCUSDK-13513 </td><td>AM263Px, AM261x: UDP IPERF TX is unstable with 100Mbps link speed </td><td>Networking </td><td>10.00.01 onwards </td><td>-  </td></tr>
-<tr>
 <td>MCUSDK-14582 </td><td>Flash: Incorrect flash name after Loading Flash JSON </td><td>OSPI </td><td>10.00.00 onwards </td><td>-  </td></tr>
 <tr>
 <td>MCUSDK-14647 </td><td>All CANFD standard ID conigurations are not exposed in SysCfg </td><td>CAN </td><td>10.02.00 onwards </td><td>Configure Config type, ID's,etc in application  </td></tr>
@@ -540,6 +548,8 @@ Known Issues</h2>
 <td>MCUSDK-14936 </td><td>Uniflash unable to connect to target in OSPI boot mode </td><td>Uniflash </td><td>10.01.00 onwards </td><td>-  </td></tr>
 <tr>
 <td>MCUSDK-14914 </td><td>Unable to add UART communication port to target configuration in Theia </td><td>Real Time Debug </td><td>10.02.00 onwards </td><td>Use the CCXML file from CCS eclipse after updating to correct COM port.  </td></tr>
+<tr>
+<td>MCUSDK-14644 </td><td>EST <a class="el" href="structTimestamp.html" title="The Timestamp type represents a positive time with respect to the epoch.">Timestamp</a> verification is failing after link down event </td><td>Networking </td><td>11.00.00 onwards </td><td>Re-apply the EST configuration post link-up  </td></tr>
 </table>
 <h2><a class="anchor" id="autotoc_md289"></a>
 Errata</h2>
