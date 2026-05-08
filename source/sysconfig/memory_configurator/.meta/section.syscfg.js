@@ -25,28 +25,10 @@ let config = [
             inst.$uiState.group_end.hidden = !inst.group
         }
     },
-    {
-        name: "hide_place",
-        displayName: "Hide",
-        default: false,
-        hidden:  true,
-        longDescription:'Check this if all the output sections need to be placed at the start of the region.',
-        getValue: (inst) => {
-             if (general_module !== undefined) {
-                    let instance = general_module.$instances;
-                    let compiler =  instance[0].choose_compiler;
-                    if (compiler === "iar-arm") {
-                        inst.$uiState.place_at_start.hidden = false;
-                        return true;
-                    }
-                }
-                inst.$uiState.place_at_start.hidden = true;
-                return false;
-        }
-    },
+
     {
         name: "place_at_start",
-        displayName: "Place at start of the region",
+        displayName: "Place At Start Of The Region",
         default: false,
         hidden: false,
         longDescription:'Check this if all the output sections need to be placed at the start of the region.',
