@@ -236,7 +236,7 @@ int32_t GenericPhy_writeExtReg(EthPhyDrv_Handle hPhy,
 	uint16_t devad = MMD_CR_DEVADDR;
     int32_t status;
 
-    PHYTRACE_VERBOSE("PHY %u: write %u val 0x%04x\n", ((Phy_Obj_t*) hPhy)->phyAddr;, reg, val);
+    PHYTRACE_VERBOSE("PHY %u: write %u val 0x%04x\n", ((Phy_Obj_t*) hPhy)->phyAddr, reg, val);
 
     status = pRegAccessApi->EnetPhy_writeReg(pRegAccessApi->pArgs, PHY_MMD_CR, devad | MMD_CR_ADDR);
     if (status == PHY_SOK)
@@ -274,7 +274,7 @@ void GenericPhy_printRegs(EthPhyDrv_Handle hPhy)
     }
 }
 
-int32_t GenericPhy_getId (EthPhyDrv_Handle hPhy, 
+int32_t GenericPhy_getId (EthPhyDrv_Handle hPhy,
                           uint32_t* pId)
 {
     uint16_t val = 0;

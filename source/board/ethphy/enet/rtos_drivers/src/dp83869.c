@@ -375,10 +375,7 @@ static void Dp83869_setMiiMode(EthPhyDrv_Handle hPhy,
         val = OP_MODE_DECODE_RGMII_MII_SEL;
     }
 
-    // Disable 1G HD/FD advertisements for MII mode
-    Dp83869_rmwExtReg(hPhy, DP83869_CFG1, (CFG1_1000FD | CFG1_1000HD), 0U);
     Dp83869_rmwExtReg(hPhy, DP83869_OP_MODE_DECODE, val, OP_MODE_DECODE_RGMII_MII_SEL);
-
 }
 
 static void Dp83869_setVtmIdleThresh(EthPhyDrv_Handle hPhy,

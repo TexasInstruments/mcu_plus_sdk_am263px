@@ -153,11 +153,12 @@ bool Dp83822_isMacModeSupported(EthPhyDrv_Handle hPhy,
         case PHY_MAC_MII_RMII:
             supported = true;
             break;
-
-        /* This driver doesn't support MII and RGMII interfaces,
-         * but the DP83822 PHY does support them */
         case PHY_MAC_MII_MII:
+            supported = true;
+            break;
         case PHY_MAC_MII_RGMII:
+            supported = true;
+            break;
         default:
             supported = false;
             break;
