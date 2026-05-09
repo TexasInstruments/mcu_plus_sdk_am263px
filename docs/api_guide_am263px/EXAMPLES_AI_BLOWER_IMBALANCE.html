@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('EXAMPLES_AI_BLOWER_IMBALANCE.html','')
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3911">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md3916">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_AI_BLOWER_IMBALANCE_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3912">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3913">Dataset</a></li>
-<li class="level2"><a href="#autotoc_md3914">Model Architecture</a></li>
-<li class="level2"><a href="#autotoc_md3915">Input Features</a></li>
-<li class="level2"><a href="#autotoc_md3916">Output</a></li>
+<li class="level1"><a href="#autotoc_md3917">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3918">Dataset</a></li>
+<li class="level2"><a href="#autotoc_md3919">Model Architecture</a></li>
+<li class="level2"><a href="#autotoc_md3920">Input Features</a></li>
+<li class="level2"><a href="#autotoc_md3921">Output</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3917">Feature Extraction Configuration</a></li>
-<li class="level1"><a href="#autotoc_md3918">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3919">See Also</a></li>
-<li class="level1"><a href="#autotoc_md3920">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3922">Feature Extraction Configuration</a></li>
+<li class="level1"><a href="#autotoc_md3923">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3924">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3925">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_ai_blower_imbalance"></a></p>
-<h1><a class="anchor" id="autotoc_md3911"></a>
+<h1><a class="anchor" id="autotoc_md3916"></a>
 Introduction</h1>
 <p>Blower Imbalance detection is a classification problem to understand the correct working of fan blowers. The problem is to identify whether the fans of a running motor have any imbalance in rotation or not. This becomes important in real-world scenarios such as dust accumulation on fan blades, cooling systems, elevators, and anywhere there is a running motor. This example uses current readings instead of additional sensors to do the classification.</p>
 <p>This project demonstrates implementation of an AI-based blower imbalance detection system on AM26x microcontrollers, helping prevent hazards through early detection of faults.</p>
@@ -125,9 +125,9 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/ai/blower_imbalance/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3912"></a>
+<h1><a class="anchor" id="autotoc_md3917"></a>
 Dataset and Model Details</h1>
-<h2><a class="anchor" id="autotoc_md3913"></a>
+<h2><a class="anchor" id="autotoc_md3918"></a>
 Dataset</h2>
 <p>TI has created a specialized blower imbalance dataset containing AC current measurements (3-phase).</p>
 <table class="markdownTable">
@@ -148,10 +148,10 @@ Dataset</h2>
 <li>Class 0: Normal Operation</li>
 <li>Class 1: Blower Imbalance</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3914"></a>
+<h2><a class="anchor" id="autotoc_md3919"></a>
 Model Architecture</h2>
 <p>This lightweight classification model <code>CLS_1k_NPU</code> contains approximately 1,000 parameters and follows a streamlined architecture consisting of four convolutional layers (each enhanced with BatchNorm and ReLU activation functions) followed by a single linear layer.</p>
-<h2><a class="anchor" id="autotoc_md3915"></a>
+<h2><a class="anchor" id="autotoc_md3920"></a>
 Input Features</h2>
 <p>The model takes 4D input (N,C,H,W):</p><ul>
 <li>N (1): batch size which is restricted to 1</li>
@@ -159,10 +159,10 @@ Input Features</h2>
 <li>H (128): samples of timeseries AC current which is 128 in this example</li>
 <li>W (1): width of samples is restricted to 1 for timeseries applications</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3916"></a>
+<h2><a class="anchor" id="autotoc_md3921"></a>
 Output</h2>
 <p>This model produces a 1D output representing the two possible classes - normal operation or blower imbalance condition.</p>
-<h1><a class="anchor" id="autotoc_md3917"></a>
+<h1><a class="anchor" id="autotoc_md3922"></a>
 Feature Extraction Configuration</h1>
 <p>The feature extraction pipeline uses FFT-based frequency analysis:</p>
 <ul>
@@ -174,7 +174,7 @@ Feature Extraction Configuration</h1>
 <li><b>FE_CONCAT</b>: Combines 8 frames for temporal context</li>
 </ul>
 <p>The pipeline processes 256-sample frames per channel, producing 16 features per frame, concatenated across 8 frames for 128 total features per channel.</p>
-<h1><a class="anchor" id="autotoc_md3918"></a>
+<h1><a class="anchor" id="autotoc_md3923"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -182,10 +182,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>The application will classify current readings as normal or imbalanced</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3919"></a>
+<h1><a class="anchor" id="autotoc_md3924"></a>
 See Also</h1>
 <p><a class="el" href="EXAMPLES_AI.html">AI Examples</a></p>
-<h1><a class="anchor" id="autotoc_md3920"></a>
+<h1><a class="anchor" id="autotoc_md3925"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">Blower Imbalance Detection Example Started ...</div>
 <div class="line">Feature extraction mismatches 0</div>

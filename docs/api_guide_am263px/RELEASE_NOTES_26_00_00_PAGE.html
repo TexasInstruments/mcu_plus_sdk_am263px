@@ -164,20 +164,22 @@ New in this Release</h1>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Feature  </th><th class="markdownTableHeadNone">Module   </th></tr>
 <tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a href="https://www.ti.com/lit/fs/sffs714b/sffs714b.pdf?ts=1778236283450&amp;ref_url=https%253A%252F%252Fwww.ti.com%252Fsitesearch%252Fen-us%252Fdocs%252Funiversalsearch.tsp%253FlangPref%253Den-US%2526nr%253D233%2526searchTerm%253DTUV+Certificate+AM263x+SDL">TUV Functional Safety certification received for SDL</a>  </td><td class="markdownTableBodyNone">SDL   </td></tr>
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">I2C DMA transfer support with driver and example  </td><td class="markdownTableBodyNone">I2C   </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Configurable SBL restricted memory region  </td><td class="markdownTableBodyNone">SBL   </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Feature Extraction library for AI applications  </td><td class="markdownTableBodyNone">AI   </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">AI Examples: Arc fault detection, Motor fault detection, Time series classification/regression  </td><td class="markdownTableBodyNone">AI   </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Sensor BoosterPack integration for Edge AI  </td><td class="markdownTableBodyNone">AI   </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Device Agent Protocol (DAP) for Edge AI Studio communication  </td><td class="markdownTableBodyNone">AI   </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Baremetal Layer-2 packet transfer and reception example  </td><td class="markdownTableBodyNone">Networking   </td></tr>
+<td class="markdownTableBodyNone">Device Agent Protocol (DAP) for Edge AI Studio communication  </td><td class="markdownTableBodyNone">AI   </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Baremetal Layer-2 packet transfer and reception example  </td><td class="markdownTableBodyNone">Networking   </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">XIP+RL2 Networking example support on Lwip  </td><td class="markdownTableBodyNone">Networking   </td></tr>
 </table>
 <h1><a class="anchor" id="autotoc_md273"></a>
@@ -525,8 +527,6 @@ Known Issues</h2>
 <tr>
 <td>MCUSDK-13652 </td><td>Readelf throws warning while parsing RS note </td><td>SBL, QSPI </td><td>10.00.00 onwards </td><td>-  </td></tr>
 <tr>
-<td>MCUSDK-14883 </td><td>AM263x, AM263Px: SBL: RPRC descoping broke SBL over Ethernet example </td><td>Networking </td><td>11.00.00 onwards </td><td>-  </td></tr>
-<tr>
 <td>MCUSDK-14582 </td><td>Flash: Incorrect flash name after Loading Flash JSON </td><td>OSPI </td><td>10.00.00 onwards </td><td>-  </td></tr>
 <tr>
 <td>MCUSDK-14647 </td><td>All CANFD standard ID conigurations are not exposed in SysCfg </td><td>CAN </td><td>10.02.00 onwards </td><td>Configure Config type, ID's,etc in application  </td></tr>
@@ -552,6 +552,8 @@ Known Issues</h2>
 <td>MCUSDK-14914 </td><td>Unable to add UART communication port to target configuration in Theia </td><td>Real Time Debug </td><td>10.02.00 onwards </td><td>Use the CCXML file from CCS eclipse after updating to correct COM port.  </td></tr>
 <tr>
 <td>MCUSDK-14644 </td><td>EST <a class="el" href="structTimestamp.html" title="The Timestamp type represents a positive time with respect to the epoch.">Timestamp</a> verification is failing after link down event </td><td>Networking </td><td>11.00.00 onwards </td><td>Re-apply the EST configuration post link-up  </td></tr>
+<tr>
+<td>MCUSDK-15145 </td><td>SBL over Ethernet example broken </td><td>Networking </td><td>11.00.00 onwards </td><td>-  </td></tr>
 </table>
 <h2><a class="anchor" id="autotoc_md289"></a>
 Errata</h2>
@@ -587,9 +589,9 @@ Errata</h2>
  Workaround: Do not use initial bytes (0x40-0x3A0) of ATCM from CPU1 allocation. Initial bytes (0x40-0x3A0 =&gt; 868 bytes) of CORE1 TCM are blocked using linker command settings of multi-core application/examples. <br  />
  Refer <a class="el" href="EXAMPLES_DRIVERS_TMU_CORES_SUPPORT.html">TMU 4 Cores Support</a>  </td></tr>
 <tr>
-<td>i2427 </td><td>SDL: RAM SEC can cause spurious RAM writes resulting in L2 and MBOX memory corruption </td><td>ECC </td><td>Workaround added as an example in examples/sdl/ecc/  </td></tr>
+<td>i2427 </td><td>SDL: RAM SEC can cause spurious RAM writes resulting in L2 and MBOX memory corruption </td><td>ECC </td><td>Workaround added as an example in examples/sdl/ecc/ (EDMA case only; PRU fix is ongoing)  </td></tr>
 <tr>
-<td>i2499 </td><td>SDL: Incorrect data returned to master on single error detection during burst read </td><td>ECC </td><td>Workaround added as an example in examples/sdl/ecc/  </td></tr>
+<td>i2499 </td><td>SDL: Incorrect data returned to master on single error detection during burst read </td><td>ECC </td><td>Workaround added as an example in examples/sdl/ecc/ (EDMA case only; PRU fix is ongoing)  </td></tr>
 </table>
 <h2><a class="anchor" id="autotoc_md290"></a>
 Limitations</h2>

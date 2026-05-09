@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('EXAMPLES_AI_FAN_BLADE_ANOMALYDETECTION
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3921">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md3926">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_AI_FAN_BLADE_ANOMALYDETECTION_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3922">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3923">Dataset</a></li>
-<li class="level2"><a href="#autotoc_md3924">Model Architecture</a></li>
-<li class="level2"><a href="#autotoc_md3925">Input Features</a></li>
-<li class="level2"><a href="#autotoc_md3926">Output</a></li>
+<li class="level1"><a href="#autotoc_md3927">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3928">Dataset</a></li>
+<li class="level2"><a href="#autotoc_md3929">Model Architecture</a></li>
+<li class="level2"><a href="#autotoc_md3930">Input Features</a></li>
+<li class="level2"><a href="#autotoc_md3931">Output</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3927">Feature Extraction Configuration</a></li>
-<li class="level1"><a href="#autotoc_md3928">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3929">See Also</a></li>
-<li class="level1"><a href="#autotoc_md3930">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3932">Feature Extraction Configuration</a></li>
+<li class="level1"><a href="#autotoc_md3933">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3934">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3935">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_ai_fan_blade_anomalydetection"></a></p>
-<h1><a class="anchor" id="autotoc_md3921"></a>
+<h1><a class="anchor" id="autotoc_md3926"></a>
 Introduction</h1>
 <p>Fan blade faults such as imbalance, damage, and obstruction can lead to reduced efficiency, increased energy consumption, and potential system failure. Early detection of these anomalies through vibration analysis enables predictive maintenance, preventing costly downtime and extending equipment lifespan.</p>
 <p>This project demonstrates implementation of an AI-based fan blade anomaly detection system on AM26x microcontrollers. It uses an autoencoder model trained only on normal vibration data to detect deviations that indicate potential faults - including fault types never seen during training.</p>
@@ -125,9 +125,9 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/ai/fan_blade_anomalydetection/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3922"></a>
+<h1><a class="anchor" id="autotoc_md3927"></a>
 Dataset and Model Details</h1>
-<h2><a class="anchor" id="autotoc_md3923"></a>
+<h2><a class="anchor" id="autotoc_md3928"></a>
 Dataset</h2>
 <p>TI has created a fan blade vibration dataset collected using a 3-axis ADXL355 accelerometer. The dataset captures both normal operation and various fault conditions.</p>
 <table class="markdownTable">
@@ -150,10 +150,10 @@ Dataset</h2>
 <li>Blade obstruction</li>
 </ul>
 <p><b>Important:</b> For anomaly detection, the model is trained only on normal data. All anomaly samples are used exclusively for testing.</p>
-<h2><a class="anchor" id="autotoc_md3924"></a>
+<h2><a class="anchor" id="autotoc_md3929"></a>
 Model Architecture</h2>
 <p>This autoencoder model <code>AD_17k</code> contains approximately 17,000 parameters. The encoder compresses the input vibration features into a compact representation, and the decoder reconstructs the features. When presented with anomalous vibration data, the reconstruction error is significantly higher than for normal data.</p>
-<h2><a class="anchor" id="autotoc_md3925"></a>
+<h2><a class="anchor" id="autotoc_md3930"></a>
 Input Features</h2>
 <p>The model takes 4D input (N,C,H,W):</p><ul>
 <li>N (1): batch size which is restricted to 1</li>
@@ -161,14 +161,14 @@ Input Features</h2>
 <li>H (64): features per channel (16 frequency bins x 4 concatenated frames)</li>
 <li>W (1): width of samples is restricted to 1 for timeseries applications</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3926"></a>
+<h2><a class="anchor" id="autotoc_md3931"></a>
 Output</h2>
 <p>The model produces a reconstructed feature vector of the same shape as the input (1, 3, 64, 1). The reconstruction error (MSE between input and output) is compared against a threshold:</p>
 <div class="fragment"><div class="line">if reconstruction_error &gt; threshold:</div>
 <div class="line">    -&gt; ANOMALY</div>
 <div class="line">else:</div>
 <div class="line">    -&gt; NORMAL</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3927"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3932"></a>
 Feature Extraction Configuration</h1>
 <p>The feature extraction pipeline uses FFT-based frequency analysis on 3-axis vibration data:</p>
 <ul>
@@ -180,7 +180,7 @@ Feature Extraction Configuration</h1>
 <li><b>FE_CONCAT</b>: Combines 4 frames for temporal context</li>
 </ul>
 <p>The pipeline produces 16 features per frame x 4 frames = 64 features per channel. With 3 channels (X, Y, Z), the total input is 192 features.</p>
-<h1><a class="anchor" id="autotoc_md3928"></a>
+<h1><a class="anchor" id="autotoc_md3933"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -188,10 +188,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>The application computes reconstruction error and classifies as Normal or Anomaly</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3929"></a>
+<h1><a class="anchor" id="autotoc_md3934"></a>
 See Also</h1>
 <p><a class="el" href="EXAMPLES_AI.html">AI Examples</a></p>
-<h1><a class="anchor" id="autotoc_md3930"></a>
+<h1><a class="anchor" id="autotoc_md3935"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">Fan Blade Anomaly Detection Example Started ...</div>
 <div class="line">Feature extraction mismatches 0</div>
