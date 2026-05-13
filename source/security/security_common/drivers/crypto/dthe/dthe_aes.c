@@ -686,12 +686,13 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
                                 /* Clear all the DMA interrupts */
                                 DTHE_AES_clearAllInterrupts(ptrAesRegs);
 
+                                /* Enable the transfer region */
+                                (void)DMA_enableTxTransferRegion(dmaHandle);
+
                                 /* Enable AES DMA input request before arming RTDMA so the
                                  * trigger is already pending when DMA_startChannel is called. */
                                 DTHE_AES_setDMAInputRequestStatus(ptrAesRegs, 1);
-
-                                /* Enable the transfer region */
-                                (void)DMA_enableTxTransferRegion(dmaHandle);
+                                (void)DMA_startTxChannel(dmaHandle);
 
                                 /* Poll for completion */
                                 (void)DMA_WaitForTxTransfer(dmaHandle);
@@ -826,14 +827,14 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
 
                     if((ptrParams->algoType != DTHE_AES_CBC_MAC_MODE)&&(ptrParams->algoType != DTHE_AES_CMAC_MODE)&&(ptrParams->algoType != DTHE_AES_GHASH_ONLY_MODE))
                     {
-                        DTHE_AES_setDMAOutputRequestStatus(ptrAesRegs, 1);
                         (void)DMA_enableRxTransferRegion(dmaHandle);
+                        DTHE_AES_setDMAOutputRequestStatus(ptrAesRegs, 1);
+                        (void)DMA_startRxChannel(dmaHandle);
                     }
 
-                    /* Enable AES DMA input request before arming DMA so the
-                     * trigger is already pending when DMA_startChannel is called. */
-                    DTHE_AES_setDMAInputRequestStatus(ptrAesRegs, 1);
                     (void)DMA_enableTxTransferRegion(dmaHandle);
+                    DTHE_AES_setDMAInputRequestStatus(ptrAesRegs, 1);
+                    (void)DMA_startTxChannel(dmaHandle);
 
                     if((ptrParams->algoType != DTHE_AES_CBC_MAC_MODE)&&(ptrParams->algoType != DTHE_AES_CMAC_MODE)&&(ptrParams->algoType != DTHE_AES_GHASH_ONLY_MODE))
                     {

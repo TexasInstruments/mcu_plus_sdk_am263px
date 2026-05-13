@@ -807,12 +807,14 @@ DTHE_SM4_Return_t DTHE_SM4_execute(DTHE_Handle handle, const DTHE_SM4_Params* pt
             DTHE_SM4_setAutoCtrl(ptrSm4Regs, 1U);
 
             /* Enable DMA output request and arm RX channel */
-            DTHE_SM4_setDMAOutputRequestStatus(ptrSm4Regs, 1U);
             (void)DMA_enableRxTransferRegion(dmaHandle);
+            DTHE_SM4_setDMAOutputRequestStatus(ptrSm4Regs, 1U);
+            (void)DMA_startRxChannel(dmaHandle);
 
             /* Enable DMA input request and arm TX channel */
-            DTHE_SM4_setDMAInputRequestStatus(ptrSm4Regs, 1U);
             (void)DMA_enableTxTransferRegion(dmaHandle);
+            DTHE_SM4_setDMAInputRequestStatus(ptrSm4Regs, 1U);
+            (void)DMA_startTxChannel(dmaHandle);
 
             (void)DMA_WaitForRxTransfer(dmaHandle);
             (void)DMA_WaitForTxTransfer(dmaHandle);

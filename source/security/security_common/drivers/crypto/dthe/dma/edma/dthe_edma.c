@@ -83,10 +83,12 @@
 DMA_Fxns gEdmaFxns =
 {
     .cfgDmaTxChFxn = EDMA_Config_TxChannel,
+    .startTxChannelFxn = NULL,
     .enableTxTransferRegionFxn = EDMA_enableTxTransferRegion,
     .waitForTxTranferFxn = EDMA_WaitForTxTransfer,
     .disableTxChFxn = EDMA_disableTxChannel,
     .cfgDmaRxChFxn = EDMA_Config_RxChannel,
+    .startRxChannelFxn = NULL,
     .enableRxTransferRegionFxn = EDMA_enableRxTransferRegion,
     .waitForRxTranferFxn = EDMA_WaitForRxTransfer,
     .disableRxChFxn = EDMA_disableRxChannel,

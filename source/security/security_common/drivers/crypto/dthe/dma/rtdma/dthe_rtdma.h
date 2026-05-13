@@ -111,6 +111,15 @@ int32_t RTDMA_enableTxTransferRegion(DMA_Handle handle);
 int32_t RTDMA_WaitForTxTransfer(DMA_Handle handle);
 
 /**
+ * \brief This RTDMA api implemented to start DMA TX channel.
+ *
+ * \param handle    [IN] DMA driver handle from \ref DMA_open
+ *
+ * \return SystemP_SUCCESS on success or SystemP_FAILURE on Failure.
+ */
+int32_t RTDMA_startTxChannel(DMA_Handle handle);
+
+/**
  * \brief This RTDMA api implemented to disable DMA TX channel.
  *
  * \param handle    [IN] DMA driver handle from \ref DMA_open
@@ -149,6 +158,15 @@ int32_t RTDMA_enableRxTransferRegion(DMA_Handle handle);
  * \return SystemP_SUCCESS on success or SystemP_FAILURE on Failure.
  */
 int32_t RTDMA_WaitForRxTransfer(DMA_Handle handle);
+
+/**
+ * \brief This RTDMA api implemented to start RTDMA RX channel.
+ *
+ * \param handle    [IN] DMA driver handle from \ref DMA_open
+ *
+ * \return SystemP_SUCCESS on success or SystemP_FAILURE on Failure.
+ */
+int32_t RTDMA_startRxChannel(DMA_Handle handle);
 
 /**
  * \brief This RTDMA api implemented to disable RTDMA RX channel.

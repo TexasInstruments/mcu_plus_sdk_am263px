@@ -137,6 +137,15 @@ typedef int32_t (*config_RxChannel)(DMA_Handle handle, uint32_t *srcAddress, uin
 typedef int32_t (*config_TxShaChannel)(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks, uint16_t blockSize);
 
 /**
+ *  \brief This callback implemented to start Tx DMA channel
+ *
+ *  \param handle [IN] DMA handle to process DMA operations.
+ *
+ *  \return SystemP_SUCCESS on success or SystemP_FAILURE on Failure.
+ */
+typedef int32_t (*startTxChannel)(DMA_Handle handle);
+
+/**
  *  \brief This callback implemented to enable Tx transfer DMA region
  *
  *  \param handle [IN] DMA handle to process DMA operations.
@@ -162,6 +171,15 @@ typedef int32_t (*disableTxCh)(DMA_Handle handle);
  *  \return SystemP_SUCCESS on success or SystemP_FAILURE on Failure.
  */
 typedef int32_t (*waitForTxTransfer)(DMA_Handle handle);
+
+/**
+ *  \brief This callback implemented to start Rx DMA channel
+ *
+ *  \param handle [IN] DMA handle to process DMA operations.
+ *
+ *  \return SystemP_SUCCESS on success or SystemP_FAILURE on Failure.
+ */
+typedef int32_t (*startRxChannel)(DMA_Handle handle);
 
 /**
  *  \brief This callback implemented to enable Rx transfer DMA region
@@ -215,12 +233,16 @@ typedef struct DMA_Fxns_s
 {
     config_TxChannel        cfgDmaTxChFxn;
     /**< DMA callback function for cofigure dma tx channel */
+    startTxChannel          startTxChannelFxn;
+    /**< DMA callback function for start tx channel */
     enableTxTransferRegion  enableTxTransferRegionFxn;
     /**< DMA callback function for enable tx transfer region */
     waitForTxTransfer       waitForTxTranferFxn;
     /**< DMA callback function to wait for tx transfer */
     config_RxChannel        cfgDmaRxChFxn;
     /**< DMA callback function for cofigure dma rx channel */
+    startRxChannel          startRxChannelFxn;
+    /**< DMA callback function for start rx channel */
     enableRxTransferRegion  enableRxTransferRegionFxn;
     /**< DMA callback function for enable rx transfer region */
     waitForRxTransfer       waitForRxTranferFxn;
@@ -321,6 +343,15 @@ DMA_Return_t DMA_enableTxTransferRegion(DMA_Handle handle);
 DMA_Return_t DMA_WaitForTxTransfer(DMA_Handle handle);
 
 /**
+ * \brief This DMA wrapper implemented to start DMA TX channel.
+ *
+ * \param handle    [IN] DMA driver handle from \ref DMA_open
+ *
+ * \return DMA_RETURN_SUCCESS on success or DMA_RETURN_FAILURE on Failure.
+ */
+DMA_Return_t DMA_startTxChannel(DMA_Handle handle);
+
+/**
  * \brief This DMA wrapper implemented to disable DMA TX channel.
  *
  * \param handle    [IN] DMA driver handle from \ref DMA_open
@@ -359,6 +390,15 @@ DMA_Return_t DMA_enableRxTransferRegion(DMA_Handle handle);
  * \return DMA_RETURN_SUCCESS on success or DMA_RETURN_FAILURE on Failure.
  */
 DMA_Return_t DMA_WaitForRxTransfer(DMA_Handle handle);
+
+/**
+ * \brief This DMA wrapper implemented to start DMA RX channel.
+ *
+ * \param handle    [IN] DMA driver handle from \ref DMA_open
+ *
+ * \return DMA_RETURN_SUCCESS on success or DMA_RETURN_FAILURE on Failure.
+ */
+DMA_Return_t DMA_startRxChannel(DMA_Handle handle);
 
 /**
  * \brief This DMA wrapper implemented to disable DMA RX channel.

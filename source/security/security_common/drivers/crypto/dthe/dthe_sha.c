@@ -322,10 +322,10 @@ DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaPa
 
         if (dmaStatus == DMA_RETURN_SUCCESS)
         {
-            DTHE_SHA_setDMA(ptrShaRegs, 1);
-
             /* Compute the number of full blocks which need to be processed: */
             (void)DMA_enableTxTransferRegion(dmaHandle);
+            DTHE_SHA_setDMA(ptrShaRegs, 1);
+            (void)DMA_startTxChannel(dmaHandle);
 
             (void)DMA_WaitForTxTransfer(dmaHandle);
 
@@ -527,10 +527,10 @@ DTHE_SHA_Return_t DTHE_HMACSHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrS
 
             if (dmaStatus == DMA_RETURN_SUCCESS)
             {
-                DTHE_SHA_setDMA(ptrShaRegs, 1);
-
                 /* Compute the number of full blocks which need to be processed: */
                 (void)DMA_enableTxTransferRegion(dmaHandle);
+                DTHE_SHA_setDMA(ptrShaRegs, 1);
+                (void)DMA_startTxChannel(dmaHandle);
 
                 (void)DMA_WaitForTxTransfer(dmaHandle);
 

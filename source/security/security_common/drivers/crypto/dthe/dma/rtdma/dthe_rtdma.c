@@ -85,10 +85,12 @@ typedef struct RTDMA_ChannelParams_s
 DMA_Fxns gRtdmaFxns =
 {
     .cfgDmaTxChFxn = RTDMA_Config_TxChannel,
+    .startTxChannelFxn = RTDMA_startTxChannel,
     .enableTxTransferRegionFxn = RTDMA_enableTxTransferRegion,
     .waitForTxTranferFxn = RTDMA_WaitForTxTransfer,
     .disableTxChFxn = RTDMA_disableTxChannel,
     .cfgDmaRxChFxn = RTDMA_Config_RxChannel,
+    .startRxChannelFxn = RTDMA_startRxChannel,
     .enableRxTransferRegionFxn = RTDMA_enableRxTransferRegion,
     .waitForRxTranferFxn = RTDMA_WaitForRxTransfer,
     .disableRxChFxn = RTDMA_disableRxChannel,
@@ -267,6 +269,25 @@ int32_t RTDMA_Config_TxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t
     return (status);
 }
 
+int32_t RTDMA_startTxChannel(DMA_Handle handle)
+{
+    int32_t status = SystemP_FAILURE;
+
+    if(NULL == handle)
+    {
+        status = SystemP_FAILURE;
+    }
+    else
+    {
+        /* Start the channel */
+        DMA_startChannel(gRtdmaChParams[RTDMA_TX_CH_PARAMS_INDEX].channelBase);
+
+        status = SystemP_SUCCESS;
+    }
+
+    return (status);
+}
+
 int32_t RTDMA_enableTxTransferRegion(DMA_Handle handle)
 {
     int32_t status = SystemP_FAILURE;
@@ -279,9 +300,6 @@ int32_t RTDMA_enableTxTransferRegion(DMA_Handle handle)
     {
         /* Enable trigger */
         DMA_enableTrigger(gRtdmaChParams[RTDMA_TX_CH_PARAMS_INDEX].channelBase);
-
-        /* Start the channel */
-        DMA_startChannel(gRtdmaChParams[RTDMA_TX_CH_PARAMS_INDEX].channelBase);
 
         status = SystemP_SUCCESS;
     }
@@ -394,6 +412,25 @@ int32_t RTDMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t
     return (status);
 }
 
+int32_t RTDMA_startRxChannel(DMA_Handle handle)
+{
+    int32_t status = SystemP_FAILURE;
+
+    if(NULL == handle)
+    {
+        status = SystemP_FAILURE;
+    }
+    else
+    {
+        /* Start the channel */
+        DMA_startChannel(gRtdmaChParams[RTDMA_RX_CH_PARAMS_INDEX].channelBase);
+
+        status = SystemP_SUCCESS;
+    }
+
+    return (status);
+}
+
 int32_t RTDMA_enableRxTransferRegion(DMA_Handle handle)
 {
     int32_t status = SystemP_FAILURE;
@@ -406,9 +443,6 @@ int32_t RTDMA_enableRxTransferRegion(DMA_Handle handle)
     {
         /* Enable trigger */
         DMA_enableTrigger(gRtdmaChParams[RTDMA_RX_CH_PARAMS_INDEX].channelBase);
-
-        /* Start the channel */
-        DMA_startChannel(gRtdmaChParams[RTDMA_RX_CH_PARAMS_INDEX].channelBase);
 
         status = SystemP_SUCCESS;
     }
