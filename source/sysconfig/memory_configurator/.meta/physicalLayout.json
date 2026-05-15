@@ -139,7 +139,20 @@
 		"MSS_L2_R5F": {
 			"start": 0x10200000,
 			"size": 0xF0000,
-            "access": "all"
+            "access": "all",
+			"description": "DEPRECATED: Use MSS_L2_A_R5F or MSS_L2_B_R5F instead. Kept for backward compatibility with bootloader examples."
+		},
+		"MSS_L2_A_R5F": {
+			"start": 0x10260000,
+			"size": 0x1FFE0,
+            "access": "all",
+			"description": "Primary M1 bank (512 KB - 32 bytes) for R5F cores. Reserves last 32 bytes due to MPU errata."
+		},
+		"MSS_L2_B_R5F": {
+			"start": 0x10280000,
+			"size": 0x3FFDC,
+            "access": "all",
+			"description": "Secondary M2 bank (448 KB - 32 bytes) for R5F cores. Reserves last 32 bytes due to MPU errata."
 		},
         "MSS_L2_C66": {
 			"start": 0xC0200000,

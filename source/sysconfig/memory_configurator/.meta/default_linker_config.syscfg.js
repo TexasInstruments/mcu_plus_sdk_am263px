@@ -18,11 +18,11 @@ function def_memory_regions(regionInst, ind, device, core){
                 regionInst.memory_region[ind].$name              = "R5F_TCMB";
             }
             else if(ind == 3){
-                regionInst.memory_region[ind].type               = "MSS_L2_R5F";
-                regionInst.memory_region[ind].$name              = "MSS_L2";
+                regionInst.memory_region[ind].type               = "MSS_L2_A_R5F";
+                regionInst.memory_region[ind].$name              = "MSS_L2_A";
                 regionInst.memory_region[ind].auto               = false;
                 regionInst.memory_region[ind].manualStartAddress = 0x10260000;
-                regionInst.memory_region[ind].size               = 0x40000;
+                regionInst.memory_region[ind].size               = 0x1FFE0;
             }
             else if(ind == 4){
                 regionInst.memory_region[ind].type               = "DSS_L3_ALL";
@@ -91,11 +91,11 @@ function def_memory_regions(regionInst, ind, device, core){
                 regionInst.memory_region[ind].$name              = "R5F_TCMB";
             }
             else if(ind == 3){
-                regionInst.memory_region[ind].type               = "MSS_L2_R5F";
-                regionInst.memory_region[ind].$name              = "MSS_L2";
+                regionInst.memory_region[ind].type               = "MSS_L2_B_R5F";
+                regionInst.memory_region[ind].$name              = "MSS_L2_B";
                 regionInst.memory_region[ind].auto               = false;
-                regionInst.memory_region[ind].manualStartAddress = 0x102A0000;
-                regionInst.memory_region[ind].size               = 0x40000;
+                regionInst.memory_region[ind].manualStartAddress = 0x10280000;
+                regionInst.memory_region[ind].size               = 0x3FFDC;
             }
             else if(ind == 4){
                 regionInst.memory_region[ind].type               = "DSS_L3_ALL";
