@@ -71413,3 +71413,45 @@ Date:   Wed May 13 15:27:57 2026 +0530
  utils/include/enet_udmautils.h                                              |   202 +
  6835 files changed, 1213243 insertions(+)
 
+========================================
+Changes from build on 2026-05-26 20:48:11
+Previous commit: 942e6e0f98a609f4bd7d127cc84121e319dcbe68
+Current commit: 06df45ed9f8fcaa886d2837b785fb3bc00b1a7a1
+========================================
+
+commit 06df45ed9f8fcaa886d2837b785fb3bc00b1a7a1
+Author: Kalyan Vagvala <k-vagvala@ti.com>
+Date:   Tue May 5 10:13:11 2026 +0530
+
+    am26xxx: ENET: Fix default PHY config in examples
+    
+    - Default PHY configuration is hardcoded in current examples
+      fix this to get the default config from syscfg.js
+    
+    Fixes: MCUSDK-15386
+    
+    Signed-off-by: Kalyan Vagvala <k-vagvala@ti.com>
+
+ examples/enet_cpsw_est/am261x-lp/r5fss0-0_freertos/example.syscfg                | 2 --
+ examples/enet_cpsw_industrial_app/am261x-lp/r5fss0-0_freertos/example.syscfg     | 2 --
+ examples/enet_layer2_cpsw/am261x-lp/r5fss0-0_freertos/example.syscfg             | 1 -
+ examples/enet_layer2_cpsw/am261x-lp/r5fss0-0_nortos/example.syscfg               | 1 -
+ examples/enet_layer2_cpsw_switch/am261x-lp/r5fss0-0_freertos/example.syscfg      | 2 --
+ .../loopback_mac_end/am261x-lp/r5fss0-0_freertos/example.syscfg                  | 1 -
+ .../loopback_phy_end/am261x-lp/r5fss0-0_freertos/example.syscfg                  | 1 -
+ examples/enet_tx_scatter_gather/am261x-lp/r5fss0-0_freertos/example.syscfg       | 1 -
+ examples/lwip/cpsw_lwip_https/am261x-lp/r5fss0-0_freertos/example.syscfg         | 1 -
+ examples/lwip/enet_cpsw_rawhttpserver/am261x-lp/r5fss0-0_nortos/example.syscfg   | 1 -
+ examples/lwip/enet_cpsw_socket/am261x-lp/r5fss0-0_freertos/example.syscfg        | 1 -
+ examples/lwip/enet_cpsw_tcpclient/am261x-lp/r5fss0-0_freertos/example.syscfg     | 1 -
+ examples/lwip/enet_cpsw_tcpserver/am261x-lp/r5fss0-0_freertos/example.syscfg     | 1 -
+ examples/lwip/enet_cpsw_udp_igmp/am261x-lp/r5fss0-0_freertos/example.syscfg      | 1 -
+ examples/lwip/enet_cpsw_udpclient/am261x-lp/r5fss0-0_freertos/example.syscfg     | 1 -
+ examples/lwip/enet_lwip_cpsw/am261x-lp/r5fss0-0_freertos/example.syscfg          | 2 --
+ examples/tsn/gptp_cpsw_app/am261x-lp/r5fss0-0_freertos/example.syscfg            | 2 --
+ .../am263px-cc-dp83869/am263px-cc/r5fss0-0_freertos/example.syscfg               | 1 -
+ sysconfig/board/.meta/ethphy_cpsw_icssg/ethphy_cpsw_icssg_am261x.syscfg.js       | 2 +-
+ sysconfig/board/.meta/ethphy_cpsw_icssg/ethphy_cpsw_icssg_am263px.syscfg.js      | 2 +-
+ sysconfig/board/.meta/ethphy_cpsw_icssg/ethphy_cpsw_icssg_am263x.syscfg.js       | 2 +-
+ 21 files changed, 3 insertions(+), 26 deletions(-)
+
