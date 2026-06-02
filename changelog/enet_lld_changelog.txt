@@ -71455,3 +71455,26 @@ Date:   Tue May 5 10:13:11 2026 +0530
  sysconfig/board/.meta/ethphy_cpsw_icssg/ethphy_cpsw_icssg_am263x.syscfg.js       | 2 +-
  21 files changed, 3 insertions(+), 26 deletions(-)
 
+========================================
+Changes from build on 2026-06-02 20:49:14
+Previous commit: 06df45ed9f8fcaa886d2837b785fb3bc00b1a7a1
+Current commit: a95313258e2b3fb1ff420a8f7f93d5f934df685a
+========================================
+
+commit a95313258e2b3fb1ff420a8f7f93d5f934df685a
+Author: Sai Kiran Lakavath <s-lakavath@ti.com>
+Date:   Mon May 18 12:03:08 2026 +0530
+
+    j722s: enet: fix systemBuild for j722s
+    
+    -set isPartOfSystemProject to false to include the loopback example for j722s in the top-level makefile in mcu_plus_sdk
+    -Add enet_dma_mem section in linker.cmd for loopback example
+    
+    Fixes: ETHFW-3654
+    
+    Signed-off-by: Sai Kiran Lakavath <s-lakavath@ti.com>
+
+ .../enet_loopback/enet_cpsw_loopback/loopback_mac_end/.project/project_j722s.js  |  2 +-
+ .../loopback_mac_end/j722s-evm/main-r5fss0-0_freertos/ti-arm-clang/linker.cmd    | 10 +++++++++-
+ 2 files changed, 10 insertions(+), 2 deletions(-)
+

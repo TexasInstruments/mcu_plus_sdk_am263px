@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('EXAMPLES_AI_WASHING_MACHINE_LOAD_WEIGH
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3966">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md3975">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_AI_WASHING_MACHINE_LOAD_WEIGHING_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3967">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3968">Dataset</a></li>
-<li class="level2"><a href="#autotoc_md3969">Model Architecture</a></li>
-<li class="level2"><a href="#autotoc_md3970">Input Features</a></li>
-<li class="level2"><a href="#autotoc_md3971">Output</a></li>
+<li class="level1"><a href="#autotoc_md3976">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3977">Dataset</a></li>
+<li class="level2"><a href="#autotoc_md3978">Model Architecture</a></li>
+<li class="level2"><a href="#autotoc_md3979">Input Features</a></li>
+<li class="level2"><a href="#autotoc_md3980">Output</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3972">Feature Extraction Configuration</a></li>
-<li class="level1"><a href="#autotoc_md3973">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3974">See Also</a></li>
-<li class="level1"><a href="#autotoc_md3975">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3981">Feature Extraction Configuration</a></li>
+<li class="level1"><a href="#autotoc_md3982">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3983">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3984">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_ai_washing_machine_load_weighing"></a></p>
-<h1><a class="anchor" id="autotoc_md3966"></a>
+<h1><a class="anchor" id="autotoc_md3975"></a>
 Introduction</h1>
 <p>Prediction of weight of clothes in a washing machine eliminates the need for a physical weight sensor, which is typically required for automatic water level adjustment. This reduces manufacturing costs and provides a reliable sensor-less solution.</p>
 <p>This project utilizes machine learning models that take into account various features such as voltage, current, and speed of the washing machine motor to predict the weight of the clothes. This ensures that the water level can be adjusted accurately without relying on a physical weight sensor, which can be prone to mechanical failure.</p>
@@ -125,9 +125,9 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/ai/washing_machine_load_weighing/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3967"></a>
+<h1><a class="anchor" id="autotoc_md3976"></a>
 Dataset and Model Details</h1>
-<h2><a class="anchor" id="autotoc_md3968"></a>
+<h2><a class="anchor" id="autotoc_md3977"></a>
 Dataset</h2>
 <p>The dataset consists of 6 current, voltage, and speed-based features obtained from TI Lab. The dataset has 100g precision from 0g to 900g.</p>
 <table class="markdownTable">
@@ -146,10 +146,10 @@ Dataset</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Speed  </td><td class="markdownTableBodyNone">Speed of the washing machine motor   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md3969"></a>
+<h2><a class="anchor" id="autotoc_md3978"></a>
 Model Architecture</h2>
 <p>The model is a CNN-based architecture with approximately 13,000 parameters consisting of 3 convolution layers and 2 fully connected layers.</p>
-<h2><a class="anchor" id="autotoc_md3970"></a>
+<h2><a class="anchor" id="autotoc_md3979"></a>
 Input Features</h2>
 <p>The model takes 4D input (N,C,H,W):</p><ul>
 <li>N (1): batch size which is restricted to 1</li>
@@ -157,13 +157,13 @@ Input Features</h2>
 <li>H (512): samples of timeseries signals which is 512 in this example</li>
 <li>W (1): width of samples is restricted to 1 for timeseries applications</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3971"></a>
+<h2><a class="anchor" id="autotoc_md3980"></a>
 Output</h2>
 <p>This model produces a 1D output representing the weight of the clothes in the washing machine (in grams).</p>
-<h1><a class="anchor" id="autotoc_md3972"></a>
+<h1><a class="anchor" id="autotoc_md3981"></a>
 Feature Extraction Configuration</h1>
 <p>For this regression task, a SimpleWindow transformation is used, which makes use of the previous 512 datapoints to predict the current instance of the target variable. No FFT or frequency-domain feature extraction is applied.</p>
-<h1><a class="anchor" id="autotoc_md3973"></a>
+<h1><a class="anchor" id="autotoc_md3982"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -171,10 +171,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>The application will predict load weight and compare against expected values</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3974"></a>
+<h1><a class="anchor" id="autotoc_md3983"></a>
 See Also</h1>
 <p><a class="el" href="EXAMPLES_AI.html">AI Examples</a></p>
-<h1><a class="anchor" id="autotoc_md3975"></a>
+<h1><a class="anchor" id="autotoc_md3984"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">Washing Machine Load Weighing Example Started ...</div>
 <div class="line">All tests have passed!!</div>

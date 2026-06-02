@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('EXAMPLES_AI_GENERIC_TIMESERIES_REGRESS
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3866">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md3875">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_AI_GENERIC_TIMESERIES_REGRESSION_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3867">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3868">Dataset</a></li>
-<li class="level2"><a href="#autotoc_md3869">Model Architecture</a></li>
-<li class="level2"><a href="#autotoc_md3870">Input Features</a></li>
-<li class="level2"><a href="#autotoc_md3871">Output</a></li>
+<li class="level1"><a href="#autotoc_md3876">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3877">Dataset</a></li>
+<li class="level2"><a href="#autotoc_md3878">Model Architecture</a></li>
+<li class="level2"><a href="#autotoc_md3879">Input Features</a></li>
+<li class="level2"><a href="#autotoc_md3880">Output</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3872">Feature Extraction Configuration</a></li>
-<li class="level1"><a href="#autotoc_md3873">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3874">See Also</a></li>
-<li class="level1"><a href="#autotoc_md3875">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3881">Feature Extraction Configuration</a></li>
+<li class="level1"><a href="#autotoc_md3882">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3883">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3884">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_ai_generic_timeseries_regression"></a></p>
-<h1><a class="anchor" id="autotoc_md3866"></a>
+<h1><a class="anchor" id="autotoc_md3875"></a>
 Introduction</h1>
 <p>Generic Timeseries Regression is a hello world example for understanding usage of regression AI models on TI MCU. This example uses a simple synthetic regression dataset where the target variable y = 1.2 sin(x) + 3.2 cos(x), with x randomly generated in the range [0, 3]. This serves as a fundamental example for deploying regression models on AM26x microcontrollers.</p>
 <h1><a class="anchor" id="EXAMPLES_AI_GENERIC_TIMESERIES_REGRESSION_COMBOS"></a>
@@ -124,9 +124,9 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/ai/generic_timeseries_regression/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3867"></a>
+<h1><a class="anchor" id="autotoc_md3876"></a>
 Dataset and Model Details</h1>
-<h2><a class="anchor" id="autotoc_md3868"></a>
+<h2><a class="anchor" id="autotoc_md3877"></a>
 Dataset</h2>
 <p>A synthetic regression dataset where:</p><ul>
 <li>x is randomly generated in the range [0, 3]</li>
@@ -140,10 +140,10 @@ Dataset</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">y  </td><td class="markdownTableBodyNone">Target: y = 1.2 sin(x) + 3.2 cos(x)   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md3869"></a>
+<h2><a class="anchor" id="autotoc_md3878"></a>
 Model Architecture</h2>
 <p>This lightweight regression model contains approximately 1,800 parameters with one input batch normalization layer, 4 convolution layers, and 2 fully connected layers.</p>
-<h2><a class="anchor" id="autotoc_md3870"></a>
+<h2><a class="anchor" id="autotoc_md3879"></a>
 Input Features</h2>
 <p>The model takes 4D input (N,C,H,W):</p><ul>
 <li>N (1): batch size which is restricted to 1</li>
@@ -151,14 +151,14 @@ Input Features</h2>
 <li>H (10): samples of timeseries signals which is 10 in this example</li>
 <li>W (1): width of samples is restricted to 1 for timeseries applications</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3871"></a>
+<h2><a class="anchor" id="autotoc_md3880"></a>
 Output</h2>
 <p>This model produces a 1D output representing the predicted values of target variable y.</p>
-<h1><a class="anchor" id="autotoc_md3872"></a>
+<h1><a class="anchor" id="autotoc_md3881"></a>
 Feature Extraction Configuration</h1>
 <p>For this regression task, a SimpleWindow transformation is used, which makes use of the previous frame_size datapoints for prediction of the current target value. A frame size of 10 is used in this example.</p>
 <p>No FFT or frequency-domain feature extraction is applied - the model learns directly from raw signal values.</p>
-<h1><a class="anchor" id="autotoc_md3873"></a>
+<h1><a class="anchor" id="autotoc_md3882"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -166,10 +166,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>The application will run inference on test vectors and compare against expected outputs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3874"></a>
+<h1><a class="anchor" id="autotoc_md3883"></a>
 See Also</h1>
 <p><a class="el" href="EXAMPLES_AI.html">AI Examples</a></p>
-<h1><a class="anchor" id="autotoc_md3875"></a>
+<h1><a class="anchor" id="autotoc_md3884"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">Generic Timeseries Regression Example Started ...</div>
 <div class="line">All tests have passed!!</div>

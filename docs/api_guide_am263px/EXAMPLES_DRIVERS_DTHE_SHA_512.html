@@ -92,31 +92,31 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_DTHE_SHA_512.html',''
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3630">Introduction</a><ul><li class="level2"><a href="#autotoc_md3631">Build the sha 512 example</a></li>
+<ul><li class="level1"><a href="#autotoc_md3639">Introduction</a><ul><li class="level2"><a href="#autotoc_md3640">Build the sha 512 example</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3632">Steps to Run through ROM Boot flow</a><ul><li class="level2"><a href="#autotoc_md3633">Via SBL_uart bootloader</a><ul><li class="level3"><a href="#autotoc_md3634">Build sbl_uart</a></li>
-<li class="level3"><a href="#autotoc_md3635">Set board for UART boot</a></li>
-<li class="level3"><a href="#autotoc_md3636">Run UART_bootloader</a></li>
-<li class="level3"><a href="#autotoc_md3637">Sample output</a></li>
+<li class="level1"><a href="#autotoc_md3641">Steps to Run through ROM Boot flow</a><ul><li class="level2"><a href="#autotoc_md3642">Via SBL_uart bootloader</a><ul><li class="level3"><a href="#autotoc_md3643">Build sbl_uart</a></li>
+<li class="level3"><a href="#autotoc_md3644">Set board for UART boot</a></li>
+<li class="level3"><a href="#autotoc_md3645">Run UART_bootloader</a></li>
+<li class="level3"><a href="#autotoc_md3646">Sample output</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3638">Via SBL_qspi bootloader</a><ul><li class="level3"><a href="#autotoc_md3639">Build sbl_qspi</a></li>
-<li class="level3"><a href="#autotoc_md3640">Build sbl_uart_uniflash</a></li>
-<li class="level3"><a href="#autotoc_md3641">Set UART boot mode</a></li>
-<li class="level3"><a href="#autotoc_md3642">Edit default_sbl_qspi.cfg to include the correct images</a></li>
-<li class="level3"><a href="#autotoc_md3643">Run UART_uniflash</a></li>
-<li class="level3"><a href="#autotoc_md3644">Set QSPI boot mode</a></li>
-<li class="level3"><a href="#autotoc_md3645">Sample output</a></li>
+<li class="level2"><a href="#autotoc_md3647">Via SBL_qspi bootloader</a><ul><li class="level3"><a href="#autotoc_md3648">Build sbl_qspi</a></li>
+<li class="level3"><a href="#autotoc_md3649">Build sbl_uart_uniflash</a></li>
+<li class="level3"><a href="#autotoc_md3650">Set UART boot mode</a></li>
+<li class="level3"><a href="#autotoc_md3651">Edit default_sbl_qspi.cfg to include the correct images</a></li>
+<li class="level3"><a href="#autotoc_md3652">Run UART_uniflash</a></li>
+<li class="level3"><a href="#autotoc_md3653">Set QSPI boot mode</a></li>
+<li class="level3"><a href="#autotoc_md3654">Sample output</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3646">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3655">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_security_crypto_dthe_sha_512"></a></p>
-<h1><a class="anchor" id="autotoc_md3630"></a>
+<h1><a class="anchor" id="autotoc_md3639"></a>
 Introduction</h1>
 <p>This example demonstrates SHA-512 algorithm running on SHA/MD5 module. This example explains the steps to build and run SHA-512.</p>
 <table class="markdownTable">
@@ -133,54 +133,54 @@ Introduction</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Supported Device Type  </td><td class="markdownTableBodyNone">HS-FS   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md3631"></a>
+<h2><a class="anchor" id="autotoc_md3640"></a>
 Build the sha 512 example</h2>
 <div class="fragment"><div class="line">$make -s -C examples/security/crypto/dthe_sha/crypto_sha_512/&lt;soc&gt;-&lt;board&gt;/r5fss0-0_nortos/ti-arm-clang all DEVICE=&lt;soc&gt;</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3632"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3641"></a>
 Steps to Run through ROM Boot flow</h1>
 <dl class="section note"><dt>Note</dt><dd>If the device type is HS-SE, an additional flag "DEVICE_TYPE=HS" is passed for building SBL. The flag results in generation of SBL image with suffix "hs.tiimage" which can only be used when device type is HS-SE.</dd></dl>
-<h2><a class="anchor" id="autotoc_md3633"></a>
+<h2><a class="anchor" id="autotoc_md3642"></a>
 Via SBL_uart bootloader</h2>
-<h3><a class="anchor" id="autotoc_md3634"></a>
+<h3><a class="anchor" id="autotoc_md3643"></a>
 Build sbl_uart</h3>
 <div class="fragment"><div class="line">make -s -C examples/drivers/boot/sbl_uart_multicore_elf/&lt;soc&gt;-&lt;board&gt;/r5fss0-0_nortos/ti-arm-clang/ all DEVICE=&lt;soc&gt;</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3635"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3644"></a>
 Set board for UART boot</h3>
 <p>See <a href="https://software-dl.ti.com/mcu-plus-sdk/esd/AM263PX/latest/exports/docs/api_guide_am263px/EVM_SETUP_PAGE.html#autotoc_md29">EVM setup</a></p>
-<h3><a class="anchor" id="autotoc_md3636"></a>
+<h3><a class="anchor" id="autotoc_md3645"></a>
 Run UART_bootloader</h3>
 <div class="fragment"><div class="line">python uart_bootloader.py -p &lt;COMxx&gt; --bootloader=sbl_prebuilt/&lt;soc&gt;-&lt;board&gt;/sbl_uart.release.hs.tiimage --file=../../examples/security/crypto/dthe_sha/crypto_sha_512/&lt;soc&gt;-&lt;board&gt;/r5fss0-0_nortos/ti-arm-clang/dthe_sha_512.release.mcelf</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3637"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3646"></a>
 Sample output</h3>
 <p>On successful boot, R5 log at uart terminal, will have the following output. UART Console: </p><div class="fragment"><div class="line">[CRYPTO] SHA example started ...</div>
 <div class="line">[CRYPTO] SHA-512 example completed!!</div>
 <div class="line">All tests have passed!!</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3638"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3647"></a>
 Via SBL_qspi bootloader</h2>
-<h3><a class="anchor" id="autotoc_md3639"></a>
+<h3><a class="anchor" id="autotoc_md3648"></a>
 Build sbl_qspi</h3>
 <div class="fragment"><div class="line">make -C examples/drivers/boot/sbl_qspi_multicore_elf/&lt;soc&gt;-&lt;board&gt;/r5fss0-0_nortos/ti-arm-clang/ all DEVICE=&lt;soc&gt;</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3640"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3649"></a>
 Build sbl_uart_uniflash</h3>
 <div class="fragment"><div class="line">make -s -C examples/drivers/boot/sbl_uart_uniflash/&lt;soc&gt;-&lt;board&gt;/r5fss0-0_nortos/ti-arm-clang/ all DEVICE=&lt;soc&gt;</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3641"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3650"></a>
 Set UART boot mode</h3>
 <p>See <a href="https://software-dl.ti.com/mcu-plus-sdk/esd/AM263PX/latest/exports/docs/api_guide_am263px/EVM_SETUP_PAGE.html#autotoc_md29">EVM setup</a></p>
-<h3><a class="anchor" id="autotoc_md3642"></a>
+<h3><a class="anchor" id="autotoc_md3651"></a>
 Edit default_sbl_qspi.cfg to include the correct images</h3>
-<h3><a class="anchor" id="autotoc_md3643"></a>
+<h3><a class="anchor" id="autotoc_md3652"></a>
 Run UART_uniflash</h3>
 <div class="fragment"><div class="line">python uart_uniflash.py -p &lt;COMxx&gt; --cfg=sbl_prebuilt/&lt;soc&gt;-&lt;board&gt;/default_sbl_qspi.cfg</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3644"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3653"></a>
 Set QSPI boot mode</h3>
 <p>See <a href="https://software-dl.ti.com/mcu-plus-sdk/esd/AM263PX/latest/exports/docs/api_guide_am263px/EVM_SETUP_PAGE.html#autotoc_md29">EVM setup</a></p>
-<h3><a class="anchor" id="autotoc_md3645"></a>
+<h3><a class="anchor" id="autotoc_md3654"></a>
 Sample output</h3>
 <p>On successful boot, R5 log at uart terminal, will have the following output.</p>
 <p>UART Console: </p><div class="fragment"><div class="line">[CRYPTO] SHA example started ...</div>
 <div class="line">[CRYPTO] SHA-512 example completed!!</div>
 <div class="line">All tests have passed!!</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3646"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3655"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_DTHE_PAGE.html">DTHE</a> </p>
 </div></div><!-- contents -->

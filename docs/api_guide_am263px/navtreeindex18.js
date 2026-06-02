@@ -1,5 +1,14 @@
 var NAVTREEINDEX18 =
 {
+"PACKETPOOL_CONFIG_TOP.html":[5,1,13],
+"PERFORMANCE_OPTIMIZATIONS_GUIDE.html":[4,15],
+"PRU_IO.html":[6],
+"PRU_IO.html#autotoc_md617":[6,0],
+"REAL_TIME_DEBUG_SUPPORT_GUIDE.html":[4,14],
+"REAL_TIME_DEBUG_SUPPORT_GUIDE.html#autotoc_md591":[4,14,0],
+"REAL_TIME_DEBUG_SUPPORT_GUIDE.html#autotoc_md592":[4,14,1],
+"REAL_TIME_DEBUG_SUPPORT_GUIDE.html#autotoc_md593":[4,14,2],
+"REAL_TIME_DEBUG_SUPPORT_GUIDE.html#autotoc_md594":[4,14,3],
 "REAL_TIME_DEBUG_SUPPORT_GUIDE.html#autotoc_md595":[4,14,4],
 "RELEASE_NOTES_09_00_01_PAGE.html":[2,8],
 "RELEASE_NOTES_09_00_01_PAGE.html#autotoc_md63":[2,8,0],
@@ -240,14 +249,5 @@ var NAVTREEINDEX18 =
 "RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md297":[2,0,1,8],
 "RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md298":[2,0,1,9],
 "RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md299":[2,0,1,10],
-"RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md300":[2,0,1,10,0],
-"RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md301":[2,0,1,10,1],
-"RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md302":[2,0,1,10,2],
-"RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md303":[2,0,1,10,3],
-"RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md304":[2,0,1,10,4],
-"RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md305":[2,0,1,10,5],
-"RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md306":[2,0,1,10,5,0],
-"RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md307":[2,0,1,10,5,1],
-"RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md308":[2,0,1,10,6],
-"RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md309":[2,0,1,10,6,0]
+"RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md300":[2,0,1,10,0]
 };

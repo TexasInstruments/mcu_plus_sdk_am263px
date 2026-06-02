@@ -1,5 +1,15 @@
 var NAVTREEINDEX58 =
 {
+"group__strutils.html#ga519d6cf301022707734bac051e273f8f":[18,10,6,7],
+"group__strutils.html#ga5c639ee5d067eb67eec2f054b0512843":[18,10,6,1],
+"group__strutils.html#ga6e8eab3e6138e090dace78304c1b3af4":[18,10,6,14],
+"group__strutils.html#ga7ee4df68b851a86cd011d29cb848d15a":[18,10,6,8],
+"group__strutils.html#ga84ace0ea7af894d23561dd2ce7d961a7":[18,10,6,3],
+"group__strutils.html#ga8e1921f4a96c74ad8f8c3f6a30b3eb5e":[18,10,6,2],
+"group__strutils.html#ga991430f4d9145d17c8854c5af79a78cb":[18,10,6,15],
+"group__strutils.html#gaaf46fae087eddc48ea7d33dbd760a538":[18,10,6,10],
+"group__strutils.html#gab23b9df148f3c470ed7328169b8d4a12":[18,10,6,5],
+"group__strutils.html#gaf7ca98d0f8118a0dcdded52cf8cb279c":[18,10,6,13],
 "group__strutils.html#gafdd14994051579fafc831c66d710ff63":[18,10,6,16],
 "group__strutils.html#gafe64842e2944c4b3938d92b76d108e4c":[18,10,6,11],
 "group__strutils.html#gaffc0d35c03ca70bc68bf5fda8b6a502f":[18,10,6,17],
@@ -239,15 +249,5 @@ var NAVTREEINDEX58 =
 "structBootloader__Config.html":[18,7,1,2],
 "structBootloader__Config.html#a0118d4e92116f8e5ba8e0feeb1f7bb7b":[18,7,1,2,6],
 "structBootloader__Config.html#a07e89ee9e6ccb2cd6edd82321fe4bc04":[18,7,1,2,0],
-"structBootloader__Config.html#a2887196f85bd2538f0771a75af1358d1":[18,7,1,2,4],
-"structBootloader__Config.html#a3447428623ee1c31303d9aed8d6775d1":[18,7,1,2,10],
-"structBootloader__Config.html#a370a52b5e10b51e716bbe2ab9a8aecbc":[18,7,1,2,2],
-"structBootloader__Config.html#a42a412a940c690f55bf8c54e35dbd89d":[18,7,1,2,8],
-"structBootloader__Config.html#a582b954b0c5f2f3b2f60445eec57ff1d":[18,7,1,2,5],
-"structBootloader__Config.html#a8d99ac15804092a0eddfeda43019ba06":[18,7,1,2,1],
-"structBootloader__Config.html#aa228d276af15a7202e635fc321d60ff4":[18,7,1,2,3],
-"structBootloader__Config.html#aae3e7f25ae846e2a8de16de4303e121e":[18,7,1,2,7],
-"structBootloader__Config.html#af90149b4610c394921c6797a9d3888dc":[18,7,1,2,9],
-"structBootloader__CpuInfo.html":[18,7,1,3],
-"structBootloader__CpuInfo.html#a49919927ff1709ac64c635a8f6ab22cf":[18,7,1,3,3]
+"structBootloader__Config.html#a2887196f85bd2538f0771a75af1358d1":[18,7,1,2,4]
 };

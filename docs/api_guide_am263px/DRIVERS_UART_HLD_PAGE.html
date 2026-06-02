@@ -143,11 +143,57 @@ UART Read Mode</h2>
 <p>In callback mode, a UART transaction functions asynchronously, which means that it does not block code execution. After a UART transaction has been completed, the UART driver calls a user-provided callback function. Callback mode is supported in the execution context of tasks and hardware interrupt routines.</p>
 <p>There is an additional <a class="el" href="structUART__Params.html#a1850d733c08f9bd92a45c8289d88a830">UART_Params.readReturnMode</a> parameter. <a class="el" href="group__DRV__UART__LLD__MODULE.html#ga1750bdbfd3930cacf9ca48e5a153f3c2" title="Unblock/callback when buffer is full.">UART_READ_RETURN_MODE_FULL</a> unblocks or performs a callback when the read buffer has been filled with the number of bytes passed to <a class="el" href="group__DRV__UART__MODULE.html#gab0f66688faa39bad28c36465ac88c538" title="Function to perform UART read operation.">UART_read()</a>. <a class="el" href="group__DRV__UART__LLD__MODULE.html#ga1b64d34e7816aec0224528707619fef8" title="Unblock/callback when no new data comes in.">UART_READ_RETURN_MODE_PARTIAL</a> unblocks or performs a callback whenever a read timeout error occurs on the UART peripheral. The read timeout occurs if the read FIFO is non-empty and no new data has been received for a specific number of clock cycles w.r.o device/baudrate dependent. This mode can be used when the exact number of bytes to be read is not known.</p>
 <h1><a class="anchor" id="autotoc_md1192"></a>
+DMA Transfer Size Limitation (12-bit Counter)</h1>
+<p><b>Maximum UART DMA transfer: 4,095 bytes per transaction</b></p>
+<p>When using UART in DMA mode, the transfer is limited by the 12-bit transfer counter in the PDMA hardware. The counter tracks the number of <b>bytes</b> to transfer.</p>
+<h2><a class="anchor" id="autotoc_md1193"></a>
+12-bit Counter Limitation</h2>
+<p><b>Counter field:</b> 12-bit register (0x000 to 0xFFF = 0 to 4,095 decimal)</p>
+<p><b>CRITICAL - Register Overflow Risk:</b> Attempting a transfer count of 4,096 or higher causes register overflow: </p><div class="fragment"><div class="line">4,096 decimal = 0x1000 (requires 13 bits)</div>
+<div class="line">              ↓ register overflow ↓</div>
+<div class="line">Wraps to 0x000 → Transfer FAILS → System may HANG</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md1194"></a>
+Maximum Transfer Size</h2>
+<p>For UART (typically 8-bit data):</p><ul>
+<li>Max count register value: 4,095</li>
+<li>Max bytes per transaction: <b>4,095 bytes</b></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md1195"></a>
+Workaround for Large Transfers (&gt; 4,095 bytes)</h2>
+<p>To transfer data exceeding the limit, split into multiple transactions:</p>
+<div class="fragment"><div class="line"><span class="comment">// Example: Transfer 10,000 bytes via UART DMA</span></div>
+<div class="line">uint32_t totalBytes = 10000;</div>
+<div class="line">uint32_t byteIndex = 0;</div>
+<div class="line">uint32_t maxBytesPerTransfer = 4095;  <span class="comment">// 12-bit limit</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="structUART__Transaction.html">UART_Transaction</a> transaction;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordflow">while</span> (byteIndex &lt; totalBytes)</div>
+<div class="line">{</div>
+<div class="line">    uint32_t bytesRemaining = totalBytes - byteIndex;</div>
+<div class="line">    uint32_t bytesToTransfer = (bytesRemaining &gt; maxBytesPerTransfer) ?</div>
+<div class="line">                               maxBytesPerTransfer : bytesRemaining;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code" href="group__DRV__UART__MODULE.html#gab8655176d02fe2f2a164413bc61a14dc">UART_Transaction_init</a>(&amp;transaction);</div>
+<div class="line">    transaction.<a class="code" href="structUART__Transaction.html#a32842a6d05bd3dc31d31a8502da5e190">count</a> = bytesToTransfer;</div>
+<div class="line">    transaction.<a class="code" href="structUART__Transaction.html#a6c4f6bad66a3b2e1ff61e26c7e958686">buf</a> = &amp;buffer[byteIndex];</div>
+<div class="line">    transaction.<a class="code" href="structUART__Transaction.html#aa25597b80a7a7980990841ada040b5bd">timeout</a> = timeout;</div>
+<div class="line"> </div>
+<div class="line">    int32_t status = <a class="code" href="group__DRV__UART__MODULE.html#ga10c9465c727e535023d9097b8b842bf9">UART_write</a>(handle, &amp;transaction);</div>
+<div class="line">    <span class="keywordflow">if</span> (status != <a class="code" href="group__DRV__UART__LLD__MODULE.html#gae17e233f9fa3c0076f5d252a6c4cc5da">UART_TRANSFER_STATUS_SUCCESS</a>)</div>
+<div class="line">    {</div>
+<div class="line">        <a class="code" href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a>(<span class="stringliteral">&quot;UART write failed at byte offset %u\r\n&quot;</span>, byteIndex);</div>
+<div class="line">        <span class="keywordflow">break</span>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    byteIndex += bytesToTransfer;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1196"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>In case of DMA mode, as R5F core is not Cache Coherent, Cache Writeback is required if R5F writes to the buffers. And before reading the buffers, application needs to invalidate those. Please refer <a class="el" href="EXAMPLES_DRIVERS_UART_ECHO_DMA.html">UART Echo DMA</a>.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1193"></a>
+<h1><a class="anchor" id="autotoc_md1197"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="uart_8h.html">drivers/uart.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Instance Open Example </p><div class="fragment"><div class="line">    <a class="code" href="structUART__Params.html">UART_Params</a>         params;</div>
@@ -261,19 +307,21 @@ Example Usage</h1>
 <div class="line">        <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a>(gNumBytesRead == transaction.<a class="code" href="structUART__Transaction.html#a32842a6d05bd3dc31d31a8502da5e190">count</a>);</div>
 <div class="line">    }</div>
 <div class="line">}</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1194"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md1198"></a>
 API</h1>
 <p><a class="el" href="group__DRV__UART__MODULE.html">APIs for UART</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <div class="ttc" id="agroup__DRV__UART__LLD__MODULE_html_gae17e233f9fa3c0076f5d252a6c4cc5da"><div class="ttname"><a href="group__DRV__UART__LLD__MODULE.html#gae17e233f9fa3c0076f5d252a6c4cc5da">UART_TRANSFER_STATUS_SUCCESS</a></div><div class="ttdeci">#define UART_TRANSFER_STATUS_SUCCESS</div><div class="ttdoc">Transaction success.</div><div class="ttdef"><b>Definition:</b> uart_lld.h:95</div></div>
+<div class="ttc" id="astructUART__Transaction_html_aa25597b80a7a7980990841ada040b5bd"><div class="ttname"><a href="structUART__Transaction.html#aa25597b80a7a7980990841ada040b5bd">UART_Transaction::timeout</a></div><div class="ttdeci">uint32_t timeout</div><div class="ttdef"><b>Definition:</b> uart_lld.h:465</div></div>
 <div class="ttc" id="agroup__DRV__UART__MODULE_html_gab8655176d02fe2f2a164413bc61a14dc"><div class="ttname"><a href="group__DRV__UART__MODULE.html#gab8655176d02fe2f2a164413bc61a14dc">UART_Transaction_init</a></div><div class="ttdeci">void UART_Transaction_init(UART_Transaction *trans)</div><div class="ttdoc">Function to initialize the UART_Transaction struct to its defaults.</div></div>
 <div class="ttc" id="agroup__DRV__UART__MODULE_html_gacb2f2e1788b70f88f6ae59b497a828ef"><div class="ttname"><a href="group__DRV__UART__MODULE.html#gacb2f2e1788b70f88f6ae59b497a828ef">UART_Params_init</a></div><div class="ttdeci">void UART_Params_init(UART_Params *prms)</div><div class="ttdoc">Function to initialize the UART_Params struct to its defaults.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SYSTEM_html_ga376db5d2fbbc54611736778be8e15431"><div class="ttname"><a href="group__KERNEL__DPL__SYSTEM.html#ga376db5d2fbbc54611736778be8e15431">SystemP_WAIT_FOREVER</a></div><div class="ttdeci">#define SystemP_WAIT_FOREVER</div><div class="ttdoc">Value to use when needing a timeout of infinity or wait forver until resource is available.</div><div class="ttdef"><b>Definition:</b> SystemP.h:83</div></div>
 <div class="ttc" id="agroup__DRV__UART__MODULE_html_ga10c9465c727e535023d9097b8b842bf9"><div class="ttname"><a href="group__DRV__UART__MODULE.html#ga10c9465c727e535023d9097b8b842bf9">UART_write</a></div><div class="ttdeci">int32_t UART_write(UART_Handle handle, UART_Transaction *trans)</div><div class="ttdoc">Function to perform UART write operation.</div></div>
 <div class="ttc" id="agroup__DRV__UART__MODULE_html_ga6b49b65f3db709c408dc4db23a68895d"><div class="ttname"><a href="group__DRV__UART__MODULE.html#ga6b49b65f3db709c408dc4db23a68895d">UART_close</a></div><div class="ttdeci">void UART_close(UART_Handle handle)</div><div class="ttdoc">Function to close a UART peripheral specified by the UART handle.</div></div>
 <div class="ttc" id="auart_8h_html"><div class="ttname"><a href="uart_8h.html">uart.h</a></div></div>
+<div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_gafe348ab5badd2c15118f95e21bb192c6"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a></div><div class="ttdeci">#define DebugP_log(format,...)</div><div class="ttdoc">Function to log a string to the enabled console.</div><div class="ttdef"><b>Definition:</b> DebugP.h:235</div></div>
 <div class="ttc" id="astructUART__Transaction_html_a86a3a73df2d53ed323ee7da6a3cb9c32"><div class="ttname"><a href="structUART__Transaction.html#a86a3a73df2d53ed323ee7da6a3cb9c32">UART_Transaction::status</a></div><div class="ttdeci">int32_t status</div><div class="ttdef"><b>Definition:</b> uart_lld.h:467</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga7824b4e99fe103a171fbc355a1c01c67"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga7824b4e99fe103a171fbc355a1c01c67">DebugP_assertNoLog</a></div><div class="ttdeci">#define DebugP_assertNoLog(expression)</div><div class="ttdoc">Function to call for assert check, no logs are printed.</div><div class="ttdef"><b>Definition:</b> DebugP.h:199</div></div>
 <div class="ttc" id="agroup__DRV__UART__MODULE_html_ga9a2cb7a6a7cd3136a2299f155ebd0a36"><div class="ttname"><a href="group__DRV__UART__MODULE.html#ga9a2cb7a6a7cd3136a2299f155ebd0a36">UART_Handle</a></div><div class="ttdeci">struct UART_Config_s * UART_Handle</div><div class="ttdef"><b>Definition:</b> uart/v0/uart.h:71</div></div>

@@ -290,6 +290,8 @@ Macros</h2></td></tr>
 <tr class="separator:ga0d0439fab12c403796aa8c6e4be07f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga140936915c925cbf2348073ac7e67519"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#ga140936915c925cbf2348073ac7e67519">MCSPI_MAX_CLK_DIVIDER_SUPPORTED</a>&#160;&#160;&#160;(4096U)</td></tr>
 <tr class="separator:ga140936915c925cbf2348073ac7e67519"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga198f15a4ebf38db99b545b2380b04793"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#ga198f15a4ebf38db99b545b2380b04793">MCSPI_DMA_MAX_TRANSFER_BYTES</a>&#160;&#160;&#160;(4095U)</td></tr>
+<tr class="separator:ga198f15a4ebf38db99b545b2380b04793"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae812776af88501f9fa31987c55ecba54"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#gae812776af88501f9fa31987c55ecba54">MCSPI_FIFO_LENGTH</a>&#160;&#160;&#160;(64U)</td></tr>
 <tr class="memdesc:gae812776af88501f9fa31987c55ecba54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total length of FIFO for both TX/RX.  <a href="group__DRV__MCSPI__LLD__MODULE.html#gae812776af88501f9fa31987c55ecba54">More...</a><br /></td></tr>
 <tr class="separator:gae812776af88501f9fa31987c55ecba54"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1528,6 +1530,24 @@ Init Delay</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Maximuum Clock Divider supported </p>
+
+</div>
+</div>
+<a id="ga198f15a4ebf38db99b545b2380b04793"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga198f15a4ebf38db99b545b2380b04793">&#9670;&nbsp;</a></span>MCSPI_DMA_MAX_TRANSFER_BYTES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MCSPI_DMA_MAX_TRANSFER_BYTES&#160;&#160;&#160;(4095U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Maximum DMA transfer size limitation - 4095 bytes</p>
+<p>Most PDMA-serviced peripherals follow X-Y transfer pattern where: X = bytes per burst (McSPI data width in bytes) Y = number of bursts (McSPI transfer counter, 12-bit field: 0-4095)</p>
+<p>For McSPI DMA transfers: X is derived from SPIDAT0 WL[3:0] (word length in bits): 1-8 bits -&gt; X = 1 byte (bufWidthShift = 0) 9-16 bits -&gt; X = 2 bytes (bufWidthShift = 1) 17-32 bits -&gt; X = 4 bytes (bufWidthShift = 2) Y = transaction-&gt;count (word count)</p>
+<p>Total bytes transferred = Y &lt;&lt; bufWidthShift Constraint: Y &lt;= 4095 (12-bit counter limit), so: Y=4095, X=1 byte -&gt; max 4095 bytes Y=4095, X=2 bytes -&gt; max 8190 bytes Y=4095, X=4 bytes -&gt; max 16380 bytes </p>
 
 </div>
 </div>
@@ -3772,7 +3792,7 @@ Init Delay</h2></td></tr>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="agroup__DRV__MCSPI__LLD__MODULE_html_gab495c02282f26f698cac3f280dfc7da3"><div class="ttname"><a href="group__DRV__MCSPI__LLD__MODULE.html#gab495c02282f26f698cac3f280dfc7da3">MCSPI_REG_OFFSET</a></div><div class="ttdeci">#define MCSPI_REG_OFFSET</div><div class="ttdoc">McSPI Register Offset for MCSPI_CHxCONF, MCSPI_CHxSTAT, MCSPI_CHxCTRL, MCSPI_TXx and MCSPI_RXx regist...</div><div class="ttdef"><b>Definition:</b> mcspi_lld.h:418</div></div>
+<div class="ttc" id="agroup__DRV__MCSPI__LLD__MODULE_html_gab495c02282f26f698cac3f280dfc7da3"><div class="ttname"><a href="group__DRV__MCSPI__LLD__MODULE.html#gab495c02282f26f698cac3f280dfc7da3">MCSPI_REG_OFFSET</a></div><div class="ttdeci">#define MCSPI_REG_OFFSET</div><div class="ttdoc">McSPI Register Offset for MCSPI_CHxCONF, MCSPI_CHxSTAT, MCSPI_CHxCTRL, MCSPI_TXx and MCSPI_RXx regist...</div><div class="ttdef"><b>Definition:</b> mcspi_lld.h:440</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

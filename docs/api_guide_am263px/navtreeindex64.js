@@ -1,5 +1,15 @@
 var NAVTREEINDEX64 =
 {
+"structEDMA__TcErrorInfo.html#a4eea7044cb5fb0dae53a7b67aaa4bbde":[18,7,6,5,5],
+"structEDMA__TcErrorInfo.html#aa3005957c00e19a06a5b174c377b6579":[18,7,6,5,4],
+"structEDMA__TcErrorInfo.html#ab7dfc5e0222c4d08f6fa70a39f6d4b25":[18,7,6,5,6],
+"structEDMA__TcErrorInfo.html#afbbff955b53affc6b2599f5d53e1f055":[18,7,6,5,3],
+"structEDMA__TcErrorInfo.html#afdcaae14dbe42d6289a99e65f23f0e1a":[18,7,6,5,1],
+"structEEPROM__Attrs.html":[18,1,2,2],
+"structEEPROM__Attrs.html#ab5409dc32ab52ad52ace4a745642d97f":[18,1,2,2,2],
+"structEEPROM__Attrs.html#ab8d21b11713ce8bf7157f7a76d2cf7d1":[18,1,2,2,1],
+"structEEPROM__Attrs.html#ac6ffb051bb5551f2ab97c93278968d6f":[18,1,2,2,0],
+"structEEPROM__Config__s.html":[18,1,2,3],
 "structEEPROM__Config__s.html#a6ab9b742abfd9e214a098341d0178a0a":[18,1,2,3,0],
 "structEEPROM__Config__s.html#acb9dae722b7badaa917cb1907f171b2a":[18,1,2,3,1],
 "structEEPROM__Config__s.html#ae7c4fc69b2b0489389b25852d7e24faa":[18,1,2,3,2],
@@ -239,15 +249,5 @@ var NAVTREEINDEX64 =
 "structEnetPhy__State.html#a32418e706ff4269251c83fb5334996d4":[18,4,0,13,15,1],
 "structEnetPhy__State.html#a35921dba6384be1f92b8f4ea6be4310a":[18,4,0,13,15,14],
 "structEnetPhy__State.html#a39b049fcdfea083c6cdbcfa3cba7ace7":[18,4,0,13,15,4],
-"structEnetPhy__State.html#a73d5167bee62e74f6eda098de55fa34e":[18,4,0,13,15,6],
-"structEnetPhy__State.html#a751e401d0f33865065206a3f52bf48ac":[18,4,0,13,15,7],
-"structEnetPhy__State.html#a7a1b87ae30afd4973a78214cc587ff5f":[18,4,0,13,15,0],
-"structEnetPhy__State.html#a7ccd637c31cbec932a42f981853c0ede":[18,4,0,13,15,12],
-"structEnetPhy__State.html#a8ecd44bb2e8fd8298d0c5f4be2d8dc72":[18,4,0,13,15,10],
-"structEnetPhy__State.html#a9fc95905371b64b198e447e4307c6819":[18,4,0,13,15,8],
-"structEnetPhy__State.html#abb3651617caed1c0ba14a76e728f3858":[18,4,0,13,15,5],
-"structEnetPhy__State.html#ace7377bc77b85a643c240ff4d3dc652b":[18,4,0,13,15,13],
-"structEnetPhy__State.html#ace82b4fdcdd6dff56479412c9f6323d3":[18,4,0,13,15,2],
-"structEnetPhy__State.html#affcdf8170795dd5e245eb28f1f31ba3c":[18,4,0,13,15,11],
-"structEnetPhy__Version.html":[18,4,0,13,10]
+"structEnetPhy__State.html#a73d5167bee62e74f6eda098de55fa34e":[18,4,0,13,15,6]
 };

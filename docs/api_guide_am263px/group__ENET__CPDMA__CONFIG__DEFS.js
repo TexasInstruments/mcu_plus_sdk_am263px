@@ -1,10 +1,10 @@
 var group__ENET__CPDMA__CONFIG__DEFS =
 [
-    [ "On PC1", "EXAMPLES_ENET_CPSW_TSN_GPTP_BRIDGE.html#autotoc_md3361", null ],
-    [ "On PC2", "EXAMPLES_ENET_CPSW_TSN_GPTP_BRIDGE.html#autotoc_md3362", null ],
-    [ "Packet Processing", "EXAMPLES_ENET_CPSW_INDUSTRIAL_APP.html#autotoc_md3231", null ],
-    [ "On PC1", "EXAMPLES_ENET_CPSW_TSN_GPTP_BRIDGE.html#autotoc_md3361", null ],
-    [ "On PC2", "EXAMPLES_ENET_CPSW_TSN_GPTP_BRIDGE.html#autotoc_md3362", null ],
+    [ "On PC1", "EXAMPLES_ENET_CPSW_TSN_GPTP_BRIDGE.html#autotoc_md3370", null ],
+    [ "On PC2", "EXAMPLES_ENET_CPSW_TSN_GPTP_BRIDGE.html#autotoc_md3371", null ],
+    [ "Packet Processing", "EXAMPLES_ENET_CPSW_INDUSTRIAL_APP.html#autotoc_md3240", null ],
+    [ "On PC1", "EXAMPLES_ENET_CPSW_TSN_GPTP_BRIDGE.html#autotoc_md3370", null ],
+    [ "On PC2", "EXAMPLES_ENET_CPSW_TSN_GPTP_BRIDGE.html#autotoc_md3371", null ],
     [ "EnetCpdma_OpenTxChPrms", "structEnetCpdma__OpenTxChPrms.html", [
       [ "hEnet", "structEnetCpdma__OpenTxChPrms.html#a2eda8a58f7e15c88551ad34de897369f", null ],
       [ "chNum", "structEnetCpdma__OpenTxChPrms.html#a97ef204e1173c3217f2896360b3ca92b", null ],

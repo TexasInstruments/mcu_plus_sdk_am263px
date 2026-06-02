@@ -1,5 +1,15 @@
 var NAVTREEINDEX65 =
 {
+"structEnetPhy__State.html#a751e401d0f33865065206a3f52bf48ac":[18,4,0,13,15,7],
+"structEnetPhy__State.html#a7a1b87ae30afd4973a78214cc587ff5f":[18,4,0,13,15,0],
+"structEnetPhy__State.html#a7ccd637c31cbec932a42f981853c0ede":[18,4,0,13,15,12],
+"structEnetPhy__State.html#a8ecd44bb2e8fd8298d0c5f4be2d8dc72":[18,4,0,13,15,10],
+"structEnetPhy__State.html#a9fc95905371b64b198e447e4307c6819":[18,4,0,13,15,8],
+"structEnetPhy__State.html#abb3651617caed1c0ba14a76e728f3858":[18,4,0,13,15,5],
+"structEnetPhy__State.html#ace7377bc77b85a643c240ff4d3dc652b":[18,4,0,13,15,13],
+"structEnetPhy__State.html#ace82b4fdcdd6dff56479412c9f6323d3":[18,4,0,13,15,2],
+"structEnetPhy__State.html#affcdf8170795dd5e245eb28f1f31ba3c":[18,4,0,13,15,11],
+"structEnetPhy__Version.html":[18,4,0,13,10],
 "structEnetPhy__Version.html#a6761be25acfe02923d1569b74ce1a25d":[18,4,0,13,10,1],
 "structEnetPhy__Version.html#ae4e18e89df0c29baae6eabcd87d89092":[18,4,0,13,10,2],
 "structEnetPhy__Version.html#ae508bfdc1dffd61a5dc5ac04fd9c52a1":[18,4,0,13,10,0],
@@ -239,15 +249,5 @@ var NAVTREEINDEX65 =
 "structFlash__DevConfig.html#af9aaea904629353d937dc22dc5837b94":[18,1,1,1,0],
 "structFlash__DevConfig.html#afab0fc477109d917238beffbee9712a0":[18,1,1,1,16],
 "structFlash__DevConfig.html#afb423a4bf94438d4e449227ca0c2596c":[18,1,1,1,17],
-"structFlash__DevConfig.html#afe362f0bdd2a40fc03d2089e45daa312":[18,1,1,1,5],
-"structFlash__Fxns.html":[18,1,1,3],
-"structFlash__Fxns.html#a10e797df598663ad56a0de7fc97948e6":[18,1,1,3,6],
-"structFlash__Fxns.html#a188c641aa936112bf55838b157b6c75a":[18,1,1,3,5],
-"structFlash__Fxns.html#a1ea1056103cb90dffb102efc9851fa9b":[18,1,1,3,2],
-"structFlash__Fxns.html#a2a2e6bba1dc3f3b11b62e551075a87f8":[18,1,1,3,8],
-"structFlash__Fxns.html#a33282037c2d497a3eac09fa35d9cf101":[18,1,1,3,0],
-"structFlash__Fxns.html#a6254564547e4ab2f04437ad5f6e03e06":[18,1,1,3,7],
-"structFlash__Fxns.html#a70868dc6e7f457f10ffa666ede4aea15":[18,1,1,3,4],
-"structFlash__Fxns.html#a74ab46d3d14c31dc1f3caab9113bb4b5":[18,1,1,3,9],
-"structFlash__Fxns.html#aa1415bbaf626f2f0e423a3aed1385df7":[18,1,1,3,1]
+"structFlash__DevConfig.html#afe362f0bdd2a40fc03d2089e45daa312":[18,1,1,1,5]
 };

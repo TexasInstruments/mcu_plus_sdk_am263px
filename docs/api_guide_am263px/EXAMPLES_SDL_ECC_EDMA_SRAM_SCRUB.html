@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('EXAMPLES_SDL_ECC_EDMA_SRAM_SCRUB.html'
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3741">Introduction</a><ul><li class="level2"><a href="#autotoc_md3742">Use Cases</a></li>
+<ul><li class="level1"><a href="#autotoc_md3750">Introduction</a><ul><li class="level2"><a href="#autotoc_md3751">Use Cases</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_SDL_ECC_EDMA_SRAM_SCRUB_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3743">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3744">See Also</a></li>
-<li class="level1"><a href="#autotoc_md3745">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3752">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3753">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3754">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_sdl_ecc_edma_sram_scrub"></a></p>
-<h1><a class="anchor" id="autotoc_md3741"></a>
+<h1><a class="anchor" id="autotoc_md3750"></a>
 Introduction</h1>
 <p>This example demonstrates how to use EDMA (Enhanced Direct Memory Access) and RTI (Real-Time Interrupt) to implement a periodic SRAM scrubbing mechanism for detecting and mitigating Single-Bit Errors (SBE) in AM263Px/AM263x microcontrollers.</p>
 <p>The scrubber reads the first 3 SRAM banks (1.5 MB total) using EDMA transfers triggered by RTI every 50 μs. Each EDMA transfer processes 4 × 64-bit beats (32 bytes). When a SEC (Single Error Correction) event occurs, the example determines whether:</p>
@@ -111,7 +111,7 @@ Introduction</h1>
 <li>The EDMA read buffer does not match SRAM data → CPU may have read corrupted data; a device reset is required</li>
 </ul>
 <p>Memory layout and EDMA/RTI configuration are managed through SysConfig.</p>
-<h2><a class="anchor" id="autotoc_md3742"></a>
+<h2><a class="anchor" id="autotoc_md3751"></a>
 Use Cases</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -135,17 +135,17 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/sdl/ecc/sdl_ecc_edma_sram_scrub/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3743"></a>
+<h1><a class="anchor" id="autotoc_md3752"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>).</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a>.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3744"></a>
+<h1><a class="anchor" id="autotoc_md3753"></a>
 See Also</h1>
 <p><a class="el" href="SDL_ECC_PAGE.html">ECC : Error Correcting Code</a></p>
-<h1><a class="anchor" id="autotoc_md3745"></a>
+<h1><a class="anchor" id="autotoc_md3754"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run:</p>
 <div class="fragment"><div class="line">EDMA RTI triggered SRAM Scrub Test ...</div>

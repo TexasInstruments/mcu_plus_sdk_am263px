@@ -1,5 +1,15 @@
 var NAVTREEINDEX59 =
 {
+"structBootloader__Config.html#a3447428623ee1c31303d9aed8d6775d1":[18,7,1,2,10],
+"structBootloader__Config.html#a370a52b5e10b51e716bbe2ab9a8aecbc":[18,7,1,2,2],
+"structBootloader__Config.html#a42a412a940c690f55bf8c54e35dbd89d":[18,7,1,2,8],
+"structBootloader__Config.html#a582b954b0c5f2f3b2f60445eec57ff1d":[18,7,1,2,5],
+"structBootloader__Config.html#a8d99ac15804092a0eddfeda43019ba06":[18,7,1,2,1],
+"structBootloader__Config.html#aa228d276af15a7202e635fc321d60ff4":[18,7,1,2,3],
+"structBootloader__Config.html#aae3e7f25ae846e2a8de16de4303e121e":[18,7,1,2,7],
+"structBootloader__Config.html#af90149b4610c394921c6797a9d3888dc":[18,7,1,2,9],
+"structBootloader__CpuInfo.html":[18,7,1,3],
+"structBootloader__CpuInfo.html#a49919927ff1709ac64c635a8f6ab22cf":[18,7,1,3,3],
 "structBootloader__CpuInfo.html#aa2a8631d52b7a969403a76ebbf65bd36":[18,7,1,3,2],
 "structBootloader__CpuInfo.html#ab7fba057fdf90ceb3216bbf88b0a2728":[18,7,1,3,0],
 "structBootloader__CpuInfo.html#ae2d1bd28ef5d6521ed3c5836e6a2d0ba":[18,7,1,3,1],
@@ -239,15 +249,5 @@ var NAVTREEINDEX59 =
 "structCore__config__t.html#a87010ebb39d0c0fdd197a7b0882f30f2":[18,7,38,10,14],
 "structCore__config__t.html#a8b3d5295092005735195011c568300af":[18,7,38,10,3],
 "structCore__config__t.html#a8bc29a7724b1e2526033dc8a844059f1":[18,7,38,10,12],
-"structCore__config__t.html#a952fa1ccd3a554d947618d6c1536fa77":[18,7,38,10,2],
-"structCore__config__t.html#a982ee7972eaebed7cfec5893bc050bab":[18,7,38,10,10],
-"structCore__config__t.html#a98b817adf5170ed43f36265c854cde3a":[18,7,38,10,8],
-"structCore__config__t.html#aacf1b912b9c0801bfc7e0cee3b08a1b0":[18,7,38,10,1],
-"structCore__config__t.html#ab84a03549b60f5d33a75d3e311480df0":[18,7,38,10,18],
-"structCore__config__t.html#aceb544b7e6ebd57f393874ee7e6fecc4":[18,7,38,10,17],
-"structCore__config__t.html#ad927de98e83ed138008b57b7a30b70ea":[18,7,38,10,5],
-"structCore__config__t.html#ae7695ac60cabf13485ef78c426147ee5":[18,7,38,10,15],
-"structCore__config__t.html#af9cb3bd6a4b4b1d1a20a6c6fb2eb0cd3":[18,7,38,10,7],
-"structCpswAle__AgingCfg.html":[18,4,0,1,0,38],
-"structCpswAle__AgingCfg.html#a381b943220d1107ec81125303649d9d6":[18,4,0,1,0,38,1]
+"structCore__config__t.html#a952fa1ccd3a554d947618d6c1536fa77":[18,7,38,10,2]
 };

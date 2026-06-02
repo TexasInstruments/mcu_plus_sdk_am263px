@@ -1,5 +1,15 @@
 var NAVTREEINDEX74 =
 {
+"structTCA6424__Attrs.html#aba7392ba05f8529a4f23abd42832fcde":[18,1,5,1,0],
+"structTCA6424__Config.html":[18,1,5,2],
+"structTCA6424__Config.html#a1e9462b56c0016e03821deff2da7c45f":[18,1,5,2,2],
+"structTCA6424__Config.html#a2fb5c3745fd0b735891f1e2c2834f65c":[18,1,5,2,0],
+"structTCA6424__Config.html#a972bc74274bcb8cbbbe3896a1c174ad5":[18,1,5,2,1],
+"structTCA6424__Config.html#ab5a4fd515c31835b17cd181351339e69":[18,1,5,2,3],
+"structTCA6424__Config.html#aca9a881b65557eebd52cc29404a1bf6d":[18,1,5,2,4],
+"structTCA6424__Params.html":[18,1,5,0],
+"structTCA6424__Params.html#a7002fe8077652fd1c4c3980111e67b30":[18,1,5,0,0],
+"structTCA6424__Params.html#ac6352dd015717259af556ce773cca6f5":[18,1,5,0,1],
 "structTaskP__Load.html":[18,2,12,0],
 "structTaskP__Load.html#a1ece63fe72865342dacd3ee29193149c":[18,2,12,0,3],
 "structTaskP__Load.html#a931070c16c2ceddfb3e7bac1668d1e1a":[18,2,12,0,0],
@@ -239,15 +249,5 @@ var NAVTREEINDEX74 =
 "structcb__tsn__thread__attr__t.html#a2edec41292af8f344ecb856be5aac77e":[18,12,5,1,0],
 "structcb__tsn__thread__attr__t.html#a78e05e5686745ecbcf67f4fd9644d2ab":[18,12,5,1,1],
 "structcb__tsn__thread__attr__t.html#a933cb0fb7f3490bc96db6a5a5da50180":[18,12,5,1,3],
-"structcb__tsn__thread__attr__t.html#ab859a17727fec43d7cb8914063292e24":[18,12,5,1,2],
-"structcb__waitpoint__t.html":[18,12,5,2],
-"structcb__waitpoint__t.html#a0e1e3d138a9cb71abd68f2edb2472851":[18,12,5,2,1],
-"structcb__waitpoint__t.html#a25d270632a7188dcd56aeeee0327f9ff":[18,12,5,2,0],
-"structcb__waitpoint__t.html#acd5af18c6ae061f2c93b5b874b728f82":[18,12,5,2,2],
-"structcb__waitpoint__t.html#ad320fb07f2f38f0651643877538fa5f5":[18,12,5,2,3],
-"structesmGroupIntrStatus__t.html":[18,6,6,0,3],
-"structesmGroupIntrStatus__t.html#a57dfb104178a533aab7405cbf32fa49d":[18,6,6,0,3,2],
-"structesmGroupIntrStatus__t.html#a64e9142c819356597be8f907034c50ef":[18,6,6,0,3,0],
-"structesmGroupIntrStatus__t.html#a761b50462222a838782418ae9c69d5fd":[18,6,6,0,3,1],
-"structesmInfo__t.html":[18,6,6,0,2]
+"structcb__tsn__thread__attr__t.html#ab859a17727fec43d7cb8914063292e24":[18,12,5,1,2]
 };

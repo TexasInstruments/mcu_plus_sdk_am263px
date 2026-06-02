@@ -92,45 +92,45 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_PPB_DELAY.html','
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2092">Introduction</a><ul><li class="level2"><a href="#autotoc_md2093">Example Description</a><ul><li class="level3"><a href="#autotoc_md2094">Note</a></li>
+<ul><li class="level1"><a href="#autotoc_md2100">Introduction</a><ul><li class="level2"><a href="#autotoc_md2101">Example Description</a><ul><li class="level3"><a href="#autotoc_md2102">Note</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md2095">SOC Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2096">PPB Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2097">Interrupt Configurations</a></li>
-<li class="level2"><a href="#autotoc_md2098">ISR configurations</a></li>
-<li class="level2"><a href="#autotoc_md2099">EPWM Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2103">SOC Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2104">PPB Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2105">Interrupt Configurations</a></li>
+<li class="level2"><a href="#autotoc_md2106">ISR configurations</a></li>
+<li class="level2"><a href="#autotoc_md2107">EPWM Configurations</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2100">External Connections</a><ul><li class="level2"><a href="#autotoc_md2101">AM263Px-CC E2 or AM263x-CC E2 or AM261x-SOM E1</a></li>
-<li class="level2"><a href="#autotoc_md2102">AM263x-CC E1</a></li>
-<li class="level2"><a href="#autotoc_md2103">AM263Px-LP or AM263x-LP</a></li>
-<li class="level2"><a href="#autotoc_md2104">AM261x-LP</a></li>
+<li class="level1"><a href="#autotoc_md2108">External Connections</a><ul><li class="level2"><a href="#autotoc_md2109">AM263Px-CC E2 or AM263x-CC E2 or AM261x-SOM E1</a></li>
+<li class="level2"><a href="#autotoc_md2110">AM263x-CC E1</a></li>
+<li class="level2"><a href="#autotoc_md2111">AM263Px-LP or AM263x-LP</a></li>
+<li class="level2"><a href="#autotoc_md2112">AM261x-LP</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2105">Watch Variables</a></li>
+<li class="level1"><a href="#autotoc_md2113">Watch Variables</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ADC_PPB_DELAY_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2106">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2107">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2108">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2114">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2115">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2116">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_adc_ppb_delay"></a></p>
-<h1><a class="anchor" id="autotoc_md2092"></a>
+<h1><a class="anchor" id="autotoc_md2100"></a>
 Introduction</h1>
-<h2><a class="anchor" id="autotoc_md2093"></a>
+<h2><a class="anchor" id="autotoc_md2101"></a>
 Example Description</h2>
 <p>This example demonstrates the PPB delay time stamp feature of the ADC. The PPBs (Post Processing Blocks) in ADC offer timestamping the delay between the conversion of given SOC and the trigger(associated) occurrence.</p>
 <p> <style>div.image img[src="am263_adc_ppb_delay.png"]{width:50%}</style> </p><div class="image">
 <img src="am263_adc_ppb_delay.png" alt=""/>
 <div class="caption">
 Delay Measurement</div></div>
- <h3><a class="anchor" id="autotoc_md2094"></a>
+ <h3><a class="anchor" id="autotoc_md2102"></a>
 Note</h3>
 <ul>
 <li>if a trigger occurred and the conversion occurred immediately, i.e., without any delay, the PPB captures a value '2'. and contains '0' as reset value. Hence, 0 in Delay represents SOC hasn't converted or there is an overflow of Delay counter.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2095"></a>
+<h2><a class="anchor" id="autotoc_md2103"></a>
 SOC Configurations</h2>
 <ol type="1">
 <li>SOC 0 :<ol type="a">
@@ -146,13 +146,13 @@ SOC Configurations</h2>
 </ol>
 </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md2096"></a>
+<h2><a class="anchor" id="autotoc_md2104"></a>
 PPB Configurations</h2>
 <ol type="1">
 <li>PPB 1 is set for SOC 0</li>
 <li>PPB 2 is set for SOC 1 </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md2097"></a>
+<h2><a class="anchor" id="autotoc_md2105"></a>
 Interrupt Configurations</h2>
 <p>INT xbar0, INT xbar1 are set for ADC 1 INT 1 and ADC 1 INT 2 respectively.</p>
 <ol type="1">
@@ -167,7 +167,7 @@ Interrupt Configurations</h2>
 </ul>
 </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md2098"></a>
+<h2><a class="anchor" id="autotoc_md2106"></a>
 ISR configurations</h2>
 <ol type="1">
 <li>App_adcISR0 :<ul>
@@ -180,7 +180,7 @@ ISR configurations</h2>
 </ul>
 </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md2099"></a>
+<h2><a class="anchor" id="autotoc_md2107"></a>
 EPWM Configurations</h2>
 <ol type="1">
 <li>EPWM 0 :<ul>
@@ -196,33 +196,33 @@ EPWM Configurations</h2>
 </ul>
 </li>
 </ol>
-<h1><a class="anchor" id="autotoc_md2100"></a>
+<h1><a class="anchor" id="autotoc_md2108"></a>
 External Connections</h1>
-<h2><a class="anchor" id="autotoc_md2101"></a>
+<h2><a class="anchor" id="autotoc_md2109"></a>
 AM263Px-CC E2 or AM263x-CC E2 or AM261x-SOM E1</h2>
 <p>Feed analog inputs to channels</p><ul>
 <li>ADC1_AIN0 - HSEC Pin 12</li>
 <li>ADC1_AIN1 - HSEC Pin 14 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2102"></a>
+<h2><a class="anchor" id="autotoc_md2110"></a>
 AM263x-CC E1</h2>
 <p>Feed analog inputs to channels</p><ul>
 <li>ADC1_AIN0 - HSEC Pin 18</li>
 <li>ADC1_AIN1 - HSEC Pin 20</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2103"></a>
+<h2><a class="anchor" id="autotoc_md2111"></a>
 AM263Px-LP or AM263x-LP</h2>
 <p>Feed analog inputs to channels</p><ul>
 <li>ADC1_AIN0 - J1/3 Pin 24</li>
 <li>ADC1_AIN1 - J1/3 Pin 29 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2104"></a>
+<h2><a class="anchor" id="autotoc_md2112"></a>
 AM261x-LP</h2>
 <p>Feed analog inputs to channels</p><ul>
 <li>ADC1_AIN0 - J1 Pin 24</li>
 <li>ADC1_AIN1 - J5 Pin 42 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2105"></a>
+<h1><a class="anchor" id="autotoc_md2113"></a>
 Watch Variables</h1>
 <ul>
 <li>gAdc1soc0Delay[] - holds the delay values for ADC1_SOC0</li>
@@ -242,7 +242,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/adc/adc_ppb_delay/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2106"></a>
+<h1><a class="anchor" id="autotoc_md2114"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -252,10 +252,10 @@ Steps to Run the Example</h1>
 <li>Using the watch variables, view the ADC conversion results.</li>
 <li>Observe 6 EPWM waveforms. After ADC input voltage exceeds the PPB limit, PWMs get tripped.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2107"></a>
+<h1><a class="anchor" id="autotoc_md2115"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ADC_PAGE.html">ADC</a></p>
-<h1><a class="anchor" id="autotoc_md2108"></a>
+<h1><a class="anchor" id="autotoc_md2116"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ADC PPB Delay Test Started</div>

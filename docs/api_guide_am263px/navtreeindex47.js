@@ -1,5 +1,15 @@
 var NAVTREEINDEX47 =
 {
+"group__ENETPHY__generic__phy.html#ga2c28930418f9931159ec49ac8b76e308":[18,4,0,13,9,73],
+"group__ENETPHY__generic__phy.html#ga2c7a969c41fa21338ac951e02f940641":[18,4,0,13,9,77],
+"group__ENETPHY__generic__phy.html#ga2fc2ed219e62b4cf3b244017e11f2225":[18,4,0,13,9,57],
+"group__ENETPHY__generic__phy.html#ga36dddbef7a2bba8afe051d03e561a399":[18,4,0,13,9,50],
+"group__ENETPHY__generic__phy.html#ga39d30d33ae6e4bec55ef3b969cb0993f":[18,4,0,13,9,7],
+"group__ENETPHY__generic__phy.html#ga3bc1bf8bb94fceffeee5fe7a11b815e3":[18,4,0,13,9,85],
+"group__ENETPHY__generic__phy.html#ga3d2af259492ab1c7322c0dcbbf5c5a6e":[18,4,0,13,9,28],
+"group__ENETPHY__generic__phy.html#ga3e7bc165ecdeac1a8406454c59035cd5":[18,4,0,13,9,17],
+"group__ENETPHY__generic__phy.html#ga46a100ecb4fb76a866ea9b30ab9d51e7":[18,4,0,13,9,68],
+"group__ENETPHY__generic__phy.html#ga4ef5f47bae1f0ed342fa828080d90e36":[18,4,0,13,9,67],
 "group__ENETPHY__generic__phy.html#ga4fc95668cc47130a55aa454d992472c9":[18,4,0,13,9,31],
 "group__ENETPHY__generic__phy.html#ga524d87a9592bf8b36b8f102aa45c82eb":[18,4,0,13,9,8],
 "group__ENETPHY__generic__phy.html#ga5358eac61ff391b9d3d1b831a6f20865":[18,4,0,13,9,30],
@@ -239,15 +249,5 @@ var NAVTREEINDEX47 =
 "group__ENET__MAIN__API.html#gab818bd5097baff64160ad178c39c076d":[18,4,0,4,19],
 "group__ENET__MAIN__API.html#gab8eafec510120f43eac8b8d45f410598":[18,4,0,4,62],
 "group__ENET__MAIN__API.html#gab9513bb4a3cc9b6d022122ea21f2ae43":[18,4,0,4,93],
-"group__ENET__MAIN__API.html#gabd646723225a8657df403224626b6c3c":[18,4,0,4,30],
-"group__ENET__MAIN__API.html#gabe18b5fba5e71c5da57ebd6cac9ef8d5":[18,4,0,4,90],
-"group__ENET__MAIN__API.html#gabef0d7202fb2da7e73ff955b66eebfbd":[18,4,0,4,72],
-"group__ENET__MAIN__API.html#gac06583493e625c70d85922f8821433d5":[18,4,0,4,35],
-"group__ENET__MAIN__API.html#gac1b06c84ae6d240ca2bb6dfb2793d80e":[18,4,0,4,46],
-"group__ENET__MAIN__API.html#gac2f30f7b3277c9ffa89018d226fa8985":[18,4,0,4,94],
-"group__ENET__MAIN__API.html#gac4df64a66e8bb2de94b35eb3d392caf1":[18,4,0,4,21],
-"group__ENET__MAIN__API.html#gacac5017e52a36fefff0c5107d8018f0a":[18,4,0,4,40],
-"group__ENET__MAIN__API.html#gacc619bc26058bcd497807d5756be5ff6":[18,4,0,4,54],
-"group__ENET__MAIN__API.html#gad29fa229c676ec0c5bff35926fd6bca1":[18,4,0,4,10],
-"group__ENET__MAIN__API.html#gad5f535fb856684a5b7af5022c9c12708":[18,4,0,4,47]
+"group__ENET__MAIN__API.html#gabd646723225a8657df403224626b6c3c":[18,4,0,4,30]
 };
