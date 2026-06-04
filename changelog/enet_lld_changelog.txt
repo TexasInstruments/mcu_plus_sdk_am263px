@@ -71478,3 +71478,31 @@ Date:   Mon May 18 12:03:08 2026 +0530
  .../loopback_mac_end/j722s-evm/main-r5fss0-0_freertos/ti-arm-clang/linker.cmd    | 10 +++++++++-
  2 files changed, 10 insertions(+), 2 deletions(-)
 
+========================================
+Changes from build on 2026-06-04 20:49:10
+Previous commit: a95313258e2b3fb1ff420a8f7f93d5f934df685a
+Current commit: aa61062ac140317d0ba9b3f12850a2dca43d0b4f
+========================================
+
+commit aa61062ac140317d0ba9b3f12850a2dca43d0b4f
+Author: Rishi Kumar <r-kumar12@ti.com>
+Date:   Fri May 22 14:51:10 2026 +0530
+
+    allsoc: enet_icss: fix HSR preemption queue MSMC end address overflow in Switch mode
+    
+    hostEgressPreQueueSize for Switch mode preemption queues was set to
+    ICSSG0/1_PRE_QUEUE_TOTAL_SIZE (total pool size) instead of
+    ICSSG_SWITCH_HOST_QUEUE_SIZE (per-queue size), causing the firmware to
+    compute an MSMC end address 20KB beyond the actual buffer pool boundary.
+    This led to buffer descriptor corruption when HSR preemption queues were
+    enabled. Fix by using ICSSG_SWITCH_HOST_QUEUE_SIZE consistent with the
+    express queue configuration.
+    
+    Fixes: SITREQ-6787 PINDSW-10928
+    
+    Signed-off-by: Rishi Kumar <r-kumar12@ti.com>
+
+ sysconfig/networking/.meta/enet_icss/enet_icss.syscfg.js                       | 2 +-
+ sysconfig/networking/.meta/enet_icss/templates/enet_soc_cfg_am64x_am243x.c.xdt | 8 ++++----
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
