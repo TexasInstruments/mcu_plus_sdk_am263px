@@ -225,6 +225,20 @@ If this option is ticked, the Board_flashOpen ***will not*** initialize the flas
 It will only update the book keeping structures in the software.
 `
 
+/* Protocol Configs */
+/* 1-1-1 */
+let protoToCfgMap = {
+    "1s_1s_1s" : "p111",
+    "1s_1s_2s" : "p112",
+    "1s_1s_4s" : "p114",
+    "1s_1s_8s" : "p118",
+    "4s_4s_4s" : "p444s",
+    "4s_4d_4d" : "p444d",
+    "8s_8s_8s" : "p888s",
+    "8d_8d_8d" : "p888d",
+    "custom"   : "pCustom",
+}
+
 function getDriver(drvName) {
     return system.getScript(`/drivers/${drvName}/${drvName}`);
 }
@@ -312,6 +326,159 @@ let flash_module = {
             default: soc.getDefaultProtocol().name,
             options: defaultProtocols,
             onChange: function(inst, ui) {
+                let pCfg = protoToCfgMap[inst.protocol];
+                let cfg = soc.getDefaultFlashConfig();
+
+                if(cfg.protos[pCfg] != null && (inst.protocol != "custom"))
+                {
+                    // Update command parameters
+                    inst.cmdRd = cfg.protos[pCfg].cmdRd;
+                    inst.cmdWr = cfg.protos[pCfg].cmdWr;
+
+                    // Update mode clocks
+                    inst.modeClksCmd = cfg.protos[pCfg].modeClksCmd;
+                    inst.modeClksRd = cfg.protos[pCfg].modeClksRd;
+
+                    // Update dummy clocks
+                    inst.dummyClksCmd = cfg.protos[pCfg].dummyClksCmd;
+                    inst.dummyClksRd = cfg.protos[pCfg].dummyClksRd;
+
+                    // Update Quad Enable type and Octal Enable type (protocol-conditional)
+                    if(inst.protocol.includes("4")) {
+                        inst.flashQeType = cfg.protos[pCfg].enableType;
+                    } else if (inst.protocol.includes("8")) {
+                        inst.flashOeType = cfg.protos[pCfg].enableType;
+                    }
+
+                    // Update 4-4-4 and 8-8-8 sequences (protocol-conditional)
+                    if(["4s_4s_4s", "4s_4d_4d"].includes(inst.protocol)) {
+                        inst.flash444Seq = cfg.protos[pCfg].enableSeq;
+                    } else if(["8s_8s_8s", "8d_8d_8d"].includes(inst.protocol)) {
+                        inst.flash888Seq = cfg.protos[pCfg].enableSeq;
+                    }
+
+                    // Update dummy cycle configuration
+                    if(cfg.protos[pCfg].dummyCfg != null)
+                    {
+                        inst.dummy_isAddrReg = cfg.protos[pCfg].dummyCfg.isAddrReg;
+                        inst.dummy_cfgReg = cfg.protos[pCfg].dummyCfg.cfgReg;
+                        inst.dummy_cmdRegRd = cfg.protos[pCfg].dummyCfg.cmdRegRd;
+                        inst.dummy_cmdRegWr = cfg.protos[pCfg].dummyCfg.cmdRegWr;
+
+                        inst.dummy_shift = cfg.protos[pCfg].dummyCfg.shift;
+                        inst.dummy_mask = cfg.protos[pCfg].dummyCfg.mask;
+                        inst.dummy_bitP = cfg.protos[pCfg].dummyCfg.bitP;
+                    }
+                    else
+                    {
+                        inst.dummy_isAddrReg = false;
+                        inst.dummy_cfgReg = "0x00000000";
+                        inst.dummy_cmdRegRd = "0x00";
+                        inst.dummy_cmdRegWr = "0x00";
+
+                        inst.dummy_shift = 0;
+                        inst.dummy_mask = "0x00";
+                        inst.dummy_bitP = 0;
+                    }
+
+                    // Update protocol configuration
+                    if(cfg.protos[pCfg].protoCfg != null)
+                    {
+                        inst.proto_isAddrReg = cfg.protos[pCfg].protoCfg.isAddrReg;
+                        inst.proto_cfgReg = cfg.protos[pCfg].protoCfg.cfgReg;
+                        inst.proto_cmdRegRd = cfg.protos[pCfg].protoCfg.cmdRegRd;
+                        inst.proto_cmdRegWr = cfg.protos[pCfg].protoCfg.cmdRegWr;
+
+                        inst.proto_shift = cfg.protos[pCfg].protoCfg.shift;
+                        inst.proto_mask = cfg.protos[pCfg].protoCfg.mask;
+                        inst.proto_bitP = cfg.protos[pCfg].protoCfg.bitP;
+                    }
+                    else
+                    {
+                        inst.proto_isAddrReg = false;
+                        inst.proto_cfgReg = "0x00000000";
+                        inst.proto_cmdRegRd = "0x00";
+                        inst.proto_cmdRegWr = "0x00";
+
+                        inst.proto_shift = 0;
+                        inst.proto_mask = "0x00";
+                        inst.proto_bitP = 0;
+                    }
+
+                    // Update STR/DTR configuration
+                    if(cfg.protos[pCfg].strDtrCfg != null)
+                    {
+                        inst.strDtr_isAddrReg = cfg.protos[pCfg].strDtrCfg.isAddrReg;
+                        inst.strDtr_cfgReg = cfg.protos[pCfg].strDtrCfg.cfgReg;
+                        inst.strDtr_cmdRegRd = cfg.protos[pCfg].strDtrCfg.cmdRegRd;
+                        inst.strDtr_cmdRegWr = cfg.protos[pCfg].strDtrCfg.cmdRegWr;
+
+                        inst.strDtr_shift = cfg.protos[pCfg].strDtrCfg.shift;
+                        inst.strDtr_mask = cfg.protos[pCfg].strDtrCfg.mask;
+                        inst.strDtr_bitP = cfg.protos[pCfg].strDtrCfg.bitP;
+                    }
+                    else
+                    {
+                        inst.strDtr_isAddrReg = false;
+                        inst.strDtr_cfgReg = "0x00000000";
+                        inst.strDtr_cmdRegRd = "0x00";
+                        inst.strDtr_cmdRegWr = "0x00";
+
+                        inst.strDtr_shift = 0;
+                        inst.strDtr_mask = "0x00";
+                        inst.strDtr_bitP = 0;
+                    }
+                }
+                else
+                {
+                    // Reset command parameters
+                    inst.cmdRd = "0x00";
+                    inst.cmdWr = "0x00";
+
+                    // Reset mode clocks
+                    inst.modeClksCmd = 0;
+                    inst.modeClksRd = 0;
+
+                    // Reset dummy clocks
+                    inst.dummyClksCmd = 0;
+                    inst.dummyClksRd = 0;
+
+                    // Reset Quad/Octal Enable types
+                    inst.flashQeType = "0";
+                    inst.flashOeType = "0";
+
+                    // Reset 4-4-4 and 8-8-8 sequences
+                    inst.flash444Seq = "0x00";
+                    inst.flash888Seq = "0x00";
+
+                    // Reset dummy cycle configuration
+                    inst.dummy_isAddrReg = false;
+                    inst.dummy_cfgReg = "0x00000000";
+                    inst.dummy_cmdRegRd = "0x00";
+                    inst.dummy_cmdRegWr = "0x00";
+                    inst.dummy_shift = 0;
+                    inst.dummy_mask = "0x00";
+                    inst.dummy_bitP = 0;
+
+                    // Reset protocol configuration
+                    inst.proto_isAddrReg = false;
+                    inst.proto_cfgReg = "0x00000000";
+                    inst.proto_cmdRegRd = "0x00";
+                    inst.proto_cmdRegWr = "0x00";
+                    inst.proto_shift = 0;
+                    inst.proto_mask = "0x00";
+                    inst.proto_bitP = 0;
+
+                    // Reset STR/DTR configuration
+                    inst.strDtr_isAddrReg = false;
+                    inst.strDtr_cfgReg = "0x00000000";
+                    inst.strDtr_cmdRegRd = "0x00";
+                    inst.strDtr_cmdRegWr = "0x00";
+                    inst.strDtr_shift = 0;
+                    inst.strDtr_mask = "0x00";
+                    inst.strDtr_bitP = 0;
+                }
+
                 let hideLines = true;
                 if(inst.protocol == "custom") {
                     hideLines = false;
@@ -1073,20 +1240,6 @@ function fillConfigs(inst, cfg) {
     inst.cmdBlockErase4B = cfg.cmdBlockErase4B;
     inst.cmdSectorErase3B = cfg.cmdSectorErase3B;
     inst.cmdSectorErase4B = cfg.cmdSectorErase4B;
-
-    /* Protocol Configs */
-    /* 1-1-1 */
-    let protoToCfgMap = {
-        "1s_1s_1s" : "p111",
-        "1s_1s_2s" : "p112",
-        "1s_1s_4s" : "p114",
-        "1s_1s_8s" : "p118",
-        "4s_4s_4s" : "p444s",
-        "4s_4d_4d" : "p444d",
-        "8s_8s_8s" : "p888s",
-        "8d_8d_8d" : "p888d",
-        "custom"   : "pCustom",
-    }
 
     let pCfg = cfg.protos[protoToCfgMap[inst.protocol]];
 
