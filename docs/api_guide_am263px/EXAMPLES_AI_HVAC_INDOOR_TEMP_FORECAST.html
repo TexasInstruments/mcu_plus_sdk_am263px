@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('EXAMPLES_AI_HVAC_INDOOR_TEMP_FORECAST.
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3955">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md3965">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_AI_HVAC_INDOOR_TEMP_FORECAST_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3956">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3957">Dataset</a></li>
-<li class="level2"><a href="#autotoc_md3958">Model Architecture</a></li>
-<li class="level2"><a href="#autotoc_md3959">Input Features</a></li>
-<li class="level2"><a href="#autotoc_md3960">Output</a></li>
+<li class="level1"><a href="#autotoc_md3966">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3967">Dataset</a></li>
+<li class="level2"><a href="#autotoc_md3968">Model Architecture</a></li>
+<li class="level2"><a href="#autotoc_md3969">Input Features</a></li>
+<li class="level2"><a href="#autotoc_md3970">Output</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3961">Feature Extraction Configuration</a></li>
-<li class="level1"><a href="#autotoc_md3962">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3963">See Also</a></li>
-<li class="level1"><a href="#autotoc_md3964">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3971">Feature Extraction Configuration</a></li>
+<li class="level1"><a href="#autotoc_md3972">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3973">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3974">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_ai_hvac_indoor_temp_forecast"></a></p>
-<h1><a class="anchor" id="autotoc_md3955"></a>
+<h1><a class="anchor" id="autotoc_md3965"></a>
 Introduction</h1>
 <p>Traditional HVAC controllers are reactive - they respond to temperature deviations only after they occur, leading to delayed corrections, unnecessary compressor cycling, and wasted energy. A smarter approach is to anticipate what the indoor temperature will be in the near future and act preemptively.</p>
 <p>This project demonstrates on-device machine learning for HVAC control. A compact LSTM model running directly on the AM26x MCU predicts upcoming temperature trends from recent sensor readings, enabling smoother, more energy-efficient control decisions without relying on cloud connectivity.</p>
@@ -125,9 +125,9 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/ai/hvac_indoor_temp_forecast/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3956"></a>
+<h1><a class="anchor" id="autotoc_md3966"></a>
 Dataset and Model Details</h1>
-<h2><a class="anchor" id="autotoc_md3957"></a>
+<h2><a class="anchor" id="autotoc_md3967"></a>
 Dataset</h2>
 <p>This example uses a synthetic HVAC dataset designed to emulate realistic indoor thermal dynamics. The dataset captures the interplay between compressor operation, outdoor conditions, and the resulting indoor temperature.</p>
 <table class="markdownTable">
@@ -141,10 +141,10 @@ Dataset</h2>
 <td class="markdownTableBodyNone"><b>Prediction Target</b>  </td><td class="markdownTableBodyNone">indoorTemperature (next timestep)   </td></tr>
 </table>
 <p>The model learns to predict the indoor temperature at the next timestep given the past 5 readings of all three signals.</p>
-<h2><a class="anchor" id="autotoc_md3958"></a>
+<h2><a class="anchor" id="autotoc_md3968"></a>
 Model Architecture</h2>
 <p>The model is <code>FCST_LSTM10</code>, a single-layer LSTM network with a hidden size of 10 and approximately 611 trainable parameters. LSTM gating mechanisms capture the temporal dependencies between compressor activity, outdoor conditions, and the resulting indoor temperature trajectory.</p>
-<h2><a class="anchor" id="autotoc_md3959"></a>
+<h2><a class="anchor" id="autotoc_md3969"></a>
 Input Features</h2>
 <p>The model takes 4D input (N,C,H,W):</p><ul>
 <li>N (1): batch size, restricted to 1</li>
@@ -152,13 +152,13 @@ Input Features</h2>
 <li>H (5): number of historical timesteps (frame size) used for prediction</li>
 <li>W (1): width, restricted to 1 for timeseries applications</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3960"></a>
+<h2><a class="anchor" id="autotoc_md3970"></a>
 Output</h2>
 <p>The model produces an output tensor of shape (1, 1, 1, 1), representing the predicted indoor temperature at the next timestep (forecast_horizon = 1). This is a continuous forecasting output that can be fed directly into a downstream control algorithm.</p>
-<h1><a class="anchor" id="autotoc_md3961"></a>
+<h1><a class="anchor" id="autotoc_md3971"></a>
 Feature Extraction Configuration</h1>
 <p>A SimpleWindow transform segments the continuous stream into fixed-length windows of 5 consecutive timesteps across all 3 input channels. No FFT, binning, or log scaling is applied - the LSTM model learns directly from raw sensor values.</p>
-<h1><a class="anchor" id="autotoc_md3962"></a>
+<h1><a class="anchor" id="autotoc_md3972"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -166,10 +166,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>The application will forecast indoor temperature and compare against expected values</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3963"></a>
+<h1><a class="anchor" id="autotoc_md3973"></a>
 See Also</h1>
 <p><a class="el" href="EXAMPLES_AI.html">AI Examples</a></p>
-<h1><a class="anchor" id="autotoc_md3964"></a>
+<h1><a class="anchor" id="autotoc_md3974"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">HVAC Indoor Temperature Forecasting Example Started ...</div>
 <div class="line">All tests have passed!!</div>

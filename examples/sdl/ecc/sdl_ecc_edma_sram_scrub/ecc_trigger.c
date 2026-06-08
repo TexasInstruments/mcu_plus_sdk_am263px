@@ -50,32 +50,21 @@
 #include <kernel/dpl/DebugP.h>
 #include <sdl/dpl/sdl_dpl.h>
 #include <dpl_interface.h>
+#include "edma_rti_sram_scrub.h"
 
-#if defined(SOC_AM263X)
-#include <sdl/include/am263x/sdlr_soc_ecc_aggr.h>
-#endif
-#if defined(SOC_AM263PX)
-#include <sdl/include/am263px/sdlr_soc_ecc_aggr.h>
-#endif
+
 
 /* ========================================================================== */
 /*                                Macros                                      */
 /* ========================================================================== */
 /* delay for 1us*/
-#define DELAY 1
-
-/* This macro shows how many ESM events are configured*/
-#define SDL_ESM_MAX_MSS_EXAMPLE_AGGR                (2U)
+#define DELAY                                       (1U)
 #define SDL_MSS_L2_MAX_MEM_SECTIONS                 (1U)
 
 #if defined(SOC_AM263X) || defined(SOC_AM263PX)
 #define SDL_EXAMPLE_ECC_RAM_ADDR                    (0x70000A00U) /*MSS_L2_SLV0 address*/
 #define SDL_EXAMPLE_ECC_AGGR                        SDL_SOC_ECC_AGGR
 #define SDL_EXAMPLE_ECC_RAM_ID                      SDL_SOC_ECC_AGGR_MSS_L2_SLV0_ECC_RAM_ID
-
-#define SDL_MSS_L2_MEM_INIT_ADDR                    (0x50D00240U)
-#define SDL_MSS_L2_MEM_INIT_DONE_ADDR               (0x50D00244U)
-#define SDL_ECC_AGGR_ERROR_STATUS1_ADDR             (0x53000020U)
 #define SDL_ECC_MSS_L2_BANK_MEM_INIT                (0x0CU) /*Bank 3 and 2*/
 #endif
 
