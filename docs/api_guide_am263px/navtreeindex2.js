@@ -243,11 +243,11 @@ var NAVTREEINDEX2 =
 "EVM_SYSCONFIG_GUIDE.html#autotoc_md461":[4,17,3],
 "EXAMPLES.html":[17],
 "EXAMPLES_AI.html":[17,16],
-"EXAMPLES_AI.html#autotoc_md3869":[17,16,0],
-"EXAMPLES_AI.html#autotoc_md3870":[17,16,0,0],
-"EXAMPLES_AI.html#autotoc_md3871":[17,16,0,1],
-"EXAMPLES_AI.html#autotoc_md3872":[17,16,0,2],
-"EXAMPLES_AI.html#autotoc_md3873":[17,16,0,3],
-"EXAMPLES_AI.html#autotoc_md3874":[17,16,0,4],
+"EXAMPLES_AI.html#autotoc_md3889":[17,16,0],
+"EXAMPLES_AI.html#autotoc_md3890":[17,16,0,0],
+"EXAMPLES_AI.html#autotoc_md3891":[17,16,0,1],
+"EXAMPLES_AI.html#autotoc_md3892":[17,16,0,2],
+"EXAMPLES_AI.html#autotoc_md3893":[17,16,0,3],
+"EXAMPLES_AI.html#autotoc_md3894":[17,16,0,4],
 "EXAMPLES_AI_ARC_FAULT.html":[17,16,3]
 };

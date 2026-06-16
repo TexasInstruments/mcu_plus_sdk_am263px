@@ -92,22 +92,22 @@ $(document).ready(function(){initNavTree('EXAMPLES_AI_GENERIC_TIMESERIES_CLASSIF
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3875">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md3895">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_AI_GENERIC_TIMESERIES_CLASSIFICATION_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3876">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3877">Dataset</a></li>
-<li class="level2"><a href="#autotoc_md3878">Model Architecture</a></li>
-<li class="level2"><a href="#autotoc_md3879">Input Features</a></li>
-<li class="level2"><a href="#autotoc_md3880">Output</a></li>
+<li class="level1"><a href="#autotoc_md3896">Dataset and Model Details</a><ul><li class="level2"><a href="#autotoc_md3897">Dataset</a></li>
+<li class="level2"><a href="#autotoc_md3898">Model Architecture</a></li>
+<li class="level2"><a href="#autotoc_md3899">Input Features</a></li>
+<li class="level2"><a href="#autotoc_md3900">Output</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3881">Feature Extraction Configuration</a></li>
-<li class="level1"><a href="#autotoc_md3882">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3883">See Also</a></li>
-<li class="level1"><a href="#autotoc_md3884">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3901">Feature Extraction Configuration</a></li>
+<li class="level1"><a href="#autotoc_md3902">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3903">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3904">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_ai_generic_timeseries_classification"></a></p>
-<h1><a class="anchor" id="autotoc_md3875"></a>
+<h1><a class="anchor" id="autotoc_md3895"></a>
 Introduction</h1>
 <p>Generic Timeseries Classification is a hello world example for understanding usage of AI models on TI MCU. This project demonstrates implementation of an AI-based waveform detection system on AM26x microcontrollers. It showcases how to deploy machine learning models for real-time waveform classification in embedded systems, serving as a hello world example. TI provides a complete development ecosystem with toolchains and SDKs that significantly streamline all stages of Edge AI solution development.</p>
 <p>The example uses a simple classification dataset with three waveform classes: sine, sawtooth, and square waveforms.</p>
@@ -125,9 +125,9 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/ai/generic_timeseries_classification/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3876"></a>
+<h1><a class="anchor" id="autotoc_md3896"></a>
 Dataset and Model Details</h1>
-<h2><a class="anchor" id="autotoc_md3877"></a>
+<h2><a class="anchor" id="autotoc_md3897"></a>
 Dataset</h2>
 <p>TI has created a specialized waveform dataset containing signal measurements. The dataset is divided into three classes: sine waveform, sawtooth waveform and square waveform.</p>
 <table class="markdownTable">
@@ -144,10 +144,10 @@ Dataset</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><b>Total Files</b>  </td><td class="markdownTableBodyNone">75 files (~25 files in each of 3 classes)   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md3878"></a>
+<h2><a class="anchor" id="autotoc_md3898"></a>
 Model Architecture</h2>
 <p>This lightweight classification model <code>CLS_1k_NPU</code> contains approximately 1,000 parameters and follows a streamlined architecture consisting of four convolutional layers (each enhanced with BatchNorm and ReLU activation functions) followed by a single linear layer.</p>
-<h2><a class="anchor" id="autotoc_md3879"></a>
+<h2><a class="anchor" id="autotoc_md3899"></a>
 Input Features</h2>
 <p>The model takes 4D input (N,C,H,W):</p><ul>
 <li>N (1): batch size which is restricted to 1</li>
@@ -155,14 +155,14 @@ Input Features</h2>
 <li>H (256): samples of timeseries signals which is 256 in this example</li>
 <li>W (1): width of samples is restricted to 1 for timeseries applications</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3880"></a>
+<h2><a class="anchor" id="autotoc_md3900"></a>
 Output</h2>
 <p>This model produces a 1D output representing the three possible classes. The position of the highest value in this output indicates the classification result:</p><ul>
 <li>Class 0: Sine waveform</li>
 <li>Class 1: Sawtooth waveform</li>
 <li>Class 2: Square waveform</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3881"></a>
+<h1><a class="anchor" id="autotoc_md3901"></a>
 Feature Extraction Configuration</h1>
 <p>Feature extraction transforms raw data into meaningful inputs for the AI model. For this waveform detection system, applying FFT to identify frequencies, followed by binning and logarithmic scaling, produces superior results.</p>
 <p>The feature extraction pipeline is configured in <code>user_input_config.h</code>:</p>
@@ -180,7 +180,7 @@ Feature Extraction Configuration</h1>
 <li><code>FE_FFT_BIN_SIZE</code>: 8 (bin width)</li>
 <li><code>FE_NN_OUT_SIZE</code>: 3 (number of output classes)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3882"></a>
+<h1><a class="anchor" id="autotoc_md3902"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -188,10 +188,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>The application will run inference on test vectors and display results in the console</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3883"></a>
+<h1><a class="anchor" id="autotoc_md3903"></a>
 See Also</h1>
 <p><a class="el" href="EXAMPLES_AI.html">AI Examples</a></p>
-<h1><a class="anchor" id="autotoc_md3884"></a>
+<h1><a class="anchor" id="autotoc_md3904"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">Generic Timeseries Classification Example Started ...</div>
 <div class="line">Feature extraction mismatches 0</div>

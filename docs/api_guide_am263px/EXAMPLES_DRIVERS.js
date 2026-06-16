@@ -1555,36 +1555,36 @@ var EXAMPLES_DRIVERS =
       [ "Sample Output", "EXAMPLES_DRIVERS_OSPI_FLASH_XIP.html#autotoc_md1959", null ]
     ] ],
     [ " RL2 Example", "EXAMPLES_RL2.html", [
-      [ "Introduction", "EXAMPLES_RL2.html#autotoc_md4031", null ],
+      [ "Introduction", "EXAMPLES_RL2.html#autotoc_md4051", null ],
       [ "Supported Combinations", "EXAMPLES_RL2.html#EXAMPLES_RL2_COMBOS", null ],
-      [ "Steps to Run the Example", "EXAMPLES_RL2.html#autotoc_md4032", null ],
-      [ "Sample Output", "EXAMPLES_RL2.html#autotoc_md4033", null ],
-      [ "Description", "EXAMPLES_RL2.html#autotoc_md4034", null ]
+      [ "Steps to Run the Example", "EXAMPLES_RL2.html#autotoc_md4052", null ],
+      [ "Sample Output", "EXAMPLES_RL2.html#autotoc_md4053", null ],
+      [ "Description", "EXAMPLES_RL2.html#autotoc_md4054", null ]
     ] ],
     [ " FLC Example", "EXAMPLES_FLC.html", [
-      [ "Introduction", "EXAMPLES_FLC.html#autotoc_md4035", null ],
+      [ "Introduction", "EXAMPLES_FLC.html#autotoc_md4055", null ],
       [ "Supported Combinations", "EXAMPLES_FLC.html#EXAMPLES_FLC_COMBOS", null ],
-      [ "Steps to Run the Example", "EXAMPLES_FLC.html#autotoc_md4036", null ],
-      [ "Sample Output", "EXAMPLES_FLC.html#autotoc_md4037", null ]
+      [ "Steps to Run the Example", "EXAMPLES_FLC.html#autotoc_md4056", null ],
+      [ "Sample Output", "EXAMPLES_FLC.html#autotoc_md4057", null ]
     ] ],
     [ "RAT Example", "EXAMPLES_RAT.html", [
-      [ "Introduction", "EXAMPLES_RAT.html#autotoc_md4041", null ],
+      [ "Introduction", "EXAMPLES_RAT.html#autotoc_md4061", null ],
       [ "Supported Combinations", "EXAMPLES_RAT.html#EXAMPLES_RAT_COMBOS", null ],
-      [ "Steps to Run the Example", "EXAMPLES_RAT.html#autotoc_md4042", null ],
-      [ "Sample Output", "EXAMPLES_RAT.html#autotoc_md4043", null ],
-      [ "Description", "EXAMPLES_RAT.html#autotoc_md4044", null ]
+      [ "Steps to Run the Example", "EXAMPLES_RAT.html#autotoc_md4062", null ],
+      [ "Sample Output", "EXAMPLES_RAT.html#autotoc_md4063", null ],
+      [ "Description", "EXAMPLES_RAT.html#autotoc_md4064", null ]
     ] ],
     [ "Swap To Region B", "EXAMPLES_DRIVERS_SWAP_TO_B.html", [
-      [ "Introduction", "EXAMPLES_DRIVERS_SWAP_TO_B.html#autotoc_md4045", null ],
+      [ "Introduction", "EXAMPLES_DRIVERS_SWAP_TO_B.html#autotoc_md4065", null ],
       [ "Supported Combinations", "EXAMPLES_DRIVERS_SWAP_TO_B.html#EXAMPLES_DRIVERS_SWAP_TO_B_COMBOS", null ],
-      [ "Steps to Run the Example", "EXAMPLES_DRIVERS_SWAP_TO_B.html#autotoc_md4046", null ],
-      [ "Sample Output", "EXAMPLES_DRIVERS_SWAP_TO_B.html#autotoc_md4047", null ]
+      [ "Steps to Run the Example", "EXAMPLES_DRIVERS_SWAP_TO_B.html#autotoc_md4066", null ],
+      [ "Sample Output", "EXAMPLES_DRIVERS_SWAP_TO_B.html#autotoc_md4067", null ]
     ] ],
     [ "Using FOTA Agent (FSS Switch To B)", "EXAMPLES_DRIVERS_FOTA_AGENT.html", [
-      [ "Introduction", "EXAMPLES_DRIVERS_FOTA_AGENT.html#autotoc_md4038", null ],
+      [ "Introduction", "EXAMPLES_DRIVERS_FOTA_AGENT.html#autotoc_md4058", null ],
       [ "Supported Combinations", "EXAMPLES_DRIVERS_FOTA_AGENT.html#EXAMPLES_DRIVERS_FOTA_AGENT_COMBOS", null ],
-      [ "Steps to Run the Example", "EXAMPLES_DRIVERS_FOTA_AGENT.html#autotoc_md4039", null ],
-      [ "Sample Output", "EXAMPLES_DRIVERS_FOTA_AGENT.html#autotoc_md4040", null ]
+      [ "Steps to Run the Example", "EXAMPLES_DRIVERS_FOTA_AGENT.html#autotoc_md4059", null ],
+      [ "Sample Output", "EXAMPLES_DRIVERS_FOTA_AGENT.html#autotoc_md4060", null ]
     ] ],
     [ "PMIC ESM Level mode example", "EXAMPLES_PMIC_ESM_LEVEL_MODE.html", [
       [ "Introduction", "EXAMPLES_PMIC_ESM_LEVEL_MODE.html#autotoc_md1891", null ],
