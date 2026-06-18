@@ -1,5 +1,57 @@
 var RELEASE_NOTES_PAGE =
 [
+    [ "Release Notes 26.01.00.LTS", "RELEASE_NOTES_26_01_00_PAGE.html", [
+      [ "New in this Release", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md318", null ],
+      [ "Modules Not tested/supported in this release", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md319", [
+        [ "Device and Validation Information", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md320", null ],
+        [ "Dependent Tools and Compiler Information", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md321", null ],
+        [ "Key Features", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md322", [
+          [ "Experimental Features", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md323", null ],
+          [ "OS Kernel", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md324", null ],
+          [ "Driver Porting Layer (DPL)", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md325", null ],
+          [ "Secondary Bootloader (SBL)", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md326", null ],
+          [ "SOC Device Drivers", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md327", null ],
+          [ "Trigonometric Operations", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md328", null ],
+          [ "Board Device Drivers", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md329", null ],
+          [ "Networking", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md330", null ],
+          [ "Safety Diagnostic Library", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md331", null ],
+          [ "PRU IO", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md332", null ]
+        ] ],
+        [ "Fixed Issues", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md333", null ],
+        [ "Known Issues", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md334", null ],
+        [ "Errata", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md335", null ],
+        [ "Limitations", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md336", null ],
+        [ "Release Types", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md337", [
+          [ "How to Identify Release Type", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md338", null ],
+          [ "EA (Early Adopter)", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md339", null ],
+          [ "STS (Short Term Support)", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md340", null ],
+          [ "LTS (Long Term Support)", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md341", null ],
+          [ "Release Type Comparison", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md342", null ]
+        ] ],
+        [ "CI/CD Strategy", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md343", null ],
+        [ "Software Bill of Materials", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md344", null ],
+        [ "Upgrade and Compatibility Information", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md345", [
+          [ "How to run FOTA examples on AM263PX-SIP board", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md346", null ],
+          [ "Compiling examples in MacOS machines", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md347", null ],
+          [ "RPRC Image format is Deprecated and Corresponding SBL's are also removed from SDK", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md348", null ],
+          [ "Flash Reset moved to SysCfg", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md349", null ],
+          [ "Module clock configuration through Clock Tree", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md350", null ],
+          [ "Migrating back from CCS Theia to CCS Eclipse", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md351", [
+            [ "Importing and Building in Eclipse", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md352", null ],
+            [ "CCS SBL Loading", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md353", null ]
+          ] ],
+          [ "Migrating examples to 11.00.00 from older versions", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md354", [
+            [ "Makefile Changes", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md355", null ]
+          ] ],
+          [ "SDL PBIST Self test", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md358", null ],
+          [ "SDL STC Configuration", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md359", null ],
+          [ "SDL Handler API name update", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md360", null ],
+          [ "Compiler Options", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md361", null ],
+          [ "SOC Device Drivers", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md362", null ],
+          [ "Ethernet and Networking", "RELEASE_NOTES_26_01_00_PAGE.html#autotoc_md363", null ]
+        ] ]
+      ] ]
+    ] ],
     [ "Release Notes 26.00.00.STS", "RELEASE_NOTES_26_00_00_PAGE.html", [
       [ "New in this Release", "RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md272", null ],
       [ "Modules Not tested/supported in this release", "RELEASE_NOTES_26_00_00_PAGE.html#autotoc_md273", [

@@ -8,6 +8,8 @@
 %%}
 % if (instance.enableMcuLbist ){
 #include <sdl/sdl_stc.h>
+
+#define MCU_LBIST_ENABLED    1
 % if(common.getSocName() === "am261x"){
 static const SDL_STC_Inst test_case[]={SDL_STC_INST_MAINR5F0};
 %}

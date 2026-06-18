@@ -14,6 +14,7 @@
     int32_t sdlResult=SDL_PASS;
     int32_t test_Result = 0;
     static int32_t countInst=0;
+    gMcuLbistTestStatus = 1;
 
 % if(common.getSocName() === "am261x"){
     countInst=1;
@@ -36,8 +37,6 @@
             {
                 DebugP_log("Core%d is Reset.\r\n",i);
                 DebugP_log("STC is done Successfully & Passed for R5F%d.\r\n",i);
-                /* Enable IRQ back */
-                HwiP_enable();
                 break;
             }
             case SDL_STC_COMPLETED_FAILURE:
@@ -79,9 +78,9 @@
                 sdlResult=   SDL_STC_selfTest(test_case[i], SDL_STC_TEST, pConfig);
 
                 DebugP_log("STC Test Application completed for Core%d.\r\n", i);
-                if (sdlResult!=SDL_PASS)
+                if ((sdlResult!=SDL_PASS) || (i == 0))
                 {
-                    DebugP_log("STC Test Could not completed Successfully.\r\n");
+                    DebugP_log("\r\nSTC Test Could not completed successfully.\r\n");
                 }
 
                 break;
@@ -95,4 +94,6 @@
             break;
         }
     }
+    /* Enable IRQ back */
+    HwiP_enable();
 %}
