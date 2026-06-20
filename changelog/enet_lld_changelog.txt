@@ -71532,3 +71532,162 @@ Date:   Tue Mar 17 12:18:31 2026 +0530
  .../networking/.meta/enet_icss/templates/enet_soc_cfg_am64x_am243x.c.xdt    | 11 ++++----
  3 files changed, 57 insertions(+), 7 deletions(-)
 
+========================================
+Changes from build on 2026-06-20 20:48:13
+Previous commit: b4716a378bae2739846fc1158d227999cc33f066
+Current commit: 01a5e2786e791b365c26cc5b948adc7b5ebc0c14
+========================================
+
+commit 01a5e2786e791b365c26cc5b948adc7b5ebc0c14
+Author: Sonu Alam <s-alam@ti.com>
+Date:   Wed Jun 17 17:07:14 2026 +0530
+
+    enet: am283x: add sysconfig networking SoC file for am283x
+    
+    - Add sysconfig/networking/.meta/soc/networking_am283x.syscfg.js
+      mirroring the am275x SoC-specific sysconfig file
+    - am283x shares the same CPSW hardware as am275x
+    
+    Fixes: SITSW-11300
+    
+    Signed-off-by: Sonu Alam <s-alam@ti.com>
+
+ sysconfig/networking/.meta/soc/networking_am283x.syscfg.js | 40 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+
+commit 34f572c8342e9de5e469da95529a97b9805f878f
+Author: Sonu Alam <s-alam@ti.com>
+Date:   Wed Jun 17 17:02:15 2026 +0530
+
+    enet: am283x: add sysconfig CPSW SoC-specific files for am283x
+    
+    - Add sysconfig/networking/.meta/enet_cpsw/am283x/ with SoC-specific
+      sysconfig JS files, mirroring the am275x folder
+    - Add sysconfig/networking/.meta/enet_cpsw/templates/am283x/ with
+      SoC-specific template files, mirroring the am275x folder
+    - am283x shares the same CPSW hardware as am275x
+    
+    Fixes: SITSW-11300
+    
+    Signed-off-by: Sonu Alam <s-alam@ti.com>
+
+ sysconfig/networking/.meta/enet_cpsw/am283x/enet_cpsw_ale_config.syscfg.js  | 898 ++++++++++++++++++++++++++++++++++++
+ sysconfig/networking/.meta/enet_cpsw/am283x/enet_cpsw_am283x.syscfg.js      | 839 +++++++++++++++++++++++++++++++++
+ sysconfig/networking/.meta/enet_cpsw/am283x/enet_cpsw_cpts_config.syscfg.js | 102 ++++
+ .../networking/.meta/enet_cpsw/am283x/enet_cpsw_hostport_config.syscfg.js   | 168 +++++++
+ .../networking/.meta/enet_cpsw/am283x/enet_cpsw_lwipif_netif.syscfg.js      | 239 ++++++++++
+ .../networking/.meta/enet_cpsw/am283x/enet_cpsw_macport_config.syscfg.js    | 280 +++++++++++
+ sysconfig/networking/.meta/enet_cpsw/am283x/enet_cpsw_mdio_config.syscfg.js | 113 +++++
+ sysconfig/networking/.meta/enet_cpsw/am283x/enet_cpsw_pinmux.syscfg.js      | 247 ++++++++++
+ sysconfig/networking/.meta/enet_cpsw/am283x/enet_cpsw_rx_channel.syscfg.js  |  59 +++
+ sysconfig/networking/.meta/enet_cpsw/am283x/enet_cpsw_tx_channel.syscfg.js  |  36 ++
+ sysconfig/networking/.meta/enet_cpsw/am283x/enet_pkt_pool_config.syscfg.js  | 152 ++++++
+ sysconfig/networking/.meta/enet_cpsw/templates/am283x/enet_soc_cfg.c.xdt    | 759 ++++++++++++++++++++++++++++++
+ 12 files changed, 3892 insertions(+)
+
+commit d348d6c0fd713fc5545166bbdc7b5bee69482ad2
+Author: Sonu Alam <s-alam@ti.com>
+Date:   Wed Jun 17 16:27:09 2026 +0530
+
+    enet: am283x: add SOC_AM283X to sysconfig CPSW template guards
+    
+    - enet_init.c.xdt: add SOC_AM283X to pinmux include and
+      EnetApp_fixPinmux() call guard (workaround shared with am275x)
+    - enet_syscfg.h.xdt: add am283x to getSocName() check so
+      ENET_SYSCFG_TIMESTAMP_SOURCE is emitted for am283x, same as
+      am62dx and am275x
+    
+    Fixes: SITSW-11300
+    
+    Signed-off-by: Sonu Alam <s-alam@ti.com>
+
+ sysconfig/networking/.meta/enet_cpsw/templates/enet_init.c.xdt   | 6 +++---
+ sysconfig/networking/.meta/enet_cpsw/templates/enet_syscfg.h.xdt | 2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+commit 8bca861420e6a6c8ba451e1f0af50a2fc5ffe45f
+Author: Sonu Alam <s-alam@ti.com>
+Date:   Wed Jun 17 16:26:31 2026 +0530
+
+    enet: am283x: add SOC_AM283X to K3 app utils SOC guards
+    
+    - enet_apputils_k3.c: add SOC_AM283X to all K3 CPSW utility guards
+      (clkRateSet, mcuMmrCtrl LOCK3 exclusion, mainMmrCtrl LOCK3/LOCK6/LOCK7,
+      enableClkOut, selectCptsClock, enableClocks, disableClocks,
+      setTimeSyncRouter) so am283x uses CPSW_3G config like am275x
+    - enet_apputils_k3_am62lx.c: add SOC_AM283X to setTimeSyncRouter guard
+    - enet_appsoc.h: add SOC_AM283X to V3 app utils include guard
+    - enet_apputils.h: add SOC_AM283X to K3 app utils include guard
+    
+    Fixes: SITSW-11300
+    
+    Signed-off-by: Sonu Alam <s-alam@ti.com>
+
+ utils/enet_apputils_k3.c        | 22 +++++++++++-----------
+ utils/enet_apputils_k3_am62lx.c |  2 +-
+ utils/include/enet_appsoc.h     |  2 +-
+ utils/include/enet_apputils.h   |  2 +-
+ 4 files changed, 14 insertions(+), 14 deletions(-)
+
+commit 46eb44b0529e67b8a33bf66daa112cc8e0be50b3
+Author: Sonu Alam <s-alam@ti.com>
+Date:   Wed Jun 17 16:25:33 2026 +0530
+
+    enet: am283x: add SOC_AM283X to common utils address translation guards
+    
+    - enet_utils_dflt.c: add SOC_AM283X to virtToPhysDflt() and
+      physToVirtDflt() guards so am283x uses identity mapping
+      (no SOC_virtToPhy/SOC_phyToVirt), same as am275x and other
+      K3 SOCs with UDMA
+    
+    Fixes: SITSW-11300
+    
+    Signed-off-by: Sonu Alam <s-alam@ti.com>
+
+ src/common/enet_utils_dflt.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit f9915eb8a1b17aaa468209d3cd476d2a26f500b9
+Author: Sonu Alam <s-alam@ti.com>
+Date:   Wed Jun 17 16:24:18 2026 +0530
+
+    enet: am283x: add SOC_AM283X to UDMA driver SOC guards
+    
+    - enet_udma.c: add SOC_AM283X to getMappedRxChStartIdx() guard so
+      am283x uses CSL_DMSS_PKTDMA_RX_CHANS_CPSW_START+1, same as am275x
+    - enet_udma.c: add SOC_AM283X to registerEvent() guard to use
+      Udma_eventGetGlobalHandle() for global event support
+    - enet_udma_priv.c: add SOC_AM283X to all isExposedRing override
+      guards (retrievePkts, submitPkts, submitSingleRxPkt,
+      submitSingleTxPkt, ringEnqueue, ringDequeue) so PKTDMA ring
+      mode is forced non-exposed, matching am275x behaviour
+    
+    Fixes: SITSW-11300
+    
+    Signed-off-by: Sonu Alam <s-alam@ti.com>
+
+ src/dma/udma/enet_udma.c      |  2 +-
+ src/dma/udma/enet_udma_priv.c | 14 +++++++-------
+ 2 files changed, 8 insertions(+), 8 deletions(-)
+
+commit 83c178a551d9232598ad26955917d28e7a742de7
+Author: Sonu Alam <s-alam@ti.com>
+Date:   Wed Jun 17 16:23:32 2026 +0530
+
+    enet: am283x: add SOC_AM283X to core include SOC dispatch and DMA guards
+    
+    - enet_soc.h: add SOC_AM283X branch to include soc/k3/am283x/enet_soc.h,
+      k3_soc.h and udma.h, mirroring the am275x pattern
+    - enet_dma.h: extend SOC guard for UDMA include and Enet_isCacheCoherent()
+      macro to cover SOC_AM283X alongside SOC_AM275X
+    
+    am283x uses the same K3 CPSW/UDMA hardware as am275x.
+    
+    Fixes: SITSW-11300
+    
+    Signed-off-by: Sonu Alam <s-alam@ti.com>
+
+ include/core/enet_dma.h | 4 ++--
+ include/core/enet_soc.h | 4 ++++
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+

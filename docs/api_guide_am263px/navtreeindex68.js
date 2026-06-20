@@ -1,5 +1,6 @@
 var NAVTREEINDEX68 =
 {
+"structIcssgStats__MacPort.html#a2d317a1ef86035963845926171cc3c60":[18,4,0,9,1,0,3],
 "structIcssgStats__MacPort.html#a2d7e234e8ad6bc19a9d8faf72dfab62d":[18,4,0,9,1,0,36],
 "structIcssgStats__MacPort.html#a335011454d28125252bd533fa40f58d0":[18,4,0,9,1,0,54],
 "structIcssgStats__MacPort.html#a37b3ec0b05e3961fa3c57f1917e5fa60":[18,4,0,9,1,0,34],
@@ -248,6 +249,5 @@ var NAVTREEINDEX68 =
 "structIcssg__TxTsEvtCbInfo.html#a1c95499fdd4cce8689d240913e5daac5":[18,4,0,6,1,0,0],
 "structIcssg__TxTsEvtCbInfo.html#a316c8b536be033d6fed7763726192271":[18,4,0,6,1,0,1],
 "structIcssg__VlanFidEntry.html":[18,4,0,6,1,8],
-"structIcssg__VlanFidEntry.html#a445f3d4a577c185ac7a9ef1c54b35ff0":[18,4,0,6,1,8,1],
-"structIcssg__VlanFidEntry.html#ada403ab05fef610b66c061389bfb5650":[18,4,0,6,1,8,0]
+"structIcssg__VlanFidEntry.html#a445f3d4a577c185ac7a9ef1c54b35ff0":[18,4,0,6,1,8,1]
 };

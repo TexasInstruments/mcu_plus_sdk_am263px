@@ -1,5 +1,6 @@
 var NAVTREEINDEX75 =
 {
+"structUART__Params.html#afadb98d0a0ef6e17240bab79306e7828":[18,7,45,1,0],
 "structUART__Params.html#aff705b1e58467893396ae1110f26eb27":[18,7,45,1,16],
 "structUART__Transaction.html":[18,7,46,3],
 "structUART__Transaction.html#a32842a6d05bd3dc31d31a8502da5e190":[18,7,46,3,1],
