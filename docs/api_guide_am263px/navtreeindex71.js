@@ -1,6 +1,5 @@
 var NAVTREEINDEX71 =
 {
-"structMCSPI__Transaction.html":[18,7,28,2],
 "structMCSPI__Transaction.html#a03649a1e749d0661e4a78fbe615ce412":[18,7,28,2,3],
 "structMCSPI__Transaction.html#a13379551362963f30946a9ef45d9efc9":[18,7,28,2,5],
 "structMCSPI__Transaction.html#a1344bb4f68f64e6841a25884de818f7b":[18,7,28,2,4],
@@ -249,5 +248,6 @@ var NAVTREEINDEX71 =
 "structPMIC__Params__s.html#a1b59a322132d392ca390432103b364c8":[18,1,4,0,2],
 "structPMIC__Params__s.html#a2280700619828c4c3034cc6adaf6a667":[18,1,4,0,1],
 "structPMIC__Params__s.html#abb4959807eba6856abebb53687f2ecb1":[18,1,4,0,3],
-"structPMIC__Params__s.html#ac506f07ab7c14128d74c0f18567536bb":[18,1,4,0,0]
+"structPMIC__Params__s.html#ac506f07ab7c14128d74c0f18567536bb":[18,1,4,0,0],
+"structPMIC__Params__s.html#af452b877e4bfb3c379a45c9d732ebb04":[18,1,4,0,4]
 };

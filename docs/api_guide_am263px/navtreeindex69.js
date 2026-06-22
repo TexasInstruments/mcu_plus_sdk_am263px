@@ -1,6 +1,5 @@
 var NAVTREEINDEX69 =
 {
-"structIcssg__VlanFidEntry.html#ada403ab05fef610b66c061389bfb5650":[18,4,0,6,1,8,0],
 "structIcssg__VlanFidParams.html":[18,4,0,6,1,7],
 "structIcssg__VlanFidParams.html#a029cdf4e398b0bcdaf3db64f402c5518":[18,4,0,6,1,7,5],
 "structIcssg__VlanFidParams.html#a089f734f205824ddacf1c38bb2d3ce0d":[18,4,0,6,1,7,4],
@@ -249,5 +248,6 @@ var NAVTREEINDEX69 =
 "structMCAN__InitParams.html":[18,7,26,4],
 "structMCAN__InitParams.html#a028cb401be75c57bc8d080fc772a6c90":[18,7,26,4,1],
 "structMCAN__InitParams.html#a1ca04c68b7798d457e3afed5bdc726fe":[18,7,26,4,10],
-"structMCAN__InitParams.html#a25c9cb93e2e7bb4fc8463e51196dcc8a":[18,7,26,4,0]
+"structMCAN__InitParams.html#a25c9cb93e2e7bb4fc8463e51196dcc8a":[18,7,26,4,0],
+"structMCAN__InitParams.html#a4e0b2bf2faccfe23f86072a09213985f":[18,7,26,4,2]
 };

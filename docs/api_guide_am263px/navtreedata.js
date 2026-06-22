@@ -202,15 +202,15 @@ var NAVTREEINDEX =
 "structDiag__Mon__Sin__Cos__Weak__Amplitude.html#a22b8f431d0562607171221e3a732dda0",
 "structEnetDma__TxChStats.html#ac2b3c2d458d2a9111f60e5cd1b515179",
 "structFLSOPSKD__Handle.html#ac5cb1ada95b728d1764c8c4195b581a8",
-"structI2C__HwAttrs.html#a26e51dabcfc03d1d3f322d9b31adb892",
-"structIcssgStats__MacPort.html#a2d317a1ef86035963845926171cc3c60",
-"structIcssg__VlanFidEntry.html#ada403ab05fef610b66c061389bfb5650",
-"structMCAN__InitParams.html#a4e0b2bf2faccfe23f86072a09213985f",
-"structMCSPI__Transaction.html",
-"structPMIC__Params__s.html#af452b877e4bfb3c379a45c9d732ebb04",
-"structSDL__ECC__ErrorInfo__t.html#a4526456fbf67a84f6b34c5fb66f50689",
-"structSDL__VTM__configTs.html#acb9b1bba72c398171adc1e79938461ae",
-"structUART__Params.html#afadb98d0a0ef6e17240bab79306e7828"
+"structI2C__HwAttrs.html#a9b5cd4f1e9a11365b4fbde7b3409c9ee",
+"structIcssgStats__MacPort.html#a2d7e234e8ad6bc19a9d8faf72dfab62d",
+"structIcssg__VlanFidParams.html",
+"structMCAN__InitParams.html#a6990b455aab00f392216ede0002b1978",
+"structMCSPI__Transaction.html#a03649a1e749d0661e4a78fbe615ce412",
+"structPMU__Config.html",
+"structSDL__ECC__ErrorInfo__t.html#a88383ff4a995f70a54e31ad939d90ca4",
+"structSDL__VTM__configTs.html#ad75a8c4e35753d879a086b310a4f39e9",
+"structUART__Params.html#aff705b1e58467893396ae1110f26eb27"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

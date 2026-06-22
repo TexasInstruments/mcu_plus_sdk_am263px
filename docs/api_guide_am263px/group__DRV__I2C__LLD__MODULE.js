@@ -63,8 +63,7 @@ var group__DRV__I2C__LLD__MODULE =
       [ "memAddrSize", "structI2CLLD__Object.html#a1753c07fac2aa7e971b7bd98560f759c", null ],
       [ "memTxnActive", "structI2CLLD__Object.html#a41767fa6883cb21e42975549f12342b2", null ],
       [ "i2cTargetTransaction", "structI2CLLD__Object.html#a954318d82fb98325fbf7d247c7d54eda", null ],
-      [ "args", "structI2CLLD__Object.html#a160be4ecedc16354781ffea572550588", null ],
-      [ "detectReadProbe", "structI2CLLD__Object.html#ab8d4a34f021e3ddb8053fa2a1f11b440", null ]
+      [ "args", "structI2CLLD__Object.html#a160be4ecedc16354781ffea572550588", null ]
     ] ],
     [ "I2C_STS_SUCCESS", "group__DRV__I2C__LLD__MODULE.html#ga436bc81547d25cbe81ce05723f52b07d", null ],
     [ "I2C_STS_ERR", "group__DRV__I2C__LLD__MODULE.html#gaa1ef9c5b5af75eebd526d463caaa6ebb", null ],

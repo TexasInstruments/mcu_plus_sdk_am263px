@@ -155,8 +155,6 @@ Data Fields</h2></td></tr>
 <tr class="separator:a954318d82fb98325fbf7d247c7d54eda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a160be4ecedc16354781ffea572550588"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structI2CLLD__Object.html#a160be4ecedc16354781ffea572550588">args</a></td></tr>
 <tr class="separator:a160be4ecedc16354781ffea572550588"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8d4a34f021e3ddb8053fa2a1f11b440"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structI2CLLD__Object.html#ab8d4a34f021e3ddb8053fa2a1f11b440">detectReadProbe</a></td></tr>
-<tr class="separator:ab8d4a34f021e3ddb8053fa2a1f11b440"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Field Documentation</h2>
 <a id="aab4e7077957fd0335e5dcc74aaab8dea"></a>
@@ -576,21 +574,6 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Pointer to be used by application to store miscellaneous data </p>
-
-</div>
-</div>
-<a id="ab8d4a34f021e3ddb8053fa2a1f11b440"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8d4a34f021e3ddb8053fa2a1f11b440">&#9670;&nbsp;</a></span>detectReadProbe</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t I2CLLD_Object::detectReadProbe</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Tracks whether a master WRITE (RRDY) has been received since the last AAS. 1U = no write received yet (unsolicited READ probe possible). 0U = master wrote to us (STOP-START or RESTART read sequence). Per-instance field replacing the former static local variable. </p>
 
 </div>
 </div>
