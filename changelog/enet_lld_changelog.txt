@@ -71691,3 +71691,118 @@ Date:   Wed Jun 17 16:23:32 2026 +0530
  include/core/enet_soc.h | 4 ++++
  2 files changed, 6 insertions(+), 2 deletions(-)
 
+========================================
+Changes from build on 2026-06-25 20:48:56
+Previous commit: 01a5e2786e791b365c26cc5b948adc7b5ebc0c14
+Current commit: 60721a503f0711c386eb002809ebcacd32892e50
+========================================
+
+commit 60721a503f0711c386eb002809ebcacd32892e50
+Author: thilak <t-karanam@ti.com>
+Date:   Thu Jun 25 15:32:00 2026 +0530
+
+    allsocs: enet-cli: Fix Thread ID offset
+    
+    - The Thread ID starts from 1 in UDMA Devices where as it
+      starts from 0 in CPDMA Devices.
+    - Hence modified the mapping in policer to reflect the same.
+    
+    Fixes: SITSW-12287
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ examples/enet_cli_app/enet_cli_config.c | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
+
+commit 57371fa04c63583993e4d4369e9b45c6cf87d25e
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Tue Jun 23 16:37:14 2026 +0530
+
+    allsoc: est: hardcoded macport removed
+    
+    - Hard coded MAC port replaced with
+      sysconfig generated mac port for
+      enet_cpsw_est example.
+    
+    Fixes: SITSW-12285
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ examples/enet_cpsw_est/V0/enet_cpsw_est_common.h   |  2 +-
+ examples/enet_cpsw_est/V0/enet_cpsw_est_main.c     | 39 ++++++++++++++++++++++-----------------
+ examples/enet_cpsw_est/V1/enet_cpsw_est_common.h   |  2 +-
+ examples/enet_cpsw_est/V1/enet_cpsw_est_dataflow.c |  2 +-
+ examples/enet_cpsw_est/V1/enet_cpsw_est_main.c     | 43 ++++++++++++++++++++++++-------------------
+ 5 files changed, 49 insertions(+), 39 deletions(-)
+
+commit 3ed148296b1e6050c4962a1c823359b479c1cea8
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Tue Jun 23 16:32:05 2026 +0530
+
+    am273x: enet: Phy init delayed
+    
+    - On AM273x Phy init is slow.
+      When tested in OSPI boot mode
+      Phy is not in correct state when
+      application expects it.
+    
+    - added delay in phy initalization
+    
+    Fixes: SITSW-8086
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ sysconfig/board/.meta/ethphy_cpsw_icssg/templates/am273x/enet_board_cfg.c.xdt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit f9d574430e27ee0b3eeef08fb2288aa9bfb18adf
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Tue Jun 23 16:26:20 2026 +0530
+
+    am273x: enet: Enabling phy loopback
+    
+    - Updated sysonfig related js file
+      to allow 100M FULL Duplex link
+    
+    Fixes: SITSW-12284
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ .../loopback_phy_end/am273x-evm/r5fss0-0_freertos/example.syscfg                 | 7 +++++--
+ sysconfig/networking/.meta/enet_cpsw/am273x/enet_cpsw_macport_config.syscfg.js   | 4 ++--
+ 2 files changed, 7 insertions(+), 4 deletions(-)
+
+commit 0d689e48fb18ec779549d2c669eab555551ef59d
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Tue Jun 23 16:22:19 2026 +0530
+
+    am273x: enet: RGMII name corrected
+    
+    - AM273x uses MSS_RGMII/MSS_RMII. Thus
+      conditions are corrected.
+    
+    Fixes: SITSW-12286
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ sysconfig/board/.meta/ethphy_cpsw_icssg/templates/am273x/enet_board_cfg.c.xdt | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+commit 67b0afe1ea0ba4a18931a4076582150add9a0a6d
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Wed Jun 24 14:05:26 2026 +0530
+
+    allsoc: xdt: Macro cleaned up
+    
+    - #if <soc> based Macro cleaned.
+      So that packages of other SoCs
+      does not see the 275 and 283 related
+      code
+    
+    Fixes: SITSW-12289
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ sysconfig/networking/.meta/enet_cpsw/templates/enet_init.c.xdt | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
