@@ -71806,3 +71806,35 @@ Date:   Wed Jun 24 14:05:26 2026 +0530
  sysconfig/networking/.meta/enet_cpsw/templates/enet_init.c.xdt | 13 +++++++------
  1 file changed, 7 insertions(+), 6 deletions(-)
 
+========================================
+Changes from build on 2026-06-30 20:48:20
+Previous commit: 60721a503f0711c386eb002809ebcacd32892e50
+Current commit: c1671fe175ce6561f49431220fbfdf0ecf46a5dc
+========================================
+
+commit c1671fe175ce6561f49431220fbfdf0ecf46a5dc
+Author: Rishi Kumar <r-kumar12@ti.com>
+Date:   Tue Jun 23 12:34:13 2026 +0530
+
+    am64x/243x: EMAC/SWITCH 1G: Update the firmware headers for 12.1 RC1
+    
+    JIRA: PINDSW-11192
+    
+    Signed-off-by: Rishi Kumar <r-kumar12@ti.com>
+
+ src/per/firmware/icssg/dualmac/RTU0_SLICE0_bin.h               | 8 ++++----
+ src/per/firmware/icssg/dualmac/RTU0_SLICE1_bin.h               | 8 ++++----
+ src/per/firmware/icssg/dualmac/RX_PRU_SLICE0_bin.h             | 6 +++---
+ src/per/firmware/icssg/dualmac/RX_PRU_SLICE1_bin.h             | 6 +++---
+ src/per/firmware/icssg/dualmac/TX_PRU_SLICE0_bin.h             | 6 +++---
+ src/per/firmware/icssg/dualmac/TX_PRU_SLICE1_bin.h             | 6 +++---
+ src/per/firmware/icssg/dualmac/ethernet_mac_1g_commit_id.txt   | 2 +-
+ src/per/firmware/icssg/switch/RTU0_SLICE0_bin.h                | 8 ++++----
+ src/per/firmware/icssg/switch/RTU0_SLICE1_bin.h                | 8 ++++----
+ src/per/firmware/icssg/switch/RX_PRU_SLICE0_bin.h              | 6 +++---
+ src/per/firmware/icssg/switch/RX_PRU_SLICE1_bin.h              | 6 +++---
+ src/per/firmware/icssg/switch/TX_PRU_SLICE0_bin.h              | 6 +++---
+ src/per/firmware/icssg/switch/TX_PRU_SLICE1_bin.h              | 6 +++---
+ src/per/firmware/icssg/switch/ethernet_switch_1g_commit_id.txt | 2 +-
+ 14 files changed, 42 insertions(+), 42 deletions(-)
+
