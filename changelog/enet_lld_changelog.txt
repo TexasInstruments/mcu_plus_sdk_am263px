@@ -71838,3 +71838,35 @@ Date:   Tue Jun 23 12:34:13 2026 +0530
  src/per/firmware/icssg/switch/ethernet_switch_1g_commit_id.txt | 2 +-
  14 files changed, 42 insertions(+), 42 deletions(-)
 
+========================================
+Changes from build on 2026-07-01 20:50:29
+Previous commit: c1671fe175ce6561f49431220fbfdf0ecf46a5dc
+Current commit: d1c27708c4942daa998d9f9f2ae3081255379a50
+========================================
+
+commit d1c27708c4942daa998d9f9f2ae3081255379a50
+Author: thilak <t-karanam@ti.com>
+Date:   Thu Jun 25 16:30:09 2026 +0530
+
+    am62dx: enet: Fix MAC Loopback Example Path
+    
+    - The MAC Loopback binary is invisible to
+      the test scripts because of the incorrect path.
+    - This commit fixes the path and makes it accessible
+      by the test scripts.
+    
+    Fixes: SITSW-12288
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ .../enet_loopback/enet_cpsw_loopback/loopback_mac_end/.project/project_am62dx.js |  2 +-
+ .../am62dx-evm-dp83867/{ => am62dx-evm}/mcu-r5fss0-0_freertos/example.syscfg     |  0
+ .../am62dx-evm-dp83867/{ => am62dx-evm}/mcu-r5fss0-0_freertos/main.c             |  0
+ .../{ => am62dx-evm}/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec      | 12 ++++++------
+ .../{ => am62dx-evm}/mcu-r5fss0-0_freertos/ti-arm-clang/linker.cmd               |  0
+ .../{ => am62dx-evm}/mcu-r5fss0-0_freertos/ti-arm-clang/makefile                 |  2 +-
+ .../mcu-r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen                |  0
+ .../{ => am62dx-evm}/mcu-r5fss0-0_freertos/ti-arm-clang/makefile_projectspec     |  4 ++--
+ .../{ => am62dx-evm}/mcu-r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs          |  0
+ 9 files changed, 10 insertions(+), 10 deletions(-)
+
