@@ -1,5 +1,11 @@
 var NAVTREEINDEX70 =
 {
+"structMCAN__HighPriorityMsgInfo.html#ae8e102e4d68f5f406bdef04839e0da9b":[18,7,26,9,2],
+"structMCAN__InitParams.html":[18,7,26,4],
+"structMCAN__InitParams.html#a028cb401be75c57bc8d080fc772a6c90":[18,7,26,4,1],
+"structMCAN__InitParams.html#a1ca04c68b7798d457e3afed5bdc726fe":[18,7,26,4,10],
+"structMCAN__InitParams.html#a25c9cb93e2e7bb4fc8463e51196dcc8a":[18,7,26,4,0],
+"structMCAN__InitParams.html#a4e0b2bf2faccfe23f86072a09213985f":[18,7,26,4,2],
 "structMCAN__InitParams.html#a6990b455aab00f392216ede0002b1978":[18,7,26,4,4],
 "structMCAN__InitParams.html#a754bd480c8018ae08dcb12aee5dd0e0d":[18,7,26,4,8],
 "structMCAN__InitParams.html#a7d529d08da7d4e7690c8c57cfd4fdc08":[18,7,26,4,9],
@@ -243,11 +249,5 @@ var NAVTREEINDEX70 =
 "structMCSPI__Object.html#ad4c4c9072cfe2f98fb7cd5bddfe360eb":[18,7,27,3,6],
 "structMCSPI__Object.html#ae39700175f11c0bbec9c3a0772d4f0f1":[18,7,27,3,8],
 "structMCSPI__Object.html#aec7ad9f6ff0ef1a083ae6f338ffee66f":[18,7,27,3,13],
-"structMCSPI__OpenParams.html":[18,7,27,1],
-"structMCSPI__OpenParams.html#a0b4ecaba7263bd18bc7e40924d8d6c97":[18,7,27,1,0],
-"structMCSPI__OpenParams.html#a1a61eb9a3dafb53eb367e31b41a7116b":[18,7,27,1,1],
-"structMCSPI__OpenParams.html#a2ac3a45a175414a578667947ef548d18":[18,7,27,1,4],
-"structMCSPI__OpenParams.html#a43a61b1bdcb52eebaf0d756f5e5500d8":[18,7,27,1,2],
-"structMCSPI__OpenParams.html#ad539f2b8771de73167b55763b7dc984f":[18,7,27,1,3],
-"structMCSPI__Transaction.html":[18,7,28,2]
+"structMCSPI__OpenParams.html":[18,7,27,1]
 };

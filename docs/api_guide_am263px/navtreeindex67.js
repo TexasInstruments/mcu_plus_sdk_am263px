@@ -1,5 +1,10 @@
 var NAVTREEINDEX67 =
 {
+"structI2C__ExtendedParams.html#aa3c4d5480e289a405d30ca1d1bc237d4":[18,7,19,3,2],
+"structI2C__ExtendedParams.html#aaa29aac7d78df16c4d82f53af71a1d3a":[18,7,19,3,3],
+"structI2C__HwAttrs.html":[18,7,18,0],
+"structI2C__HwAttrs.html#a170785636c4238bef72b0092b9316d13":[18,7,18,0,0],
+"structI2C__HwAttrs.html#a26e51dabcfc03d1d3f322d9b31adb892":[18,7,18,0,1],
 "structI2C__HwAttrs.html#a9b5cd4f1e9a11365b4fbde7b3409c9ee":[18,7,18,0,4],
 "structI2C__HwAttrs.html#ad42e910323c9064afdb343cd54774e5c":[18,7,18,0,2],
 "structI2C__HwAttrs.html#ae400990b8899a899af56b671a7a98b9f":[18,7,18,0,3],
@@ -159,6 +164,7 @@ var NAVTREEINDEX67 =
 "structICSS__EMAC__Params.html#a8c655e8ce118d0e5ef873c8d103bc85a":[18,4,2,9,6],
 "structICSS__EMAC__Params.html#a90f12a181fa61589034223155f5881b3":[18,4,2,9,9],
 "structICSS__EMAC__Params.html#a9219e4b5fac935491e27189be430bbd9":[18,4,2,9,3],
+"structICSS__EMAC__Params.html#aa08b9f04d27803a03f7ca437eeb45264":[18,4,2,9,10],
 "structICSS__EMAC__Params.html#abc3adfcc7135c70422846d3c2e7331c5":[18,4,2,9,4],
 "structICSS__EMAC__PruStatistics.html":[18,4,2,13],
 "structICSS__EMAC__PruStatistics.html#a041b03d6bfb5c7c56361a4d0278199b5":[18,4,2,13,7],
@@ -243,11 +249,5 @@ var NAVTREEINDEX67 =
 "structIcssgStats__MacPort.html#a010c5fa6dadb765126eb15d0187c0b76":[18,4,0,9,1,0,33],
 "structIcssgStats__MacPort.html#a0e90ebdb70c047a786242f19b9609771":[18,4,0,9,1,0,52],
 "structIcssgStats__MacPort.html#a137c3ed26396d40045af89d5eb20cb9f":[18,4,0,9,1,0,45],
-"structIcssgStats__MacPort.html#a16a79504c1840afd5004f1a333d1cf48":[18,4,0,9,1,0,1],
-"structIcssgStats__MacPort.html#a1d81b0f777bf8815c29603ef5231d636":[18,4,0,9,1,0,5],
-"structIcssgStats__MacPort.html#a1e07297828c6816d36e64197319610e9":[18,4,0,9,1,0,38],
-"structIcssgStats__MacPort.html#a2059911a00edc3228ba2e424f34034d8":[18,4,0,9,1,0,35],
-"structIcssgStats__MacPort.html#a2229e5f2e0b9ca0ca0d6317d45b027d5":[18,4,0,9,1,0,21],
-"structIcssgStats__MacPort.html#a26713546b8ccba4718c334c63cce5581":[18,4,0,9,1,0,27],
-"structIcssgStats__MacPort.html#a2d317a1ef86035963845926171cc3c60":[18,4,0,9,1,0,3]
+"structIcssgStats__MacPort.html#a16a79504c1840afd5004f1a333d1cf48":[18,4,0,9,1,0,1]
 };

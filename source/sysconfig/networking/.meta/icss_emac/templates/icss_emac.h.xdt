@@ -4,7 +4,7 @@
 /*
  * ICSS EMAC
  */
-#include <networking/icss_emac/icss_emac.h>
+#include <networking/icss_emac_lld/icss_emac/icss_emac.h>
 
 /* ICSS EMAC Instance Macros */
 % for(let i = 0; i < module.$instances.length; i++) {

@@ -1,5 +1,11 @@
 var NAVTREEINDEX72 =
 {
+"structPMIC__Params__s.html":[18,1,4,0],
+"structPMIC__Params__s.html#a1b59a322132d392ca390432103b364c8":[18,1,4,0,2],
+"structPMIC__Params__s.html#a2280700619828c4c3034cc6adaf6a667":[18,1,4,0,1],
+"structPMIC__Params__s.html#abb4959807eba6856abebb53687f2ecb1":[18,1,4,0,3],
+"structPMIC__Params__s.html#ac506f07ab7c14128d74c0f18567536bb":[18,1,4,0,0],
+"structPMIC__Params__s.html#af452b877e4bfb3c379a45c9d732ebb04":[18,1,4,0,4],
 "structPMU__Config.html":[18,7,36,2],
 "structPMU__Config.html#a56624e5f1cb046504d05760133d02d5b":[18,7,36,2,0],
 "structPMU__Config.html#a6333eaa57a2a67973eff3d13e2b2b353":[18,7,36,2,2],
@@ -243,11 +249,5 @@ var NAVTREEINDEX72 =
 "structSDL__ECC__BUS__SAFETY__staticRegs.html":[18,6,5,0,0,1],
 "structSDL__ECC__BUS__SAFETY__staticRegs.html#a4d7acb1ebc3135ead16c7445cb170e54":[18,6,5,0,0,1,1],
 "structSDL__ECC__BUS__SAFETY__staticRegs.html#a8dfb680a4a2a3a82eeb8972407f45282":[18,6,5,0,0,1,0],
-"structSDL__ECC__BUS__SAFETY__staticRegs.html#aea995d88d5f8dc42d03e04160678f0d9":[18,6,5,0,0,1,2],
-"structSDL__ECC__ErrorInfo__t.html":[18,5,0,0,2],
-"structSDL__ECC__ErrorInfo__t.html":[18,6,4,0,2],
-"structSDL__ECC__ErrorInfo__t.html#a446c3a71d80fcc9bf09b530a8e2bdabe":[18,5,0,0,2,0],
-"structSDL__ECC__ErrorInfo__t.html#a446c3a71d80fcc9bf09b530a8e2bdabe":[18,6,4,0,2,0],
-"structSDL__ECC__ErrorInfo__t.html#a4526456fbf67a84f6b34c5fb66f50689":[18,6,4,0,2,3],
-"structSDL__ECC__ErrorInfo__t.html#a4526456fbf67a84f6b34c5fb66f50689":[18,5,0,0,2,3]
+"structSDL__ECC__BUS__SAFETY__staticRegs.html#aea995d88d5f8dc42d03e04160678f0d9":[18,6,5,0,0,1,2]
 };

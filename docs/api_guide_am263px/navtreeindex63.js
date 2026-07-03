@@ -1,5 +1,10 @@
 var NAVTREEINDEX63 =
 {
+"structCpswStats__MacPort__Ng.html#a7b44a98beec5b138cbe5637489702a52":[18,4,0,9,0,3,64],
+"structCpswStats__MacPort__Ng.html#a7b9f95bbeaec0f4f58c2a0ac1b808b39":[18,4,0,9,0,3,34],
+"structCpswStats__MacPort__Ng.html#a7d39c751307f366e237303ae7e1e41a2":[18,4,0,9,0,3,14],
+"structCpswStats__MacPort__Ng.html#a85a3dd9b4b3e0f85b5c76dd126192db5":[18,4,0,9,0,3,46],
+"structCpswStats__MacPort__Ng.html#a901bf497999cbe01c0b3f13347813879":[18,4,0,9,0,3,21],
 "structCpswStats__MacPort__Ng.html#a995387e55a26900f62bc3ec52b2fb999":[18,4,0,9,0,3,19],
 "structCpswStats__MacPort__Ng.html#a9d77b461715f022a5723442b5b734274":[18,4,0,9,0,3,68],
 "structCpswStats__MacPort__Ng.html#a9f5fcbb1e7ce4a3e2bb9abc01f52e997":[18,4,0,9,0,3,32],
@@ -244,10 +249,5 @@ var NAVTREEINDEX63 =
 "structDiag__Mon__SinCos__Offset__drift__data.html#ae9b2c5d97efe5776be0bdcd905cfd7c9":[18,7,38,1,1],
 "structDiag__Mon__Sin__Cos__High__Amplitude.html":[18,7,38,7],
 "structDiag__Mon__Sin__Cos__High__Amplitude.html#a12098d290122cef9fde9944f05e8bca6":[18,7,38,7,5],
-"structDiag__Mon__Sin__Cos__High__Amplitude.html#aa00e4807a58ebfc788a1a769bb3de594":[18,7,38,7,0],
-"structDiag__Mon__Sin__Cos__High__Amplitude.html#aacb0a30796b2d17244145ff0dc611c94":[18,7,38,7,4],
-"structDiag__Mon__Sin__Cos__High__Amplitude.html#ab2dabb956790d6c809a2815532e3c2c7":[18,7,38,7,3],
-"structDiag__Mon__Sin__Cos__High__Amplitude.html#abeb64242b284cdc88756bac88a135799":[18,7,38,7,2],
-"structDiag__Mon__Sin__Cos__High__Amplitude.html#ad15307354b8abb5373b26c592da29f9a":[18,7,38,7,1],
-"structDiag__Mon__Sin__Cos__Weak__Amplitude.html":[18,7,38,8]
+"structDiag__Mon__Sin__Cos__High__Amplitude.html#aa00e4807a58ebfc788a1a769bb3de594":[18,7,38,7,0]
 };

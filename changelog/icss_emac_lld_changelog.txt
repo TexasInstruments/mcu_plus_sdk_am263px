@@ -1,0 +1,7 @@
+First commit tracked for icss_emac_lld: 9adf26caa55eb00e60734ed7fe50fcfc10752fa1
+
+Recent commit history (last 20 commits):
+
+9adf26c Revert "icss_emac: add NULL checks for attrs and special unicast MAC feature presence"
+
+Note: Detailed file changes will be shown in subsequent builds when comparing commits

@@ -1,5 +1,11 @@
 var NAVTREEINDEX75 =
 {
+"structUART__Params.html#ac7c285ff0403227006e1433e5f95eddc":[18,7,45,1,15],
+"structUART__Params.html#ad0ec88fbf87d33c8836f5903506bf912":[18,7,45,1,12],
+"structUART__Params.html#ad87627573bac5ff0cd3d9560886aa952":[18,7,45,1,20],
+"structUART__Params.html#af4392af9d618d442070cc1dec128b286":[18,7,45,1,10],
+"structUART__Params.html#af54dd52a99d0a545eb9d94afeb282ebe":[18,7,45,1,4],
+"structUART__Params.html#afadb98d0a0ef6e17240bab79306e7828":[18,7,45,1,0],
 "structUART__Params.html#aff705b1e58467893396ae1110f26eb27":[18,7,45,1,16],
 "structUART__Transaction.html":[18,7,46,3],
 "structUART__Transaction.html#a32842a6d05bd3dc31d31a8502da5e190":[18,7,46,3,1],

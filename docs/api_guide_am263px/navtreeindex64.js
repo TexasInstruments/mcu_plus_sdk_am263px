@@ -1,5 +1,10 @@
 var NAVTREEINDEX64 =
 {
+"structDiag__Mon__Sin__Cos__High__Amplitude.html#aacb0a30796b2d17244145ff0dc611c94":[18,7,38,7,4],
+"structDiag__Mon__Sin__Cos__High__Amplitude.html#ab2dabb956790d6c809a2815532e3c2c7":[18,7,38,7,3],
+"structDiag__Mon__Sin__Cos__High__Amplitude.html#abeb64242b284cdc88756bac88a135799":[18,7,38,7,2],
+"structDiag__Mon__Sin__Cos__High__Amplitude.html#ad15307354b8abb5373b26c592da29f9a":[18,7,38,7,1],
+"structDiag__Mon__Sin__Cos__Weak__Amplitude.html":[18,7,38,8],
 "structDiag__Mon__Sin__Cos__Weak__Amplitude.html#a22b8f431d0562607171221e3a732dda0":[18,7,38,8,4],
 "structDiag__Mon__Sin__Cos__Weak__Amplitude.html#a56f076d8898488de91e0fbd0702023d3":[18,7,38,8,3],
 "structDiag__Mon__Sin__Cos__Weak__Amplitude.html#a9dd054112b4f025fa045b38ec5283a49":[18,7,38,8,0],
@@ -244,10 +249,5 @@ var NAVTREEINDEX64 =
 "structEnetDma__RxChStats.html#aba0d6304ec9c47da64708c4753a10048":[18,4,0,0,2,2,5],
 "structEnetDma__RxChStats.html#acce6afb8a90f8b4f53f3264d91791e13":[18,4,0,0,2,2,2],
 "structEnetDma__RxChStats.html#adbfbeff03fc6b2497fc750ba8103769a":[18,4,0,0,2,2,4],
-"structEnetDma__TxChStats.html":[18,4,0,0,2,3],
-"structEnetDma__TxChStats.html#a1096cde1642721f3c8a4794bb47c1085":[18,4,0,0,2,3,2],
-"structEnetDma__TxChStats.html#a31ad348b69ca1211af9ff94cddf054da":[18,4,0,0,2,3,1],
-"structEnetDma__TxChStats.html#a3b72f1962f3b1f7d7937c32fdd72baa1":[18,4,0,0,2,3,5],
-"structEnetDma__TxChStats.html#aa9d8e1888f37db65f23b92ce9aa57fb9":[18,4,0,0,2,3,0],
-"structEnetDma__TxChStats.html#aaf6480dfc59f9ca6fc9a5a94933b8f14":[18,4,0,0,2,3,3]
+"structEnetDma__TxChStats.html":[18,4,0,0,2,3]
 };

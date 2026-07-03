@@ -1,5 +1,10 @@
 var NAVTREEINDEX66 =
 {
+"structExtendedTimestamp.html#a6f4a830a17b1cf9288210f23afd22463":[18,9,0,12,2],
+"structExtendedTimestamp.html#ab289477f5516f20cb54a8c817914e2e6":[18,9,0,12,3],
+"structFLSOPSKD__Handle.html":[18,7,9,1],
+"structFLSOPSKD__Handle.html#a804b0c285fbb1c6491797b27a4b72b23":[18,7,9,1,0],
+"structFLSOPSKD__Handle.html#a95a34d7f228311ad30b08e485fc66e3b":[18,7,9,1,1],
 "structFLSOPSKD__Handle.html#ac5cb1ada95b728d1764c8c4195b581a8":[18,7,9,1,2],
 "structFLSOPSKD__Params.html":[18,7,9,0],
 "structFLSOPSKD__Params.html#a00b4c8f4e578187d10e33652329ef540":[18,7,9,0,3],
@@ -244,10 +249,5 @@ var NAVTREEINDEX66 =
 "structI2C__Config.html#a808ece57f43ac1590894a78da5339588":[18,7,18,5,0],
 "structI2C__ExtendedParams.html":[18,7,19,3],
 "structI2C__ExtendedParams.html#a4d52e99da12649ab559757d32fea5e0d":[18,7,19,3,1],
-"structI2C__ExtendedParams.html#a853d1764b3e806286ee97eeac3a1db5c":[18,7,19,3,0],
-"structI2C__ExtendedParams.html#aa3c4d5480e289a405d30ca1d1bc237d4":[18,7,19,3,2],
-"structI2C__ExtendedParams.html#aaa29aac7d78df16c4d82f53af71a1d3a":[18,7,19,3,3],
-"structI2C__HwAttrs.html":[18,7,18,0],
-"structI2C__HwAttrs.html#a170785636c4238bef72b0092b9316d13":[18,7,18,0,0],
-"structI2C__HwAttrs.html#a26e51dabcfc03d1d3f322d9b31adb892":[18,7,18,0,1]
+"structI2C__ExtendedParams.html#a853d1764b3e806286ee97eeac3a1db5c":[18,7,19,3,0]
 };

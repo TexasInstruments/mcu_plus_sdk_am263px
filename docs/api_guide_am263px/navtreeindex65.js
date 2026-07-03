@@ -1,5 +1,10 @@
 var NAVTREEINDEX65 =
 {
+"structEnetDma__TxChStats.html#a1096cde1642721f3c8a4794bb47c1085":[18,4,0,0,2,3,2],
+"structEnetDma__TxChStats.html#a31ad348b69ca1211af9ff94cddf054da":[18,4,0,0,2,3,1],
+"structEnetDma__TxChStats.html#a3b72f1962f3b1f7d7937c32fdd72baa1":[18,4,0,0,2,3,5],
+"structEnetDma__TxChStats.html#aa9d8e1888f37db65f23b92ce9aa57fb9":[18,4,0,0,2,3,0],
+"structEnetDma__TxChStats.html#aaf6480dfc59f9ca6fc9a5a94933b8f14":[18,4,0,0,2,3,3],
 "structEnetDma__TxChStats.html#ac2b3c2d458d2a9111f60e5cd1b515179":[18,4,0,0,2,3,4],
 "structEnetDma__initCfg.html":[18,4,0,0,0,0,9],
 "structEnetMacPort__EnableEgressTrafficShapingInArgs.html":[18,4,0,3,7],
@@ -244,10 +249,5 @@ var NAVTREEINDEX65 =
 "structEnet__notify__t.html#a8482862155c3cb309d20b9fe1d3d5701":[18,4,0,4,4,0],
 "structExtendedTimestamp.html":[18,9,0,12],
 "structExtendedTimestamp.html#a2539c5aa5dfe48ca1c983352acf64b88":[18,9,0,12,0],
-"structExtendedTimestamp.html#a47c64ad839b8ea5b4e1982194a3750c1":[18,9,0,12,1],
-"structExtendedTimestamp.html#a6f4a830a17b1cf9288210f23afd22463":[18,9,0,12,2],
-"structExtendedTimestamp.html#ab289477f5516f20cb54a8c817914e2e6":[18,9,0,12,3],
-"structFLSOPSKD__Handle.html":[18,7,9,1],
-"structFLSOPSKD__Handle.html#a804b0c285fbb1c6491797b27a4b72b23":[18,7,9,1,0],
-"structFLSOPSKD__Handle.html#a95a34d7f228311ad30b08e485fc66e3b":[18,7,9,1,1]
+"structExtendedTimestamp.html#a47c64ad839b8ea5b4e1982194a3750c1":[18,9,0,12,1]
 };

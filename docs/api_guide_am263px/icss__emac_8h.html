@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('icss__emac_8h.html',''); initResizable
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">icss_emac.h File Reference</div>  </div>
@@ -612,6 +613,14 @@ Typedefs</h2></td></tr>
  While calling this, first argument is always of type <a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga6e4ec58e67973e3434b9dcb8d308ec3a">ICSS_EMAC_Handle</a>, second argument is specific to the callback (see <a class="el" href="structICSS__EMAC__CallBackObject.html">ICSS_EMAC_CallBackObject</a>), and third argument is userArg as specified in <a class="el" href="structICSS__EMAC__CallBackConfig.html">ICSS_EMAC_CallBackConfig</a>.  <a href="group__NETWORKING__ICSS__EMAC__MODULE.html#gad48ddf2582ddb004227b7c5f01355a49">More...</a><br /></td></tr>
 <tr class="separator:gad48ddf2582ddb004227b7c5f01355a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:gafdc3ad2db81a0b67f0c3fdd9dfcc58b4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#gafdc3ad2db81a0b67f0c3fdd9dfcc58b4">ICSS_EMAC_pruRstIsoState</a> { <a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ggafdc3ad2db81a0b67f0c3fdd9dfcc58b4aad1aa3f2093242a8cfdc00ddbc2baf37">RESET_ISOLATION_DISABLED</a> = 0, 
+<a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ggafdc3ad2db81a0b67f0c3fdd9dfcc58b4a1938ea2c39e073b56f78298405b8ca2d">RESET_ISOLATION_ENABLED</a> = 1, 
+<a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ggafdc3ad2db81a0b67f0c3fdd9dfcc58b4a8616867a7d757a9e8cb9ebfde15fb531">RESET_ISOLATION_NOT_SUPPORTED</a> = 2
+ }</td></tr>
+<tr class="separator:gafdc3ad2db81a0b67f0c3fdd9dfcc58b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga10787430905b6c3359d7a4d3fff3b797"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga10787430905b6c3359d7a4d3fff3b797">ICSS_EMAC_init</a> (void)</td></tr>
@@ -641,6 +650,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga49a2a061f6f24145004053b005f6e1a5"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga49a2a061f6f24145004053b005f6e1a5">ICSS_EMAC_txPacket</a> (const <a class="el" href="structICSS__EMAC__TxArgument.html">ICSS_EMAC_TxArgument</a> *txArg, void *userArg)</td></tr>
 <tr class="memdesc:ga49a2a061f6f24145004053b005f6e1a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">API to queue a frame which has to be transmitted on the specified port queue.  <a href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga49a2a061f6f24145004053b005f6e1a5">More...</a><br /></td></tr>
 <tr class="separator:ga49a2a061f6f24145004053b005f6e1a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa0ea20af82b6ded6ca9f595991930887"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#gafdc3ad2db81a0b67f0c3fdd9dfcc58b4">ICSS_EMAC_pruRstIsoState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#gaa0ea20af82b6ded6ca9f595991930887">ICSS_EMAC_getResetIsolationStatus</a> (<a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga6e4ec58e67973e3434b9dcb8d308ec3a">ICSS_EMAC_Handle</a> emacHandle)</td></tr>
+<tr class="memdesc:gaa0ea20af82b6ded6ca9f595991930887"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the reset isolation status from the ICSS_EMAC handle.  <a href="group__NETWORKING__ICSS__EMAC__MODULE.html#gaa0ea20af82b6ded6ca9f595991930887">More...</a><br /></td></tr>
+<tr class="separator:gaa0ea20af82b6ded6ca9f595991930887"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -648,7 +660,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_7101e1742a640cbc1c6c0865e05620bb.html">networking</a></li><li class="navelem"><a class="el" href="dir_b1eb37b82ba2db77ba824378ff496a6f.html">icss_emac</a></li><li class="navelem"><a class="el" href="icss__emac_8h.html">icss_emac.h</a></li>
+    <li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_7101e1742a640cbc1c6c0865e05620bb.html">networking</a></li><li class="navelem"><a class="el" href="dir_2137593bc15f0165f701ff6d1a35f04f.html">icss_emac_lld</a></li><li class="navelem"><a class="el" href="dir_ce960d34f8db0d8e8780bdfc7dbe14d7.html">icss_emac</a></li><li class="navelem"><a class="el" href="icss__emac_8h.html">icss_emac.h</a></li>
     <li class="footer">generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.20 </li>

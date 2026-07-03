@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('group__NETWORKING__ICSS__EMAC__MODULE.
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
 <div class="title">APIs for ICSS-EMAC<div class="ingroups"><a class="el" href="group__NETWORKING__MODULE.html">APIs for Networking modules</a></div></div>  </div>
@@ -174,6 +175,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga49a2a061f6f24145004053b005f6e1a5"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga49a2a061f6f24145004053b005f6e1a5">ICSS_EMAC_txPacket</a> (const <a class="el" href="structICSS__EMAC__TxArgument.html">ICSS_EMAC_TxArgument</a> *txArg, void *userArg)</td></tr>
 <tr class="memdesc:ga49a2a061f6f24145004053b005f6e1a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">API to queue a frame which has to be transmitted on the specified port queue.  <a href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga49a2a061f6f24145004053b005f6e1a5">More...</a><br /></td></tr>
 <tr class="separator:ga49a2a061f6f24145004053b005f6e1a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa0ea20af82b6ded6ca9f595991930887"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#gafdc3ad2db81a0b67f0c3fdd9dfcc58b4">ICSS_EMAC_pruRstIsoState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#gaa0ea20af82b6ded6ca9f595991930887">ICSS_EMAC_getResetIsolationStatus</a> (<a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga6e4ec58e67973e3434b9dcb8d308ec3a">ICSS_EMAC_Handle</a> emacHandle)</td></tr>
+<tr class="memdesc:gaa0ea20af82b6ded6ca9f595991930887"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the reset isolation status from the ICSS_EMAC handle.  <a href="group__NETWORKING__ICSS__EMAC__MODULE.html#gaa0ea20af82b6ded6ca9f595991930887">More...</a><br /></td></tr>
+<tr class="separator:gaa0ea20af82b6ded6ca9f595991930887"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -184,6 +188,14 @@ Typedefs</h2></td></tr>
 <tr class="memdesc:gad48ddf2582ddb004227b7c5f01355a49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition for a generic callback function used in ICSS-EMAC. <br  />
  While calling this, first argument is always of type <a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga6e4ec58e67973e3434b9dcb8d308ec3a">ICSS_EMAC_Handle</a>, second argument is specific to the callback (see <a class="el" href="structICSS__EMAC__CallBackObject.html">ICSS_EMAC_CallBackObject</a>), and third argument is userArg as specified in <a class="el" href="structICSS__EMAC__CallBackConfig.html">ICSS_EMAC_CallBackConfig</a>.  <a href="group__NETWORKING__ICSS__EMAC__MODULE.html#gad48ddf2582ddb004227b7c5f01355a49">More...</a><br /></td></tr>
 <tr class="separator:gad48ddf2582ddb004227b7c5f01355a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:gafdc3ad2db81a0b67f0c3fdd9dfcc58b4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#gafdc3ad2db81a0b67f0c3fdd9dfcc58b4">ICSS_EMAC_pruRstIsoState</a> { <a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ggafdc3ad2db81a0b67f0c3fdd9dfcc58b4aad1aa3f2093242a8cfdc00ddbc2baf37">RESET_ISOLATION_DISABLED</a> = 0, 
+<a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ggafdc3ad2db81a0b67f0c3fdd9dfcc58b4a1938ea2c39e073b56f78298405b8ca2d">RESET_ISOLATION_ENABLED</a> = 1, 
+<a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ggafdc3ad2db81a0b67f0c3fdd9dfcc58b4a8616867a7d757a9e8cb9ebfde15fb531">RESET_ISOLATION_NOT_SUPPORTED</a> = 2
+ }</td></tr>
+<tr class="separator:gafdc3ad2db81a0b67f0c3fdd9dfcc58b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -2881,6 +2893,26 @@ ICSS-EMAC Port Forwarding IOCTL Command Options</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="gafdc3ad2db81a0b67f0c3fdd9dfcc58b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafdc3ad2db81a0b67f0c3fdd9dfcc58b4">&#9670;&nbsp;</a></span>ICSS_EMAC_pruRstIsoState</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#gafdc3ad2db81a0b67f0c3fdd9dfcc58b4">ICSS_EMAC_pruRstIsoState</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggafdc3ad2db81a0b67f0c3fdd9dfcc58b4aad1aa3f2093242a8cfdc00ddbc2baf37"></a>RESET_ISOLATION_DISABLED&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggafdc3ad2db81a0b67f0c3fdd9dfcc58b4a1938ea2c39e073b56f78298405b8ca2d"></a>RESET_ISOLATION_ENABLED&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggafdc3ad2db81a0b67f0c3fdd9dfcc58b4a8616867a7d757a9e8cb9ebfde15fb531"></a>RESET_ISOLATION_NOT_SUPPORTED&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga10787430905b6c3359d7a4d3fff3b797"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga10787430905b6c3359d7a4d3fff3b797">&#9670;&nbsp;</a></span>ICSS_EMAC_init()</h2>
@@ -3197,6 +3229,44 @@ ICSS-EMAC Port Forwarding IOCTL Command Options</h2></td></tr>
 <li>If "customTxCallBack" is defined, it returns the same value as return value from "customTxCallBack.callBack." <br  />
 </li>
 </ul>
+
+</div>
+</div>
+<a id="gaa0ea20af82b6ded6ca9f595991930887"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa0ea20af82b6ded6ca9f595991930887">&#9670;&nbsp;</a></span>ICSS_EMAC_getResetIsolationStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#gafdc3ad2db81a0b67f0c3fdd9dfcc58b4">ICSS_EMAC_pruRstIsoState</a> ICSS_EMAC_getResetIsolationStatus </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga6e4ec58e67973e3434b9dcb8d308ec3a">ICSS_EMAC_Handle</a>&#160;</td>
+          <td class="paramname"><em>emacHandle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the reset isolation status from the ICSS_EMAC handle. </p>
+<pre class="fragment">    This API returns the reset isolation status stored in the ICSS_EMAC object.
+    It can be used to determine if reset isolation is enabled, disabled, or
+    not supported.
+</pre><dl class="section note"><dt>Note</dt><dd>Supported only on AM243x and AM64x.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">emacHandle</td><td>[in] ICSS_EMAC handle</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">RESET_ISOLATION_ENABLED</td><td>Reset isolation is enabled </td></tr>
+    <tr><td class="paramname">RESET_ISOLATION_DISABLED</td><td>Reset isolation is disabled </td></tr>
+    <tr><td class="paramname">RESET_ISOLATION_NOT_SUPPORTED</td><td>Reset isolation is not supported </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -120,7 +120,8 @@ var group__NETWORKING__ICSS__EMAC__MODULE =
       [ "callBackObject", "structICSS__EMAC__Params.html#a8c655e8ce118d0e5ef873c8d103bc85a", null ],
       [ "ethphyHandle", "structICSS__EMAC__Params.html#a895d651e289f56679cb4497110ad9062", null ],
       [ "macId", "structICSS__EMAC__Params.html#a280842cf08318e629f28d47f274e6c16", null ],
-      [ "enableHostQueueIsolation", "structICSS__EMAC__Params.html#a90f12a181fa61589034223155f5881b3", null ]
+      [ "enableHostQueueIsolation", "structICSS__EMAC__Params.html#a90f12a181fa61589034223155f5881b3", null ],
+      [ "pruRstIsoStatusParams", "structICSS__EMAC__Params.html#aa08b9f04d27803a03f7ca437eeb45264", null ]
     ] ],
     [ "ICSS_EMAC_RxArgument", "structICSS__EMAC__RxArgument.html", [
       [ "icssEmacHandle", "structICSS__EMAC__RxArgument.html#a021f7366b7cf7372c3193270f954d24b", null ],
@@ -321,6 +322,11 @@ var group__NETWORKING__ICSS__EMAC__MODULE =
     [ "ICSS_EMAC_OBJECT_SIZE_IN_BYTES", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga1fe92e968a3d69c4b78ba61b6aebd1ee", null ],
     [ "ICSS_EMAC_Handle", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga6e4ec58e67973e3434b9dcb8d308ec3a", null ],
     [ "ICSS_EMAC_CallBack", "group__NETWORKING__ICSS__EMAC__MODULE.html#gad48ddf2582ddb004227b7c5f01355a49", null ],
+    [ "ICSS_EMAC_pruRstIsoState", "group__NETWORKING__ICSS__EMAC__MODULE.html#gafdc3ad2db81a0b67f0c3fdd9dfcc58b4", [
+      [ "RESET_ISOLATION_DISABLED", "group__NETWORKING__ICSS__EMAC__MODULE.html#ggafdc3ad2db81a0b67f0c3fdd9dfcc58b4aad1aa3f2093242a8cfdc00ddbc2baf37", null ],
+      [ "RESET_ISOLATION_ENABLED", "group__NETWORKING__ICSS__EMAC__MODULE.html#ggafdc3ad2db81a0b67f0c3fdd9dfcc58b4a1938ea2c39e073b56f78298405b8ca2d", null ],
+      [ "RESET_ISOLATION_NOT_SUPPORTED", "group__NETWORKING__ICSS__EMAC__MODULE.html#ggafdc3ad2db81a0b67f0c3fdd9dfcc58b4a8616867a7d757a9e8cb9ebfde15fb531", null ]
+    ] ],
     [ "ICSS_EMAC_init", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga10787430905b6c3359d7a4d3fff3b797", null ],
     [ "ICSS_EMAC_deinit", "group__NETWORKING__ICSS__EMAC__MODULE.html#gad579cf7f825606261c2d53d93de3c3cf", null ],
     [ "ICSS_EMAC_Params_init", "group__NETWORKING__ICSS__EMAC__MODULE.html#gaf08e745caf9f79d4373536de1d4d3ba5", null ],
@@ -329,5 +335,6 @@ var group__NETWORKING__ICSS__EMAC__MODULE =
     [ "ICSS_EMAC_ioctl", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga7d6c646018a797be02688b661d62f31c", null ],
     [ "ICSS_EMAC_rxPktGet", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga6a5967f060e14a11d20eea9cd8b66e5f", null ],
     [ "ICSS_EMAC_rxPktInfo", "group__NETWORKING__ICSS__EMAC__MODULE.html#gabf7e27aeb2dd4e42638b8ab8e20ecdd6", null ],
-    [ "ICSS_EMAC_txPacket", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga49a2a061f6f24145004053b005f6e1a5", null ]
+    [ "ICSS_EMAC_txPacket", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga49a2a061f6f24145004053b005f6e1a5", null ],
+    [ "ICSS_EMAC_getResetIsolationStatus", "group__NETWORKING__ICSS__EMAC__MODULE.html#gaa0ea20af82b6ded6ca9f595991930887", null ]
 ];
