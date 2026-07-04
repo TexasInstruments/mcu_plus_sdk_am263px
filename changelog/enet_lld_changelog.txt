@@ -71917,3 +71917,33 @@ Date:   Wed Jul 1 16:44:20 2026 +0530
  examples/lwip/enet_cpsw_rawhttpserver/am64x-evm/r5fss0-0_nortos/example.syscfg | 21 ++++++++++++++++++---
  1 file changed, 18 insertions(+), 3 deletions(-)
 
+========================================
+Changes from build on 2026-07-04 20:46:56
+Previous commit: c1aa249af8d4ca24171f3ce17ff020b14d7d73bb
+Current commit: c7da27ef754c6537986dc8799b129aa0b978a0e3
+========================================
+
+commit c7da27ef754c6537986dc8799b129aa0b978a0e3
+Author: thilak <t-karanam@ti.com>
+Date:   Fri Jul 3 13:14:01 2026 +0530
+
+    am243x: ENET: Fix Linker commands for enet_lwip_https
+    
+    - Fix MSRAM ORIGIN in example.syscfg from 0x70000000 to 0x70080000 so the
+      application is placed above the SBL reserved region (0x70000000-0x70080000),
+      preventing the app from corrupting the running SBL during UART boot loading
+    - Reduce MSRAM LENGTH from 0x190000 to 0x160000 to fit within the available
+      window between the SBL boundary and the DMSC reservation at 0x701E0000
+    - Mark MSRAM as a manual (non-auto) region with explicit start address so
+      SysConfig does not silently reset the origin on regeneration
+    - Remove stale hand-edited ti-arm-clang/linker.cmd; the build exclusively
+      uses SysConfig-generated generated/linker.cmd, making this file misleading
+    
+    Fixes: SITSW-12354
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ examples/lwip/cpsw_lwip_https/am243x-lp/r5fss0-0_freertos/example.syscfg    |  10 +--
+ .../cpsw_lwip_https/am243x-lp/r5fss0-0_freertos/ti-arm-clang/linker.cmd     | 139 ------------------------------------
+ 2 files changed, 6 insertions(+), 143 deletions(-)
+
