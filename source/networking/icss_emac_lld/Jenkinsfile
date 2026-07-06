@@ -1,0 +1,19 @@
+pipeline {
+    agent {label 'partial'}
+    options {
+        timeout(time: 2, unit: 'HOURS')
+        buildDiscarder(logRotator(numToKeepStr: '120', daysToKeepStr: '30'))
+    }
+    stages {
+        stage('trigger IND_COMMS_SDK') {
+            steps {
+                build job: 'icss_ind_comms_sdk_cicd/next',
+                    parameters: [
+                        string(name: 'icss_emac_lld_tag', value: env.BRANCH_NAME)
+                    ],
+                    wait: true,       // Wait for the job to complete
+                    propagate: true   // Fail this job if downstream fails
+            }
+        }
+    }
+}

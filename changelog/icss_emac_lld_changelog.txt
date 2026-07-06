@@ -5,3 +5,22 @@ Recent commit history (last 20 commits):
 9adf26c Revert "icss_emac: add NULL checks for attrs and special unicast MAC feature presence"
 
 Note: Detailed file changes will be shown in subsequent builds when comparing commits
+========================================
+Changes from build on 2026-07-06 20:47:23
+Previous commit: 9adf26caa55eb00e60734ed7fe50fcfc10752fa1
+Current commit: 1e43afc51ae8edafb26a501fef4be052c99a978c
+========================================
+
+commit a0ad89098f54f1c3caa2380bde479be17dcfcbe3
+Author: Maximilian Apel <m-apel@ti.com>
+Date:   Fri Jul 3 12:38:48 2026 +0200
+
+    all SoC: icss_emac: implement cicd
+    
+    Fixes: ICSTACK-1093
+    
+    Signed-off-by: Maximilian Apel <m-apel@ti.com>
+
+ Jenkinsfile | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
