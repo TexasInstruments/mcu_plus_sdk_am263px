@@ -24,3 +24,184 @@ Date:   Fri Jul 3 12:38:48 2026 +0200
  Jenkinsfile | 19 +++++++++++++++++++
  1 file changed, 19 insertions(+)
 
+========================================
+Changes from build on 2026-07-07 20:48:53
+Previous commit: 1e43afc51ae8edafb26a501fef4be052c99a978c (not found in current history)
+Current commit: f39444f47ddedc18996aabc49e3e325194c11d25
+========================================
+
+Note: Previous commit not found - repository may have been rebased or reset.
+Showing current commit details only:
+
+commit f39444f47ddedc18996aabc49e3e325194c11d25
+Author: Laxman Chinnannavar <l-chinnannavar@ti.com>
+Date:   Tue Jul 7 00:54:15 2026 -0500
+
+    Pull request #10: am2x/am6x: icss-emac: Disable max preamble count check
+    
+    Merge in PINDSW/icss_emac_lld from dev to next
+    
+    * commit '9829b52229b7eb89717fe12300657aa030e3c55b':
+      allsoc: icss-emac: Disable max preamble count check
+
+ .gitignore                                         |   37 +
+ .pr_agent.toml                                     |   28 +
+ Jenkinsfile                                        |   19 +
+ LICENSE.md                                         |    1 +
+ docs/manifest.html                                 |  311 +++
+ icss_emac/.project/project.js                      |   14 +
+ icss_emac/.project/project_am243x.js               |   82 +
+ icss_emac/.project/project_am261x.js               |   82 +
+ .../project_am261x_hsr_prp_icss_emac_mii.js        |   90 +
+ icss_emac/.project/project_am263px.js              |   82 +
+ .../project_am263px_hsr_prp_icss_emac_mii.js       |   90 +
+ icss_emac/.project/project_am263x.js               |   82 +
+ icss_emac/.project/project_am64x.js                |   82 +
+ .../.project/project_hsr_prp_icss_emac_mii.js      |   14 +
+ icss_emac/firmware/README.md                       |   99 +
+ .../icss_dual_emac/am261x-lp/pruicss_pinmux.h      |  242 ++
+ .../icss_dual_emac/am261x-som/pruicss_pinmux.h     |  220 ++
+ .../icss_dual_emac/am263px-cc/pruicss_pinmux.h     |  220 ++
+ .../icss_dual_emac/am263px-lp/pruicss_pinmux.h     |  215 ++
+ .../icss_dual_emac/am263x-cc/pruicss_pinmux.h      |  220 ++
+ .../icss_dual_emac/am263x-lp/pruicss_pinmux.h      |  215 ++
+ icss_emac/firmware/icss_dual_emac/icss_emac_mmap.h |  445 +++
+ .../icss_dual_emac/mii/.project/project.js         |   14 +
+ .../icss_dual_emac/mii/.project/project_am261x.js  |  188 ++
+ .../icss_dual_emac/mii/.project/project_am263px.js |  188 ++
+ .../icss_dual_emac/mii/.project/project_am263x.js  |  188 ++
+ icss_emac/firmware/icss_dual_emac/mii/PRU0_bin.h   | 1358 +++++++++
+ icss_emac/firmware/icss_dual_emac/mii/PRU1_bin.h   | 1365 +++++++++
+ .../icss_dual_emac/mii/icss_emac_hexpru.cmd        |    7 +
+ .../icss_dual_emac/tiemac_pruicss_intc_mapping.h   |  128 +
+ .../icss_switch/config/icss_emacFwVersion.h        |   99 +
+ .../docs/ICSS_SWITCH_Firmware_Design_Guide.pdf     |  Bin 0 -> 1550715 bytes
+ .../firmware/icss_switch/mii/.project/project.js   |   14 +
+ .../icss_switch/mii/.project/project_am261x.js     |  189 ++
+ .../icss_switch/mii/.project/project_am263px.js    |  189 ++
+ .../icss_switch/mii/.project/project_am263x.js     |  189 ++
+ icss_emac/firmware/icss_switch/mii/PRU0_bin.h      | 1465 ++++++++++
+ icss_emac/firmware/icss_switch/mii/PRU1_bin.h      | 1455 ++++++++++
+ .../firmware/icss_switch/mii/icss_emac_hexpru.cmd  |    7 +
+ .../icss_switch/tiswitch_pruss_intc_mapping.h      |  100 +
+ icss_emac/firmware/source/README.txt               |   63 +
+ icss_emac/firmware/source/emac_MII_Rcv.asm         | 2242 +++++++++++++++
+ icss_emac/firmware/source/emac_MII_Rcv.h           |  663 +++++
+ icss_emac/firmware/source/emac_MII_Xmt.asm         | 1087 ++++++++
+ icss_emac/firmware/source/emac_MII_Xmt.h           |  321 +++
+ icss_emac/firmware/source/emac_ptp.asm             | 1183 ++++++++
+ icss_emac/firmware/source/emac_statistics.asm      |  391 +++
+ icss_emac/firmware/source/emac_tts.asm             |  789 ++++++
+ icss_emac/firmware/source/emac_tts.h               |  550 ++++
+ icss_emac/firmware/source/firmware_version.h       |  152 +
+ icss_emac/firmware/source/icss_defines.h           |  139 +
+ icss_emac/firmware/source/icss_ecap_regs.h         |   62 +
+ icss_emac/firmware/source/icss_emacSwitch.h        |  822 ++++++
+ icss_emac/firmware/source/icss_iep_regs.h          |  164 ++
+ icss_emac/firmware/source/icss_intc_regs.h         |  132 +
+ icss_emac/firmware/source/icss_macros.h            |  396 +++
+ icss_emac/firmware/source/icss_miirt_regs.h        |  212 ++
+ icss_emac/firmware/source/icss_ptp.h               |  154 ++
+ icss_emac/firmware/source/icss_ptp_macro.h         |  355 +++
+ .../firmware/source/icss_rx_int_pacing_mmap.h      |   94 +
+ icss_emac/firmware/source/icss_stp_switch.h        |  211 ++
+ icss_emac/firmware/source/icss_stp_switch_macros.h |  502 ++++
+ icss_emac/firmware/source/icss_switch.h            |  786 ++++++
+ icss_emac/firmware/source/icss_switch_macros.h     |  155 ++
+ .../firmware/source/icss_timeSync_memory_map.h     |  120 +
+ .../firmware/source/icss_vlan_mcast_filter_mmap.h  |  136 +
+ icss_emac/firmware/source/micro_scheduler.asm      |  457 +++
+ icss_emac/firmware/source/micro_scheduler.h        |  320 +++
+ icss_emac/firmware/source/pru.cmd                  |   48 +
+ icss_emac/firmware/source/pru_types.h              |   83 +
+ icss_emac/firmware/source/resource_table.c         |  105 +
+ icss_emac/firmware/source/rsc_types.h              |  347 +++
+ .../firmware/source/switch_collision_task.asm      |  349 +++
+ icss_emac/icss_emac.h                              | 1080 ++++++++
+ icss_emac/lwipif/.project/project.js               |   14 +
+ icss_emac/lwipif/.project/project_am243x.js        |   99 +
+ icss_emac/lwipif/.project/project_am261x.js        |  100 +
+ icss_emac/lwipif/.project/project_am263px.js       |  100 +
+ icss_emac/lwipif/.project/project_am263x.js        |  100 +
+ icss_emac/lwipif/.project/project_am64x.js         |   97 +
+ icss_emac/lwipif/inc/default_netif.h               |   58 +
+ icss_emac/lwipif/inc/lwip2icss_emac.h              |  175 ++
+ icss_emac/lwipif/inc/lwip2lwipif.h                 |   93 +
+ icss_emac/lwipif/inc/lwipif2icss_emac_AppIf.h      |   91 +
+ .../makefile.am243x.r5f.ti-arm-clang.freertos      |  133 +
+ .../lwipif/makefile.am243x.r5f.ti-arm-clang.nortos |  130 +
+ .../makefile.am261x.r5f.ti-arm-clang.freertos      |  133 +
+ .../makefile.am261x.r5f.ti-arm-clang.freertos_mpu  |  133 +
+ .../lwipif/makefile.am261x.r5f.ti-arm-clang.nortos |  130 +
+ .../makefile.am263px.r5f.ti-arm-clang.freertos     |  133 +
+ .../makefile.am263px.r5f.ti-arm-clang.freertos_mpu |  133 +
+ .../makefile.am263px.r5f.ti-arm-clang.nortos       |  130 +
+ .../makefile.am263x.r5f.ti-arm-clang.freertos      |  133 +
+ .../makefile.am263x.r5f.ti-arm-clang.freertos_mpu  |  133 +
+ .../lwipif/makefile.am263x.r5f.ti-arm-clang.nortos |  130 +
+ .../makefile.am64x.r5f.ti-arm-clang.freertos       |  132 +
+ .../lwipif/makefile.am64x.r5f.ti-arm-clang.nortos  |  129 +
+ icss_emac/lwipif/src/default_netif.c               |   57 +
+ icss_emac/lwipif/src/lwip2icss_emac.c              |  536 ++++
+ icss_emac/lwipif/src/lwip2lwipif.c                 |  455 +++
+ icss_emac/lwipif/src/lwip2lwipif_priv.h            |   94 +
+ .../makefile.am243x.r5f.ti-arm-clang.freertos      |  128 +
+ icss_emac/makefile.am243x.r5f.ti-arm-clang.nortos  |  125 +
+ .../makefile.am261x.r5f.ti-arm-clang.freertos      |  128 +
+ .../makefile.am261x.r5f.ti-arm-clang.freertos_mpu  |  128 +
+ icss_emac/makefile.am261x.r5f.ti-arm-clang.nortos  |  125 +
+ .../makefile.am263px.r5f.ti-arm-clang.freertos     |  128 +
+ .../makefile.am263px.r5f.ti-arm-clang.freertos_mpu |  128 +
+ icss_emac/makefile.am263px.r5f.ti-arm-clang.nortos |  125 +
+ .../makefile.am263x.r5f.ti-arm-clang.freertos      |  128 +
+ .../makefile.am263x.r5f.ti-arm-clang.freertos_mpu  |  128 +
+ icss_emac/makefile.am263x.r5f.ti-arm-clang.nortos  |  125 +
+ icss_emac/makefile.am64x.r5f.ti-arm-clang.freertos |  128 +
+ icss_emac/makefile.am64x.r5f.ti-arm-clang.nortos   |  125 +
+ ..._prp_icss_emac.am261x.r5f.ti-arm-clang.freertos |  129 +
+ ..._icss_emac.am261x.r5f.ti-arm-clang.freertos_mpu |  129 +
+ ...sr_prp_icss_emac.am261x.r5f.ti-arm-clang.nortos |  126 +
+ ...prp_icss_emac.am263px.r5f.ti-arm-clang.freertos |  129 +
+ ...icss_emac.am263px.r5f.ti-arm-clang.freertos_mpu |  129 +
+ ...r_prp_icss_emac.am263px.r5f.ti-arm-clang.nortos |  126 +
+ icss_emac/source/icss_emac.c                       | 2911 ++++++++++++++++++++
+ icss_emac/source/icss_emac_learning.c              |  491 ++++
+ icss_emac/source/icss_emac_learning.h              |  239 ++
+ icss_emac/source/icss_emac_local.c                 | 2363 ++++++++++++++++
+ icss_emac/source/icss_emac_local.h                 |  525 ++++
+ icss_emac/source/icss_emac_statistics.c            |  274 ++
+ icss_emac/source/icss_emac_statistics.h            |  146 +
+ icss_emac/source/icss_emac_stormControl.c          |  327 +++
+ icss_emac/source/icss_emac_stormControl.h          |  196 ++
+ icss_timesync/.project/project.js                  |   14 +
+ icss_timesync/.project/project_am243x.js           |   80 +
+ icss_timesync/.project/project_am261x.js           |   80 +
+ icss_timesync/.project/project_am263px.js          |   80 +
+ icss_timesync/.project/project_am263x.js           |   80 +
+ icss_timesync/.project/project_am64x.js            |   80 +
+ icss_timesync/icss_timeSync.c                      | 2124 ++++++++++++++
+ icss_timesync/icss_timeSync.h                      |  821 ++++++
+ icss_timesync/icss_timeSyncApi.c                   |  437 +++
+ icss_timesync/icss_timeSyncApi.h                   | 1152 ++++++++
+ icss_timesync/icss_timeSync_init.c                 | 1188 ++++++++
+ icss_timesync/icss_timeSync_init.h                 |  341 +++
+ icss_timesync/icss_timeSync_memory_map.h           |   98 +
+ icss_timesync/icss_timeSync_osal.c                 |  921 +++++++
+ icss_timesync/icss_timeSync_osal.h                 |  156 ++
+ icss_timesync/icss_timeSync_utils.c                |  220 ++
+ icss_timesync/icss_timeSync_utils.h                |  134 +
+ .../makefile.am243x.r5f.ti-arm-clang.freertos      |  127 +
+ .../makefile.am243x.r5f.ti-arm-clang.nortos        |  124 +
+ .../makefile.am261x.r5f.ti-arm-clang.freertos      |  127 +
+ .../makefile.am261x.r5f.ti-arm-clang.freertos_mpu  |  127 +
+ .../makefile.am261x.r5f.ti-arm-clang.nortos        |  124 +
+ .../makefile.am263px.r5f.ti-arm-clang.freertos     |  127 +
+ .../makefile.am263px.r5f.ti-arm-clang.freertos_mpu |  127 +
+ .../makefile.am263px.r5f.ti-arm-clang.nortos       |  124 +
+ .../makefile.am263x.r5f.ti-arm-clang.freertos      |  127 +
+ .../makefile.am263x.r5f.ti-arm-clang.freertos_mpu  |  127 +
+ .../makefile.am263x.r5f.ti-arm-clang.nortos        |  124 +
+ .../makefile.am64x.r5f.ti-arm-clang.freertos       |  127 +
+ .../makefile.am64x.r5f.ti-arm-clang.nortos         |  124 +
+ 159 files changed, 48015 insertions(+)
+

@@ -1015,6 +1015,13 @@ static void ICSS_EMAC_pruicssMiiRtCfgInit(ICSS_EMAC_Handle icssEmacHandle)
     HW_WR_FIELD32((pruicssHwAttrs->miiRtCfgRegBase) + CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_TX_IPG0,
                   CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_TX_IPG0_TX_IPG0 , TX_MIN_IPG);
 
+    /* Disable max preamble count check for Port 0 */
+    HW_WR_FIELD32((pruicssHwAttrs->miiRtCfgRegBase) + CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_RX_PCNT0,
+            CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_RX_PCNT0_RX_MAX_PCNT0, 0x0);
+    /* Disable max preamble count check for Port 1 */
+    HW_WR_FIELD32((pruicssHwAttrs->miiRtCfgRegBase) + CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_RX_PCNT1,
+            CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_RX_PCNT1_RX_MAX_PCNT1, 0x0);
+
     /* Configuration of Port 0 */
     HW_WR_FIELD32((pruicssHwAttrs->miiRtCfgRegBase) + CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_RXCFG0,
             CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_RXCFG0_RX_ENABLE0, 1);
