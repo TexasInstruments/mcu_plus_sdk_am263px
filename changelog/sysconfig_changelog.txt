@@ -17517,3 +17517,31 @@ Date:   Mon Jun 29 16:04:06 2026 +0530
  xbar/.meta/xbar.syscfg.js                                                   |    8 +
  1567 files changed, 160696 insertions(+)
 
+========================================
+Changes from build on 2026-07-08 20:46:51
+Previous commit: 37f450977804d6577ec4d438ad3dd983e5792626
+Current commit: e159da569d9947737724d9ac7fb77f04742a2b39
+========================================
+
+commit e159da569d9947737724d9ac7fb77f04742a2b39
+Author: Venkatesan Krishnamoorthy <v-krishnamoorthy@ti.com>
+Date:   Thu Jul 2 12:20:31 2026 +0530
+
+    am64x/am243x: gpio: disable intr config for same bank pins
+    
+    When interrupt is enabled for a GPIO pin, disable the interrupt
+    configuration option for all other pins belonging to the same GPIO
+    bank. A validation error is also raised if multiple pins in the
+    same bank have interrupt enabled simultaneously.
+    
+    A read-only 'GPIO Bank' field is also shown in SysConfig to indicate
+    which bank (group of 16 pins) the selected GPIO pin belongs to.
+    
+    Fixes: SITSW-9293
+    
+    Signed-off-by: Venkatesan Krishnamoorthy <v-krishnamoorthy@ti.com>
+
+ drivers/.meta/gpio/v0/gpio_v0.syscfg.js     |  68 ++++++++++++++++++++++++++++++++++++++++++++++
+ drivers/.meta/gpio/v0_1/gpio_v0_1.syscfg.js | 101 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 169 insertions(+)
+

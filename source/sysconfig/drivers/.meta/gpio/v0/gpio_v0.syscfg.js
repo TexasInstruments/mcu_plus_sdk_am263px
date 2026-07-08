@@ -168,6 +168,7 @@ function getPeripheralPinNames(inst) {
 
 function validate(inst, report) {
     validateInterruptRouter(inst, report, "intrOut");
+    validateBankInterrupt(inst, report);
 
     if((common.getSocName() == "am263x") || (common.getSocName() == "am263px") || (common.getSocName() == "am261x"))
     {
@@ -175,6 +176,57 @@ function validate(inst, report) {
         {
             report.logInfo(`GPIO Interrupt XBAR Configuration needs to be done additionally to route the GPIO interrupt to VIM.
                 Interrupt registration has to be done in application.`, inst, "enableIntr");
+        }
+    }
+}
+
+/* Get the GPIO bank identifier using the SOC pin/instance APIs.
+ *
+ * Each GPIO instance has banks of 16 pins (BANK0 = pins 0-15,
+ * BANK1 = pins 16-31, etc.). Returns "<instance>/<bankNum>" e.g.
+ * "GPIO0/0", or null if not yet assigned. */
+function getGpioBank(inst) {
+    try {
+        let pinIndex = parseInt(soc.getPinIndex(inst), 10);
+        if (isNaN(pinIndex)) return null;
+        let instanceName = soc.getInstanceString(inst);
+        if (!instanceName) return null;
+        let bankNum = Math.floor(pinIndex / 16);
+        return instanceName + "/" + bankNum;
+    } catch (e) {
+        return null;
+    }
+}
+
+/* Convert internal bank key "GPIO0/2" to display string "GPIO0 BANK2" */
+function bankKeyToStr(bankKey) {
+    let parts = bankKey.split("/");
+    return parts[0] + " BANK" + parts[1];
+}
+
+/* Validate that only one pin per GPIO bank has interrupt enabled.
+ * Applicable for am243x only. Uses getGpioBank() which reads $assign
+ * (not $solution), so it is always current even during pin changes. */
+function validateBankInterrupt(instance, report) {
+    if (common.getSocName() != "am243x") return;
+    if (instance.enableIntr) {
+        let myBank = getGpioBank(instance);
+        if (myBank !== null) {
+            let moduleInstances = instance.$module.$instances;
+            for (let i = 0; i < moduleInstances.length; i++) {
+                if (moduleInstances[i] !== instance &&
+                    moduleInstances[i].enableIntr === true) {
+                    let otherBank = getGpioBank(moduleInstances[i]);
+                    if (otherBank !== null && otherBank === myBank) {
+                        report.logError(
+                            "Conflicts with '" + moduleInstances[i].$name +
+                            "': both pins are in " + bankKeyToStr(myBank) +
+                            ". Only one interrupt per GPIO bank (16 pins) is allowed.",
+                            instance, "enableIntr");
+                        return;
+                    }
+                }
+            }
         }
     }
 }
@@ -293,6 +345,22 @@ function getConfigurables() {
                 ui.intrOut.hidden = hideConfigs;
                 ui.getBoardCfg.hidden = hideConfigs;
             }
+        },
+    },
+    {
+        name: "gpioBank",
+        displayName: "GPIO Bank",
+        description: "GPIO bank this pin belongs to (16 pins per bank). Read-only, computed from pin assignment.",
+        default: "Not determined",
+        readOnly: true,
+        hidden: !(common.getSocName() === "am64x" || common.getSocName().includes("am243x")),
+        getValue: (inst) => {
+            let bank = getGpioBank(inst);
+            if (bank !== null) {
+                let parts = bank.split("/");
+                return parts[0] + " BANK" + parts[1];
+            }
+            return "Not determined";
         },
     },
     ...gConfig

@@ -54,8 +54,94 @@ function getPeripheralPinNames(inst) {
 
 function validate(inst, report) {
         validateInterruptRouter(inst, report, "intrOut");
+        validateBankInterrupt(inst, report);
 }
 
+
+
+/* Get the GPIO bank identifier from the pad $assign value, using
+ * system.deviceData to map the pad signal name to the GPIO peripheral
+ * pin. This avoids reading $solution which is stale in validate()
+ * when a pin change triggers revalidation.
+ *
+ * Each GPIO instance has banks of 16 pins (BANK0 = pins 0-15,
+ * BANK1 = pins 16-31, etc.). Returns "<instance>/<bankNum>" e.g.
+ * "GPIO0/0", or null if not yet assigned. */
+function getGpioBank(inst) {
+    try {
+        let interfaceName = soc.getInterfaceName(inst);
+        let padName = inst[interfaceName].gpioPin.$assign;
+
+        if (padName && padName !== "Any") {
+            /* Explicit pad assigned: use device data lookup to avoid stale
+             * $solution when the user changes the pad selection. */
+            for (let key in system.deviceData.devicePins) {
+                let dp = system.deviceData.devicePins[key];
+                if (dp && dp.name === padName) {
+                    let muxSettings = dp.mux && dp.mux.muxSetting;
+                    if (muxSettings) {
+                        for (let msKey in muxSettings) {
+                            let ppName = muxSettings[msKey].peripheralPin.name;
+                            if (/^(MCU_)?GPIO\d*_\d+$/.test(ppName)) {
+                                let parts = ppName.split("_");
+                                let pinIndex = parseInt(parts[parts.length - 1], 10);
+                                if (isNaN(pinIndex)) continue;
+                                let instancePart = parts.slice(0, parts.length - 1).join("_");
+                                let bankNum = Math.floor(pinIndex / 16);
+                                return instancePart + "/" + bankNum;
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+            return null;
+        } else {
+            /* "Any" or unset: solver auto-picks the pad, user is not manually
+             * changing it, so $solution is always current — use it directly. */
+            let instanceName = soc.getInstanceString(inst);
+            let pinIndex = parseInt(soc.getPinIndex(inst), 10);
+            if (isNaN(pinIndex)) return null;
+            let bankNum = Math.floor(pinIndex / 16);
+            return instanceName + "/" + bankNum;
+        }
+    } catch (e) {
+        return null;
+    }
+}
+
+/* Convert internal bank key "GPIO0/2" to display string "GPIO0 BANK2" */
+function bankKeyToStr(bankKey) {
+    let parts = bankKey.split("/");
+    return parts[0] + " BANK" + parts[1];
+}
+
+/* Validate that only one pin per GPIO bank has interrupt enabled.
+ * Applicable for am64x only. Uses getGpioBank() which reads $assign
+ * (not $solution), so it is always current even during pin changes. */
+function validateBankInterrupt(instance, report) {
+    if (common.getSocName() != "am64x") return;
+    if (instance.enableIntr) {
+        let myBank = getGpioBank(instance);
+        if (myBank !== null) {
+            let moduleInstances = instance.$module.$instances;
+            for (let i = 0; i < moduleInstances.length; i++) {
+                if (moduleInstances[i] !== instance &&
+                    moduleInstances[i].enableIntr === true) {
+                    let otherBank = getGpioBank(moduleInstances[i]);
+                    if (otherBank !== null && otherBank === myBank) {
+                        report.logError(
+                            "Conflicts with '" + moduleInstances[i].$name +
+                            "': both pins are in " + bankKeyToStr(myBank) +
+                            ". Only one interrupt per GPIO bank (16 pins) is allowed.",
+                            instance, "enableIntr");
+                        return;
+                    }
+                }
+            }
+        }
+    }
+}
 
 //Function to validate if same interrupt router is selected for other instances
 function validateInterruptRouter(instance, report, fieldname) {
@@ -172,6 +258,21 @@ function getConfigurables() {
                 ui.intrOut.hidden = hideConfigs;
                 ui.getBoardCfg.hidden = hideConfigs;
             }
+        },
+    },
+    {
+        name: "gpioBank",
+        displayName: "GPIO Bank",
+        description: "GPIO bank this pin belongs to (16 pins per bank). Read-only, computed from pin assignment.",
+        default: "Not determined",
+        readOnly: true,
+        getValue: (inst) => {
+            let bank = getGpioBank(inst);
+            if (bank !== null) {
+                let parts = bank.split("/");
+                return parts[0] + " BANK" + parts[1];
+            }
+            return "Not determined";
         },
     },
     )
