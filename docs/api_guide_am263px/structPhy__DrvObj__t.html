@@ -120,12 +120,13 @@ Data Fields</h2></td></tr>
 &#160;&#160;&#160;&#160;&#160;&#160;loopbackEn)</td></tr>
 <tr class="memdesc:ae8d729bfa20b2f8f1262d33db48afee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">PHY specific configuration.  <a href="structPhy__DrvObj__t_1_1_0d0.html#ae8d729bfa20b2f8f1262d33db48afee9">More...</a><br /></td></tr>
 <tr class="separator:ae8d729bfa20b2f8f1262d33db48afee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a400907dfe91a4861f63fce83bb8c4265"><td class="memItemLeft" >&#160;&#160;&#160;void(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#a499a9f559783dff89e99d1daad6a25d3">reset</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy)</td></tr>
-<tr class="memdesc:a400907dfe91a4861f63fce83bb8c4265"><td class="mdescLeft">&#160;</td><td class="mdescRight">PHY specific soft reset.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a400907dfe91a4861f63fce83bb8c4265">More...</a><br /></td></tr>
-<tr class="separator:a400907dfe91a4861f63fce83bb8c4265"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a857e5eb87c37feb85fd856120ee2340d"><td class="memItemLeft" >&#160;&#160;&#160;bool(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#a6b8f8213bcd96b57750c79e9ad4fdaf3">isResetComplete</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy)</td></tr>
-<tr class="memdesc:a857e5eb87c37feb85fd856120ee2340d"><td class="mdescLeft">&#160;</td><td class="mdescRight">PHY specific soft reset status.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a857e5eb87c37feb85fd856120ee2340d">More...</a><br /></td></tr>
-<tr class="separator:a857e5eb87c37feb85fd856120ee2340d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5930617e34e9a155408e18ac351c32e"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#a2b20ee5b47d9d93294e8207cc8b2dbca">reset</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy)</td></tr>
+<tr class="memdesc:aa5930617e34e9a155408e18ac351c32e"><td class="mdescLeft">&#160;</td><td class="mdescRight">PHY specific soft reset.  <a href="structPhy__DrvObj__t_1_1_0d0.html#aa5930617e34e9a155408e18ac351c32e">More...</a><br /></td></tr>
+<tr class="separator:aa5930617e34e9a155408e18ac351c32e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7460067c1eec1cee48d656e7d02f507"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#ac8494a862c1db4d28fb1d5ed4ff395b3">isResetComplete</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool <br class="typebreak" />
+&#160;&#160;&#160;&#160;&#160;&#160;*pCompleted)</td></tr>
+<tr class="memdesc:ab7460067c1eec1cee48d656e7d02f507"><td class="mdescLeft">&#160;</td><td class="mdescRight">PHY specific soft reset status.  <a href="structPhy__DrvObj__t_1_1_0d0.html#ab7460067c1eec1cee48d656e7d02f507">More...</a><br /></td></tr>
+<tr class="separator:ab7460067c1eec1cee48d656e7d02f507"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9d972893fc1a5fcc2f8ec3d2b18e8b2"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#af4009d7e7fb843cf275811ae202e212b">readReg</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, <br class="typebreak" />
 &#160;&#160;&#160;&#160;&#160;&#160;uint32_t reg, uint16_t *val)</td></tr>
 <tr class="memdesc:ad9d972893fc1a5fcc2f8ec3d2b18e8b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read PHY register.  <a href="structPhy__DrvObj__t_1_1_0d0.html#ad9d972893fc1a5fcc2f8ec3d2b18e8b2">More...</a><br /></td></tr>
@@ -225,9 +226,9 @@ Data Fields</h2></td></tr>
 &#160;&#160;&#160;&#160;&#160;&#160;int8_t nudgeValue)</td></tr>
 <tr class="memdesc:a91c49a7aed7ffaedf0f3cb5f5dbef795"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nudge Codec Clock.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a91c49a7aed7ffaedf0f3cb5f5dbef795">More...</a><br /></td></tr>
 <tr class="separator:a91c49a7aed7ffaedf0f3cb5f5dbef795"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1996bbe04594c14a4eda42c5bd926c62"><td class="memItemLeft" >&#160;&#160;&#160;void(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#ab7496c35f0b9954ffbee1119d7ba0167">restart</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy)</td></tr>
-<tr class="memdesc:a1996bbe04594c14a4eda42c5bd926c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">PHY specific software restart.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a1996bbe04594c14a4eda42c5bd926c62">More...</a><br /></td></tr>
-<tr class="separator:a1996bbe04594c14a4eda42c5bd926c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e0798e6e32c400fea75582916f81d1c"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#ae986ffb8ffc7ded5e274a910435f8f42">restart</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy)</td></tr>
+<tr class="memdesc:a7e0798e6e32c400fea75582916f81d1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">PHY specific software restart.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a7e0798e6e32c400fea75582916f81d1c">More...</a><br /></td></tr>
+<tr class="separator:a7e0798e6e32c400fea75582916f81d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad79f0a090a5b9eac36858dc90ff24b42"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#a0435e37b6ae17a6578b277952cdc702e">isRestartComplete</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool <br class="typebreak" />
 &#160;&#160;&#160;&#160;&#160;&#160;*pCompleted)</td></tr>
 <tr class="memdesc:ad79f0a090a5b9eac36858dc90ff24b42"><td class="mdescLeft">&#160;</td><td class="mdescRight">PHY specific soft reset status.  <a href="structPhy__DrvObj__t_1_1_0d0.html#ad79f0a090a5b9eac36858dc90ff24b42">More...</a><br /></td></tr>
@@ -236,22 +237,29 @@ Data Fields</h2></td></tr>
 &#160;&#160;&#160;&#160;&#160;&#160;uint32_t *pId)</td></tr>
 <tr class="memdesc:a86801c69f1ebd2c88c28463af70f6af2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides PHY ID value as 32-bit value.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a86801c69f1ebd2c88c28463af70f6af2">More...</a><br /></td></tr>
 <tr class="separator:a86801c69f1ebd2c88c28463af70f6af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf3b6a99874529142757b8bae21cabd6"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#acf7dfe4c62224048b8fe6bc26ddc381a">ctrlPowerDown</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool <br class="typebreak" />
-&#160;&#160;&#160;&#160;&#160;&#160;control)</td></tr>
-<tr class="memdesc:abf3b6a99874529142757b8bae21cabd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls IEEE power down feature.  <a href="structPhy__DrvObj__t_1_1_0d0.html#abf3b6a99874529142757b8bae21cabd6">More...</a><br /></td></tr>
-<tr class="separator:abf3b6a99874529142757b8bae21cabd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41ccacda7a828e55b625feb7e30540bd"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#a35553c3579427f737d081535ee66b8bd">ctrlPowerDown</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool <br class="typebreak" />
+&#160;&#160;&#160;&#160;&#160;&#160;enable)</td></tr>
+<tr class="memdesc:a41ccacda7a828e55b625feb7e30540bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls IEEE power down feature.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a41ccacda7a828e55b625feb7e30540bd">More...</a><br /></td></tr>
+<tr class="separator:a41ccacda7a828e55b625feb7e30540bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac56f769be1a63931e0bbdf9f0a4e7327"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#abe5a4cd146f558a27ff062b320cb9a1b">isPowerDownActive</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool <br class="typebreak" />
 &#160;&#160;&#160;&#160;&#160;&#160;*pActive)</td></tr>
 <tr class="memdesc:ac56f769be1a63931e0bbdf9f0a4e7327"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if IEEE power down feature is enabled.  <a href="structPhy__DrvObj__t_1_1_0d0.html#ac56f769be1a63931e0bbdf9f0a4e7327">More...</a><br /></td></tr>
 <tr class="separator:ac56f769be1a63931e0bbdf9f0a4e7327"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2d10964655b9e03408c0ba626e97aa0"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#a47db347857e25750e570f0c60f7b5db6">enableAdvertisement</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, <br class="typebreak" />
+<tr class="memitem:a74867e64f54033f6b6c993e157c074f6"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#aba27b163c714bbb39a8d3fe06373bd2d">setAdvertisement</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, <br class="typebreak" />
+&#160;&#160;&#160;&#160;&#160;&#160;uint32_t capabilities, <br class="typebreak" />
 &#160;&#160;&#160;&#160;&#160;&#160;uint32_t advertisement)</td></tr>
-<tr class="memdesc:ac2d10964655b9e03408c0ba626e97aa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Based on flags will enable required advertisement for Auto Negotiation phase.  <a href="structPhy__DrvObj__t_1_1_0d0.html#ac2d10964655b9e03408c0ba626e97aa0">More...</a><br /></td></tr>
-<tr class="separator:ac2d10964655b9e03408c0ba626e97aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34e9c7883a6946c1af0a8b2f92f6604a"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#ad94787121b31ee61180f2a0295d1a3ba">disableAdvertisement</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, <br class="typebreak" />
+<tr class="memdesc:a74867e64f54033f6b6c993e157c074f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Based on flags will enable required advertisement for Auto Negotiation phase. The rest of the advertisements will be disabled.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a74867e64f54033f6b6c993e157c074f6">More...</a><br /></td></tr>
+<tr class="separator:a74867e64f54033f6b6c993e157c074f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf15a110d2511bb3f86812d93b22b16f"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#a2de018475753eeddda36f59cecc3d515">enableAdvertisement</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, <br class="typebreak" />
+&#160;&#160;&#160;&#160;&#160;&#160;uint32_t capabilities, <br class="typebreak" />
 &#160;&#160;&#160;&#160;&#160;&#160;uint32_t advertisement)</td></tr>
-<tr class="memdesc:a34e9c7883a6946c1af0a8b2f92f6604a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Based on flags will disable required advertisement for Auto Negotiation phase.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a34e9c7883a6946c1af0a8b2f92f6604a">More...</a><br /></td></tr>
-<tr class="separator:a34e9c7883a6946c1af0a8b2f92f6604a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:abf15a110d2511bb3f86812d93b22b16f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Based on flags will enable required advertisement for Auto Negotiation phase. The rest of the advertisements will not change.  <a href="structPhy__DrvObj__t_1_1_0d0.html#abf15a110d2511bb3f86812d93b22b16f">More...</a><br /></td></tr>
+<tr class="separator:abf15a110d2511bb3f86812d93b22b16f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a924968fee1d0d819d25d8dd6ffda0c42"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#ac6d3770634dda88b246b2cd57c67980b">disableAdvertisement</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, <br class="typebreak" />
+&#160;&#160;&#160;&#160;&#160;&#160;uint32_t capabilities, <br class="typebreak" />
+&#160;&#160;&#160;&#160;&#160;&#160;uint32_t advertisement)</td></tr>
+<tr class="memdesc:a924968fee1d0d819d25d8dd6ffda0c42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Based on flags will disable required advertisement for Auto Negotiation phase. The rest of the advertisements will not change.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a924968fee1d0d819d25d8dd6ffda0c42">More...</a><br /></td></tr>
+<tr class="separator:a924968fee1d0d819d25d8dd6ffda0c42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f68f60ffd21dff57148e4bf1aa3a554"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#af16853708d1dd203a78f01bf560e2e29">ctrlAutoNegotiation</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, <br class="typebreak" />
 &#160;&#160;&#160;&#160;&#160;&#160;uint32_t control)</td></tr>
 <tr class="memdesc:a4f68f60ffd21dff57148e4bf1aa3a554"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls Auto Negotiation feature.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a4f68f60ffd21dff57148e4bf1aa3a554">More...</a><br /></td></tr>
@@ -276,34 +284,23 @@ Data Fields</h2></td></tr>
 &#160;&#160;&#160;&#160;&#160;&#160;*pLinkUp)</td></tr>
 <tr class="memdesc:aef875c97970e5baf3d43fb78e77bfe6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks link state.  <a href="structPhy__DrvObj__t_1_1_0d0.html#aef875c97970e5baf3d43fb78e77bfe6b">More...</a><br /></td></tr>
 <tr class="separator:aef875c97970e5baf3d43fb78e77bfe6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a021fa88a7f9032877c0a7a114813550c"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#a63951798ad1b655cd74c45884789e153">setSpeedDuplex</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, <br class="typebreak" />
+<tr class="memitem:af59e815e5419bfcfde425e6e537e4995"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#a95c1f2b37507d814d909b1318cbd1ad1">isGigabitSupported</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool <br class="typebreak" />
+&#160;&#160;&#160;&#160;&#160;&#160;*pSupported)</td></tr>
+<tr class="memdesc:af59e815e5419bfcfde425e6e537e4995"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for Gigabit support on PHY.  <a href="structPhy__DrvObj__t_1_1_0d0.html#af59e815e5419bfcfde425e6e537e4995">More...</a><br /></td></tr>
+<tr class="separator:af59e815e5419bfcfde425e6e537e4995"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac986dc0defaa9150df4913991f8deb3e"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#a185e3796e96bdc9405e4e640571829ce">setSpeedDuplex</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, <br class="typebreak" />
+&#160;&#160;&#160;&#160;&#160;&#160;uint32_t capabilities, <br class="typebreak" />
 &#160;&#160;&#160;&#160;&#160;&#160;uint32_t settings)</td></tr>
-<tr class="memdesc:a021fa88a7f9032877c0a7a114813550c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets speed and duplex settings to control data rate of the Ethernet link when Auto Negotiation is disabled.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a021fa88a7f9032877c0a7a114813550c">More...</a><br /></td></tr>
-<tr class="separator:a021fa88a7f9032877c0a7a114813550c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ac986dc0defaa9150df4913991f8deb3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets speed and duplex settings to control data rate of the Ethernet link when Auto Negotiation is disabled.  <a href="structPhy__DrvObj__t_1_1_0d0.html#ac986dc0defaa9150df4913991f8deb3e">More...</a><br /></td></tr>
+<tr class="separator:ac986dc0defaa9150df4913991f8deb3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab124a9d2ad11402af4f19ec44653084d"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#aabb35861a0b646675b2ccded40a25da6">getSpeedDuplex</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, <br class="typebreak" />
 &#160;&#160;&#160;&#160;&#160;&#160;<a class="el" href="group__PHY__COMMON__H.html#gac20b369cd4a65e4e441df209ac628204">Phy_Link_SpeedDuplex</a> *pConfig)</td></tr>
 <tr class="memdesc:ab124a9d2ad11402af4f19ec44653084d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides selected speed and duplex when link is up.  <a href="structPhy__DrvObj__t_1_1_0d0.html#ab124a9d2ad11402af4f19ec44653084d">More...</a><br /></td></tr>
 <tr class="separator:ab124a9d2ad11402af4f19ec44653084d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4585c3dc9aacb51d75c5c67dd93b7048"><td class="memItemLeft" >&#160;&#160;&#160;void(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#a1e79979d86057825aac744491b201494">setMiiMode</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, <br class="typebreak" />
-&#160;&#160;&#160;&#160;&#160;&#160;<a class="el" href="group__PHY__COMMON__H.html#gabc84e611afea1e9c06adb0bf3a21aa47">Phy_Mii</a> mii)</td></tr>
-<tr class="memdesc:a4585c3dc9aacb51d75c5c67dd93b7048"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures MII mode.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a4585c3dc9aacb51d75c5c67dd93b7048">More...</a><br /></td></tr>
-<tr class="separator:a4585c3dc9aacb51d75c5c67dd93b7048"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae81c6880193df3e0fdd04926dee48b9d"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#a87f8c3095ccdfd13c6c91ea48db9d322">ctrlExtFD</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool <br class="typebreak" />
-&#160;&#160;&#160;&#160;&#160;&#160;control)</td></tr>
-<tr class="memdesc:ae81c6880193df3e0fdd04926dee48b9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables to declare Full Duplex also in parallel detect link.  <a href="structPhy__DrvObj__t_1_1_0d0.html#ae81c6880193df3e0fdd04926dee48b9d">More...</a><br /></td></tr>
-<tr class="separator:ae81c6880193df3e0fdd04926dee48b9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32a842c16c911d942a817595183a4b51"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#ad90a9ee5719bbef11cff1d5c0a0d84b6">ctrlOddNibbleDetection</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool <br class="typebreak" />
-&#160;&#160;&#160;&#160;&#160;&#160;control)</td></tr>
-<tr class="memdesc:a32a842c16c911d942a817595183a4b51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls detection of transmit error in odd-nibble boundary.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a32a842c16c911d942a817595183a4b51">More...</a><br /></td></tr>
-<tr class="separator:a32a842c16c911d942a817595183a4b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f8a13747de548b0a6a19e10fb7264db"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#a7ac51231f64d3287d5b1ee0138f066ad">ctrlRxErrIdle</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool <br class="typebreak" />
-&#160;&#160;&#160;&#160;&#160;&#160;control)</td></tr>
-<tr class="memdesc:a8f8a13747de548b0a6a19e10fb7264db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls detection of Receive Symbol Error during IDLE State.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a8f8a13747de548b0a6a19e10fb7264db">More...</a><br /></td></tr>
-<tr class="separator:a8f8a13747de548b0a6a19e10fb7264db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d5d68b498e93b228c1f951d8baeb1fe"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#a98e12ddc920523d9674a288ba64c5313">ctrlFastLinkDownOption</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, <br class="typebreak" />
-&#160;&#160;&#160;&#160;&#160;&#160;uint32_t control)</td></tr>
-<tr class="memdesc:a6d5d68b498e93b228c1f951d8baeb1fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls fast link down option.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a6d5d68b498e93b228c1f951d8baeb1fe">More...</a><br /></td></tr>
-<tr class="separator:a6d5d68b498e93b228c1f951d8baeb1fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e64d295d348020aefdf9edf13ae0ae1"><td class="memItemLeft" >&#160;&#160;&#160;int32_t(*&#160;&#160;&#160;<a class="el" href="structPhy__DrvObj__t.html#a915a725cbd433d946250836913be8723">getLocalCaps</a> )(<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, <br class="typebreak" />
+&#160;&#160;&#160;&#160;&#160;&#160;uint32_t *pCapabilities)</td></tr>
+<tr class="memdesc:a4e64d295d348020aefdf9edf13ae0ae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtains speed/duplex capabilities of the PHY.  <a href="structPhy__DrvObj__t_1_1_0d0.html#a4e64d295d348020aefdf9edf13ae0ae1">More...</a><br /></td></tr>
+<tr class="separator:a4e64d295d348020aefdf9edf13ae0ae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a209f07f5da6cb6ed9a9ea5e6d55d724d"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPhy__DrvObj__t.html#a209f07f5da6cb6ed9a9ea5e6d55d724d">fxn</a></td></tr>
 <tr class="separator:a209f07f5da6cb6ed9a9ea5e6d55d724d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d488e57c4cd8f5defa9a6b05d372c54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPhy__DrvObj__t.html#a8d488e57c4cd8f5defa9a6b05d372c54">hDrv</a></td></tr>
@@ -429,14 +426,14 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="a499a9f559783dff89e99d1daad6a25d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a499a9f559783dff89e99d1daad6a25d3">&#9670;&nbsp;</a></span>reset</h2>
+<a id="a2b20ee5b47d9d93294e8207cc8b2dbca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b20ee5b47d9d93294e8207cc8b2dbca">&#9670;&nbsp;</a></span>reset</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(* Phy_DrvObj_t::reset) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy)</td>
+          <td class="memname">int32_t(* Phy_DrvObj_t::reset) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -445,21 +442,22 @@ Data Fields</h2></td></tr>
 <p>PHY-specific function that drivers must implement to start a soft-reset operation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">hPhy</td><td>PHY device handle </td></tr>
+    <tr><td class="paramname">hPhy</td><td>PHY device handle</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__DRV__ENETPHY.html#EnetPhy_ErrorCodes">EnetPhy_ErrorCodes</a> </dd></dl>
 
 </div>
 </div>
-<a id="a6b8f8213bcd96b57750c79e9ad4fdaf3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b8f8213bcd96b57750c79e9ad4fdaf3">&#9670;&nbsp;</a></span>isResetComplete</h2>
+<a id="ac8494a862c1db4d28fb1d5ed4ff395b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8494a862c1db4d28fb1d5ed4ff395b3">&#9670;&nbsp;</a></span>isResetComplete</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool(* Phy_DrvObj_t::isResetComplete) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy)</td>
+          <td class="memname">int32_t(* Phy_DrvObj_t::isResetComplete) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool *pCompleted)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -468,11 +466,12 @@ Data Fields</h2></td></tr>
 <p>PHY-specific function that drivers must implement to check if soft-reset operation is complete.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">hPhy</td><td>PHY device handle</td></tr>
+    <tr><td class="paramname">hPhy</td><td>PHY device handle </td></tr>
+    <tr><td class="paramname">pCompleted</td><td>Reset completed when true, otherwise not completed.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether soft-reset is complete or not. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__DRV__ENETPHY.html#EnetPhy_ErrorCodes">EnetPhy_ErrorCodes</a> </dd></dl>
 
 </div>
 </div>
@@ -1040,14 +1039,14 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="ab7496c35f0b9954ffbee1119d7ba0167"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7496c35f0b9954ffbee1119d7ba0167">&#9670;&nbsp;</a></span>restart</h2>
+<a id="ae986ffb8ffc7ded5e274a910435f8f42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae986ffb8ffc7ded5e274a910435f8f42">&#9670;&nbsp;</a></span>restart</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(* Phy_DrvObj_t::restart) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy)</td>
+          <td class="memname">int32_t(* Phy_DrvObj_t::restart) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1056,10 +1055,11 @@ Data Fields</h2></td></tr>
 <p>PHY-specific function that drivers must implement to start a soft-restart operation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">hPhy</td><td>PHY device handle </td></tr>
+    <tr><td class="paramname">hPhy</td><td>PHY device handle</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__DRV__ENETPHY.html#EnetPhy_ErrorCodes">EnetPhy_ErrorCodes</a> </dd></dl>
 
 </div>
 </div>
@@ -1080,7 +1080,7 @@ Data Fields</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hPhy</td><td>PHY device handle </td></tr>
-    <tr><td class="paramname">pCompleted</td><td>Pointer to place holder where the result will be stored false - software restart ongoing true - software restart completed</td></tr>
+    <tr><td class="paramname">pCompleted</td><td>Pointer to place holder where soft-restart operation state will be stored false - software restart ongoing true - software restart completed</td></tr>
   </table>
   </dd>
 </dl>
@@ -1113,14 +1113,14 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="acf7dfe4c62224048b8fe6bc26ddc381a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf7dfe4c62224048b8fe6bc26ddc381a">&#9670;&nbsp;</a></span>ctrlPowerDown</h2>
+<a id="a35553c3579427f737d081535ee66b8bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35553c3579427f737d081535ee66b8bd">&#9670;&nbsp;</a></span>ctrlPowerDown</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int32_t(* Phy_DrvObj_t::ctrlPowerDown) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool control)</td>
+          <td class="memname">int32_t(* Phy_DrvObj_t::ctrlPowerDown) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool enable)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1130,7 +1130,7 @@ Data Fields</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hPhy</td><td>PHY device handle </td></tr>
-    <tr><td class="paramname">control</td><td>When set the IEEE power down feature will be activated. Normal mode otherwise.</td></tr>
+    <tr><td class="paramname">enable</td><td>Enable/Disable the IEEE power down feature. false - normal mode true - IEEE power down mode</td></tr>
   </table>
   </dd>
 </dl>
@@ -1155,7 +1155,7 @@ Data Fields</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hPhy</td><td>PHY device handle </td></tr>
-    <tr><td class="paramname">pActive</td><td>Pointer to place holder where the result will be stored false - normal mode true - IEEE power down mode</td></tr>
+    <tr><td class="paramname">pActive</td><td>Pointer to place holder where the power mode state will be stored false - normal mode true - IEEE power down mode</td></tr>
   </table>
   </dd>
 </dl>
@@ -1163,23 +1163,24 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="a47db347857e25750e570f0c60f7b5db6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47db347857e25750e570f0c60f7b5db6">&#9670;&nbsp;</a></span>enableAdvertisement</h2>
+<a id="aba27b163c714bbb39a8d3fe06373bd2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba27b163c714bbb39a8d3fe06373bd2d">&#9670;&nbsp;</a></span>setAdvertisement</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int32_t(* Phy_DrvObj_t::enableAdvertisement) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, uint32_t advertisement)</td>
+          <td class="memname">int32_t(* Phy_DrvObj_t::setAdvertisement) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, uint32_t capabilities, uint32_t advertisement)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Based on flags will enable required advertisement for Auto Negotiation phase. </p>
+<p>Based on flags will enable required advertisement for Auto Negotiation phase. The rest of the advertisements will be disabled. </p>
 <p>Access IEEE Auto-Negotiation Advertisement Register (Register 4) and IEEE MASTER-SLAVE Control Register (Register 9) to set specified advertisement bits. 10HD (Bit 5), 10FD (Bit 6), 100HD (Bit 7) and 100FD (Bit 8) on Auto-Negotiation Advertisement Register. The 1000HD (Bit 10) and 1000FD (Bit 11) on MASTER-SLAVE Control Register.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hPhy</td><td>PHY device handle </td></tr>
+    <tr><td class="paramname">capabilities</td><td>Contains capability flags specific to this PHY. PHY_LINK_CAP_HD10 - 10Mbps, Half-Duplex capability PHY_LINK_CAP_FD10 - 10Mbps, Full-Duplex capability PHY_LINK_CAP_HD100 - 100Mbps, Half-Duplex capability PHY_LINK_CAP_FD100 - 100Mbps, Full-Duplex capability PHY_LINK_CAP_HD1000 - 1000Mbps, Half-Duplex capability PHY_LINK_CAP_FD1000 - 1000Mbps, Full-Duplex capability </td></tr>
     <tr><td class="paramname">advertisement</td><td>Contains advertisement flags to enable as described below. PHY_LINK_ADV_HD10 - 10Mbps, Half-Duplex advertisement PHY_LINK_ADV_FD10 - 10Mbps, Full-Duplex advertisement PHY_LINK_ADV_HD100 - 100Mbps, Half-Duplex advertisement PHY_LINK_ADV_FD100 - 100Mbps, Full-Duplex advertisement PHY_LINK_ADV_HD1000 - 1000Mbps, Half-Duplex advertisement PHY_LINK_ADV_FD1000 - 1000Mbps, Full-Duplex advertisement</td></tr>
   </table>
   </dd>
@@ -1188,23 +1189,50 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="ad94787121b31ee61180f2a0295d1a3ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad94787121b31ee61180f2a0295d1a3ba">&#9670;&nbsp;</a></span>disableAdvertisement</h2>
+<a id="a2de018475753eeddda36f59cecc3d515"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2de018475753eeddda36f59cecc3d515">&#9670;&nbsp;</a></span>enableAdvertisement</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int32_t(* Phy_DrvObj_t::disableAdvertisement) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, uint32_t advertisement)</td>
+          <td class="memname">int32_t(* Phy_DrvObj_t::enableAdvertisement) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, uint32_t capabilities, uint32_t advertisement)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Based on flags will disable required advertisement for Auto Negotiation phase. </p>
+<p>Based on flags will enable required advertisement for Auto Negotiation phase. The rest of the advertisements will not change. </p>
+<p>Access IEEE Auto-Negotiation Advertisement Register (Register 4) and IEEE MASTER-SLAVE Control Register (Register 9) to set specified advertisement bits. 10HD (Bit 5), 10FD (Bit 6), 100HD (Bit 7) and 100FD (Bit 8) on Auto-Negotiation Advertisement Register. The 1000HD (Bit 10) and 1000FD (Bit 11) on MASTER-SLAVE Control Register.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hPhy</td><td>PHY device handle </td></tr>
+    <tr><td class="paramname">capabilities</td><td>Contains capability flags specific to this PHY. PHY_LINK_CAP_HD10 - 10Mbps, Half-Duplex capability PHY_LINK_CAP_FD10 - 10Mbps, Full-Duplex capability PHY_LINK_CAP_HD100 - 100Mbps, Half-Duplex capability PHY_LINK_CAP_FD100 - 100Mbps, Full-Duplex capability PHY_LINK_CAP_HD1000 - 1000Mbps, Half-Duplex capability PHY_LINK_CAP_FD1000 - 1000Mbps, Full-Duplex capability </td></tr>
+    <tr><td class="paramname">advertisement</td><td>Contains advertisement flags to enable as described below. PHY_LINK_ADV_HD10 - 10Mbps, Half-Duplex advertisement PHY_LINK_ADV_FD10 - 10Mbps, Full-Duplex advertisement PHY_LINK_ADV_HD100 - 100Mbps, Half-Duplex advertisement PHY_LINK_ADV_FD100 - 100Mbps, Full-Duplex advertisement PHY_LINK_ADV_HD1000 - 1000Mbps, Half-Duplex advertisement PHY_LINK_ADV_FD1000 - 1000Mbps, Full-Duplex advertisement</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__DRV__ENETPHY.html#EnetPhy_ErrorCodes">EnetPhy_ErrorCodes</a> </dd></dl>
+
+</div>
+</div>
+<a id="ac6d3770634dda88b246b2cd57c67980b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6d3770634dda88b246b2cd57c67980b">&#9670;&nbsp;</a></span>disableAdvertisement</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t(* Phy_DrvObj_t::disableAdvertisement) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, uint32_t capabilities, uint32_t advertisement)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Based on flags will disable required advertisement for Auto Negotiation phase. The rest of the advertisements will not change. </p>
 <p>Access IEEE Auto-Negotiation Advertisement Register (Register 4) and IEEE MASTER-SLAVE Control Register (Register 9) to clear specified advertisement bits. 10HD (Bit 5), 10FD (Bit 6), 100HD (Bit 7) and 100FD (Bit 8) on Auto-Negotiation Advertisement Register. The 1000HD (Bit 10) and 1000FD (Bit 11) on MASTER-SLAVE Control Register.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hPhy</td><td>PHY device handle </td></tr>
+    <tr><td class="paramname">capabilities</td><td>Contains capability flags specific to this PHY. PHY_LINK_CAP_HD10 - 10Mbps, Half-Duplex capability PHY_LINK_CAP_FD10 - 10Mbps, Full-Duplex capability PHY_LINK_CAP_HD100 - 100Mbps, Half-Duplex capability PHY_LINK_CAP_FD100 - 100Mbps, Full-Duplex capability PHY_LINK_CAP_HD1000 - 1000Mbps, Half-Duplex capability PHY_LINK_CAP_FD1000 - 1000Mbps, Full-Duplex capability </td></tr>
     <tr><td class="paramname">advertisement</td><td>Contains advertisement flags to disable as described below. PHY_LINK_ADV_HD10 - 10Mbps, Half-Duplex advertisement PHY_LINK_ADV_FD10 - 10Mbps, Full-Duplex advertisement PHY_LINK_ADV_HD100 - 100Mbps, Half-Duplex advertisement PHY_LINK_ADV_FD100 - 100Mbps, Full-Duplex advertisement PHY_LINK_ADV_HD1000 - 1000Mbps, Half-Duplex advertisement PHY_LINK_ADV_FD1000 - 1000Mbps, Full-Duplex advertisement</td></tr>
   </table>
   </dd>
@@ -1365,14 +1393,39 @@ Enable" bit (Bit 12).</p>
 
 </div>
 </div>
-<a id="a63951798ad1b655cd74c45884789e153"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63951798ad1b655cd74c45884789e153">&#9670;&nbsp;</a></span>setSpeedDuplex</h2>
+<a id="a95c1f2b37507d814d909b1318cbd1ad1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95c1f2b37507d814d909b1318cbd1ad1">&#9670;&nbsp;</a></span>isGigabitSupported</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int32_t(* Phy_DrvObj_t::setSpeedDuplex) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, uint32_t settings)</td>
+          <td class="memname">int32_t(* Phy_DrvObj_t::isGigabitSupported) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool *pSupported)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks for Gigabit support on PHY. </p>
+<p>Access IEEE Status Register (Register 1) to read "Extended status for 1000Base T" bit (Bit 8).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hPhy</td><td>PHY device handle </td></tr>
+    <tr><td class="paramname">pSupported</td><td>Pointer to place holder where the result will be stored false - PHY doesn't support Gigabit speeds true - PHY supports Gigabit speeds</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__DRV__ENETPHY.html#EnetPhy_ErrorCodes">EnetPhy_ErrorCodes</a> </dd></dl>
+
+</div>
+</div>
+<a id="a185e3796e96bdc9405e4e640571829ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a185e3796e96bdc9405e4e640571829ce">&#9670;&nbsp;</a></span>setSpeedDuplex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t(* Phy_DrvObj_t::setSpeedDuplex) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, uint32_t capabilities, uint32_t settings)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1382,6 +1435,7 @@ Enable" bit (Bit 12).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hPhy</td><td>PHY device handle </td></tr>
+    <tr><td class="paramname">capabilities</td><td>Contains capability flags specific to this PHY. PHY_LINK_CAP_HD10 - 10Mbps, Half-Duplex capability PHY_LINK_CAP_FD10 - 10Mbps, Full-Duplex capability PHY_LINK_CAP_HD100 - 100Mbps, Half-Duplex capability PHY_LINK_CAP_FD100 - 100Mbps, Full-Duplex capability PHY_LINK_CAP_HD1000 - 1000Mbps, Half-Duplex capability PHY_LINK_CAP_FD1000 - 1000Mbps, Full-Duplex capability </td></tr>
     <tr><td class="paramname">settings</td><td>Contains speed/duplex combination flag to select. <a class="el" href="group__PHY__COMMON__H.html#gac20b369cd4a65e4e441df209ac628204">Phy_Link_SpeedDuplex</a></td></tr>
   </table>
   </dd>
@@ -1415,124 +1469,24 @@ Enable" bit (Bit 12).</p>
 
 </div>
 </div>
-<a id="a1e79979d86057825aac744491b201494"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e79979d86057825aac744491b201494">&#9670;&nbsp;</a></span>setMiiMode</h2>
+<a id="a915a725cbd433d946250836913be8723"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a915a725cbd433d946250836913be8723">&#9670;&nbsp;</a></span>getLocalCaps</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(* Phy_DrvObj_t::setMiiMode) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, <a class="el" href="group__PHY__COMMON__H.html#gabc84e611afea1e9c06adb0bf3a21aa47">Phy_Mii</a> mii)</td>
+          <td class="memname">int32_t(* Phy_DrvObj_t::getLocalCaps) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, uint32_t *pCapabilities)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Configures MII mode. </p>
-<p>Accessing vendor specific or extended registers based on type of PHY to configure MII mode.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hPhy</td><td>PHY device handle </td></tr>
-    <tr><td class="paramname">mii</td><td>MII mode to configure. See <a class="el" href="group__PHY__COMMON__H.html#gabc84e611afea1e9c06adb0bf3a21aa47">Phy_Mii</a>.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__DRV__ENETPHY.html#EnetPhy_ErrorCodes">EnetPhy_ErrorCodes</a> </dd></dl>
-
-</div>
-</div>
-<a id="a87f8c3095ccdfd13c6c91ea48db9d322"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87f8c3095ccdfd13c6c91ea48db9d322">&#9670;&nbsp;</a></span>ctrlExtFD</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t(* Phy_DrvObj_t::ctrlExtFD) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool control)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enables to declare Full Duplex also in parallel detect link. </p>
-<p>Accessing vendor specific or extended registers based on type of PHY.</p>
+<p>Obtains speed/duplex capabilities of the PHY. </p>
+<p>Access IEEE Status Register (Register 1) to read bits "Extend Status" (Bit 8) and speed/duplex capability bits (Bit 11 - 14). Based on "Extended Status" bit the IEEE Extended Status Register (Register 15) can be accessed to read speed/duplex capability bits (Bit 12 - 13).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">hPhy</td><td>PHY device handle. </td></tr>
-    <tr><td class="paramname">control</td><td>Enable/Disable Full-Duplex also in parallel detect link. false - disable Full-Duplex in parallel detect link true - enable Full-Duplex in parallel detect link</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__DRV__ENETPHY.html#EnetPhy_ErrorCodes">EnetPhy_ErrorCodes</a> </dd></dl>
-
-</div>
-</div>
-<a id="ad90a9ee5719bbef11cff1d5c0a0d84b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad90a9ee5719bbef11cff1d5c0a0d84b6">&#9670;&nbsp;</a></span>ctrlOddNibbleDetection</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t(* Phy_DrvObj_t::ctrlOddNibbleDetection) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool control)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Controls detection of transmit error in odd-nibble boundary. </p>
-<p>Accessing vendor specific or extended registers based on type of PHY. Some PHY's are not providing such a feature.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hPhy</td><td>PHY device handle. </td></tr>
-    <tr><td class="paramname">control</td><td>Enable/Disable Full-Duplex also in parallel detect link. false - disable detection of transmit error in odd-nibble boundary. true - enable detection of transmit error in odd-nibble boundary.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__DRV__ENETPHY.html#EnetPhy_ErrorCodes">EnetPhy_ErrorCodes</a> </dd></dl>
-
-</div>
-</div>
-<a id="a7ac51231f64d3287d5b1ee0138f066ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ac51231f64d3287d5b1ee0138f066ad">&#9670;&nbsp;</a></span>ctrlRxErrIdle</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t(* Phy_DrvObj_t::ctrlRxErrIdle) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool control)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Controls detection of Receive Symbol Error during IDLE State. </p>
-<p>Accessing vendor specific or extended registers based on type of PHY. Some PHY's are not providing such a feature.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hPhy</td><td>PHY device handle. </td></tr>
-    <tr><td class="paramname">control</td><td>Enable/Disable Full-Duplex also in parallel detect link. false - disable detection of Receive Symbol Error during IDLE State. true - enable detection of Receive Symbol Error during IDLE State.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__DRV__ENETPHY.html#EnetPhy_ErrorCodes">EnetPhy_ErrorCodes</a> </dd></dl>
-
-</div>
-</div>
-<a id="a98e12ddc920523d9674a288ba64c5313"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98e12ddc920523d9674a288ba64c5313">&#9670;&nbsp;</a></span>ctrlFastLinkDownOption</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t(* Phy_DrvObj_t::ctrlFastLinkDownOption) (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, uint32_t control)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Controls fast link down option. </p>
-<p>Accessing vendor specific or extended registers based on type of PHY. Some PHY's are not providing such a feature.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hPhy</td><td>PHY device handle. </td></tr>
-    <tr><td class="paramname">control</td><td>Enable/Disable Full-Duplex also in parallel detect link. false - disable detection of Receive Symbol Error during IDLE State. true - enable detection of Receive Symbol Error during IDLE State.</td></tr>
+    <tr><td class="paramname">pCapabilities</td><td>Pointer to place holder where the capabilities will be stored PHY_LINK_CAP_HD10 - 10Mbps, Half-Duplex capability PHY_LINK_CAP_FD10 - 10Mbps, Full-Duplex capability PHY_LINK_CAP_HD100 - 100Mbps, Half-Duplex capability PHY_LINK_CAP_FD100 - 100Mbps, Full-Duplex capability PHY_LINK_CAP_HD1000 - 1000Mbps, Half-Duplex capability PHY_LINK_CAP_FD1000 - 1000Mbps, Full-Duplex capability</td></tr>
   </table>
   </dd>
 </dl>

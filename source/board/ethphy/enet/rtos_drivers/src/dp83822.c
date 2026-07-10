@@ -305,7 +305,7 @@ int32_t Dp83822_getSpeedDuplex (EthPhyDrv_Handle hPhy, Phy_Link_SpeedDuplex* pCo
                     break;
             }
         }
-        else 
+        else
         {
             *pConfig = PHY_LINK_INVALID;
         }

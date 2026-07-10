@@ -1,5 +1,4 @@
-/*
- *  Copyright (C) 2025 Texas Instruments Incorporated
+/* *  Copyright (C) 2025 Texas Instruments Incorporated
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions
@@ -300,13 +299,13 @@ static void DTHE_SM3_set_length (CSL_EIP52_SM3Regs* ptrSM3Regs, uint64_t length)
     uint32_t upper_hash_length, lower_hash_length;
 
     /* Write the length of the data: */
-    lower_hash_length = (uint32_t)(0xFFFFFFFFUL & (8ULL*length));  /*in bits*/
+    lower_hash_length = (uint32_t)(0xFFFFFFFFU & (8ULL*length));  /*in bits*/
     DTHE_SM3_setHashLength_lower(ptrSM3Regs, lower_hash_length);
 
     /*set the upper hash length if the data length size is more than 2^32*/
     if (length > (0xffffffffU))
     {
-        upper_hash_length = (uint32_t)(0xFFFFFFFFUL & (8ULL*(length>>32ULL)));
+        upper_hash_length = (uint32_t)(0xFFFFFFFFU & (8ULL*(length>>32ULL)));
         DTHE_SM3_setHashLength_upper(ptrSM3Regs, upper_hash_length);
     }
 
@@ -337,6 +336,10 @@ static void DTHE_SM3_set_output_buff_available(CSL_EIP52_SM3Regs* ptrSM3Regs, ui
 /*                          Function Definitions                              */
 /* ========================================================================== */
 
+/**
+ *  Design: TIFSMCU-4387
+ */
+
 DTHE_SM3_Return_t DTHE_SM3_open(DTHE_Handle handle)
 {
     DTHE_SM3_Return_t status  = DTHE_SM3_RETURN_FAILURE;
@@ -346,7 +349,7 @@ DTHE_SM3_Return_t DTHE_SM3_open(DTHE_Handle handle)
 
     if((DTHE_Handle)NULL != handle)
     {
-        config              = (DTHE_Config *)(uintptr_t)handle;
+        config              = (DTHE_Config *) handle;
         attrs               = config->attrs;
         ptrSm3Regs          = (CSL_EIP52_SM3Regs *)attrs->sm3BaseAddr;
         gDTHESM3InProgress  = DTHE_SM3_CRYPTO_STATEMACHINE_NEW;
@@ -360,6 +363,10 @@ DTHE_SM3_Return_t DTHE_SM3_open(DTHE_Handle handle)
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-4385
+ */
+
 DTHE_SM3_Return_t DTHE_SM3_close(DTHE_Handle handle)
 {
     DTHE_SM3_Return_t   status  = DTHE_SM3_RETURN_FAILURE;
@@ -369,7 +376,7 @@ DTHE_SM3_Return_t DTHE_SM3_close(DTHE_Handle handle)
 
     if((DTHE_Handle)NULL != handle)
     {
-        config              = (DTHE_Config *)(uintptr_t)handle;
+        config              = (DTHE_Config *) handle;
         attrs               = config->attrs;
         ptrSm3Regs          = (CSL_EIP52_SM3Regs *)attrs->sm3BaseAddr;
         if(gDTHESM3InProgress == DTHE_SM3_CRYPTO_STATEMACHINE_NEW)
@@ -391,6 +398,9 @@ DTHE_SM3_Return_t DTHE_SM3_close(DTHE_Handle handle)
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-4386
+ */
 
 DTHE_SM3_Return_t DTHE_SM3_compute(DTHE_Handle handle, DTHE_SM3_Params* ptrSm3Params, DTHE_SM3_LastBlockState_t isLastBlock)
 {
@@ -402,8 +412,8 @@ DTHE_SM3_Return_t DTHE_SM3_compute(DTHE_Handle handle, DTHE_SM3_Params* ptrSm3Pa
     uint64_t                blockSize    = 0ULL;
     uint64_t                dataLenWords = 0ULL;
     uint64_t                dataLenBytes = 0ULL;
-    uint32_t                numPartialWords = 0U;
-    uint32_t                numPartialBlocks = 0U;
+    uint64_t                numPartialWords = 0ULL;
+    uint64_t                numPartialBlocks = 0ULL;
     uint8_t                 shiftSize;
 
     DTHE_Config             *config = (DTHE_Config *)NULL;
@@ -415,7 +425,7 @@ DTHE_SM3_Return_t DTHE_SM3_compute(DTHE_Handle handle, DTHE_SM3_Params* ptrSm3Pa
         status = DTHE_SM3_RETURN_SUCCESS;
         
         /* Proceed only if initial checks pass */
-        config              = (DTHE_Config *)(uintptr_t)handle;
+        config              = (DTHE_Config *) handle;
         attrs               = config->attrs;
         ptrSm3Regs          = (CSL_EIP52_SM3Regs *)attrs->sm3BaseAddr;
         dataLenBytes        = ptrSm3Params->dataLenBytes;
@@ -477,7 +487,7 @@ DTHE_SM3_Return_t DTHE_SM3_compute(DTHE_Handle handle, DTHE_SM3_Params* ptrSm3Pa
         }
 
         /* Compute the number of partial words which need to be handled separately */
-        numPartialWords =  dataLenBytes % (4ULL);
+        numPartialWords =  dataLenBytes % 4ULL;
         numPartialBlocks = dataLenWords % DTHE_SM3_BLOCK_SIZE;
 
         /* write the data input to the input buffer: */
@@ -511,7 +521,7 @@ DTHE_SM3_Return_t DTHE_SM3_compute(DTHE_Handle handle, DTHE_SM3_Params* ptrSm3Pa
             /*intermediate blocks*/
             if ((config->dmaEnable == DMA_ENABLE) && ((numBlocks - 1ULL) > 1ULL))
             {
-                uint16_t dmaNumBlocks = (uint16_t)(numBlocks - 2ULL);
+                 uint16_t dmaNumBlocks = (uint16_t)(numBlocks - 2ULL);
 
                 dmaHandle = DMA_open(0);
                 dmaStatus = DMA_Config_TxChannel(dmaHandle, &ptrSm3Params->ptrDataBuffer[1U << shiftSize], (uint32_t *)&ptrSm3Regs->SM3_DATA_IN[0], dmaNumBlocks, (uint16_t)blockSize, DMA_SM3_ENABLE);
@@ -563,13 +573,13 @@ DTHE_SM3_Return_t DTHE_SM3_compute(DTHE_Handle handle, DTHE_SM3_Params* ptrSm3Pa
             /*wait until input buffer available for writing by host*/
             DTHE_SM3_pollInput_buff_available(ptrSm3Regs);
 
-            if((numPartialWords != 0U) || (numPartialBlocks != 0U) )
+            if((numPartialWords != 0ULL) || (numPartialBlocks != 0ULL) )
             {
                 /* Update blockSize to match the number of partial blocks for the last data block */
                 blockSize = numPartialBlocks;
 
                 /*Increment by one to include additional partial word, padding is done by HW based on message bit length*/
-                if(numPartialWords != 0U)
+                if(numPartialWords != 0ULL)
                 {
                     blockSize++;
                 }

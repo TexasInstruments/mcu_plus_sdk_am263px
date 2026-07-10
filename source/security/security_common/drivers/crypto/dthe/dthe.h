@@ -72,14 +72,13 @@ extern "C" {
  *  DTHE Driver Error code
  *
  * \details
- *  The enumeration describes all the possible return and error codes which
+ *  The following defines describe all the possible return and error codes which
  *  the DTHE Driver can return
  */
-typedef enum DTHE_Return_e
-{
-    DTHE_RETURN_SUCCESS                  = 0xCE50311AU, /*!< Success/pass return code */
-    DTHE_RETURN_FAILURE                  = 0x924FC5E7U, /*!< General or unspecified failure/error */
-}DTHE_Return_t;
+typedef uint32_t DTHE_Return_t;
+
+#define DTHE_RETURN_SUCCESS             (0xCE50311AU) /*!< Success/pass return code */
+#define DTHE_RETURN_FAILURE             (0x924FC5E7U) /*!< General or unspecified failure/error */
 
 /** \brief Handle to the DTHE driver */
 typedef void *DTHE_Handle;

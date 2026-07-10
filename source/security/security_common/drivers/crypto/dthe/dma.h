@@ -84,14 +84,13 @@ typedef struct DMA_Params_s DMA_Params;
  *  DMA Driver Error code
  *
  * \details
- *  The enumeration describes all the possible return and error codes which
+ *  The following defines describe all the possible return and error codes which
  *  the DMA Driver can return
  */
-typedef enum DMA_Return_e
-{
-    DMA_RETURN_SUCCESS                  = 0xF356898CU, /*!< Success/pass return code */
-    DMA_RETURN_FAILURE                  = 0x2DA11252U, /*!< General or unspecified failure/error */
-}DMA_Return_t;
+typedef uint32_t DMA_Return_t;
+
+#define DMA_RETURN_SUCCESS              (0xF356898CU) /*!< Success/pass return code */
+#define DMA_RETURN_FAILURE              (0x2DA11252U) /*!< General or unspecified failure/error */
 
 /**
  * \name DMA driver implementation callbacks

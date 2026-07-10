@@ -84,11 +84,9 @@ extern "C" {
  *  The enumeration describes all the possible return and error codes which
  *  the ASYM CRYPTO Driver can return
  */
-typedef enum AsymCrypt_Return_e
-{
-    ASYM_CRYPT_RETURN_SUCCESS                  = 0xCEF6A572U, /*!< Success/pass return code */
-    ASYM_CRYPT_RETURN_FAILURE                  = 0xD20341DDU, /*!< General or unspecified failure/error */
-}AsymCrypt_Return_t;
+typedef uint32_t AsymCrypt_Return_t;
+#define ASYM_CRYPT_RETURN_SUCCESS               (0xCEF6A572U) /*!< Success/pass return code */
+#define ASYM_CRYPT_RETURN_FAILURE               (0xD20341DDU) /*!< General or unspecified failure/error */
 
 /**
  * \brief
@@ -97,11 +95,9 @@ typedef enum AsymCrypt_Return_e
  * \details
  *  The enumeration describes the curves supported for EDDSA
  */
-typedef enum AsymCrypt_EdCurve_e
-{
-    ASYM_CRYPT_CURVE_TYPE_EDDSA_25519          = 0xBE2479A0U, /*!< Success/pass return code */
-    ASYM_CRYPT_CURVE_TYPE_EDDSA_448            = 0x57138CAFU, /*!< General or unspecified failure/error */
-}AsymCrypt_EdCurveType_t;
+typedef uint32_t AsymCrypt_EdCurveType_t;
+#define ASYM_CRYPT_CURVE_TYPE_EDDSA_25519       (0xBE2479A0U) /*!< EdDSA curve Ed25519 */
+#define ASYM_CRYPT_CURVE_TYPE_EDDSA_448         (0x57138CAFU) /*!< EdDSA curve Ed448 */
 
 /** \brief Handle to the AsymCrypt driver */
 typedef void *AsymCrypt_Handle;

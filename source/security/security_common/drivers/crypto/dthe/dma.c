@@ -419,10 +419,11 @@ DMA_Return_t DMA_memCopy(DMA_Handle handle, void *dest, const void *src, uint32_
 DMA_Return_t DMA_close(DMA_Handle handle)
 {
     DMA_Return_t dmaStatus = DMA_RETURN_FAILURE;
+    DMA_Handle   localHandle = handle;
 
-    if(handle != NULL)
+    if(localHandle != NULL)
     {
-        handle = NULL;
+        localHandle = NULL;
         dmaStatus  = DMA_RETURN_SUCCESS;
     }
     return (dmaStatus);

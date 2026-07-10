@@ -10,7 +10,7 @@
 %       let config = module.getInstanceConfig(instance);
 %
 %       if(config.usbClass == "NCM") {
-extern const uint8_t tud_network_mac_address[6];
+extern uint8_t tud_network_mac_address[6];
 %       }
 %   }
 %}

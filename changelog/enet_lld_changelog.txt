@@ -78825,3 +78825,126 @@ Date:   Mon Jul 6 14:33:42 2026 +0530
  utils/include/enet_udmautils.h                                              |   202 +
  6849 files changed, 1218678 insertions(+)
 
+========================================
+Changes from build on 2026-07-10 20:48:10
+Previous commit: aa7f97cf3e118967f60014fb30ec7c245213b05d
+Current commit: 255a5951c84cbb0ac1331cac00de030a34ef1048
+========================================
+
+commit 255a5951c84cbb0ac1331cac00de030a34ef1048
+Author: thilak <t-karanam@ti.com>
+Date:   Wed Jul 8 14:37:04 2026 +0530
+
+    allsocs: enet: Simplfy enet_cpsw_socket example scope
+    
+    - Simplify the enet_cpsw_socket example scope to avoid
+      read, write race condition.
+    - Previously, the select monitors both read and write fds
+      and if echo arrives later, the thread writes second msg
+      and closes the socket, causing the client socket to miss
+      the echoed message.
+    - This change reduces the scope so that select montiors only
+      read fd and closes socket as soon as echo arrives.
+    - This also changes the license headers of the files.
+    
+    Fixes: SITSW-12232
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ examples/lwip/enet_cpsw_socket/app_cpswconfighandler.c | 48 ++++++++++++++++-----------------
+ examples/lwip/enet_cpsw_socket/app_cpswconfighandler.h | 48 ++++++++++++++++-----------------
+ examples/lwip/enet_cpsw_socket/app_main.c              | 48 ++++++++++++++++-----------------
+ examples/lwip/enet_cpsw_socket/app_socket.c            | 84 +++++++++++++++++++++++++++-------------------------------
+ examples/lwip/enet_cpsw_socket/app_socket.h            | 49 +++++++++++++++++-----------------
+ 5 files changed, 136 insertions(+), 141 deletions(-)
+
+commit 1dd24409434a52a52e12cf52b923bf688e9915b4
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Wed May 13 13:53:12 2026 +0530
+
+    allsoc: phy: changed function pointers
+    
+     - changes in this commit is necessary
+       to accomodate modified function Declarations
+       in Phy driver.
+    
+    Fixes: SITSW-11778
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ src/phy/dp83tg721.c | 24 +++++++++++++-----------
+ src/phy/enetphy.c   |  2 +-
+ 2 files changed, 14 insertions(+), 12 deletions(-)
+
+commit 62d2ac21ce02557ee5de82f776d12872f2318a25
+Author: thilak <t-karanam@ti.com>
+Date:   Wed Jul 8 12:23:58 2026 +0530
+
+    am275x: enet: replace tabs with spaces
+    
+    - Replace all tab characters with 4 spaces in shm_cirbuf.c and
+      shm_cirbuf.h for both aafpcm_audio_demo and aafpcm_audio_etherring_demo
+      to maintain consistent indentation style
+    
+    Fixes: SITSW-11331
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ examples/tsn/aafpcm_audio_demo/common_files/shm_cirbuf.c           | 464 ++++++++++++++++++++++-----------------------
+ examples/tsn/aafpcm_audio_etherring_demo/common_files/shm_cirbuf.c | 464 ++++++++++++++++++++++-----------------------
+ 2 files changed, 464 insertions(+), 464 deletions(-)
+
+commit 841baa2590ee1b71fc2df13912bd4991870e56b0
+Author: thilak <t-karanam@ti.com>
+Date:   Wed Jul 8 12:15:36 2026 +0530
+
+    am275x: enet: Fix Endianness in aafpcm_audio applications
+    
+    - shm_cirbuf: Add shm_bswap_write() and shm_bswap_read() to shm_cirbuf
+      in both aafpcm_audio_demo and aafpcm_audio_etherring_demo; these
+      byte-swap each 16- or 32-bit element in-place during the SHM transfer,
+      avoiding a separate pass over the buffer
+    - shm_cirbuf: Add shm_swap32() / shm_swap16() static inline helpers and
+      shm_bswap_width enum (SHM_BSWAP_16BIT / SHM_BSWAP_32BIT) to support
+      the new bswap APIs
+    - autoamp_avb, central_aaf_app: Replace shm_read() with shm_bswap_read()
+      in the Talker path to convert little-endian McASP samples to big-endian
+      as required by IEEE 1722 before transmission
+    - autoamp_avb, central_aaf_app: Replace shm_write() with shm_bswap_write()
+      in the Listener path to convert big-endian IEEE 1722 payload samples to
+      little-endian before writing to the McASP SHM ring buffer
+    - autoamp_avb, central_aaf_app: Add 4-byte-aligned gRxPduBuf[] and copy
+      the unaligned AVTP payload pointer into it before passing to
+      gpio_sm_spin(), which requires 4-byte-aligned input
+    - autoamp_avb, central_aaf_app: Mark gTxCopyBuffer with
+      __attribute__((aligned(4))) to satisfy alignment requirements of the
+      bswap read path
+    
+    Fixes: SITSW-11331
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ examples/tsn/aafpcm_audio_demo/auto_amplifier/autoamp_avb.c                |  14 ++--
+ examples/tsn/aafpcm_audio_demo/central_compute/central_aaf_app.c           |  18 +++--
+ examples/tsn/aafpcm_audio_demo/common_files/shm_cirbuf.c                   | 158 ++++++++++++++++++++++++++++++++++++-
+ examples/tsn/aafpcm_audio_demo/common_files/shm_cirbuf.h                   |  32 ++++++++
+ examples/tsn/aafpcm_audio_etherring_demo/auto_amplifier/autoamp_avb.c      |  17 ++--
+ examples/tsn/aafpcm_audio_etherring_demo/central_compute/central_aaf_app.c |  17 ++--
+ examples/tsn/aafpcm_audio_etherring_demo/common_files/shm_cirbuf.c         | 158 ++++++++++++++++++++++++++++++++++++-
+ examples/tsn/aafpcm_audio_etherring_demo/common_files/shm_cirbuf.h         |  32 ++++++++
+ 8 files changed, 418 insertions(+), 28 deletions(-)
+
+commit 3339f954b388a35da3645fcb5ccee6fe61e1f216
+Author: Rishi Kumar <r-kumar12@ti.com>
+Date:   Tue Jun 30 17:01:04 2026 +0530
+
+    am64x/am243x: docs: Improve IcssgStats_Pa + R30 management commands doxygen comments
+    
+    Fixes: PINDSW-8303 PINDSW-7986
+    
+    Signed-off-by: Rishi Kumar <r-kumar12@ti.com>
+
+ include/mod/icssg_stats.h | 282 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------
+ src/per/icssg_utils.h     |  49 ++++++++++++++-
+ 2 files changed, 233 insertions(+), 98 deletions(-)
+

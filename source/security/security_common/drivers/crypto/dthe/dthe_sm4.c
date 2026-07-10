@@ -96,7 +96,7 @@ static void DTHE_SM4_pollInputBufferAvailable(const CSL_SM4Regs *ptrSm4Registers
 static void DTHE_SM4_setKey(CSL_SM4Regs *ptrSm4Registers, const uint32_t ptrKey[4]);
 static void DTHE_SM4_setIV(CSL_SM4Regs *ptrSm4Registers, const uint32_t ptrIV[4]);
 static void DTHE_SM4_setOpType(CSL_SM4Regs *ptrSm4Registers, uint32_t opType, uint32_t algoType);
-static void DTHE_SM4_writeDataBlock(CSL_SM4Regs *ptrSm4Registers, const uint32_t ptrData[4]);
+static void DTHE_SM4_writeDataBlock(CSL_SM4Regs *ptrSm4Registers, const uint32_t ptrData[4U]);
 static void DTHE_SM4_setDataAvailable(CSL_SM4Regs *ptrSm4Registers, uint32_t val);
 static void DTHE_SM4_pollOutputReady(const CSL_SM4Regs *ptrSm4Registers);
 static void DTHE_SM4_readDataBlock(const CSL_SM4Regs *ptrSm4Registers, uint32_t ptrData[4]);
@@ -476,7 +476,7 @@ static void DTHE_SM4_setAutoCtrl(CSL_SM4Regs *ptrSm4Registers, uint8_t autoCtrl)
     CSL_FINSR(ptrSm4Registers->SM4_SYSCONFIG,
               DTHESM4_SYSCONFIG_AUTO_CTRL_BIT_POS,
               DTHESM4_SYSCONFIG_AUTO_CTRL_BIT_POS,
-              (uint32_t)autoCtrl);
+              (((uint32_t)0) | (autoCtrl)));
 
     return;
 }
@@ -495,7 +495,7 @@ static void DTHE_SM4_setDMAInputRequestStatus(CSL_SM4Regs *ptrSm4Registers, uint
     CSL_FINSR(ptrSm4Registers->SM4_SYSCONFIG, 
               DTHESM4_SYSCONFIG_DMA_REQ_DATA_IN_EN_BIT_POS,
               DTHESM4_SYSCONFIG_DMA_REQ_DATA_IN_EN_BIT_POS, 
-              (uint32_t)status);
+              ((uint32_t)0 | (status)));
 }
 
 
@@ -512,7 +512,7 @@ static void DTHE_SM4_setDMAOutputRequestStatus(CSL_SM4Regs *ptrSm4Registers, uin
     CSL_FINSR(ptrSm4Registers->SM4_SYSCONFIG, 
               DTHESM4_SYSCONFIG_DMA_REQ_DATA_OUT_EN_BIT_POS, 
               DTHESM4_SYSCONFIG_DMA_REQ_DATA_OUT_EN_BIT_POS, 
-              (uint32_t)status);
+              ((uint32_t)0 | (status)));
 }
 
 
@@ -534,6 +534,9 @@ static void DTHE_SM4_clearAllInterrupts(CSL_SM4Regs *ptrSm4Registers)
 /*                          Function Definitions                              */
 /* ========================================================================== */
 
+/**
+ *  Design: TIFSMCU-4430
+ */
 
 DTHE_SM4_Return_t DTHE_SM4_open(DTHE_Handle handle)
 {
@@ -573,6 +576,9 @@ DTHE_SM4_Return_t DTHE_SM4_open(DTHE_Handle handle)
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-5684
+ */
 
 DTHE_SM4_Return_t DTHE_SM4_close(DTHE_Handle handle)
 {
@@ -603,6 +609,9 @@ DTHE_SM4_Return_t DTHE_SM4_close(DTHE_Handle handle)
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-5683
+ */
 DTHE_SM4_Return_t DTHE_SM4_execute(DTHE_Handle handle, const DTHE_SM4_Params* ptrParams)
 {
     DTHE_SM4_Return_t status               = DTHE_SM4_RETURN_FAILURE;
@@ -837,7 +846,7 @@ DTHE_SM4_Return_t DTHE_SM4_execute(DTHE_Handle handle, const DTHE_SM4_Params* pt
         else
         {
             /* CPU polling for remaining blocks */
-            for (index = 1ULL ; index < numBlocks; index++)
+            for (index = 1U ; index < numBlocks; index++)
             {
                 blockOffset = index * DTHESM4_BLOCK_SIZE_WORDS;
                 //

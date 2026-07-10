@@ -17545,3 +17545,40 @@ Date:   Thu Jul 2 12:20:31 2026 +0530
  drivers/.meta/gpio/v0_1/gpio_v0_1.syscfg.js | 101 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  2 files changed, 169 insertions(+)
 
+========================================
+Changes from build on 2026-07-10 20:46:29
+Previous commit: e159da569d9947737724d9ac7fb77f04742a2b39
+Current commit: c00ccf74c0a2b4edb4640841811fc8d918989b84
+========================================
+
+commit c00ccf74c0a2b4edb4640841811fc8d918989b84
+Author: BensenBernard <b-bernard@ti.com>
+Date:   Thu Mar 26 17:24:43 2026 +0530
+
+    am261x: usb: Update template to support latest tinyusb
+    
+    - Update template to support latest tinyusb 0.20.0
+    
+    Fixes: MCUSDK-15730
+    
+    Signed-off-by: Bensen Bernard <b-bernard@ti.com>
+
+ usb/.meta/tinyusb/templates/tinyusb_usb_config.h.xdt      | 2 +-
+ usb/.meta/tinyusb/templates/tinyusb_usb_descriptors.c.xdt | 4 +++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+commit 50e311bbfd5173b6a844d2697c5a175c36ecf228
+Author: Sanjeev Karaiyan <sanjeevk@ti.com>
+Date:   Wed Jul 8 20:16:01 2026 +0530
+
+    am263x: epwm: fix sysconfig issue
+    
+    - fix epwm action qualifier shadow load enable configuration
+    
+    Fixes: MCUSDK-15738
+    
+    Signed-off-by: Sanjeev Karaiyan <sanjeevk@ti.com>
+
+ drivers/.meta/epwm/templates/epwm_open_close_config.c.xdt | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+

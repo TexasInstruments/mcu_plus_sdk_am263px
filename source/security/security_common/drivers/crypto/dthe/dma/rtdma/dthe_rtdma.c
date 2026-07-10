@@ -47,6 +47,9 @@
 
 #define RTDMA_AES_SM4_BURST_SIZE        (16U)
 #define RTDMA_WORD_SIZE                 (4U)
+#define RTDMA_WORD_SIZE_NEG             ((int16_t)-4)   /* Negative word size step for DMA burst/transfer step config */
+#define RTDMA_WORD_SIZE_NEG_12          ((int16_t)-12)  /* Negative (wordSize-1)*wordSize = -(3*4) = -12 for AES/SM4 transfer step reset */
+#define RTDMA_SM3_TRANSFER_STEP_NEG     ((int16_t)-60)  /* Negative (SM3_blockSize-1)*wordSize = -(15*4) = -60 for SM3 transfer step reset */
 
 /* DTHE AES/SHA/SM3/SM4 DMA trigger sources for HSM RTDMA */
 #define RTDMA_TRIGGER_DTHE_AES_DATAIN   DMA_TRIGGER_DTHE_AES_DMA_S_DATAIN_REQ
@@ -177,7 +180,7 @@ int32_t RTDMA_Config_TxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t
             burstSize = RTDMA_AES_SM4_BURST_SIZE;
             transferSize = numBlocks;
             srcBurstStep = (int16_t)RTDMA_WORD_SIZE;       /* Increment source by 4 bytes per word */
-            destBurstStep = (int16_t)(-RTDMA_WORD_SIZE);   /* Destination stays at same location (peripheral register) */
+            destBurstStep = RTDMA_WORD_SIZE_NEG;   /* Destination stays at same location (peripheral register) */
             srcTransferStep = (int16_t)(RTDMA_WORD_SIZE);  /* Move to next burst */
             destTransferStep = (int16_t)((RTDMA_WORD_SIZE - 1U) * RTDMA_WORD_SIZE); /* Destination doesn't change between transfers */
             status = SystemP_SUCCESS;
@@ -206,7 +209,7 @@ int32_t RTDMA_Config_TxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t
             srcBurstStep = (int16_t)RTDMA_WORD_SIZE;        /* Increment source by 4 bytes per word */
             destBurstStep = (int16_t)RTDMA_WORD_SIZE;       /* Increment dest to write to SM3_DATA_IN[0], [1], ..., [15] */
             srcTransferStep = (int16_t)(RTDMA_WORD_SIZE);   /* Continue to next block in source buffer */
-            destTransferStep = (int16_t)(-((int16_t)(blockSize - 1U) * (int16_t)RTDMA_WORD_SIZE)); /* Reset dest back to SM3_DATA_IN[0] */
+            destTransferStep = RTDMA_SM3_TRANSFER_STEP_NEG; /* Reset dest back to SM3_DATA_IN[0] */
             status = SystemP_SUCCESS;
         }
         else if(operationType == DMA_SM4_ENABLE)
@@ -220,7 +223,7 @@ int32_t RTDMA_Config_TxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t
             srcBurstStep = (int16_t)RTDMA_WORD_SIZE;        /* Increment source by 4 bytes per word */
             destBurstStep = (int16_t)(RTDMA_WORD_SIZE);     /* Increment dest: DATA_IN_0 → DATA_IN_1 → DATA_IN_2 → DATA_IN_3 */
             srcTransferStep = (int16_t)(RTDMA_WORD_SIZE);   /* Continue to next block in source buffer */
-            destTransferStep = (int16_t)(-((RTDMA_WORD_SIZE - 1U) * RTDMA_WORD_SIZE)); /* Reset dest back to DATA_IN_0 */
+            destTransferStep = RTDMA_WORD_SIZE_NEG_12; /* Reset dest back to DATA_IN_0 */
             status = SystemP_SUCCESS;
         }
         else
@@ -349,7 +352,7 @@ int32_t RTDMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t
             /* AES RX: reads DATA_OUT_3 → DATA_OUT_0 (negative step) */
             trigger = RTDMA_TRIGGER_DTHE_AES_DATAOUT;
             burstSize = RTDMA_AES_SM4_BURST_SIZE;
-            srcBurstStep = (int16_t)(-RTDMA_WORD_SIZE);      /* Decrement: DATA_OUT_3 → DATA_OUT_0 */
+            srcBurstStep = RTDMA_WORD_SIZE_NEG;      /* Decrement: DATA_OUT_3 → DATA_OUT_0 */
             destBurstStep = (int16_t)(RTDMA_WORD_SIZE);      /* Increment destination buffer */
             srcTransferStep = (int16_t)((RTDMA_WORD_SIZE - 1U) * RTDMA_WORD_SIZE); /* Reset back to DATA_OUT_3 */
             destTransferStep = (int16_t)(RTDMA_WORD_SIZE);   /* Continue in destination buffer */
@@ -362,7 +365,7 @@ int32_t RTDMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t
             burstSize = RTDMA_AES_SM4_BURST_SIZE; 
             srcBurstStep = (int16_t)(RTDMA_WORD_SIZE);        /* Increment: DATA_OUT_0 → DATA_OUT_3 */
             destBurstStep = (int16_t)(RTDMA_WORD_SIZE);       /* Increment destination buffer */
-            srcTransferStep = (int16_t)(-((RTDMA_WORD_SIZE - 1U) * RTDMA_WORD_SIZE)); /* Reset back to DATA_OUT_0 */
+            srcTransferStep = RTDMA_WORD_SIZE_NEG_12; /* Reset back to DATA_OUT_0 */
             destTransferStep = (int16_t)(RTDMA_WORD_SIZE);    /* Continue in destination buffer */
             status = SystemP_SUCCESS;
         }

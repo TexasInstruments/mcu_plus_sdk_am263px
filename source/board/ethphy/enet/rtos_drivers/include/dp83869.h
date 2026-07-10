@@ -291,9 +291,10 @@ int32_t Dp83869_config(EthPhyDrv_Handle hPhy,
                         Phy_Mii mii,
                         bool loopbackEn);
 
-void Dp83869_reset(EthPhyDrv_Handle hPhy);
+int32_t Dp83869_reset(EthPhyDrv_Handle hPhy);
 
-bool Dp83869_isResetComplete(EthPhyDrv_Handle hPhy);
+int32_t Dp83869_isResetComplete(EthPhyDrv_Handle hPhy,
+                                bool *pComplete);
 
 void Dp83869_printRegs(EthPhyDrv_Handle hPhy);
 

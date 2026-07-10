@@ -14,11 +14,10 @@ var group__SECURITY__DTHE__MODULE =
       [ "attrs", "structDTHE__Config.html#af1f6201796586745a0e7942024be4d65", null ],
       [ "dmaEnable", "structDTHE__Config.html#a52cd0d1796f65fce19778a2e03ea508e", null ]
     ] ],
+    [ "DTHE_RETURN_SUCCESS", "group__SECURITY__DTHE__MODULE.html#ga66a976b8eddfeffbe85a2c4c43956d6d", null ],
+    [ "DTHE_RETURN_FAILURE", "group__SECURITY__DTHE__MODULE.html#gac82e0af1c37571603398c7b38f0783de", null ],
+    [ "DTHE_Return_t", "group__SECURITY__DTHE__MODULE.html#ga089c0914a1c8d3cde385ac10a59c1fdd", null ],
     [ "DTHE_Handle", "group__SECURITY__DTHE__MODULE.html#ga83c5172e7759b4dadec0a146eb376798", null ],
-    [ "DTHE_Return_t", "group__SECURITY__DTHE__MODULE.html#ga03b6242d5ab43f794df7117292a14d34", [
-      [ "DTHE_RETURN_SUCCESS", "group__SECURITY__DTHE__MODULE.html#gga03b6242d5ab43f794df7117292a14d34aa90685ea782dee60b08d74c03434b114", null ],
-      [ "DTHE_RETURN_FAILURE", "group__SECURITY__DTHE__MODULE.html#gga03b6242d5ab43f794df7117292a14d34a2f6a4dd7c56ea3dbdee82bc92c852504", null ]
-    ] ],
     [ "DTHE_init", "group__SECURITY__DTHE__MODULE.html#ga06651a0f51249bac45154e58c52afccd", null ],
     [ "DTHE_deinit", "group__SECURITY__DTHE__MODULE.html#ga7ff4a32ab6b265560c52b6fb21d713ee", null ],
     [ "DTHE_open", "group__SECURITY__DTHE__MODULE.html#gaba32c784d8bf4ff4dd94bb33572332d6", null ],

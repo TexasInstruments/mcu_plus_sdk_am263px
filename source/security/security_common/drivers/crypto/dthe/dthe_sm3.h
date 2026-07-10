@@ -82,42 +82,39 @@ extern "C" {
  *  DTHE SM3 Driver Error code
  *
  * \details
- *  The enumeration describes all the possible return and error codes which
+ *  The following defines describe all the possible return and error codes which
  *  the DTHE SM3 Driver can return
  */
-typedef enum DTHE_SM3_Return_e
-{
-    DTHE_SM3_RETURN_SUCCESS                  = 0xE7A42DD9U, /*!< Success/pass return code */
-    DTHE_SM3_RETURN_FAILURE                  = 0x06C2B4ABU, /*!< General or unspecified failure/error */
-}DTHE_SM3_Return_t;
+typedef uint32_t DTHE_SM3_Return_t;
+
+#define DTHE_SM3_RETURN_SUCCESS             (0xE7A42DD9U) /*!< Success/pass return code */
+#define DTHE_SM3_RETURN_FAILURE             (0x06C2B4ABU) /*!< General or unspecified failure/error */
 
 /**
  * \brief
  *  DTHE SM3 Driver Last Block State
  *
  * \details
- *  The enumeration describes the possible status code for
+ *  The following defines describe the possible status code for
  *  the DTHE SM3 Driver last block
  */
-typedef enum DTHE_SM3_LastBlockState_e
-{
-    DTHE_SM3_LAST_BLOCK_TRUE                  = 0x3A240A96U, /*!< Last Block True State */
-    DTHE_SM3_LAST_BLOCK_FALSE                 = 0x3473409AU, /*!< Last Block False State */
-}DTHE_SM3_LastBlockState_t;
+typedef uint32_t DTHE_SM3_LastBlockState_t;
+
+#define DTHE_SM3_LAST_BLOCK_TRUE            (0x3A240A96U) /*!< Last Block True State */
+#define DTHE_SM3_LAST_BLOCK_FALSE           (0x3473409AU) /*!< Last Block False State */
 
 /**
  * \brief
- *  DTHE SM3 Driver Last Block State
+ *  DTHE SM3 Driver Crypto State Machine
  *
  * \details
- *  The enumeration describes the possible status code for
- *  the DTHE SM3 Driver last block
+ *  The following defines describe the possible status code for
+ *  the DTHE SM3 Driver crypto state machine
  */
-typedef enum DTHE_SM3_CryptoStateMachine_e
-{
-    DTHE_SM3_CRYPTO_STATEMACHINE_NEW              = 0x9A3F2B1CU, /*!< Crypto state = NEW */
-    DTHE_SM3_CRYPTO_STATEMACHINE_INPROGRESS       = 0x58E7D064U, /*!< Crypto state = IN PROGRESS */
-}DTHE_SM3_CryptoStateMachine_t;
+typedef uint32_t DTHE_SM3_CryptoStateMachine_t;
+
+#define DTHE_SM3_CRYPTO_STATEMACHINE_NEW            (0x9A3F2B1CU) /*!< Crypto state = NEW */
+#define DTHE_SM3_CRYPTO_STATEMACHINE_INPROGRESS     (0x58E7D064U) /*!< Crypto state = IN PROGRESS */
 
 /**
  * \brief Parameters required for SM3 Driver

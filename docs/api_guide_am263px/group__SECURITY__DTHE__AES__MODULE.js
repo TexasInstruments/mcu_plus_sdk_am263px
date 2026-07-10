@@ -57,10 +57,9 @@ var group__SECURITY__DTHE__AES__MODULE =
     [ "DTHE_AES_XTS_MODE_1", "group__SECURITY__DTHE__AES__MODULE.html#gab869f5fb1cc484b65d6953b15a90a536", null ],
     [ "DTHE_AES_XTS_MODE_2", "group__SECURITY__DTHE__AES__MODULE.html#ga64f7b12974ab05e107d9f4b38b177dc4", null ],
     [ "DTHE_AES_XTS_MODE_3", "group__SECURITY__DTHE__AES__MODULE.html#ga668c1b00debb2b871a5e121039d498ad", null ],
-    [ "DTHE_AES_Return_t", "group__SECURITY__DTHE__AES__MODULE.html#gaeb38f975e2c66f1d3ca80e78be2f11e7", [
-      [ "DTHE_AES_RETURN_SUCCESS", "group__SECURITY__DTHE__AES__MODULE.html#ggaeb38f975e2c66f1d3ca80e78be2f11e7ada7b85cc5ebb6a5763d6f52b2a22ef38", null ],
-      [ "DTHE_AES_RETURN_FAILURE", "group__SECURITY__DTHE__AES__MODULE.html#ggaeb38f975e2c66f1d3ca80e78be2f11e7a76d1f75232e642234b9bb7e83acf5709", null ]
-    ] ],
+    [ "DTHE_AES_RETURN_SUCCESS", "group__SECURITY__DTHE__AES__MODULE.html#gaeb9307d2f745596c6d65f398541529f1", null ],
+    [ "DTHE_AES_RETURN_FAILURE", "group__SECURITY__DTHE__AES__MODULE.html#gac0b77d8caafd37533a46a46299b70b02", null ],
+    [ "DTHE_AES_Return_t", "group__SECURITY__DTHE__AES__MODULE.html#gaff66f2338759d5c1cc17791f6879b556", null ],
     [ "DTHE_AES_open", "group__SECURITY__DTHE__AES__MODULE.html#ga71c5c888beb6dd576145f2e64a34636d", null ],
     [ "DTHE_AES_execute", "group__SECURITY__DTHE__AES__MODULE.html#ga58abb1d82e758813bc286f2eee813ac5", null ],
     [ "DTHE_AES_close", "group__SECURITY__DTHE__AES__MODULE.html#gab31fc9bc617c3476a66448d196e79923", null ]

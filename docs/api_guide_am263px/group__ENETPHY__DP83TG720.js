@@ -17,7 +17,7 @@ var group__ENETPHY__DP83TG720 =
     [ "Dp83tg720_isPhyDevSupported", "group__ENETPHY__DP83TG720.html#gacfbc3f6e56bc640f844ea68c2a0dff98", null ],
     [ "Dp83tg720_isMacModeSupported", "group__ENETPHY__DP83TG720.html#gadd58ce3b2565e88a98f82378bc1bcdd1", null ],
     [ "Dp83tg720_config", "group__ENETPHY__DP83TG720.html#ga0cf190a0cb1090e1ea0ec786fe723664", null ],
-    [ "Dp83tg720_reset", "group__ENETPHY__DP83TG720.html#gab0a57ac4ddf035892ae39a327139fb8e", null ],
-    [ "Dp83tg720_isResetComplete", "group__ENETPHY__DP83TG720.html#ga0c9a24219d683e86ed8b5a8feacb6266", null ],
+    [ "Dp83tg720_reset", "group__ENETPHY__DP83TG720.html#gac936306da26e30ab5fd19d8e72b4f8f3", null ],
+    [ "Dp83tg720_isResetComplete", "group__ENETPHY__DP83TG720.html#ga87c2e43cdc608b5e86355fc3441c5c4e", null ],
     [ "Dp83tg720_printRegs", "group__ENETPHY__DP83TG720.html#ga3a7610038d6083e47cde03de5826be5a", null ]
 ];

@@ -72,15 +72,19 @@ void Drivers_epwmOpen(void)
 	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_continousSwForceReloadModeGld")`
 	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_continousSwForceReloadMode")`
 	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_EPWM_AQ_OUTPUT_A_gld")`
-	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowMode")`
-	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowEvent")`
+    % if (instance["epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowMode"] == true) {
+	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowEvent")` /* Note: This enables the shadow mode in addition to configuring the shadow load event */
+    % }
+    `epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowMode")`
 	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_t1Source")`
 	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_t2Source")`
 	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_EPWM_AQ_OUTPUT_A_onetimeSwForceAction")`
 	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_EPWM_AQ_OUTPUT_A_continuousSwForceAction")`
 	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_EPWM_AQ_OUTPUT_B_gld")`
-	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_EPWM_AQ_OUTPUT_B_shadowMode")`
-	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_EPWM_AQ_OUTPUT_B_shadowEvent")`
+    % if (instance["epwmActionQualifier_EPWM_AQ_OUTPUT_B_shadowMode"] == true) {
+	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_EPWM_AQ_OUTPUT_B_shadowEvent")` /* Note: This enables the shadow mode in addition to configuring the shadow load event */
+    % }
+    `epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_EPWM_AQ_OUTPUT_B_shadowMode")`
 	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_EPWM_AQ_OUTPUT_B_onetimeSwForceAction")`
 	`epwm_json_resolver.getCode(instance, instance,"epwmActionQualifier_EPWM_AQ_OUTPUT_B_continuousSwForceAction")`
 

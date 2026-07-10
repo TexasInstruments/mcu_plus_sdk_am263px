@@ -131,16 +131,13 @@ extern "C" {
  *  DTHE SM4 Driver Error code
  *
  * \details
- *  The enumeration describes all the possible return and error codes which
+ *  The following defines describe all the possible return and error codes which
  *  the DTHE SM4 Driver can return
  */
-typedef enum DTHE_SM4_Return_e
-{
-    /**< Success/pass return code */
-    DTHE_SM4_RETURN_SUCCESS                  = 0x62F699D9U,
-    /**< General or unspecified failure/error */
-    DTHE_SM4_RETURN_FAILURE                  = 0x944D259AU
-}DTHE_SM4_Return_t;
+typedef uint32_t DTHE_SM4_Return_t;
+
+#define DTHE_SM4_RETURN_SUCCESS             (0x62F699D9U) /**< Success/pass return code */
+#define DTHE_SM4_RETURN_FAILURE             (0x944D259AU) /**< General or unspecified failure/error */
 
 
 /**

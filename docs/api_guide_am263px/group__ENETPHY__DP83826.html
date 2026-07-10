@@ -89,7 +89,8 @@ $(document).ready(function(){initNavTree('group__ENETPHY__DP83826.html',''); ini
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
 <div class="title">TI DP83826 PHY<div class="ingroups"><a class="el" href="group__NETWORKING__MODULE.html">APIs for Networking modules</a> &raquo; <a class="el" href="group__DRV__ENET__MODULE.html">APIs for Enet LLD</a> &raquo; <a class="el" href="group__DRV__ENETPHY.html">Ethernet PHY Driver</a></div></div>  </div>
 </div><!--header-->
@@ -118,7 +119,82 @@ Functions</h2></td></tr>
 <tr class="separator:gae39a4e6492e1da2eeba4eb9edd981496"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae2bbff63556e7284a15155eccaaf41bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENETPHY__DP83826.html#gae2bbff63556e7284a15155eccaaf41bd">Dp83826_printRegs</a> (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy)</td></tr>
 <tr class="separator:gae2bbff63556e7284a15155eccaaf41bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga28081161456ab1c1d81ad1ad03bb4102"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENETPHY__DP83826.html#ga28081161456ab1c1d81ad1ad03bb4102">Dp83826_LedMode</a> { <br />
+&#160;&#160;<a class="el" href="group__ENETPHY__DP83826.html#gga28081161456ab1c1d81ad1ad03bb4102af7034370b68297dd2f1f0e6abce32ed4">DP83826_LED_LINK_OK</a> = 0x0U, 
+<a class="el" href="group__ENETPHY__DP83826.html#gga28081161456ab1c1d81ad1ad03bb4102a445a825cdeed27b763a2d94da58070e8">DP83826_LED_RXTXACT</a> = 0x1U, 
+<a class="el" href="group__ENETPHY__DP83826.html#gga28081161456ab1c1d81ad1ad03bb4102a96acfba84ca75b884ed5d646345b8851">DP83826_LED_TXACT</a> = 0x2U, 
+<a class="el" href="group__ENETPHY__DP83826.html#gga28081161456ab1c1d81ad1ad03bb4102a678006b05b1a98e130ba7dd201b9df75">DP83826_LED_RXACT</a> = 0x3U, 
+<br />
+&#160;&#160;<a class="el" href="group__ENETPHY__DP83826.html#gga28081161456ab1c1d81ad1ad03bb4102a870ca42a222b9074fdf4c72fb897df2c">DP83826_LED_COLLISION</a> = 0x4U, 
+<a class="el" href="group__ENETPHY__DP83826.html#gga28081161456ab1c1d81ad1ad03bb4102af7314941fb72511287155f9e8b8afa1e">DP83826_LED_SPEED_100BTX</a> = 0x5U, 
+<a class="el" href="group__ENETPHY__DP83826.html#gga28081161456ab1c1d81ad1ad03bb4102a90c37fcca879e4da0ea3d3de5b03ac8a">DP83826_LED_SPEED_10BTX</a> = 0x6U, 
+<a class="el" href="group__ENETPHY__DP83826.html#gga28081161456ab1c1d81ad1ad03bb4102a15d898a02d5deff6bab8e1daf71d0df8">DP83826_LED_FULL_DUPLEX</a> = 0x7U, 
+<br />
+&#160;&#160;<a class="el" href="group__ENETPHY__DP83826.html#gga28081161456ab1c1d81ad1ad03bb4102a3d3205d8d76d4929b58ff515dfdbea61">DP83826_LED_BLINK_ACT</a> = 0x8U, 
+<a class="el" href="group__ENETPHY__DP83826.html#gga28081161456ab1c1d81ad1ad03bb4102a69085b141c3dc2a5fd001d3f21232c6d">DP83826_LED_STRETCH_ACT</a> = 0x9U, 
+<a class="el" href="group__ENETPHY__DP83826.html#gga28081161456ab1c1d81ad1ad03bb4102ab8b4a0d63abee88b082747103d5b568d">DP83826_LED_100BTFD</a> = 0xAU, 
+<a class="el" href="group__ENETPHY__DP83826.html#gga28081161456ab1c1d81ad1ad03bb4102a54c649f1cf583b605165236916d7d76b">DP83826_LED_LPI_MODE</a> = 0xBU, 
+<br />
+&#160;&#160;<a class="el" href="group__ENETPHY__DP83826.html#gga28081161456ab1c1d81ad1ad03bb4102a12fedf8a11589eaad35f0d62ccae5fe8">DP83826_LED_RXTXERR</a> = 0xCU, 
+<a class="el" href="group__ENETPHY__DP83826.html#gga28081161456ab1c1d81ad1ad03bb4102ab621a712041fb53dc8c141db1d23390f">DP83826_LED_LINK_LOSS</a> = 0xDU, 
+<a class="el" href="group__ENETPHY__DP83826.html#gga28081161456ab1c1d81ad1ad03bb4102affc06a852d176da52e620a3cc334cdf4">DP83826_LED_PRBS_ERROR</a> = 0xEU
+<br />
+ }</td></tr>
+<tr class="memdesc:ga28081161456ab1c1d81ad1ad03bb4102"><td class="mdescLeft">&#160;</td><td class="mdescRight">LED modes (sources).  <a href="group__ENETPHY__DP83826.html#ga28081161456ab1c1d81ad1ad03bb4102">More...</a><br /></td></tr>
+<tr class="separator:ga28081161456ab1c1d81ad1ad03bb4102"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga28081161456ab1c1d81ad1ad03bb4102"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga28081161456ab1c1d81ad1ad03bb4102">&#9670;&nbsp;</a></span>Dp83826_LedMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__ENETPHY__DP83826.html#ga28081161456ab1c1d81ad1ad03bb4102">Dp83826_LedMode</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>LED modes (sources). </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga28081161456ab1c1d81ad1ad03bb4102af7034370b68297dd2f1f0e6abce32ed4"></a>DP83826_LED_LINK_OK&#160;</td><td class="fielddoc"><p>Link established </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga28081161456ab1c1d81ad1ad03bb4102a445a825cdeed27b763a2d94da58070e8"></a>DP83826_LED_RXTXACT&#160;</td><td class="fielddoc"><p>Receive or transmit activity </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga28081161456ab1c1d81ad1ad03bb4102a96acfba84ca75b884ed5d646345b8851"></a>DP83826_LED_TXACT&#160;</td><td class="fielddoc"><p>Transmit activity </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga28081161456ab1c1d81ad1ad03bb4102a678006b05b1a98e130ba7dd201b9df75"></a>DP83826_LED_RXACT&#160;</td><td class="fielddoc"><p>Receive activity </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga28081161456ab1c1d81ad1ad03bb4102a870ca42a222b9074fdf4c72fb897df2c"></a>DP83826_LED_COLLISION&#160;</td><td class="fielddoc"><p>Collision detected </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga28081161456ab1c1d81ad1ad03bb4102af7314941fb72511287155f9e8b8afa1e"></a>DP83826_LED_SPEED_100BTX&#160;</td><td class="fielddoc"><p>Speed, High for 100BASE-TX </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga28081161456ab1c1d81ad1ad03bb4102a90c37fcca879e4da0ea3d3de5b03ac8a"></a>DP83826_LED_SPEED_10BTX&#160;</td><td class="fielddoc"><p>Speed, High for 10BASE-T </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga28081161456ab1c1d81ad1ad03bb4102a15d898a02d5deff6bab8e1daf71d0df8"></a>DP83826_LED_FULL_DUPLEX&#160;</td><td class="fielddoc"><p>Full-Duplex </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga28081161456ab1c1d81ad1ad03bb4102a3d3205d8d76d4929b58ff515dfdbea61"></a>DP83826_LED_BLINK_ACT&#160;</td><td class="fielddoc"><p>LINK OK / BLINK on TX/RX Activity </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga28081161456ab1c1d81ad1ad03bb4102a69085b141c3dc2a5fd001d3f21232c6d"></a>DP83826_LED_STRETCH_ACT&#160;</td><td class="fielddoc"><p>Active Stretch Signal </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga28081161456ab1c1d81ad1ad03bb4102ab8b4a0d63abee88b082747103d5b568d"></a>DP83826_LED_100BTFD&#160;</td><td class="fielddoc"><p>MII LINK (100BT+FD) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga28081161456ab1c1d81ad1ad03bb4102a54c649f1cf583b605165236916d7d76b"></a>DP83826_LED_LPI_MODE&#160;</td><td class="fielddoc"><p>LPI Mode (Energy Efficient Ethernet) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga28081161456ab1c1d81ad1ad03bb4102a12fedf8a11589eaad35f0d62ccae5fe8"></a>DP83826_LED_RXTXERR&#160;</td><td class="fielddoc"><p>TX/RX MII Error </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga28081161456ab1c1d81ad1ad03bb4102ab621a712041fb53dc8c141db1d23390f"></a>DP83826_LED_LINK_LOSS&#160;</td><td class="fielddoc"><p>Link Lost (remains on until register 0x0001 is read) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga28081161456ab1c1d81ad1ad03bb4102affc06a852d176da52e620a3cc334cdf4"></a>DP83826_LED_PRBS_ERROR&#160;</td><td class="fielddoc"><p>Blink for PRBS error (remains ON for single error, remains until counter is cleared) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="gaeea41c39889777db5927a4fc3afbc2bf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaeea41c39889777db5927a4fc3afbc2bf">&#9670;&nbsp;</a></span>Dp83826_initCfg()</h2>

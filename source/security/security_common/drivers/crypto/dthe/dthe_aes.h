@@ -148,14 +148,13 @@ extern "C" {
  *  DTHE AES Driver Error code
  *
  * \details
- *  The enumeration describes all the possible return and error codes which
+ *  The following defines describe all the possible return and error codes which
  *  the DTHE AES Driver can return
  */
-typedef enum DTHE_AES_Return_e
-{
-    DTHE_AES_RETURN_SUCCESS                  = 0x62E699D9U, /*!< Success/pass return code */
-    DTHE_AES_RETURN_FAILURE                  = 0x904D041AU, /*!< General or unspecified failure/error */
-}DTHE_AES_Return_t;
+typedef uint32_t DTHE_AES_Return_t;
+
+#define DTHE_AES_RETURN_SUCCESS             (0x62E699D9U) /*!< Success/pass return code */
+#define DTHE_AES_RETURN_FAILURE             (0x904D041AU) /*!< General or unspecified failure/error */
 
 /**
  * \brief AES Driver Parameters

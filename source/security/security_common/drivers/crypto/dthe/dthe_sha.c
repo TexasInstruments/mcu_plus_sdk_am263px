@@ -111,6 +111,10 @@ static void DTHE_SHA512_setHMACInnerKey(CSL_EIP57T_SHARegs* ptrSHARegs, const ui
 /*                          Function Definitions                              */
 /* ========================================================================== */
 
+/**
+ *  Design: TIFSMCU-4384
+ */
+
 DTHE_SHA_Return_t DTHE_SHA_open(DTHE_Handle handle)
 {
     DTHE_SHA_Return_t status  = DTHE_SHA_RETURN_FAILURE;
@@ -136,6 +140,10 @@ DTHE_SHA_Return_t DTHE_SHA_open(DTHE_Handle handle)
 
     return (status);
 }
+
+/**
+ *  Design: TIFSMCU-4382
+ */
 
 DTHE_SHA_Return_t DTHE_SHA_close(DTHE_Handle handle)
 {
@@ -170,6 +178,10 @@ DTHE_SHA_Return_t DTHE_SHA_close(DTHE_Handle handle)
 
     return (status);
 }
+
+/**
+ *  Design: TIFSMCU-4383
+ */
 
 DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaParams, Bool isLastBlock)
 {
@@ -414,6 +426,10 @@ DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaPa
     }
     return (status);
 }
+
+/**
+ *  Design: TIFSMCU-4376
+ */
 
 DTHE_SHA_Return_t DTHE_HMACSHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaParams)
 {

@@ -42,7 +42,7 @@
 
 #include <string.h>
 #include <stddef.h>
-#include <kernel/dpl/ClockP.h>
+#include <kernel/dpl/CycleCounterP.h>
 #include <security_common/drivers/crypto/asym_crypt.h>
 #include <drivers/hw_include/cslr.h>
 #include <drivers/hw_include/cslr_soc.h>
@@ -109,37 +109,49 @@
 #define PKA_COMMAND_RESULT_SUCCESS                 (0x1U)
 
 /*
- * Timeout values in microsecs
+ * CPU frequency in MHz used for cycle-count based timeouts.
+ *   AM26xx (am261x, am263x, am263px, am273x, awr294x) : HSM M4 @ 200 MHz
+ *   AM64x / AM243x                                    : R5 core @ 800 MHz
+ */
+#if defined(SOC_AM64X) || defined(SOC_AM243X)
+#define PKA_CPU_FREQ_MHZ                           (800U)
+#else
+#define PKA_CPU_FREQ_MHZ                           (200U)
+#endif
+
+/*
+ * Timeout values in CPU cycles
+ * cycles = microseconds * PKA_CPU_FREQ_MHZ
  */
 /**
  * Timeout for register updates to take effect - 10us
  */
-#define PKA_REG_TIMEOUT                            (10U)
+#define PKA_REG_TIMEOUT                            (10U   * PKA_CPU_FREQ_MHZ)
 
 /**
  * Timeout for compare of 2 bignums - 100us
  */
-#define PKA_COMPARE_TIMEOUT                        (100U)
+#define PKA_COMPARE_TIMEOUT                        (100U  * PKA_CPU_FREQ_MHZ)
 
 /**
  * Timeout for modexp CRT operation - 50ms
  */
-#define PKA_MODEXP_CRT_TIMEOUT                     (50000U)
+#define PKA_MODEXP_CRT_TIMEOUT                     (50000U * PKA_CPU_FREQ_MHZ)
 
 /**
  * Timeout for modexp operation - 10ms
  */
-#define PKA_MODEXP_TIMEOUT                         (10000U)
+#define PKA_MODEXP_TIMEOUT                         (10000U * PKA_CPU_FREQ_MHZ)
 
 /**
  * Timeout for ECDSA verify operation - 10ms
  */
-#define ASYM_CRYPT_ECDSA_VERIFY_TIMEOUT                   (10000U)
+#define ASYM_CRYPT_ECDSA_VERIFY_TIMEOUT            (10000U * PKA_CPU_FREQ_MHZ)
 
 /**
  * Timeout for ECDSA sign operation - 10ms
  */
-#define ASYM_CRYPT_ECDSA_SIGN_TIMEOUT                     (10000U)
+#define ASYM_CRYPT_ECDSA_SIGN_TIMEOUT              (10000U * PKA_CPU_FREQ_MHZ)
 
 /** Command to PKA firmware - MODEXP_CRT */
 #define PKA_MODEXP_CRT_CMD   (((uint32_t) 0x0U) << PKA_FUNCTION_CMD_HI_SHIFT) | \
@@ -475,7 +487,7 @@ AsymCrypt_Return_t AsymCrypt_RSAPrivate(AsymCrypt_Handle handle,
                     uint32_t result[RSA_MAX_LENGTH])
 {
     AsymCrypt_Return_t status = ASYM_CRYPT_RETURN_FAILURE;
-    uint64_t curTimeInUsecs, totalTimeInUsecs = 0;
+    uint32_t startCycleCount, elapsedCycles = 0U;
     uint32_t size, offset, reg, wssize, shift, tmp, numCount;
     CSL_Eip_29t2_ramRegs *pka_regs;
     PKA_Config      *config;
@@ -525,18 +537,19 @@ AsymCrypt_Return_t AsymCrypt_RSAPrivate(AsymCrypt_Handle handle,
                (((uint32_t) 1U) << PKA_FUNCTION_RUN_SHIFT));
 
         /* Wait for completion */
-        curTimeInUsecs = ClockP_getTimeUsec();
-        /* TODO: MCUSDK-8047: Timeout values need to be calibrated for SoCs an checks need to be added back */
+        startCycleCount = CycleCounterP_getCount32();
+        elapsedCycles = 0U;
+
         while(((PKA_FUNCTION_RUN_MASK & CSL_REG_RD(&pka_regs->EIP_27B_EIP27_REGISTERS.PKA_FUNCTION)) != 0U))
         {
-            totalTimeInUsecs = ClockP_getTimeUsec() - curTimeInUsecs;
+            elapsedCycles = CycleCounterP_getCount32() - startCycleCount;
+            if(elapsedCycles > PKA_COMPARE_TIMEOUT)
+            {
+                status = ASYM_CRYPT_RETURN_FAILURE;
+                break;
+            }   
         }
-        totalTimeInUsecs = 0;
 
-        if(totalTimeInUsecs > PKA_COMPARE_TIMEOUT)
-        {
-            status = ASYM_CRYPT_RETURN_FAILURE;
-        }
         if(status == ASYM_CRYPT_RETURN_SUCCESS)
         {
             reg = CSL_REG_RD(&pka_regs->EIP_27B_EIP27_REGISTERS.PKA_COMPARE);
@@ -597,19 +610,17 @@ AsymCrypt_Return_t AsymCrypt_RSAPrivate(AsymCrypt_Handle handle,
                        (((uint32_t) 1U) << PKA_FUNCTION_RUN_SHIFT));
 
                 /* Wait for completion */
-                totalTimeInUsecs = 0;
-                curTimeInUsecs = ClockP_getTimeUsec();
-                /* TODO: MCUSDK-8047: Timeout values need to be calibrated for SoCs an checks need to be added back */
+                elapsedCycles = 0U;
+                startCycleCount = CycleCounterP_getCount32();
+
                 while(((PKA_SEQ_CTRL_DONE_MASK & CSL_REG_RD(&pka_regs->EIP_28PX12_GF2_2PRAM_EIP28_REGISTERS.PKA_SEQ_CTRL)) != ((uint32_t) 1U) << PKA_SEQ_CTRL_DONE_SHIFT))
                 {
-                    totalTimeInUsecs = ClockP_getTimeUsec() - curTimeInUsecs;
-                }
-
-                totalTimeInUsecs = 0;
-
-                if(totalTimeInUsecs > PKA_MODEXP_CRT_TIMEOUT)
-                {
-                    status = ASYM_CRYPT_RETURN_FAILURE;
+                    elapsedCycles = CycleCounterP_getCount32() - startCycleCount;
+                    if(elapsedCycles > PKA_MODEXP_CRT_TIMEOUT)
+                    {
+                        status = ASYM_CRYPT_RETURN_FAILURE;
+                        break;
+                    }
                 }
 
                 if(status == ASYM_CRYPT_RETURN_SUCCESS)
@@ -649,7 +660,7 @@ AsymCrypt_Return_t AsymCrypt_RSAPublic(AsymCrypt_Handle handle,
                     uint32_t result[RSA_MAX_LENGTH])
 {
     AsymCrypt_Return_t status = ASYM_CRYPT_RETURN_FAILURE;
-    uint64_t curTimeInUsecs, totalTimeInUsecs = 0;
+    uint32_t startCycleCount, elapsedCycles = 0U;
     uint32_t size, offset, reg, numCount;
     CSL_Eip_29t2_ramRegs *pka_regs;
     PKA_Config      *config;
@@ -708,18 +719,16 @@ AsymCrypt_Return_t AsymCrypt_RSAPublic(AsymCrypt_Handle handle,
                (((uint32_t) 1U) << PKA_FUNCTION_RUN_SHIFT));
 
         /* Wait for completion */
-        curTimeInUsecs = ClockP_getTimeUsec();
-        /* TODO: MCUSDK-8047: Timeout values need to be calibrated for SoCs an checks need to be added back */
+        startCycleCount = CycleCounterP_getCount32();
+        elapsedCycles = 0U;
         while(((PKA_FUNCTION_RUN_MASK & CSL_REG_RD(&pka_regs->EIP_27B_EIP27_REGISTERS.PKA_FUNCTION)) != 0U))
         {
-            totalTimeInUsecs = ClockP_getTimeUsec() - curTimeInUsecs;
-        }
-
-        totalTimeInUsecs = 0;
-
-        if(totalTimeInUsecs > PKA_COMPARE_TIMEOUT)
-        {
-            status = ASYM_CRYPT_RETURN_FAILURE;
+            elapsedCycles = CycleCounterP_getCount32() - startCycleCount;
+            if(elapsedCycles > PKA_COMPARE_TIMEOUT)
+            {
+                status = ASYM_CRYPT_RETURN_FAILURE;
+                break;
+            }
         }
 
         if (status == ASYM_CRYPT_RETURN_SUCCESS)
@@ -745,19 +754,17 @@ AsymCrypt_Return_t AsymCrypt_RSAPublic(AsymCrypt_Handle handle,
                        (((uint32_t) 1U) << PKA_FUNCTION_RUN_SHIFT));
 
                 /* Wait for completion */
-                totalTimeInUsecs = 0;
-                curTimeInUsecs = ClockP_getTimeUsec();
-                /* TODO: MCUSDK-8047: Timeout values need to be calibrated for SoCs an checks need to be added back */
+                elapsedCycles = 0U;
+                startCycleCount = CycleCounterP_getCount32();
+
                 while(((PKA_SEQ_CTRL_DONE_MASK & CSL_REG_RD(&pka_regs->EIP_28PX12_GF2_2PRAM_EIP28_REGISTERS.PKA_SEQ_CTRL)) != ((uint32_t) 1U) << PKA_SEQ_CTRL_DONE_SHIFT))
                 {
-                    totalTimeInUsecs = ClockP_getTimeUsec() - curTimeInUsecs;
-                }
-
-                totalTimeInUsecs = 0;
-
-                if(totalTimeInUsecs > PKA_MODEXP_TIMEOUT)
-                {
-                    status = ASYM_CRYPT_RETURN_FAILURE;
+                    elapsedCycles = CycleCounterP_getCount32() - startCycleCount;
+                    if(elapsedCycles > PKA_MODEXP_TIMEOUT)
+                    {
+                        status = ASYM_CRYPT_RETURN_FAILURE;
+                        break;
+                    }
                 }
 
                 if (status == ASYM_CRYPT_RETURN_SUCCESS)
@@ -802,7 +809,7 @@ AsymCrypt_Return_t AsymCrypt_ECDSASign(AsymCrypt_Handle handle,
                         uint32_t curveId)
 {
     AsymCrypt_Return_t status = ASYM_CRYPT_RETURN_FAILURE;
-    uint64_t curTimeInUsecs, totalTimeInUsecs = 0;
+    uint32_t startCycleCount, elapsedCycles = 0U;
     uint32_t offset, reg, size, numCount;
     uint32_t bn_one[2] = { 1U, 1U };
     CSL_Eip_29t2_ramRegs *pka_regs;
@@ -876,19 +883,18 @@ AsymCrypt_Return_t AsymCrypt_ECDSASign(AsymCrypt_Handle handle,
         CSL_REG_WR(&pka_regs->EIP_27B_EIP27_REGISTERS.PKA_FUNCTION, ASYM_CRYPT_ECDSA_SIGN_CMD | (((uint32_t) 1U) << PKA_FUNCTION_RUN_SHIFT));
 
         /* Wait for completion */
-        curTimeInUsecs = ClockP_getTimeUsec();
-        /* TODO: MCUSDK-8047: Timeout values need to be calibrated for SoCs an checks need to be added back */
+        startCycleCount = CycleCounterP_getCount32();
+        elapsedCycles = 0U;
+
         while(((PKA_SEQ_CTRL_DONE_MASK & CSL_REG_RD(&pka_regs->EIP_28PX12_GF2_2PRAM_EIP28_REGISTERS.PKA_SEQ_CTRL)) != ((uint32_t) 1U) << PKA_SEQ_CTRL_DONE_SHIFT) )
         {
-            totalTimeInUsecs = ClockP_getTimeUsec() - curTimeInUsecs;
-        }
-
-        totalTimeInUsecs = 0;
-
-        if(totalTimeInUsecs > ASYM_CRYPT_ECDSA_SIGN_TIMEOUT)
-        {
-            status = ASYM_CRYPT_RETURN_FAILURE;
-        }
+            elapsedCycles = CycleCounterP_getCount32() - startCycleCount;
+            if(elapsedCycles > ASYM_CRYPT_ECDSA_SIGN_TIMEOUT)
+            {
+                status = ASYM_CRYPT_RETURN_FAILURE;
+                break;
+            }
+        }      
 
         if(status == ASYM_CRYPT_RETURN_SUCCESS)
         {
@@ -925,7 +931,7 @@ AsymCrypt_Return_t AsymCrypt_ECDSAVerify(AsymCrypt_Handle handle,
                         uint32_t curveId)
 {
     AsymCrypt_Return_t status = ASYM_CRYPT_RETURN_FAILURE;
-    uint64_t curTimeInUsecs, totalTimeInUsecs = 0;
+    uint32_t startCycleCount, elapsedCycles = 0U;
     uint32_t offset, reg, size;
     uint32_t bn_one[2] = { 1U, 1U };
     CSL_Eip_29t2_ramRegs *pka_regs;
@@ -1010,20 +1016,20 @@ AsymCrypt_Return_t AsymCrypt_ECDSAVerify(AsymCrypt_Handle handle,
             CSL_REG_WR(&pka_regs->EIP_27B_EIP27_REGISTERS.PKA_FUNCTION, ASYM_CRYPT_ECDSA_VERIFY_CMD | (((uint32_t) 1U) << PKA_FUNCTION_RUN_SHIFT));
 
             /* Wait for completion */
-            curTimeInUsecs = ClockP_getTimeUsec();
-            /* TODO: MCUSDK-8047: Timeout values need to be calibrated for SoCs an checks need to be added back */
+            startCycleCount = CycleCounterP_getCount32();
+            elapsedCycles = 0U;
+
             while(((PKA_SEQ_CTRL_DONE_MASK & CSL_REG_RD(&pka_regs->EIP_28PX12_GF2_2PRAM_EIP28_REGISTERS.PKA_SEQ_CTRL)) != ((uint32_t) 1U) << PKA_SEQ_CTRL_DONE_SHIFT) )
             {
-                totalTimeInUsecs = ClockP_getTimeUsec() - curTimeInUsecs;
+                elapsedCycles = CycleCounterP_getCount32() - startCycleCount;
+                if(elapsedCycles > ASYM_CRYPT_ECDSA_VERIFY_TIMEOUT)
+                {
+                    status = ASYM_CRYPT_RETURN_FAILURE;
+                    break;
+                }
             }
-
-            totalTimeInUsecs = 0;
-
-            if(totalTimeInUsecs > ASYM_CRYPT_ECDSA_VERIFY_TIMEOUT)
-            {
-                status = ASYM_CRYPT_RETURN_FAILURE;
-            }
-            else
+            
+            if(ASYM_CRYPT_RETURN_SUCCESS == status)
             {
                 reg = CSL_REG_RD(&pka_regs->EIP_28PX12_GF2_2PRAM_EIP28_REGISTERS.PKA_SEQ_CTRL);
                 if((reg & PKA_SEQ_CTRL_RESULT_MASK) == (PKA_COMMAND_RESULT_SUCCESS << PKA_SEQ_CTRL_RESULT_SHIFT))
@@ -1852,7 +1858,7 @@ static AsymCrypt_Return_t PKA_enable(PKA_Attrs *attrs, uint32_t inst)
 {
     AsymCrypt_Return_t status = ASYM_CRYPT_RETURN_SUCCESS;
     uint32_t reg;
-    uint64_t curTimeInUsecs, totalTimeInUsecs = 0;
+    uint32_t startCycleCount, elapsedCycles = 0U;
 
     /* PKA Base address */
     CSL_Eip_29t2_ramRegs *pka_regs = PKA_getBaseAddress(attrs);
@@ -1872,20 +1878,19 @@ static AsymCrypt_Return_t PKA_enable(PKA_Attrs *attrs, uint32_t inst)
     reg = CSL_CP_ACE_CMD_STATUS_PKA_EN_MASK;
 
     /* Wait for PKA engine to be Enable */
-    curTimeInUsecs = ClockP_getTimeUsec();
-    /* TODO: MCUSDK-8047: Timeout values need to be calibrated for SoCs an
-     * checks need to be added back */
+    startCycleCount = CycleCounterP_getCount32();
+    elapsedCycles = 0U;
+
     while(((reg & CSL_REG_RD(&pCaRegs->MMR.CMD_STATUS)) != reg))
     {
-        totalTimeInUsecs = ClockP_getTimeUsec() - curTimeInUsecs;
+        elapsedCycles = CycleCounterP_getCount32() - startCycleCount;
+        if(elapsedCycles > PKA_REG_TIMEOUT)
+        {
+            status = ASYM_CRYPT_RETURN_FAILURE;
+            break;
+        }
     }
-
-    totalTimeInUsecs = 0;
-
-    if(totalTimeInUsecs > PKA_REG_TIMEOUT)
-    {
-        status = ASYM_CRYPT_RETURN_FAILURE;
-    }
+    
 #endif
     if(ASYM_CRYPT_RETURN_SUCCESS == status)
     {
@@ -1907,19 +1912,17 @@ static AsymCrypt_Return_t PKA_enable(PKA_Attrs *attrs, uint32_t inst)
             (((uint32_t) 1U) << PKA_CLK_CTRL_DATA_RAM_CLK_EN_SHIFT);
 
         /* Wait for PKA internal clocks to be active */
-        totalTimeInUsecs = 0;
-        curTimeInUsecs = ClockP_getTimeUsec();
-        /* TODO: MCUSDK-8047: Timeout values need to be calibrated for SoCs an checks need to be added back */
+        elapsedCycles = 0U;
+        startCycleCount = CycleCounterP_getCount32();
+
         while(((reg & CSL_REG_RD(&pka_regs->EIP_29T2_RAM_HOST_REGISTERS.PKA_CLK_CTRL)) != reg))
         {
-            totalTimeInUsecs = ClockP_getTimeUsec() - curTimeInUsecs;
-        }
-
-        totalTimeInUsecs = 0;
-
-        if(totalTimeInUsecs > PKA_REG_TIMEOUT)
-        {
-            status = ASYM_CRYPT_RETURN_FAILURE;
+            elapsedCycles = CycleCounterP_getCount32() - startCycleCount;
+            if(elapsedCycles > PKA_REG_TIMEOUT)
+            {
+                status = ASYM_CRYPT_RETURN_FAILURE;
+                break;
+            }
         }
     }
     if(ASYM_CRYPT_RETURN_SUCCESS == status)
@@ -1941,19 +1944,17 @@ static AsymCrypt_Return_t PKA_enable(PKA_Attrs *attrs, uint32_t inst)
               (((uint32_t) 1U) << PKA_CLK_CTRL_GF2M_CLK_EN_SHIFT) |
               (((uint32_t) 1U) << PKA_CLK_CTRL_DATA_RAM_CLK_EN_SHIFT);
         /* Wait for PKA internal clocks to be active */
-        totalTimeInUsecs = 0;
-        curTimeInUsecs = ClockP_getTimeUsec();
-        /* TODO: MCUSDK-8047: Timeout values need to be calibrated for SoCs an checks need to be added back */
+        elapsedCycles = 0U;
+        startCycleCount = CycleCounterP_getCount32();
+
         while(((reg & CSL_REG_RD(&pka_regs->EIP_29T2_RAM_HOST_REGISTERS.PKA_CLK_CTRL)) != reg))
         {
-            totalTimeInUsecs = ClockP_getTimeUsec() - curTimeInUsecs;
-        }
-
-        totalTimeInUsecs = 0;
-
-        if(totalTimeInUsecs > PKA_REG_TIMEOUT)
-        {
-            status = ASYM_CRYPT_RETURN_FAILURE;
+            elapsedCycles = CycleCounterP_getCount32() - startCycleCount;
+            if(elapsedCycles > PKA_REG_TIMEOUT)
+            {
+                status = ASYM_CRYPT_RETURN_FAILURE;
+                break;
+            }
         }
     }
 

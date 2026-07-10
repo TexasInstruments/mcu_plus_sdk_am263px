@@ -89,11 +89,9 @@ typedef void *RNG_Handle;
  *  The enumeration describes all the possible return and error codes which
  *  the RNG Driver can return
  */
-typedef enum RNG_Return_e
-{
-    RNG_RETURN_SUCCESS                  = 0xDE3BA502U, /*!< Success/pass return code */
-    RNG_RETURN_FAILURE                  = 0xF33BE03EU, /*!< General or unspecified failure/error */
-}RNG_Return_t;
+typedef uint32_t RNG_Return_t;
+#define RNG_RETURN_SUCCESS              (0xDE3BA502U) /*!< Success/pass return code */
+#define RNG_RETURN_FAILURE              (0xF33BE03EU) /*!< General or unspecified failure/error */
 
 /** \brief RNG attributes */
 typedef struct

@@ -1221,3 +1221,119 @@ Date:   Tue May 12 21:14:45 2026 +0530
  updateC29SDK.py                                    |  117 +
  151 files changed, 67942 insertions(+)
 
+========================================
+Changes from build on 2026-07-10 20:48:04
+Previous commit: 82a008facf8f345497f2f07965673cd674495dd7
+Current commit: b9b57cce8a245945366ab9a55fd974a6629ef7b6
+========================================
+
+commit b9b57cce8a245945366ab9a55fd974a6629ef7b6
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Sat Jul 4 15:45:51 2026 +0530
+
+    am26xxx: dthe/aes: Fix AES driver bugs for compliance testing
+    
+    Fix three bugs in the DTHE AES driver identified during AES compliance
+    testing:
+    
+    1. Fix decrypt data length alignment check: restrict the 16-byte
+       alignment requirement to ECB and CBC modes only. Stream cipher
+       modes (CTR, CFB, GCM, CCM) support any data length and must not
+       be rejected for non-block-aligned decrypt operations
+    
+    2. Remove AAD 4-byte alignment restriction: the condition
+       if((ptrParams->aadLength%4U)==0U) incorrectly skipped AAD
+       processing for non-4-byte-aligned AAD lengths in GCM/CCM modes
+    
+    3. Add DTHE_AES_GHASH_ONLY_MODE support for GMAC (GCM with
+       zero-length plaintext):
+       - Allow GHASH_ONLY_MODE with dataLenBytes=0 in one-shot validation
+       - Guard against NULL plaintext/ciphertext pointer dereference when
+         no data is present
+       - GHASH_ONLY_MODE skips the data processing loop and only
+         processes AAD before reading the authentication tag
+    
+    Fixes: TIFSMCU-5455
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/dthe/dthe_aes.c | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
+
+commit 114744902fef5d9a08257f4eb3ed8da6de224724
+Author: Seema.Khatib <seema.khatib@ti.com>
+Date:   Wed Jul 8 19:18:00 2026 +0530
+
+    f29h85x: dthe: misra fixes
+    
+    -update dthe files to fix misra and cert c violations.
+    
+    Fixes: TIFSMCU-5623
+    
+    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
+
+ drivers/crypto/dthe/dma/rtdma/dthe_rtdma.c | 13 ++++++++-----
+ drivers/crypto/dthe/dthe_aes.c             | 20 ++++++++++----------
+ 2 files changed, 18 insertions(+), 15 deletions(-)
+
+commit 2eb96b6d99add2ecce2a6b63f26fc44f58db6582
+Author: Seema.Khatib <seema.khatib@ti.com>
+Date:   Wed Jul 8 14:18:31 2026 +0530
+
+    f29h85x: dthe: misra fixes
+    
+    - update dthe files to address misra and cert c fixes
+    
+    Fixes: TIFSMCU-5623
+    
+    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
+
+ drivers/crypto/asym_crypt.h    | 16 ++++++----------
+ drivers/crypto/dthe/dma.c      |  5 +++--
+ drivers/crypto/dthe/dma.h      | 11 +++++------
+ drivers/crypto/dthe/dthe.h     | 11 +++++------
+ drivers/crypto/dthe/dthe_aes.h | 11 +++++------
+ drivers/crypto/dthe/dthe_sha.h | 11 +++++------
+ drivers/crypto/dthe/dthe_sm3.c | 25 ++++++++++++-------------
+ drivers/crypto/dthe/dthe_sm3.h | 37 +++++++++++++++++--------------------
+ drivers/crypto/dthe/dthe_sm4.c | 10 +++++-----
+ drivers/crypto/dthe/dthe_sm4.h | 13 +++++--------
+ drivers/crypto/rng/rng.h       |  8 +++-----
+ 11 files changed, 71 insertions(+), 87 deletions(-)
+
+commit 050610dfe7a92368d70ba48f38e411a8b06647d7
+Author: Seema.Khatib <seema.khatib@ti.com>
+Date:   Tue Jul 7 20:39:22 2026 +0530
+
+    f29h85x: dthe: add  design identifier
+    
+    - Add  design id for the external API of dthe.
+    
+    Fixes: TIFSMCU-5623
+    
+    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
+
+ drivers/crypto/dthe/dthe_aes.c | 11 +++++++++++
+ drivers/crypto/dthe/dthe_sha.c | 16 ++++++++++++++++
+ drivers/crypto/dthe/dthe_sm3.c | 11 +++++++++++
+ drivers/crypto/dthe/dthe_sm4.c |  9 +++++++++
+ 4 files changed, 47 insertions(+)
+
+commit 0bce7598e197cfb3f65d57dffa3fee01129cf2ec
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Thu Jul 2 21:08:23 2026 +0530
+
+    am26xxx: pka: Fix timeout logic and use CycleCounterP
+    
+    - Replace ClockP_getTimeUsec() with CycleCounterP_getCount32()
+    - Add PKA_CPU_FREQ_MHZ to convert µs timeouts to CPU cycles
+    - Fix broken timeout: elapsed time was reset to 0 after loop,
+      making all timeout checks dead code (potential infinite loop)
+    - Move timeout check inside while loop body with break on expiry
+    - Replace uint64_t timing vars with uint32_t cycle count vars
+    
+    Fixes: TIFSMCU-3334, MCUSDK-8047
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/pka/pka.c | 217 ++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------
+ 1 file changed, 109 insertions(+), 108 deletions(-)
+

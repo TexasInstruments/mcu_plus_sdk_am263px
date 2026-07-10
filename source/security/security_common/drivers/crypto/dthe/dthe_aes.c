@@ -94,17 +94,17 @@ static void DTHE_AES_set128BitKey2Part1(CSL_AesRegs *ptrAesRegs, const uint32_t*
 static void DTHE_AES_set128BitKey2Part2(CSL_AesRegs *ptrAesRegs, const uint32_t* ptrKey);
 static void DTHE_AES_clearKey2Part1(CSL_AesRegs *ptrAesRegs);
 static void DTHE_AES_clearKey2Part2(CSL_AesRegs *ptrAesRegs);
-static void DTHE_AES_pollInputReady(CSL_AesRegs *ptrAesRegs);
+static void DTHE_AES_pollInputReady(const CSL_AesRegs *ptrAesRegs);
 static void DTHE_AES_writeDataBlock(CSL_AesRegs *ptrAesRegs, const uint32_t* ptrData);
-static void DTHE_AES_pollOutputReady(CSL_AesRegs *ptrAesRegs);
-static void DTHE_AES_pollContextReady(CSL_AesRegs *ptrAesRegs);
-static void DTHE_AES_readDataBlock(CSL_AesRegs *ptrAesRegs, uint32_t* ptrData);
+static void DTHE_AES_pollOutputReady(const CSL_AesRegs *ptrAesRegs);
+static void DTHE_AES_pollContextReady(const CSL_AesRegs *ptrAesRegs);
+static void DTHE_AES_readDataBlock(const CSL_AesRegs *ptrAesRegs, uint32_t* ptrData);
 static void DTHE_AES_resetModule(CSL_AesRegs *ptrAesRegs);
 static void DTHE_AES_controlMode(CSL_AesRegs *ptrAesRegs, uint32_t algoType);
 static void DTHE_AES_setOpType(CSL_AesRegs *ptrAesRegs, uint32_t opType);
 static void DTHE_AES_setDataLengthBytes(CSL_AesRegs *ptrAesRegs, uint32_t dataLenBytes);
 static void DTHE_AES_setAADLengthBytes(CSL_AesRegs *ptrAesRegs, uint32_t aadLenBytes);
-static void DTHE_AES_readTag(CSL_AesRegs *ptrAesRegs, uint32_t* ptrTag);
+static void DTHE_AES_readTag(const CSL_AesRegs *ptrAesRegs, uint32_t* ptrTag);
 static void DTHE_AES_clearAllInterrupts(CSL_AesRegs *ptrAesRegs);
 static void DTHE_AES_setCCM_L(CSL_AesRegs *ptrAesRegs, uint32_t ccmLenBytes);
 static void DTHE_AES_setCCM_M(CSL_AesRegs *ptrAesRegs, uint32_t ccmMLenBytes);
@@ -360,6 +360,10 @@ static void DTHE_AES_clearAllInterrupts(CSL_AesRegs *ptrAesRegs)
     ptrAesRegs->IRQEN = 0x0;
 }
 
+/**
+ *  Design: TIFSMCU-4375
+ */
+
 DTHE_AES_Return_t DTHE_AES_open(DTHE_Handle handle)
 {
     DTHE_AES_Return_t status  = DTHE_AES_RETURN_FAILURE;
@@ -395,6 +399,9 @@ DTHE_AES_Return_t DTHE_AES_open(DTHE_Handle handle)
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-4374
+ */
 DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* ptrParams)
 {
     DTHE_AES_Return_t status  = DTHE_AES_RETURN_FAILURE;
@@ -480,11 +487,14 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
                 }
             }
 
-            /* Sanity Check: For Decryption data length always needs to be aligned */
-            if ((ptrParams->opType == DTHE_AES_DECRYPT)&&\
-                (ptrParams->algoType != DTHE_AES_XTS_MODE))
+            /* Sanity Check: For Decryption, block cipher modes (ECB, CBC) require
+             * data length to be 16-byte aligned. Stream cipher modes (CTR, CFB, GCM,
+             * CCM) support any data length — no alignment restriction applies. */
+            if ((ptrParams->opType == DTHE_AES_DECRYPT) &&
+                ((ptrParams->algoType == DTHE_AES_ECB_MODE) ||
+                 (ptrParams->algoType == DTHE_AES_CBC_MODE)))
             {
-                if ((ptrParams->dataLenBytes % 4U) != 0U)
+                if ((ptrParams->dataLenBytes % DTHE_AES_BLOCK_LENGTH) != 0U)
                 {
                     status = DTHE_AES_RETURN_FAILURE;
                 }
@@ -663,8 +673,7 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
                 ||(ptrParams->algoType == DTHE_AES_GHASH_ONLY_MODE)
                 ||(ptrParams->algoType == DTHE_AES_CCM_MODE))
                 {   
-                    /*Send AAD Data*/
-                    if((ptrParams->aadLength%4U)==0U)
+                    /*Send AAD Data — supports any AAD length (no 4-byte alignment restriction) */
                     {
                         DTHE_AES_setAADLengthBytes(ptrAesRegs, ptrParams->aadLength);
                         if(ptrParams->aadLength>0U)
@@ -1047,6 +1056,10 @@ DTHE_AES_Return_t DTHE_AES_execute(DTHE_Handle handle, const DTHE_AES_Params* pt
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-4373
+ */
+
 DTHE_AES_Return_t DTHE_AES_close(DTHE_Handle handle)
 {
     DTHE_AES_Return_t  status  = DTHE_AES_RETURN_FAILURE;
@@ -1336,7 +1349,7 @@ static inline void DTHE_AES_readIV(CSL_AesRegs *ptrAesRegs, uint32_t* ivReg)
  * \param   ptrAesRegs      Pointer to the EIP38T AES Registers
  *
  */
-static void DTHE_AES_pollInputReady(CSL_AesRegs *ptrAesRegs)
+static void DTHE_AES_pollInputReady(const CSL_AesRegs *ptrAesRegs)
 {
     uint32_t     done = 0U;
 
@@ -1372,7 +1385,7 @@ static void DTHE_AES_writeDataBlock(CSL_AesRegs *ptrAesRegs, const uint32_t* ptr
  * \param   ptrAesRegs      Pointer to the EIP38T AES Registers
  *
  */
-static void DTHE_AES_pollOutputReady(CSL_AesRegs *ptrAesRegs)
+static void DTHE_AES_pollOutputReady(const CSL_AesRegs *ptrAesRegs)
 {
     uint32_t     done = 0U;
 
@@ -1390,7 +1403,7 @@ static void DTHE_AES_pollOutputReady(CSL_AesRegs *ptrAesRegs)
  * \param   ptrAesRegs      Pointer to the EIP38T AES Registers
  *
  */
-static void DTHE_AES_pollContextReady(CSL_AesRegs *ptrAesRegs)
+static void DTHE_AES_pollContextReady(const CSL_AesRegs *ptrAesRegs)
 {
     uint32_t     done = 0U;
 
@@ -1410,7 +1423,7 @@ static void DTHE_AES_pollContextReady(CSL_AesRegs *ptrAesRegs)
  * \param   ptrData         Pointer to the data buffer populated by the API
  *
  */
-static void DTHE_AES_readDataBlock(CSL_AesRegs *ptrAesRegs, uint32_t* ptrData)
+static void DTHE_AES_readDataBlock(const CSL_AesRegs *ptrAesRegs, uint32_t* ptrData)
 {
     ptrData[0U] = ptrAesRegs->DATA_IN_3;
     ptrData[1U] = ptrAesRegs->DATA_IN_2;
@@ -1420,7 +1433,7 @@ static void DTHE_AES_readDataBlock(CSL_AesRegs *ptrAesRegs, uint32_t* ptrData)
     return;
 }
 
-static void DTHE_AES_readTag(CSL_AesRegs *ptrAesRegs, uint32_t* ptrTag)
+static void DTHE_AES_readTag(const CSL_AesRegs *ptrAesRegs, uint32_t* ptrTag)
 {
     ptrTag[0U] = ptrAesRegs->TAG_OUT_0;
     ptrTag[1U] = ptrAesRegs->TAG_OUT_1;

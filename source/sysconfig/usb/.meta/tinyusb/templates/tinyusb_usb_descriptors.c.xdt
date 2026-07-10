@@ -50,7 +50,9 @@ enum
 };
 
 % if(config.usbClass == "NCM") {
-const uint8_t tud_network_mac_address[6] = {0x`macAddr[0]`, 0x`macAddr[1]`, 0x`macAddr[2]`, 0x`macAddr[3]`, 0x`macAddr[4]`, 0x`macAddr[5]`};
+/* NOTE: tud_network_mac_address is declared non-const to match the tinyusb NCM API
+ * (extern uint8_t tud_network_mac_address[6] in net_device.h). Do not add const. */
+uint8_t tud_network_mac_address[6] = {0x`macAddr[0]`, 0x`macAddr[1]`, 0x`macAddr[2]`, 0x`macAddr[3]`, 0x`macAddr[4]`, 0x`macAddr[5]`};
 %}
 
 //--------------------------------------------------------------------+

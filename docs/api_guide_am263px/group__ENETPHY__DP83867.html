@@ -118,10 +118,10 @@ Functions</h2></td></tr>
 <tr class="separator:ga25861afdc22d78df216771a6f9cb3538"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafbc66e7edafaec3b1769f3f7022f6156"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENETPHY__DP83867.html#gafbc66e7edafaec3b1769f3f7022f6156">Dp83867_config</a> (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, const void *pExtCfg, const uint32_t extCfgSize, <a class="el" href="group__PHY__COMMON__H.html#gabc84e611afea1e9c06adb0bf3a21aa47">Phy_Mii</a> mii, bool loopbackEn)</td></tr>
 <tr class="separator:gafbc66e7edafaec3b1769f3f7022f6156"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab53673c79cea1433f3156675471e313e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENETPHY__DP83867.html#gab53673c79cea1433f3156675471e313e">Dp83867_reset</a> (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy)</td></tr>
-<tr class="separator:gab53673c79cea1433f3156675471e313e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaed17adc7afbb4c542469ecf6103497bf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENETPHY__DP83867.html#gaed17adc7afbb4c542469ecf6103497bf">Dp83867_isResetComplete</a> (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy)</td></tr>
-<tr class="separator:gaed17adc7afbb4c542469ecf6103497bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6cde49591ea612a59653b11160b46274"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENETPHY__DP83867.html#ga6cde49591ea612a59653b11160b46274">Dp83867_reset</a> (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy)</td></tr>
+<tr class="separator:ga6cde49591ea612a59653b11160b46274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae6ea3f82b4f27fe78e52627dbd80c16c"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENETPHY__DP83867.html#gae6ea3f82b4f27fe78e52627dbd80c16c">Dp83867_isResetComplete</a> (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy, bool *pCompleted)</td></tr>
+<tr class="separator:gae6ea3f82b4f27fe78e52627dbd80c16c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaadf87e7ded224a1b536016988f04c36b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENETPHY__DP83867.html#gaadf87e7ded224a1b536016988f04c36b">Dp83867_printRegs</a> (<a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a> hPhy)</td></tr>
 <tr class="separator:gaadf87e7ded224a1b536016988f04c36b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -488,14 +488,14 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="gab53673c79cea1433f3156675471e313e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab53673c79cea1433f3156675471e313e">&#9670;&nbsp;</a></span>Dp83867_reset()</h2>
+<a id="ga6cde49591ea612a59653b11160b46274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6cde49591ea612a59653b11160b46274">&#9670;&nbsp;</a></span>Dp83867_reset()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Dp83867_reset </td>
+          <td class="memname">int32_t Dp83867_reset </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a>&#160;</td>
           <td class="paramname"><em>hPhy</em></td><td>)</td>
@@ -506,18 +506,28 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="gaed17adc7afbb4c542469ecf6103497bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaed17adc7afbb4c542469ecf6103497bf">&#9670;&nbsp;</a></span>Dp83867_isResetComplete()</h2>
+<a id="gae6ea3f82b4f27fe78e52627dbd80c16c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae6ea3f82b4f27fe78e52627dbd80c16c">&#9670;&nbsp;</a></span>Dp83867_isResetComplete()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Dp83867_isResetComplete </td>
+          <td class="memname">int32_t Dp83867_isResetComplete </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__PHY__COMMON__H.html#ga08551bd31d8a3eb470be638d529886ea">EthPhyDrv_Handle</a>&#160;</td>
-          <td class="paramname"><em>hPhy</em></td><td>)</td>
+          <td class="paramname"><em>hPhy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool *&#160;</td>
+          <td class="paramname"><em>pCompleted</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

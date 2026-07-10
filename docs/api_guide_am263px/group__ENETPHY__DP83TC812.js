@@ -17,7 +17,7 @@ var group__ENETPHY__DP83TC812 =
     [ "Dp83tc812_isPhyDevSupported", "group__ENETPHY__DP83TC812.html#ga73158d2bc7251295522dd58d3dbc9cb6", null ],
     [ "Dp83tc812_isMacModeSupported", "group__ENETPHY__DP83TC812.html#ga1b3a032dbe121b58f93e7a863f0e83c7", null ],
     [ "Dp83tc812_config", "group__ENETPHY__DP83TC812.html#gaf2bafb2f641e7c114ab763bce42a12a8", null ],
-    [ "Dp83tc812_reset", "group__ENETPHY__DP83TC812.html#gadda778941cb2a6be92d7bb34e2678269", null ],
-    [ "Dp83tc812_isResetComplete", "group__ENETPHY__DP83TC812.html#ga5e56fcb9a5a4f064e671e8a130543c29", null ],
+    [ "Dp83tc812_reset", "group__ENETPHY__DP83TC812.html#gac11ef5aba00ad0831c6b6c959c2bc933", null ],
+    [ "Dp83tc812_isResetComplete", "group__ENETPHY__DP83TC812.html#ga1846c8f23d32c491c8bba1183aec13d0", null ],
     [ "Dp83tc812_printRegs", "group__ENETPHY__DP83TC812.html#gabde753c7197877822d4c914276d8fc32", null ]
 ];

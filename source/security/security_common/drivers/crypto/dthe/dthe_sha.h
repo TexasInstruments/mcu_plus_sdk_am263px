@@ -88,14 +88,13 @@ extern "C" {
  *  DTHE SHA Driver Error code
  *
  * \details
- *  The enumeration describes all the possible return and error codes which
+ *  The following defines describe all the possible return and error codes which
  *  the DTHE SHA Driver can return
  */
-typedef enum DTHE_SHA_Return_e
-{
-    DTHE_SHA_RETURN_SUCCESS                  = 0x67A42DD1U, /*!< Success/pass return code */
-    DTHE_SHA_RETURN_FAILURE                  = 0x06C2B483U, /*!< General or unspecified failure/error */
-}DTHE_SHA_Return_t;
+typedef uint32_t DTHE_SHA_Return_t;
+
+#define DTHE_SHA_RETURN_SUCCESS             (0x67A42DD1U) /*!< Success/pass return code */
+#define DTHE_SHA_RETURN_FAILURE             (0x06C2B483U) /*!< General or unspecified failure/error */
 
 /** \brief Parameters required for SHA Driver */
 typedef struct DTHE_SHA_Params_t

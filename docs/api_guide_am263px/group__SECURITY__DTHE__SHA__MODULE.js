@@ -16,10 +16,9 @@ var group__SECURITY__DTHE__SHA__MODULE =
     [ "DTHE_SHA_ALGO_SHA224", "group__SECURITY__DTHE__SHA__MODULE.html#gae7ca62ec6446c6dfed1c7f0e7fb73709", null ],
     [ "DTHE_SHA_ALGO_SHA256", "group__SECURITY__DTHE__SHA__MODULE.html#ga1cc2a75bc35a38384fcea26817285a5d", null ],
     [ "DTHE_SHA_MAX_DIGEST_SIZE_BYTES", "group__SECURITY__DTHE__SHA__MODULE.html#gac42b07a081eba938f4aca5baebf1bab7", null ],
-    [ "DTHE_SHA_Return_t", "group__SECURITY__DTHE__SHA__MODULE.html#ga00a0fb65e95cfa66c6340105d368f4aa", [
-      [ "DTHE_SHA_RETURN_SUCCESS", "group__SECURITY__DTHE__SHA__MODULE.html#gga00a0fb65e95cfa66c6340105d368f4aaa4d4894cd15ef816709a4e3d95db57a98", null ],
-      [ "DTHE_SHA_RETURN_FAILURE", "group__SECURITY__DTHE__SHA__MODULE.html#gga00a0fb65e95cfa66c6340105d368f4aaa65b6c67bb7cebb0f62c53692a14062f6", null ]
-    ] ],
+    [ "DTHE_SHA_RETURN_SUCCESS", "group__SECURITY__DTHE__SHA__MODULE.html#gad6a84621be4f4eeb9ede53878e6d0d77", null ],
+    [ "DTHE_SHA_RETURN_FAILURE", "group__SECURITY__DTHE__SHA__MODULE.html#ga79586fd221f35ebb00995d7e20446952", null ],
+    [ "DTHE_SHA_Return_t", "group__SECURITY__DTHE__SHA__MODULE.html#gaf4f87d07315a65c2d6456eca4d31d920", null ],
     [ "DTHE_SHA_open", "group__SECURITY__DTHE__SHA__MODULE.html#ga5be0c218834d5f15060316d3c43fcba8", null ],
     [ "DTHE_SHA_compute", "group__SECURITY__DTHE__SHA__MODULE.html#ga30bdcdcd843f794d92f075d4c9d78299", null ],
     [ "DTHE_HMACSHA_compute", "group__SECURITY__DTHE__SHA__MODULE.html#gad6575f3703d76d860fab48ba9b3dfa56", null ],
