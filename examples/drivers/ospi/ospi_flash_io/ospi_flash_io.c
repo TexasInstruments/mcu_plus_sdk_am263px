@@ -51,6 +51,9 @@ void ospi_flash_io_main(void *args)
     uint32_t offset;
     uint32_t blk, page;
     Flash_Attrs *flashAttrs;
+    uint64_t startTime, endTime, duration;
+    float writeSpeed = 0;
+    float readSpeed = 0;
 
     /* Open OSPI Driver, among others */
     Drivers_open();
@@ -83,19 +86,33 @@ void ospi_flash_io_main(void *args)
 
     if(SystemP_SUCCESS == status)
     {
+        startTime = ClockP_getTimeUsec();
         status = Flash_write(gFlashHandle[CONFIG_FLASH0], offset, gOspiTxBuf, APP_OSPI_DATA_SIZE);
+        endTime = ClockP_getTimeUsec();
         if(SystemP_SUCCESS != status)
         {
             DebugP_log("Flash Write of %d bytes failed at 0x%X offset !!!", APP_OSPI_DATA_SIZE, offset);
+        }
+        else
+        {
+            duration = endTime - startTime;
+            writeSpeed = ((float)APP_OSPI_DATA_SIZE * 8U) / (duration);
         }
     }
 
     if(SystemP_SUCCESS == status)
     {
+        startTime = ClockP_getTimeUsec();
         status = Flash_read(gFlashHandle[CONFIG_FLASH0], offset, gOspiRxBuf, APP_OSPI_DATA_SIZE);
+        endTime = ClockP_getTimeUsec();
         if(SystemP_SUCCESS != status)
         {
             DebugP_log("Flash Read of %d bytes failed at 0x%X offset !!!", APP_OSPI_DATA_SIZE, offset);
+        }
+        else
+        {
+            duration = endTime - startTime;
+            readSpeed = ((float)APP_OSPI_DATA_SIZE * 8U) / (duration);
         }
     }
 
@@ -139,6 +156,7 @@ void ospi_flash_io_main(void *args)
 
     if(SystemP_SUCCESS == status)
     {
+        DebugP_log("Write Speed: %f Mbps\r\nRead Speed: %f Mbps\r\n", writeSpeed, readSpeed);
         DebugP_log("All tests have passed!!\r\n");
     }
     else

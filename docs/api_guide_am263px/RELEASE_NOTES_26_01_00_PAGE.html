@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -164,7 +164,9 @@ New in this Release</h1>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Feature  </th><th class="markdownTableHeadNone">Module   </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">TBD  </td><td class="markdownTableBodyNone">TBD   </td></tr>
+<td class="markdownTableBodyNone">ICSS-EMAC and ICSS TimeSync driver sources are now at <code>source/networking/icss_emac_lld/</code> . Check <a class="el" href="ICSS_EMAC_MIGRATION_GUIDE.html#ICSS_EMAC_SOURCE_PATH_CHANGE">Source Path Change (MCU+ SDK &gt;= 26.01.00)</a> &zwj; for the migration guide  </td><td class="markdownTableBodyNone">Networking   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ICSS-EMAC: Added <code>pruRstIsoStatusParams</code> field to <code><a class="el" href="structICSS__EMAC__Params.html" title="ICSS_EMAC Parameters.">ICSS_EMAC_Params</a></code> and <code><a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#gaa0ea20af82b6ded6ca9f595991930887" title="Gets the reset isolation status from the ICSS_EMAC handle.">ICSS_EMAC_getResetIsolationStatus()</a></code> API for PRU reset isolation support. Reset isolation requires firmware support — do not enable unless the PRU firmware explicitly supports it. Supported on AM243x and AM64x only.  </td><td class="markdownTableBodyNone">Networking   </td></tr>
 </table>
 <h1><a class="anchor" id="autotoc_md319"></a>
 Modules Not tested/supported in this release</h1>
@@ -433,9 +435,23 @@ Fixed Issues</h2>
 <tr>
 <th>ID </th><th>Head Line </th><th>Module </th><th>Applicable Releases </th><th>Applicable Devices </th><th>Resolution/Comments  </th></tr>
 <tr>
+<td>MCUSDK-15751 </td><td>SBL should enable TCM ECC after TCM init and before loading the APPlication reset vectors </td><td>SDL </td><td>26.00.00 onwards </td><td>AM263x, AM263Px, AM261x </td><td>Fixed in SBL  </td></tr>
+<tr>
+<td>MCUSDK-15741 </td><td>MMR Unlock not used in ICSS and RTI </td><td>SDL </td><td>26.00.00 onwards </td><td>AM263x, AM263Px, AM261x </td><td>Fixed in Syscfg and test  </td></tr>
+<tr>
+<td>MCUSDK-15706 </td><td>CacheP_CACHELINE_ALIGNMENT is incorrectly set to 128 </td><td>SDL </td><td>26.00.00 onwards </td><td>AM263x, AM263Px, AM261x </td><td>Fixed in library  </td></tr>
+<tr>
 <td>PROC_SDL-10008 </td><td>AM263Px: Broken out-of-box SBL OSPI in v26.00.00.06 </td><td>SDL </td><td>26.00.00 onwards </td><td>AM263x, AM263Px, AM261x </td><td>Fixed in example  </td></tr>
 <tr>
+<td>PROC_SDL-10014 </td><td>PBIST Example fails due to unlock MMR </td><td>SDL </td><td>26.00.00 onwards </td><td>AM263x, AM263Px, AM261x </td><td>Fixed in examples  </td></tr>
+<tr>
+<td>PROC_SDL-9820 </td><td>End of Conversion bit (EOCZ) is not using for reading temperature sensor results in SDL_VTM_getTemp API for AM26x controllers </td><td>SDL </td><td>26.00.00 onwards </td><td>AM263x, AM263Px, AM261x </td><td>Fixed in library  </td></tr>
+<tr>
+<td>PROC_SDL-9986 </td><td>[AM263Px]: SDL_SOC_ECC_AGGR_MAILBOX_ECC_RAM_SIZE incorrectly defined as 524288U (512KB) — correct value is 16384U (16KB) per TRM SPRUJ55D </td><td>SDL </td><td>10.02.00 onwards </td><td>AM263x </td><td>Fixed in header file  </td></tr>
+<tr>
 <td>MCUSDK-15576 </td><td>I2C Target doesn't work with 0 write size interaction </td><td>I2C </td><td>26.00.00 onwards </td><td>AM263x, AM263Px, AM261x </td><td>Updated source code  </td></tr>
+<tr>
+<td>PSIRT-276 </td><td>Buffer overflow in MCELF Program Header Table parsing due to unvalidated e_phentsize field </td><td>SBL </td><td>10.00.00 onwards </td><td>AM263x, AM263Px, AM261x </td><td>Added validation of the ELF Program Header entry size (e_phentsize) in Bootloader_parseAndLoadMultiCoreELF to prevent an out-of-bounds write into the PHT buffer  </td></tr>
 </table>
 <h2><a class="anchor" id="autotoc_md334"></a>
 Known Issues</h2>
@@ -462,6 +478,8 @@ Known Issues</h2>
 <td>MCUSDK-12756 </td><td>MbedTLS - Timing side channel attack in RSA private operation exposing plaintext. </td><td>Mbed-TLS </td><td>08.06.00 onwards </td><td>None  </td></tr>
 <tr>
 <td>MCUSDK-14898 </td><td>SDL apps fails on other than RFSS0-0 with SBL </td><td>SBL, SDL </td><td>11.00.00 onwards </td><td>This because SBL brings the RFSS1-0 out of reset before the SBL UART prints gets flushed. This will be fixed in next release. As a workaround the application in R5FSS1-0 can delay the start of application till SBL UART prints gets completed.  </td></tr>
+<tr>
+<td>PROC_SDL-10004 </td><td>ECC Injection example for TPTC memory is not working on latest released MCU PLUS SDK </td><td>SDL </td><td>26.00.00 onwards </td><td>Example not working in SBL and Use CCS testing.  </td></tr>
 <tr>
 <td>PROC_SDL-9596 </td><td>SEC and DED failure in ecc_bus_safety example </td><td>SDL </td><td>11.01.00 onwards </td><td>For AXI_RD_SEC nodes can test in specific core.  </td></tr>
 <tr>
@@ -637,6 +655,14 @@ Software Bill of Materials</h2>
 </table>
 <h2><a class="anchor" id="autotoc_md345"></a>
 Upgrade and Compatibility Information</h2>
+<p>This section lists changes which could affect user applications developed using older SDK versions. Read this carefully to see if you need to do any changes in your existing application when migrating to this SDK version relative to previous SDK version. Also refer to older SDK version release notes to see changes in earlier SDKs.</p>
+<p>The below table captures the list of migration document sections when migrating from one version to another. The migration for a particular module will be applicable, if you are migrating from older version listed to newer version listed on the table below.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Module  </th><th class="markdownTableHeadNone">Migration guide  </th><th class="markdownTableHeadNone">Older version  </th><th class="markdownTableHeadNone">Newer version   </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ICSS-EMAC  </td><td class="markdownTableBodyNone"><a class="el" href="ICSS_EMAC_MIGRATION_GUIDE.html#ICSS_EMAC_SOURCE_PATH_CHANGE">Source Path Change (MCU+ SDK &gt;= 26.01.00)</a> &zwj;  </td><td class="markdownTableBodyNone">&lt;= 25.02.00  </td><td class="markdownTableBodyNone">&gt;= 26.01.00   </td></tr>
+</table>
 <h3><a class="anchor" id="autotoc_md346"></a>
 How to run FOTA examples on AM263PX-SIP board</h3>
 <p>One difference between AM263PX-SIP and AM263PX is the in package flash. In SIP board, flash is of Non-RWW in nature whereas, it is of RWW in other case. Example <a class="el" href="EXAMPLES_FLSOPSKD_BENCHMARK.html">FLSOPSKD Benchmark</a> is made to work out of box for AM263PX board but need some manual changes to make it work on AM263PX-SIP board. Here, to make this example with AM263PX-SIP board, please remove the <code> RUN_XIP_IN_PARALLEL </code> macro.</p>

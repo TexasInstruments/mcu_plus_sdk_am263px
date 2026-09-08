@@ -53,6 +53,7 @@
 #include <drivers/pruicss.h>
 #include <board/ethphy.h>
 #include <drivers/hw_include/csl_types.h>
+#include "icss_emac_ver.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -493,7 +494,7 @@ extern "C" {
 #define ICSS_EMAC_LEARNING_PORT_STATE_NOT_LEARNING      (1U)
 #define ICSS_EMAC_LEARNING_PORT_STATE_LOCKED            (2U)
 
-#define ICSS_EMAC_OBJECT_SIZE_IN_BYTES                  (42000)
+#define ICSS_EMAC_OBJECT_SIZE_IN_BYTES                  (42000U)
 
 #ifdef BUILD_HSR_PRP_MII
 /**Mask of FDB Lookup success flag in buffer descriptor*/
@@ -516,9 +517,9 @@ typedef struct ICSS_EMAC_Config_s *ICSS_EMAC_Handle;
 /*Reset Isolation Status enum*/
 typedef enum
 {
-    RESET_ISOLATION_DISABLED       = 0,   /* Reset isolation is disabled */
-    RESET_ISOLATION_ENABLED        = 1,   /* Reset isolation is enabled */
-    RESET_ISOLATION_NOT_SUPPORTED  = 2,   /* Initialization state */
+    RESET_ISOLATION_DISABLED       = 0U,   /* Reset isolation is disabled */
+    RESET_ISOLATION_ENABLED        = 1U,   /* Reset isolation is enabled */
+    RESET_ISOLATION_NOT_SUPPORTED  = 2U    /* Initialization state */
 } ICSS_EMAC_pruRstIsoState;
 
 /**

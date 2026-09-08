@@ -211,10 +211,10 @@ int32_t GenericPhy_readReg(EthPhyDrv_Handle hPhy,
 
     status = pRegAccessApi->EnetPhy_readReg(pRegAccessApi->pArgs, reg, pVal);
 
-    PHYTRACE_VERBOSE_IF(status != PHY_SOK,
-                        "PHY %u: failed to read reg %u\n", ((Phy_Obj_t*) hPhy)->phyAddr, reg);
-    PHYTRACE_ERR_IF(status == PHY_SOK,
-                    "PHY %u: read reg %u val 0x%04x\n", ((Phy_Obj_t*) hPhy)->phyAddr, reg, *pVal);
+    PHYTRACE_ERR_IF(status != PHY_SOK,
+                    "PHY %u: failed to read reg %u\n", ((Phy_Obj_t*) hPhy)->phyAddr, reg);
+    PHYTRACE_VERBOSE_IF(status == PHY_SOK,
+                        "PHY %u: read reg %u val 0x%04x\n", ((Phy_Obj_t*) hPhy)->phyAddr, reg, *pVal);
 
     return status;
 }
@@ -259,10 +259,10 @@ int32_t GenericPhy_readExtReg(EthPhyDrv_Handle hPhy,
         status = pRegAccessApi->EnetPhy_readReg(pRegAccessApi->pArgs, PHY_MMD_DR, val);
     }
 
-    PHYTRACE_VERBOSE_IF(status != PHY_SOK,
-                         "PHY %u: failed to read reg %u\n", ((Phy_Obj_t*) hPhy)->phyAddr, reg);
-    PHYTRACE_ERR_IF(status == PHY_SOK,
-                     "PHY %u: read reg %u val 0x%04x\n", ((Phy_Obj_t*) hPhy)->phyAddr, reg, *val);
+    PHYTRACE_ERR_IF(status != PHY_SOK,
+                    "PHY %u: failed to read reg %u\n", ((Phy_Obj_t*) hPhy)->phyAddr, reg);
+    PHYTRACE_VERBOSE_IF(status == PHY_SOK,
+                        "PHY %u: read reg %u val 0x%04x\n", ((Phy_Obj_t*) hPhy)->phyAddr, reg, *val);
 
     return status;
 }

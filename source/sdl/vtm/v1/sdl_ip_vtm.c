@@ -72,20 +72,37 @@ SDL_VTM_adc_code SDL_VTM_getAdcCode(SDL_VTM_InstTs  instance)
         switch(instance)
         {
             case SDL_VTM_INSTANCE_TS_0:
-                adccode = (SDL_VTM_adc_code)SDL_REG32_FEXT((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE0_RESULT), \
+                if(SDL_REG32_FEXT(SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE0_RESULT, \
+                   TOP_CTRL_TSENSE0_RESULT_TSENSE0_RESULT_ECOZ) == SDL_VTM_CONVERSION_COMPLETED)
+                {
+                    adccode = (SDL_VTM_adc_code)SDL_REG32_FEXT((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE0_RESULT), \
                                             TOP_CTRL_TSENSE0_RESULT_TSENSE0_RESULT_DTEMP);
+                }
             break;
             case SDL_VTM_INSTANCE_TS_1:
-                adccode = (SDL_VTM_adc_code)SDL_REG32_FEXT((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE1_RESULT), \
+                if(SDL_REG32_FEXT(SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE1_RESULT, \
+                  TOP_CTRL_TSENSE1_RESULT_TSENSE1_RESULT_ECOZ) == SDL_VTM_CONVERSION_COMPLETED)
+                {
+                    adccode = (SDL_VTM_adc_code)SDL_REG32_FEXT((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE1_RESULT), \
                                             TOP_CTRL_TSENSE1_RESULT_TSENSE1_RESULT_DTEMP);
+                }
+
             break;
             case SDL_VTM_INSTANCE_TS_2:
-                adccode = (SDL_VTM_adc_code)SDL_REG32_FEXT((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE2_RESULT), \
+                if(SDL_REG32_FEXT(SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE2_RESULT, \
+                  TOP_CTRL_TSENSE2_RESULT_TSENSE2_RESULT_ECOZ) == SDL_VTM_CONVERSION_COMPLETED)
+                {
+                    adccode = (SDL_VTM_adc_code)SDL_REG32_FEXT((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE2_RESULT), \
                                             TOP_CTRL_TSENSE2_RESULT_TSENSE2_RESULT_DTEMP);
+                }
             break;
             case SDL_VTM_INSTANCE_TS_3:
-                adccode = (SDL_VTM_adc_code)SDL_REG32_FEXT((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE3_RESULT), \
+                if(SDL_REG32_FEXT(SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE3_RESULT, \
+                  TOP_CTRL_TSENSE3_RESULT_TSENSE3_RESULT_ECOZ) == SDL_VTM_CONVERSION_COMPLETED)
+                {
+                    adccode = (SDL_VTM_adc_code)SDL_REG32_FEXT((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE3_RESULT), \
                                             TOP_CTRL_TSENSE3_RESULT_TSENSE3_RESULT_DTEMP);
+                }
             break;
               default:
                 adccode = 0xFF;

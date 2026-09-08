@@ -16,8 +16,15 @@ uint8_t gQueue_HsmToSecureHost[SIPC_NUM_R5_CORES][SIPC_QUEUE_LENGTH*SIPC_MSG_SIZ
 uint8_t gQueue_SecureHostToHsm[SIPC_NUM_R5_CORES][SIPC_QUEUE_LENGTH*SIPC_MSG_SIZE] __attribute__((aligned(8),section(".bss.sipc_secure_host_queue_mem")));
 HsmClient_t gHSMClient ;
 
+/* Host buffer used by HsmClient_prepareHostBuff() to provide a cache-line
+ * aligned staging area for HSM IPC structs.  Placed in the hsm_host_buff
+ * linker section so the application linker script controls its placement
+ * and alignment (must be 32-byte aligned in RAM).
+ * Size must match HSMCLIENT_HOST_BUFF_SIZE defined in hsmclient.h. */
+uint8_t gHsmClientHostBuff[HSMCLIENT_HOST_BUFF_SIZE] __attribute__((aligned(32), section("hsm_host_buff")));
+
 /* Queue used to store HSM client messages that need to be dispatched via SIPC */
-HsmMsg_t gHsmClientMsgQueue[HSM_CLIENT_MSG_QUEUE_SIZE];
+HsmMsg_t gHsmClientMsgQueue[HSM_CLIENT_MSG_QUEUE_SIZE] __attribute__((aligned(32), section("hsm_host_buff")));
 
 void HsmClient_config(void)
 {

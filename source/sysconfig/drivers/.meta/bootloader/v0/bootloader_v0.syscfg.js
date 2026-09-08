@@ -221,6 +221,15 @@ function getConfig(){
                 default: true,
             });
     }
+    if(["am261x", "am263px"].includes(common.getSocName())) {
+        cfg.push(
+            {
+                name: "vpp_enable",
+                displayName: "VPP Enable",
+                description: "Enable to set EFUSE_MODE_CTRL[0] = 1, which puts the eFUSE circuit in a safe state when VPP is continuously driven from ANALDO pin",
+                default: true,
+            });
+    }
     return cfg;
 }
 

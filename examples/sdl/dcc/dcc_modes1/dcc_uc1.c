@@ -75,7 +75,7 @@ volatile SDL_DCC_Inst gCurDccInst;
 
 #if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)
 
-#define NUM_USE_CASES          (0x9U)
+#define NUM_USE_CASES          (0x8U)
 
 static DCC_TEST_UseCase DCC_Test_UseCaseArray[NUM_USE_CASES] =
 {
@@ -190,20 +190,6 @@ static DCC_TEST_UseCase DCC_Test_UseCaseArray[NUM_USE_CASES] =
         0x0,
         SDL_DCC2_DCCCLKSRC1_CLKSRC_OTHER,
         0x1
-    },
-    /* Continuous - no error */
-    {
-        "RCCLK10M",
-        "XTAL_CLK",
-        SDL_DCC_INST_MSS_DCCA,
-        SDL_DCC_CLK0_SRC_CLOCK0_2,
-        10000, /* 10 MHz for RC OSC */
-        SDL_DCC_CLK1_SRC_CLOCKSRC3,
-        25000, /* 25 MHz for MAIN_SYSCLK0 */
-        SDL_DCC_MODE_CONTINUOUS,
-        0x0,
-        0xFFFF,
-        0x0
     },
 };
 #endif

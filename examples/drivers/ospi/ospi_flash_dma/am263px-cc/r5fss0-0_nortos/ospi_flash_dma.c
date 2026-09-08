@@ -63,6 +63,9 @@ void ospi_flash_dma_main(void *args)
     int32_t status = SystemP_SUCCESS;
     uint32_t offset;
     uint32_t blk, page;
+    uint64_t startTime, endTime, duration;
+    float writeSpeed = 0;
+    float readSpeed = 0;
 
     /* Open drivers to open the UART driver for console */
     Drivers_open();
@@ -86,13 +89,32 @@ void ospi_flash_dma_main(void *args)
     Flash_offsetToBlkPage(gFlashHandle[CONFIG_FLASH0], offset, &blk, &page);
     Flash_eraseBlk(gFlashHandle[CONFIG_FLASH0], blk);
     DebugP_log("[OSPI Flash DMA Transfer Test] Performing Write-Read Test...\r\n");
-    Flash_write(gFlashHandle[CONFIG_FLASH0], offset, gOspiTxBuf, APP_OSPI_DATA_SIZE);
-    Flash_read(gFlashHandle[CONFIG_FLASH0], offset, gOspiRxBuf, APP_OSPI_DATA_SIZE);
+    startTime = ClockP_getTimeUsec();
+    status = Flash_write(gFlashHandle[CONFIG_FLASH0], offset, gOspiTxBuf, APP_OSPI_DATA_SIZE);
+    endTime = ClockP_getTimeUsec();
+    if(SystemP_SUCCESS == status)
+    {
+        duration = endTime - startTime;
+        writeSpeed = ((float)APP_OSPI_DATA_SIZE * 8U) / (duration);
+    }
+
+    if(SystemP_SUCCESS == status)
+    {
+        startTime = ClockP_getTimeUsec();
+        status = Flash_read(gFlashHandle[CONFIG_FLASH0], offset, gOspiRxBuf, APP_OSPI_DATA_SIZE);
+        endTime = ClockP_getTimeUsec();
+        if(SystemP_SUCCESS == status)
+        {
+            duration = endTime - startTime;
+            readSpeed = ((float)APP_OSPI_DATA_SIZE * 8U) / (duration);
+        }
+    }
 
     status |= ospi_flash_diag_test_compare_buffers();
 
     if(SystemP_SUCCESS == status)
     {
+        DebugP_log("Write Speed: %f Mbps\r\nRead Speed: %f Mbps\r\n", writeSpeed, readSpeed);
         DebugP_log("All tests have passed!!\r\n");
     }
     else

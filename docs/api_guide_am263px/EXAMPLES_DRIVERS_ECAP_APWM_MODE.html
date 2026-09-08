@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,58 +92,58 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ECAP_APWM_MODE.html',
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2444">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2445">External Connections</a><ul><li class="level2"><a href="#autotoc_md2446">AM263PX-CC</a></li>
-<li class="level2"><a href="#autotoc_md2447">AM263PX-LP</a></li>
-<li class="level2"><a href="#autotoc_md2448">AM263X-CC</a></li>
-<li class="level2"><a href="#autotoc_md2449">AM263X-LP</a></li>
-<li class="level2"><a href="#autotoc_md2450">AM261X-LP</a></li>
-<li class="level2"><a href="#autotoc_md2451">AM261X-SOM E1</a></li>
+<ul><li class="level1"><a href="#autotoc_md2461">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2462">External Connections</a><ul><li class="level2"><a href="#autotoc_md2463">AM263PX-CC</a></li>
+<li class="level2"><a href="#autotoc_md2464">AM263PX-LP</a></li>
+<li class="level2"><a href="#autotoc_md2465">AM263X-CC</a></li>
+<li class="level2"><a href="#autotoc_md2466">AM263X-LP</a></li>
+<li class="level2"><a href="#autotoc_md2467">AM261X-LP</a></li>
+<li class="level2"><a href="#autotoc_md2468">AM261X-SOM E1</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_ECAP_APWM_MODE_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2452">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2453">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2454">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2469">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2470">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2471">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_ecap_apwm_mode"></a></p>
-<h1><a class="anchor" id="autotoc_md2444"></a>
+<h1><a class="anchor" id="autotoc_md2461"></a>
 Introduction</h1>
 <p>This example uses the ECAP in APWM mode to generate a PWM signal.</p>
 <p>The example does the below</p><ul>
 <li>Configures ECAP in APWM mode and configures values in period and compare registers.</li>
 <li>Waits for the specified time using the ECAP ISR.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2445"></a>
+<h1><a class="anchor" id="autotoc_md2462"></a>
 External Connections</h1>
 <p>Connect OUTPUTXBAR1 output to oscilloscope</p>
-<h2><a class="anchor" id="autotoc_md2446"></a>
+<h2><a class="anchor" id="autotoc_md2463"></a>
 AM263PX-CC</h2>
 <p>When using AM263x-CC with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Connect HSEC Pin 85 to oscilloscope</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2447"></a>
+<h2><a class="anchor" id="autotoc_md2464"></a>
 AM263PX-LP</h2>
 <p>When using AM263x-LP</p><ul>
 <li>Connect boosterpack header J6/J8 Pin 50 to oscilloscope</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2448"></a>
+<h2><a class="anchor" id="autotoc_md2465"></a>
 AM263X-CC</h2>
 <p>When using AM263x-CC with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Connect HSEC Pin 81 to oscilloscope</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2449"></a>
+<h2><a class="anchor" id="autotoc_md2466"></a>
 AM263X-LP</h2>
 <p>When using AM263x-LP</p><ul>
 <li>Connect boosterpack header J6/J8 Pin 58 to oscilloscope</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2450"></a>
+<h2><a class="anchor" id="autotoc_md2467"></a>
 AM261X-LP</h2>
 <p>When using AM261x-LP</p><ul>
 <li>Connect boosterpack header J6/J8 Pin 51 to oscilloscope</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md2451"></a>
+<h2><a class="anchor" id="autotoc_md2468"></a>
 AM261X-SOM E1</h2>
 <p>When using AM261x-SOM with TMDSHSECDOCK (HSEC180 controlCARD Baseboard Docking Station)</p><ul>
 <li>Connect HSEC Pin 76 to oscilloscope</li>
@@ -162,7 +162,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/ecap/ecap_apwm_mode/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2452"></a>
+<h1><a class="anchor" id="autotoc_md2469"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -170,10 +170,10 @@ Steps to Run the Example</h1>
 <li>Establish connections as mentioned in External Connections section</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2453"></a>
+<h1><a class="anchor" id="autotoc_md2470"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_ECAP_PAGE.html">ECAP</a></p>
-<h1><a class="anchor" id="autotoc_md2454"></a>
+<h1><a class="anchor" id="autotoc_md2471"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
 <div class="fragment"><div class="line">ECAP APWM Mode Test Started ...</div>

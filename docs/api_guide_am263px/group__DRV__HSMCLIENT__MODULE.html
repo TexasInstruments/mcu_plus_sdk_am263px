@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -184,6 +184,9 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDeviceConfigDebug__t.html">DeviceConfigDebug_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug status structure containing debug access information. Total size: SIZE_OF_DEBUG_DEVICE_CONFIG (16 bytes)  <a href="structDeviceConfigDebug__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDeviceConfigKeyring__t.html">DeviceConfigKeyring_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keyring configuration structure containing keyring-related device information. Total size: SIZE_OF_KEYRING_DEVICE_CONFIG (20 bytes)  <a href="structDeviceConfigKeyring__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structDeviceConfigRead__t.html">DeviceConfigRead_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is device configuration read request structure passed to HSM core via SIPC as argument, these parameters are required by the service handler.  <a href="structDeviceConfigRead__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -298,6 +301,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga530b1603d591126ac346c31f30414f7d"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga530b1603d591126ac346c31f30414f7d">HsmClient_UpdateKeyRevsion</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, uint32_t timeout)</td></tr>
 <tr class="memdesc:ga530b1603d591126ac346c31f30414f7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">service request issued to HSM server to update key revision to 0x2 which changes the root of trust key from secondary keys to back up keys.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga530b1603d591126ac346c31f30414f7d">More...</a><br /></td></tr>
 <tr class="separator:ga530b1603d591126ac346c31f30414f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadd40318bdbd516da054ce2bc690c9f7f"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gadd40318bdbd516da054ce2bc690c9f7f">HsmClient_EnableFATransition</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, uint8_t *cert, uint32_t cert_size, uint32_t timeout)</td></tr>
+<tr class="memdesc:gadd40318bdbd516da054ce2bc690c9f7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send FA transition certificate to HSM to permanently enable FA mode. IRREVERSIBLE — writes FA_EN to OTP. Only valid on HS-SE/HS-KP devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#gadd40318bdbd516da054ce2bc690c9f7f">More...</a><br /></td></tr>
+<tr class="separator:gadd40318bdbd516da054ce2bc690c9f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5ea570bc441bb6c6a9dff879b0600e27"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga5ea570bc441bb6c6a9dff879b0600e27">HsmClient_configOTFARegions</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structOTFA__Config__t.html">OTFA_Config_t</a> *OTFA_ConfigInfo, uint32_t timeout)</td></tr>
 <tr class="memdesc:ga5ea570bc441bb6c6a9dff879b0600e27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client request to configure the OTFA regions.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga5ea570bc441bb6c6a9dff879b0600e27">More...</a><br /></td></tr>
 <tr class="separator:ga5ea570bc441bb6c6a9dff879b0600e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -316,9 +322,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gab86209b718b0ffd17871e0d1c5354a75"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gab86209b718b0ffd17871e0d1c5354a75">HsmClient_getDeviceConfig</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structDeviceConfigRead__t.html">DeviceConfigRead_t</a> *pDeviceConfigObject, uint32_t timeout)</td></tr>
 <tr class="memdesc:gab86209b718b0ffd17871e0d1c5354a75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client request to get device configuration from HSM This is a blocking call that waits for HSM response.  <a href="group__DRV__HSMCLIENT__MODULE.html#gab86209b718b0ffd17871e0d1c5354a75">More...</a><br /></td></tr>
 <tr class="separator:gab86209b718b0ffd17871e0d1c5354a75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaad4edba07fb1e870a576a281a48d1472"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gaad4edba07fb1e870a576a281a48d1472">HsmClient_CryptoService</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structCryptoServiceReq__t.html">CryptoServiceReq_t</a> *svcReq, uint32_t timeout)</td></tr>
-<tr class="memdesc:gaad4edba07fb1e870a576a281a48d1472"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submit a generic crypto service request to the HSM. Set svcReq-&gt;algoId to the algorithm (HSM_CRYPTO_SVC_MAC_CMAC, etc.) and svcReq-&gt;subSvcId to the operation (HSM_CRYPTO_SVC_MAC_GENERATE, etc.). Set svcReq-&gt;keyId to the keyring index and point svcReq-&gt;ptrArgs at the corresponding args struct (e.g. <a class="el" href="structCMACArgs__t.html" title="Args for CMAC generate and verify Note: These services are only available in HSSE mode.">CMACArgs_t</a>).  <a href="group__DRV__HSMCLIENT__MODULE.html#gaad4edba07fb1e870a576a281a48d1472">More...</a><br /></td></tr>
-<tr class="separator:gaad4edba07fb1e870a576a281a48d1472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5d455e29e9539fbd6b0ceb3eaead24cd"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga5d455e29e9539fbd6b0ceb3eaead24cd">HsmClient_CryptoService</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structCryptoServiceReq__t.html">CryptoServiceReq_t</a> *svcReq, <a class="el" href="structCryptoServiceReq__t.html">CryptoServiceReq_t</a> *respReq, uint32_t timeout)</td></tr>
+<tr class="memdesc:ga5d455e29e9539fbd6b0ceb3eaead24cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submit a generic crypto service request to the HSM. Set svcReq-&gt;algoId to the algorithm (HSM_CRYPTO_SVC_MAC_CMAC, etc.) and svcReq-&gt;subSvcId to the operation (HSM_CRYPTO_SVC_MAC_GENERATE, etc.). Set svcReq-&gt;keyId to the keyring index and point svcReq-&gt;ptrArgs at the corresponding args struct (e.g. <a class="el" href="structCMACArgs__t.html" title="Args for CMAC generate and verify Note: These services are only available in HSSE mode.">CMACArgs_t</a>).  <a href="group__DRV__HSMCLIENT__MODULE.html#ga5d455e29e9539fbd6b0ceb3eaead24cd">More...</a><br /></td></tr>
+<tr class="separator:ga5d455e29e9539fbd6b0ceb3eaead24cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaaa5ee846577c5404a103d3ee391c4fb6"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gaaa5ee846577c5404a103d3ee391c4fb6">HsmClient_runTimeBankSwap</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structBankSwapReq__t.html">BankSwapReq_t</a> *pBankSwapObject)</td></tr>
 <tr class="memdesc:gaaa5ee846577c5404a103d3ee391c4fb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client request to Swap C29 CPU flash banks Valid only for F29x family of devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#gaaa5ee846577c5404a103d3ee391c4fb6">More...</a><br /></td></tr>
 <tr class="separator:gaaa5ee846577c5404a103d3ee391c4fb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -340,6 +346,9 @@ Enumerations</h2></td></tr>
 Macros</h2></td></tr>
 <tr class="memitem:ga2cbcf82afe6a7d15348511aba221038e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga2cbcf82afe6a7d15348511aba221038e">LABEL_AND_CONTEXT_LEN_MAX</a>&#160;&#160;&#160;48U</td></tr>
 <tr class="separator:ga2cbcf82afe6a7d15348511aba221038e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab9ee39542de58322586ba87ac8b0264f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gab9ee39542de58322586ba87ac8b0264f">HSMCLIENT_HOST_BUFF_SIZE</a>&#160;&#160;&#160;(512U)</td></tr>
+<tr class="memdesc:gab9ee39542de58322586ba87ac8b0264f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size in bytes of the driver-owned host buffer used by HsmClient_prepareHostBuff(). Sized to accommodate the largest HSM IPC struct (<a class="el" href="structOTFA__Config__t.html" title="This is the entire OTFA structure which holds all regions&#39; information 4 regions in AM263Px and AM261...">OTFA_Config_t</a> ~228 bytes), rounded up to a multiple of the cache line size.  <a href="group__DRV__HSMCLIENT__MODULE.html#gab9ee39542de58322586ba87ac8b0264f">More...</a><br /></td></tr>
+<tr class="separator:gab9ee39542de58322586ba87ac8b0264f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae70b88f1db290b0e6c2a39af4b08bac5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gae70b88f1db290b0e6c2a39af4b08bac5">HSMRT_LOAD_NOT_REQUESTED</a>&#160;&#160;&#160;(0U)</td></tr>
 <tr class="memdesc:gae70b88f1db290b0e6c2a39af4b08bac5"><td class="mdescLeft">&#160;</td><td class="mdescRight">HSMRT load has not been requested.  <a href="group__DRV__HSMCLIENT__MODULE.html#gae70b88f1db290b0e6c2a39af4b08bac5">More...</a><br /></td></tr>
 <tr class="separator:gae70b88f1db290b0e6c2a39af4b08bac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -382,6 +391,9 @@ Macros</h2></td></tr>
 <tr class="memitem:ga1beee330807cd054fc7adeabb1f09921"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga1beee330807cd054fc7adeabb1f09921">DEVICE_CONFIG_TYPE_DEBUG</a>&#160;&#160;&#160;(2U)</td></tr>
 <tr class="memdesc:ga1beee330807cd054fc7adeabb1f09921"><td class="mdescLeft">&#160;</td><td class="mdescRight">Debug configuration (TBD)  <a href="group__DRV__HSMCLIENT__MODULE.html#ga1beee330807cd054fc7adeabb1f09921">More...</a><br /></td></tr>
 <tr class="separator:ga1beee330807cd054fc7adeabb1f09921"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0bde17ce9e8212e97aa24f224b55d265"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga0bde17ce9e8212e97aa24f224b55d265">DEVICE_CONFIG_TYPE_KEYRING</a>&#160;&#160;&#160;(3U)</td></tr>
+<tr class="memdesc:ga0bde17ce9e8212e97aa24f224b55d265"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keyring configuration (auxiliary key import status)  <a href="group__DRV__HSMCLIENT__MODULE.html#ga0bde17ce9e8212e97aa24f224b55d265">More...</a><br /></td></tr>
+<tr class="separator:ga0bde17ce9e8212e97aa24f224b55d265"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga18810511dc8421fbd24c634df97f7f0c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga18810511dc8421fbd24c634df97f7f0c">DEVICE_CONFIG_TYPE_ALL</a>&#160;&#160;&#160;(0xFFU)</td></tr>
 <tr class="memdesc:ga18810511dc8421fbd24c634df97f7f0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">All configuration types.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga18810511dc8421fbd24c634df97f7f0c">More...</a><br /></td></tr>
 <tr class="separator:ga18810511dc8421fbd24c634df97f7f0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -394,6 +406,9 @@ Macros</h2></td></tr>
 <tr class="memitem:gac49c5318ff69dc65adedd4d2de8fa2fe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gac49c5318ff69dc65adedd4d2de8fa2fe">SIZE_OF_DEBUG_DEVICE_CONFIG</a>&#160;&#160;&#160;(16U)</td></tr>
 <tr class="memdesc:gac49c5318ff69dc65adedd4d2de8fa2fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of Debug configuration data in bytes (4 uint32_t values)  <a href="group__DRV__HSMCLIENT__MODULE.html#gac49c5318ff69dc65adedd4d2de8fa2fe">More...</a><br /></td></tr>
 <tr class="separator:gac49c5318ff69dc65adedd4d2de8fa2fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3216eaa401804d6578d7f3fe85033f68"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga3216eaa401804d6578d7f3fe85033f68">SIZE_OF_KEYRING_DEVICE_CONFIG</a>&#160;&#160;&#160;(20U)</td></tr>
+<tr class="memdesc:ga3216eaa401804d6578d7f3fe85033f68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of Keyring configuration data in bytes (5 uint32_t values)  <a href="group__DRV__HSMCLIENT__MODULE.html#ga3216eaa401804d6578d7f3fe85033f68">More...</a><br /></td></tr>
+<tr class="separator:ga3216eaa401804d6578d7f3fe85033f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadf3a90c05d8c1565e696412e009e54d5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gadf3a90c05d8c1565e696412e009e54d5">HSM_MSG_GET_VERSION</a>&#160;&#160;&#160;(0x0002)</td></tr>
 <tr class="memdesc:gadf3a90c05d8c1565e696412e009e54d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">GetVersion service type ID.  <a href="group__DRV__HSMCLIENT__MODULE.html#gadf3a90c05d8c1565e696412e009e54d5">More...</a><br /></td></tr>
 <tr class="separator:gadf3a90c05d8c1565e696412e009e54d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -493,6 +508,9 @@ Macros</h2></td></tr>
 <tr class="memitem:ga51f48b5ecad8c29c9ed06e2a5bdfab59"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga51f48b5ecad8c29c9ed06e2a5bdfab59">HSM_MSG_BANK_SWAP</a>&#160;&#160;&#160;(0x905BU)</td></tr>
 <tr class="memdesc:ga51f48b5ecad8c29c9ed06e2a5bdfab59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swap C29 CPU-1/3 flash banks.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga51f48b5ecad8c29c9ed06e2a5bdfab59">More...</a><br /></td></tr>
 <tr class="separator:ga51f48b5ecad8c29c9ed06e2a5bdfab59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaac2e7a5e4462d3ae02133255e9e9a801"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gaac2e7a5e4462d3ae02133255e9e9a801">HSM_MSG_ENABLE_FA</a>&#160;&#160;&#160;(0x905CU)</td></tr>
+<tr class="memdesc:gaac2e7a5e4462d3ae02133255e9e9a801"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable Failure Analysis Transition service ID.  <a href="group__DRV__HSMCLIENT__MODULE.html#gaac2e7a5e4462d3ae02133255e9e9a801">More...</a><br /></td></tr>
+<tr class="separator:gaac2e7a5e4462d3ae02133255e9e9a801"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga53441a5d8285223de54f3ae2729a94e7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga53441a5d8285223de54f3ae2729a94e7">HSM_MSG_CRYPTO_SERVICE</a>&#160;&#160;&#160;(0xA001U)</td></tr>
 <tr class="memdesc:ga53441a5d8285223de54f3ae2729a94e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic Crypto service ID.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga53441a5d8285223de54f3ae2729a94e7">More...</a><br /></td></tr>
 <tr class="separator:ga53441a5d8285223de54f3ae2729a94e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -557,6 +575,22 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="gab9ee39542de58322586ba87ac8b0264f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab9ee39542de58322586ba87ac8b0264f">&#9670;&nbsp;</a></span>HSMCLIENT_HOST_BUFF_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSMCLIENT_HOST_BUFF_SIZE&#160;&#160;&#160;(512U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Size in bytes of the driver-owned host buffer used by HsmClient_prepareHostBuff(). Sized to accommodate the largest HSM IPC struct (<a class="el" href="structOTFA__Config__t.html" title="This is the entire OTFA structure which holds all regions&#39; information 4 regions in AM263Px and AM261...">OTFA_Config_t</a> ~228 bytes), rounded up to a multiple of the cache line size. </p>
 
 </div>
 </div>
@@ -784,6 +818,22 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a id="ga0bde17ce9e8212e97aa24f224b55d265"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0bde17ce9e8212e97aa24f224b55d265">&#9670;&nbsp;</a></span>DEVICE_CONFIG_TYPE_KEYRING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEVICE_CONFIG_TYPE_KEYRING&#160;&#160;&#160;(3U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Keyring configuration (auxiliary key import status) </p>
+
+</div>
+</div>
 <a id="ga18810511dc8421fbd24c634df97f7f0c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga18810511dc8421fbd24c634df97f7f0c">&#9670;&nbsp;</a></span>DEVICE_CONFIG_TYPE_ALL</h2>
 
@@ -845,6 +895,22 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Size of Debug configuration data in bytes (4 uint32_t values) </p>
+
+</div>
+</div>
+<a id="ga3216eaa401804d6578d7f3fe85033f68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3216eaa401804d6578d7f3fe85033f68">&#9670;&nbsp;</a></span>SIZE_OF_KEYRING_DEVICE_CONFIG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SIZE_OF_KEYRING_DEVICE_CONFIG&#160;&#160;&#160;(20U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Size of Keyring configuration data in bytes (5 uint32_t values) </p>
 
 </div>
 </div>
@@ -1376,6 +1442,22 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a id="gaac2e7a5e4462d3ae02133255e9e9a801"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaac2e7a5e4462d3ae02133255e9e9a801">&#9670;&nbsp;</a></span>HSM_MSG_ENABLE_FA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSM_MSG_ENABLE_FA&#160;&#160;&#160;(0x905CU)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable Failure Analysis Transition service ID. </p>
+
+</div>
+</div>
 <a id="ga53441a5d8285223de54f3ae2729a94e7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga53441a5d8285223de54f3ae2729a94e7">&#9670;&nbsp;</a></span>HSM_MSG_CRYPTO_SERVICE</h2>
 
@@ -1832,7 +1914,7 @@ Macros</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">timeToWaitInTick</td><td>[IN] amount of time to block waiting for semaphore to be available, in units of system ticks (see KERNEL_DPL_CLOCK_PAGE) </td></tr>
     <tr><td class="paramname">HsmClient</td><td>[IN] Client object which is using this getversion API. </td></tr>
-    <tr><td class="paramname">verId</td><td>[OUT] populates HsmVer_t struct which describes current version. This object's memory address needs to be cache aligned.</td></tr>
+    <tr><td class="paramname">verId</td><td>[OUT] populates HsmVer_t struct which describes current version. Pass the pointer returned by HsmClient_prepareHostBuff() to ensure cache-line alignment.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2541,7 +2623,7 @@ Macros</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">HsmClient</td><td>[IN] Client object which is using this API. </td></tr>
-    <tr><td class="paramname">certHeader</td><td>[IN] point to the location of certificate in the device memory. This object's memory address needs to be cache aligned. </td></tr>
+    <tr><td class="paramname">certHeader</td><td>[IN] point to the location of certificate in the device memory. Pass the pointer returned by HsmClient_prepareHostBuff() to ensure cache-line alignment. </td></tr>
     <tr><td class="paramname">timeout</td><td>[IN] amount of time to block waiting for semaphore to be available, in units of system ticks (see KERNEL_DPL_CLOCK_PAGE) </td></tr>
   </table>
   </dd>
@@ -3146,6 +3228,63 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a id="gadd40318bdbd516da054ce2bc690c9f7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadd40318bdbd516da054ce2bc690c9f7f">&#9670;&nbsp;</a></span>HsmClient_EnableFATransition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t HsmClient_EnableFATransition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structHsmClient__t.html">HsmClient_t</a> *&#160;</td>
+          <td class="paramname"><em>HsmClient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>cert</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>cert_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send FA transition certificate to HSM to permanently enable FA mode. IRREVERSIBLE — writes FA_EN to OTP. Only valid on HS-SE/HS-KP devices. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timeout</td><td>[IN] amount of time to block waiting for semaphore to be available, in units of system ticks (see KERNEL_DPL_CLOCK_PAGE) </td></tr>
+    <tr><td class="paramname">HsmClient</td><td>[IN] Client object which is using this FA Transition API. </td></tr>
+    <tr><td class="paramname">cert</td><td>[IN] point to the location of FA transition certificate in the device memory. </td></tr>
+    <tr><td class="paramname">cert_size</td><td>[IN] size of certificate.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><ol type="1">
+<li>SystemP_SUCCESS if returns successfully</li>
+<li>SystemP_FAILURE if NACK message is received or client id not registered.</li>
+<li>SystemP_TIMEOUT if timeout exception occours. </li>
+</ol>
+</dd></dl>
+
+</div>
+</div>
 <a id="ga5ea570bc441bb6c6a9dff879b0600e27"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga5ea570bc441bb6c6a9dff879b0600e27">&#9670;&nbsp;</a></span>HsmClient_configOTFARegions()</h2>
 
@@ -3434,8 +3573,8 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="gaad4edba07fb1e870a576a281a48d1472"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaad4edba07fb1e870a576a281a48d1472">&#9670;&nbsp;</a></span>HsmClient_CryptoService()</h2>
+<a id="ga5d455e29e9539fbd6b0ceb3eaead24cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5d455e29e9539fbd6b0ceb3eaead24cd">&#9670;&nbsp;</a></span>HsmClient_CryptoService()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3451,6 +3590,12 @@ Macros</h2></td></tr>
           <td></td>
           <td class="paramtype"><a class="el" href="structCryptoServiceReq__t.html">CryptoServiceReq_t</a> *&#160;</td>
           <td class="paramname"><em>svcReq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCryptoServiceReq__t.html">CryptoServiceReq_t</a> *&#160;</td>
+          <td class="paramname"><em>respReq</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -3471,6 +3616,7 @@ Macros</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">HsmClient</td><td>[IN] HsmClient object </td></tr>
     <tr><td class="paramname">svcReq</td><td>[IN/OUT] Pointer to <a class="el" href="structCryptoServiceReq__t.html" title="Outer request struct for HSM_MSG_CRYPTO_SERVICE. Note: These services are only available in HSSE mode...">CryptoServiceReq_t</a>; for generate operations, output is written to ptrTag on success </td></tr>
+    <tr><td class="paramname">respReq</td><td>[IN/OUT] Pointer to <a class="el" href="structCryptoServiceReq__t.html" title="Outer request struct for HSM_MSG_CRYPTO_SERVICE. Note: These services are only available in HSSE mode...">CryptoServiceReq_t</a>; the errCode is written to this pointer </td></tr>
     <tr><td class="paramname">timeout</td><td>[IN] Timeout in ticks (SystemP_WAIT_FOREVER to block)</td></tr>
   </table>
   </dd>

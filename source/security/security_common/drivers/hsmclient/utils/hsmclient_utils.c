@@ -258,39 +258,44 @@ int32_t HsmClient_parseDeviceConfig(uint32_t configType, uint32_t *configData,
 	           
 	           if (configSize == expectedSize)
 	           {
-	               uint32_t lowerBits, upperBits;
 	               uint8_t first;
-	               
+
 	               strcat(parsedConfig, "\r\n[Safety Configuration]");
-	               strcat(parsedConfig, "\r\n  dedFotaInfo       = 0x");
-	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
-	               
-	               /* Interpret dedFotaInfo */
-	               lowerBits = configData[index] & 0xFFFFU;
-	               upperBits = (configData[index] >> 16U) & 0xFFU;
-	               strcat(parsedConfig, " (");
-	               if (lowerBits == BOTH_BANK_INVALID) {
-	                   strcat(parsedConfig, "Both Banks Invalid");
-	               } else if (lowerBits == BOTH_BANKS_VALID) {
-	                   strcat(parsedConfig, "Both Banks Valid");
-	               } else if (lowerBits == ONLY_BANK0_VALID) {
-	                   strcat(parsedConfig, "Only Bank0 Valid");
-	               } else if (lowerBits == ONLY_BANK1_VALID) {
-	                   strcat(parsedConfig, "Only Bank1 Valid");
-	               } else {
-	                   strcat(parsedConfig, "Unknown Bank Status");
+#if defined (SOC_F29H85X) || defined (SOC_F29P32X)
+	               {
+	                   uint32_t lowerBits, upperBits;
+
+	                   strcat(parsedConfig, "\r\n  dedFotaInfo       = 0x");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+
+	                   /* Interpret dedFotaInfo */
+	                   lowerBits = configData[index] & 0xFFFFU;
+	                   upperBits = (configData[index] >> 16U) & 0xFFU;
+	                   strcat(parsedConfig, " (");
+	                   if (lowerBits == BOTH_BANK_INVALID) {
+	                       strcat(parsedConfig, "Both Banks Invalid");
+	                   } else if (lowerBits == BOTH_BANKS_VALID) {
+	                       strcat(parsedConfig, "Both Banks Valid");
+	                   } else if (lowerBits == ONLY_BANK0_VALID) {
+	                       strcat(parsedConfig, "Only Bank0 Valid");
+	                   } else if (lowerBits == ONLY_BANK1_VALID) {
+	                       strcat(parsedConfig, "Only Bank1 Valid");
+	                   } else {
+	                       strcat(parsedConfig, "Unknown Bank Status");
+	                   }
+	                   strcat(parsedConfig, ", Active: ");
+	                   if (upperBits == BANK0_ACTIVE_VAL) {
+	                       strcat(parsedConfig, "Bank0");
+	                   } else if (upperBits == BANK1_ACTIVE_VAL) {
+	                       strcat(parsedConfig, "Bank1");
+	                   } else {
+	                       strcat(parsedConfig, "Unknown");
+	                   }
+	                   strcat(parsedConfig, ")");
 	               }
-	               strcat(parsedConfig, ", Active: ");
-	               if (upperBits == BANK0_ACTIVE_VAL) {
-	                   strcat(parsedConfig, "Bank0");
-	               } else if (upperBits == BANK1_ACTIVE_VAL) {
-	                   strcat(parsedConfig, "Bank1");
-	               } else {
-	                   strcat(parsedConfig, "Unknown");
-	               }
-	               strcat(parsedConfig, ")");
+#endif
 	               index++;
-	               
+
 	               strcat(parsedConfig, "\r\n  hsmPbistStatus    = 0x");
 	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
 	               
@@ -388,6 +393,7 @@ int32_t HsmClient_parseDeviceConfig(uint32_t configType, uint32_t *configData,
 	               strcat(parsedConfig, ")");
 	               index++;
 	               
+#if defined (SOC_F29H85X) || defined (SOC_F29P32X)
 	               strcat(parsedConfig, "\r\n  HSM FW Update Status  = 0x");
 	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
 	               strcat(parsedConfig, (configData[index] == FW_UPDATE_COMPLETE) ? " (Complete)" : " (Incomplete)");
@@ -406,7 +412,10 @@ int32_t HsmClient_parseDeviceConfig(uint32_t configType, uint32_t *configData,
 	               strcat(parsedConfig, "\r\n  C29 CPU3 FW Update Status = 0x");
 	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
 	               strcat(parsedConfig, (configData[index] == FW_UPDATE_COMPLETE) ? " (Complete)" : " (Incomplete)");
-	               
+#else
+				   index = index + 4U;	// reserved value, skip
+#endif
+
 	               status = SystemP_SUCCESS;
 	           }
 	           break;
@@ -464,50 +473,93 @@ int32_t HsmClient_parseDeviceConfig(uint32_t configType, uint32_t *configData,
 	               status = SystemP_SUCCESS;
 	           }
 	           break;
+
+		   case DEVICE_CONFIG_TYPE_KEYRING:
+			   /* keyring config: keyringImportCounter + numAsymmKeysImported + numSymmKeysImported 
+				*                 + numAsymmPrivateKeysImported + customKeyDataPresent
+				*/
+			   expectedSize = SIZE_OF_KEYRING_DEVICE_CONFIG;
+
+			   if (configSize == expectedSize)
+	           {
+	               strcat(parsedConfig, "\r\n[Keyring Status]");
+	               strcat(parsedConfig, "\r\n  Number of keys imported       = ");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	               index++;
+	               
+	               strcat(parsedConfig, "\r\n  Number of asymmetric keys imported  = ");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	               index++;
+	               
+	               strcat(parsedConfig, "\r\n  Number of symmetric keys imported  = ");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	               index++;
+	               
+	               strcat(parsedConfig, "\r\n  Number of asymmetric private keys imported  = ");
+	               lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+				   index++;
+
+				   strcat(parsedConfig, "\r\n  Custom keyring data imported  = ");
+				   if (configData[index] == 1U) 
+				   {
+						strcat(parsedConfig, "yes");
+				   } else {
+						strcat(parsedConfig, "no");
+				   }
+	               
+	               status = SystemP_SUCCESS;
+	           }
+			   break;
 	           
 	       case DEVICE_CONFIG_TYPE_ALL:
 	           /* All config types combined */
 	           {
 	               uint32_t totalSize = SIZE_OF_SAFETY_DEVICE_CONFIG +
 	                                    SIZE_OF_SECURITY_DEVICE_CONFIG +
-	                                    SIZE_OF_DEBUG_DEVICE_CONFIG;
+	                                    SIZE_OF_DEBUG_DEVICE_CONFIG +
+										SIZE_OF_KEYRING_DEVICE_CONFIG;
 	               
 	               if (configSize == totalSize)
 	               {
 	                   /* Parse safety configuration */
-	                   uint32_t lowerBits, upperBits;
 	                   uint8_t first;
-	                   
+
 	                   strcat(parsedConfig, "\r\n[Safety Configuration]");
-	                   strcat(parsedConfig, "\r\n  dedFotaInfo       = 0x");
-	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
-	                   
-	                   /* Interpret dedFotaInfo */
-	                   lowerBits = configData[index] & 0xFFFFU;
-	                   upperBits = (configData[index] >> 16U) & 0xFFU;
-	                   strcat(parsedConfig, " (");
-	                   if (lowerBits == BOTH_BANK_INVALID) {
-	                       strcat(parsedConfig, "Both Banks Invalid");
-	                   } else if (lowerBits == BOTH_BANKS_VALID) {
-	                       strcat(parsedConfig, "Both Banks Valid");
-	                   } else if (lowerBits == ONLY_BANK0_VALID) {
-	                       strcat(parsedConfig, "Only Bank0 Valid");
-	                   } else if (lowerBits == ONLY_BANK1_VALID) {
-	                       strcat(parsedConfig, "Only Bank1 Valid");
-	                   } else {
-	                       strcat(parsedConfig, "Unknown Bank Status");
+#if defined (SOC_F29H85X) || defined (SOC_F29P32X)
+	                   {
+	                       uint32_t lowerBits, upperBits;
+
+	                       strcat(parsedConfig, "\r\n  dedFotaInfo       = 0x");
+	                       lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
+
+	                       /* Interpret dedFotaInfo */
+	                       lowerBits = configData[index] & 0xFFFFU;
+	                       upperBits = (configData[index] >> 16U) & 0xFFU;
+	                       strcat(parsedConfig, " (");
+	                       if (lowerBits == BOTH_BANK_INVALID) {
+	                           strcat(parsedConfig, "Both Banks Invalid");
+	                       } else if (lowerBits == BOTH_BANKS_VALID) {
+	                           strcat(parsedConfig, "Both Banks Valid");
+	                       } else if (lowerBits == ONLY_BANK0_VALID) {
+	                           strcat(parsedConfig, "Only Bank0 Valid");
+	                       } else if (lowerBits == ONLY_BANK1_VALID) {
+	                           strcat(parsedConfig, "Only Bank1 Valid");
+	                       } else {
+	                           strcat(parsedConfig, "Unknown Bank Status");
+	                       }
+	                       strcat(parsedConfig, ", Active: ");
+	                       if (upperBits == BANK0_ACTIVE_VAL) {
+	                           strcat(parsedConfig, "Bank0");
+	                       } else if (upperBits == BANK1_ACTIVE_VAL) {
+	                           strcat(parsedConfig, "Bank1");
+	                       } else {
+	                           strcat(parsedConfig, "Unknown");
+	                       }
+	                       strcat(parsedConfig, ")");
 	                   }
-	                   strcat(parsedConfig, ", Active: ");
-	                   if (upperBits == BANK0_ACTIVE_VAL) {
-	                       strcat(parsedConfig, "Bank0");
-	                   } else if (upperBits == BANK1_ACTIVE_VAL) {
-	                       strcat(parsedConfig, "Bank1");
-	                   } else {
-	                       strcat(parsedConfig, "Unknown");
-	                   }
-	                   strcat(parsedConfig, ")");
+#endif
 	                   index++;
-	                   
+
 	                   strcat(parsedConfig, "\r\n  hsmPbistStatus    = 0x");
 	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
 	                   
@@ -615,7 +667,8 @@ int32_t HsmClient_parseDeviceConfig(uint32_t configType, uint32_t *configData,
 	                   lib_itoa((configData[index] >> 8U) & 0xFFU, (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
 	                   strcat(parsedConfig, ")");
 	                   index++;
-	                   
+
+#if defined (SOC_F29H85X) || defined (SOC_F29P32X)
 	                   strcat(parsedConfig, "\r\n  HSM FW Update Status  = 0x");
 	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
 	                   strcat(parsedConfig, (configData[index] == FW_UPDATE_COMPLETE) ? " (Complete)" : " (Incomplete)");
@@ -635,7 +688,10 @@ int32_t HsmClient_parseDeviceConfig(uint32_t configType, uint32_t *configData,
 	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 16);
 	                   strcat(parsedConfig, (configData[index] == FW_UPDATE_COMPLETE) ? " (Complete)" : " (Incomplete)");
 	                   index++;
-	                   
+#else
+					   index = index + 4U;	// reserved value, skip
+#endif
+
 	                   /* Parse debug configuration */
 	                   strcat(parsedConfig, "\r\n[Debug Configuration]");
 	                   strcat(parsedConfig, "\r\n  Public Debug Status       = 0x");
@@ -680,6 +736,32 @@ int32_t HsmClient_parseDeviceConfig(uint32_t configType, uint32_t *configData,
 	                   } else {
 	                       strcat(parsedConfig, " (Unknown)");
 	                   }
+					   index++;
+					   /* Parse keyring configuration */
+					   strcat(parsedConfig, "\r\n[Keyring Status]");
+	               	   strcat(parsedConfig, "\r\n  Number of keys imported       = ");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	                   index++;
+	               
+	                   strcat(parsedConfig, "\r\n  Number of asymmetric keys imported  = ");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	                   index++;
+	               
+	                   strcat(parsedConfig, "\r\n  Number of symmetric keys imported  = ");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+	                   index++;
+	               
+	                   strcat(parsedConfig, "\r\n  Number of asymmetric private keys imported  = ");
+	                   lib_itoa(configData[index], (uint8_t *)&parsedConfig[strlen(parsedConfig)], 10);
+				       index++;
+
+				       strcat(parsedConfig, "\r\n  Custom keyring data imported  = ");
+				       if (configData[index] == 1U) 
+				   		{
+							strcat(parsedConfig, "yes");
+				   		} else {
+							strcat(parsedConfig, "no");
+				   		}
 	                   
 	                   status = SystemP_SUCCESS;
 	               }

@@ -88,13 +88,13 @@
                 -D_DEBUG_=1
             "
             linkerBuildOptions="
-                -lnortos.am263px.r5f.ti-arm-clang.debug.lib
-                -ldrivers.am263px.r5f.ti-arm-clang.nortos.debug.lib
-                -lboard.am263px.r5f.ti-arm-clang.nortos.debug.lib
-                -lsdl.am263px.r5f.ti-arm-clang.nortos.debug.lib
-                -lsecurity.am263px.r5f.ti-arm-clang.nortos.debug.lib
-                -lenet-cpsw.am263px.r5f.ti-arm-clang.nortos.debug.lib
-                -lmiddleware.am263px.r5f.ti-arm-clang.nortos.debug.lib
+                -lnortos.am263px.r5f.ti-arm-clang.release.lib
+                -ldrivers.am263px.r5f.ti-arm-clang.nortos.release.lib
+                -lboard.am263px.r5f.ti-arm-clang.nortos.release.lib
+                -lsdl.am263px.r5f.ti-arm-clang.nortos.release.lib
+                -lsecurity.am263px.r5f.ti-arm-clang.nortos.release.lib
+                -lenet-cpsw.am263px.r5f.ti-arm-clang.nortos.release.lib
+                -lmiddleware.am263px.r5f.ti-arm-clang.nortos.release.lib
                 -llibc.a
                 -llibsysbm.a
             "
@@ -124,7 +124,7 @@
         </file>
         <file path="../example.syscfg" openOnCreation="false" excludeFromBuild="false" action="copy">
         </file>
-        <file path="${MCU_PLUS_SDK_PATH}/docs/api_guide_am263px/EXAMPLES_DRIVERS_SBL_OSPI.html"
+        <file path="${MCU_PLUS_SDK_PATH}/docs/api_guide_am263px/EXAMPLES_DRIVERS_SBL_OSPI_ENET.html"
                 openOnCreation="false" excludeFromBuild="false" targetName="README.html" action="link">
         </file>
         <file path="syscfg_c.rov.xs" openOnCreation="false" excludeFromBuild="false" action="copy">

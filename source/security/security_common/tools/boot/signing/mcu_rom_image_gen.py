@@ -65,6 +65,7 @@ emailAddress           = Albert@gt.ti.com
 basicConstraints = CA:true
 1.3.6.1.4.1.294.1.1=ASN1:SEQUENCE:boot_seq
 1.3.6.1.4.1.294.1.3=ASN1:SEQUENCE:swrv
+{KEYRING_EXT}
 {IMG_INT_SEQ}
 {EXT_ENC_SEQ}
 {EXT_FW_ENC_SEQ}
@@ -82,6 +83,13 @@ imageSize    =  INTEGER:{IMAGE_LENGTH}
 
 [ swrv ]
 swrv = INTEGER:{SWRV}
+
+'''
+
+g_keyring_seq = '''
+[ keyring_index ]
+sign_key_id = INTEGER:{ASYMM_KEY_ID}
+enc_key_id  = INTEGER:{SYMM_KEY_ID}
 '''
 
 g_img_integ_seq = '''
@@ -151,6 +159,7 @@ basicConstraints = CA:true
 subjectKeyIdentifier = none
 1.3.6.1.4.1.294.1.1=ASN1:SEQUENCE:boot_seq
 1.3.6.1.4.1.294.1.3=ASN1:SEQUENCE:swrv
+{KEYRING_EXT}
 {IMG_INT_SEQ}
 {EXT_ENC_SEQ}
 {EXT_FW_ENC_SEQ}
@@ -168,7 +177,15 @@ imageSize    =  INTEGER:{IMAGE_LENGTH}
 
 [ swrv ]
 swrv = INTEGER:{SWRV}
+
 '''
+
+g_keyring_seq = '''
+[ keyring_index ]
+sign_key_id = INTEGER:{ASYMM_KEY_ID}
+enc_key_id  = INTEGER:{SYMM_KEY_ID}
+'''
+
 g_img_integ_seq = '''
 [ image_integrity ]
 shaType = OID:{SHA_OID}
@@ -272,6 +289,16 @@ def get_cert(args):
             bootCore_id = 0
             certType = 2
             bootCoreOptions = 0
+        
+        if(((args.device == 'f29h85x') or (args.device == 'f29p32x')) and (args.core == 'HSM')  and ((args.sign_key_id != None)    or (args.enc_key_id != None))):
+            if((args.sign_key_id != None) or (args.enc_key_id > '3')):
+                print(f"ERROR: HSMRt can only be signed or encrypted with root keys.")
+                sys.exit()
+        elif(((args.device == 'f29h85x') or (args.device == 'f29p32x')) and (args.core == 'C29')  and ((certType == 1)  or  (certType == 3) or  (certType == 5) or  (certType == 6))    and ((args.sign_key_id != None)    or (args.enc_key_id != None))):
+            if((args.sign_key_id != None) or (args.enc_key_id > '3')):
+                print(f"ERROR: SBL and Sec-Cfg can only be signed or encrypted with root keys.")
+                sys.exit()
+
     dbg_seq = ''
     ext_integ_seq = ''
     ext_enc_seq = ''
@@ -282,6 +309,10 @@ def get_cert(args):
     crypto_unlock_seq = ''
     ext_fw_enc_seq = ''
     ext_fw_enc_integ_seq = ''
+    keyring_ext_seq = ''
+
+    if (args.device == 'f29h85x' or args.device == 'f29p32x'):
+        keyring_ext_seq = "1.3.6.1.4.1.294.1.16=ASN1:SEQUENCE:keyring_index"
 
     if(args.debug is not None):
         if(args.debug in g_dbg_types):
@@ -369,6 +400,15 @@ def get_cert(args):
     
     if (args.fw_enc and (args.device == 'f29h85x' or args.device == 'f29p32x') and args.boot == 'FLASH'):
         ext_fw_enc_seq = "1.3.6.1.4.1.294.1.13=ASN1:SEQUENCE:fw_encryption"
+    
+    sign_key_id = 0
+    enc_key_id = 0
+    if (args.device == 'f29h85x' or args.device == 'f29p32x'):
+        if(args.sign_key_id is not None):
+            sign_key_id = args.sign_key_id
+
+        if(args.enc_key_id is not None):
+            enc_key_id = args.enc_key_id
         
     ret_cert = ""
 
@@ -386,12 +426,15 @@ def get_cert(args):
             EXT_ENC_SEQ=ext_enc_seq,
             EXT_FW_ENC_SEQ=ext_fw_enc_seq,
             KD_EXT=ext_kd_seq,
+            KEYRING_EXT=keyring_ext_seq,
             BOOT_CORE_ID=bootCore_id,
             CERT_TYPE=certType,
             BOOT_CORE_OPTS=bootCoreOptions,
             CRYPTO_UNLOCK_EXT=ext_crypto_unlock_seq,
             BOOT_ADDR='{:08X}'.format(int(args.loadaddr, 16)),
             IMAGE_LENGTH=os.path.getsize(image_bin_name),
+            ASYMM_KEY_ID=sign_key_id,
+            SYMM_KEY_ID=enc_key_id,
         )
 
     elif "3." in openssl_version:
@@ -404,12 +447,15 @@ def get_cert(args):
             EXT_ENC_SEQ=ext_enc_seq,
             EXT_FW_ENC_SEQ=ext_fw_enc_seq,
             KD_EXT=ext_kd_seq,
+            KEYRING_EXT=keyring_ext_seq,
             BOOT_CORE_ID=bootCore_id,
             CERT_TYPE=certType,
             BOOT_CORE_OPTS=bootCoreOptions,
             CRYPTO_UNLOCK_EXT=ext_crypto_unlock_seq,
             BOOT_ADDR='{:08X}'.format(int(args.loadaddr, 16)),
             IMAGE_LENGTH=os.path.getsize(image_bin_name),
+            ASYMM_KEY_ID=sign_key_id,
+            SYMM_KEY_ID=enc_key_id,
         )
     else:
         print(
@@ -441,7 +487,13 @@ def get_cert(args):
             SHA_OID=g_sha_oids[g_sha_to_use],
             SHA_VAL=get_sha_val(image_bin_name, g_sha_to_use),
         )
-    
+
+    if(keyring_ext_seq != ''):
+        ret_cert += g_keyring_seq.format(
+            ASYMM_KEY_ID=sign_key_id,
+            SYMM_KEY_ID=enc_key_id,
+        )
+
     if (args.fw_enc and (args.device == 'f29h85x' or args.device == 'f29p32x') and args.boot == 'FLASH'):
         # Image encryption is enabled
         encfw_name, encfw_iv = get_encrypted_file_iv(
@@ -613,6 +665,10 @@ my_parser.add_argument('--fw-enc',    action='store_true',
                        required=False, help='Encrypt firmware or not')
 my_parser.add_argument('--fw-enc-key',     type=str,
                        required=False, help='Path to the firmware encryption key')
+my_parser.add_argument('--sign-key-id',     type=str,
+                       required=False, help='Index of signing key inside keyring')
+my_parser.add_argument('--enc-key-id',     type=str,
+                       required=False, help='Index of encryption key inside keyring')
 
 args = my_parser.parse_args()
 

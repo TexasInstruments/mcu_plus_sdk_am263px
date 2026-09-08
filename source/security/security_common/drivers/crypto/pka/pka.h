@@ -61,6 +61,7 @@
 #include <security_common/drivers/crypto/pka/hw_include/cslr_cp_ace.h>
 #include <kernel/dpl/SystemP.h>
 #include <security_common/drivers/crypto/crypto_util.h>
+#include <security_common/drivers/crypto/rng/rng.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -95,6 +96,9 @@ typedef struct
     /**< Driver params passed during open */
 } PKA_Config;
 
+/** \brief Handle to the RNG driver */
+typedef void *RNG_Handle;
+
 /* ========================================================================== */
 /*                            Global Variables                                */
 /* ========================================================================== */
@@ -103,6 +107,8 @@ typedef struct
 extern PKA_Config            gPkaConfig[];
 /** \brief Externally defined driver configuration Num */
 extern uint32_t             gPkaConfigNum;
+/** \brief Externally defined rng driver handle */
+extern RNG_Handle            gRngHandle;
 
 /* ========================================================================== */
 /*                              Function Definitions                          */

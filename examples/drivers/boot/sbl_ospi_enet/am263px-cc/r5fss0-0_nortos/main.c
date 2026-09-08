@@ -48,8 +48,7 @@
 #include "ti_board_open_close.h"
 #include "ti_clocktree_pll_config.h"
 #include <drivers/bootloader.h>
-#include <drivers/bootloader/bootloader_uniflash/bootloader_uniflash.h>
-#include <kernel/dpl/DebugP.h>
+#include <drivers/bootloader/bootloader_elf.h>
 #include "sbl_enet.h"
 #include <security/security_common/drivers/hsmclient/hsmclient.h>
 #include <security/security_common/drivers/hsmclient/soc/am263px/hsmRtImg.h> /* hsmRt bin   header file */
@@ -70,6 +69,8 @@ uint32_t gGpioBaseAddr = ENET_TRANSFER_START_BTN_BASE_ADDR;
 uint32_t pinNum = ENET_TRANSFER_START_BTN_PIN;
 
 const uint8_t gHsmRtFw[HSMRT_IMG_SIZE_IN_BYTES] __attribute__((section(".rodata.hsmrt"))) = HSMRT_IMG;
+
+extern CSL_top_ctrlRegs * ptrTopCtrlRegs;
 
 extern HsmClient_t gHSMClient;
 
@@ -114,6 +115,7 @@ __attribute__((weak)) int32_t Keyring_init(HsmClient_t *gHSMClient)
 int main(void)
 {
     int32_t status;
+    OSPI_Handle ospiHandle = OSPI_getHandle(CONFIG_OSPI0);
     Bootloader_profileReset();
     Bootloader_socConfigurePll();
     Bootloader_socSetAutoClock();
@@ -157,49 +159,89 @@ int main(void)
 
         if (bootHandle != NULL)
         {
-            status = Bootloader_parseMultiCoreAppImage(bootHandle, &bootImageInfo);
-            OSPI_enableDacMode(gOspiHandle[CONFIG_OSPI0]);
-
-
-            /* Initialize CPUs and Load RPRC Image */
-            if ((status == SystemP_SUCCESS) && (TRUE == Bootloader_isCorePresent(bootHandle, CSL_CORE_ID_R5FSS1_1)))
+            status = Bootloader_parseAndLoadMultiCoreELF(bootHandle, &bootImageInfo);
+            OSPI_enableDacMode(ospiHandle);
+            if(SystemP_SUCCESS == status)
             {
-                bootImageInfo.cpuInfo[CSL_CORE_ID_R5FSS1_1].clkHz = Bootloader_socCpuGetClkDefault(CSL_CORE_ID_R5FSS1_1);
-                Bootloader_profileAddCore(CSL_CORE_ID_R5FSS1_1);
-                status = Bootloader_initCpu(bootHandle, &bootImageInfo.cpuInfo[CSL_CORE_ID_R5FSS1_1]);
+                Bootloader_OtfaConfig otfaConfig;
+                int32_t noteSectionExists = Bootloader_getOTFAConfigFromNoteSegment(bootHandle, ELF_NOTE_SEGMENT_MAX_SIZE, &otfaConfig);
 
-				if ((status == SystemP_SUCCESS) && (bootImageInfo.cpuInfo[CSL_CORE_ID_R5FSS1_1].rprcOffset != BOOTLOADER_INVALID_ID)) {
-					status = Bootloader_rprcImageLoad(bootHandle, &bootImageInfo.cpuInfo[CSL_CORE_ID_R5FSS1_1]);
-				}
-            }
-            if ((status == SystemP_SUCCESS) && (TRUE == Bootloader_isCorePresent(bootHandle, CSL_CORE_ID_R5FSS1_0)))
-            {
-                bootImageInfo.cpuInfo[CSL_CORE_ID_R5FSS1_0].clkHz = Bootloader_socCpuGetClkDefault(CSL_CORE_ID_R5FSS1_0);
-                Bootloader_profileAddCore(CSL_CORE_ID_R5FSS1_0);
-                status = Bootloader_initCpu(bootHandle, &bootImageInfo.cpuInfo[CSL_CORE_ID_R5FSS1_0]);
+                if(SystemP_SUCCESS == noteSectionExists)
+                {
+                    /* OTFA configuration is in NOTE section. */
+                    if(TRUE == otfaConfig.isOTFAECCMEnabled)
+                    {
+                        int32_t otfaConfigStatus;
+                        OTFA_Config_t otfaConfigInfo;
+                        uint8_t doEnableECC = FALSE;
+                        uint32_t dataBaseAddress = OSPI_getFlashDataBaseAddr(ospiHandle);
 
-				if ((status == SystemP_SUCCESS) && (bootImageInfo.cpuInfo[CSL_CORE_ID_R5FSS1_0].rprcOffset != BOOTLOADER_INVALID_ID)) {
-					status = Bootloader_rprcImageLoad(bootHandle, &bootImageInfo.cpuInfo[CSL_CORE_ID_R5FSS1_0]);
-				}
-            }
-            if ((status == SystemP_SUCCESS) && (TRUE == Bootloader_isCorePresent(bootHandle, CSL_CORE_ID_R5FSS0_1)))
-            {
-                bootImageInfo.cpuInfo[CSL_CORE_ID_R5FSS0_1].clkHz = Bootloader_socCpuGetClkDefault(CSL_CORE_ID_R5FSS0_1);
-                Bootloader_profileAddCore(CSL_CORE_ID_R5FSS0_1);
-                status = Bootloader_initCpu(bootHandle, &bootImageInfo.cpuInfo[CSL_CORE_ID_R5FSS0_1]);
+                        otfaConfigInfo.masterEnable = otfaConfig.isOTFAECCMEnabled;
+                        otfaConfigInfo.macSize = otfaConfig.macSize;
+                        otfaConfigInfo.keySize = otfaConfig.aesKeySize;
+                        otfaConfigInfo.numRegions = otfaConfig.regionLen;
 
-				if ((status == SystemP_SUCCESS) && (bootImageInfo.cpuInfo[CSL_CORE_ID_R5FSS0_1].rprcOffset != BOOTLOADER_INVALID_ID)) {
-					status = Bootloader_rprcImageLoad(bootHandle, &bootImageInfo.cpuInfo[CSL_CORE_ID_R5FSS0_1]);
-				}
+                        FSS_disableECC();
+
+                        for(uint8_t i = 0; i < otfaConfig.regionLen; i++)
+                        {
+                            /* security */
+                            otfaConfigInfo.OTFA_Reg[i].regionSize = otfaConfig.region[i].size;
+                            otfaConfigInfo.OTFA_Reg[i].regionStAddr = otfaConfig.region[i].startAddress;
+                            otfaConfigInfo.OTFA_Reg[i].reservedArea = 0x0;
+                            switch(otfaConfig.region[i].cryptoMode)
+                            {
+                                case CRYPTO_MODE_CCM:
+                                    otfaConfigInfo.OTFA_Reg[i].authMode = MAC_MODE_CBC_MAC;
+                                    otfaConfigInfo.OTFA_Reg[i].encMode  = ENC_MODE_AES_CTR;
+                                    break;
+
+                                case CRYPTO_MODE_GCM:
+                                    otfaConfigInfo.OTFA_Reg[i].authMode = MAC_MODE_GMAC;
+                                    otfaConfigInfo.OTFA_Reg[i].encMode  = ENC_MODE_AES_CTR;
+                                    break;
+
+                                case CRYPTO_MODE_DIS:
+                                default:
+                                    otfaConfigInfo.OTFA_Reg[i].authMode = MAC_MODE_DIS;
+                                    otfaConfigInfo.OTFA_Reg[i].encMode  = ENC_MODE_DIS;
+                                    break;
+                            }
+                            otfaConfigInfo.OTFA_Reg[i].encrKeyFetchMode = otfaConfig.region[i].keyFetchMode;
+                            otfaConfigInfo.OTFA_Reg[i].authKeyID = otfaConfig.region[i].authKeyID;
+                            otfaConfigInfo.OTFA_Reg[i].encrKeyID = otfaConfig.region[i].encKeyID;
+                            memset(otfaConfigInfo.OTFA_Reg[i].authAesKey,0x0,otfaConfig.aesKeySize);
+                            memset(otfaConfigInfo.OTFA_Reg[i].encrAesKey,0x0,otfaConfig.aesKeySize);
+                            memcpy(otfaConfigInfo.OTFA_Reg[i].regionIV,otfaConfig.region[i].iv,16U);
+
+                            /* safety */
+                            if(otfaConfig.region[i].eccEnable == TRUE)
+                            {
+                                FSS_ECCRegionConfig regionConfig;
+                                doEnableECC = TRUE;
+                                regionConfig.size = otfaConfig.region[i].size;
+                                regionConfig.startAddress = otfaConfig.region[i].startAddress - dataBaseAddress;
+                                regionConfig.regionIndex = i;
+                                FSS_configECCMRegion(&regionConfig);
+                            }
+                        }
+                        if(BOOTLOADER_DEVTYPE_HSSE == ptrTopCtrlRegs->EFUSE_DEVICE_TYPE)
+                        {
+                            otfaConfigStatus = HsmClient_configOTFARegions(&gHSMClient, &otfaConfigInfo, SystemP_WAIT_FOREVER);
+                            if(otfaConfigStatus == SystemP_SUCCESS)
+                            {
+                                DebugP_log("\r\n configuration of OTFA successfully done.\n");
+                            }
+                        }
+                        if(doEnableECC == TRUE)
+                        {
+                            FSS_enableECC();
+                        }
+                    }
+                }
             }
-            if ((status == SystemP_SUCCESS) && (TRUE == Bootloader_isCorePresent(bootHandle, CSL_CORE_ID_R5FSS0_0)))
-            {
-                bootImageInfo.cpuInfo[CSL_CORE_ID_R5FSS0_0].clkHz = Bootloader_socCpuGetClkDefault(CSL_CORE_ID_R5FSS0_0);
-                Bootloader_profileAddCore(CSL_CORE_ID_R5FSS0_0);
-                status = Bootloader_loadSelfCpu(bootHandle, &bootImageInfo.cpuInfo[CSL_CORE_ID_R5FSS0_0], FALSE);
-            }
+
             Bootloader_profileAddProfilePoint("CPU load");
-            OSPI_Handle ospiHandle = OSPI_getHandle(CONFIG_OSPI0);
             Bootloader_profileUpdateAppimageSize(Bootloader_getMulticoreImageSize(bootHandle));
             Bootloader_profileUpdateMediaAndClk(BOOTLOADER_MEDIA_FLASH, OSPI_getInputClk(ospiHandle));
             

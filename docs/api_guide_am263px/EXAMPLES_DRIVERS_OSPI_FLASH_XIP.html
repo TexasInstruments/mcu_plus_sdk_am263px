@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,31 +92,31 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_OSPI_FLASH_XIP.html',
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2002">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md2019">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_OSPI_FLASH_XIP_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2003">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2004">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2005">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2020">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2021">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2022">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_ospi_flash_xip"></a></p>
-<h1><a class="anchor" id="autotoc_md2002"></a>
+<h1><a class="anchor" id="autotoc_md2019"></a>
 Introduction</h1>
 <p>This example demonstrates basic read write to the OSPI flash configured in polled mode of operation along with an XIP component. APIs from flash driver are used to read and write to the flash. The underlying OSPI reads and writes are taken care by the flash APIs.</p>
 <p>The example writes known data to a particular offset in the flash and then reads it back. Before and after this, a CRC calculation using an LUT which is in flash.</p>
 <p>When both the comparisons match, test result is passed otherwise failed.</p>
 <h1><a class="anchor" id="EXAMPLES_DRIVERS_OSPI_FLASH_XIP_COMBOS"></a>
 Supported Combinations</h1>
-<h1><a class="anchor" id="autotoc_md2003"></a>
+<h1><a class="anchor" id="autotoc_md2020"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Flash the application binary to the device, follow the steps mentioned here (see <a class="el" href="GETTING_STARTED_FLASH.html">Flash a Hello World example</a>).</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2004"></a>
+<h1><a class="anchor" id="autotoc_md2021"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_OSPI_PAGE.html">OSPI</a></p>
-<h1><a class="anchor" id="autotoc_md2005"></a>
+<h1><a class="anchor" id="autotoc_md2022"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">CRC Value: 37090</div>
 <div class="line">Flash read-write test passed!!</div>

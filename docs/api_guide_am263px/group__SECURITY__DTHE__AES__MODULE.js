@@ -4,11 +4,9 @@ var group__SECURITY__DTHE__AES__MODULE =
     [ "DTHE_AES_Params", "structDTHE__AES__Params.html", [
       [ "algoType", "structDTHE__AES__Params.html#a1f88e309607d237526b726b81bca8692", null ],
       [ "opType", "structDTHE__AES__Params.html#aa3eb7773ca784309e11b3a6419fd63ec", null ],
-      [ "useKEKMode", "structDTHE__AES__Params.html#a2b6e30f1d0f43e5dd7cc3b24116898c4", null ],
       [ "ptrKey", "structDTHE__AES__Params.html#aedca230643b63341b01e0cbe2b0b031d", null ],
       [ "ptrKey1", "structDTHE__AES__Params.html#a8761ca471150b29312f2d4d91b842eb7", null ],
       [ "ptrKey2", "structDTHE__AES__Params.html#a977bdd5c145c80f4ee6db34bfce5ed03", null ],
-      [ "keyLen", "structDTHE__AES__Params.html#a10e5db90ed4afb3b2589922e9787c40a", null ],
       [ "ptrIV", "structDTHE__AES__Params.html#a0336bb6f559de1b32fa924f29d8f3d1a", null ],
       [ "dataLenBytes", "structDTHE__AES__Params.html#ae95967ce2a10461ca808ebac28952349", null ],
       [ "ptrEncryptedData", "structDTHE__AES__Params.html#ab34bbf8a0317f393d6845b4aea730d93", null ],
@@ -21,7 +19,9 @@ var group__SECURITY__DTHE__AES__MODULE =
       [ "aadLength", "structDTHE__AES__Params.html#a336e1288d05e045cad593a36c1d40e29", null ],
       [ "ccmL", "structDTHE__AES__Params.html#a2821468af49bfcafdc09151b4cb48b46", null ],
       [ "ccmM", "structDTHE__AES__Params.html#a8d452c639e868fec893eea3064041b3b", null ],
-      [ "modeSelect", "structDTHE__AES__Params.html#a19ef1663c10c7bf093adefe731de179a", null ]
+      [ "modeSelect", "structDTHE__AES__Params.html#a19ef1663c10c7bf093adefe731de179a", null ],
+      [ "useKEKMode", "structDTHE__AES__Params.html#a2b6e30f1d0f43e5dd7cc3b24116898c4", null ],
+      [ "keyLen", "structDTHE__AES__Params.html#a10e5db90ed4afb3b2589922e9787c40a", null ]
     ] ],
     [ "DTHE_AES_ECB_MODE", "group__SECURITY__DTHE__AES__MODULE.html#ga57481efbf6c4a29fd83792788dbf4db7", null ],
     [ "DTHE_AES_CBC_MODE", "group__SECURITY__DTHE__AES__MODULE.html#ga34c64fa26f2023311f9b4644db10d8e0", null ],

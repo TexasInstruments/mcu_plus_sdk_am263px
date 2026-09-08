@@ -89,5 +89,5 @@ var group__lld__ethernet =
     [ "cb_lld_reset_port_stats", "group__lld__ethernet.html#ga7deaa892b6071884ecbf919b05eb100a", null ],
     [ "cb_lld_process_status_frames", "group__lld__ethernet.html#ga5ccf220c547af67e12cb73b5bdece086", null ],
     [ "cb_lld_notify_linkchange", "group__lld__ethernet.html#ga101b2f9cf875e3d5a6788b5792ee4f2c", null ],
-    [ "__attribute__", "group__lld__ethernet.html#ga8c1dfc1ccf00a08192611433ee7f17b4", null ]
+    [ "__attribute__", "group__lld__ethernet.html#gadea7c881f4c0cb2f214a494076f67cca", null ]
 ];

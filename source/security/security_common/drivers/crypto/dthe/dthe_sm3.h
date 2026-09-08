@@ -122,10 +122,10 @@ typedef uint32_t DTHE_SM3_CryptoStateMachine_t;
  */
 typedef struct DTHE_SM3_Params_t
 {
-    /** \brief Pointer to the Plain Text data buffer */
-    uint32_t            *ptrDataBuffer;
     /** \brief Size of the data in bytes */
     uint64_t            dataLenBytes;
+    /** \brief Pointer to the Plain Text data buffer */
+    uint32_t            *ptrDataBuffer;
     /** \brief output buffer for storing SM3 degest */
     uint32_t            digest[DTHE_SM3_MAX_DIGEST_SIZE_BYTES/4U];
 }DTHE_SM3_Params;
@@ -161,7 +161,7 @@ DTHE_SM3_Return_t DTHE_SM3_open(DTHE_Handle handle);
  * \return              #DTHE_SM3_RETURN_SUCCESS if requested operation completed.
  *                      #DTHE_SM3_RETURN_FAILURE if requested operation not completed.
  */
-DTHE_SM3_Return_t DTHE_SM3_compute(DTHE_Handle handle, DTHE_SM3_Params* ptrSM3Params, DTHE_SM3_LastBlockState_t isLastBlock);
+DTHE_SM3_Return_t DTHE_SM3_compute(DTHE_Handle handle, DTHE_SM3_Params* ptrSm3Params, DTHE_SM3_LastBlockState_t isLastBlock);
 
 
 /**

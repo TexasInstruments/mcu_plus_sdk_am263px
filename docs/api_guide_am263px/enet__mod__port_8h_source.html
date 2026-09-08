@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -204,49 +204,48 @@ $(document).ready(function(){initNavTree('enet__mod__port_8h_source.html',''); i
 <div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="structEnetPort__MaxLen.html#ac35bbfd16c1945b88a01a26d321b083c">  162</a></span>&#160;    uint32_t <a class="code" href="structEnetPort__MaxLen.html#ac35bbfd16c1945b88a01a26d321b083c">mru</a>;</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;} <a class="code" href="structEnetPort__MaxLen.html">EnetPort_MaxLen</a>;</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor">#if ENET_CFG_IS_ON(CPSW_CUTTHRU)</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>EnetPort_CutThruParams_s</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;{</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordtype">bool</span> portSpeedAutoEn;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    uint32_t rxPriCutThruEn;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    uint32_t txPriCutThruEn;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;} EnetPort_CutThruParams;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="structEnetPort__CutThruParams.html">  165</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>EnetPort_CutThruParams_s</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;{</div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="structEnetPort__CutThruParams.html#a02e54f7d73a79c72bf2deea27421049b">  168</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="structEnetPort__CutThruParams.html#a02e54f7d73a79c72bf2deea27421049b">portSpeedAutoEn</a>;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="structEnetPort__CutThruParams.html#a19d0416ae750be3512f9b803a7a61028">  171</a></span>&#160;    uint32_t <a class="code" href="structEnetPort__CutThruParams.html#a19d0416ae750be3512f9b803a7a61028">rxPriCutThruEn</a>;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="structEnetPort__CutThruParams.html#a61f321106ef51b1437f6f46eabf48a1e">  174</a></span>&#160;    uint32_t <a class="code" href="structEnetPort__CutThruParams.html#a61f321106ef51b1437f6f46eabf48a1e">txPriCutThruEn</a>;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;} <a class="code" href="structEnetPort__CutThruParams.html">EnetPort_CutThruParams</a>;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">/*                         Global Variables Declarations                      */</span></div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">/*                         Global Variables Declarations                      */</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">/* None */</span></div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">/* None */</span></div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">/*                          Function Declarations                             */</span></div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment">/*                          Function Declarations                             */</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">/* None */</span></div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">/* None */</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment">/*                        Deprecated Function Declarations                    */</span></div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment">/*                        Deprecated Function Declarations                    */</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment">/* None */</span></div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">/* None */</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">/*                       Static Function Definitions                          */</span></div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">/*                       Static Function Definitions                          */</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">/* ========================================================================== */</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">/* None */</span></div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">/* None */</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;}</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ENET_MOD_PORT_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;}</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ENET_MOD_PORT_H_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astructEnetPort__PriorityMap_html"><div class="ttname"><a href="structEnetPort__PriorityMap.html">EnetPort_PriorityMap</a></div><div class="ttdoc">Priority map.</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:132</div></div>
+<div class="ttc" id="astructEnetPort__CutThruParams_html"><div class="ttname"><a href="structEnetPort__CutThruParams.html">EnetPort_CutThruParams</a></div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:166</div></div>
 <div class="ttc" id="astructEnetPort__DscpPriorityMap_html_ad44ed216a174edf44ecb78d123a058d6"><div class="ttname"><a href="structEnetPort__DscpPriorityMap.html#ad44ed216a174edf44ecb78d123a058d6">EnetPort_DscpPriorityMap::dscpIPv6En</a></div><div class="ttdeci">bool dscpIPv6En</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:150</div></div>
 <div class="ttc" id="astructEnetPort__VlanCfg_html"><div class="ttname"><a href="structEnetPort__VlanCfg.html">EnetPort_VlanCfg</a></div><div class="ttdoc">VLAN configuration parameters.</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:69</div></div>
 <div class="ttc" id="astructEnetPort__MaxLen_html_ac35bbfd16c1945b88a01a26d321b083c"><div class="ttname"><a href="structEnetPort__MaxLen.html#ac35bbfd16c1945b88a01a26d321b083c">EnetPort_MaxLen::mru</a></div><div class="ttdeci">uint32_t mru</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:162</div></div>
@@ -254,11 +253,13 @@ $(document).ready(function(){initNavTree('enet__mod__port_8h_source.html',''); i
 <div class="ttc" id="aenet__ioctl_8h_html"><div class="ttname"><a href="enet__ioctl_8h.html">enet_ioctl.h</a></div><div class="ttdoc">This file contains the type definitions and helper macros for the Enet IOCTL interface.</div></div>
 <div class="ttc" id="astructEnetPort__DscpPriorityMap_html"><div class="ttname"><a href="structEnetPort__DscpPriorityMap.html">EnetPort_DscpPriorityMap</a></div><div class="ttdoc">DSCP priority map.</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:142</div></div>
 <div class="ttc" id="astructEnetPort__CreditBasedShapingCfg_html_a6b88617a09aa5052409add798fa00fb3"><div class="ttname"><a href="structEnetPort__CreditBasedShapingCfg.html#a6b88617a09aa5052409add798fa00fb3">EnetPort_CreditBasedShapingCfg::queueNum</a></div><div class="ttdeci">uint32_t queueNum</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:110</div></div>
+<div class="ttc" id="astructEnetPort__CutThruParams_html_a02e54f7d73a79c72bf2deea27421049b"><div class="ttname"><a href="structEnetPort__CutThruParams.html#a02e54f7d73a79c72bf2deea27421049b">EnetPort_CutThruParams::portSpeedAutoEn</a></div><div class="ttdeci">bool portSpeedAutoEn</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:168</div></div>
 <div class="ttc" id="agroup__ENET__MAIN__API_html_ga986325bf9f8fe35ad61b134d0cd914fc"><div class="ttname"><a href="group__ENET__MAIN__API.html#ga986325bf9f8fe35ad61b134d0cd914fc">ENET_PRI_NUM</a></div><div class="ttdeci">#define ENET_PRI_NUM</div><div class="ttdoc">Packet priority.</div><div class="ttdef"><b>Definition:</b> enet_types.h:165</div></div>
 <div class="ttc" id="aenet__mod__port_8h_html_a08cce9097d3f3db355ca2848a66409b3"><div class="ttname"><a href="enet__mod__port_8h.html#a08cce9097d3f3db355ca2848a66409b3">EnetPort_EgressPriorityType</a></div><div class="ttdeci">EnetPort_EgressPriorityType</div><div class="ttdoc">Egress priority type.</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:84</div></div>
 <div class="ttc" id="astructEnetPort__VlanCfg_html_a08194b262c9401a17a929b6b74d768db"><div class="ttname"><a href="structEnetPort__VlanCfg.html#a08194b262c9401a17a929b6b74d768db">EnetPort_VlanCfg::portPri</a></div><div class="ttdeci">uint32_t portPri</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:71</div></div>
 <div class="ttc" id="astructEnetPort__TrafficShapingCfg_html"><div class="ttname"><a href="structEnetPort__TrafficShapingCfg.html">EnetPort_TrafficShapingCfg</a></div><div class="ttdoc">Traffic shaping configuration for all priorities.</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:120</div></div>
 <div class="ttc" id="astructEnetPort__MaxLen_html"><div class="ttname"><a href="structEnetPort__MaxLen.html">EnetPort_MaxLen</a></div><div class="ttdoc">Maximum packet lengths for TX and RX.</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:157</div></div>
+<div class="ttc" id="astructEnetPort__CutThruParams_html_a19d0416ae750be3512f9b803a7a61028"><div class="ttname"><a href="structEnetPort__CutThruParams.html#a19d0416ae750be3512f9b803a7a61028">EnetPort_CutThruParams::rxPriCutThruEn</a></div><div class="ttdeci">uint32_t rxPriCutThruEn</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:171</div></div>
 <div class="ttc" id="aenet__mod__port_8h_html_a08cce9097d3f3db355ca2848a66409b3aec2288b1dfc676a005f19c7bdb74d3e5"><div class="ttname"><a href="enet__mod__port_8h.html#a08cce9097d3f3db355ca2848a66409b3aec2288b1dfc676a005f19c7bdb74d3e5">ENET_EGRESS_PRI_TYPE_ESCALATE</a></div><div class="ttdeci">@ ENET_EGRESS_PRI_TYPE_ESCALATE</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:89</div></div>
 <div class="ttc" id="astructEnetPort__TrafficShapingRates_html"><div class="ttname"><a href="structEnetPort__TrafficShapingRates.html">EnetPort_TrafficShapingRates</a></div><div class="ttdoc">Traffic shaping parameters (committed and excess rates).</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:96</div></div>
 <div class="ttc" id="astructEnetPort__CreditBasedShapingCfg_html_a9e58fdb0f9a0f6a0f06b1041dd53d4f3"><div class="ttname"><a href="structEnetPort__CreditBasedShapingCfg.html#a9e58fdb0f9a0f6a0f06b1041dd53d4f3">EnetPort_CreditBasedShapingCfg::idleSlope</a></div><div class="ttdeci">uint64_t idleSlope</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:113</div></div>
@@ -268,6 +269,7 @@ $(document).ready(function(){initNavTree('enet__mod__port_8h_source.html',''); i
 <div class="ttc" id="astructEnetPort__TrafficShapingRates_html_a5a21f5391e3172b862aabb1b264a853c"><div class="ttname"><a href="structEnetPort__TrafficShapingRates.html#a5a21f5391e3172b862aabb1b264a853c">EnetPort_TrafficShapingRates::committedRateBitsPerSec</a></div><div class="ttdeci">uint64_t committedRateBitsPerSec</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:98</div></div>
 <div class="ttc" id="astructEnetPort__DscpPriorityMap_html_a1ba204a3550c41f058934a22927bb218"><div class="ttname"><a href="structEnetPort__DscpPriorityMap.html#a1ba204a3550c41f058934a22927bb218">EnetPort_DscpPriorityMap::dscpIPv4En</a></div><div class="ttdeci">bool dscpIPv4En</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:147</div></div>
 <div class="ttc" id="astructEnetPort__VlanCfg_html_a9b39c542c74b9135cfae16c3a2adee3e"><div class="ttname"><a href="structEnetPort__VlanCfg.html#a9b39c542c74b9135cfae16c3a2adee3e">EnetPort_VlanCfg::portVID</a></div><div class="ttdeci">uint32_t portVID</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:77</div></div>
+<div class="ttc" id="astructEnetPort__CutThruParams_html_a61f321106ef51b1437f6f46eabf48a1e"><div class="ttname"><a href="structEnetPort__CutThruParams.html#a61f321106ef51b1437f6f46eabf48a1e">EnetPort_CutThruParams::txPriCutThruEn</a></div><div class="ttdeci">uint32_t txPriCutThruEn</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:174</div></div>
 <div class="ttc" id="astructEnetPort__CreditBasedShapingCfg_html"><div class="ttname"><a href="structEnetPort__CreditBasedShapingCfg.html">EnetPort_CreditBasedShapingCfg</a></div><div class="ttdoc">Credit Based shaping parameters (idleSlope).</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:108</div></div>
 <div class="ttc" id="astructEnetPort__TrafficShapingRates_html_a1408bc19c8d6b36466a983aa28752c8b"><div class="ttname"><a href="structEnetPort__TrafficShapingRates.html#a1408bc19c8d6b36466a983aa28752c8b">EnetPort_TrafficShapingRates::excessRateBitsPerSec</a></div><div class="ttdeci">uint64_t excessRateBitsPerSec</div><div class="ttdef"><b>Definition:</b> enet_mod_port.h:101</div></div>
 <!-- HTML footer for doxygen 1.8.11-->

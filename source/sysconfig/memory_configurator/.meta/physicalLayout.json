@@ -384,4 +384,85 @@
             "access": "all"
 		},
 	},
+	"AM261x_ZCZ_400": {
+		"OCRAM": {
+			"start": 0x70000000,
+			"size":  0x00180000,
+            "access": "all"
+		},
+		"FLASH": {
+			"start": 0x60000000,
+			"size": 0x8000000,
+            "access": "all"
+		},
+        "TCMA": {
+			"start": 0x00000000,
+			"size": 0x00040000,
+            "access": "individual"
+		},
+        "TCMB": {
+			"start": 0x00080000,
+			"size": 0x00040000,
+            "access": "individual"
+		},
+        "CUSTOM": {
+			"start": 0x00000000,
+			"size": 0xFFFFFFFF,
+            "access": "all"
+		},
+	},
+	"AM261x_ZNC_400": {
+		"OCRAM": {
+			"start": 0x70000000,
+			"size":  0x00180000,
+            "access": "all"
+		},
+		"FLASH": {
+			"start": 0x60000000,
+			"size": 0x8000000,
+            "access": "all"
+		},
+        "TCMA": {
+			"start": 0x00000000,
+			"size": 0x00040000,
+            "access": "individual"
+		},
+        "TCMB": {
+			"start": 0x00080000,
+			"size": 0x00040000,
+            "access": "individual"
+		},
+        "CUSTOM": {
+			"start": 0x00000000,
+			"size": 0xFFFFFFFF,
+            "access": "all"
+		},
+	},
+	"AM261x_ZEJ_400": {
+		"OCRAM": {
+			"start": 0x70000000,
+			"size":  0x00180000,
+            "access": "all"
+		},
+		"FLASH": {
+			"start": 0x60000000,
+			"size": 0x8000000,
+            "access": "all"
+		},
+        "TCMA": {
+			"start": 0x00000000,
+			"size": 0x00040000,
+            "access": "individual"
+		},
+        "TCMB": {
+			"start": 0x00080000,
+			"size": 0x00040000,
+            "access": "individual"
+		},
+        "CUSTOM": {
+			"start": 0x00000000,
+			"size": 0xFFFFFFFF,
+            "access": "all"
+		},
+	},
 }

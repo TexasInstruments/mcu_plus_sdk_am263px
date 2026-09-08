@@ -73,8 +73,14 @@ typedef struct EventP_Object_
     eventGroupType eventObj;
     eventGroupHandleType eventHndl;
 } EventP_Object;
+#elif defined (OS_THREADX)
+#include "tx_api.h"
+typedef struct EventP_Object_
+{
+    TX_EVENT_FLAGS_GROUP eventObj;
+} EventP_Object;
 #else 
-#error "Define OS_NORTOS, OS_FREERTOS or OS_SAFERTOS"
+#error "Define OS_NORTOS, OS_FREERTOS or OS_SAFERTOS or OS_THREADX"
 #endif
 /**
  * \brief Create an Event object

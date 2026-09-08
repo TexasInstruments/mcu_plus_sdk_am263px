@@ -82,6 +82,8 @@ MCSPI_ChConfig g`instNameCamelCase`ChCfg[`instance.$name.toUpperCase()`_NUM_CH] 
         .defaultTxData      = 0x`ch_config.defaultTxData.toString(16).toUpperCase()`U,
         .txFifoTrigLvl      = `config.txFifoTrigLevel`U,
         .rxFifoTrigLvl      = `config.rxFifoTrigLevel`U,
+        .enableTxFifo       = `config.enableTxFifo.toString(10).toUpperCase()`,
+        .enableRxFifo       = `config.enableRxFifo.toString(10).toUpperCase()`,
     },
     % }
 };

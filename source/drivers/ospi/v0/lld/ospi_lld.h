@@ -650,8 +650,13 @@ typedef struct
      * byte2 -> cmd lines
      * byte3 -> STR/DTR (0 = STR, 1 = DTR)
      * */
+    uint32_t isDtr;
+    /**< Flag indicating if DTR (Double Transfer Rate) mode is active.
+     * Set to 1 when protocol byte3 is non-zero, 0 otherwise. */
     uint32_t rdDummyCycles;
     /**< Number of dummy cycles needed for read */
+    uint32_t wrDummyCycles;
+    /**< Number of dummy cycles needed for write */
     uint32_t cmdDummyCycles;
     /**< Number of dummy cycles needed for cmd */
     uint32_t rdDataCapDelay;
@@ -825,6 +830,16 @@ int32_t OSPI_lld_readIndirect(OSPILLD_Handle handle, OSPI_Transaction *trans);
  *  \sa     #OSPI_open
  */
 int32_t OSPI_lld_writeDirect(OSPILLD_Handle handle, OSPI_Transaction *trans);
+
+/**
+ *  \brief  Function to perform DMA-assisted direct writes to PSRAM via DAC
+ *
+ *  \param  handle      #OSPILLD_Handle returned from #OSPI_open()
+ *  \param  trans       Pointer to #OSPI_Transaction
+ *
+ *  \return #SystemP_SUCCESS on success, #SystemP_FAILURE otherwise
+ */
+int32_t OSPI_lld_writeDirectDma(OSPILLD_Handle handle, OSPI_Transaction *trans);
 
 /**
  *  \brief  Function to perform indirect writes to the flash using INDAC controller
@@ -1582,6 +1597,24 @@ int32_t OSPI_dmaClose(OSPILLD_Handle handle);
  * \return SystemP_SUCCESS on success, else failure
  */
 int32_t OSPI_dmaCopy(OSPILLD_Handle handle, void* dst, void* src, uint32_t length,uint32_t timeout);
+
+/**
+ * \brief API to perform DMA copy for OSPI indirect (INDAC) mode transfers
+ *
+ * This API will configure and trigger a DMA transfer for OSPI indirect access mode.
+ * For write operations, source increments and destination (FIFO) is constant.
+ * For read operations, source (FIFO) is constant and destination increments.
+ *
+ * \param handle        [in] An #OSPILLD_Handle returned from an #OSPI_open()
+ * \param dst           [in] Destination address
+ * \param src           [in] Source address
+ * \param length        [in] Length of data to be transferred
+ * \param timeout       [in] Timeout for the transaction
+ * \param isWrite       [in] 1 for INDAC write, 0 for INDAC read
+ *
+ * \return SystemP_SUCCESS on success, else failure
+ */
+int32_t OSPI_dmaIndirectCopy(OSPILLD_Handle handle, void* dst, void* src, uint32_t length, uint32_t timeout, uint32_t isWrite);
 
 /**
  * \brief API to get the DMA Interrupt status

@@ -365,13 +365,18 @@ void ospi_flash_diag_print_defines_json(NorSpi_SfdpGenericDefines *norSpiDefines
             FLASH_CFG_PROTO_4S_4D_4D,
             FLASH_CFG_PROTO_8S_8S_8S,
             FLASH_CFG_PROTO_8D_8D_8D,
+            /* DTR half-duplex protocols added in JESD216F */
+            FLASH_CFG_PROTO_1S_1D_1D,
+            FLASH_CFG_PROTO_1S_2D_2D,
+            FLASH_CFG_PROTO_1S_4D_4D,
         };
 
         char* protos_json[] = {
-            "p111", "p112", "p114", "p118", "p444s", "p444d","p888s", "p888d",
+            "p111", "p112", "p114", "p118", "p444s", "p444d", "p888s", "p888d",
+            "p11d1d", "p12d2d", "p14d4d",
         };
 
-        for(uint32_t i = 0; i < 8; i++)
+        for(uint32_t i = 0; i < 11; i++)
         {
             FlashCfg_ProtoEnConfig *pCfg = &norSpiDefines->protos[protos[i]];
             if(pCfg->cmdRd != 0)
@@ -390,7 +395,8 @@ void ospi_flash_diag_print_defines_json(NorSpi_SfdpGenericDefines *norSpiDefines
                 if((protos[i] == FLASH_CFG_PROTO_4S_4S_4S) ||
                 (protos[i] == FLASH_CFG_PROTO_4S_4D_4D) ||
                 (protos[i] == FLASH_CFG_PROTO_8S_8S_8S) ||
-                (protos[i] == FLASH_CFG_PROTO_8D_8D_8D))
+                (protos[i] == FLASH_CFG_PROTO_8D_8D_8D) ||
+                (protos[i] == FLASH_CFG_PROTO_1S_4D_4D))
                 {
                     DebugP_log("\t\t\t\"dummyCfg\": {\r\n");
                     DebugP_log("\t\t\t\t\"isAddrReg\": %s,\r\n", pCfg->dummyCfg.isAddrReg ? "true" : "false");
@@ -408,7 +414,7 @@ void ospi_flash_diag_print_defines_json(NorSpi_SfdpGenericDefines *norSpiDefines
                     DebugP_log("\t\t\t\t\"cfgReg\": \"0x%08X\",\r\n", pCfg->protoCfg.cfgReg);
                     DebugP_log("\t\t\t\t\"shift\": %d,\r\n", pCfg->protoCfg.shift);
                     DebugP_log("\t\t\t\t\"mask\": \"0x%02X\",\r\n", pCfg->protoCfg.mask);
-                    DebugP_log("\t\t\t\t\"bitP\": %d\r\n", pCfg->protoCfg.shift);
+                    DebugP_log("\t\t\t\t\"bitP\": %d\r\n", pCfg->protoCfg.cfgRegBitP);
                     DebugP_log("\t\t\t},\r\n");
                     DebugP_log("\t\t\t\"strDtrCfg\": {\r\n");
                     DebugP_log("\t\t\t\t\"isAddrReg\": %s,\r\n", pCfg->strDtrCfg.isAddrReg ? "true" : "false");
@@ -417,7 +423,7 @@ void ospi_flash_diag_print_defines_json(NorSpi_SfdpGenericDefines *norSpiDefines
                     DebugP_log("\t\t\t\t\"cfgReg\": \"0x%08X\",\r\n", pCfg->strDtrCfg.cfgReg);
                     DebugP_log("\t\t\t\t\"shift\": %d,\r\n", pCfg->strDtrCfg.shift);
                     DebugP_log("\t\t\t\t\"mask\": \"0x%02X\",\r\n", pCfg->strDtrCfg.mask);
-                    DebugP_log("\t\t\t\t\"bitP\": %d\r\n", pCfg->strDtrCfg.shift);
+                    DebugP_log("\t\t\t\t\"bitP\": %d\r\n", pCfg->strDtrCfg.cfgRegBitP);
                     DebugP_log("\t\t\t}\r\n");
                 }
                 else

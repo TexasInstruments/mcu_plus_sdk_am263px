@@ -39,7 +39,7 @@
 #include "ti_drivers_open_close.h"
 #include "ti_board_open_close.h"
 
-#define APP_OSPI_DATA_SIZE (1024*4)   /* Data transfer buffer size */
+#define APP_OSPI_DATA_SIZE (1024*20)   /* Data transfer buffer size */
 #define APP_OSPI_OFFSET    (0)        /* PSRAM Write offset*/
 
 uint8_t gOspiTxBuf[APP_OSPI_DATA_SIZE];

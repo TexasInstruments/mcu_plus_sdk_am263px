@@ -488,13 +488,13 @@ static bool EnetLpbk_verifyRxFrame(EnetDma_Pkt *pktInfo, uint8_t rxCnt)
         for (i = 0; i < pktInfo->sgList.numScatterSegments; i++)
         {
             segmentLen = pktInfo->sgList.list[i].segmentFilledLen;
-            if(i == 0)
+            if(i > 0)
             {
-                segmentLen -= headerLen;
+                rxPayload = pktInfo->sgList.list[i].bufPtr;
             }
             else
             {
-                rxPayload = pktInfo->sgList.list[i].bufPtr;
+                segmentLen -= headerLen;
             }
             for (j = 0; j < segmentLen; j++)
             {
@@ -690,7 +690,7 @@ static int32_t EnetApp_waitForLinkUp(void)
 static void EnetApp_showCpswStats(void)
 {
     Enet_IoctlPrms prms;
-    CpswStats_PortStats portStats;
+    const CpswStats_PortStats *portStats;
     int32_t status;
 
     /* Show host port statistics */
@@ -700,7 +700,7 @@ static void EnetApp_showCpswStats(void)
     {
         EnetAppUtils_print("\r\n Port 0 Statistics\r\n");
         EnetAppUtils_print("-----------------------------------------\r\n");
-        EnetAppUtils_printHostPortStats2G((CpswStats_HostPort_2g *)&portStats);
+        EnetAppUtils_printHostPortStats2G((const CpswStats_HostPort_2g *)portStats);
         EnetAppUtils_print("\r\n");
     }
     else
@@ -717,7 +717,7 @@ static void EnetApp_showCpswStats(void)
         {
             EnetAppUtils_print("\r\n Port 1 Statistics\r\n");
             EnetAppUtils_print("-----------------------------------------\r\n");
-            EnetAppUtils_printMacPortStats2G((CpswStats_MacPort_2g *)&portStats);
+            EnetAppUtils_printMacPortStats2G((const CpswStats_MacPort_2g *)portStats);
             EnetAppUtils_print("\r\n");
         }
         else

@@ -1,863 +1,4 @@
-First commit tracked for security_common: 46ecce9c372a34a9a3f5e91c88d20aadf15fe89f
-========================================
-Changes from build on 2026-03-10 20:47:04
-Previous commit: 46ecce9c372a34a9a3f5e91c88d20aadf15fe89f
-Current commit: 6621b7852de7e8dab976003fc613db87c7bcdff9
-========================================
-
-commit 6621b7852de7e8dab976003fc613db87c7bcdff9
-Author: seema <seema.khatib@ti.com>
-Date:   Wed Jan 28 10:02:45 2026 +0530
-
-    f29h85x: misra: MISRA.DEFINE.NOT_DISTINCT.C90.2012
-    
-    -Remove duplicate macro
-    
-    Fixes: TIFSMCU-4728
-    
-    Signed-off-by: seema <seema.khatib@ti.com>
-
- drivers/crypto/asym_crypt.h    | 3 +++
- drivers/crypto/dthe/dthe_sha.c | 3 ---
- drivers/crypto/rng/rng.h       | 5 +----
- 3 files changed, 4 insertions(+), 7 deletions(-)
-
-========================================
-Changes from build on 2026-03-18 20:46:27
-Previous commit: 6621b7852de7e8dab976003fc613db87c7bcdff9
-Current commit: f4fbeacd8bf9cb31f2e879876e28f851430434dc
-========================================
-
-commit f4fbeacd8bf9cb31f2e879876e28f851430434dc
-Author: Arush Pant <a-pant@ti.com>
-Date:   Wed Mar 18 11:18:13 2026 +0530
-
-    f29p32x: build: build fix
-    
-    - fixes build failures for soc
-      caused due to removal of soc.h
-      file
-    
-    Fixes: TIFSMCU-5043
-    
-    Signed-off-by: Arush Pant <a-pant@ti.com>
-
- drivers/secure_ipc_notify/soc/f29h85x/sipc_notify_cfg.h | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
-
-========================================
-Changes from build on 2026-03-20 20:46:32
-Previous commit: f4fbeacd8bf9cb31f2e879876e28f851430434dc (not found in current history)
-Current commit: e99fb358f369d2fa428ffdb8c1cfc5322c0369f8
-========================================
-
-Note: Previous commit not found - repository may have been rebased or reset.
-Showing current commit details only:
-
-commit e99fb358f369d2fa428ffdb8c1cfc5322c0369f8
-Author: Rohith Kumar V <r-v3@ti.com>
-Date:   Thu Mar 5 19:39:15 2026 +0530
-
-    am26xx: Add: DMA memory copy
-    
-    - Add EDMA_memCopy() function to allow
-      memory to memory copy using EDMA.
-    
-    Fixes: TIFSMCU-4946
-    
-    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
-
- .gitignore                                         |    1 +
- .gitmodules                                        |    3 +
- drivers/crypto/asym_crypt.h                        |  689 ++++
- drivers/crypto/crypto.c                            |  278 ++
- drivers/crypto/crypto.h                            |  181 +
- drivers/crypto/crypto_util.c                       |  204 ++
- drivers/crypto/crypto_util.h                       |  166 +
- drivers/crypto/dthe/dma.c                          |  365 ++
- drivers/crypto/dthe/dma.h                          |  394 ++
- drivers/crypto/dthe/dma/device_includes.h          |   55 +
- drivers/crypto/dthe/dma/edma/dthe_edma.c           |  492 +++
- drivers/crypto/dthe/dma/edma/dthe_edma.h           |  174 +
- drivers/crypto/dthe/dthe.c                         |  136 +
- drivers/crypto/dthe/dthe.h                         |  165 +
- drivers/crypto/dthe/dthe_aes.c                     | 1422 ++++++++
- drivers/crypto/dthe/dthe_aes.h                     |  356 ++
- drivers/crypto/dthe/dthe_sha.c                     | 1070 ++++++
- drivers/crypto/dthe/dthe_sha.h                     |  176 +
- drivers/crypto/dthe/dthe_sm3.c                     |  549 +++
- drivers/crypto/dthe/dthe_sm3.h                     |  185 +
- drivers/crypto/dthe/dthe_sm4.c                     |  774 ++++
- drivers/crypto/dthe/dthe_sm4.h                     |  431 +++
- drivers/crypto/dthe/hw_include/cslr_aes.h          | 1601 ++++++++
- drivers/crypto/dthe/hw_include/cslr_dthe.h         |   88 +
- drivers/crypto/dthe/hw_include/cslr_hsm_ctrl.h     | 2997 +++++++++++++++
- drivers/crypto/dthe/hw_include/cslr_sha.h          |   95 +
- drivers/crypto/dthe/hw_include/cslr_sm3.h          |   78 +
- drivers/crypto/dthe/hw_include/cslr_sm4.h          |   85 +
- drivers/crypto/pka/eip29t2_firmware.c              | 3836 ++++++++++++++++++++
- drivers/crypto/pka/eip29t2_firmware.h              |   70 +
- drivers/crypto/pka/hw_include/cslr_cp_ace.h        | 2910 +++++++++++++++
- drivers/crypto/pka/hw_include/cslr_eip_29t2_ram.h  | 2029 +++++++++++
- drivers/crypto/pka/pka.c                           | 2175 +++++++++++
- drivers/crypto/pka/pka.h                           |  118 +
- drivers/crypto/pka/pka_eddsa.c                     |  966 +++++
- .../crypto/pka/soc/am64x_am243x/eip29t2_firmware.c | 2800 ++++++++++++++
- .../crypto/pka/soc/am64x_am243x/eip29t2_firmware.h |   71 +
- .../crypto/pke/hw_include/am261x/pke_baseaddress.h |   46 +
- .../crypto/pke/hw_include/f29x/pke_baseaddress.h   |   46 +
- drivers/crypto/pke/hw_include/pke_hw               |    1 +
- drivers/crypto/pke/pke.c                           | 1215 +++++++
- drivers/crypto/pke/tifs_pke4_random.c              |  132 +
- drivers/crypto/rng/rng.c                           |  268 ++
- drivers/crypto/rng/rng.h                           |  186 +
- drivers/crypto/sa2ul/sa2ul.c                       | 2166 +++++++++++
- drivers/crypto/sa2ul/sa2ul.h                       |  611 ++++
- drivers/hsmclient/hsmclient.c                      | 2467 +++++++++++++
- drivers/hsmclient/hsmclient.h                      | 1011 ++++++
- drivers/hsmclient/hsmclient_msg.h                  |  257 ++
- drivers/hsmclient/soc/am261x/hsmRtImg.h            | 1826 ++++++++++
- drivers/hsmclient/soc/am261x/hsmclient_loadhsmrt.c |  464 +++
- .../soc/am261x/hsmclient_wait_for_boot_notify.c    |   73 +
- .../soc/am261x/tifs_am261x_hs_fs.hsmimage.bin      |  Bin 0 -> 28003 bytes
- drivers/hsmclient/soc/am263px/hsmRtImg.h           | 2771 ++++++++++++++
- .../hsmclient/soc/am263px/hsmclient_loadhsmrt.c    |  470 +++
- .../soc/am263px/hsmclient_wait_for_boot_notify.c   |   73 +
- .../soc/am263px/tifs_am263px_hs_fs.hsmimage.bin    |  Bin 0 -> 43124 bytes
- drivers/hsmclient/soc/am263x/hsmRtImg.h            | 2724 ++++++++++++++
- drivers/hsmclient/soc/am263x/hsmclient_loadhsmrt.c |  470 +++
- .../soc/am263x/hsmclient_wait_for_boot_notify.c    |   73 +
- .../soc/am263x/tifs_am263x_hs_fs.hsmimage.bin      |  Bin 0 -> 42372 bytes
- drivers/hsmclient/soc/am273x/hsmRtImg.h            | 3797 +++++++++++++++++++
- drivers/hsmclient/soc/am273x/hsmRtImg_1_1.h        | 2267 ++++++++++++
- drivers/hsmclient/soc/am273x/hsmRtImg_1_2.h        | 2214 +++++++++++
- drivers/hsmclient/soc/am273x/hsmclient_loadhsmrt.c |  340 ++
- .../soc/am273x/hsmclient_wait_for_boot_notify.c    |   73 +
- drivers/hsmclient/soc/am273x/tifs-1_2.bin          |  Bin 0 -> 34500 bytes
- .../soc/am273x/tifs_am273x_hs_fs.hsmimage.bin      |  Bin 0 -> 63503 bytes
- drivers/hsmclient/soc/awr294x/hsmRtImg.h           | 2003 ++++++++++
- .../hsmclient/soc/awr294x/hsmclient_loadhsmrt.c    |  325 ++
- .../hsmclient/soc/f29h85x/hsmclient_loadhsmrt.c    |  358 ++
- .../soc/f29h85x/hsmclient_wait_for_boot_notify.c   |   66 +
- drivers/hsmclient/utils/hsmclient_utils.c          |  236 ++
- drivers/hsmclient/utils/hsmclient_utils.h          |  113 +
- drivers/secure_ipc_notify/sipc_notify.h            |  226 ++
- drivers/secure_ipc_notify/sipc_notify_mailbox.h    |  192 +
- drivers/secure_ipc_notify/sipc_notify_src.c        |  555 +++
- drivers/secure_ipc_notify/sipc_notify_src.h        |  128 +
- .../secure_ipc_notify/soc/am261x/sipc_notify_cfg.c |  176 +
- .../secure_ipc_notify/soc/am261x/sipc_notify_cfg.h |  157 +
- .../soc/am263px/sipc_notify_cfg.c                  |  229 ++
- .../soc/am263px/sipc_notify_cfg.h                  |  169 +
- .../secure_ipc_notify/soc/am263x/sipc_notify_cfg.c |  229 ++
- .../secure_ipc_notify/soc/am263x/sipc_notify_cfg.h |  169 +
- .../secure_ipc_notify/soc/am273x/sipc_notify_cfg.c |  200 +
- .../secure_ipc_notify/soc/am273x/sipc_notify_cfg.h |  169 +
- .../soc/awr294x/sipc_notify_cfg.c                  |  181 +
- .../soc/awr294x/sipc_notify_cfg.h                  |  168 +
- .../soc/f29h85x/sipc_notify_cfg.c                  |  177 +
- .../soc/f29h85x/sipc_notify_cfg.h                  |  182 +
- drivers/secure_ipc_notify/soc/sipc_notify_soc.h    |   61 +
- tools/boot/signing/app_degenerateKey.pem           |   51 +
- tools/boot/signing/appimage_x509_cert_gen.py       |  283 ++
- .../boot/signing/bmpk/mcu_custMpk_brainpool512.pem |   10 +
- tools/boot/signing/bmpk/mcu_custMpk_secp256r1.pem  |    8 +
- tools/boot/signing/bmpk/mcu_custMpk_secp384r1.pem  |    9 +
- tools/boot/signing/bmpk/mcu_custMpk_secp521r1.pem  |   10 +
- tools/boot/signing/bmpk/mcu_custmpk_rsa4k.pem      |   51 +
- tools/boot/signing/custBmpk_am64x_am243x.pem       |   51 +
- tools/boot/signing/custBmpk_am64x_am243x.txt       |    1 +
- tools/boot/signing/custMek_am64x_am243x.txt        |    1 +
- tools/boot/signing/custMpk_am64x_am243x.pem        |   51 +
- .../signing/custMpk_am64x_am243x_secp384r1.pem     |    6 +
- tools/boot/signing/dualCertGen.py                  |  165 +
- tools/boot/signing/hkdf.py                         |   32 +
- tools/boot/signing/k3_dev_mpk.pem                  |   84 +
- tools/boot/signing/kd_salt.txt                     |    1 +
- tools/boot/signing/mcu_appimage_x509_cert_gen.py   |  422 +++
- tools/boot/signing/mcu_custBmpk.pem                |   51 +
- tools/boot/signing/mcu_custMek.key                 |    2 +
- tools/boot/signing/mcu_custMpk.pem                 |   51 +
- tools/boot/signing/mcu_custMpk_brainpool512.pem    |   10 +
- tools/boot/signing/mcu_custMpk_secp256r1.pem       |    8 +
- tools/boot/signing/mcu_custMpk_secp384r1.pem       |    9 +
- tools/boot/signing/mcu_custMpk_secp521r1.pem       |   10 +
- tools/boot/signing/mcu_gpkey.pem                   |   51 +
- tools/boot/signing/mcu_rom_image_gen.py            |  686 ++++
- tools/boot/signing/rom_degenerateKey.pem           |   10 +
- tools/boot/signing/rom_image_gen.py                |  354 ++
- tools/boot/signing/x509CertificateGen.ps1          |  195 +
- tools/boot/signing/x509CertificateGen.sh           |  542 +++
- tools/boot/signing/x509template.txt                |   76 +
- tools/boot/signing/x509template_boardcfg.txt       |   36 +
- tools/keyring_cert/aux_keys/aes128.key             |    1 +
- tools/keyring_cert/aux_keys/aes192.key             |  Bin 0 -> 24 bytes
- tools/keyring_cert/aux_keys/aes256.key             |    2 +
- .../aux_keys/brainpoolp512r1_private.pem           |    7 +
- .../aux_keys/brainpoolp512r1_public.pem            |    6 +
- tools/keyring_cert/aux_keys/prime256v1_private.pem |    5 +
- tools/keyring_cert/aux_keys/prime265v1_public.pem  |    4 +
- tools/keyring_cert/aux_keys/public2k.pem           |    9 +
- tools/keyring_cert/aux_keys/public3k.pem           |   11 +
- tools/keyring_cert/aux_keys/public4k.pem           |   14 +
- tools/keyring_cert/aux_keys/rsa_private2k.pem      |   27 +
- tools/keyring_cert/aux_keys/rsa_private3k.pem      |   39 +
- tools/keyring_cert/aux_keys/rsa_private4k.pem      |   51 +
- tools/keyring_cert/aux_keys/secp384r1_private.pem  |    6 +
- tools/keyring_cert/aux_keys/secp384r1_public.pem   |    5 +
- tools/keyring_cert/aux_keys/secp521r1_private.pem  |    7 +
- tools/keyring_cert/aux_keys/secp521r1_public.pem   |    6 +
- tools/keyring_cert/bin2c.py                        |  191 +
- tools/keyring_cert/hkdf.py                         |   22 +
- tools/keyring_cert/kd_salt.txt                     |    1 +
- tools/keyring_cert/keyringCert.h                   |  208 ++
- tools/keyring_cert/keyring_cert_gen.py             |  461 +++
- tools/keyring_cert/keys.json                       |   61 +
- tools/keyring_cert/readme.md                       |  195 +
- .../root_of_trust_switching_cert.py                |  233 ++
- updateC29SDK.py                                    |  111 +
- 149 files changed, 65705 insertions(+)
-
-========================================
-Changes from build on 2026-04-01 20:47:49
-Previous commit: e99fb358f369d2fa428ffdb8c1cfc5322c0369f8
-Current commit: 0f599896871d90adf524ff870b8b644982c9e857
-========================================
-
-commit 0f599896871d90adf524ff870b8b644982c9e857
-Author: Seema.Khatib <seema.khatib@ti.com>
-Date:   Fri Mar 27 11:03:41 2026 +0530
-
-    f29h85x: misra: MISRA.ETYPE.CATEGORY.DIFFERENT.2012
-    
-    This MISRA rule dictates that the operands
-    of an operator in which the usual arithmetic
-    conversions are performed should have the same
-    
-    Fixes: TIFSMCU-5061
-    
-    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
-
- drivers/secure_ipc_notify/sipc_notify_src.c             |  6 +++---
- drivers/secure_ipc_notify/sipc_notify_src.h             |  2 +-
- drivers/secure_ipc_notify/soc/am261x/sipc_notify_cfg.c  |  6 +++---
- drivers/secure_ipc_notify/soc/am261x/sipc_notify_cfg.h  | 27 +++++++++++++--------------
- drivers/secure_ipc_notify/soc/am263px/sipc_notify_cfg.c |  6 +++---
- drivers/secure_ipc_notify/soc/am263px/sipc_notify_cfg.h | 33 +++++++++++++++++----------------
- drivers/secure_ipc_notify/soc/am263x/sipc_notify_cfg.c  |  6 +++---
- drivers/secure_ipc_notify/soc/am263x/sipc_notify_cfg.h  | 32 ++++++++++++++++----------------
- drivers/secure_ipc_notify/soc/am273x/sipc_notify_cfg.c  |  6 +++---
- drivers/secure_ipc_notify/soc/am273x/sipc_notify_cfg.h  | 29 ++++++++++++++---------------
- drivers/secure_ipc_notify/soc/awr294x/sipc_notify_cfg.c |  6 +++---
- drivers/secure_ipc_notify/soc/awr294x/sipc_notify_cfg.h | 29 ++++++++++++++---------------
- drivers/secure_ipc_notify/soc/f29h85x/sipc_notify_cfg.c |  8 ++++----
- drivers/secure_ipc_notify/soc/f29h85x/sipc_notify_cfg.h | 27 +++++++++++++--------------
- 14 files changed, 110 insertions(+), 113 deletions(-)
-
-========================================
-Changes from build on 2026-04-06 20:47:48
-Previous commit: 0f599896871d90adf524ff870b8b644982c9e857
-Current commit: ee05138b0510fae1cf6c81d17a120622557837d7
-========================================
-
-commit ee05138b0510fae1cf6c81d17a120622557837d7
-Author: Seema.Khatib <seema.khatib@ti.com>
-Date:   Fri Apr 3 13:12:06 2026 +0530
-
-    f29h85x: CERT: CERT.LITERAL.INT.CONST
-    
-    -Use of literal integer constant
-    
-    Fixes: TIFSMCU-5063
-    
-    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
-
- drivers/crypto/crypto_util.c                    | 30 +++++++++++++++---------------
- drivers/crypto/dthe/dthe_aes.c                  | 28 ++++++++++++++--------------
- drivers/crypto/dthe/dthe_sha.c                  |  8 ++++----
- drivers/crypto/pke/pke.c                        | 12 ++++++------
- drivers/crypto/rng/rng.c                        |  8 ++++----
- drivers/secure_ipc_notify/sipc_notify_mailbox.h |  2 +-
- 6 files changed, 44 insertions(+), 44 deletions(-)
-
-========================================
-Changes from build on 2026-04-11 20:47:58
-Previous commit: ee05138b0510fae1cf6c81d17a120622557837d7
-Current commit: 192441761fa659fb4c7125964bb141907830b1e3
-========================================
-
-commit 192441761fa659fb4c7125964bb141907830b1e3
-Author: Seema.Khatib <seema.khatib@ti.com>
-Date:   Tue Mar 31 09:24:15 2026 +0530
-
-    f29h85x: misra: MISRA.LITERAL.NULL.PTR.CONST.2012
-    
-    -The macro NULL is the only permitted form of integer null pointer constant.
-    
-    Fixes: TIFSMCU-5072
-    
-    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
-
- drivers/crypto/dthe/dthe.c | 5 +++--
- drivers/crypto/pke/pke.c   | 4 ++--
- drivers/crypto/rng/rng.c   | 5 +++--
- 3 files changed, 8 insertions(+), 6 deletions(-)
-
-commit 628ded272dbf7e3bd7771876c99328d5a8380f03
-Author: Aakash Kedia <a-kedia@ti.com>
-Date:   Mon Mar 30 12:06:25 2026 +0530
-
-    am26xx: hsmclient: remove redundant semaphore construction.
-    
-    - Remove the `SemaphoreP_constructBinary` call from
-      `HsmClient_waitForBootNotify`.
-    - Constructing the semaphore inside the HsmClient_register (syscfg).
-    
-    Fixes: MCUSDK-15348
-    
-    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
-
- drivers/hsmclient/soc/am261x/hsmclient_wait_for_boot_notify.c  | 2 --
- drivers/hsmclient/soc/am263px/hsmclient_wait_for_boot_notify.c | 2 --
- drivers/hsmclient/soc/am263x/hsmclient_wait_for_boot_notify.c  | 2 --
- 3 files changed, 6 deletions(-)
-
-commit 2fd081a57fa16c10eea5e7dd4bdd11d2fb250450
-Author: Rohith Kumar V <r-v3@ti.com>
-Date:   Wed Mar 25 17:06:12 2026 +0530
-
-    am26xx/f29x: HSM: Add handlers for crypto services
-    
-    - Add client API handlers for HSM crypto services
-    
-    Fixes: TIFSMCU-5017, TIFSMCU-5018, TIFSMCU-5019, TIFSMCU-5020
-    
-    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
-
- drivers/hsmclient/hsmclient.c     | 207 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
- drivers/hsmclient/hsmclient.h     | 138 ++++++++++++++++++++++++++++++++++++++++++++++++++++
- drivers/hsmclient/hsmclient_msg.h |   2 +
- 3 files changed, 346 insertions(+), 1 deletion(-)
-
-commit f193878f7c65c0ad57236683b5e0e830b91935eb
-Author: Rohith Kumar V <r-v3@ti.com>
-Date:   Mon Apr 6 18:04:05 2026 +0530
-
-    am261x: pke_hw: submodule update
-    
-    - Update the pke_hw submodule pointer
-    
-    Fixes: TIFSMCU-5144
-    
-    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
-
- drivers/crypto/pke/hw_include/pke_hw | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-========================================
-Changes from build on 2026-04-16 20:48:13
-Previous commit: 192441761fa659fb4c7125964bb141907830b1e3
-Current commit: a4844abf24db4648c843220d00e8f9c91ad7f5bd
-========================================
-
-commit a4844abf24db4648c843220d00e8f9c91ad7f5bd
-Author: Seema.Khatib <seema.khatib@ti.com>
-Date:   Thu Apr 9 21:40:59 2026 +0530
-
-    f29h85x: misra: MISRA.ETYPE.ASSIGN.2012
-    
-    -An expression value of diffrent type
-     is assigned to an object of essential type 'unsigned int'
-    
-    Fixes: TIFSMCU-5064
-    
-    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
-
- drivers/crypto/dthe/dthe_sha.c            |  8 ++++----
- drivers/crypto/dthe/dthe_sha.h            |  2 +-
- drivers/crypto/dthe/dthe_sm3.c            | 12 ++++++------
- drivers/crypto/dthe/hw_include/cslr_sha.h | 18 +++++++++---------
- drivers/crypto/pke/tifs_pke4_random.c     |  2 +-
- 5 files changed, 21 insertions(+), 21 deletions(-)
-
-========================================
-Changes from build on 2026-04-17 20:47:54
-Previous commit: a4844abf24db4648c843220d00e8f9c91ad7f5bd
-Current commit: b4151c9343eddc1cf8f19a95b67d5fe5691bf79c
-========================================
-
-commit b4151c9343eddc1cf8f19a95b67d5fe5691bf79c
-Author: Arush Pant <a-pant@ti.com>
-Date:   Mon Mar 23 14:56:55 2026 +0530
-
-    f29x: LFU: add lfu support in HSM client
-    
-    - Add live firmware update support
-      to HSM Client for soc family
-    
-    Fixes: TIFSMCU-4773, TIFSMCU-4774
-    
-    Signed-off-by: Arush Pant <a-pant@ti.com>
-
- drivers/hsmclient/hsmclient.c     | 36 ++++++++++++++++++++++++++++++++++++
- drivers/hsmclient/hsmclient.h     | 37 +++++++++++++++++++++++++++++++++++++
- drivers/hsmclient/hsmclient_msg.h | 15 +++++++++++++--
- 3 files changed, 86 insertions(+), 2 deletions(-)
-
-========================================
-Changes from build on 2026-04-20 20:47:58
-Previous commit: b4151c9343eddc1cf8f19a95b67d5fe5691bf79c
-Current commit: bf128efe27d615259a83e41ba7a1f886163c7a28
-========================================
-
-commit bf128efe27d615259a83e41ba7a1f886163c7a28
-Author: Aakash Kedia <a-kedia@ti.com>
-Date:   Wed Apr 8 17:25:10 2026 +0530
-
-    f29xx: hsmclient: Add device configuration read service
-    
-    Add new HSM service to read device configuration from HSM:
-    - Add HSM_MSG_GET_DEVICE_CONFIG (0x000B) service type definition
-    - Add DeviceConfigRead_t structure for configuration read requests
-    - Add DeviceConfigSafety_t structure for safety-related configuration
-    - Add DeviceConfigSecurity_t structure for security-related configuration
-    - Add DeviceConfigDebug_t structure for debug configuration
-    - Add HsmClient_getDeviceConfig() API to retrieve device configuration
-    - Add support for reading safety info (dedFotaInfo, hsmPbistStatus)
-    - Add support for reading security info (SW revisions, boot retry counts)
-    - Add DEVICE_CONFIG_TYPE_* macros for configuration type filtering
-    
-    The device configuration service allows C29 cores to query HSM for critical
-    device state information including FOTA bank status, PBIST results, software
-    revisions from certificates, and boot retry counters. This enables better
-    runtime decision-making and diagnostics.
-    
-    Fixes: TIFSMCU-4511
-    
-    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
-
- .gitignore                                                         |    1 +
- .gitmodules                                                        |    3 +
- drivers/crypto/asym_crypt.h                                        |  689 ++++++++
- drivers/crypto/crypto.c                                            |  278 ++++
- drivers/crypto/crypto.h                                            |  181 +++
- drivers/crypto/crypto_util.c                                       |  204 +++
- drivers/crypto/crypto_util.h                                       |  166 ++
- drivers/crypto/dthe/dma.c                                          |  365 +++++
- drivers/crypto/dthe/dma.h                                          |  396 +++++
- drivers/crypto/dthe/dma/device_includes.h                          |   55 +
- drivers/crypto/dthe/dma/edma/dthe_edma.c                           |  492 ++++++
- drivers/crypto/dthe/dma/edma/dthe_edma.h                           |  174 ++
- drivers/crypto/dthe/dma/rtdma/dthe_rtdma.c                         |  419 +++++
- drivers/crypto/dthe/dma/rtdma/dthe_rtdma.h                         |  173 ++
- drivers/crypto/dthe/dthe.c                                         |  137 ++
- drivers/crypto/dthe/dthe.h                                         |  165 ++
- drivers/crypto/dthe/dthe_aes.c                                     | 1421 ++++++++++++++++
- drivers/crypto/dthe/dthe_aes.h                                     |  356 ++++
- drivers/crypto/dthe/dthe_sha.c                                     | 1070 ++++++++++++
- drivers/crypto/dthe/dthe_sha.h                                     |  176 ++
- drivers/crypto/dthe/dthe_sm3.c                                     |  603 +++++++
- drivers/crypto/dthe/dthe_sm3.h                                     |  185 +++
- drivers/crypto/dthe/dthe_sm4.c                                     |  774 +++++++++
- drivers/crypto/dthe/dthe_sm4.h                                     |  431 +++++
- drivers/crypto/dthe/hw_include/cslr_aes.h                          | 1601 ++++++++++++++++++
- drivers/crypto/dthe/hw_include/cslr_dthe.h                         |   88 +
- drivers/crypto/dthe/hw_include/cslr_hsm_ctrl.h                     | 2997 ++++++++++++++++++++++++++++++++++
- drivers/crypto/dthe/hw_include/cslr_sha.h                          |   95 ++
- drivers/crypto/dthe/hw_include/cslr_sm3.h                          |   78 +
- drivers/crypto/dthe/hw_include/cslr_sm4.h                          |   85 +
- drivers/crypto/pka/eip29t2_firmware.c                              | 3836 ++++++++++++++++++++++++++++++++++++++++++++
- drivers/crypto/pka/eip29t2_firmware.h                              |   70 +
- drivers/crypto/pka/hw_include/cslr_cp_ace.h                        | 2910 +++++++++++++++++++++++++++++++++
- drivers/crypto/pka/hw_include/cslr_eip_29t2_ram.h                  | 2029 +++++++++++++++++++++++
- drivers/crypto/pka/pka.c                                           | 2175 +++++++++++++++++++++++++
- drivers/crypto/pka/pka.h                                           |  118 ++
- drivers/crypto/pka/pka_eddsa.c                                     |  966 +++++++++++
- drivers/crypto/pka/soc/am64x_am243x/eip29t2_firmware.c             | 2800 ++++++++++++++++++++++++++++++++
- drivers/crypto/pka/soc/am64x_am243x/eip29t2_firmware.h             |   71 +
- drivers/crypto/pke/hw_include/am261x/pke_baseaddress.h             |   46 +
- drivers/crypto/pke/hw_include/f29x/pke_baseaddress.h               |   46 +
- drivers/crypto/pke/hw_include/pke_hw                               |    1 +
- drivers/crypto/pke/pke.c                                           | 1215 ++++++++++++++
- drivers/crypto/pke/tifs_pke4_random.c                              |  132 ++
- drivers/crypto/rng/rng.c                                           |  269 ++++
- drivers/crypto/rng/rng.h                                           |  186 +++
- drivers/crypto/sa2ul/sa2ul.c                                       | 2166 +++++++++++++++++++++++++
- drivers/crypto/sa2ul/sa2ul.h                                       |  611 +++++++
- drivers/hsmclient/hsmclient.c                                      | 2800 ++++++++++++++++++++++++++++++++
- drivers/hsmclient/hsmclient.h                                      | 1327 +++++++++++++++
- drivers/hsmclient/hsmclient_msg.h                                  |  272 ++++
- drivers/hsmclient/soc/am261x/hsmRtImg.h                            | 1826 +++++++++++++++++++++
- drivers/hsmclient/soc/am261x/hsmclient_loadhsmrt.c                 |  464 ++++++
- drivers/hsmclient/soc/am261x/hsmclient_wait_for_boot_notify.c      |   71 +
- drivers/hsmclient/soc/am261x/tifs_am261x_hs_fs.hsmimage.bin        |  Bin 0 -> 28003 bytes
- drivers/hsmclient/soc/am263px/hsmRtImg.h                           | 2771 ++++++++++++++++++++++++++++++++
- drivers/hsmclient/soc/am263px/hsmclient_loadhsmrt.c                |  470 ++++++
- drivers/hsmclient/soc/am263px/hsmclient_wait_for_boot_notify.c     |   71 +
- drivers/hsmclient/soc/am263px/tifs_am263px_hs_fs.hsmimage.bin      |  Bin 0 -> 43124 bytes
- drivers/hsmclient/soc/am263x/hsmRtImg.h                            | 2724 +++++++++++++++++++++++++++++++
- drivers/hsmclient/soc/am263x/hsmclient_loadhsmrt.c                 |  470 ++++++
- drivers/hsmclient/soc/am263x/hsmclient_wait_for_boot_notify.c      |   71 +
- drivers/hsmclient/soc/am263x/tifs_am263x_hs_fs.hsmimage.bin        |  Bin 0 -> 42372 bytes
- drivers/hsmclient/soc/am273x/hsmRtImg.h                            | 3797 +++++++++++++++++++++++++++++++++++++++++++
- drivers/hsmclient/soc/am273x/hsmRtImg_1_1.h                        | 2267 ++++++++++++++++++++++++++
- drivers/hsmclient/soc/am273x/hsmRtImg_1_2.h                        | 2214 +++++++++++++++++++++++++
- drivers/hsmclient/soc/am273x/hsmclient_loadhsmrt.c                 |  340 ++++
- drivers/hsmclient/soc/am273x/hsmclient_wait_for_boot_notify.c      |   73 +
- drivers/hsmclient/soc/am273x/tifs-1_2.bin                          |  Bin 0 -> 34500 bytes
- drivers/hsmclient/soc/am273x/tifs_am273x_hs_fs.hsmimage.bin        |  Bin 0 -> 63503 bytes
- drivers/hsmclient/soc/awr294x/hsmRtImg.h                           | 2003 +++++++++++++++++++++++
- drivers/hsmclient/soc/awr294x/hsmclient_loadhsmrt.c                |  325 ++++
- drivers/hsmclient/soc/f29h85x/hsmclient_loadhsmrt.c                |  358 +++++
- drivers/hsmclient/soc/f29h85x/hsmclient_wait_for_boot_notify.c     |   66 +
- drivers/hsmclient/utils/hsmclient_utils.c                          |  695 ++++++++
- drivers/hsmclient/utils/hsmclient_utils.h                          |  160 ++
- drivers/secure_ipc_notify/sipc_notify.h                            |  226 +++
- drivers/secure_ipc_notify/sipc_notify_mailbox.h                    |  192 +++
- drivers/secure_ipc_notify/sipc_notify_src.c                        |  555 +++++++
- drivers/secure_ipc_notify/sipc_notify_src.h                        |  128 ++
- drivers/secure_ipc_notify/soc/am261x/sipc_notify_cfg.c             |  176 ++
- drivers/secure_ipc_notify/soc/am261x/sipc_notify_cfg.h             |  156 ++
- drivers/secure_ipc_notify/soc/am263px/sipc_notify_cfg.c            |  229 +++
- drivers/secure_ipc_notify/soc/am263px/sipc_notify_cfg.h            |  170 ++
- drivers/secure_ipc_notify/soc/am263x/sipc_notify_cfg.c             |  229 +++
- drivers/secure_ipc_notify/soc/am263x/sipc_notify_cfg.h             |  169 ++
- drivers/secure_ipc_notify/soc/am273x/sipc_notify_cfg.c             |  200 +++
- drivers/secure_ipc_notify/soc/am273x/sipc_notify_cfg.h             |  168 ++
- drivers/secure_ipc_notify/soc/awr294x/sipc_notify_cfg.c            |  181 +++
- drivers/secure_ipc_notify/soc/awr294x/sipc_notify_cfg.h            |  167 ++
- drivers/secure_ipc_notify/soc/f29h85x/sipc_notify_cfg.c            |  177 ++
- drivers/secure_ipc_notify/soc/f29h85x/sipc_notify_cfg.h            |  181 +++
- drivers/secure_ipc_notify/soc/sipc_notify_soc.h                    |   61 +
- tools/boot/signing/app_degenerateKey.pem                           |   51 +
- tools/boot/signing/appimage_x509_cert_gen.py                       |  283 ++++
- tools/boot/signing/bmpk/mcu_custMpk_brainpool512.pem               |   10 +
- tools/boot/signing/bmpk/mcu_custMpk_secp256r1.pem                  |    8 +
- tools/boot/signing/bmpk/mcu_custMpk_secp384r1.pem                  |    9 +
- tools/boot/signing/bmpk/mcu_custMpk_secp521r1.pem                  |   10 +
- tools/boot/signing/bmpk/mcu_custmpk_rsa4k.pem                      |   51 +
- tools/boot/signing/custBmpk_am64x_am243x.pem                       |   51 +
- tools/boot/signing/custBmpk_am64x_am243x.txt                       |    1 +
- tools/boot/signing/custMek_am64x_am243x.txt                        |    1 +
- tools/boot/signing/custMpk_am64x_am243x.pem                        |   51 +
- tools/boot/signing/custMpk_am64x_am243x_secp384r1.pem              |    6 +
- tools/boot/signing/dualCertGen.py                                  |  165 ++
- tools/boot/signing/hkdf.py                                         |   32 +
- tools/boot/signing/k3_dev_mpk.pem                                  |   84 +
- tools/boot/signing/kd_salt.txt                                     |    1 +
- tools/boot/signing/mcu_appimage_x509_cert_gen.py                   |  422 +++++
- tools/boot/signing/mcu_custBmpk.pem                                |   51 +
- tools/boot/signing/mcu_custMek.key                                 |    2 +
- tools/boot/signing/mcu_custMpk.pem                                 |   51 +
- tools/boot/signing/mcu_custMpk_brainpool512.pem                    |   10 +
- tools/boot/signing/mcu_custMpk_secp256r1.pem                       |    8 +
- tools/boot/signing/mcu_custMpk_secp384r1.pem                       |    9 +
- tools/boot/signing/mcu_custMpk_secp521r1.pem                       |   10 +
- tools/boot/signing/mcu_gpkey.pem                                   |   51 +
- tools/boot/signing/mcu_rom_image_gen.py                            |  686 ++++++++
- tools/boot/signing/rom_degenerateKey.pem                           |   10 +
- tools/boot/signing/rom_image_gen.py                                |  354 ++++
- tools/boot/signing/x509CertificateGen.ps1                          |  195 +++
- tools/boot/signing/x509CertificateGen.sh                           |  542 +++++++
- tools/boot/signing/x509template.txt                                |   76 +
- tools/boot/signing/x509template_boardcfg.txt                       |   36 +
- tools/keyring_cert/aux_keys/aes128.key                             |    1 +
- tools/keyring_cert/aux_keys/aes192.key                             |  Bin 0 -> 24 bytes
- tools/keyring_cert/aux_keys/aes256.key                             |    2 +
- tools/keyring_cert/aux_keys/brainpoolp512r1_private.pem            |    7 +
- tools/keyring_cert/aux_keys/brainpoolp512r1_public.pem             |    6 +
- tools/keyring_cert/aux_keys/prime256v1_private.pem                 |    5 +
- tools/keyring_cert/aux_keys/prime265v1_public.pem                  |    4 +
- tools/keyring_cert/aux_keys/public2k.pem                           |    9 +
- tools/keyring_cert/aux_keys/public3k.pem                           |   11 +
- tools/keyring_cert/aux_keys/public4k.pem                           |   14 +
- tools/keyring_cert/aux_keys/rsa_private2k.pem                      |   27 +
- tools/keyring_cert/aux_keys/rsa_private3k.pem                      |   39 +
- tools/keyring_cert/aux_keys/rsa_private4k.pem                      |   51 +
- tools/keyring_cert/aux_keys/secp384r1_private.pem                  |    6 +
- tools/keyring_cert/aux_keys/secp384r1_public.pem                   |    5 +
- tools/keyring_cert/aux_keys/secp521r1_private.pem                  |    7 +
- tools/keyring_cert/aux_keys/secp521r1_public.pem                   |    6 +
- tools/keyring_cert/bin2c.py                                        |  191 +++
- tools/keyring_cert/hkdf.py                                         |   22 +
- tools/keyring_cert/kd_salt.txt                                     |    1 +
- tools/keyring_cert/keyringCert.h                                   |  208 +++
- tools/keyring_cert/keyring_cert_gen.py                             |  461 ++++++
- tools/keyring_cert/keys.json                                       |   61 +
- tools/keyring_cert/readme.md                                       |  195 +++
- tools/root_of_trust_switching_cert/root_of_trust_switching_cert.py |  233 +++
- updateC29SDK.py                                                    |  111 ++
- 151 files changed, 67515 insertions(+)
-
-========================================
-Changes from build on 2026-04-21 16:43:58
-Previous commit: bf128efe27d615259a83e41ba7a1f886163c7a28
-Current commit: dc39cf21cc2b55a1ee1264495a508cdc89b639e0
-========================================
-
-commit dc39cf21cc2b55a1ee1264495a508cdc89b639e0
-Author: Arush Pant <a-pant@ti.com>
-Date:   Mon Apr 20 18:21:52 2026 +0530
-
-    f29x: script: update c29 script
-    
-    - Updates updateC29SDK.py script
-      to copy necessary files to SDK
-    
-    Fixes: TIFSMCU-5233
-    
-    Signed-off-by: Arush Pant <a-pant@ti.com>
-
- updateC29SDK.py | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
-
-========================================
-Changes from build on 2026-04-24 20:49:04
-Previous commit: dc39cf21cc2b55a1ee1264495a508cdc89b639e0 (not found in current history)
-Current commit: 6c12a2ef352771ef497e82a52d9f1f1a7e659fb3
-========================================
-
-Note: Previous commit not found - repository may have been rebased or reset.
-Showing current commit details only:
-
-commit 6c12a2ef352771ef497e82a52d9f1f1a7e659fb3
-Author: Aakash Kedia <a-kedia@ti.com>
-Date:   Thu Apr 23 22:52:27 2026 +0530
-
-    f29h85x: dthe: Fix RTDMA memory alignment issue
-    
-    -Updated the DMA flow to go through CPU for f29x with unaligned memory address
-    -Fixed the wrong ordering of DMA setting and Transfer Enable
-    
-    Fixes: TIFSMCU-4652, TIFSMCU-4663, TIFSMCU-4668
-    
-    Signed-off-by: Aditya Singal <a-singal@ti.com>
-
- .gitignore                                         |    1 +
- .gitmodules                                        |    3 +
- drivers/crypto/asym_crypt.h                        |  689 ++++
- drivers/crypto/crypto.c                            |  278 ++
- drivers/crypto/crypto.h                            |  181 +
- drivers/crypto/crypto_util.c                       |  204 ++
- drivers/crypto/crypto_util.h                       |  166 +
- drivers/crypto/dthe/dma.c                          |  365 ++
- drivers/crypto/dthe/dma.h                          |  396 ++
- drivers/crypto/dthe/dma/device_includes.h          |   55 +
- drivers/crypto/dthe/dma/edma/dthe_edma.c           |  492 +++
- drivers/crypto/dthe/dma/edma/dthe_edma.h           |  174 +
- drivers/crypto/dthe/dma/rtdma/dthe_rtdma.c         |  425 +++
- drivers/crypto/dthe/dma/rtdma/dthe_rtdma.h         |  173 +
- drivers/crypto/dthe/dthe.c                         |  137 +
- drivers/crypto/dthe/dthe.h                         |  165 +
- drivers/crypto/dthe/dthe_aes.c                     | 1428 ++++++++
- drivers/crypto/dthe/dthe_aes.h                     |  356 ++
- drivers/crypto/dthe/dthe_sha.c                     | 1078 ++++++
- drivers/crypto/dthe/dthe_sha.h                     |  176 +
- drivers/crypto/dthe/dthe_sm3.c                     |  607 ++++
- drivers/crypto/dthe/dthe_sm3.h                     |  185 +
- drivers/crypto/dthe/dthe_sm4.c                     |  774 ++++
- drivers/crypto/dthe/dthe_sm4.h                     |  431 +++
- drivers/crypto/dthe/hw_include/cslr_aes.h          | 1601 ++++++++
- drivers/crypto/dthe/hw_include/cslr_dthe.h         |   88 +
- drivers/crypto/dthe/hw_include/cslr_hsm_ctrl.h     | 2997 +++++++++++++++
- drivers/crypto/dthe/hw_include/cslr_sha.h          |   95 +
- drivers/crypto/dthe/hw_include/cslr_sm3.h          |   78 +
- drivers/crypto/dthe/hw_include/cslr_sm4.h          |   85 +
- drivers/crypto/pka/eip29t2_firmware.c              | 3836 ++++++++++++++++++++
- drivers/crypto/pka/eip29t2_firmware.h              |   70 +
- drivers/crypto/pka/hw_include/cslr_cp_ace.h        | 2910 +++++++++++++++
- drivers/crypto/pka/hw_include/cslr_eip_29t2_ram.h  | 2029 +++++++++++
- drivers/crypto/pka/pka.c                           | 2175 +++++++++++
- drivers/crypto/pka/pka.h                           |  118 +
- drivers/crypto/pka/pka_eddsa.c                     |  966 +++++
- .../crypto/pka/soc/am64x_am243x/eip29t2_firmware.c | 2800 ++++++++++++++
- .../crypto/pka/soc/am64x_am243x/eip29t2_firmware.h |   71 +
- .../crypto/pke/hw_include/am261x/pke_baseaddress.h |   46 +
- .../crypto/pke/hw_include/f29x/pke_baseaddress.h   |   46 +
- drivers/crypto/pke/hw_include/pke_hw               |    1 +
- drivers/crypto/pke/pke.c                           | 1215 +++++++
- drivers/crypto/pke/tifs_pke4_random.c              |  132 +
- drivers/crypto/rng/rng.c                           |  269 ++
- drivers/crypto/rng/rng.h                           |  186 +
- drivers/crypto/sa2ul/sa2ul.c                       | 2166 +++++++++++
- drivers/crypto/sa2ul/sa2ul.h                       |  611 ++++
- drivers/hsmclient/hsmclient.c                      | 2800 ++++++++++++++
- drivers/hsmclient/hsmclient.h                      | 1327 +++++++
- drivers/hsmclient/hsmclient_msg.h                  |  272 ++
- drivers/hsmclient/soc/am261x/hsmRtImg.h            | 1826 ++++++++++
- drivers/hsmclient/soc/am261x/hsmclient_loadhsmrt.c |  464 +++
- .../soc/am261x/hsmclient_wait_for_boot_notify.c    |   71 +
- .../soc/am261x/tifs_am261x_hs_fs.hsmimage.bin      |  Bin 0 -> 28003 bytes
- drivers/hsmclient/soc/am263px/hsmRtImg.h           | 2771 ++++++++++++++
- .../hsmclient/soc/am263px/hsmclient_loadhsmrt.c    |  470 +++
- .../soc/am263px/hsmclient_wait_for_boot_notify.c   |   71 +
- .../soc/am263px/tifs_am263px_hs_fs.hsmimage.bin    |  Bin 0 -> 43124 bytes
- drivers/hsmclient/soc/am263x/hsmRtImg.h            | 2724 ++++++++++++++
- drivers/hsmclient/soc/am263x/hsmclient_loadhsmrt.c |  470 +++
- .../soc/am263x/hsmclient_wait_for_boot_notify.c    |   71 +
- .../soc/am263x/tifs_am263x_hs_fs.hsmimage.bin      |  Bin 0 -> 42372 bytes
- drivers/hsmclient/soc/am273x/hsmRtImg.h            | 3797 +++++++++++++++++++
- drivers/hsmclient/soc/am273x/hsmRtImg_1_1.h        | 2267 ++++++++++++
- drivers/hsmclient/soc/am273x/hsmRtImg_1_2.h        | 2214 +++++++++++
- drivers/hsmclient/soc/am273x/hsmclient_loadhsmrt.c |  340 ++
- .../soc/am273x/hsmclient_wait_for_boot_notify.c    |   73 +
- drivers/hsmclient/soc/am273x/tifs-1_2.bin          |  Bin 0 -> 34500 bytes
- .../soc/am273x/tifs_am273x_hs_fs.hsmimage.bin      |  Bin 0 -> 63503 bytes
- drivers/hsmclient/soc/awr294x/hsmRtImg.h           | 2003 ++++++++++
- .../hsmclient/soc/awr294x/hsmclient_loadhsmrt.c    |  325 ++
- .../hsmclient/soc/f29h85x/hsmclient_loadhsmrt.c    |  358 ++
- .../soc/f29h85x/hsmclient_wait_for_boot_notify.c   |   66 +
- drivers/hsmclient/utils/hsmclient_utils.c          |  695 ++++
- drivers/hsmclient/utils/hsmclient_utils.h          |  160 +
- drivers/secure_ipc_notify/sipc_notify.h            |  226 ++
- drivers/secure_ipc_notify/sipc_notify_mailbox.h    |  192 +
- drivers/secure_ipc_notify/sipc_notify_src.c        |  555 +++
- drivers/secure_ipc_notify/sipc_notify_src.h        |  128 +
- .../secure_ipc_notify/soc/am261x/sipc_notify_cfg.c |  176 +
- .../secure_ipc_notify/soc/am261x/sipc_notify_cfg.h |  156 +
- .../soc/am263px/sipc_notify_cfg.c                  |  229 ++
- .../soc/am263px/sipc_notify_cfg.h                  |  170 +
- .../secure_ipc_notify/soc/am263x/sipc_notify_cfg.c |  229 ++
- .../secure_ipc_notify/soc/am263x/sipc_notify_cfg.h |  169 +
- .../secure_ipc_notify/soc/am273x/sipc_notify_cfg.c |  200 +
- .../secure_ipc_notify/soc/am273x/sipc_notify_cfg.h |  168 +
- .../soc/awr294x/sipc_notify_cfg.c                  |  181 +
- .../soc/awr294x/sipc_notify_cfg.h                  |  167 +
- .../soc/f29h85x/sipc_notify_cfg.c                  |  177 +
- .../soc/f29h85x/sipc_notify_cfg.h                  |  181 +
- drivers/secure_ipc_notify/soc/sipc_notify_soc.h    |   61 +
- tools/boot/signing/app_degenerateKey.pem           |   51 +
- tools/boot/signing/appimage_x509_cert_gen.py       |  283 ++
- .../boot/signing/bmpk/mcu_custMpk_brainpool512.pem |   10 +
- tools/boot/signing/bmpk/mcu_custMpk_secp256r1.pem  |    8 +
- tools/boot/signing/bmpk/mcu_custMpk_secp384r1.pem  |    9 +
- tools/boot/signing/bmpk/mcu_custMpk_secp521r1.pem  |   10 +
- tools/boot/signing/bmpk/mcu_custmpk_rsa4k.pem      |   51 +
- tools/boot/signing/custBmpk_am64x_am243x.pem       |   51 +
- tools/boot/signing/custBmpk_am64x_am243x.txt       |    1 +
- tools/boot/signing/custMek_am64x_am243x.txt        |    1 +
- tools/boot/signing/custMpk_am64x_am243x.pem        |   51 +
- .../signing/custMpk_am64x_am243x_secp384r1.pem     |    6 +
- tools/boot/signing/dualCertGen.py                  |  165 +
- tools/boot/signing/hkdf.py                         |   32 +
- tools/boot/signing/k3_dev_mpk.pem                  |   84 +
- tools/boot/signing/kd_salt.txt                     |    1 +
- tools/boot/signing/mcu_appimage_x509_cert_gen.py   |  422 +++
- tools/boot/signing/mcu_custBmpk.pem                |   51 +
- tools/boot/signing/mcu_custMek.key                 |    2 +
- tools/boot/signing/mcu_custMpk.pem                 |   51 +
- tools/boot/signing/mcu_custMpk_brainpool512.pem    |   10 +
- tools/boot/signing/mcu_custMpk_secp256r1.pem       |    8 +
- tools/boot/signing/mcu_custMpk_secp384r1.pem       |    9 +
- tools/boot/signing/mcu_custMpk_secp521r1.pem       |   10 +
- tools/boot/signing/mcu_gpkey.pem                   |   51 +
- tools/boot/signing/mcu_rom_image_gen.py            |  686 ++++
- tools/boot/signing/rom_degenerateKey.pem           |   10 +
- tools/boot/signing/rom_image_gen.py                |  354 ++
- tools/boot/signing/x509CertificateGen.ps1          |  195 +
- tools/boot/signing/x509CertificateGen.sh           |  542 +++
- tools/boot/signing/x509template.txt                |   76 +
- tools/boot/signing/x509template_boardcfg.txt       |   36 +
- tools/keyring_cert/aux_keys/aes128.key             |    1 +
- tools/keyring_cert/aux_keys/aes192.key             |  Bin 0 -> 24 bytes
- tools/keyring_cert/aux_keys/aes256.key             |    2 +
- .../aux_keys/brainpoolp512r1_private.pem           |    7 +
- .../aux_keys/brainpoolp512r1_public.pem            |    6 +
- tools/keyring_cert/aux_keys/prime256v1_private.pem |    5 +
- tools/keyring_cert/aux_keys/prime265v1_public.pem  |    4 +
- tools/keyring_cert/aux_keys/public2k.pem           |    9 +
- tools/keyring_cert/aux_keys/public3k.pem           |   11 +
- tools/keyring_cert/aux_keys/public4k.pem           |   14 +
- tools/keyring_cert/aux_keys/rsa_private2k.pem      |   27 +
- tools/keyring_cert/aux_keys/rsa_private3k.pem      |   39 +
- tools/keyring_cert/aux_keys/rsa_private4k.pem      |   51 +
- tools/keyring_cert/aux_keys/secp384r1_private.pem  |    6 +
- tools/keyring_cert/aux_keys/secp384r1_public.pem   |    5 +
- tools/keyring_cert/aux_keys/secp521r1_private.pem  |    7 +
- tools/keyring_cert/aux_keys/secp521r1_public.pem   |    6 +
- tools/keyring_cert/bin2c.py                        |  191 +
- tools/keyring_cert/hkdf.py                         |   22 +
- tools/keyring_cert/kd_salt.txt                     |    1 +
- tools/keyring_cert/keyringCert.h                   |  208 ++
- tools/keyring_cert/keyring_cert_gen.py             |  461 +++
- tools/keyring_cert/keys.json                       |   61 +
- tools/keyring_cert/readme.md                       |  195 +
- .../root_of_trust_switching_cert.py                |  233 ++
- updateC29SDK.py                                    |  117 +
- 151 files changed, 67546 insertions(+)
-
-========================================
-Changes from build on 2026-04-27 20:48:19
-Previous commit: 6c12a2ef352771ef497e82a52d9f1f1a7e659fb3
-Current commit: 31e4c6b9fd03a8fb8dcc138abea1b14013632880
-========================================
-
-commit 31e4c6b9fd03a8fb8dcc138abea1b14013632880
-Author: Aditya Singal <a-singal@ti.com>
-Date:   Mon Apr 27 17:13:13 2026 +0530
-
-    f29h85x: dma: Fix DMA ordering issue
-    
-    -Fixed the wrong ordering of DMA setting and Transfer Enable
-    
-    Fixes: TIFSMCU-4652, TIFSMCU-4663, TIFSMCU-4668
-    Signed-off-by: Aditya Singal <a-singal@ti.com>
-
- drivers/crypto/dthe/dthe_aes.c | 4 +++-
- drivers/crypto/dthe/dthe_sha.c | 6 ++----
- drivers/crypto/dthe/dthe_sm3.c | 4 ++--
- 3 files changed, 7 insertions(+), 7 deletions(-)
-
-========================================
-Changes from build on 2026-04-28 20:47:54
-Previous commit: 31e4c6b9fd03a8fb8dcc138abea1b14013632880
-Current commit: 742bce3c708fe5d5f53c121a3632126feaea8e9c
-========================================
-
-commit 742bce3c708fe5d5f53c121a3632126feaea8e9c
-Author: Anand Kulkarni <a-kulkarni@ti.com>
-Date:   Mon Apr 27 12:54:58 2026 +0530
-
-    f29h85x: Misra critical issue fix
-    
-    Fixes: C29SDK-226
-    
-    Signed-off-by: Anand Kulkarni <a-kulkarni@ti.com>
-
- drivers/secure_ipc_notify/sipc_notify_src.c | 52 +++++++++++++++++++++++++++++-----------------------
- 1 file changed, 29 insertions(+), 23 deletions(-)
-
-========================================
-Changes from build on 2026-04-30 20:48:58
-Previous commit: 742bce3c708fe5d5f53c121a3632126feaea8e9c
-Current commit: d624aacd069fde7106363f03811ec47c82e2a1fb
-========================================
-
-commit d624aacd069fde7106363f03811ec47c82e2a1fb
-Author: Aditya Singal <a-singal@ti.com>
-Date:   Thu Mar 26 13:10:30 2026 +0530
-
-    f29x: dthe: Add support for SM4 with HSM RTDMA
-    
-    -Added RTDMA driver in TIFS build system for SM4
-    -Modified RX Channel to add support for SM4
-    -Fixed SM4 bug for wrong opType check
-    -Fixed DMA bug for wrong NULL guard check
-    
-    Fixes: TIFSMCU-5301, TIFSMCU-5302, TIFSMCU-4672, TIFSMCU-4674,
-    TIFSMCU-4675, TIFSMCU-4676, TIFSMCU-4677, TIFSMCU-4678
-    
-    Signed-off-by: Aditya Singal <a-singal@ti.com>
-
- drivers/crypto/dthe/dma.c                  |   8 +--
- drivers/crypto/dthe/dma.h                  |  12 +++--
- drivers/crypto/dthe/dma/edma/dthe_edma.c   |   5 +-
- drivers/crypto/dthe/dma/edma/dthe_edma.h   |   7 +--
- drivers/crypto/dthe/dma/rtdma/dthe_rtdma.c | 143 +++++++++++++++++++++++++++++++++++-----------------
- drivers/crypto/dthe/dma/rtdma/dthe_rtdma.h |   3 +-
- drivers/crypto/dthe/dthe_aes.c             |   2 +-
- drivers/crypto/dthe/dthe_sm4.c             | 188 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----
- 8 files changed, 298 insertions(+), 70 deletions(-)
+Changelog reset after release REL.MCUSDK.26.00.00.06.STS on 2026-05-09 12:50:54
 
 ========================================
 Changes from build on 2026-05-06 20:48:02
@@ -1336,4 +477,944 @@ Date:   Thu Jul 2 21:08:23 2026 +0530
 
  drivers/crypto/pka/pka.c | 217 ++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------
  1 file changed, 109 insertions(+), 108 deletions(-)
+
+========================================
+Changes from build on 2026-09-08 21:10:08
+Previous commit: b9b57cce8a245945366ab9a55fd974a6629ef7b6
+Current commit: dfe4c1c008dac09f70a9b1abcacd41d118dbf1fc
+========================================
+
+commit dfe4c1c008dac09f70a9b1abcacd41d118dbf1fc
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Tue Sep 8 15:38:16 2026 +0530
+
+    f29h85x/am26xx: crypto/pke: Block memcpy lowering in RNG
+    
+    Add __attribute__((no_builtin)) to pke_issue_rng_command() to
+    prevent the compiler from recognizing its copy loops as a
+    memcpy idiom and lowering them to a library call.
+    
+    Implicit memcpy substitution here can break builds that
+    disallow banned functions or link against a different memcpy
+    implementation, causing test/build failures.
+    
+    Fixes: TIFSMCU-6024
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/pke/tifs_pke4_random.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit 9fcb51d6109b49aa73f4c59316212dfaffebf631
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Wed Aug 19 12:36:17 2026 +0530
+
+    am263x/am263px: PKA: Add support for DHKE
+    
+    - Add implementation for ECpMultiply API
+    - Add support for ECDH shared secret generation
+    - Add supoort for ECDSA public and private key generation
+    - Add support to generate random key in the given range
+    - Add support to ECDSASign to generate random key if not provided
+    
+    Fixes: TIFSMCU-6022, TIFSMCU-6023
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/crypto/pka/pka.c             | 391 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--
+ drivers/crypto/pka/pka.h             |   6 ++
+ drivers/crypto/pke/hw_include/pke_hw |   2 +-
+ 3 files changed, 388 insertions(+), 11 deletions(-)
+
+commit 969b3c040d17f7eeba828035588e18884666851f
+Author: Arush Pant <a-pant@ti.com>
+Date:   Mon Sep 7 18:03:55 2026 +0530
+
+    all_soc: sipc: Update driver
+    
+    - Update driver to address HIS,
+      MISRA-C and CERT-C issues.
+    
+    Fixes: TIFSMCU-6020
+    
+    Signed-off-by: Arush Pant <a-pant@ti.com>
+
+ drivers/hsmclient/hsmclient.c               | 7 +++++--
+ drivers/secure_ipc_notify/sipc_notify.h     | 4 ++--
+ drivers/secure_ipc_notify/sipc_notify_src.c | 6 +++---
+ 3 files changed, 10 insertions(+), 7 deletions(-)
+
+commit 691ce314e023de0558a0634e60b85d1af74eb1b4
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Sat Sep 5 13:44:07 2026 +0530
+
+    am26x: PKA: Fix MISRA-C issue
+    
+    - Modify the check to the correct size value
+    
+    Fixes: TIFSMCU-6017
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/crypto/pka/pka.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 64b5c9276c8055fd6b9913c4212376cf2e10f8e3
+Author: Arush Pant <a-pant@ti.com>
+Date:   Sat Sep 5 14:13:25 2026 +0530
+
+    all_soc: sipc: Update driver
+    
+    - Update driver to address HIS,
+      MISRA-C and CERT-C issues.
+    
+    Fixes: TIFSMCU-6020
+    
+    Signed-off-by: Arush Pant <a-pant@ti.com>
+
+ drivers/secure_ipc_notify/sipc_notify_mailbox.h         | 19 ++++---------
+ drivers/secure_ipc_notify/sipc_notify_src.c             | 82 ++++++++++++++++++++++++++++++---------------------------
+ drivers/secure_ipc_notify/sipc_notify_src.h             |  2 +-
+ drivers/secure_ipc_notify/soc/am261x/sipc_notify_cfg.c  |  9 +++++--
+ drivers/secure_ipc_notify/soc/am263px/sipc_notify_cfg.c | 13 +++++++--
+ drivers/secure_ipc_notify/soc/am263x/sipc_notify_cfg.c  | 13 +++++++--
+ drivers/secure_ipc_notify/soc/am273x/sipc_notify_cfg.c  |  2 +-
+ drivers/secure_ipc_notify/soc/f29h85x/sipc_notify_cfg.c |  9 +++++--
+ 8 files changed, 86 insertions(+), 63 deletions(-)
+
+commit fba61b2b4ec7ea17c96418829c3a00a3284e76a4
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Thu Sep 3 10:59:17 2026 +0530
+
+    am26xx: Bug: Fix RTI and WD Timer
+    
+    - Modify the struct in asym_crypt to match their definition
+      in other examples and test cases
+    
+    Fixes: TIFSMCU-5992
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/crypto/asym_crypt.h | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 771c53bf47086980efff7c7ce18a1c125e0d940c
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Tue Sep 1 20:13:29 2026 +0530
+
+    all socs: Bug: Fix prime curve struct
+    
+    - Modify the structure to be in proper order so that the
+      generator point comes last
+    
+    Fixes: TIFSMCU-5983
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/crypto/asym_crypt.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 0b38db4c0126bebffacea99b699a4a876111ed99
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Thu Aug 27 12:20:49 2026 +0530
+
+    am26xxx: hsmclient/utils: Skip FW update status parse
+    
+    Guard the HSM/SBL/C29 CPU1/CPU3 firmware update status
+    fields in HsmClient_parseDeviceConfig() behind
+    SOC_F29H85X/SOC_F29P32X:
+    - Skip parsing those fields on am26xx devices, advancing
+      the index past the reserved values instead
+    - These fields are not applicable on am26xx, matching the
+      reserved indices returned by the server-side
+      hsm_device_config.c change
+    
+    Fixes: TIFSMCU-5966
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/hsmclient/utils/hsmclient_utils.c | 140 +++++++++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 79 insertions(+), 61 deletions(-)
+
+commit bfe01c6eb99477bd2f4a7dcf6d57d58f884fb2be
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Fri Aug 28 18:17:09 2026 +0530
+
+    f29xx: quality: Fix MISRA-C issues
+    
+    - pke: Check handle/cp/k for NULL before
+      dereference in SM2DSA entry
+      points, compare PKA_isBigIntZero() result
+      explicitly against success instead of
+      using it directly
+    - dthe: Fix the array size, add support for
+      shifting 1UL instead of 1U, structure
+      rearranged.
+    
+    Fixes: TIFSMCU-5914
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/dthe/dthe.h     |  2 +-
+ drivers/crypto/dthe/dthe_sm3.c |  2 +-
+ drivers/crypto/dthe/dthe_sm3.h |  4 ++--
+ drivers/crypto/pke/pke.c       | 30 +++++++++++++++++++-----------
+ 4 files changed, 23 insertions(+), 15 deletions(-)
+
+commit 08a046821c214cf1df740a7196fbcd4e88ae18f7
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Fri Aug 28 13:03:44 2026 +0530
+
+    am26xx/f29xx: quality: Fix MISRA/CERT-C and coverage issues
+    
+    - dthe/sha: Add DTHE_SHA_validateMaxDataLen()
+      overflow guard for SHA256/512, rejecting
+      dataLenBytes that would truncate numBlocks
+      to uint16_t, called from SHA and HMAC-SHA
+      compute entry points
+    - dthe: Fix MISRA parameter issues in
+      DTHE_open/DTHE_close and executeInitPhase:
+      use a local tempHandle instead of mutating
+      the parameter, mark config as const, and
+      drop a redundant assert
+    - rng: Suppress a dead-store warning on
+      the failure-path status assignment
+    - dthe/rtdma: Extract
+      RTDMA_selectTxChannelParams() from
+      RTDMA_Config_TxChannel() to keep nesting
+      within the HIS Metrics limit, plus
+      follow-up refactor/cleanup passes on the
+      same file
+    - pke: Validate RSA/ECDSA/EdDSA word-count
+      fields (n[0]/e[0]/h[0]) against max length
+      before scaling to a byte size, guard
+      optional nonce/curve pointers before
+      dereference, skip EdDSA key clamping when
+      the private-key hash callback fails, fix
+      the PKE_isBigIntZero parameter bound, add
+      a missing else branch, clamp the PKE
+      random length, and apply subsequent
+      MISRA/CERT-C touch-ups across pke.c and
+      tifs_pke4_random.c
+    - pka: Check handle/cp/k for NULL before
+      dereference in RSA/ECDSA/EdDSA entry
+      points, compare PKA_isBigIntZero() result
+      explicitly against success instead of
+      using it directly
+    - hsmclient: Fix the am273x build issue
+    - tools: Update the signing script to add
+      the mandatory keyring extension for the
+      f29x family of SoCs, and ignore it for
+      the am26x family
+    
+    Fixes: TIFSMCU-5914
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/asym_crypt.h                |  12 +++---
+ drivers/crypto/dthe/dma.h                  |   2 +-
+ drivers/crypto/dthe/dma/rtdma/dthe_rtdma.c | 145 ++++++++++++++++++++++++++++++++++++++-------------------------------
+ drivers/crypto/dthe/dthe.c                 |   4 +-
+ drivers/crypto/dthe/dthe_sm3.h             |   4 +-
+ drivers/crypto/dthe/dthe_sm4.c             |   4 +-
+ drivers/crypto/pke/pke.c                   |  53 +++++++++++++++----------
+ 7 files changed, 127 insertions(+), 97 deletions(-)
+
+commit f0306612a31b218ab16146a265a7073794b45556
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Wed Aug 26 22:55:04 2026 +0530
+
+    all_soc: tools: update signing script
+    
+    - Update signing script to add mandatory
+      keyring extension for f29x family of
+      SOCs and ignore for am26x family of
+      SOCs.
+    
+    Fixes: TIFSMCU-5965
+    
+    Signed-off-by: Arush Pant <a-pant@ti.com>
+
+ tools/boot/signing/mcu_rom_image_gen.py | 54 ++++++++++++++++++++++++++++++++++++------------------
+ 1 file changed, 36 insertions(+), 18 deletions(-)
+
+commit b321efc7d429096e72931f817672a668b685b35e
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Mon Aug 24 23:58:52 2026 +0530
+
+    am26xx/f29xx: dthe/sha: Guard max data len
+    
+    - Add DTHE_SHA_validateMaxDataLen()
+      overflow guard for SHA256/512
+    - Reject dataLenBytes that would
+      truncate numBlocks to uint16_t
+    - Called from SHA and HMAC-SHA
+      compute entry points
+    
+    Fixes: TIFSMCU-5914
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/dthe/dthe_sha.c        | 65 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ drivers/crypto/pke/tifs_pke4_random.c |  1 -
+ 2 files changed, 65 insertions(+), 1 deletion(-)
+
+commit fe158a3b918e2ff817d510cb4568905789f9bff8
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Mon Aug 24 23:58:25 2026 +0530
+
+    am26xx/f29xx: dthe: Fix MISRA param issues
+    
+    - DTHE_close: use local tempHandle
+      instead of modifying parameter
+    - DTHE_open/close: drop redundant
+      DebugP_assert on config->attrs
+    - executeInitPhase: mark config
+      param as const (not modified)
+    
+    Fixes: TIFSMCU-5825
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/dthe/dthe.c     | 7 +++----
+ drivers/crypto/dthe/dthe_aes.c | 4 ++--
+ 2 files changed, 5 insertions(+), 6 deletions(-)
+
+commit e5ab11dc570be97c5dd04dd4ca790d8b26c0a587
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Mon Aug 24 23:58:20 2026 +0530
+
+    am26xx/f29xx: rng: Suppress dead store warn
+    
+    - Add (void)status after the
+      final failure-path assignment
+    - Suppresses a static-analysis
+      dead-store finding on status
+    
+    Fixes: TIFSMCU-5937
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/rng/rng.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 1e2a3fdcdf1da4e83422c59532a466a7b527c582
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Mon Aug 24 23:58:15 2026 +0530
+
+    f29h85x: dthe/rtdma: Reduce TX channel nesting
+    
+    - Extract RTDMA_selectTxChannelParams()
+      from RTDMA_Config_TxChannel()
+    - Keeps nesting depth within HIS
+      Metrics limit for the function
+    - No functional change, pure
+      refactor of param selection
+    
+    Fixes: TIFSMCU-5938
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/dthe/dma/rtdma/dthe_rtdma.c | 173 ++++++++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 101 insertions(+), 72 deletions(-)
+
+commit c6d9afdc30ac7d1b552a51d164921070f4a383b0
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Tue Aug 25 18:13:21 2026 +0530
+
+    am273x: hsmclient: Fix the build issue of am273x
+    
+    Fixes: TIFSMCU-5962
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/hsmclient/hsmclient.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 4c6eec68699bb859c131049e0a452520624dbb71
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Fri Jul 31 17:22:09 2026 +0530
+
+    f29h85x: crypto/pke: Fix MISRA/CERT-C violations in RSA/ECDSA/EdDSA
+    
+    Harden the PKE asymmetric-crypto driver against violations found
+    during MISRA/CERT-C review:
+    - AsymCrypt_RSAPrivate/RSAPublic/RSAKeyGenPrivate: validate the n[0]/
+      e[0] word-count fields against RSA_MAX_LENGTH before scaling to a
+      byte size, rejecting out-of-range values instead of silently
+      wrapping pubmod_bitsize/exp_size
+    - AsymCrypt_ECDSASign/Verify: only dereference the optional nonce
+      k[0U] when k is non-NULL, and clamp the hash word-count h[0U]
+      against ECDSA_MAX_LENGTH before scaling to hashSize
+    - AsymCrypt_SM2DSASign: only dereference the optional nonce k[0U]
+      when k is non-NULL
+    - AsymCrypt_EddsaVerify: read cri_pke_get_curve_length() only after
+      confirming curve is non-NULL, removing a possible NULL dereference
+    - AsymCrypt_EddsaGetPubKey: skip key-clamping and PKE phase1/phase2
+      calls when the private-key SHA-512 hash callback fails, instead of
+      continuing on invalid hash data
+    - AsymCrypt_EddsaSign: add the missing PKE_FAULT_STATUS else-branch
+      and move status derivation inside the guarded block, matching
+      MISRA's no-implicit-else rule
+    - PKE_isBigIntZero: fix its parameter array bound, which was declared
+      as RSA_MAX_LENGTH while every caller passes ECDSA_MAX_LENGTH-sized
+      arrays
+    - Mark unused handle/index/cp parameters with (void) casts, drop
+      unused extern numPrimeCurves/primeCurves declarations, and replace
+      compound bitwise-assign operators with explicit assignments
+    - cri_pke_get_true_random(): propagate RNG_read() failures via the
+      return value instead of discarding them with (void)
+    - cri_pke_get_pseudo_random(): clamp the minimum PKE length against
+      R_MAU_MAX_LEN so it cannot exceed the driver's maximum length
+    
+    Fixes: TIFSMCU-5945
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/pke/pke.c              | 23 +++++++++++++----------
+ drivers/crypto/pke/tifs_pke4_random.c | 22 ++++++++++++++++++++--
+ 2 files changed, 33 insertions(+), 12 deletions(-)
+
+commit 403f583d8314d8a72886c06af3946470c634ffa6
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Mon Aug 24 20:35:21 2026 +0530
+
+    am263x/am263px: pka: Fix NULL deref before check
+    
+    - Check handle == NULL before dereferencing
+      it in RSA/ECDSA/EdDSA entry points
+    - Handle was deref'd before the NULL check,
+      causing a crash on NULL handle
+    - Add cp/k NULL guards before dereference
+      in ECDSASign() and ECDSAVerify()
+    - Compare PKA_isBigIntZero() result against
+      ASYM_CRYPT_RETURN_SUCCESS explicitly
+    
+    Fixes: TIFSMCU-5945
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/pka/pka.c       | 247 +++++++++++++++++++++++++++++++++++++++++++--------------------------------------
+ drivers/crypto/pka/pka_eddsa.c |  32 +++++++----
+ 2 files changed, 150 insertions(+), 129 deletions(-)
+
+commit bf9888226c82d64c1617ce831abfc84c6634caff
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Fri Jul 31 17:22:09 2026 +0530
+
+    f29h85x: SC: misra
+    
+    -update crypto files to fix misra and cert c violations
+    
+    Fixes: TIFSMCU-5697
+    
+    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
+
+ drivers/crypto/pke/pke.c              | 179 +++++++++++++++++++++++++++++++++++++++++++-------------------------------
+ drivers/crypto/pke/tifs_pke4_random.c | 137 ++++++++++++++++++++++++++++++++------------------------
+ 2 files changed, 184 insertions(+), 132 deletions(-)
+
+commit 4324de33611bc14f0119ee64f6c90752b09c92cb
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Sat Aug 22 11:20:06 2026 +0530
+
+    f29h85x: dthe/rtdma: Guard against DMA burst-size overflow
+    
+    Reject blockSize values above RTDMA_MAX_BLOCK_SIZE_WORDS in the SHA
+    and SM3 branches of RTDMA_Config_TxChannel(), since burstSize is
+    computed as blockSize*RTDMA_WORD_SIZE and narrowed into a uint16_t
+    DMA_configBurst() argument and would silently truncate otherwise.
+    
+    Also cast transferSize/numBlocks to uint32_t before passing to
+    DMA_configTransfer(), and mark the unused handle parameter in
+    RTDMA_WaitForTxTransfer()/RTDMA_WaitForRxTransfer() with (void) to
+    silence unused-parameter warnings.
+    
+    Fixes: TIFSMCU-5938
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/dthe/dma/rtdma/dthe_rtdma.c | 69 ++++++++++++++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 46 insertions(+), 23 deletions(-)
+
+commit c4934454e73c900e1bdf4e30fb3a4c6a72894df3
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Sat Aug 22 11:19:58 2026 +0530
+
+    f29h85x: dthe/sm4: Guard against DMA block-count overflow
+    
+    Reject SM4 input buffers larger than DTHESM4_MAX_DATA_LEN_BYTES in
+    DTHE_SM4_execute(), since the remaining block count is later narrowed
+    to a uint16_t DMA block count and would silently truncate for
+    oversized inputs.
+    
+    Also relax DTHE_SM4_setKey()/DTHE_SM4_setIV() to take const uint32_t*
+    instead of const uint32_t[4] and drop the redundant (uintptr_t) cast
+    when assigning attrs->sm4BaseAddr to ptrSm4Regs, since the base
+    address is already a pointer-sized type.
+    
+    Fixes: TIFSMCU-5936
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/dthe/dthe_sm4.c | 737 ++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 434 insertions(+), 303 deletions(-)
+
+commit e6725e490608d1aea471a15dcb930f3e47551545
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Sat Aug 22 11:19:49 2026 +0530
+
+    f29h85x: dthe/sm3: Guard against DMA block-count overflow
+    
+    Reject SM3 input buffers larger than DTHE_SM3_MAX_DATA_LEN_BYTES in
+    DTHE_SM3_compute(), since the intermediate block count is later
+    narrowed to a uint16_t DMA block count and would silently truncate
+    for oversized inputs. Tighten the intermediate-block DMA condition
+    to numBlocks > 2 so that the subsequent (numBlocks - 2ULL) subtraction
+    cannot underflow.
+    
+    Also make gDTHESM3InProgress and gDTHESM3digestCount static, since
+    they are only used within this file, and widen the 8*length shift
+    mask to ULL to avoid a 32-bit truncation before the bitwise AND.
+    
+    Fixes: TIFSMCU-5935
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/dthe/dthe_sm3.c | 515 +++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 310 insertions(+), 205 deletions(-)
+
+commit 0eaa2b619b3cb14b04c81571c4b278ad92a4f6f9
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Sat Aug 22 11:19:39 2026 +0530
+
+    am26xx/f29xx: rng: Remove redundant int32_t casts in DebugP_assert
+    
+    Remove unnecessary (int32_t) casts on boolean expressions passed to
+    DebugP_assert() in RNG_open(), RNG_close(), and RNG_read(), and wrap
+    the TRNG_INTACK_READY_ACK_MASK shift operand in an explicit uint32_t
+    cast to avoid implicit integer promotion.
+    
+    These are MISRA/CERT compliance cleanups with no functional change.
+    
+    Fixes: TIFSMCU-5937
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/rng/rng.c | 28 ++++++++++++++++------------
+ 1 file changed, 16 insertions(+), 12 deletions(-)
+
+commit 8400e7fdb499ba5d4f18113c436edc7e5f4c83e5
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Fri Aug 14 20:24:47 2026 +0530
+
+    all soc: submodule: Update security_common submodule
+    
+    Update security_common submodule to pull in:
+    - am26xx/f29xx: dthe-sha: Reduce complexity for HIS metrics
+    - all_soc: device_config: Update service
+    - all soc: keyring: Update tooling
+    - am26xx/f29x: Crypto: Modify Hsmclient
+    - f29x/am26xx: Misra: Fix issues
+    - f29h85x: misra: misra checkers
+    - am26xx/f29xx: crypto/util: Add DigestInfo to PKCS#1 v1.5 sign padding
+    
+    Fixes: TIFSMCU-5914
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/dthe/dthe_sha.c | 714 ++++++++++++++++++++++++++++++++++++++++++---------------------------------------
+ 1 file changed, 370 insertions(+), 344 deletions(-)
+
+commit 6f727be834eb46eba715e9d0f0326ec3d38ade42
+Author: Arush Pant <a-pant@ti.com>
+Date:   Thu Aug 20 17:04:36 2026 +0530
+
+    all_soc: tools: update signing script
+    
+    - Update signing script to add support
+      for adding sign and encrypt key index
+    
+    Fixes: TIFSMCU-5831
+    
+    Signed-off-by: Arush Pant <a-pant@ti.com>
+
+ tools/boot/signing/mcu_appimage_x509_cert_gen.py |  2 +-
+ tools/boot/signing/mcu_rom_image_gen.py          | 38 ++++++++++++++++++++++++++++++++++++++
+ tools/keyring_cert/keyring_cert_gen.py           |  2 +-
+ 3 files changed, 40 insertions(+), 2 deletions(-)
+
+commit 14af286bee172c7bb4d07688632f736b5c85792c
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Wed Aug 19 15:35:02 2026 +0530
+
+    am26xx/f29x: Bug: Fix SIPC and doxygen warning
+    
+    - Add a check for client id
+    - Add documentation for DTHE_AES_TransferCtx_t
+    
+    Fixes: TIFSMCU-4337
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/crypto/dthe/dthe_aes.c              | 22 +++++++++++-----------
+ drivers/secure_ipc_notify/sipc_notify_src.c |  2 +-
+ 2 files changed, 12 insertions(+), 12 deletions(-)
+
+commit a046ba23b4fd2fd7183fe6d108a029aa02d48254
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Thu Aug 20 15:57:05 2026 +0530
+
+    am26xx: hsm/client: Fix cache flush safety for HSM IPC structs
+    
+    - Minor fix of dereferencing
+    
+    Fixes: TIFSMCU-2901, TIFSMCU-2903
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/hsmclient/hsmclient.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 180a18b652336eecfd53147ecf74baab327821cd
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Sun Aug 9 18:16:03 2026 +0530
+
+    am26xx/f29xx: dthe/aes: Reduce complexity for HIS metrics
+    
+    Refactor dthe_aes.c to shrink function size and cyclomatic
+    complexity flagged by HIS metrics:
+    - Replace the if-else chain in DTHE_AES_controlMode with a
+      switch/case on algoType
+    - Bundle the working state used across the block-transfer
+      helpers into a new DTHE_AES_TransferCtx_t struct
+    - Split DTHE_AES_execute's init phase into
+      DTHE_AES_validateExecuteParams/configureKeyMuxAndIV/
+      programKeys/configureOperationAndIV/sendAADData, driven by
+      DTHE_AES_executeInitPhase
+    - Split DTHE_AES_execute's data-transfer phase into
+      DTHE_AES_prepareTransferBuffers/reserveXTSCtsBlock/
+      transferFullBlocks/processCtsLastBlock/finalizeBlockData,
+      driven by DTHE_AES_executeDataPhase
+    
+    These are non-functional refactors; behavior is unchanged.
+    
+    Fixes: TIFSMCU-5825
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/dthe/dma.c      |    2 +-
+ drivers/crypto/dthe/dthe_aes.c | 1640 ++++++++++++++++++++++++++++++++++++++++++++------------------------------------
+ 2 files changed, 902 insertions(+), 740 deletions(-)
+
+commit dc4f71996e718f41f1668bfa1d1bc30553d97f4f
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Sun Aug 9 17:36:05 2026 +0530
+
+    am26xx/f29xx: crypto/util: Reduce complexity for HIS metrics
+    
+    Refactor crypto_util.c/.h to shrink parameter counts, cyclomatic
+    complexity, and global variable count flagged by HIS metrics:
+    - Move SHA DigestInfo prefix tables from file scope into
+      Crypto_PKCSPaddingForSign to remove unneeded globals
+    - Bundle msgHash/salt/saltLenInBytes into a new
+      Crypto_PSSSaltInfo struct to cut Crypto_PSSPaddingForSign's
+      parameter count
+    - Split Crypto_PSSVerify into Validate/RecoverDB/CheckHash
+      helpers sharing a Crypto_PSSVerifyCtx struct to lower its
+      cyclomatic complexity
+    - Use local pointers instead of mutating the dest/src
+      parameters in Crypto_Uint8ToUint32/Crypto_Uint32ToUint8
+    - Add explicit bit-width masks before narrowing casts in the
+      PSS padding/verify shift-and-mask operations
+    
+    These are non-functional refactors; behavior is unchanged.
+    
+    Fixes: TIFSMCU-5824
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/crypto_util.c | 414 ++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------
+ drivers/crypto/crypto_util.h |  31 +++++--
+ 2 files changed, 285 insertions(+), 160 deletions(-)
+
+commit 8757390ba6f90f8f16770ce0e9c60f228966b8e4
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Thu Aug 20 12:57:31 2026 +0530
+
+    am26xx: hsm/client: Fix cache flush safety for HSM IPC structs
+    
+    - Add HSMCLIENT_CACHE_ENABLE flag to conditionally disable cache ops
+    
+    Fixes: TIFSMCU-2901, TIFSMCU-2903
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/hsmclient/hsmclient.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+commit 7b6d05deb0237233383f0fe5faad16f693f8f470
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Mon Jul 6 15:03:46 2026 +0530
+
+    am26xx: hsm/client: Fix cache flush safety for HSM IPC structs
+    
+    - Add HSMCLIENT_CACHE_ENABLE flag to conditionally disable cache ops
+    - Add HsmClient_prepareHostBuff() API; driver holds extern reference to
+      gHsmClientHostBuff (defined in SysConfig-generated hsmclient_config.c,
+      32-byte aligned in hsm_host_buff section)
+    - Update all HSM client call sites across repo to use
+      HsmClient_prepareHostBuff() before each service invocation
+    
+    Fixes: TIFSMCU-2901, TIFSMCU-2903
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/hsmclient/hsmclient.c | 1561 ++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------
+ drivers/hsmclient/hsmclient.h |   43 ++-
+ 2 files changed, 996 insertions(+), 608 deletions(-)
+
+commit 79a2506244096e174c1a0573d8011dc453798e96
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Sat Jul 4 10:41:22 2026 +0530
+
+    am26xx: hsm/client: Fix off-by-one in GET_CACHE_ALIGNED_SIZE macro
+    
+    Fix two bugs in the GET_CACHE_ALIGNED_SIZE macro used to compute
+    cache-aligned sizes for CacheP_wbInv and CacheP_inv call sites:
+    
+    - Replace `+ CacheP_CACHELINE_ALIGNMENT` with
+      `+ (CacheP_CACHELINE_ALIGNMENT - 1U)` to fix an off-by-one error.
+      The previous implementation over-flushed by one extra cache line
+      (32 bytes on AM261x) whenever the input size was already a
+      multiple of the cache line alignment.
+    - Parenthesize the macro argument `x` to guard against
+      operator-precedence bugs when callers pass compound expressions.
+    
+    Fixes: TIFSMCU-5470
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/hsmclient/hsmclient.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9e8eb6f1b07de967e9e728d60ee631af1b3bbfa7
+Author: Arush Pant <a-pant@ti.com>
+Date:   Tue Aug 18 14:36:47 2026 +0530
+
+    all_soc: device_config: Update service
+    
+    - Update device configuration for
+      keyring module to include number
+      of asymmetric private keys and
+      custom data availability fields.
+    
+    Fixes: TIFSMCU-5899
+    
+    Signed-off-by: Arush Pant <a-pant@ti.com>
+
+ drivers/hsmclient/hsmclient.h             | 14 ++++++++------
+ drivers/hsmclient/utils/hsmclient_utils.c | 66 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 73 insertions(+), 7 deletions(-)
+
+commit c81a58779e1dcce43f4a68d88baafdbb1b11e4ee
+Author: Arush Pant <a-pant@ti.com>
+Date:   Wed Jul 29 05:41:25 2026 +0530
+
+    all soc: keyring: Update tooling
+    
+    - Update keyring_cert_gen.py to generate
+      key blob for private asymmetric keys
+      and custom data.
+    - Update keys.json to incorporate private
+      asymmetric keys and custom data.
+    
+    Fixes: TIFSMCU-5831
+    
+    Signed-off-by: Arush Pant <a-pant@ti.com>
+
+ tools/keyring_cert/keyring_cert_gen.py | 311 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----
+ tools/keyring_cert/keys.json           | 150 +++++++++++++++++++----------------
+ 2 files changed, 381 insertions(+), 80 deletions(-)
+
+commit 8d922319f95736f0d9cc42bada6000012b9efdc0
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Wed Aug 12 17:04:55 2026 +0530
+
+    am26xx/f29x: Crypto: Modify Hsmclient
+    
+    - Add response structure in HsmClient
+    
+    Fixes: TIFSMCU-5713
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/hsmclient/hsmclient.c | 42 ++++++++++++++++++++++++++++--------------
+ drivers/hsmclient/hsmclient.h |  3 +++
+ 2 files changed, 31 insertions(+), 14 deletions(-)
+
+commit 01ca54e5a968cb6fd2984efd50cc1735e720240f
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Tue Aug 4 00:50:03 2026 +0530
+
+    f29x/am26xx: Misra: Fix issues
+    
+    - Fix misra issues for crypto module
+    
+    Fixes: TIFSMCU-5713
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/crypto/dthe/dthe_aes.c | 24 ++++++++++--------------
+ drivers/crypto/dthe/dthe_aes.h | 22 +++++++++++-----------
+ drivers/crypto/dthe/dthe_sha.c | 20 ++++++++++----------
+ drivers/crypto/rng/rng.h       |  2 +-
+ drivers/hsmclient/hsmclient.h  |  2 +-
+ 5 files changed, 33 insertions(+), 37 deletions(-)
+
+commit 9087342d86ded863cdc6ed1b3d52d54c4c35e78c
+Author: Seema.Khatib <seema.khatib@ti.com>
+Date:   Fri Jul 3 12:55:44 2026 +0530
+
+    f29h85x: misra: misra checkers
+    
+    -update dthe files to fix misra and cert c issues
+    
+    Fixes: TIFSMCU-5623
+    
+    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
+
+ drivers/crypto/crypto_util.c               |  16 +++++-----
+ drivers/crypto/dthe/dma.c                  | 112 +++++++++++++++++++++------------------------------------------------
+ drivers/crypto/dthe/dma.h                  |   8 ++---
+ drivers/crypto/dthe/dma/edma/dthe_edma.c   |   4 +--
+ drivers/crypto/dthe/dma/edma/dthe_edma.h   |   4 +--
+ drivers/crypto/dthe/dma/rtdma/dthe_rtdma.c |  22 +++++++-------
+ drivers/crypto/dthe/dma/rtdma/dthe_rtdma.h |   4 +--
+ drivers/crypto/dthe/dthe.c                 |   9 +++---
+ drivers/crypto/dthe/dthe_aes.c             |  24 +++++++--------
+ drivers/crypto/dthe/dthe_sha.c             |  20 ++++++-------
+ drivers/crypto/dthe/dthe_sm3.c             |  31 +++++++++++--------
+ drivers/crypto/dthe/dthe_sm3.h             |   2 +-
+ drivers/crypto/dthe/dthe_sm4.c             |   6 ++--
+ drivers/crypto/pka/pka.c                   |   4 +--
+ 14 files changed, 116 insertions(+), 150 deletions(-)
+
+commit f09dfac235c9e10618533fca5e50848dc66421e0
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Thu Jul 30 23:36:23 2026 +0530
+
+    am26xx/f29xx: crypto/util: Add DigestInfo to PKCS#1 v1.5 sign padding
+    
+    Crypto_PKCSPaddingForSign built EM as 0x00||0x01||PS||0x00||Hash,
+    omitting the ASN.1 DER DigestInfo header required by EMSA-PKCS1-v1_5
+    (RFC 8017 Section 9.2). Cert_Auth_RSAVerify expects the DigestInfo
+    header, so signatures produced by this helper did not match the
+    format its callers rely on for verification.
+    
+    - Add DigestInfo tables for SHA-1/256/384/512
+    - Rewrite the function to emit the full RFC 8017 Section 9.2 encoding
+    - Add HASH_ALG_SHA2_384 to support SHA-384 padding
+    - Remove Crypto_PKCSPaddingForMessage: EME-PKCS1-v1_5 encryption
+      padding with zero callers in the codebase; RSA encryption examples
+      use raw/unpadded RSA instead
+    
+    Fixes: TIFSMCU-5721, TIFSMCU-5722
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/crypto_util.c | 321 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------
+ drivers/crypto/crypto_util.h | 109 ++++++++++++++++++++++++++--
+ 2 files changed, 384 insertions(+), 46 deletions(-)
+
+commit e1d2b0287cfd2071b61c207140bfc48707b98cef
+Author: Seema.Khatib <seema.khatib@ti.com>
+Date:   Tue Jul 28 19:43:23 2026 +0530
+
+    f29h85x: SC: misra
+    
+    -update crypto files to fix misra and cert c violations
+    
+    Fixes: TIFSMCU-5697
+    
+    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
+
+ drivers/crypto/crypto_util.c                | 1 +
+ drivers/crypto/dthe/dthe.c                  | 1 +
+ drivers/secure_ipc_notify/sipc_notify_src.c | 8 ++++----
+ 3 files changed, 6 insertions(+), 4 deletions(-)
+
+commit 3f5443787ed97b6cdbcf8d0ab33fac993682141d
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Tue Jul 28 20:25:52 2026 +0530
+
+    f29x/am26xx: Fix: MISRA issues for RNG
+    
+    - Fix MISRA issues for RNG module
+    
+    Fixes: TIFSMCU-5711
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/crypto/rng/rng.c | 33 ++++++++++++++++-----------------
+ 1 file changed, 16 insertions(+), 17 deletions(-)
+
+commit d429c264f348d53c75885f670ca6f308493e0418
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Tue Jul 21 14:17:08 2026 +0530
+
+    am26xx/f29x: Tools: Modify keyring cert tooling
+    
+    - Modify keyring certificate generation script tool
+    
+    Fixes: TIFSMCU-5627
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ tools/keyring_cert/keyring_cert_gen.py | 35 +++++++++++++++++++++++------------
+ tools/keyring_cert/keys.json           | 13 +++++++++++--
+ tools/keyring_cert/readme.md           | 16 ++++++++++++++--
+ 3 files changed, 48 insertions(+), 16 deletions(-)
+
+commit 3c22ab38330af29af682b9f6ca1ed65195db7d55
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Tue Jul 14 18:36:28 2026 +0530
+
+    f29x: Client: Add keyring to device config
+    
+    - Add keyring support to device config
+    
+    Fixes: TIFSMCU-5628
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/hsmclient/hsmclient.h | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+commit 9d79aef2b16c73042a799be3dbde3e3d75b4f1e3
+Author: Gurvir Singh <gurvir@ti.com>
+Date:   Mon Jun 29 18:11:47 2026 +0530
+
+    f29h85x: hsm_client: add new service
+    
+    add new service to enable Failure Analysis Transition
+    
+    Fixes: TIFSMCU-5573
+    
+    Signed-off-by: Gurvir Singh <gurvir@ti.com>
+
+ drivers/hsmclient/hsmclient.c     | 70 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ drivers/hsmclient/hsmclient.h     | 21 +++++++++++++++++++++
+ drivers/hsmclient/hsmclient_msg.h |  2 ++
+ 3 files changed, 93 insertions(+)
+
+commit 0503c69d02cc904c39545a9fa07e173a8e4d5db0
+Author: Shashank B <s-b1@ti.com>
+Date:   Thu Jul 16 15:42:55 2026 +0530
+
+    f29h85x: script: modify destination
+    
+    -change destination of signing scripts
+    
+    Fixes: TIFSMCU-5696
+    
+    Signed-off-by: Shashankb <s-b1@ti.com>
+
+ updateC29SDK.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 

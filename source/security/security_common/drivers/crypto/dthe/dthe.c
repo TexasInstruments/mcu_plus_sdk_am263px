@@ -86,9 +86,8 @@ DTHE_Handle DTHE_open(uint32_t index)
     else
     {
         config = &gDtheConfig[index];
-        DebugP_assert((NULL_PTR != config->attrs));
         attrs = config->attrs;
-        if(TRUE == attrs->isOpen)
+        if(1U == attrs->isOpen)
         {
             /* Handle is already opened */
             status = DTHE_RETURN_FAILURE;
@@ -98,7 +97,7 @@ DTHE_Handle DTHE_open(uint32_t index)
 
     if(DTHE_RETURN_SUCCESS == status)
     {
-        attrs->isOpen = TRUE;
+        attrs->isOpen = 1U;
         handle = (DTHE_Handle) config;
         attrs->faultStatus = status;
     }
@@ -109,25 +108,29 @@ DTHE_Handle DTHE_open(uint32_t index)
          * is set to TRUE)
          */
         status = DTHE_close(handle);
+        (void)status;
     }
     return (handle);
 }
 
 DTHE_Return_t DTHE_close(DTHE_Handle handle)
 {
-    DTHE_Return_t  status       = DTHE_RETURN_FAILURE;
+    DTHE_Return_t       status  = DTHE_RETURN_FAILURE;
     DTHE_Config         *config = NULL;
     DTHE_Attrs          *attrs  = NULL;
+    DTHE_Handle          tempHandle = handle;
+    (void)tempHandle;
+
     if(handle != NULL)
     {
         config = (DTHE_Config *) handle;
-		if(config->attrs->isOpen != (uint32_t)FALSE)
+		if(config->attrs->isOpen != 0U)
 		{
 			attrs = config->attrs;
-			DebugP_assert((NULL_PTR != attrs));
-			attrs->isOpen = FALSE;
+			attrs->isOpen = 0U;
 			/* To disable module */
-			handle = NULL;
+			tempHandle = NULL;
+			(void)tempHandle;
 			status  = DTHE_RETURN_SUCCESS;
 		}
 	}

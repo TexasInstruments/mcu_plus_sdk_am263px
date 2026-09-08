@@ -187,6 +187,13 @@ var group__DRV__HSMCLIENT__MODULE =
       [ "secureDebugStatus", "structDeviceConfigDebug__t.html#afafbd5e2704f2d36ac1e0afc883101d9", null ],
       [ "secureRegisterAccessStatus", "structDeviceConfigDebug__t.html#a00fdb92089cceabd4815e6c06ce7bf50", null ]
     ] ],
+    [ "DeviceConfigKeyring_t", "structDeviceConfigKeyring__t.html", [
+      [ "keyringImportCounter", "structDeviceConfigKeyring__t.html#addb2e20153fd2849c273787b1d2700b3", null ],
+      [ "numAsymmKeysImported", "structDeviceConfigKeyring__t.html#a4039f88761f96ad38fc7972043c3bd6a", null ],
+      [ "numSymmKeysImported", "structDeviceConfigKeyring__t.html#aa9bcfc8dc408b01b4eb1d0f4cae20392", null ],
+      [ "numAsymmPrivateKeysImported", "structDeviceConfigKeyring__t.html#a2aa47ab5ed3b086423c3449fd878a316", null ],
+      [ "customKeyDataPresent", "structDeviceConfigKeyring__t.html#af97a61ba198812f7a9b1ad401f8a3e45", null ]
+    ] ],
     [ "DeviceConfigRead_t", "structDeviceConfigRead__t.html", [
       [ "configType", "structDeviceConfigRead__t.html#a7e05796eb66be7f126bb6ddd9561106a", null ],
       [ "configData", "structDeviceConfigRead__t.html#ae0d95f7ff3c9a793d669e5705992bdb4", null ],
@@ -203,6 +210,7 @@ var group__DRV__HSMCLIENT__MODULE =
       [ "crcMsg", "structHsmMsg__t__.html#a3991bf21542bf41141ca53488830a87c", null ]
     ] ],
     [ "LABEL_AND_CONTEXT_LEN_MAX", "group__DRV__HSMCLIENT__MODULE.html#ga2cbcf82afe6a7d15348511aba221038e", null ],
+    [ "HSMCLIENT_HOST_BUFF_SIZE", "group__DRV__HSMCLIENT__MODULE.html#gab9ee39542de58322586ba87ac8b0264f", null ],
     [ "HSMRT_LOAD_NOT_REQUESTED", "group__DRV__HSMCLIENT__MODULE.html#gae70b88f1db290b0e6c2a39af4b08bac5", null ],
     [ "HSMRT_LOAD_REQUESTED", "group__DRV__HSMCLIENT__MODULE.html#ga638efa23dd93c2e8e4363f18346bef8d", null ],
     [ "HSMRT_LOAD_FAILED", "group__DRV__HSMCLIENT__MODULE.html#ga92d3271387e20dd0d7a19a1b75fd03a3", null ],
@@ -217,10 +225,12 @@ var group__DRV__HSMCLIENT__MODULE =
     [ "DEVICE_CONFIG_TYPE_SAFETY", "group__DRV__HSMCLIENT__MODULE.html#gaff7606fa68f0489756c927e5cfcdbf02", null ],
     [ "DEVICE_CONFIG_TYPE_SECURITY", "group__DRV__HSMCLIENT__MODULE.html#ga127f66460806144504d3b2a2ea3ad2cd", null ],
     [ "DEVICE_CONFIG_TYPE_DEBUG", "group__DRV__HSMCLIENT__MODULE.html#ga1beee330807cd054fc7adeabb1f09921", null ],
+    [ "DEVICE_CONFIG_TYPE_KEYRING", "group__DRV__HSMCLIENT__MODULE.html#ga0bde17ce9e8212e97aa24f224b55d265", null ],
     [ "DEVICE_CONFIG_TYPE_ALL", "group__DRV__HSMCLIENT__MODULE.html#ga18810511dc8421fbd24c634df97f7f0c", null ],
     [ "SIZE_OF_SAFETY_DEVICE_CONFIG", "group__DRV__HSMCLIENT__MODULE.html#ga0342b7b772b43474a2b05fa9209edc96", null ],
     [ "SIZE_OF_SECURITY_DEVICE_CONFIG", "group__DRV__HSMCLIENT__MODULE.html#ga6d3d50ffcb8e21556e33c4e0743ec349", null ],
     [ "SIZE_OF_DEBUG_DEVICE_CONFIG", "group__DRV__HSMCLIENT__MODULE.html#gac49c5318ff69dc65adedd4d2de8fa2fe", null ],
+    [ "SIZE_OF_KEYRING_DEVICE_CONFIG", "group__DRV__HSMCLIENT__MODULE.html#ga3216eaa401804d6578d7f3fe85033f68", null ],
     [ "HSM_MSG_GET_VERSION", "group__DRV__HSMCLIENT__MODULE.html#gadf3a90c05d8c1565e696412e009e54d5", null ],
     [ "HSM_MSG_BOOT_NOTIFY", "group__DRV__HSMCLIENT__MODULE.html#ga65e1efbec7ecc3f8a2c27e8a26b9ead0", null ],
     [ "HSM_MSG_GET_DEVICE_CONFIG", "group__DRV__HSMCLIENT__MODULE.html#ga87249521592344da697dfa65f684f460", null ],
@@ -254,6 +264,7 @@ var group__DRV__HSMCLIENT__MODULE =
     [ "HSM_MSG_FLASH_BANK_COPY", "group__DRV__HSMCLIENT__MODULE.html#ga9b9e4251d86003eb35eadb0f9712430a", null ],
     [ "HSM_MSG_FW_UPDATE_SECCFG", "group__DRV__HSMCLIENT__MODULE.html#ga961b6e9ba945d256aed207d40283f16f", null ],
     [ "HSM_MSG_BANK_SWAP", "group__DRV__HSMCLIENT__MODULE.html#ga51f48b5ecad8c29c9ed06e2a5bdfab59", null ],
+    [ "HSM_MSG_ENABLE_FA", "group__DRV__HSMCLIENT__MODULE.html#gaac2e7a5e4462d3ae02133255e9e9a801", null ],
     [ "HSM_MSG_CRYPTO_SERVICE", "group__DRV__HSMCLIENT__MODULE.html#ga53441a5d8285223de54f3ae2729a94e7", null ],
     [ "HSM_FLAG_AOP", "group__DRV__HSMCLIENT__MODULE.html#ga0842e3d812796be34207849e8dc8dc3a", null ],
     [ "HSM_FLAG_NAOP", "group__DRV__HSMCLIENT__MODULE.html#ga5f0c48b13ab8d657a61ff359466f16e8", null ],
@@ -313,12 +324,13 @@ var group__DRV__HSMCLIENT__MODULE =
     [ "HsmClient_firmwareUpdate_CodeVerify", "group__DRV__HSMCLIENT__MODULE.html#ga607526aad2aa236e8227e9c0f20fcd5c", null ],
     [ "HsmClient_VerifyROTSwitchingCertificate", "group__DRV__HSMCLIENT__MODULE.html#ga1ffcf953c8b05aabe050f14f0919fd23", null ],
     [ "HsmClient_UpdateKeyRevsion", "group__DRV__HSMCLIENT__MODULE.html#ga530b1603d591126ac346c31f30414f7d", null ],
+    [ "HsmClient_EnableFATransition", "group__DRV__HSMCLIENT__MODULE.html#gadd40318bdbd516da054ce2bc690c9f7f", null ],
     [ "HsmClient_configOTFARegions", "group__DRV__HSMCLIENT__MODULE.html#ga5ea570bc441bb6c6a9dff879b0600e27", null ],
     [ "HsmClient_readOTFARegions", "group__DRV__HSMCLIENT__MODULE.html#gae655894963d794110ea5de532102ef64", null ],
     [ "HsmClient_secCfgValidate", "group__DRV__HSMCLIENT__MODULE.html#ga6634bc2f8d0d9f5574111f6070838002", null ],
     [ "HsmClient_activeToDormantBankCopy", "group__DRV__HSMCLIENT__MODULE.html#ga2a4fabce99d63a311aab8352a9fe890b", null ],
     [ "HsmClient_SecCfgUpdate", "group__DRV__HSMCLIENT__MODULE.html#gabe2810b39dc269a55fcca419c65eb87c", null ],
     [ "HsmClient_getDeviceConfig", "group__DRV__HSMCLIENT__MODULE.html#gab86209b718b0ffd17871e0d1c5354a75", null ],
-    [ "HsmClient_CryptoService", "group__DRV__HSMCLIENT__MODULE.html#gaad4edba07fb1e870a576a281a48d1472", null ],
+    [ "HsmClient_CryptoService", "group__DRV__HSMCLIENT__MODULE.html#ga5d455e29e9539fbd6b0ceb3eaead24cd", null ],
     [ "HsmClient_runTimeBankSwap", "group__DRV__HSMCLIENT__MODULE.html#gaaa5ee846577c5404a103d3ee391c4fb6", null ]
 ];

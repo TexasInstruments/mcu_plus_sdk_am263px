@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -362,28 +362,30 @@ $(document).ready(function(){initNavTree('soc_8h_source.html',''); initResizable
 <div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160; </div>
 <div class="line"><a name="l00720"></a><span class="lineno"><a class="line" href="group__DRV__SOC__MODULE.html#gac7dc51d32812c7c6b5c2cd9e96a46c8c">  720</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__DRV__SOC__MODULE.html#gac7dc51d32812c7c6b5c2cd9e96a46c8c">SOC_sendSoftwareInterrupt</a>(uint16_t coreId);</div>
 <div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160; </div>
-<div class="line"><a name="l00723"></a><span class="lineno"><a class="line" href="group__DRV__SOC__MODULE.html#ga3d169293015dbfab92d8147d889c76c3">  723</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> int32_t <a class="code" href="group__DRV__SOC__MODULE.html#ga3d169293015dbfab92d8147d889c76c3">UART_IsBaseAddrValid</a>(uint32_t baseAddr)</div>
-<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;{</div>
-<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;    int32_t status = (int32_t)-3;</div>
+<div class="line"><a name="l00725"></a><span class="lineno"><a class="line" href="group__DRV__SOC__MODULE.html#gad6310819acab9fce44e1c851099afba7">  725</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__DRV__SOC__MODULE.html#gad6310819acab9fce44e1c851099afba7">SOC_enableVpp</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160; </div>
-<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;    <span class="keywordflow">if</span>(((baseAddr == CSL_UART0_U_BASE) ||</div>
-<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;        (baseAddr == CSL_UART1_U_BASE) ||</div>
-<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;        (baseAddr == CSL_UART2_U_BASE) ||</div>
-<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;        (baseAddr == CSL_UART3_U_BASE) ||</div>
-<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;        (baseAddr == CSL_UART4_U_BASE) ||</div>
-<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;        (baseAddr == CSL_UART5_U_BASE)))</div>
-<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;    {</div>
-<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;        status = 0;</div>
-<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;    }</div>
-<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160; </div>
-<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;    <span class="keywordflow">return</span> status;</div>
-<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;}</div>
-<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160; </div>
-<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00728"></a><span class="lineno"><a class="line" href="group__DRV__SOC__MODULE.html#ga3d169293015dbfab92d8147d889c76c3">  728</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> int32_t <a class="code" href="group__DRV__SOC__MODULE.html#ga3d169293015dbfab92d8147d889c76c3">UART_IsBaseAddrValid</a>(uint32_t baseAddr)</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;{</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;    int32_t status = (int32_t)-3;</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160; </div>
+<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;    <span class="keywordflow">if</span>(((baseAddr == CSL_UART0_U_BASE) ||</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;        (baseAddr == CSL_UART1_U_BASE) ||</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;        (baseAddr == CSL_UART2_U_BASE) ||</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;        (baseAddr == CSL_UART3_U_BASE) ||</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;        (baseAddr == CSL_UART4_U_BASE) ||</div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;        (baseAddr == CSL_UART5_U_BASE)))</div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;    {</div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;        status = 0;</div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;    }</div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160; </div>
+<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;    <span class="keywordflow">return</span> status;</div>
 <div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;}</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160; </div>
-<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160; </div>
+<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;}</div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160; </div>
+<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="agroup__DRV__SOC__MODULE_html_gaf8807a81de930b70e9d891652d35df24"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#gaf8807a81de930b70e9d891652d35df24">SOC_gateFsitxClock</a></div><div class="ttdeci">void SOC_gateFsitxClock(uint32_t fsitxInstance)</div><div class="ttdoc">Gate the FSI-TX clock.</div></div>
@@ -401,6 +403,7 @@ $(document).ready(function(){initNavTree('soc_8h_source.html',''); initResizable
 <div class="ttc" id="agroup__DRV__SOC__MODULE_html_ga4bf51ee5eeab943f16b4243041534e52"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#ga4bf51ee5eeab943f16b4243041534e52">SOC_gateSdfmPllClock</a></div><div class="ttdeci">void SOC_gateSdfmPllClock(uint32_t sdfmInstance)</div><div class="ttdoc">Gate the SDFM PLL clock.</div></div>
 <div class="ttc" id="agroup__DRV__SOC__MODULE_html_ga40bb8a42552512d33f1908a67ba79840"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#ga40bb8a42552512d33f1908a67ba79840">SOC_gateCmpssaClock</a></div><div class="ttdeci">void SOC_gateCmpssaClock(uint32_t cmpssaInstance)</div><div class="ttdoc">Gate the CMPSS-A clock.</div></div>
 <div class="ttc" id="aSystemP_8h_html"><div class="ttname"><a href="SystemP_8h.html">SystemP.h</a></div></div>
+<div class="ttc" id="agroup__DRV__SOC__MODULE_html_gad6310819acab9fce44e1c851099afba7"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#gad6310819acab9fce44e1c851099afba7">SOC_enableVpp</a></div><div class="ttdeci">void SOC_enableVpp(void)</div><div class="ttdoc">Enable VPP_EN bit on EFUSE_MODE_CTRL.</div></div>
 <div class="ttc" id="agroup__DRV__SOC__MODULE_html_gab4b74e1ffad7887ed70c723b8dd58fcd"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#gab4b74e1ffad7887ed70c723b8dd58fcd">SOC_gateCmpssbClock</a></div><div class="ttdeci">void SOC_gateCmpssbClock(uint32_t cmpssbInstance)</div><div class="ttdoc">Gate the CMPSS-B clock.</div></div>
 <div class="ttc" id="agroup__DRV__SOC__MODULE_html_ga2830abb64f4f9a91ef77032e063b9418"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#ga2830abb64f4f9a91ef77032e063b9418">SOC_getFlashDataBaseAddr</a></div><div class="ttdeci">uint32_t SOC_getFlashDataBaseAddr(void)</div><div class="ttdoc">This function gets the SOC mapped data base address of the flash.</div></div>
 <div class="ttc" id="agroup__DRV__SOC__MODULE_html_ga97c6d618660b47bf42f1245354c9e031"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#ga97c6d618660b47bf42f1245354c9e031">SOC_generateCmpssbReset</a></div><div class="ttdeci">void SOC_generateCmpssbReset(uint32_t cmpssbInstance)</div><div class="ttdoc">Generate CMPSS-B reset.</div></div>
@@ -427,7 +430,7 @@ $(document).ready(function(){initNavTree('soc_8h_source.html',''); initResizable
 <div class="ttc" id="agroup__DRV__SOC__MODULE_html_gaddb44beb5adbf4d75a19e50b4939f3f8"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#gaddb44beb5adbf4d75a19e50b4939f3f8">SOC_generateRdcReset</a></div><div class="ttdeci">void SOC_generateRdcReset(uint32_t rdcInstance)</div><div class="ttdoc">Generate RDC reset.</div></div>
 <div class="ttc" id="agroup__DRV__SOC__MODULE_html_ga384a33b7bb9706de609f378fa259423a"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#ga384a33b7bb9706de609f378fa259423a">SOC_selectSdfm1Clk0Source</a></div><div class="ttdeci">void SOC_selectSdfm1Clk0Source(uint8_t source)</div><div class="ttdoc">Select the SDFM1 CLK0 source.</div></div>
 <div class="ttc" id="agroup__DRV__SOC__MODULE_html_gade53944e0ad1e332f7a2777430747cab"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#gade53944e0ad1e332f7a2777430747cab">SOC_selextAdcExtChDelay</a></div><div class="ttdeci">void SOC_selextAdcExtChDelay(uint32_t delay)</div><div class="ttdoc">Mux select to choose delay for ADC Extchsel.</div></div>
-<div class="ttc" id="agroup__DRV__SOC__MODULE_html_ga3d169293015dbfab92d8147d889c76c3"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#ga3d169293015dbfab92d8147d889c76c3">UART_IsBaseAddrValid</a></div><div class="ttdeci">static int32_t UART_IsBaseAddrValid(uint32_t baseAddr)</div><div class="ttdoc">API to validate UART base address.</div><div class="ttdef"><b>Definition:</b> soc.h:723</div></div>
+<div class="ttc" id="agroup__DRV__SOC__MODULE_html_ga3d169293015dbfab92d8147d889c76c3"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#ga3d169293015dbfab92d8147d889c76c3">UART_IsBaseAddrValid</a></div><div class="ttdeci">static int32_t UART_IsBaseAddrValid(uint32_t baseAddr)</div><div class="ttdoc">API to validate UART base address.</div><div class="ttdef"><b>Definition:</b> soc.h:728</div></div>
 <div class="ttc" id="agroup__DRV__SOC__MODULE_html_ga246b6267989d9184ef3abf683cb305fa"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#ga246b6267989d9184ef3abf683cb305fa">SOC_gateFsiPllClock</a></div><div class="ttdeci">void SOC_gateFsiPllClock(uint32_t fsiInstance)</div><div class="ttdoc">Gate the FSI-TX PLL clock.</div></div>
 <div class="ttc" id="agroup__DRV__SOC__MODULE_html_gae670f370df3ecf5dbf6047a5b5da4ecb"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#gae670f370df3ecf5dbf6047a5b5da4ecb">SOC_ungateOttoClock</a></div><div class="ttdeci">void SOC_ungateOttoClock(uint32_t ottoInstance)</div><div class="ttdoc">Ungate the OTTO clock.</div></div>
 <div class="ttc" id="agroup__DRV__SOC__MODULE_html_gaefd36e2a9e73c7ffd1e21bbce62e3504"><div class="ttname"><a href="group__DRV__SOC__MODULE.html#gaefd36e2a9e73c7ffd1e21bbce62e3504">SOC_ungateCmpssaClock</a></div><div class="ttdeci">void SOC_ungateCmpssaClock(uint32_t cmpssaInstance)</div><div class="ttdoc">Ungate the CMPSS-A clock.</div></div>

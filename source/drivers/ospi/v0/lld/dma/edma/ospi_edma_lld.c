@@ -365,8 +365,117 @@ static void OSPI_edmaIsrFxn(Edma_IntrHandle intrHandle, void *args)
 }
 
 int32_t OSPI_isDmaInterruptEnabled(OSPILLD_Handle hOspi)
-{    
+{
     OspiDma_EdmaArgs *edmaParams = (OspiDma_EdmaArgs*)hOspi->hOspiInit->ospiDmaChConfig;
 
     return (int32_t)edmaParams->isIntEnabled;
+}
+
+int32_t OSPI_dmaIndirectCopy(OSPILLD_Handle hOspi, void* dst, void* src, uint32_t length, uint32_t timeout, uint32_t isWrite)
+{
+    int32_t         status = SystemP_SUCCESS;
+    uint32_t        baseAddr, regionId, dmaCh, tcc, param;
+    uint32_t        edmaStatus;
+    uint32_t        startTicks, elapsedTicks = 0;
+    OspiDma_EdmaArgs *edmaParams = (OspiDma_EdmaArgs*)hOspi->hOspiInit->ospiDmaChConfig;
+    uint32_t transTimeout = hOspi->Clock_usecToTicks(timeout);
+
+    EDMACCPaRAMEntry   edmaParam;
+
+    /* Fetch the EDMA parameters */
+    baseAddr     = edmaParams->edmaBaseAddr;
+    regionId     = edmaParams->edmaRegionId;
+    dmaCh        = edmaParams->edmaChId;
+    tcc          = edmaParams->edmaTcc;
+    param        = edmaParams->edmaParam;
+
+    /* Writeback source, invalidate destination for cache coherency */
+    if(isWrite)
+    {
+        /* INDAC write: src=app buffer, dst=OSPI FIFO */
+        CacheP_wb(src, length, CacheP_TYPE_ALL);
+    }
+    else
+    {
+        /* INDAC read: src=OSPI FIFO, dst=app buffer */
+        CacheP_wb(dst, length, CacheP_TYPE_ALL);
+    }
+
+    /* Program Param Set */
+    EDMA_ccPaRAMEntry_init(&edmaParam);
+
+    edmaParam.srcAddr       = (uint32_t) SOC_virtToPhy(src);
+    edmaParam.destAddr      = (uint32_t) SOC_virtToPhy(dst);
+
+    /* Configure transfer counts:
+     * For INDAC FIFO access, use 4-byte word transfers (aCnt=4)
+     * bCnt = number of 4-byte words
+     * This handles page writes (e.g., 2KB = 512 words) and spare area (64B = 16 words)
+     */
+    edmaParam.aCnt          = (uint16_t) 4U;
+    edmaParam.bCnt          = (uint16_t) (length / 4U);
+    edmaParam.cCnt          = (uint16_t) EDMA_OSPI_C_COUNT;
+    edmaParam.bCntReload    = (uint16_t) (length / 4U);
+
+    if(isWrite)
+    {
+        /* INDAC write: src buffer increments, dst FIFO constant
+         * srcBIdx = 4 to move to next word in buffer
+         * destBIdx = 0 to keep writing to same FIFO address
+         */
+        edmaParam.srcBIdx       = (int16_t) EDMA_PARAM_BIDX(4U);
+        edmaParam.destBIdx      = (int16_t) EDMA_PARAM_BIDX(0U);
+        edmaParam.srcBIdxExt    = (int8_t) EDMA_PARAM_BIDX_EXT(4U);
+        edmaParam.destBIdxExt   = (int8_t) EDMA_PARAM_BIDX_EXT(0U);
+    }
+    else
+    {
+        /* INDAC read: src FIFO constant, dst buffer increments
+         * srcBIdx = 0 to keep reading from same FIFO address
+         * destBIdx = 4 to move to next word in buffer
+         */
+        edmaParam.srcBIdx       = (int16_t) EDMA_PARAM_BIDX(0U);
+        edmaParam.destBIdx      = (int16_t) EDMA_PARAM_BIDX(4U);
+        edmaParam.srcBIdxExt    = (int8_t) EDMA_PARAM_BIDX_EXT(0U);
+        edmaParam.destBIdxExt   = (int8_t) EDMA_PARAM_BIDX_EXT(4U);
+    }
+
+    edmaParam.srcCIdx       = (int16_t) 0;
+    edmaParam.destCIdx      = (int16_t) 0;
+    edmaParam.linkAddr      = 0xFFFFU;
+
+    /* Enable interrupt and AB-sync mode */
+    edmaParam.opt      |=  (EDMA_OPT_TCINTEN_MASK | EDMA_OPT_ITCINTEN_MASK | EDMA_OPT_SYNCDIM_MASK |
+        (((tcc) << EDMA_OPT_TCC_SHIFT) & EDMA_OPT_TCC_MASK));
+
+    EDMA_setPaRAM(baseAddr, param, &edmaParam);
+
+    hOspi->currTrans->dataLen = length;
+    hOspi->currTrans->buf = dst;
+
+    /* Set manual trigger to start OSPI transfer */
+    edmaStatus = EDMA_enableTransferRegion(baseAddr, regionId, dmaCh, EDMA_TRIG_MODE_MANUAL);
+
+    if (edmaStatus == TRUE)
+    {
+        if (edmaParams->isIntEnabled != TRUE)
+        {
+            startTicks = hOspi->Clock_getTicks();
+            /* Poll for transfer completion */
+            while ((EDMA_readIntrStatusRegion(baseAddr, regionId, tcc) != 1U) && (elapsedTicks < transTimeout))
+            {
+                elapsedTicks = hOspi->Clock_getTicks() - startTicks;
+            }
+
+            EDMA_clrIntrRegion(baseAddr, regionId, tcc);
+
+            /* For read, invalidate destination after DMA complete */
+            if(!isWrite)
+            {
+                CacheP_inv(dst, length, CacheP_TYPE_ALL);
+            }
+        }
+    }
+
+    return status;
 }

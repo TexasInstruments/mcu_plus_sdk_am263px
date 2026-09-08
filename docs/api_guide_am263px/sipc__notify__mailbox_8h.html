@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -113,16 +113,14 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a858d9febc721515854445501729d7b1b"><td class="memItemLeft" align="right" valign="top">static int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sipc__notify__mailbox_8h.html#a858d9febc721515854445501729d7b1b">SIPC_mailboxRead</a> (<a class="el" href="structSIPC__SwQueue.html">SIPC_SwQueue</a> *swQ, uint8_t *Buff)</td></tr>
 <tr class="separator:a858d9febc721515854445501729d7b1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92e3a519b2075d2860983c2c75d39ad9"><td class="memItemLeft" align="right" valign="top">static int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sipc__notify__mailbox_8h.html#a92e3a519b2075d2860983c2c75d39ad9">SIPC_mailboxWrite</a> (uint32_t mailboxBaseAddr, uint32_t wrIntrBitPos, <a class="el" href="structSIPC__SwQueue.html">SIPC_SwQueue</a> *swQ, uint8_t *Buff)</td></tr>
-<tr class="separator:a92e3a519b2075d2860983c2c75d39ad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1174c3e941fa590c9d35aaa1efffd3d"><td class="memItemLeft" align="right" valign="top">static int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sipc__notify__mailbox_8h.html#ab1174c3e941fa590c9d35aaa1efffd3d">SIPC_mailboxWrite</a> (uint32_t mailboxBaseAddr, uint32_t wrIntrBitPos, <a class="el" href="structSIPC__SwQueue.html">SIPC_SwQueue</a> *swQ, const uint8_t *Buff)</td></tr>
+<tr class="separator:ab1174c3e941fa590c9d35aaa1efffd3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ba4f33b5250a6e3a565b11dc491eee2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sipc__notify__mailbox_8h.html#a9ba4f33b5250a6e3a565b11dc491eee2">SIPC_mailboxClearAllInt</a> (uint32_t mailboxBaseAddr)</td></tr>
 <tr class="separator:a9ba4f33b5250a6e3a565b11dc491eee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08126fd64e8523e980397aeb2216edd2"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sipc__notify__mailbox_8h.html#a08126fd64e8523e980397aeb2216edd2">SIPC_mailboxGetPendingIntr</a> (uint32_t mailboxBaseAddr)</td></tr>
 <tr class="separator:a08126fd64e8523e980397aeb2216edd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe4867e2b8daf3eecf4de09e59297e43"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sipc__notify__mailbox_8h.html#abe4867e2b8daf3eecf4de09e59297e43">SIPC_mailboxClearPendingIntr</a> (uint32_t mailboxBaseAddr, uint32_t pendingIntr)</td></tr>
 <tr class="separator:abe4867e2b8daf3eecf4de09e59297e43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4852c3b1d110524626200f31867d9a6"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sipc__notify__mailbox_8h.html#af4852c3b1d110524626200f31867d9a6">SIPC_mailboxIsPendingIntr</a> (uint32_t pendingIntr, uint32_t coreId)</td></tr>
-<tr class="separator:af4852c3b1d110524626200f31867d9a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a54295b02b0d4e3d4ef66d09253b6586d"></a>
@@ -176,8 +174,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a92e3a519b2075d2860983c2c75d39ad9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92e3a519b2075d2860983c2c75d39ad9">&#9670;&nbsp;</a></span>SIPC_mailboxWrite()</h2>
+<a id="ab1174c3e941fa590c9d35aaa1efffd3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1174c3e941fa590c9d35aaa1efffd3d">&#9670;&nbsp;</a></span>SIPC_mailboxWrite()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -206,7 +204,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
           <td class="paramname"><em>Buff</em>&#160;</td>
         </tr>
         <tr>
@@ -296,42 +294,6 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">uint32_t&#160;</td>
           <td class="paramname"><em>pendingIntr</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af4852c3b1d110524626200f31867d9a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4852c3b1d110524626200f31867d9a6">&#9670;&nbsp;</a></span>SIPC_mailboxIsPendingIntr()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static uint32_t SIPC_mailboxIsPendingIntr </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>pendingIntr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>coreId</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -164,30 +164,39 @@ $(document).ready(function(){initNavTree('SemaphoreP_8h_source.html',''); initRe
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      xSemaphoreHandle semHndl;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;      uint32_t isRecursiveMutex;</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  } SemaphoreP_Object;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">  #else</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">  #error &quot;Define OS_NORTOS, OS_FREERTOS, or OS_SAFERTOS&quot;</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">  #endif</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__SEMAPHORE.html#ga5ee4ff075ed0518daf3bcbbdac5da7c8">  101</a></span>&#160; int32_t <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga5ee4ff075ed0518daf3bcbbdac5da7c8">SemaphoreP_constructMutex</a>(SemaphoreP_Object *obj);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">  #elif defined(OS_THREADX)</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">  #include &quot;tx_api.h&quot;</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>SemaphoreP_Object_ {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    TX_SEMAPHORE semObj;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    TX_MUTEX mutexObj;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    uint32_t maxCount;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    uint32_t isMutex;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    uint32_t isCounting;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;} SemaphoreP_Object;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">  #else</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">  #error &quot;Define OS_NORTOS, OS_FREERTOS, OS_SAFERTOS or OS_THREADX&quot;</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">  #endif</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__SEMAPHORE.html#ga2de8d925b9ae035fd8a749927463aef5">  111</a></span>&#160; int32_t <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga2de8d925b9ae035fd8a749927463aef5">SemaphoreP_constructBinary</a>(SemaphoreP_Object *obj, uint32_t initValue);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__SEMAPHORE.html#gaa5773cd3830e6b78b72c6f612d0ee031">  122</a></span>&#160; int32_t <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#gaa5773cd3830e6b78b72c6f612d0ee031">SemaphoreP_constructCounting</a>(SemaphoreP_Object *obj, uint32_t initValue, uint32_t maxValue);</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__SEMAPHORE.html#ga983b3b10c5d00c08d5caa9bcd3c0e9b2">  129</a></span>&#160; <span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga983b3b10c5d00c08d5caa9bcd3c0e9b2">SemaphoreP_destruct</a>(SemaphoreP_Object *obj);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
-<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__SEMAPHORE.html#ga23075425da4d8a65a53209b5fdd3fafe">  136</a></span>&#160; <span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga23075425da4d8a65a53209b5fdd3fafe">SemaphoreP_post</a>(SemaphoreP_Object *obj);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
-<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__SEMAPHORE.html#ga8733f9edac3a2d559b97dc0d115c3ba8">  148</a></span>&#160; int32_t <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga8733f9edac3a2d559b97dc0d115c3ba8">SemaphoreP_pend</a>(SemaphoreP_Object *obj, uint32_t timeToWaitInTicks);</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
-<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__SEMAPHORE.html#ga75f2e40b313846bf4b7cc1c61ea12706">  158</a></span>&#160; int32_t <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga75f2e40b313846bf4b7cc1c61ea12706">SemaphoreP_getCount</a>(SemaphoreP_Object *obj);</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="preprocessor"> #ifdef __cplusplus</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; }</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor"> #endif</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor"> #endif </span><span class="comment">/* SEMAPHOREP_H */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__SEMAPHORE.html#ga5ee4ff075ed0518daf3bcbbdac5da7c8">  110</a></span>&#160; int32_t <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga5ee4ff075ed0518daf3bcbbdac5da7c8">SemaphoreP_constructMutex</a>(SemaphoreP_Object *obj);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__SEMAPHORE.html#ga2de8d925b9ae035fd8a749927463aef5">  120</a></span>&#160; int32_t <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga2de8d925b9ae035fd8a749927463aef5">SemaphoreP_constructBinary</a>(SemaphoreP_Object *obj, uint32_t initValue);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__SEMAPHORE.html#gaa5773cd3830e6b78b72c6f612d0ee031">  131</a></span>&#160; int32_t <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#gaa5773cd3830e6b78b72c6f612d0ee031">SemaphoreP_constructCounting</a>(SemaphoreP_Object *obj, uint32_t initValue, uint32_t maxValue);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__SEMAPHORE.html#ga983b3b10c5d00c08d5caa9bcd3c0e9b2">  138</a></span>&#160; <span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga983b3b10c5d00c08d5caa9bcd3c0e9b2">SemaphoreP_destruct</a>(SemaphoreP_Object *obj);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__SEMAPHORE.html#ga23075425da4d8a65a53209b5fdd3fafe">  145</a></span>&#160; <span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga23075425da4d8a65a53209b5fdd3fafe">SemaphoreP_post</a>(SemaphoreP_Object *obj);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__SEMAPHORE.html#ga8733f9edac3a2d559b97dc0d115c3ba8">  157</a></span>&#160; int32_t <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga8733f9edac3a2d559b97dc0d115c3ba8">SemaphoreP_pend</a>(SemaphoreP_Object *obj, uint32_t timeToWaitInTicks);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__SEMAPHORE.html#ga75f2e40b313846bf4b7cc1c61ea12706">  167</a></span>&#160; int32_t <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga75f2e40b313846bf4b7cc1c61ea12706">SemaphoreP_getCount</a>(SemaphoreP_Object *obj);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="preprocessor"> #ifdef __cplusplus</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; }</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="preprocessor"> #endif</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="preprocessor"> #endif </span><span class="comment">/* SEMAPHOREP_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aSystemP_8h_html"><div class="ttname"><a href="SystemP_8h.html">SystemP.h</a></div></div>

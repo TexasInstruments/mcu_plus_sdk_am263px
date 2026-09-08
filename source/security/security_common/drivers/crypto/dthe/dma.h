@@ -107,7 +107,7 @@ typedef uint32_t DMA_Return_t;
  *
  *  \return SystemP_SUCCESS on success or SystemP_FAILURE on Failure.
  */
-typedef int32_t (*config_TxChannel)(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks, uint16_t blockSize, int32_t operationType);
+typedef int32_t (*config_TxChannel)(DMA_Handle handle, const uint32_t *srcAddress, const uint32_t *dstAddress, uint16_t numBlocks, uint16_t blockSize, int32_t operationType);
 
 /**
  *  \brief This callback implemented to configure a Receive DMA channel
@@ -120,7 +120,7 @@ typedef int32_t (*config_TxChannel)(DMA_Handle handle, uint32_t *srcAddress, uin
  *
  *  \return SystemP_SUCCESS on success or SystemP_FAILURE on Failure.
  */
-typedef int32_t (*config_RxChannel)(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks, int32_t operationType);
+typedef int32_t (*config_RxChannel)(DMA_Handle handle, const uint32_t *srcAddress, const uint32_t *dstAddress, uint16_t numBlocks, int32_t operationType);
 
 /**
  *  \brief This callback implemented to configure a Transmit SHA DMA channel
@@ -286,7 +286,7 @@ struct DMA_Config_s
 };
 
 /** Global dma configuration */
-extern DMA_Config gDmaConfig[];
+extern DMA_Config gDmaConfig[1];
 /** Number of global dma configurations */
 extern uint32_t gDmaConfigNum;
 
@@ -321,7 +321,7 @@ DMA_Return_t DMA_close(DMA_Handle handle);
  *  
  *  \return DMA_RETURN_SUCCESS on success or DMA_RETURN_FAILURE on Failure.
  */
-DMA_Return_t DMA_Config_TxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks, uint16_t blockSize, int32_t operationType);
+DMA_Return_t DMA_Config_TxChannel(DMA_Handle handle, const uint32_t *srcAddress, const uint32_t *dstAddress, uint16_t numBlocks, uint16_t blockSize, int32_t operationType);
 
 /**
  * \brief This DMA wrapper implemented to enable DMA TX transfer region.
@@ -370,7 +370,7 @@ DMA_Return_t DMA_disableTxCh(DMA_Handle handle);
  *
  *   \return DMA_RETURN_SUCCESS on success or DMA_RETURN_FAILURE on Failure.
  */
-DMA_Return_t DMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks, int32_t operationType);
+DMA_Return_t DMA_Config_RxChannel(DMA_Handle handle, const uint32_t *srcAddress, const uint32_t *dstAddress, uint16_t numBlocks, int32_t operationType);
 
 /**
  * \brief This DMA wrapper implemented to enable Rx Transfer Region.

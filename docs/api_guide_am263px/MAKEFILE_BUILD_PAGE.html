@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -96,10 +96,10 @@ $(document).ready(function(){initNavTree('MAKEFILE_BUILD_PAGE.html',''); initRes
 <li class="level1"><a href="#autotoc_md540">Enabling &quot;make&quot; in Windows</a></li>
 <li class="level1"><a href="#autotoc_md541">Building Libraries with Makefiles</a></li>
 <li class="level1"><a href="#MAKEFILE_EXAMPLE_BUILD">Building examples with makefiles</a></li>
-<li class="level1"><a href="#autotoc_md542">Building System Examples with Makefiles</a></li>
-<li class="level1"><a href="#autotoc_md543">Building the Whole SDK with Makefiles</a></li>
-<li class="level1"><a href="#autotoc_md544">Load and Run Executables Built with Makefiles</a></li>
-<li class="level1"><a href="#autotoc_md545">Tips and Tricks when working with Makefiles</a></li>
+<li class="level1"><a href="#autotoc_md543">Building System Examples with Makefiles</a></li>
+<li class="level1"><a href="#autotoc_md544">Building the Whole SDK with Makefiles</a></li>
+<li class="level1"><a href="#autotoc_md545">Load and Run Executables Built with Makefiles</a></li>
+<li class="level1"><a href="#autotoc_md546">Tips and Tricks when working with Makefiles</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_makefile_build"></a></p>
@@ -197,7 +197,7 @@ Building examples with makefiles</h1>
 </div><!-- fragment --></li>
 <li>Explore additional commands listed via <code>gmake -s help</code> for more options</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md542"></a>
+<h1><a class="anchor" id="autotoc_md543"></a>
 Building System Examples with Makefiles</h1>
 <ul>
 <li>Some examples, to run correctly, need multiple binaries on different CPUs to be build, loaded and run. Such examples are called "system" examples. One such example is inter-processor communication example, which shows multiple CPUs communicating among each other.</li>
@@ -217,7 +217,7 @@ Building System Examples with Makefiles</h1>
 <img src="syscfg_00.png" alt=""/>
 <div class="caption">
 SysConfig Multi-CPU View</div></div>
-<h1><a class="anchor" id="autotoc_md543"></a>
+<h1><a class="anchor" id="autotoc_md544"></a>
 Building the Whole SDK with Makefiles</h1>
 <ul>
 <li>The whole SDK can be built using makefiles by running below command, <div class="fragment"><div class="line">cd ${SDK_INSTALL_PATH}</div>
@@ -227,7 +227,7 @@ Building the Whole SDK with Makefiles</h1>
 <div class="line">gmake -s  clean PROFILE=release</div>
 </div><!-- fragment --></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md544"></a>
+<h1><a class="anchor" id="autotoc_md545"></a>
 Load and Run Executables Built with Makefiles</h1>
 <ul>
 <li>The generated binary from makefile is located as the below path <div class="fragment"><div class="line">examples/{component or module}/{optional sub-module or sub-component}/</div>
@@ -243,7 +243,7 @@ Load and Run Executables Built with Makefiles</h1>
 <li>The same folder also has .map files which have more information about the binary size and memory section used, and so on.</li>
 <li>In case of "system" examples, one need to load the binaries for each CPU one by one in CCS and then run each CPU. Typically the order of load and run of different CPUs is not important.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md545"></a>
+<h1><a class="anchor" id="autotoc_md546"></a>
 Tips and Tricks when working with Makefiles</h1>
 <ul>
 <li>In general, the makefiles are written to be simple and use very basic GNU make syntax and options. You can simply open the makefile located within a example or library folder to see the different compile options, include paths, files, include directory, pre-processor defines etc that are used to build that example or library.</li>

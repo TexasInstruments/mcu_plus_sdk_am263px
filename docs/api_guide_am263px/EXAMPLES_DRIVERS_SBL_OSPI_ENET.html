@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
-<title>AM263Px MCU+ SDK: SBL QSPI ENET</title>
+<title>AM263Px MCU+ SDK: SBL OSPI ENET</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -88,27 +88,27 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_SBL_OSPI_ENET.html','
 <div id="doc-content">
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">SBL QSPI ENET </div>  </div>
+<div class="title">SBL OSPI ENET </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2946">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md2947">Supported Combinations</a><ul><li class="level2"><a href="#autotoc_md2948">Application Flow</a></li>
-<li class="level2"><a href="#autotoc_md2949">Create a network between EVM and host PC</a><ul><li class="level3"><a href="#autotoc_md2950">Linux (Ubuntu 22.04):</a></li>
+<ul><li class="level1"><a href="#autotoc_md2968">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md2969">Supported Combinations</a><ul><li class="level2"><a href="#autotoc_md2970">Application Flow</a></li>
+<li class="level2"><a href="#autotoc_md2971">Create a network between EVM and host PC</a><ul><li class="level3"><a href="#autotoc_md2972">Linux (Ubuntu 22.04):</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md2951">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2952">See Also</a></li>
-<li class="level1"><a href="#SBL_QSPI_ENET_OUTPUT_SAMPLE">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2973">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2974">See Also</a></li>
+<li class="level1"><a href="#SBL_OSPI_ENET_OUTPUT_SAMPLE">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_sbl_ospi_enet"></a></p>
-<h1><a class="anchor" id="autotoc_md2946"></a>
+<h1><a class="anchor" id="autotoc_md2968"></a>
 Introduction</h1>
 <p>This bootloader performs SOC initializations and offers additional functionality, including:</p><ol type="1">
-<li>Receiving an application images via UDP over Ethernet.</li>
+<li>Receiving an application image via UDP over Ethernet.</li>
 <li>Flashing the received application to OSPI Flash Memory.</li>
 <li>Attempting to boot a multicore appimage present at 0x81000 location in the OSPI Flash. This offset is specified in the OSPI bootloader and when the EVM boots in OSPI mode, it will attempt to find an application at this location.</li>
 </ol>
@@ -118,20 +118,20 @@ Introduction</h1>
 <li>It uses ethernet driver underneath</li>
 </ul>
 <p>The transfer of the user application image works in conjunction with the enet_uniflash.py python script mentioned in <a class="el" href="TOOLS_FLASH.html">Flashing Tools</a>.</p>
-<p>If a multicore appimage is found at the location, the SBL parses it, splits it into RPRCs for each core applicable. Each core is then initialized, RPRC image is loaded, entry points are set and the core is released from reset. For more on bootflow/bootloaders, please refer <a class="el" href="BOOTFLOW_GUIDE.html">Understanding the bootflow and bootloaders</a></p>
+<p>If a multicore appimage is found at the location, the SBL parses the multicore ELF (MCELF) format and loads the segments into respective cores. Each core is then initialized, entry points are set and the core is released from reset. For more on bootflow/bootloaders, please refer <a class="el" href="BOOTFLOW_GUIDE.html">Understanding the bootflow and bootloaders</a></p>
 <p>Note that the SBL is transferred solely through UART, whereas the files that the SBL processes are transmitted over Ethernet.</p>
 <dl class="section note"><dt>Note</dt><dd>To ensure the sbl_ospi_enet SBL remains intact, allocate a reserved area of 0x13C000 in MSRAM within the application image's linker script. This precaution prevents the application image from overwriting the SBL during Ethernet-based flashing. </dd>
 <dd>
 MSRAM specifications:<ol type="1">
 <li>Total size: 0x0200000</li>
-<li>HSMRT module allocation: 0x40000</li>
-<li>ENET libraries/components allocation approximately: 0xB0000</li>
+<li>HSMRT module allocation: 0xC000</li>
+<li>ENET libraries/components allocation approximately: 0x70000</li>
 <li>Scratch pad allocation: 0x8000 </li>
 </ol>
 </dd>
 <dd>
-The remaining 0x13C000 space is reserved for the application image.</dd></dl>
-<h1><a class="anchor" id="autotoc_md2947"></a>
+The remaining 0x40000 space is reserved for the application image.</dd></dl>
+<h1><a class="anchor" id="autotoc_md2969"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -145,7 +145,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/boot/sbl_ospi_enet   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md2948"></a>
+<h2><a class="anchor" id="autotoc_md2970"></a>
 Application Flow</h2>
 <p>The below flow diagram shows the application flow for the reception of an application image via UDP over ethernet on boot of the sbl_ospi_enet SBL.</p>
 <p> <style>div.image img[src="sbl_qspi_enet_flow_diagram.png"]{width:30%}</style> </p><div class="image">
@@ -153,9 +153,9 @@ Application Flow</h2>
 <div class="caption">
 Flow Path</div></div>
 <p>This SBL application consumes more MSRAM memory (&gt;0x20000) as compared to the sbl_uart_uniflash SBL due to the increased size of the ethernet driver library.</p>
-<h2><a class="anchor" id="autotoc_md2949"></a>
+<h2><a class="anchor" id="autotoc_md2971"></a>
 Create a network between EVM and host PC</h2>
-<h3><a class="anchor" id="autotoc_md2950"></a>
+<h3><a class="anchor" id="autotoc_md2972"></a>
 Linux (Ubuntu 22.04):</h3>
 <p>The instructions provided below have been validated on Ubuntu(v22.04), but are also applicable to other operating systems. The scripts included in MCU+SDK are designed to be compatible with multiple host PC operating systems, ensuring seamless execution across different platforms.</p>
 <ol type="1">
@@ -164,7 +164,7 @@ Linux (Ubuntu 22.04):</h3>
 <p>The below steps are for the network interface corresponding to the ethernet connection between the PC and EVM.</p>
 <p>Note that the IP addresses utilized in this configuration are also referenced in the Python script and EVM application. To avoid potential conflicts with existing devices, it is essential to update the IP addresses consistently across all relevant components.</p>
 <ul>
-<li>Connect an ethernet cable between the PC and the EVM(Here in this case AM263 Control Card, Port 1)</li>
+<li>Connect an ethernet cable between the PC and the EVM(Here in this case AM263Px Control Card, Port 1)</li>
 <li>This will reflect all the interfaces connected to the linux host PC. <div class="fragment"><div class="line">ifconfig</div>
 </div><!-- fragment --></li>
 <li>static-IP is hardcoded in <b>sbl_enet.h</b> as: <div class="fragment"><div class="line">/* EVM IP ADDRESS */</div>
@@ -173,14 +173,14 @@ Linux (Ubuntu 22.04):</h3>
 <div class="line">#define ENET_DESTINATION_IP_ADDRESS     { 192U, 168U, 0U, 136U }</div>
 </div><!-- fragment --> <div class="fragment"><div class="line">sudo ifconfig &lt;interface-name&gt; &lt;static-HOST-IP&gt;</div>
 </div><!-- fragment --></li>
-<li>Due to the absence of ARP services (typially provided by LwIP) in this Uniflash application, manual configuration of an ARP entry for the EVM is required. This ensures that the PC does not discard incoming packets from the EVM due to Unknown Unicast address. <div class="fragment"><div class="line">sudo arp -i &lt;interface-name&gt; -s &lt;EVM-static-IP&gt; &lt;EVM-MAC-address&gt;</div>
+<li>Due to the absence of ARP services (typically provided by LwIP) in this Uniflash application, manual configuration of an ARP entry for the EVM is required. This ensures that the PC does not discard incoming packets from the EVM due to Unknown Unicast address. <div class="fragment"><div class="line">sudo arp -i &lt;interface-name&gt; -s &lt;EVM-static-IP&gt; &lt;EVM-MAC-address&gt;</div>
 </div><!-- fragment --></li>
 </ul>
 <p>EVM MAC Address can be found in the SBL UART console. In this case it is: 70:ff:76:1d:ec:f2</p>
 <dl class="section attention"><dt>Attention</dt><dd>Make sure to set the value of the MACRO <b>ENET_HOST_PC_MAC_ADDRESS</b> in the file <b>sbl_enet.h</b> to the MAC address of the corresponding ethernet interface of Linux Host PC: <div class="fragment"><div class="line">/* Host PC MAC Address */</div>
 <div class="line">#define ENET_HOST_PC_MAC_ADDRESS        { 0xC0, 0x18, 0x03, 0xBD, 0xB2, 0x7B}</div>
 </div><!-- fragment --></dd></dl>
-<h1><a class="anchor" id="autotoc_md2951"></a>
+<h1><a class="anchor" id="autotoc_md2973"></a>
 Steps to Run the Example</h1>
 <p>Since this is a bootloader, the example will be run every time you boot an application using this example. It is run from a OSPI boot media unlike other examples which are usually loaded with CCS. Nevertheless, you can build this example like you do for the others using makefile or build it via CCS by importing as a project.</p>
 <ul>
@@ -189,10 +189,10 @@ Steps to Run the Example</h1>
 <li>Refer to the page <a class="el" href="TOOLS_FLASH.html#BASIC_STEPS_TO_FLASH_FILES">Basic steps to flash files</a> to flash the sbl_ospi_enet bootloader to the EVM in UART Boot Mode. Ensure that you should flash the sbl_ospi_enet bootloader, rather than the default sbl_ospi bootloader. Optionally, you can also flash the application image to the OSPI flash memory at offset 0x81000 as mentioned in <a class="el" href="TOOLS_FLASH.html#BASIC_STEPS_TO_FLASH_FILES">Basic steps to flash files</a>. Alternatively, you can omit this step and transmit the application image over Ethernet using the procedure outlined below.</li>
 <li>Once the sbl_ospi_enet bootloader image is flashed on the EVM, switch to OSPI Boot Mode and refer to the page <a class="el" href="TOOLS_FLASH.html#BASIC_STEPS_TO_FLASH_FILES_OVER_ENET">Basic steps to flash files over ethernet</a> to send an application image over ethernet to the EVM. </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2952"></a>
+<h1><a class="anchor" id="autotoc_md2974"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_BOOTLOADER_PAGE.html">BOOTLOADER</a></p>
-<h1><a class="anchor" id="SBL_QSPI_ENET_OUTPUT_SAMPLE"></a>
+<h1><a class="anchor" id="SBL_OSPI_ENET_OUTPUT_SAMPLE"></a>
 Sample Output</h1>
 <p>Below is an example log from the serial teminal, demonstrating a normal boot process in ENETSBL_TIMER_MODE without image transfer. As shown, the bootloader bypasses the transfer step and proceeds to boot the user application image:</p>
 <div class="fragment"><div class="line">[ ENETSBL ] Starting Ethernet Transfer ...</div>

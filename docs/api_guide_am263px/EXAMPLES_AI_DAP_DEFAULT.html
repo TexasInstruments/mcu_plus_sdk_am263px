@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('EXAMPLES_AI_DAP_DEFAULT.html',''); ini
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md4076">Introduction</a></li>
+<ul><li class="level1"><a href="#autotoc_md4131">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_AI_DAP_DEFAULT_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md4077">DAP Protocol Overview</a></li>
-<li class="level1"><a href="#autotoc_md4078">Key DAP Functions</a></li>
-<li class="level1"><a href="#autotoc_md4079">Dependencies</a></li>
-<li class="level1"><a href="#autotoc_md4080">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md4081">See Also</a></li>
-<li class="level1"><a href="#autotoc_md4082">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md4132">DAP Protocol Overview</a></li>
+<li class="level1"><a href="#autotoc_md4133">Key DAP Functions</a></li>
+<li class="level1"><a href="#autotoc_md4134">Dependencies</a></li>
+<li class="level1"><a href="#autotoc_md4135">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md4136">See Also</a></li>
+<li class="level1"><a href="#autotoc_md4137">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_ai_dap_default"></a></p>
-<h1><a class="anchor" id="autotoc_md4076"></a>
+<h1><a class="anchor" id="autotoc_md4131"></a>
 Introduction</h1>
 <p>This example demonstrates the Device Agent Protocol (DAP) communication layer used for integration with Edge AI Studio. DAP provides a standardized UART-based protocol for streaming sensor data, receiving commands, and transmitting inference results between the microcontroller and Edge AI Studio.</p>
 <p>This example serves as a reference implementation for:</p><ul>
@@ -126,7 +126,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/ai/dap_default/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md4077"></a>
+<h1><a class="anchor" id="autotoc_md4132"></a>
 DAP Protocol Overview</h1>
 <p>The Device Agent Protocol (DAP) provides:</p><ul>
 <li><b>Frame-based communication</b>: CRC-validated frames for reliable data transfer</li>
@@ -134,7 +134,7 @@ DAP Protocol Overview</h1>
 <li><b>Command handling</b>: Pipeline configuration and control commands from Edge AI Studio</li>
 <li><b>Multi-sensor streaming</b>: Support for streaming data from multiple sensors simultaneously</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md4078"></a>
+<h1><a class="anchor" id="autotoc_md4133"></a>
 Key DAP Functions</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -150,13 +150,13 @@ Key DAP Functions</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>Dap_StopSensorStream()</code>  </td><td class="markdownTableBodyNone">Stop sensor streaming   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md4079"></a>
+<h1><a class="anchor" id="autotoc_md4134"></a>
 Dependencies</h1>
 <ul>
 <li>Edge AI Studio for communication</li>
 <li>UART interface for DAP protocol</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md4080"></a>
+<h1><a class="anchor" id="autotoc_md4135"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
@@ -164,10 +164,10 @@ Steps to Run the Example</h1>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 <li>Connect Edge AI Studio to the device via UART</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md4081"></a>
+<h1><a class="anchor" id="autotoc_md4136"></a>
 See Also</h1>
 <p><a class="el" href="EXAMPLES_AI.html">AI Examples</a></p>
-<h1><a class="anchor" id="autotoc_md4082"></a>
+<h1><a class="anchor" id="autotoc_md4137"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">[DAP] Example started...</div>
 <div class="line">[DAP] Initialized successfully. Waiting for commands...</div>

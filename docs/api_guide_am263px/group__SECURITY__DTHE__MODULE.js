@@ -22,6 +22,6 @@ var group__SECURITY__DTHE__MODULE =
     [ "DTHE_deinit", "group__SECURITY__DTHE__MODULE.html#ga7ff4a32ab6b265560c52b6fb21d713ee", null ],
     [ "DTHE_open", "group__SECURITY__DTHE__MODULE.html#gaba32c784d8bf4ff4dd94bb33572332d6", null ],
     [ "DTHE_close", "group__SECURITY__DTHE__MODULE.html#ga2a700d92ae7a4eddae0a7cea569e5fab", null ],
-    [ "gDtheConfig", "group__SECURITY__DTHE__MODULE.html#ga1b076f5f30380b9b3e5cf8402803752d", null ],
+    [ "gDtheConfig", "group__SECURITY__DTHE__MODULE.html#ga0f556867e8d3b953224db7d7f5d916b6", null ],
     [ "gDtheConfigNum", "group__SECURITY__DTHE__MODULE.html#ga9aa416150f3a3c2f2d3b38b9bd082e72", null ]
 ];

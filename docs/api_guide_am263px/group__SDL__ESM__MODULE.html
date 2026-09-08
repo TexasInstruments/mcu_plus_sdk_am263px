@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -138,24 +138,24 @@ Functions</h2></td></tr>
 <tr class="memitem:gad1bf99d8a66ec79494c85e534621176f"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__ESM__MODULE.html#gad1bf99d8a66ec79494c85e534621176f">SDL_ESM_verifyConfig</a> (<a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a> instance, const <a class="el" href="structSDL__ESM__config.html">SDL_ESM_config</a> *pConfig)</td></tr>
 <tr class="memdesc:gad1bf99d8a66ec79494c85e534621176f"><td class="mdescLeft">&#160;</td><td class="mdescRight">SDL ESM API to verify the written configuration of the ESM module. The API verifies the written config that was done during SDL_ESM_init against the provided configuration.  <a href="group__SDL__ESM__MODULE.html#gad1bf99d8a66ec79494c85e534621176f">More...</a><br /></td></tr>
 <tr class="separator:gad1bf99d8a66ec79494c85e534621176f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9e180bb2d7cc584f3bd10ce49d7ec99a"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__ESM__MODULE.html#ga9e180bb2d7cc584f3bd10ce49d7ec99a">SDL_ESM_clrNError</a> (<a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a> instance)</td></tr>
-<tr class="memdesc:ga9e180bb2d7cc584f3bd10ce49d7ec99a"><td class="mdescLeft">&#160;</td><td class="mdescRight">SDL ESM API to clear the nError pin for the specified ESM instance.  <a href="group__SDL__ESM__MODULE.html#ga9e180bb2d7cc584f3bd10ce49d7ec99a">More...</a><br /></td></tr>
-<tr class="separator:ga9e180bb2d7cc584f3bd10ce49d7ec99a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9db3167e35cc52ad44eda6520664a36f"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__ESM__MODULE.html#ga9db3167e35cc52ad44eda6520664a36f">SDL_ESM_setNError</a> (<a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a> instance)</td></tr>
-<tr class="memdesc:ga9db3167e35cc52ad44eda6520664a36f"><td class="mdescLeft">&#160;</td><td class="mdescRight">SDL ESM API to set the nError pin for the specified ESM instance.  <a href="group__SDL__ESM__MODULE.html#ga9db3167e35cc52ad44eda6520664a36f">More...</a><br /></td></tr>
-<tr class="separator:ga9db3167e35cc52ad44eda6520664a36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacfb25a4d801393169e7149718c49d7b9"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__ESM__MODULE.html#gacfb25a4d801393169e7149718c49d7b9">SDL_ESM_registerECCCallback</a> (<a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a> instance, uint32_t eventBitMap[], <a class="el" href="group__SDL__ESM__MODULE.html#ga04a92f071075bf97c99520a16c6e86bb">SDL_ESM_applicationCallback</a> eccCallback, void *callbackArg)</td></tr>
-<tr class="memdesc:gacfb25a4d801393169e7149718c49d7b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">There are modules within SDL which will generate ESM errors intentionally in the course of running self-tests. The ECC module is one such module. To allow these modules to get the notification when the ESM error occurs, callback registration APIs are provided. The following APIs allow registration of a callback for specific events. This API is used by other SDL modules and not by the application.  <a href="group__SDL__ESM__MODULE.html#gacfb25a4d801393169e7149718c49d7b9">More...</a><br /></td></tr>
-<tr class="separator:gacfb25a4d801393169e7149718c49d7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9ce49362624d8bbb550a5a78198dff67"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__ESM__MODULE.html#ga9ce49362624d8bbb550a5a78198dff67">SDL_ESM_init</a> (<a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a> instance, const <a class="el" href="structSDL__ESM__config.html">SDL_ESM_config</a> *pConfig, <a class="el" href="group__SDL__ESM__MODULE.html#ga04a92f071075bf97c99520a16c6e86bb">SDL_ESM_applicationCallback</a> applicationCallback, void *appArg)</td></tr>
-<tr class="memdesc:ga9ce49362624d8bbb550a5a78198dff67"><td class="mdescLeft">&#160;</td><td class="mdescRight">SDL ESM API to initialize an ESM instance. The API initializes the specified ESM instance with the provided configuration. The configuration will allow the application to specify for each event whether the interrupt is enabled or disabled, the priority of the event, and whether the nErrorPin assertion is enabled or disabled for the event.  <a href="group__SDL__ESM__MODULE.html#ga9ce49362624d8bbb550a5a78198dff67">More...</a><br /></td></tr>
-<tr class="separator:ga9ce49362624d8bbb550a5a78198dff67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga41317554865b55363e55d8d0176a659b"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__ESM__MODULE.html#ga41317554865b55363e55d8d0176a659b">SDL_ESM_clrNError</a> (<a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a> esmInstType)</td></tr>
+<tr class="memdesc:ga41317554865b55363e55d8d0176a659b"><td class="mdescLeft">&#160;</td><td class="mdescRight">SDL ESM API to clear the nError pin for the specified ESM instance.  <a href="group__SDL__ESM__MODULE.html#ga41317554865b55363e55d8d0176a659b">More...</a><br /></td></tr>
+<tr class="separator:ga41317554865b55363e55d8d0176a659b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafbc210ff75be933dad9c633d5a059ed4"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__ESM__MODULE.html#gafbc210ff75be933dad9c633d5a059ed4">SDL_ESM_setNError</a> (<a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a> esmInstType)</td></tr>
+<tr class="memdesc:gafbc210ff75be933dad9c633d5a059ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">SDL ESM API to set the nError pin for the specified ESM instance.  <a href="group__SDL__ESM__MODULE.html#gafbc210ff75be933dad9c633d5a059ed4">More...</a><br /></td></tr>
+<tr class="separator:gafbc210ff75be933dad9c633d5a059ed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf1a58824f59ed060aebc01d0f74cf820"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__ESM__MODULE.html#gaf1a58824f59ed060aebc01d0f74cf820">SDL_ESM_setPinOutMode</a> (<a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a> instance, <a class="el" href="group__SDL__IP__ESM__API.html#ga0eb97c6e1cc6b70ccf4ea7dcd9972fc2">esmErrOutMode_t</a> pinOutMode)</td></tr>
 <tr class="memdesc:gaf1a58824f59ed060aebc01d0f74cf820"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is use to set error pin out mode(LEVEL or PWM). This API must be called after the below API- <a class="el" href="group__SDL__ESM__MODULE.html#ga9ce49362624d8bbb550a5a78198dff67" title="SDL ESM API to initialize an ESM instance. The API initializes the specified ESM instance with the pr...">SDL_ESM_init</a>.  <a href="group__SDL__ESM__MODULE.html#gaf1a58824f59ed060aebc01d0f74cf820">More...</a><br /></td></tr>
 <tr class="separator:gaf1a58824f59ed060aebc01d0f74cf820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacfb25a4d801393169e7149718c49d7b9"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__ESM__MODULE.html#gacfb25a4d801393169e7149718c49d7b9">SDL_ESM_registerECCCallback</a> (<a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a> instance, uint32_t eventBitMap[], <a class="el" href="group__SDL__ESM__MODULE.html#ga04a92f071075bf97c99520a16c6e86bb">SDL_ESM_applicationCallback</a> eccCallback, void *callbackArg)</td></tr>
+<tr class="memdesc:gacfb25a4d801393169e7149718c49d7b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">There are modules within SDL which will generate ESM errors intentionally in the course of running self-tests. The ECC module is one such module. To allow these modules to get the notification when the ESM error occurs, callback registration APIs are provided. The following APIs allow registration of a callback for specific events. This API is used by other SDL modules and not by the application.  <a href="group__SDL__ESM__MODULE.html#gacfb25a4d801393169e7149718c49d7b9">More...</a><br /></td></tr>
+<tr class="separator:gacfb25a4d801393169e7149718c49d7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae573d321c01f874aadb1385b2c932f25"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__ESM__MODULE.html#gae573d321c01f874aadb1385b2c932f25">SDL_ESM_registerCCMCallback</a> (<a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a> instance, uint32_t eventBitMap[], <a class="el" href="group__SDL__ESM__MODULE.html#ga04a92f071075bf97c99520a16c6e86bb">SDL_ESM_applicationCallback</a> ccmCallback, void *callbackArg)</td></tr>
 <tr class="memdesc:gae573d321c01f874aadb1385b2c932f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">There are modules within SDL which will generate ESM errors intentionally in the course of running self-tests. The CCM module is one such module. To allow these modules to get the notification when the ESM error occurs, callback registration APIs are provided. The following APIs allow registration of a callback for specific events. This API is used by other SDL modules and not by the application.  <a href="group__SDL__ESM__MODULE.html#gae573d321c01f874aadb1385b2c932f25">More...</a><br /></td></tr>
 <tr class="separator:gae573d321c01f874aadb1385b2c932f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9ce49362624d8bbb550a5a78198dff67"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__ESM__MODULE.html#ga9ce49362624d8bbb550a5a78198dff67">SDL_ESM_init</a> (<a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a> instance, const <a class="el" href="structSDL__ESM__config.html">SDL_ESM_config</a> *pConfig, <a class="el" href="group__SDL__ESM__MODULE.html#ga04a92f071075bf97c99520a16c6e86bb">SDL_ESM_applicationCallback</a> applicationCallback, void *appArg)</td></tr>
+<tr class="memdesc:ga9ce49362624d8bbb550a5a78198dff67"><td class="mdescLeft">&#160;</td><td class="mdescRight">SDL ESM API to initialize an ESM instance. The API initializes the specified ESM instance with the provided configuration. The configuration will allow the application to specify for each event whether the interrupt is enabled or disabled, the priority of the event, and whether the nErrorPin assertion is enabled or disabled for the event.  <a href="group__SDL__ESM__MODULE.html#ga9ce49362624d8bbb550a5a78198dff67">More...</a><br /></td></tr>
+<tr class="separator:ga9ce49362624d8bbb550a5a78198dff67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaecd02e2460de4f1e6d875294967ac568"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__ESM__MODULE.html#gaecd02e2460de4f1e6d875294967ac568">SDL_ESM_hiInterruptHandler</a> (void *arg)</td></tr>
 <tr class="memdesc:gaecd02e2460de4f1e6d875294967ac568"><td class="mdescLeft">&#160;</td><td class="mdescRight">Esm Hi Interrupt Handler for MCU Esm Instance.  <a href="group__SDL__ESM__MODULE.html#gaecd02e2460de4f1e6d875294967ac568">More...</a><br /></td></tr>
 <tr class="separator:gaecd02e2460de4f1e6d875294967ac568"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -620,7 +620,7 @@ ESM ECC Error source type</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr  />
- <h2><a class="anchor" id="autotoc_md1618"></a>
+ <h2><a class="anchor" id="autotoc_md1630"></a>
 \brief Defines the different ESM instance types</h2>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggae5a25ad63d3b6fb92538167520983d51a825e49e84662d961a375f14f9c9afc9d"></a>SDL_ESM_INST_MAIN_ESM0&#160;</td><td class="fielddoc"><p>ESM0 (Main domain) instance <br  />
@@ -643,7 +643,7 @@ ESM ECC Error source type</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <hr  />
- <h2><a class="anchor" id="autotoc_md1625"></a>
+ <h2><a class="anchor" id="autotoc_md1637"></a>
 \brief This enumerator defines the values for ESM interrupt types</h2>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga802ac10e6ee170ca234dc37fa5a544bda0d20933a51267755379c05d94cf0be91"></a>SDL_ESM_INT_TYPE_HI&#160;</td><td class="fielddoc"><p>Interrupt type Hi <br  />
@@ -780,8 +780,8 @@ ESM ECC Error source type</h2></td></tr>
 
 </div>
 </div>
-<a id="ga9e180bb2d7cc584f3bd10ce49d7ec99a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9e180bb2d7cc584f3bd10ce49d7ec99a">&#9670;&nbsp;</a></span>SDL_ESM_clrNError()</h2>
+<a id="ga41317554865b55363e55d8d0176a659b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga41317554865b55363e55d8d0176a659b">&#9670;&nbsp;</a></span>SDL_ESM_clrNError()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -790,7 +790,7 @@ ESM ECC Error source type</h2></td></tr>
           <td class="memname">int32_t SDL_ESM_clrNError </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a>&#160;</td>
-          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td class="paramname"><em>esmInstType</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -800,16 +800,16 @@ ESM ECC Error source type</h2></td></tr>
 <p>============================================================================</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">instance</td><td>ESM Instance</td></tr>
+    <tr><td class="paramname">esmInstType</td><td>ESM Instance</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>SDL_PASS if nError pin status is successfully cleared. SDL_EBADARGS if instance is invalid. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>SDL_PASS if nError pin status is successfully cleared. SDL_EBADARGS if esmInstType is invalid. </dd></dl>
 
 </div>
 </div>
-<a id="ga9db3167e35cc52ad44eda6520664a36f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9db3167e35cc52ad44eda6520664a36f">&#9670;&nbsp;</a></span>SDL_ESM_setNError()</h2>
+<a id="gafbc210ff75be933dad9c633d5a059ed4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafbc210ff75be933dad9c633d5a059ed4">&#9670;&nbsp;</a></span>SDL_ESM_setNError()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -818,7 +818,7 @@ ESM ECC Error source type</h2></td></tr>
           <td class="memname">int32_t SDL_ESM_setNError </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a>&#160;</td>
-          <td class="paramname"><em>instance</em></td><td>)</td>
+          <td class="paramname"><em>esmInstType</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -828,11 +828,50 @@ ESM ECC Error source type</h2></td></tr>
 <p>============================================================================</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">instance</td><td>ESM Instance</td></tr>
+    <tr><td class="paramname">esmInstType</td><td>ESM Instance</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>SDL_PASS if nError pin status is successfully set. SDL_EBADARGS if instance is invalid. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>SDL_PASS if nError pin status is successfully set. SDL_EBADARGS if esmInstType is invalid. </dd></dl>
+
+</div>
+</div>
+<a id="gaf1a58824f59ed060aebc01d0f74cf820"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf1a58824f59ed060aebc01d0f74cf820">&#9670;&nbsp;</a></span>SDL_ESM_setPinOutMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t SDL_ESM_setPinOutMode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a>&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__SDL__IP__ESM__API.html#ga0eb97c6e1cc6b70ccf4ea7dcd9972fc2">esmErrOutMode_t</a>&#160;</td>
+          <td class="paramname"><em>pinOutMode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This API is use to set error pin out mode(LEVEL or PWM). This API must be called after the below API- <a class="el" href="group__SDL__ESM__MODULE.html#ga9ce49362624d8bbb550a5a78198dff67" title="SDL ESM API to initialize an ESM instance. The API initializes the specified ESM instance with the pr...">SDL_ESM_init</a>. </p>
+<p>============================================================================</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>ESM Instance.</td></tr>
+    <tr><td class="paramname">pinOutMode</td><td>enum value to select error pin out mode. Refer enum <a class="el" href="group__SDL__IP__ESM__API.html#ga0eb97c6e1cc6b70ccf4ea7dcd9972fc2" title="ESM Error Output Mode type.">esmErrOutMode_t</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SDL_PASS - API success SDL_EBADARGS - Instance is not valid. SDL_EFAIL - Output (LVL or PWM) is not changed. </dd></dl>
 
 </div>
 </div>
@@ -889,98 +928,6 @@ ESM ECC Error source type</h2></td></tr>
 
 </div>
 </div>
-<a id="ga9ce49362624d8bbb550a5a78198dff67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9ce49362624d8bbb550a5a78198dff67">&#9670;&nbsp;</a></span>SDL_ESM_init()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t SDL_ESM_init </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a>&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structSDL__ESM__config.html">SDL_ESM_config</a> *&#160;</td>
-          <td class="paramname"><em>pConfig</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group__SDL__ESM__MODULE.html#ga04a92f071075bf97c99520a16c6e86bb">SDL_ESM_applicationCallback</a>&#160;</td>
-          <td class="paramname"><em>applicationCallback</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>appArg</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>SDL ESM API to initialize an ESM instance. The API initializes the specified ESM instance with the provided configuration. The configuration will allow the application to specify for each event whether the interrupt is enabled or disabled, the priority of the event, and whether the nErrorPin assertion is enabled or disabled for the event. </p>
-<p>============================================================================</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>ESM Instance </td></tr>
-    <tr><td class="paramname">pConfig</td><td>Pointer to the ESM configuration structure </td></tr>
-    <tr><td class="paramname">applicationCallback</td><td>Pointer to the callback to be called by the ESM Handler to notify the application of an ESM error event. </td></tr>
-    <tr><td class="paramname">appArg</td><td>Application argument that will passed to the application when the application callback is called.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>SDL_PASS if success. SDL_EBADARGS if invalid argument is passed. SDL_EFAIL if other failure. </dd></dl>
-
-</div>
-</div>
-<a id="gaf1a58824f59ed060aebc01d0f74cf820"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf1a58824f59ed060aebc01d0f74cf820">&#9670;&nbsp;</a></span>SDL_ESM_setPinOutMode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t SDL_ESM_setPinOutMode </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a>&#160;</td>
-          <td class="paramname"><em>instance</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group__SDL__IP__ESM__API.html#ga0eb97c6e1cc6b70ccf4ea7dcd9972fc2">esmErrOutMode_t</a>&#160;</td>
-          <td class="paramname"><em>pinOutMode</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>This API is use to set error pin out mode(LEVEL or PWM). This API must be called after the below API- <a class="el" href="group__SDL__ESM__MODULE.html#ga9ce49362624d8bbb550a5a78198dff67" title="SDL ESM API to initialize an ESM instance. The API initializes the specified ESM instance with the pr...">SDL_ESM_init</a>. </p>
-<p>============================================================================</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instance</td><td>ESM Instance.</td></tr>
-    <tr><td class="paramname">pinOutMode</td><td>enum value to select error pin out mode. Refer enum <a class="el" href="group__SDL__IP__ESM__API.html#ga0eb97c6e1cc6b70ccf4ea7dcd9972fc2" title="ESM Error Output Mode type.">esmErrOutMode_t</a>.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>SDL_PASS - API success SDL_EBADARGS - Instance is not valid. SDL_EFAIL - Output (LVL or PWM) is not changed. </dd></dl>
-
-</div>
-</div>
 <a id="gae573d321c01f874aadb1385b2c932f25"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gae573d321c01f874aadb1385b2c932f25">&#9670;&nbsp;</a></span>SDL_ESM_registerCCMCallback()</h2>
 
@@ -1027,6 +974,59 @@ ESM ECC Error source type</h2></td></tr>
     <tr><td class="paramname">eventBitMap</td><td>Bitmap for ESM error event of interest for this callback. Array of uint32_t type with each bit representing one ESM error event. </td></tr>
     <tr><td class="paramname">ccmCallback</td><td>Pointer to the callback to be called by the ESM Handler to notify the ECC module of an ESM error event </td></tr>
     <tr><td class="paramname">callbackArg</td><td>Argument that will be passed along with the callback.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SDL_PASS if success. SDL_EBADARGS if invalid argument is passed. SDL_EFAIL if other failure. </dd></dl>
+
+</div>
+</div>
+<a id="ga9ce49362624d8bbb550a5a78198dff67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9ce49362624d8bbb550a5a78198dff67">&#9670;&nbsp;</a></span>SDL_ESM_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t SDL_ESM_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__SDL__ESM__MODULE.html#gae5a25ad63d3b6fb92538167520983d51">SDL_ESM_Inst</a>&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structSDL__ESM__config.html">SDL_ESM_config</a> *&#160;</td>
+          <td class="paramname"><em>pConfig</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__SDL__ESM__MODULE.html#ga04a92f071075bf97c99520a16c6e86bb">SDL_ESM_applicationCallback</a>&#160;</td>
+          <td class="paramname"><em>applicationCallback</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>appArg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SDL ESM API to initialize an ESM instance. The API initializes the specified ESM instance with the provided configuration. The configuration will allow the application to specify for each event whether the interrupt is enabled or disabled, the priority of the event, and whether the nErrorPin assertion is enabled or disabled for the event. </p>
+<p>============================================================================</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>ESM Instance </td></tr>
+    <tr><td class="paramname">pConfig</td><td>Pointer to the ESM configuration structure </td></tr>
+    <tr><td class="paramname">applicationCallback</td><td>Pointer to the callback to be called by the ESM Handler to notify the application of an ESM error event. </td></tr>
+    <tr><td class="paramname">appArg</td><td>Application argument that will passed to the application when the application callback is called.</td></tr>
   </table>
   </dd>
 </dl>

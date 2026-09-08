@@ -123,7 +123,7 @@ static int32_t Flash_nandOspiOpen(Flash_Config *config, Flash_Params *params)
         obj->currentProtocol = config->devConfig->protocolCfg.protocol;
 
         /* Set RD Capture Delay by reading ID */
-        uint32_t readDataCapDelay = 4U;
+        uint32_t readDataCapDelay = 8U;
         OSPI_setRdDataCaptureDelay(obj->ospiHandle, readDataCapDelay);
 
         status = Flash_nandOspiReadId(config);
@@ -138,7 +138,14 @@ static int32_t Flash_nandOspiOpen(Flash_Config *config, Flash_Params *params)
         /* Enable PHY if attack vector present and PHY mode is enabled */
         if(status == SystemP_SUCCESS)
         {
-            status = Flash_nandOspiPhyTune(config);
+            int32_t phyStatus = Flash_nandOspiPhyTune(config);
+            if(phyStatus != SystemP_SUCCESS)
+            {
+                /* PHY tuning and its non-PHY fallback both failed.
+                 * The flash itself was ID'd successfully so open still
+                 * succeeds, but flag the error so the caller is aware. */
+                DebugP_logError("%s : PHY tune and fallback failed, flash open continues without PHY\r\n", __func__);
+            }
         }
         else
         {
@@ -254,6 +261,14 @@ static int32_t Flash_nandOspiRead(Flash_Config *config, uint32_t offset, uint8_t
             status = SystemP_FAILURE;
         }
     }
+
+#if defined (SOC_AM263PX) || defined (SOC_AM261X)
+    if(obj->phyEnable)
+    {
+        OSPI_enablePhy(obj->ospiHandle);
+    }
+#endif
+
     if(status == SystemP_SUCCESS)
     {
         pageSize = attrs->pageSize;
@@ -306,9 +321,18 @@ static int32_t Flash_nandOspiRead(Flash_Config *config, uint32_t offset, uint8_t
                 transaction.addrOffset = attrs->pageSize;
                 transaction.count = 2;
                 transaction.buf = readBBMarkerBuf;
-
+#if defined (SOC_AM263PX) || defined (SOC_AM261X)
+                if(OSPI_isDacEnable(obj->ospiHandle))
+                {
+                    status = OSPI_readDirect(obj->ospiHandle, &transaction);
+                }
+                else
+                {
+                    status = OSPI_readIndirect(obj->ospiHandle, &transaction);
+                }
+#else 
                 status = OSPI_readDirect(obj->ospiHandle, &transaction);
-
+#endif
                 if(readBBMarkerBuf[0] != 0xFF || readBBMarkerBuf[1] != 0xFF)
                 {
                     status = SystemP_FAILURE;
@@ -350,8 +374,18 @@ static int32_t Flash_nandOspiRead(Flash_Config *config, uint32_t offset, uint8_t
                         }
                     }
                 }
-
+#if defined(SOC_AM263PX) || defined (SOC_AM261X)
+                if(OSPI_isDacEnable(obj->ospiHandle))
+                {
+                    status = OSPI_readDirect(obj->ospiHandle, &transaction);
+                }
+                else
+                {
+                    status = OSPI_readIndirect(obj->ospiHandle, &transaction);
+                }
+#else 
                 status = OSPI_readDirect(obj->ospiHandle, &transaction);
+#endif
             }
 
             if(readAddr % pageSize == 0)
@@ -372,8 +406,16 @@ static int32_t Flash_nandOspiRead(Flash_Config *config, uint32_t offset, uint8_t
         }
     }
 
+#if defined (SOC_AM263PX) || defined (SOC_AM261X)
+    if(obj->phyEnable)
+    {
+        OSPI_disablePhy(obj->ospiHandle);
+    }
+#endif
+
     return status;
 }
+
 
 static int32_t Flash_nandOspiWrite(Flash_Config *config, uint32_t offset, uint8_t *buf, uint32_t len)
 {
@@ -460,11 +502,6 @@ static int32_t Flash_nandOspiWrite(Flash_Config *config, uint32_t offset, uint8_
 
             if(status == SystemP_SUCCESS)
             {
-                status = Flash_nandOspiWaitReady(config, 10000U);
-            }
-
-            if(status == SystemP_SUCCESS)
-            {
                 cmd = nandCfg->cmdPageProg;
                 if(obj->currentProtocol == FLASH_CFG_PROTO_8D_8D_8D)
                 {
@@ -483,14 +520,8 @@ static int32_t Flash_nandOspiWrite(Flash_Config *config, uint32_t offset, uint8_
 
             if(status == SystemP_SUCCESS)
             {
-                for(int timeOut = 10000; timeOut > 0; timeOut--)
-                {
-                    status = Flash_nandOspiCheckProgStatus(config);
-                    if(status == SystemP_SUCCESS)
-                    {
-                        break;
-                    }
-                }
+                /* Check program status (PROG_FAIL bit) - single check after WaitReady */
+                status = Flash_nandOspiCheckProgStatus(config);
             }
 
             if(status != SystemP_SUCCESS)
@@ -1147,17 +1178,41 @@ static int32_t Flash_NandOspiWriteDirect(Flash_Config *config, OSPI_Transaction 
 
     if(status == SystemP_SUCCESS)
     {
-        OSPI_writeDirect(obj->ospiHandle, trans);
+#if defined(SOC_AM263PX) || defined (SOC_AM261X)
+        if(OSPI_isDacEnable(obj->ospiHandle))
+        {
+            status = OSPI_writeDirect(obj->ospiHandle, trans);
+        }
+        else
+        {
+            status = OSPI_writeIndirect(obj->ospiHandle, trans);
+        }
+#else 
+        status = OSPI_writeDirect(obj->ospiHandle, trans);
+#endif
+        if(status == SystemP_SUCCESS)
+        {
+            /* Write spare area (64 bytes) */
+            OSPI_Transaction spareByteTrans;
+            OSPI_Transaction_init(&spareByteTrans);
 
-        OSPI_Transaction spareByteTrans;
-        OSPI_Transaction_init(&spareByteTrans);
+            spareByteTrans.count = FLASH_PAGE_SPARE_ARRAY_SIZE_BYTES;
+            spareByteTrans.addrOffset = attrs->pageSize;
+            spareByteTrans.buf = flashSpareAreaData;
 
-        spareByteTrans.count = FLASH_PAGE_SPARE_ARRAY_SIZE_BYTES;
-        spareByteTrans.addrOffset = attrs->pageSize;
-        spareByteTrans.buf = flashSpareAreaData;
-
-        OSPI_writeDirect(obj->ospiHandle, &spareByteTrans);
-
+#if defined(SOC_AM263PX) || defined (SOC_AM261X)
+            if(OSPI_isDacEnable(obj->ospiHandle))
+            {
+                status = OSPI_writeDirect(obj->ospiHandle, &spareByteTrans);
+            }
+            else
+            {
+                status = OSPI_writeIndirect(obj->ospiHandle, &spareByteTrans);
+            }
+#else 
+            status = OSPI_writeDirect(obj->ospiHandle, &spareByteTrans);
+#endif
+        }
     }
 
     return status;
@@ -1306,7 +1361,7 @@ static int32_t Flash_nandOspiPhyTune(Flash_Config *config)
             status = Flash_nandOspiPageLoad(config, phyTuningOffset);
             status += OSPI_phyReadAttackVector(obj->ospiHandle, 0);
 
-            uint32_t readDataCapDelay = 4U;
+            uint32_t readDataCapDelay = 16U;
             while((status != SystemP_SUCCESS) && (readDataCapDelay > 0U))
             {
                 OSPI_setRdDataCaptureDelay(obj->ospiHandle, readDataCapDelay);
@@ -1318,7 +1373,11 @@ static int32_t Flash_nandOspiPhyTune(Flash_Config *config)
 
         if(status == SystemP_SUCCESS)
         {
+#if defined(SOC_AM263PX) || defined (SOC_AM261X)
+            status += OSPI_phyTuneSDR(obj->ospiHandle, 0);
+#else 
             status += OSPI_phyTuneDDR(obj->ospiHandle, 0);
+#endif
         }
 
         if(status == SystemP_SUCCESS)
@@ -1328,9 +1387,35 @@ static int32_t Flash_nandOspiPhyTune(Flash_Config *config)
         }
         else
         {
-            DebugP_logError("%s : PHY enabling failed!!! Continuing without PHY...\r\n", __func__);
+            DebugP_logError("%s : PHY enabling failed!!! Falling back to non-PHY mode...\r\n", __func__);
             obj->phyEnable = FALSE;
             OSPI_setPhyEnableSuccess(obj->ospiHandle, FALSE);
+
+            /*
+             * Re-establish a working non-PHY configuration so that the flash
+             * remains accessible.  Restore dummy-cycle settings in the
+             * controller and sweep read-capture-delay to find a passing window,
+             * mirroring the fallback pattern used in flash_nor_ospi.c for
+             * AM263PX / AM261X.
+             */
+            OSPI_setReadDummyCycles(obj->ospiHandle, config->devConfig->protocolCfg.dummyClksRd);
+            OSPI_setCmdDummyCycles(obj->ospiHandle,  config->devConfig->protocolCfg.dummyClksCmd);
+
+            uint32_t readDataCapDelay = 0U;
+            status = Flash_nandOspiPageLoad(config, phyTuningOffset);
+            status += OSPI_phyReadAttackVector(obj->ospiHandle, 0U);
+            while((status != SystemP_SUCCESS) && (readDataCapDelay < 16U))
+            {
+                readDataCapDelay++;
+                OSPI_setRdDataCaptureDelay(obj->ospiHandle, readDataCapDelay);
+                status = Flash_nandOspiPageLoad(config, phyTuningOffset);
+                status += OSPI_phyReadAttackVector(obj->ospiHandle, 0U);
+            }
+
+            if(status != SystemP_SUCCESS)
+            {
+                DebugP_logError("%s : Non-PHY fallback also failed!!!\r\n", __func__);
+            }
         }
     }
     else

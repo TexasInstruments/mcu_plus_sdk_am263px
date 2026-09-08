@@ -76,28 +76,35 @@ RNG_Handle RNG_open(uint32_t index)
     #endif
 
     /* Check instance */
-    if(index >= gRngConfigNum)
-    {
-        status = RNG_RETURN_FAILURE;
-    }
-    else
+    if(index < gRngConfigNum)
     {
         config = &gRngConfig[index];
-        DebugP_assert((NULL_PTR != config->attrs));
         attrs = config->attrs;
-        if(TRUE == attrs->isOpen)
+        if(NULL_PTR != attrs)
         {
-            /* Handle is already opened */
-            status = RNG_close((RNG_Handle) config);
-            status = RNG_RETURN_FAILURE;
-            attrs->faultStatus = status;
+            if(1U == attrs->isOpen)
+            {
+                /* Handle is already opened */
+                (void)RNG_close((RNG_Handle) config);
+                status = RNG_RETURN_FAILURE;
+                attrs->faultStatus = status;
+            }
+            else
+            {
+                attrs->isOpen = 1U;
+                handle = (RNG_Handle) config;
+                attrs->faultStatus = status;
+            }
         }
         else
         {
-            attrs->isOpen = TRUE;
-            handle = (RNG_Handle) config;
-            attrs->faultStatus = status;
+            status = RNG_RETURN_FAILURE;
+            (void)status;
         }
+    }
+    else
+    {
+        /* Do nothing */
     }
 
     return (handle);
@@ -110,13 +117,10 @@ RNG_Return_t RNG_close(RNG_Handle handle)
     RNG_Attrs   *attrs;
     config  = (RNG_Config *) handle;
 
-    if((NULL != config) && (config->attrs->isOpen != (uint32_t)FALSE))
+    if((NULL_PTR != config) && (0U != config->attrs->isOpen))
     {
         attrs = config->attrs;
-        DebugP_assert((NULL_PTR != attrs));
-        attrs->isOpen = FALSE;
-        /* TO module disable */
-        handle = NULL;
+        attrs->isOpen = 0U;
         status  = RNG_RETURN_SUCCESS;
     }
     return (status);
@@ -154,7 +158,8 @@ RNG_Return_t RNG_setup(RNG_Handle handle)
         val = ((uint32_t) 0xFFU);
         CSL_REG_WR(&pTrngRegs->TRNG_FROENABLE, val);
 
-        if(config->attrs->mode == RNG_DRBG_MODE)
+        /* 1U denotes RNG_DRBG_MODE */
+        if(config->attrs->mode == 1U)
         {
             /* Enable DRBG first */
             val = (((uint32_t) 1U) << RNG_CONTROL_DRBG_EN_SHIFT);
@@ -243,7 +248,6 @@ RNG_Return_t RNG_read(RNG_Handle handle, uint32_t *out)
     else
     {
         retVal = RNG_RETURN_FAILURE;
-        DebugP_assert(RNG_RETURN_SUCCESS == retVal);
     }
 
     if(RNG_RETURN_SUCCESS == retVal)
@@ -263,7 +267,7 @@ RNG_Return_t RNG_read(RNG_Handle handle, uint32_t *out)
         out[3U]  = CSL_REG_RD(&pTrngRegs->TRNG_INPUT_3);
 
         /*Set the INTACK and go back*/
-        CSL_REG_WR(&pTrngRegs->TRNG_STATUS, (CSL_CP_ACE_TRNG_INTACK_READY_ACK_MASK << CSL_CP_ACE_TRNG_INTACK_READY_ACK_SHIFT));
+        CSL_REG_WR(&pTrngRegs->TRNG_STATUS, (((uint32_t) CSL_CP_ACE_TRNG_INTACK_READY_ACK_MASK) << CSL_CP_ACE_TRNG_INTACK_READY_ACK_SHIFT));
     }
     return (retVal);
 }

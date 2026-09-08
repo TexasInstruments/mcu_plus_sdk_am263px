@@ -803,6 +803,7 @@ void OSPI_lld_setProtocol(OSPILLD_Handle hOspi, uint32_t protocol)
 
             /* Update book-keeping variable in OSPI object */
             hOspi->protocol = protocol;
+            hOspi->isDtr = (dtr != 0U) ? 1U : 0U;
         }
     }
     else
@@ -841,7 +842,7 @@ void OSPI_lld_setWriteDummyCycles(OSPILLD_Handle hOspi, uint32_t dummyCycles)
         CSL_REG32_FINS(&pReg->DEV_INSTR_WR_CONFIG_REG, OSPI_FLASH_CFG_DEV_INSTR_WR_CONFIG_REG_DUMMY_WR_CLK_CYCLES_FLD, dummyCycles);
 
         /* Update book-keeping variable in OSPI object */
-        hOspi->rdDummyCycles = dummyCycles;
+        hOspi->wrDummyCycles = dummyCycles;
     }
     else
     {
@@ -1052,8 +1053,11 @@ int32_t OSPI_lld_enablePhy(OSPILLD_Handle hOspi)
                                             OSPI_FLASH_CFG_CONFIG_REG_PHY_MODE_ENABLE_FLD);
         if(phyEnable == FALSE)
         {
-            /* Set dummyClks 1 less */
-            uint32_t dummyClks = hOspi->rdDummyCycles - 1;
+            /* In DTR mode, each clock edge transfers data so effective dummy
+             * cycles seen by flash = programmed value * 2; compensate by
+             * using rdDummyCycles-1. In STR mode use rdDummyCycles as-is. */
+            uint32_t dummyClks = hOspi->isDtr ? (hOspi->rdDummyCycles - 1U)
+                                              : hOspi->rdDummyCycles;
 
             /* Set new dummyClk */
             CSL_REG32_FINS(&pReg->DEV_INSTR_RD_CONFIG_REG,
@@ -1344,7 +1348,7 @@ int32_t OSPI_lld_readDirectDma(OSPILLD_Handle hOspi, OSPI_Transaction *trans)
         /* DMA Copy fails when copying to to certain memory regions. So in this case we switch to normal memcpy
         for copying even if dmaEnable is true. Also do DMA copy only if size > 1KB*/
         uint32_t isDmaCopy = (OSPI_isDmaRestrictedRegion(hOspi, (uint32_t)pDst) == FALSE) &&
-                             (trans->count > OSPI_DMA_COPY_LOWER_LIMIT);
+                             (trans->count >= OSPI_DMA_COPY_LOWER_LIMIT);
 
         if(isDmaCopy == TRUE)
         {
@@ -1485,34 +1489,74 @@ int32_t OSPI_lld_readIndirect(OSPILLD_Handle hOspi, OSPI_Transaction *trans)
 
         if(OSPI_TRANSFER_MODE_POLLING == hOspi->transferMode)
         {
-            remainingSize = trans->count;
+#if defined(SOC_AM263PX) || defined(SOC_AM261X)
+            /* Check if DMA is enabled for indirect read */
+            uint32_t useDma = (hOspiInit->dmaEnable == TRUE) &&
+                             (OSPI_isDmaRestrictedRegion(hOspi, (uint32_t)pDst) == FALSE) &&
+                             (trans->count > OSPI_DMA_COPY_LOWER_LIMIT);
 
-            while(remainingSize > 0U)
+            if(useDma == TRUE)
             {
+                /* Wait for SRAM FIFO to have data before starting DMA */
                 if(OSPI_waitReadSRAMLevel(pReg, &sramLevel) != 0)
                 {
-                    /* SRAM FIFO has no data, failure */
                     readFlag = 1U;
                     status = OSPI_SYSTEM_FAILURE;
                     trans->status = OSPI_TRANSFER_FAILED;
-                    break;
                 }
+                else
+                {
+                    if (trans->transferTimeout == 0)
+                    {
+                        trans->transferTimeout = 5000;
+                    }
+                    hOspi->currTrans->state = OSPI_TRANSFER_MODE_BLOCKING;
+                    /* Use DMA for INDAC read: FIFO -> pDst, isWrite=0 */
+                    OSPI_dmaIndirectCopy(hOspi, (void *)pDst, (void *)hOspiInit->dataBaseAddr,
+                                        trans->count, trans->transferTimeout, 0U);
 
-                readBytes = sramLevel * CSL_OSPI_FIFO_WIDTH;
-                readBytes = (readBytes > remainingSize) ? remainingSize : readBytes;
-
-                /* Read data from FIFO */
-                OSPI_readFifoData(hOspiInit->dataBaseAddr, pDst, readBytes);
-
-                pDst += readBytes;
-                remainingSize -= readBytes;
+                    /* Wait for completion of INDAC Read */
+                    if(OSPI_waitIndReadComplete(pReg) != 0)
+                    {
+                        readFlag = 1U;
+                        status = OSPI_SYSTEM_FAILURE;
+                        trans->status = OSPI_TRANSFER_FAILED;
+                    }
+                }
             }
-            /* Wait for completion of INDAC Read */
-            if(readFlag == 0U && OSPI_waitIndReadComplete(pReg) != 0)
+            else
+#endif
             {
-                readFlag = 1U;
-                status = OSPI_SYSTEM_FAILURE;
-                trans->status = OSPI_TRANSFER_FAILED;
+                /* Polling mode without DMA */
+                remainingSize = trans->count;
+
+                while(remainingSize > 0U)
+                {
+                    if(OSPI_waitReadSRAMLevel(pReg, &sramLevel) != 0)
+                    {
+                        /* SRAM FIFO has no data, failure */
+                        readFlag = 1U;
+                        status = OSPI_SYSTEM_FAILURE;
+                        trans->status = OSPI_TRANSFER_FAILED;
+                        break;
+                    }
+
+                    readBytes = sramLevel * CSL_OSPI_FIFO_WIDTH;
+                    readBytes = (readBytes > remainingSize) ? remainingSize : readBytes;
+
+                    /* Read data from FIFO */
+                    OSPI_readFifoData(hOspiInit->dataBaseAddr, pDst, readBytes);
+
+                    pDst += readBytes;
+                    remainingSize -= readBytes;
+                }
+                /* Wait for completion of INDAC Read */
+                if(readFlag == 0U && OSPI_waitIndReadComplete(pReg) != 0)
+                {
+                    readFlag = 1U;
+                    status = OSPI_SYSTEM_FAILURE;
+                    trans->status = OSPI_TRANSFER_FAILED;
+                }
             }
 
         }
@@ -1609,6 +1653,85 @@ int32_t OSPI_lld_writeCmd(OSPILLD_Handle hOspi, OSPI_WriteCmdParams *wrParams)
     {
         status = OSPI_SYSTEM_FAILURE;
     }
+    return status;
+}
+
+int32_t OSPI_lld_writeDirectDma(OSPILLD_Handle hOspi, OSPI_Transaction *trans)
+{
+    int32_t status = OSPI_SYSTEM_SUCCESS;
+    uint8_t *pSrc;
+    uint8_t *pDst;
+    uint32_t addrOffset;
+    const CSL_ospi_flash_cfgRegs *pReg;
+    OSPILLD_InitHandle hOspiInit;
+
+    if((NULL != hOspi) && (NULL != trans))
+    {
+        pReg = (const CSL_ospi_flash_cfgRegs *)(hOspi->baseAddr);
+        hOspiInit = hOspi->hOspiInit;
+        addrOffset = trans->addrOffset;
+        pSrc = (uint8_t *) trans->buf;
+
+        /* Enable Direct Access Mode */
+        CSL_REG32_FINS(&pReg->CONFIG_REG,
+                    OSPI_FLASH_CFG_CONFIG_REG_ENB_DIR_ACC_CTLR_FLD,
+                    1);
+        CSL_REG32_WR(&pReg->IND_AHB_ADDR_TRIGGER_REG, 0x04000000);
+
+        pDst = (uint8_t *)(hOspiInit->dataBaseAddr + addrOffset);
+
+        uint32_t isDmaCopy = (OSPI_isDmaRestrictedRegion(hOspi, (uint32_t)pSrc) == FALSE) &&
+                             (trans->count >= OSPI_DMA_COPY_LOWER_LIMIT);
+
+        if(isDmaCopy == TRUE)
+        {
+            uint8_t *tempSrc = pSrc;
+            uint8_t *tempDst = pDst;
+            uint32_t remainingBytes = trans->count;
+
+            /* Handle src address alignment to 32B */
+            if(((uint32_t)pSrc % OSPI_DMA_COPY_SRC_ALIGNMENT) != 0)
+            {
+                uint32_t initResidualBytes = OSPI_DMA_COPY_SRC_ALIGNMENT - (((uint32_t)pSrc) % OSPI_DMA_COPY_SRC_ALIGNMENT);
+                OSPI_lld_flashMemcpy(tempDst, tempSrc, initResidualBytes);
+                tempDst += initResidualBytes;
+                tempSrc += initResidualBytes;
+                remainingBytes -= initResidualBytes;
+            }
+
+            /* Handle trailing unaligned bytes */
+            uint32_t unalignedBytes = (remainingBytes % OSPI_DMA_COPY_SIZE_ALIGNMENT);
+            if(unalignedBytes > 0)
+            {
+                tempDst += (remainingBytes - unalignedBytes);
+                tempSrc += (remainingBytes - unalignedBytes);
+                OSPI_lld_flashMemcpy(tempDst, tempSrc, unalignedBytes);
+                tempDst -= (remainingBytes - unalignedBytes);
+                tempSrc -= (remainingBytes - unalignedBytes);
+            }
+
+            if(remainingBytes > 0)
+            {
+                if (trans->transferTimeout == 0)
+                {
+                    trans->transferTimeout = 5000;
+                }
+                hOspi->currTrans->state = OSPI_TRANSFER_MODE_BLOCKING;
+                /* src=RAM buf, dst=PSRAM window */
+                OSPI_dmaCopy(hOspi, tempDst, tempSrc, remainingBytes - unalignedBytes, trans->transferTimeout);
+            }
+        }
+        else
+        {
+            hOspi->currTrans->state = OSPI_TRANSFER_MODE_POLLING;
+            OSPI_lld_flashMemcpy(pDst, pSrc, trans->count);
+        }
+    }
+    else
+    {
+        status = OSPI_LLD_INVALID_PARAM;
+    }
+
     return status;
 }
 
@@ -1716,37 +1839,58 @@ int32_t OSPI_lld_writeIndirect(OSPILLD_Handle hOspi, OSPI_Transaction *trans)
 
         if(OSPI_TRANSFER_MODE_POLLING == hOspi->transferMode)
         {
-            if(OSPI_waitWriteSRAMLevel(pReg, &sramLevel) != 0)
+#if defined(SOC_AM263PX) || defined(SOC_AM261X)
+            /* Check if DMA is enabled for indirect write */
+            uint32_t useDma = (hOspiInit->dmaEnable == TRUE) &&
+                             (OSPI_isDmaRestrictedRegion(hOspi, (uint32_t)pSrc) == FALSE) &&
+                             (trans->count > OSPI_DMA_COPY_LOWER_LIMIT);
+
+            if(useDma == TRUE)
             {
-                wrFlag = 1U;
-                status = OSPI_SYSTEM_FAILURE;
-                trans->status = OSPI_TRANSFER_FAILED;
-            }
-            else
-            {
-                remainingSize = trans->count;
-                while(remainingSize > 0U)
+                if (trans->transferTimeout == 0)
                 {
-                    if(OSPI_waitWriteSRAMLevel(pReg, &sramLevel) != 0)
-                    {
-                        wrFlag = 1U;
-                        status = OSPI_SYSTEM_FAILURE;
-                        break;
-                    }
-
-                    wrBytes = (CSL_OSPI_SRAM_PARTITION_WR - sramLevel) * CSL_OSPI_FIFO_WIDTH;
-                    wrBytes = (wrBytes > remainingSize) ? remainingSize : wrBytes;
-
-                    OSPI_writeFifoData(hOspiInit->dataBaseAddr, pSrc, wrBytes);
-
-                    pSrc += wrBytes;
-                    remainingSize -= wrBytes;
+                    trans->transferTimeout = 5000;
                 }
+                hOspi->currTrans->state = OSPI_TRANSFER_MODE_BLOCKING;
+                /* Use DMA for INDAC write: pSrc -> FIFO, isWrite=1 */
+                OSPI_dmaIndirectCopy(hOspi, (void *)hOspiInit->dataBaseAddr, (void *)pSrc,
+                                    trans->count, trans->transferTimeout, 1U);
 
-                if(wrFlag == 0U && OSPI_waitIndWriteComplete(pReg) != 0)
+                if(OSPI_waitIndWriteComplete(pReg) != 0)
                 {
                     wrFlag = 1U;
-                    status = -1;
+                    status = OSPI_SYSTEM_FAILURE;
+                }
+            }
+            else
+#endif
+            {
+                /* Polling mode without DMA */
+                if(OSPI_waitWriteSRAMLevel(pReg, &sramLevel) != 0)
+                {
+                    wrFlag = 1U;
+                    status = OSPI_SYSTEM_FAILURE;
+                    trans->status = OSPI_TRANSFER_FAILED;
+                }
+                else
+                {
+                    remainingSize = trans->count;
+                    while(remainingSize > 0U)
+                    {
+                        wrBytes = (CSL_OSPI_SRAM_PARTITION_WR - sramLevel) * CSL_OSPI_FIFO_WIDTH;
+                        wrBytes = (wrBytes > remainingSize) ? remainingSize : wrBytes;
+
+                        OSPI_writeFifoData(hOspiInit->dataBaseAddr, pSrc, wrBytes);
+
+                        pSrc += wrBytes;
+                        remainingSize -= wrBytes;
+                    }
+
+                    if(wrFlag == 0U && OSPI_waitIndWriteComplete(pReg) != 0)
+                    {
+                        wrFlag = 1U;
+                        status = -1;
+                    }
                 }
             }
         }

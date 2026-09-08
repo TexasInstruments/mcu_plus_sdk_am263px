@@ -88,7 +88,7 @@ int32_t Board_ramOpen()
     % {
         % let instanceserial = serialmodule.$instances[0];
         % let configserial = serialmodule.getInstanceConfig(instanceserial);
-        gRamAttrs_`configserial.sramName`.driverInstance = CONFIG_OSPI0;
+        gRamAttrs_`configserial.sramName`.driverInstance = `instanceserial.peripheralDriver.$name.toUpperCase()`;
     % }
 % }
 

@@ -85,6 +85,10 @@ void System_init(void)
      */
     CopyVecsToATCMmem();
 % }
+% if ((boot_module != undefined) && (boot_module.$instances[0].vpp_enable)&& ((common.getSocName() == "am261x") || (common.getSocName() == "am263px"))){
+    SOC_enableVpp();
+    
+% }
     /* DPL init sets up address transalation unit, on some CPUs this is needed
      * to access SCICLIENT services, hence this needs to happen first
      */

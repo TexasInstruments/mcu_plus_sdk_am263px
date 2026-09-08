@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -122,9 +122,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gaf0c62c59f382b1cad7b460f7a016b7a1"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gaf0c62c59f382b1cad7b460f7a016b7a1">SIPC_sendMsg</a> (uint8_t remoteSecCoreId, uint8_t remoteClientId, uint8_t localClientId, uint8_t *msgValue, <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gaa0d0d9f91fa3e18e46f08d7328b14b91">SIPC_fifoFlags</a> waitForFifoNotFull)</td></tr>
 <tr class="memdesc:gaf0c62c59f382b1cad7b460f7a016b7a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send message to a specific remote core and specific client ID on that remote core.  <a href="group__DRV__SIPC__NOTIFY__MODULE.html#gaf0c62c59f382b1cad7b460f7a016b7a1">More...</a><br /></td></tr>
 <tr class="separator:gaf0c62c59f382b1cad7b460f7a016b7a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6824ed8d43c1424eccae8773b5d74a12"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ga6824ed8d43c1424eccae8773b5d74a12">SIPC_registerClient</a> (uint8_t localClientId, <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gaff91d2f85a004ae8509bff4429426e39">SIPC_FxnCallback</a> msgCallback, void *<a class="el" href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a>)</td></tr>
-<tr class="memdesc:ga6824ed8d43c1424eccae8773b5d74a12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a callback to handle messages received from a specific remote core and for a specific local client ID.  <a href="group__DRV__SIPC__NOTIFY__MODULE.html#ga6824ed8d43c1424eccae8773b5d74a12">More...</a><br /></td></tr>
-<tr class="separator:ga6824ed8d43c1424eccae8773b5d74a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga51d797e7bbaf156ba214e777f837b5a4"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ga51d797e7bbaf156ba214e777f837b5a4">SIPC_registerClient</a> (uint8_t localClientId, <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gab484efb3eaf3dbcc4a9b976bf6c56771">SIPC_FxnCallback</a> msgCallback, const void *<a class="el" href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a>)</td></tr>
+<tr class="memdesc:ga51d797e7bbaf156ba214e777f837b5a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a callback to handle messages received from a specific remote core and for a specific local client ID.  <a href="group__DRV__SIPC__NOTIFY__MODULE.html#ga51d797e7bbaf156ba214e777f837b5a4">More...</a><br /></td></tr>
+<tr class="separator:ga51d797e7bbaf156ba214e777f837b5a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga28254046881ce2154e732ffe6cb97880"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ga28254046881ce2154e732ffe6cb97880">SIPC_unregisterClient</a> (uint16_t localClientId)</td></tr>
 <tr class="memdesc:ga28254046881ce2154e732ffe6cb97880"><td class="mdescLeft">&#160;</td><td class="mdescRight">Un-register a previously registered callback.  <a href="group__DRV__SIPC__NOTIFY__MODULE.html#ga28254046881ce2154e732ffe6cb97880">More...</a><br /></td></tr>
 <tr class="separator:ga28254046881ce2154e732ffe6cb97880"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,9 +140,9 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:gaff91d2f85a004ae8509bff4429426e39"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gaff91d2f85a004ae8509bff4429426e39">SIPC_FxnCallback</a>) (uint8_t remoteSecCoreId, uint8_t localClientId, uint8_t remoteClientId, uint8_t *msgValue, void *<a class="el" href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a>)</td></tr>
-<tr class="memdesc:gaff91d2f85a004ae8509bff4429426e39"><td class="mdescLeft">&#160;</td><td class="mdescRight">User callback that is invoked when a message is received from a reote core for a given client ID.  <a href="group__DRV__SIPC__NOTIFY__MODULE.html#gaff91d2f85a004ae8509bff4429426e39">More...</a><br /></td></tr>
-<tr class="separator:gaff91d2f85a004ae8509bff4429426e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab484efb3eaf3dbcc4a9b976bf6c56771"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gab484efb3eaf3dbcc4a9b976bf6c56771">SIPC_FxnCallback</a>) (uint8_t remoteSecCoreId, uint8_t localClientId, uint8_t remoteClientId, uint8_t *msgValue, const void *<a class="el" href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a>)</td></tr>
+<tr class="memdesc:gab484efb3eaf3dbcc4a9b976bf6c56771"><td class="mdescLeft">&#160;</td><td class="mdescRight">User callback that is invoked when a message is received from a reote core for a given client ID.  <a href="group__DRV__SIPC__NOTIFY__MODULE.html#gab484efb3eaf3dbcc4a9b976bf6c56771">More...</a><br /></td></tr>
+<tr class="separator:gab484efb3eaf3dbcc4a9b976bf6c56771"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8f15b433619d39950f2e2640a7f12c3b"><td class="memItemLeft" align="right" valign="top">typedef uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ga8f15b433619d39950f2e2640a7f12c3b">SIPC_coreId</a></td></tr>
 <tr class="memdesc:ga8f15b433619d39950f2e2640a7f12c3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core Ids to identify different cores.  <a href="group__DRV__SIPC__NOTIFY__MODULE.html#ga8f15b433619d39950f2e2640a7f12c3b">More...</a><br /></td></tr>
 <tr class="separator:ga8f15b433619d39950f2e2640a7f12c3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,14 +159,14 @@ Enumerations</h2></td></tr>
 <tr class="separator:gaa0d0d9f91fa3e18e46f08d7328b14b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="gaff91d2f85a004ae8509bff4429426e39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaff91d2f85a004ae8509bff4429426e39">&#9670;&nbsp;</a></span>SIPC_FxnCallback</h2>
+<a id="gab484efb3eaf3dbcc4a9b976bf6c56771"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab484efb3eaf3dbcc4a9b976bf6c56771">&#9670;&nbsp;</a></span>SIPC_FxnCallback</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* SIPC_FxnCallback) (uint8_t remoteSecCoreId, uint8_t localClientId, uint8_t remoteClientId,uint8_t *msgValue, void *<a class="el" href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a>)</td>
+          <td class="memname">typedef void(* SIPC_FxnCallback) (uint8_t remoteSecCoreId, uint8_t localClientId, uint8_t remoteClientId,uint8_t *msgValue, const void *<a class="el" href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -181,7 +181,7 @@ Enumerations</h2></td></tr>
     <tr><td class="paramname">localClientId</td><td>[in] Local client ID to which the message is sent </td></tr>
     <tr><td class="paramname">remoteClientId</td><td>[in] remote client Id from which this message has been sent </td></tr>
     <tr><td class="paramname">msgValue</td><td>[in] pointer to the buffer with SIPC_MSG_SIZE elements </td></tr>
-    <tr><td class="paramname">args</td><td>[in] Argument pointer passed by user when <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ga6824ed8d43c1424eccae8773b5d74a12">SIPC_registerClient</a> is called </td></tr>
+    <tr><td class="paramname">args</td><td>[in] Argument pointer passed by user when <a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#ga51d797e7bbaf156ba214e777f837b5a4">SIPC_registerClient</a> is called </td></tr>
   </table>
   </dd>
 </dl>
@@ -382,8 +382,8 @@ SystemP_FAILURE, message could not be sent since HW or SW FIFO for holding the m
 
 </div>
 </div>
-<a id="ga6824ed8d43c1424eccae8773b5d74a12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga6824ed8d43c1424eccae8773b5d74a12">&#9670;&nbsp;</a></span>SIPC_registerClient()</h2>
+<a id="ga51d797e7bbaf156ba214e777f837b5a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga51d797e7bbaf156ba214e777f837b5a4">&#9670;&nbsp;</a></span>SIPC_registerClient()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -397,13 +397,13 @@ SystemP_FAILURE, message could not be sent since HW or SW FIFO for holding the m
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gaff91d2f85a004ae8509bff4429426e39">SIPC_FxnCallback</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__DRV__SIPC__NOTIFY__MODULE.html#gab484efb3eaf3dbcc4a9b976bf6c56771">SIPC_FxnCallback</a>&#160;</td>
           <td class="paramname"><em>msgCallback</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">void *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>args</em>&#160;</td>
         </tr>
         <tr>

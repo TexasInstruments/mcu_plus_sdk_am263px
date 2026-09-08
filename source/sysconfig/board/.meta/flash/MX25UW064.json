@@ -13,8 +13,8 @@
 	"protos": {
 		"p111": {
 			"isDtr": false,
-			"cmdRd": "0x03",
-			"cmdWr": "0x02",
+			"cmdRd": "0x13",
+			"cmdWr": "0x12",
 			"modeClksCmd": 0,
 			"modeClksRd": 0,
 			"dummyClksCmd": 0,

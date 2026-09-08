@@ -111,11 +111,11 @@ uint32_t gOspiConfigNum = CONFIG_OSPI_NUM_INSTANCES;
 #include <drivers/ospi/v0/lld/dma/edma/ospi_edma_lld.h>
 
 % if(emdaCount > 0) {
-OspiDma_EdmaArgs gOspiEdmaArgs[`module.$instances.length`];
+OspiDma_EdmaArgs gOspiEdmaArgs[`emdaCount`];
 
 OSPI_DmaConfig gOspiDmaConfig[CONFIG_OSPI_NUM_DMA_INSTANCES] =
 {
-%for(let i = 0; i < module.$instances.length; i++) {
+%for(let i = 0; i < emdaCount; i++) {
     {
         .ospiDmaArgs = &(gOspiEdmaArgs[`i`])
     }

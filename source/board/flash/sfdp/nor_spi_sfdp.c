@@ -84,6 +84,11 @@ uint32_t gNorSpi_Sfdp_ParamTableIds[NOR_SPI_SFDP_NPH_MAX] = {
     NOR_SPI_SFDP_LONG_LATENCY_NVM_MSP_TABLE_ID,
     NOR_SPI_SFDP_QUAD_IO_WITH_DS_TABLE_ID,
     NOR_SPI_SFDP_QUAD_CMD_SEQ_TABLE_ID,
+    NOR_SPI_SFDP_SECURE_PACKET_TABLE_ID,    /* JESD216D */
+    NOR_SPI_SFDP_GRAM_TABLE_ID,             /* JESD216G */
+    NOR_SPI_SFDP_SPI_SAFETY_EXT_TABLE_ID,  /* JESD216G */
+    NOR_SPI_SFDP_CRC32_TABLE_ID,           /* JESD216H */
+    NOR_SPI_SFDP_ECC_TABLE_ID,             /* JESD216H */
 };
 
 char* gNorSpi_Sfdp_ParamTableNames[NOR_SPI_SFDP_NPH_MAX] = {
@@ -100,6 +105,11 @@ char* gNorSpi_Sfdp_ParamTableNames[NOR_SPI_SFDP_NPH_MAX] = {
     "LONG LATENCY NVM MEDIA SPECIFIC PARAMETER TABLE",
     "QUAD IO WITH DS TABLE",
     "QUAD DDR MODE COMMAND SEQUENCE TABLE",
+    "SECURE PACKET TABLE",
+    "GENERIC REGISTER AND COMMAND MAP TABLE",
+    "SPI SAFETY EXTENSIONS CRC TABLE",
+    "SFDP CRC-32 TABLE",
+    "ECC TABLE",
 };
 
 static uint32_t gSectorIdx = 4;
@@ -320,6 +330,18 @@ int32_t NorSpi_Sfdp_parseBfpt(NorSpi_SfdpBasicFlashParamTable *bfpt, NorSpi_Sfdp
         /* Soft Reset Type */
         norSpiDefines->rstType = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[15], 8, 13);
 
+        /* Volatile/non-volatile status register write support (JESD216B DWORD 16 bits [7:0]).
+         * Bit map:
+         *   bit 0: Write enable (06h) required before all commands
+         *   bit 1: Write enable (06h) required for volatile SR write
+         *   bit 2: Write enable latch not required for volatile SR write
+         *   bit 3: 0x50 volatile write enable supported
+         *   bit 4: Non-volatile SR write supported
+         *   bit 5: Volatile SR write supported (using 06h WREN)
+         *   bit 6: Volatile SR write using 50h
+         */
+        norSpiDefines->nvRegSupport = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[15], 0, 7);
+
         /* Check for JESD216B. That has only 16 DWORDS */
         if(numDwords > NOR_SPI_SFDP_BFPT_MAX_DWORDS_JESD216B)
         {
@@ -347,13 +369,120 @@ int32_t NorSpi_Sfdp_parseBfpt(NorSpi_SfdpBasicFlashParamTable *bfpt, NorSpi_Sfdp
             norSpiDefines->protos[FLASH_CFG_PROTO_8S_8S_8S].enableType = oeType;
             norSpiDefines->protos[FLASH_CFG_PROTO_8D_8D_8D].enableType = oeType;
 
-            /* 8-8-8 Mode enable sequence */
+            /* 0-8-8 mode entry and exit sequences (JESD216C DWORD 19 bits [19:12]).
+             * Each field is a 4-bit bitmap; each set bit indicates a supported method.
+             * Entry bits [19:16]:
+             *   bit 16 (0b0001): No entry sequence needed; device powers up in 0-8-8
+             *   bit 17 (0b0010): Entry by sending dummy clocks after CS# de-assertion
+             *   bit 18 (0b0100): Entry by command (device-specific)
+             *   bit 19 (0b1000): Entry via register write (device-specific)
+             * Exit bits [15:12]:
+             *   bit 12 (0b0001): No exit sequence needed
+             *   bit 13 (0b0010): Exit by 8-clock idle pattern on DQ[0:7] with CS# de-asserted
+             *   bit 14 (0b0100): Soft reset using sequences in DWORD 16 bits [13:8]
+             *   bit 15 (0b1000): Power cycle required
+             */
+            norSpiDefines->mode088EntrySeq = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[18], 16, 19);
+            norSpiDefines->mode088ExitSeq  = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[18], 12, 15);
+
+            /* 8-8-8 Mode enable sequence
+             * Bits [8:4] encode the 8s-8s-8s enable sequence. Encoding updated in JESD216H:
+             *   bit 4  (0b00001): Write enable volatile bit in CFR2V (Reg 5)
+             *   bit 5  (0b00010): Write 0x01 to CFR2V[1] to enter 8s mode
+             *   bit 6  (0b00100): Issue command 0x81 (write to volatile register) to enter 8s mode
+             *   bit 7  (0b01000): Write EFh to addressable register at address 00h (via GRAM, JESD216H)
+             *   bit 8  (0b10000): Write B7h to addressable register at address 00h (via GRAM, JESD216H)
+             * Bits [3:0] encode the 8s-8s-8s disable / return-to-1s-1s-1s sequence. Updated in JESD216H:
+             *   bit 0  (0b0001): Soft reset (use sequences from BFPT DWORD 16)
+             *   bit 1  (0b0010): Write FFh to addressable register at address 00h (via GRAM, JESD216H)
+             *   bit 2  (0b0100): Power cycle
+             *   bit 3  (0b1000): 8-clock sequence on SI/SO with CS# deasserted
+             */
             uint32_t oeSeq = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[18], 4, 8);
             norSpiDefines->protos[FLASH_CFG_PROTO_8S_8S_8S].enableSeq = oeSeq;
 
             if(norSpiDefines->dtrSupport)
             {
                 norSpiDefines->protos[FLASH_CFG_PROTO_8D_8D_8D].enableSeq = oeSeq;
+            }
+
+            /* DWORD 20 (index [19]): Maximum operational speeds (JESD216C).
+             * bits [31:16]: max speed for 4-4-4 mode in MHz (0 = not specified)
+             * bits [15:0]:  max speed for 8-8-8 mode in MHz (0 = not specified)
+             */
+            norSpiDefines->maxSpeed444 = (uint16_t)NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[19], 16, 31);
+            norSpiDefines->maxSpeed888 = (uint16_t)NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[19], 0, 15);
+
+            /* Check for JESD216F/G/H. Those have 23 DWORDs (DWORDs 21-23 added in JESD216F) */
+            if(numDwords > NOR_SPI_SFDP_BFPT_MAX_DWORDS_JESD216C)
+            {
+                /* DWORD 21 (index [20]): DTR fast read support flags
+                 * bit 3: 1S-1D-1D supported
+                 * bit 4: 1S-2D-2D supported
+                 * bit 5: 1S-4D-4D supported
+                 * bit 6: 4S-4D-4D supported
+                 */
+                uint32_t dtrSupport21 = bfpt->dwords[20];
+
+                /* DWORD 22 (index [21]): 1S-1D-1D and 1S-2D-2D fast read parameters */
+                if(NOR_SPI_SFDP_GET_BITFIELD(dtrSupport21, 3, 3))
+                {
+                    /* 1S-1D-1D read. No special enable sequence — mode is entered by
+                     * issuing the DTR read command directly (enableType = 0). */
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_1D_1D].cmdRd       = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[21], 24, 31);
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_1D_1D].modeClksRd  = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[21], 21, 23);
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_1D_1D].dummyClksRd = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[21], 16, 20);
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_1D_1D].isDtr        = TRUE;
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_1D_1D].cmdWr        = 0x02;
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_1D_1D].enableType   = 0;
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_1D_1D].enableSeq    = 0;
+                }
+
+                if(NOR_SPI_SFDP_GET_BITFIELD(dtrSupport21, 4, 4))
+                {
+                    /* 1S-2D-2D read. No special enable sequence — mode is entered by
+                     * issuing the DTR read command directly (enableType = 0). */
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_2D_2D].cmdRd       = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[21], 8, 15);
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_2D_2D].modeClksRd  = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[21], 5, 7);
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_2D_2D].dummyClksRd = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[21], 0, 4);
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_2D_2D].isDtr        = TRUE;
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_2D_2D].cmdWr        = 0x02;
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_2D_2D].enableType   = 0;
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_2D_2D].enableSeq    = 0;
+                }
+
+                /* DWORD 23 (index [22]): 1S-4D-4D and 4S-4D-4D fast read parameters */
+                if(NOR_SPI_SFDP_GET_BITFIELD(dtrSupport21, 5, 5))
+                {
+                    /* 1S-4D-4D read. Uses the same Quad Enable Requirements as 1S-1S-4S
+                     * because the flash must still be in quad-enabled state to output 4
+                     * data wires. Inherit qeType and qeSeq already set for 1S-1S-4S. */
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_4D_4D].cmdRd       = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[22], 24, 31);
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_4D_4D].modeClksRd  = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[22], 21, 23);
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_4D_4D].dummyClksRd = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[22], 16, 20);
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_4D_4D].isDtr        = TRUE;
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_4D_4D].cmdWr        = 0x02;
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_4D_4D].enableType   = norSpiDefines->protos[FLASH_CFG_PROTO_1S_1S_4S].enableType;
+                    norSpiDefines->protos[FLASH_CFG_PROTO_1S_4D_4D].enableSeq    = norSpiDefines->protos[FLASH_CFG_PROTO_4S_4S_4S].enableSeq;
+                }
+
+                if(NOR_SPI_SFDP_GET_BITFIELD(dtrSupport21, 6, 6))
+                {
+                    /* 4S-4D-4D read - overlaps with existing FLASH_CFG_PROTO_4S_4D_4D slot.
+                     * Update dummy/mode clocks from the dedicated JESD216F fields if non-zero,
+                     * as the JESD216B-era DWORD 7 field does not distinguish STR vs DTR timing.
+                     */
+                    uint8_t  cmd4s4d4d = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[22], 8, 15);
+                    uint8_t  mode4s4d4d = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[22], 5, 7);
+                    uint16_t dummy4s4d4d = NOR_SPI_SFDP_GET_BITFIELD(bfpt->dwords[22], 0, 4);
+                    if(cmd4s4d4d != 0)
+                    {
+                        norSpiDefines->protos[FLASH_CFG_PROTO_4S_4D_4D].cmdRd    = cmd4s4d4d;
+                        norSpiDefines->protos[FLASH_CFG_PROTO_4S_4D_4D].modeClksRd  = mode4s4d4d;
+                        norSpiDefines->protos[FLASH_CFG_PROTO_4S_4D_4D].dummyClksRd = dummy4s4d4d;
+                    }
+                    norSpiDefines->protos[FLASH_CFG_PROTO_4S_4D_4D].isDtr = TRUE;
+                }
             }
 
         }

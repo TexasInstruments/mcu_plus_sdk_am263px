@@ -31,14 +31,10 @@
  */
 
 #include <string.h>
+#include <kernel/dpl/ClockP.h>
+#include <drivers/hw_include/cslr_soc.h>
+#include <drivers/soc.h>
 #include "psram_ospi.h"
-
-/* Mode Register 0 */
-#define OSPI_PSRAM_MR0_ADDRESS            0x00000000U
-#define OSPI_PSRAM_MR0_DRIVE_STRENGTH     0x01U       /* Drive Strength                      */
-#define OSPI_PSRAM_MR0_READ_LATENCY_CODE  0x04U       /* Read Latency Code                   */
-#define OSPI_PSRAM_MR0_RLC_3              0x00U       /* Read Latency Code 3                 */
-#define OSPI_PSRAM_MR0_LATENCY_TYPE       0x20U       /* Latency Type                        */
 
 /* Mode Register 1 */
 #define OSPI_PSRAM_MR1_ADDRESS            0x00000001U
@@ -47,17 +43,6 @@
 /* Mode Register 2 */
 #define OSPI_PSRAM_MR2_ADDRESS            0x00000002U
 #define OSPI_PSRAM_MR2_DEVICE_ID_MASK     0x18U       /* Device Identifier                   */
-
-/* Mode Register 4 */
-#define OSPI_PSRAM_MR4_ADDRESS            0x00000004U
-#define OSPI_PSRAM_MR4_WLC_3              0x80U       /* Write Latency Code 3                */
-
-/* Mode Register 6 */
-#define OSPI_PSRAM_MR6_ADDRESS            0x00000006U
-
-/* Mode Register 8 */
-#define OSPI_PSRAM_MR8_ADDRESS            0x00000008U
-#define OSPI_PSRAM_MR8_BT                 0x04U       /* Burst Type                          */
 
 #define OSPI_PSRAM_RD_CAPTURE_DELAY       8U
 
@@ -72,6 +57,9 @@ static int32_t Psram_ospiReadCmd(Ram_Config *config, uint8_t cmd, uint32_t readO
 static int32_t Psram_ospiReadId(Ram_Config *config, uint32_t *manufacturerId, uint32_t *deviceId);
 static int32_t Psram_ospiReset(Ram_Config *config);
 static int32_t Psram_ospiWriteCmd(Ram_Config *config, uint8_t cmd, uint32_t writeOffset, uint8_t *txBuf, uint32_t txBufLen);
+static int32_t Psram_ospiPhyTune(Ram_Config *config);
+static void Psram_ospiDisxipEnable(void);
+static void Psram_ospiDisxipDisable(void);
 
 Ram_Fxns gPsramOspiFxns = {
     .openFxn = Psram_ospiOpen,
@@ -96,13 +84,10 @@ uint32_t gProtocolMap[] =
 static int32_t Psram_ospiOpen(Ram_Config *config)
 {
     int32_t status = SystemP_SUCCESS;
-    uint8_t txDataMR0 = OSPI_PSRAM_MR0_DRIVE_STRENGTH + OSPI_PSRAM_MR0_READ_LATENCY_CODE + OSPI_PSRAM_MR0_LATENCY_TYPE;
-    uint8_t txDataMR4 = OSPI_PSRAM_MR4_WLC_3;
-    uint8_t txDataMR8 = OSPI_PSRAM_MR8_BT;
 
     Ram_Attrs *attrs = config->attrs;
     Ram_OspiPsramObject *obj = (Ram_OspiPsramObject*)(config->object);
-    
+
     obj->ospiHandle = OSPI_getHandle(attrs->driverInstance);
 
     if(obj->ospiHandle == NULL)
@@ -118,8 +103,8 @@ static int32_t Psram_ospiOpen(Ram_Config *config)
 
         OSPI_configResetPin(obj->ospiHandle, OSPI_RESETPIN_DEDICATED);
         /* Set device size and addressing bytes */
-        OSPI_setDeviceSize(obj->ospiHandle, config->attrs->ramSize, config->attrs->ramSize);
-        
+        OSPI_setDeviceSize(obj->ospiHandle, config->attrs->pageSize, config->attrs->ramSize);
+
         OSPI_setProtocol(obj->ospiHandle, gProtocolMap[ospi_attrs->protocol]);
 
         OSPI_setReadDummyCycles(obj->ospiHandle,config->devConfig->dummyClksRd);
@@ -127,22 +112,28 @@ static int32_t Psram_ospiOpen(Ram_Config *config)
         OSPI_setWriteDummyCycles(obj->ospiHandle,config->devConfig->dummyClksWr);
 
         OSPI_setCmdDummyCycles(obj->ospiHandle,config->devConfig->dummyClksCmd);
-    
-        status += Psram_ospiWriteCmd(config,config->devConfig->cmdRegWr,OSPI_PSRAM_MR0_ADDRESS,&txDataMR0,(sizeof(txDataMR0)/sizeof(uint8_t)));
-        
-        if(status == SystemP_SUCCESS)
+
+        OSPI_setCmdExtType(obj->ospiHandle, config->devConfig->cmdExtType);
+
+        Psram_ospiDisxipEnable();
+
+        /* Configure mode registers from syscfg */
+        if((config->devConfig->mrCount > 0) && (config->devConfig->mrConfig != NULL))
         {
-            status += Psram_ospiWriteCmd(config,config->devConfig->cmdRegWr,OSPI_PSRAM_MR4_ADDRESS,&txDataMR4,(sizeof(txDataMR4)/sizeof(uint8_t)));
-        }
-        
-        if(status == SystemP_SUCCESS)
-        {
-            status += Psram_ospiWriteCmd(config,config->devConfig->cmdRegWr,OSPI_PSRAM_MR8_ADDRESS,&txDataMR8,(sizeof(txDataMR8)/sizeof(uint8_t)));
+            uint8_t valWidth = (config->devConfig->mrValWidth > 0U) ? config->devConfig->mrValWidth : 1U;
+            for(uint8_t i = 0; (i < config->devConfig->mrCount) && (status == SystemP_SUCCESS); i++)
+            {
+                /* Value is stored as uint32_t; send only mrValWidth bytes (little-endian) */
+                uint32_t mrValue = config->devConfig->mrConfig[i].value;
+                status += Psram_ospiWriteCmd(config, config->devConfig->cmdRegWr,
+                                              config->devConfig->mrConfig[i].address,
+                                              (uint8_t *)&mrValue, valWidth);
+            }
         }
 
         OSPI_setNumAddrBytes(obj->ospiHandle,4);
         obj->numAddrBytes = 4;
-    
+
     }
 
     if(status == SystemP_SUCCESS)
@@ -151,35 +142,9 @@ static int32_t Psram_ospiOpen(Ram_Config *config)
     }
 
     if(status == SystemP_SUCCESS)
-    {   
-        uint8_t readCaptureDelay = 0U;
-
-        status += Psram_ospiWrite(config, 0, gOspiFlashAttackVector, OSPI_FLASH_ATTACK_VECTOR_SIZE);
-        
-        if(status == SystemP_SUCCESS)
-        {
-            OSPI_setRdDataCaptureDelay(obj->ospiHandle, readCaptureDelay);
-            status = Psram_ospiRead(config, 0, gReadBuf, OSPI_FLASH_ATTACK_VECTOR_SIZE);
-            if(memcmp(gReadBuf, gOspiFlashAttackVector, OSPI_FLASH_ATTACK_VECTOR_SIZE)!=0)
-            {
-                status = SystemP_FAILURE;
-            }
-        }
-
-        while((status != SystemP_SUCCESS) && readCaptureDelay <= OSPI_PSRAM_RD_CAPTURE_DELAY)
-        {
-            readCaptureDelay++;
-            OSPI_setRdDataCaptureDelay(obj->ospiHandle, readCaptureDelay);
-            status = Psram_ospiRead(config, 0, gReadBuf, OSPI_FLASH_ATTACK_VECTOR_SIZE);
-            if(memcmp(gReadBuf, gOspiFlashAttackVector, OSPI_FLASH_ATTACK_VECTOR_SIZE)!=0)
-            {
-                status = SystemP_FAILURE;
-            }
-        }
-
+    {
+        status = Psram_ospiPhyTune(config);
     }
-
-    obj->phyEnable = OSPI_isPhyEnable(obj->ospiHandle);
 
     return status;
 }
@@ -276,6 +241,11 @@ static int32_t Psram_ospiWrite(Ram_Config *config, uint32_t ramOffset, uint8_t *
         status = SystemP_FAILURE;
     }
 
+    if(obj->phyEnable)
+    {
+        OSPI_enablePhy(obj->ospiHandle);
+    }
+
     /* Validate address input */
     if((ramOffset + bufLen) > (attrs->ramSize) || (bufLen < 2))
     {
@@ -290,29 +260,39 @@ static int32_t Psram_ospiWrite(Ram_Config *config, uint32_t ramOffset, uint8_t *
 
     if(status == SystemP_SUCCESS)
     {
-        const OSPI_Attrs *ospi_attrs = ((OSPI_Config *)obj->ospiHandle)->attrs;
-        uint32_t baseAddress = ospi_attrs->dataBaseAddr;
-        uint32_t size = bufLen;
+        const uint32_t pageSize = config->attrs->pageSize;
+        uint32_t bytesRemaining = bufLen;
+        uint32_t currentOffset = ramOffset;
+        uint8_t *currentBuf = buf;
 
-        if (status == SystemP_SUCCESS)
+        while((bytesRemaining > 0U) && (status == SystemP_SUCCESS))
         {
-            status += OSPI_enableDacMode(obj->ospiHandle);
+            /* Calculate bytes to write in this chunk, respecting page boundary */
+            uint32_t offsetInPage = currentOffset % pageSize;
+            uint32_t bytesLeftInPage = pageSize - offsetInPage;
+            uint32_t chunkSize = (bytesRemaining < bytesLeftInPage) ? bytesRemaining : bytesLeftInPage;
+
+            OSPI_Transaction transaction;
+            OSPI_Transaction_init(&transaction);
+            transaction.addrOffset = currentOffset;
+            transaction.buf = (void *)currentBuf;
+            transaction.count = chunkSize;
+            status = OSPI_writeDirect(obj->ospiHandle, &transaction);
 
             if(status == SystemP_SUCCESS)
             {
-                uint16_t *pSrc = (uint16_t *)buf;
-                uint16_t *pDst = (uint16_t *)(ramOffset + baseAddress);
-                while (size != 0U)
-                {
-                    *pDst++ = *pSrc++;
-                    size-=2;
-                }
+                bytesRemaining -= chunkSize;
+                currentOffset += chunkSize;
+                currentBuf += chunkSize;
             }
-
-            status = SystemP_SUCCESS;
         }
     }
-    
+
+    if(obj->phyEnable)
+    {
+        OSPI_disablePhy(obj->ospiHandle);
+    }
+
     return status;
 }
 
@@ -340,12 +320,31 @@ static int32_t Psram_ospiRead(Ram_Config *config, uint32_t ramOffset, uint8_t *b
 
     if (status == SystemP_SUCCESS)
     {
-        OSPI_Transaction transaction;
-        OSPI_Transaction_init(&transaction);
-        transaction.addrOffset = ramOffset;
-        transaction.buf = (void *)buf;
-        transaction.count = bufLen;
-        status = OSPI_readDirect(obj->ospiHandle, &transaction);
+        uint32_t pageSize = config->attrs->pageSize;
+        uint32_t bytesRemaining = bufLen;
+        uint32_t currentOffset = ramOffset;
+        uint8_t *currentBuf = buf;
+
+        while((bytesRemaining > 0U) && (status == SystemP_SUCCESS))
+        {
+            /* Calculate bytes to read in this chunk, respecting page boundary */
+            uint32_t offsetInPage = currentOffset % pageSize;
+            uint32_t bytesLeftInPage = pageSize - offsetInPage;
+            uint32_t chunkSize = (bytesRemaining < bytesLeftInPage) ? bytesRemaining : bytesLeftInPage;
+
+            OSPI_Transaction transaction;
+            OSPI_Transaction_init(&transaction);
+            transaction.addrOffset = currentOffset;
+            transaction.buf = (void *)currentBuf;
+            transaction.count = chunkSize;
+            status = OSPI_readDirect(obj->ospiHandle, &transaction);
+            if(status == SystemP_SUCCESS)
+            {
+                bytesRemaining -= chunkSize;
+                currentOffset += chunkSize;
+                currentBuf += chunkSize;
+            }
+        }
     }
 
     if(obj->phyEnable)
@@ -364,7 +363,152 @@ static int32_t Psram_ospiReset(Ram_Config *config)
     return status;
 }
 
+static int32_t Psram_ospiPhyTune(Ram_Config *config)
+{
+    int32_t status = SystemP_SUCCESS;
+    Ram_OspiPsramObject *obj = (Ram_OspiPsramObject *)(config->object);
+    uint32_t readDataCapDelay;
+    uint32_t phyTuningData = 0U, phyTuningDataSize = 0U;
+
+    /* Disable PHY by default; enable only after successful tuning */
+    obj->phyEnable = FALSE;
+
+    if(OSPI_isPhyEnable(obj->ospiHandle) == (uint32_t)TRUE)
+    {
+        /*
+         * PSRAM is volatile ΓÇö the attack vector must be written fresh each
+         * power-on.  Write it at offset 0, then ask the OSPI PHY layer to
+         * verify it (OSPI_phyReadAttackVector reads back and compares via the
+         * PHY pipeline).
+         */
+        OSPI_phyGetTuningData(&phyTuningData, &phyTuningDataSize);
+        status = Psram_ospiWrite(config, 0U, (uint8_t *)phyTuningData, phyTuningDataSize);
+
+        if(status == SystemP_SUCCESS)
+        {
+            status = OSPI_phyReadAttackVector(obj->ospiHandle, 0U);
+        }
+
+        /* If verification failed, sweep read-data-capture delay and retry */
+        if(status != SystemP_SUCCESS)
+        {
+            readDataCapDelay = OSPI_PSRAM_RD_CAPTURE_DELAY;
+            while((status != SystemP_SUCCESS) && (readDataCapDelay > 0U))
+            {
+                OSPI_setRdDataCaptureDelay(obj->ospiHandle, readDataCapDelay);
+                status = OSPI_phyReadAttackVector(obj->ospiHandle, 0U);
+                readDataCapDelay--;
+            }
+        }
+
+        /* Run DDR PHY tuning algorithm */
+        if(status == SystemP_SUCCESS)
+        {
+            status = OSPI_phyTuneDDR(obj->ospiHandle, 0U);
+        }
+
+        if(status == SystemP_SUCCESS)
+        {
+            obj->phyEnable = TRUE;
+            OSPI_setPhyEnableSuccess(obj->ospiHandle, TRUE);
+        }
+        else
+        {
+            DebugP_logError("%s : PHY enabling failed!!! Falling back to non-PHY mode...\r\n", __func__);
+            obj->phyEnable = FALSE;
+            OSPI_setPhyEnableSuccess(obj->ospiHandle, FALSE);
+
+            /*
+             * Re-establish a working non-PHY configuration so that the PSRAM
+             * is accessible without PHY.  Mirror the fallback pattern used in
+             * flash_nor_ospi.c for AM263PX / AM261X: restore dummy-cycle
+             * settings in the controller and sweep read-capture-delay to find
+             * a passing window.
+             */
+            OSPI_setReadDummyCycles(obj->ospiHandle, config->devConfig->dummyClksRd);
+            OSPI_setCmdDummyCycles(obj->ospiHandle,  config->devConfig->dummyClksCmd);
+
+            readDataCapDelay = 0U;
+            status = OSPI_phyReadAttackVector(obj->ospiHandle, 0U);
+            while((status != SystemP_SUCCESS) && (readDataCapDelay < OSPI_PSRAM_RD_CAPTURE_DELAY))
+            {
+                readDataCapDelay++;
+                OSPI_setRdDataCaptureDelay(obj->ospiHandle, readDataCapDelay);
+                status = OSPI_phyReadAttackVector(obj->ospiHandle, 0U);
+            }
+
+            if(status == SystemP_SUCCESS)
+            {
+                /* Return success - PSRAM usable without PHY at reduced bandwidth */
+                status = SystemP_SUCCESS;
+            }
+            else
+            {
+                DebugP_logError("%s : Non-PHY fallback also failed!!!\r\n", __func__);
+            }
+        }
+    }
+    else
+    {
+        /*
+         * PHY not requested in OSPI config.  Fall back to the simple
+         * read-data-capture-delay sweep so that the PSRAM is accessible
+         * without PHY.
+         */
+        uint8_t readCaptureDelay = 0U;
+
+        status = Psram_ospiWrite(config, 0U, gOspiFlashAttackVector, OSPI_FLASH_ATTACK_VECTOR_SIZE);
+
+        if(status == SystemP_SUCCESS)
+        {
+            OSPI_setRdDataCaptureDelay(obj->ospiHandle, readCaptureDelay);
+            status = Psram_ospiRead(config, 0U, gReadBuf, OSPI_FLASH_ATTACK_VECTOR_SIZE);
+            if(memcmp(gReadBuf, gOspiFlashAttackVector, OSPI_FLASH_ATTACK_VECTOR_SIZE) != 0)
+            {
+                status = SystemP_FAILURE;
+            }
+        }
+
+        while((status != SystemP_SUCCESS) && (readCaptureDelay < OSPI_PSRAM_RD_CAPTURE_DELAY))
+        {
+            readCaptureDelay++;
+            OSPI_setRdDataCaptureDelay(obj->ospiHandle, readCaptureDelay);
+            status = Psram_ospiRead(config, 0U, gReadBuf, OSPI_FLASH_ATTACK_VECTOR_SIZE);
+            if(memcmp(gReadBuf, gOspiFlashAttackVector, OSPI_FLASH_ATTACK_VECTOR_SIZE) != 0)
+            {
+                status = SystemP_FAILURE;
+            }
+        }
+    }
+
+    return status;
+}
+
+static void Psram_ospiDisxipEnable(void)
+{
+    SOC_controlModuleUnlockMMR(SOC_DOMAIN_ID_MAIN, MSS_CTRL_PARTITION0);
+    CSL_mss_ctrlRegs *mss = (CSL_mss_ctrlRegs *)CSL_MSS_CTRL_U_BASE;
+    mss->OSPI1_CONFIG_CONTROL = ((1U << 31U) | CSL_MSS_CTRL_OSPI1_CONFIG_CONTROL_OSPI_DDR_MODE_MASK);
+    SOC_controlModuleLockMMR(SOC_DOMAIN_ID_MAIN, MSS_CTRL_PARTITION0);
+}
+
+static void Psram_ospiDisxipDisable(void)
+{
+    SOC_controlModuleUnlockMMR(SOC_DOMAIN_ID_MAIN, MSS_CTRL_PARTITION0);
+    CSL_mss_ctrlRegs *mss = (CSL_mss_ctrlRegs *)CSL_MSS_CTRL_U_BASE;
+    mss->OSPI1_CONFIG_CONTROL = CSL_MSS_CTRL_OSPI1_CONFIG_CONTROL_OSPI_DDR_MODE_MASK;
+    SOC_controlModuleLockMMR(SOC_DOMAIN_ID_MAIN, MSS_CTRL_PARTITION0);
+}
+
 static void Psram_ospiClose(Ram_Config *config)
 {
+    Ram_OspiPsramObject *obj = (Ram_OspiPsramObject *)(config->object);
+
+    (void)Psram_ospiReset(config);
+
+    OSPI_disablePhy(obj->ospiHandle);
+
+    obj->ospiHandle = NULL;
+    obj->phyEnable = FALSE;
     return;
 }

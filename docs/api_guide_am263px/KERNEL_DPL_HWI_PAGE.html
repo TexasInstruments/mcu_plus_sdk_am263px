@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,16 +92,16 @@ $(document).ready(function(){initNavTree('KERNEL_DPL_HWI_PAGE.html',''); initRes
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md911">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md912">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md913">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md914">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md915">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md914">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md915">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md916">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md917">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md918">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_dpl_HwiP"></a></p>
 <dl class="section attention"><dt>Attention</dt><dd>See also <a class="el" href="KERNEL_FREERTOS_PAGE.html">FreeRTOS</a>, <a class="el" href="KERNEL_NORTOS_PAGE.html">NO RTOS</a> for list of CPU specific supported and unsupported features.</dd></dl>
-<h1><a class="anchor" id="autotoc_md911"></a>
+<h1><a class="anchor" id="autotoc_md914"></a>
 Features Supported</h1>
 <ul>
 <li>Register a interrupt callback to a specific CPU number</li>
@@ -119,10 +119,10 @@ Features Supported</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md912"></a>
+<h1><a class="anchor" id="autotoc_md915"></a>
 Features NOT Supported</h1>
 <p>See also <a class="el" href="KERNEL_FREERTOS_PAGE.html">FreeRTOS</a>, <a class="el" href="KERNEL_NORTOS_PAGE.html">NO RTOS</a> for list of unsupported features.</p>
-<h1><a class="anchor" id="autotoc_md913"></a>
+<h1><a class="anchor" id="autotoc_md916"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>For ARM R5,<ul>
@@ -140,7 +140,7 @@ Important Usage Guidelines</h1>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md914"></a>
+<h1><a class="anchor" id="autotoc_md917"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs, </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="HwiP_8h.html">kernel/dpl/HwiP.h</a>&gt;</span></div>
@@ -169,23 +169,23 @@ Example Usage</h1>
 <div class="line">    <span class="comment">/* critical section */</span></div>
 <div class="line"> </div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__HWI.html#ga5708f4c326c7bc0aafdf4c4a4e89acd0">HwiP_restore</a>(oldIntState);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md915"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md918"></a>
 API</h1>
 <p><a class="el" href="group__KERNEL__DPL__HWI.html">APIs for HW Interrupts</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <div class="ttc" id="ahsmclient__msg_8h_html_add0eb34e0cef9e763462cf9080f9be0a"><div class="ttname"><a href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a></div><div class="ttdeci">void * args</div><div class="ttdef"><b>Definition:</b> hsmclient_msg.h:4</div></div>
-<div class="ttc" id="astructHwiP__Params_html"><div class="ttname"><a href="structHwiP__Params.html">HwiP_Params</a></div><div class="ttdoc">Parameters passed during HwiP_construct.</div><div class="ttdef"><b>Definition:</b> HwiP.h:127</div></div>
+<div class="ttc" id="astructHwiP__Params_html"><div class="ttname"><a href="structHwiP__Params.html">HwiP_Params</a></div><div class="ttdoc">Parameters passed during HwiP_construct.</div><div class="ttdef"><b>Definition:</b> HwiP.h:132</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__HWI_html_gacda2e6e40428be67320f57d0676e4bd1"><div class="ttname"><a href="group__KERNEL__DPL__HWI.html#gacda2e6e40428be67320f57d0676e4bd1">HwiP_construct</a></div><div class="ttdeci">int32_t HwiP_construct(HwiP_Object *obj, HwiP_Params *params)</div><div class="ttdoc">Create a Hwi object.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__HWI_html_ga33f02161b1837b41f08ba064f1001045"><div class="ttname"><a href="group__KERNEL__DPL__HWI.html#ga33f02161b1837b41f08ba064f1001045">HwiP_Params_init</a></div><div class="ttdeci">void HwiP_Params_init(HwiP_Params *params)</div><div class="ttdoc">Set default values to HwiP_Params.</div></div>
 <div class="ttc" id="aHwiP_8h_html"><div class="ttname"><a href="HwiP_8h.html">HwiP.h</a></div></div>
-<div class="ttc" id="astructHwiP__Params_html_ab8f50b1b2f678cc3ce395ee6bc89c55c"><div class="ttname"><a href="structHwiP__Params.html#ab8f50b1b2f678cc3ce395ee6bc89c55c">HwiP_Params::callback</a></div><div class="ttdeci">HwiP_FxnCallback callback</div><div class="ttdef"><b>Definition:</b> HwiP.h:130</div></div>
-<div class="ttc" id="astructHwiP__Object_html"><div class="ttname"><a href="structHwiP__Object.html">HwiP_Object</a></div><div class="ttdoc">Opaque Hwi object used with the Hwi APIs.</div><div class="ttdef"><b>Definition:</b> HwiP.h:142</div></div>
-<div class="ttc" id="astructHwiP__Params_html_a26ec86a18720de1a3fe54828ceb959d2"><div class="ttname"><a href="structHwiP__Params.html#a26ec86a18720de1a3fe54828ceb959d2">HwiP_Params::args</a></div><div class="ttdeci">void * args</div><div class="ttdef"><b>Definition:</b> HwiP.h:131</div></div>
+<div class="ttc" id="astructHwiP__Params_html_ab8f50b1b2f678cc3ce395ee6bc89c55c"><div class="ttname"><a href="structHwiP__Params.html#ab8f50b1b2f678cc3ce395ee6bc89c55c">HwiP_Params::callback</a></div><div class="ttdeci">HwiP_FxnCallback callback</div><div class="ttdef"><b>Definition:</b> HwiP.h:135</div></div>
+<div class="ttc" id="astructHwiP__Object_html"><div class="ttname"><a href="structHwiP__Object.html">HwiP_Object</a></div><div class="ttdoc">Opaque Hwi object used with the Hwi APIs.</div><div class="ttdef"><b>Definition:</b> HwiP.h:147</div></div>
+<div class="ttc" id="astructHwiP__Params_html_a26ec86a18720de1a3fe54828ceb959d2"><div class="ttname"><a href="structHwiP__Params.html#a26ec86a18720de1a3fe54828ceb959d2">HwiP_Params::args</a></div><div class="ttdeci">void * args</div><div class="ttdef"><b>Definition:</b> HwiP.h:136</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__HWI_html_gaac47ffab62f7d25d736b58e40be17425"><div class="ttname"><a href="group__KERNEL__DPL__HWI.html#gaac47ffab62f7d25d736b58e40be17425">HwiP_disable</a></div><div class="ttdeci">uintptr_t HwiP_disable(void)</div><div class="ttdoc">Disable all interrupts.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__HWI_html_ga5708f4c326c7bc0aafdf4c4a4e89acd0"><div class="ttname"><a href="group__KERNEL__DPL__HWI.html#ga5708f4c326c7bc0aafdf4c4a4e89acd0">HwiP_restore</a></div><div class="ttdeci">void HwiP_restore(uintptr_t oldIntState)</div><div class="ttdoc">Restores all interrupts to a given state.</div></div>
-<div class="ttc" id="astructHwiP__Params_html_a943b3d55a5aaa669f8bcb04017fdf2a1"><div class="ttname"><a href="structHwiP__Params.html#a943b3d55a5aaa669f8bcb04017fdf2a1">HwiP_Params::intNum</a></div><div class="ttdeci">uint32_t intNum</div><div class="ttdef"><b>Definition:</b> HwiP.h:129</div></div>
+<div class="ttc" id="astructHwiP__Params_html_a943b3d55a5aaa669f8bcb04017fdf2a1"><div class="ttname"><a href="structHwiP__Params.html#a943b3d55a5aaa669f8bcb04017fdf2a1">HwiP_Params::intNum</a></div><div class="ttdeci">uint32_t intNum</div><div class="ttdef"><b>Definition:</b> HwiP.h:134</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

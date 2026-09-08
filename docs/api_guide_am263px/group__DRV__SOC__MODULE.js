@@ -104,5 +104,6 @@ var group__DRV__SOC__MODULE =
     [ "SOC_phyToVirt", "group__DRV__SOC__MODULE.html#ga91e92e9398edf29e171ad3974ca8ef1d", null ],
     [ "SOC_getFlashDataBaseAddr", "group__DRV__SOC__MODULE.html#ga2830abb64f4f9a91ef77032e063b9418", null ],
     [ "SOC_sendSoftwareInterrupt", "group__DRV__SOC__MODULE.html#gac7dc51d32812c7c6b5c2cd9e96a46c8c", null ],
+    [ "SOC_enableVpp", "group__DRV__SOC__MODULE.html#gad6310819acab9fce44e1c851099afba7", null ],
     [ "UART_IsBaseAddrValid", "group__DRV__SOC__MODULE.html#ga3d169293015dbfab92d8147d889c76c3", null ]
 ];

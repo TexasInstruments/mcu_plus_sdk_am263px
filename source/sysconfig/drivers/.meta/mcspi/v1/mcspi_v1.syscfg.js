@@ -285,22 +285,40 @@ function getConfigurables()
                               If Input select is D0, then set D0 as TX DISABLED.` ,
             onChange: function (inst, ui) {
                 if(inst.trMode == "TX_RX") {
-                    inst.txFifoTrigLevel = 16;
-                    inst.rxFifoTrigLevel = 16;
+                    if(inst.enableTxFifo == true) {
+                        inst.txFifoTrigLevel = 16;
+                    }
+                    if(inst.enableRxFifo == true) {
+                        inst.rxFifoTrigLevel = 16;
+                    }
                     ui.txFifoTrigLevel.hidden = false;
                     ui.rxFifoTrigLevel.hidden = false;
+                    ui.enableTxFifo.hidden = false;
+                    ui.enableRxFifo.hidden = false;
                 }
                 else if(inst.trMode == "TX_ONLY") {
-                    inst.txFifoTrigLevel = 32;
-                    inst.rxFifoTrigLevel = 1;
+                    if(inst.enableTxFifo == true) {
+                        inst.txFifoTrigLevel = 32;
+                    }
+                    if(inst.enableRxFifo == true) {
+                        inst.rxFifoTrigLevel = 1;
+                    }
                     ui.txFifoTrigLevel.hidden = false;
                     ui.rxFifoTrigLevel.hidden = true;
+                    ui.enableTxFifo.hidden = false;
+                    ui.enableRxFifo.hidden = true;
                 }
                 else if(inst.trMode == "RX_ONLY") {
-                    inst.txFifoTrigLevel = 1;
-                    inst.rxFifoTrigLevel = 32;
+                    if(inst.enableTxFifo == true) {
+                        inst.txFifoTrigLevel = 1;
+                    }
+                    if(inst.enableRxFifo == true) {
+                        inst.rxFifoTrigLevel = 32;
+                    }
                     ui.txFifoTrigLevel.hidden = true;
                     ui.rxFifoTrigLevel.hidden = false;
+                    ui.enableTxFifo.hidden = true;
+                    ui.enableRxFifo.hidden = false;
                 }
             },
         },
@@ -353,6 +371,52 @@ function getConfigurables()
                 },
             ],
             description: "Transmission enable/disable for D1",
+        },
+        {
+            name: "enableTxFifo",
+            displayName: "Enable TX Fifo",
+            default: true,
+            description: "Enable FIFO for Transmit",
+            onChange: function (inst, ui) {
+                if(inst.enableTxFifo == true) {
+                    /* Restore mode-specific trigger level based on transfer mode */
+                    if(inst.trMode == "TX_RX") {
+                        inst.txFifoTrigLevel = 16;
+                    } else if(inst.trMode == "TX_ONLY") {
+                        inst.txFifoTrigLevel = 32;
+                    } else if(inst.trMode == "RX_ONLY") {
+                        inst.txFifoTrigLevel = 1;  /* RX_ONLY doesn't use TX FIFO */
+                    }
+                    ui.txFifoTrigLevel.readOnly = false;
+                }
+                else {
+                    inst.txFifoTrigLevel = 1;
+                    ui.txFifoTrigLevel.readOnly = true;
+                }
+            }
+        },
+        {
+            name: "enableRxFifo",
+            displayName: "Enable RX Fifo",
+            default: true,
+            description: "Enable FIFO for Receive",
+            onChange: function (inst, ui) {
+                if(inst.enableRxFifo == true) {
+                    /* Restore mode-specific trigger level based on transfer mode */
+                    if(inst.trMode == "TX_RX") {
+                        inst.rxFifoTrigLevel = 16;
+                    } else if(inst.trMode == "RX_ONLY") {
+                        inst.rxFifoTrigLevel = 32;
+                    } else if(inst.trMode == "TX_ONLY") {
+                        inst.rxFifoTrigLevel = 1;  /* TX_ONLY doesn't use RX FIFO */
+                    }
+                    ui.rxFifoTrigLevel.readOnly = false;
+                }
+                else {
+                    inst.rxFifoTrigLevel = 1;
+                    ui.rxFifoTrigLevel.readOnly = true;
+                }
+            }
         },
         {
             name: "txFifoTrigLevel",
@@ -641,22 +705,30 @@ function validate(inst, report) {
         common.validate.checkNumberRange(inst, report, "rxFifoTrigLevel", 1, 32, "dec");
         if(common.getSocName() != "am263x" && inst.intrEnable == "DMA")
         {
-            checkTrigLevel(inst, report, "txFifoTrigLevel");
-            checkTrigLevel(inst, report, "rxFifoTrigLevel");
+            if(inst.enableTxFifo) {
+                checkTrigLevel(inst, report, "txFifoTrigLevel");
+            }
+            if(inst.enableRxFifo) {
+                checkTrigLevel(inst, report, "rxFifoTrigLevel");
+            }
         }
     }
     if (inst.trMode == "TX_ONLY") {
         common.validate.checkNumberRange(inst, report, "txFifoTrigLevel", 1, 64, "dec");
         if(common.getSocName() != "am263x" && inst.intrEnable == "DMA")
         {
-            checkTrigLevel(inst, report, "txFifoTrigLevel");
+            if(inst.enableTxFifo) {
+                checkTrigLevel(inst, report, "txFifoTrigLevel");
+            }
         }
     }
     if (inst.trMode == "RX_ONLY") {
         common.validate.checkNumberRange(inst, report, "rxFifoTrigLevel", 1, 64, "dec");
         if(common.getSocName() != "am263x" && inst.intrEnable == "DMA")
         {
-            checkTrigLevel(inst, report, "rxFifoTrigLevel");
+            if(inst.enableRxFifo) {
+                checkTrigLevel(inst, report, "rxFifoTrigLevel");
+            }
         }
     }
 }

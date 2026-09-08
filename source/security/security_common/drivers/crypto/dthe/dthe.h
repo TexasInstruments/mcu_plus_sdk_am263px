@@ -120,7 +120,7 @@ typedef struct
 /* ========================================================================== */
 
 /** \brief Externally defined driver configuration array */
-extern DTHE_Config          gDtheConfig[];
+extern DTHE_Config          gDtheConfig[1];
 /** \brief Externally defined driver configuration Num */
 extern uint32_t             gDtheConfigNum;
 

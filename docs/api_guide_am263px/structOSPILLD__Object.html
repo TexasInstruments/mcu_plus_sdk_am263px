@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -106,8 +106,12 @@ Data Fields</h2></td></tr>
 <tr class="separator:a749b17eb942458b37e29f06c69891ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0da9a3000fb0849d9750c0d45bc914f8"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPILLD__Object.html#a0da9a3000fb0849d9750c0d45bc914f8">protocol</a></td></tr>
 <tr class="separator:a0da9a3000fb0849d9750c0d45bc914f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f67fcc41cf8c27c6eff2d9860c09967"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPILLD__Object.html#a4f67fcc41cf8c27c6eff2d9860c09967">isDtr</a></td></tr>
+<tr class="separator:a4f67fcc41cf8c27c6eff2d9860c09967"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8015cdd642368c8738b0d2061ee01bb4"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPILLD__Object.html#a8015cdd642368c8738b0d2061ee01bb4">rdDummyCycles</a></td></tr>
 <tr class="separator:a8015cdd642368c8738b0d2061ee01bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac64095140e770fb1fae0d979d2d431a9"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPILLD__Object.html#ac64095140e770fb1fae0d979d2d431a9">wrDummyCycles</a></td></tr>
+<tr class="separator:ac64095140e770fb1fae0d979d2d431a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aceb7d2638ea95ee7c533c32581773559"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPILLD__Object.html#aceb7d2638ea95ee7c533c32581773559">cmdDummyCycles</a></td></tr>
 <tr class="separator:aceb7d2638ea95ee7c533c32581773559"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa03ee79c9b2e06430023a9aed664f9a7"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structOSPILLD__Object.html#aa03ee79c9b2e06430023a9aed664f9a7">rdDataCapDelay</a></td></tr>
@@ -201,6 +205,21 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
+<a id="a4f67fcc41cf8c27c6eff2d9860c09967"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f67fcc41cf8c27c6eff2d9860c09967">&#9670;&nbsp;</a></span>isDtr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t OSPILLD_Object::isDtr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Flag indicating if DTR (Double Transfer Rate) mode is active. Set to 1 when protocol byte3 is non-zero, 0 otherwise. </p>
+
+</div>
+</div>
 <a id="a8015cdd642368c8738b0d2061ee01bb4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8015cdd642368c8738b0d2061ee01bb4">&#9670;&nbsp;</a></span>rdDummyCycles</h2>
 
@@ -213,6 +232,21 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Number of dummy cycles needed for read </p>
+
+</div>
+</div>
+<a id="ac64095140e770fb1fae0d979d2d431a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac64095140e770fb1fae0d979d2d431a9">&#9670;&nbsp;</a></span>wrDummyCycles</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t OSPILLD_Object::wrDummyCycles</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Number of dummy cycles needed for write </p>
 
 </div>
 </div>

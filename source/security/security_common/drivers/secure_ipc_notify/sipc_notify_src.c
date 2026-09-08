@@ -39,15 +39,14 @@ typedef struct
 {
     uint32_t                selfCoreId ;      /* core ID on which this module is running */
     uint32_t                selfSecHostId ;
-    SIPC_FxnCallback        callback[SIPC_CLIENT_ID_MAX]; /* user registered callback's */
-    void*                   callbackArgs[SIPC_CLIENT_ID_MAX]; /* arguments to user registered callback's */
-    uint8_t                 isCoreEnabled[MAX_SEC_CORES_WITH_HSM]; /* flags to indicate if a core is enabled for IPC */
+    uint32_t                interruptConfigNum; /* number of interrupts to setup, i.e number of element in interruptConfig array */
+    uint32_t                secHostCoreId[MAX_SEC_CORES_WITH_HSM -1U]; /* place holder to store the secure master core information */
+    const void*             callbackArgs[SIPC_CLIENT_ID_MAX]; /* arguments to user registered callback's */
     SIPC_InterruptConfig*   interruptConfig;    /* interrupt config for this core,
                                                  * this is a array with one element per interrupt that is setup to receive messages
                                                  */
-    uint32_t                interruptConfigNum; /* number of interrupts to setup, i.e number of element in interruptConfig array */
-    /* place holder to store the secure master core information */
-    uint32_t secHostCoreId[MAX_SEC_CORES_WITH_HSM -1U];
+    SIPC_FxnCallback        callback[SIPC_CLIENT_ID_MAX]; /* user registered callback's */
+    uint8_t                 isCoreEnabled[MAX_SEC_CORES_WITH_HSM]; /* flags to indicate if a core is enabled for IPC */
 } SIPC_Ctrl;
 
 SIPC_Ctrl gSIPC_ctrl;
@@ -65,7 +64,7 @@ static inline void SIPC_setMboxConfig(SIPC_Params *params, uint32_t selfCoreId)
     if (selfCoreId == CORE_ID_HSM0_0 )
     {
         /* Define HSM->R5 tx and R5 -> HSM rx queues */
-        for( secMaster = 0 ; secMaster < (uint8_t)(MAX_SEC_CORES_WITH_HSM - 1U); secMaster ++)
+        for( secMaster = 0U ; secMaster < (MAX_SEC_CORES_WITH_HSM - 1U); secMaster ++)
         {
             /*****************************************************************************/
             /* HSM TX queue setup                                                        */
@@ -286,7 +285,7 @@ void SIPC_isr(void *args)
                     clientId = readMsgData[0];
                     srcClientId = readMsgData[1];
 
-                    if(gSIPC_ctrl.callback[clientId]!=NULL)
+                    if((clientId < SIPC_CLIENT_ID_MAX) && (gSIPC_ctrl.callback[clientId] != NULL))
                     {
                         /* Pass the src client Id of message */
                         gSIPC_ctrl.callback[clientId](
@@ -313,7 +312,7 @@ int32_t SIPC_sendMsg(uint8_t remoteSecCoreId, uint8_t remoteClientId,uint8_t loc
     SIPC_SwQueue *swQ;
     int32_t status = SystemP_FAILURE;
 
-    if((remoteSecCoreId < MAX_SEC_CORES_WITH_HSM) && (gSIPC_ctrl.isCoreEnabled[remoteSecCoreId]))
+    if((remoteSecCoreId < MAX_SEC_CORES_WITH_HSM) && (gSIPC_ctrl.isCoreEnabled[remoteSecCoreId] != 0U))
     {
         /* Prepend src and dest client Id to msgValue */
         SIPC_insertClientIds(remoteClientId,localClientId, msgValue);
@@ -321,21 +320,21 @@ int32_t SIPC_sendMsg(uint8_t remoteSecCoreId, uint8_t remoteClientId,uint8_t loc
         SIPC_getWriteMailbox(remoteSecCoreId, &mailboxBaseAddr, &intrBitPos, &swQ);
         if( (mailboxBaseAddr == (uint32_t) NULL) || (swQ == NULL))
         {
-            return status;
+            status = SystemP_FAILURE;
         }
         else
         {
             oldIntState = HwiP_disable();
             do
             {
-                status = SIPC_mailboxWrite(mailboxBaseAddr, intrBitPos, swQ, msgValue);
-                if((status != SystemP_SUCCESS) && waitForFifoNotFull)
+                status = SIPC_mailboxWrite(mailboxBaseAddr, intrBitPos, swQ, (const uint8_t *)msgValue);
+                if((status != SystemP_SUCCESS) && (waitForFifoNotFull == WAIT_IF_FIFO_FULL))
                 {
                     /* Allow interrupt enable and check again */
                     HwiP_restore(oldIntState);
                     oldIntState = HwiP_disable();
                 }
-            } while(status != (int32_t)(SystemP_SUCCESS  && waitForFifoNotFull));
+            } while((status != (int32_t)SystemP_SUCCESS)  && (waitForFifoNotFull == WAIT_IF_FIFO_FULL));
 
             HwiP_restore(oldIntState);
             /* If not wait option is selected then return failure if FIFO is full */
@@ -348,7 +347,7 @@ int32_t SIPC_sendMsg(uint8_t remoteSecCoreId, uint8_t remoteClientId,uint8_t loc
     return status;
 }
 
-int32_t SIPC_registerClient(uint8_t localClientId, SIPC_FxnCallback msgCallback, void *args)
+int32_t SIPC_registerClient(uint8_t localClientId, SIPC_FxnCallback msgCallback, const void *args)
 {
     int32_t status = SystemP_FAILURE;
     uint32_t oldIntState;
@@ -412,7 +411,7 @@ int32_t SIPC_init(SIPC_Params *params)
     /* check if current core who is doing sipc init is a secure host or not if not.
      * if not then return init failure */
 
-    for( secMaster = 0 ; secMaster < (uint8_t)(MAX_SEC_CORES_WITH_HSM - 1U) ; secMaster ++)
+    for( secMaster = 0U ; secMaster < (MAX_SEC_CORES_WITH_HSM - 1U) ; secMaster ++)
     {
         if((selfCoreId == params->secHostCoreId[secMaster]) || (selfCoreId == CORE_ID_HSM0_0))
         {
@@ -430,13 +429,13 @@ int32_t SIPC_init(SIPC_Params *params)
         }
         else
         {
-            assertFlag = 1;
+            assertFlag = 1U;
         }
     }
     /* Indicates that this core is not a secHost*/
     if(assertFlag == 1U)
     {
-        return SystemP_FAILURE ;
+        status = SystemP_FAILURE; 
     }
     else
     {
@@ -449,7 +448,7 @@ int32_t SIPC_init(SIPC_Params *params)
         /* Unregister previously registered clients. */
         for(i = 0; i < SIPC_CLIENT_ID_MAX; i++)
         {
-            (void)SIPC_unregisterClient(i);
+            (void)SIPC_unregisterClient((uint16_t)i);
         }
         /* Register queues pointer point to an allocated queue. & initialize mailboxconfig swQ parameters.
          * set the mailbox config based on wether a core is secure master or not */
@@ -465,46 +464,51 @@ int32_t SIPC_init(SIPC_Params *params)
         {
             for(core = 0; core < params->numCores; core++)
             {
-                if(params->coreIdList[core] < MAX_SEC_CORES_WITH_HSM)
-                {
-                    /* Mark core as enabled for IPC */
-                    gSIPC_ctrl.isCoreEnabled[params->coreIdList[core]] = 1;
-                }
-                else
-                {
-                    return SystemP_FAILURE;
+                if (status == SystemP_SUCCESS) {
+                    if(params->coreIdList[core] < MAX_SEC_CORES_WITH_HSM)
+                    {
+                        /* Mark core as enabled for IPC */
+                        gSIPC_ctrl.isCoreEnabled[params->coreIdList[core]] = 1U;
+                    }
+                    else
+                    {
+                        status = SystemP_FAILURE;
+                    }
+                } else {
+                    break;
                 }
             }
         }
         else
         {
-            return SystemP_FAILURE ;
+            status = SystemP_FAILURE;
         }
-        oldIntState = HwiP_disable();
+        if (status == SystemP_SUCCESS) {
+            oldIntState = HwiP_disable();
 
-        for(i = 0; i <= gSIPC_ctrl.interruptConfigNum; i++)
-        {
-            HwiP_Params hwiParams;
-            SIPC_InterruptConfig *pInterruptConfig;
-
-            pInterruptConfig = &gSIPC_ctrl.interruptConfig[i];
-
-            /* Isr need to write this register to clear the interrupt */
-            SIPC_getReadMailbox(&mailboxBaseAddr);
-
-            if (pInterruptConfig->clearIntOnInit != 0U)
+            for(i = 0; i <= gSIPC_ctrl.interruptConfigNum; i++)
             {
-                SIPC_mailboxClearAllInt(mailboxBaseAddr);
+                HwiP_Params hwiParams;
+                SIPC_InterruptConfig *pInterruptConfig;
+
+                pInterruptConfig = &gSIPC_ctrl.interruptConfig[i];
+
+                /* Isr need to write this register to clear the interrupt */
+                SIPC_getReadMailbox(&mailboxBaseAddr);
+
+                if (pInterruptConfig->clearIntOnInit != 0U)
+                {
+                    SIPC_mailboxClearAllInt(mailboxBaseAddr);
+                }
+
+                HwiP_Params_init(&hwiParams);
+                status = SIPC_Register_Isr(&hwiParams, pInterruptConfig, (const SIPC_Params *)params, &SIPC_isr);
             }
 
-            HwiP_Params_init(&hwiParams);
-            status = SIPC_Register_Isr(&hwiParams, pInterruptConfig, params, &SIPC_isr);
+            HwiP_restore(oldIntState);
         }
-
-        HwiP_restore(oldIntState);
-
-        return status;
     }
+    return status;
 }
 
 void SIPC_deInit(void)
@@ -515,7 +519,7 @@ void SIPC_deInit(void)
 
     for(itr = 0; itr < SIPC_CLIENT_ID_MAX; itr++)
     {
-        (void)SIPC_unregisterClient(itr);
+        (void)SIPC_unregisterClient((uint16_t)itr);
     }
 
     oldIntState = HwiP_disable();

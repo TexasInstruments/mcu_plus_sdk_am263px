@@ -113,7 +113,7 @@
 /* ========================================================================== */
 
 static uint32_t PKE_countLeadingZeros(uint32_t x);
-static uint32_t PKE_bigIntBitLen(const uint32_t bn[ECDSA_MAX_LENGTH]);
+static uint32_t PKE_bigIntBitLen(const uint32_t bn[RSA_MAX_LENGTH]);
 static AsymCrypt_Return_t PKE_isBigIntZero(const uint32_t bn[RSA_MAX_LENGTH]);
 
 cri_pke_context_t 	gPKEContext;
@@ -124,9 +124,6 @@ uint8_t signatureRPrime[68];
 
 uint32_t pke_temp_buff[RSA_MAX_LENGTH] = {0U};
 
-extern const uint32_t numPrimeCurves;
-extern const ECDSA_primeCurve primeCurves[];
-
 /* ========================================================================== */
 /*                          Function Definitions                              */
 /* ========================================================================== */
@@ -135,26 +132,33 @@ AsymCrypt_Handle AsymCrypt_open(uint32_t index)
 {
     AsymCrypt_Handle handle;
 
+    (void)index;
+
     /* Open rng instance */
     pke_rng_handle = gRngHandle;
-    DebugP_assert((pke_rng_handle != NULL_PTR));
-
-    (void)RNG_setup(pke_rng_handle);
-
-    gPKEContext.copy_flags = 0;
-    gPKEContext.resp_flags = 0;
-
-    /* Flush all the errors and clears the memories of PKE RAM */
-    (void)cri_pke_flush(&gPKEContext);
-
-    gPKE = cri_pke_open(&gPKEContext);
-    if(gPKE == NULL)
+    if(pke_rng_handle != NULL_PTR)
     {
-        handle = NULL;
+        (void)RNG_setup(pke_rng_handle);
+
+        gPKEContext.copy_flags = 0;
+        gPKEContext.resp_flags = 0;
+
+        /* Flush all the errors and clears the memories of PKE RAM */
+        (void)cri_pke_flush(&gPKEContext);
+
+        gPKE = cri_pke_open(&gPKEContext);
+        if(gPKE == NULL)
+        {
+            handle = NULL;
+        }
+        else
+        {
+            handle = &gPKE;
+        }
     }
     else
     {
-        handle = &gPKE;
+        handle = NULL;
     }
 
     return handle;
@@ -163,6 +167,8 @@ AsymCrypt_Handle AsymCrypt_open(uint32_t index)
 AsymCrypt_Return_t AsymCrypt_close(AsymCrypt_Handle handle)
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
+
+    (void)handle;
 
     /* Open rng instance */
     if(RNG_RETURN_FAILURE != RNG_close(pke_rng_handle))
@@ -184,9 +190,16 @@ AsymCrypt_Return_t AsymCrypt_RSAPrivate(AsymCrypt_Handle handle,
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
     int32_t pkeStatus = PKE_FAULT_STATUS;
-    uint32_t pubmod_bitsize = k->n[0U]*4U;
-    uint32_t exp_size = k->e[0U]*4U;
+    uint32_t pubmod_bitsize = 0U;
+    uint32_t exp_size = 0U;
     uint32_t size = (k->d[0U])/2U;
+
+    /* Validate word-count fields before scaling to bytes to avoid overflow/wraparound */
+    if ((k->n[0U] <= (RSA_MAX_LENGTH - 1U)) && (k->e[0U] <= (RSA_MAX_LENGTH - 1U)))
+    {
+        pubmod_bitsize = k->n[0U]*4U;
+        exp_size = k->e[0U]*4U;
+    }
 
     struct cri_rsa_key pke_rsa_key_ctx = {
         .bits = (pubmod_bitsize*8U),
@@ -202,7 +215,7 @@ AsymCrypt_Return_t AsymCrypt_RSAPrivate(AsymCrypt_Handle handle,
 
     /* check sizes, sizes of s and n must match. */
     if ((!((size <= 1U) || (size > ((RSA_MAX_LENGTH - 1U) >> 1U)) ||
-        (m[0U] > (size * 2U)))))
+        (m[0U] > (size * 2U)) || (pubmod_bitsize == 0U))))
     {
         /* Checking handle is opened or not */
         if(ASYM_CRYPT_NULL_HANDLE != handle)
@@ -235,9 +248,16 @@ AsymCrypt_Return_t AsymCrypt_RSAPublic(AsymCrypt_Handle handle,
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
     int32_t pkeStatus = PKE_FAULT_STATUS;
-    uint32_t pubmod_bitsize = k->n[0U]*4U;
-    uint32_t exp_size = k->e[0U]*4U;
+    uint32_t pubmod_bitsize = 0U;
+    uint32_t exp_size = 0U;
     uint32_t size = k->n[0U];
+
+    /* Validate word-count fields before scaling to bytes to avoid overflow/wraparound */
+    if ((size <= (RSA_MAX_LENGTH - 1U)) && (k->e[0U] <= (RSA_MAX_LENGTH - 1U)))
+    {
+        pubmod_bitsize = k->n[0U]*4U;
+        exp_size = k->e[0U]*4U;
+    }
 
     struct cri_rsa_key pke_rsa_key_ctx = {
         .bits = (pubmod_bitsize*8U),
@@ -286,8 +306,14 @@ AsymCrypt_Return_t AsymCrypt_RSAKeyGenPrivate(AsymCrypt_Handle handle,
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
     int32_t pkeStatus = PKE_FAULT_STATUS;
     uint32_t pubmod_bitsize = keybitsize;
-    uint32_t exp_size = k->e[0U]*4U;
+    uint32_t exp_size = 0U;
     uint32_t size = (keybitsize/(8U*4U));
+
+    /* Validate word-count field before scaling to bytes to avoid overflow/wraparound */
+    if (k->e[0U] <= (RSA_MAX_LENGTH - 1U))
+    {
+        exp_size = k->e[0U]*4U;
+    }
 
     struct cri_rsa_key pke_rsa_key_ctx = {
         .bits = pubmod_bitsize,
@@ -302,7 +328,7 @@ AsymCrypt_Return_t AsymCrypt_RSAKeyGenPrivate(AsymCrypt_Handle handle,
     };
 
     /* check sizes, sizes of s and n must match. */
-    if (!((size <= 1U) || (size > (RSA_MAX_LENGTH - 1U))))
+    if (!((size <= 1U) || (size > (RSA_MAX_LENGTH - 1U)) || (exp_size == 0U)))
     {
         /* Checking handle is opened or not */
         if(ASYM_CRYPT_NULL_HANDLE != handle)
@@ -367,7 +393,7 @@ AsymCrypt_Return_t AsymCrypt_ECDSASign(AsymCrypt_Handle handle,
                     const uint32_t k[ECDSA_MAX_LENGTH],
                     const uint32_t h[ECDSA_MAX_LENGTH],
                     struct AsymCrypt_ECDSASig *sig,
-                    uint32_t curveType)
+                    uint32_t curveId)
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
     int32_t pkeStatus = PKE_FAULT_STATUS;
@@ -378,14 +404,16 @@ AsymCrypt_Return_t AsymCrypt_ECDSASign(AsymCrypt_Handle handle,
     uint32_t* noncePtr = NULL;
     const uint8_t *pHashData;
 
+    (void)cp;
+
     /* Checking handle is opened or not */
     if(ASYM_CRYPT_NULL_HANDLE != handle)
     {
         /* Check if using curveId or curve parameters */
-        if(curveType != 0xFFFFFFFFU)
+        if(curveId != 0xFFFFFFFFU)
         {
             /* Using curveId - get curve and validate using curve length */
-            curve = cri_pke_get_curve(curveType);
+            curve = cri_pke_get_curve(curveId);
             if(curve != NULL)
             {
                 size = cri_pke_get_curve_length(curve);
@@ -400,8 +428,8 @@ AsymCrypt_Return_t AsymCrypt_ECDSASign(AsymCrypt_Handle handle,
                 }
                     
                 /* Validate signature and public key parameters against curve length */
-                if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
-                    (size < k[0U]))))
+                if (!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
+                    ((k != NULL) && (size < k[0U]))))
                 {
                     status = ASYM_CRYPT_RETURN_SUCCESS;
                 }
@@ -411,25 +439,33 @@ AsymCrypt_Return_t AsymCrypt_ECDSASign(AsymCrypt_Handle handle,
 
     if(ASYM_CRYPT_RETURN_SUCCESS == status)
     {
-        if((k == NULL) || (PKE_isBigIntZero(&k[0U]) == ASYM_CRYPT_RETURN_SUCCESS))
+        if(k == NULL)
         {
             /* Signing operation will generate random nonce, if random 'k' is not provided or set to 0*/
             noncePtr = NULL;
         }
         else
         {
-            /* Get Nonce Value if not null, pad remaining bytes with 0
-             * Nonce length can be at max 2*curveLen for PKE, any extra bits will be truncated in signing operation
-             * For Deterministic ECDSA, k is not NULL and nonceLen (k[0U]*4U) is less than 2*curveLen
-             */
-            (void)memset(nonce,0,sizeof(nonce));
-            (void)memcpy(nonce,&k[1U],k[0U]*4U);
-            noncePtr = &nonce[0U];
+            if(PKE_isBigIntZero(&k[0U]) == ASYM_CRYPT_RETURN_SUCCESS)
+            {
+                /* Signing operation will generate random nonce, if random 'k' is not provided or set to 0*/
+                noncePtr = NULL;
+            }
+            else
+            {
+                /* Get Nonce Value if not null, pad remaining bytes with 0
+                * Nonce length can be at max 2*curveLen for PKE, any extra bits will be truncated in signing operation
+                * For Deterministic ECDSA, k is not NULL and nonceLen (k[0U]*4U) is less than 2*curveLen
+                */
+                (void)memset(nonce,0,sizeof(nonce));
+                (void)memcpy(nonce,&k[1U],k[0U]*4U);
+                noncePtr = &nonce[0U];
+            }
         }
 
-        /* Get the size of input hash */
-        hashSize = h[0U] * 4U;
-        pHashData = (const uint8_t *)(uintptr_t)&h[1U];
+        /* Validate hash word-count before scaling to bytes to avoid overflow/wraparound */
+        hashSize = (h[0U] <= (ECDSA_MAX_LENGTH - 1U)) ? (h[0U] * 4U) : 0U;
+        pHashData = (const uint8_t *)&h[1U];
 
         /* Get signature */
         pkeStatus = cri_pke_ecdsa_sign_extended(gPKE, curve, &priv[1U], NULL, noncePtr, pHashData, hashSize, &sig->r[1U], &sig->s[1U]);
@@ -455,7 +491,7 @@ AsymCrypt_Return_t AsymCrypt_ECDSAVerify(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPoint *pub,
                         const struct AsymCrypt_ECDSASig *sig,
                         const uint32_t h[ECDSA_MAX_LENGTH],
-                        uint32_t curveType)
+                        uint32_t curveId)
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
     int32_t pkeStatus = PKE_FAULT_STATUS;
@@ -464,14 +500,16 @@ AsymCrypt_Return_t AsymCrypt_ECDSAVerify(AsymCrypt_Handle handle,
     uint32_t hashSize = 0U;
     const uint8_t *pHashData;
 
+    (void)cp;
+
     /* Checking handle is opened or not */
     if(ASYM_CRYPT_NULL_HANDLE != handle)
     {
         /* Check if using curveId or curve parameters */
-        if(curveType != 0xFFFFFFFFU)
+        if(curveId != 0xFFFFFFFFU)
         {
             /* Using curveId - get curve and validate using curve length */
-            curve = cri_pke_get_curve(curveType);
+            curve = cri_pke_get_curve(curveId);
             if(curve != NULL)
             {
                 size = cri_pke_get_curve_length(curve);
@@ -484,7 +522,7 @@ AsymCrypt_Return_t AsymCrypt_ECDSAVerify(AsymCrypt_Handle handle,
                 {
                     size = size >> 2U; // store total number of words
                 }
-                
+
                 /* Validate signature and public key parameters against curve length */
                 if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
                        (size < pub->x[0U]) || (size < pub->y[0U]) ||
@@ -500,10 +538,10 @@ AsymCrypt_Return_t AsymCrypt_ECDSAVerify(AsymCrypt_Handle handle,
 
     if(ASYM_CRYPT_RETURN_SUCCESS == status)
     {
-        /* Get the size of input hash */
-        hashSize = h[0U]*4U;
-        pHashData = (const uint8_t *)(uintptr_t)&h[1U];
-        
+        /* Validate hash word-count before scaling to bytes to avoid overflow/wraparound */
+        hashSize = (h[0U] <= (ECDSA_MAX_LENGTH - 1U)) ? (h[0U] * 4U) : 0U;
+        pHashData = (const uint8_t *)&h[1U];
+
         /* Call the ECDSA Verify function */
         pkeStatus = cri_pke_ecdsa_verify_hash(gPKE, curve, &pub->x[1U], &pub->y[1U], pHashData, hashSize, &sig->r[1U], &sig->s[1U], &signatureRPrime);
 
@@ -529,6 +567,8 @@ AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPrivate(AsymCrypt_Handle handle,
     int32_t pkeStatus = PKE_FAULT_STATUS;
     cri_ecc_curve_t curve = NULL;
     uint32_t size = 0U;
+
+    (void)cp;
 
     /* Check if using curveId or curve parameters */
     if(curveType != 0xFFFFFFFFU)
@@ -590,6 +630,8 @@ AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPublic(AsymCrypt_Handle handle,
     int32_t pkeStatus = PKE_FAULT_STATUS;
     cri_ecc_curve_t curve;
     uint32_t size = 0U;
+
+    (void)cp;
 
     /* Check if using curveId or curve parameters */
     if(curveType != 0xFFFFFFFFU)
@@ -695,14 +737,14 @@ AsymCrypt_Return_t AsymCrypt_EddsaSign(AsymCrypt_Handle handle,
 
             /* Copy 1st part of privKey hash, and clamp it */
             if (input_curve == ASYM_CRYPT_CURVE_TYPE_EDDSA_25519) {
-                k0[0U] &= 0xF8U;
-                k0[31U] &= 0x7FU;
-                k0[31U] |= 0x40U;
+                k0[0U]  = (k0[0U]  & 0xF8U);
+                k0[31U] = (k0[31U] & 0x7FU);
+                k0[31U] = (k0[31U] | 0x40U);
             } else {
-                k0[0U] &= 0xFCU;
-                k0[31U] &= 0x00U;
-                for (uint8_t i = 1; i <= 31U ; i++) {
-                    k0[i] |= 0x80U;
+                k0[0U]  = (k0[0U]  & 0xFCU);
+                k0[31U] = (k0[31U] & 0x00U);
+                for (uint8_t i = 1U; i <= 31U ; i++) {
+                    k0[i] = (k0[i] | 0x80U);
                 }
             }
 
@@ -736,16 +778,19 @@ AsymCrypt_Return_t AsymCrypt_EddsaSign(AsymCrypt_Handle handle,
             /* Get 'S' value of signature */
             pkeStatus = cri_pke_eddsa_sign_phase2(gPKE, curve, hash, sig->s);
         }
+        else{
+            pkeStatus = PKE_FAULT_STATUS;
+        }
 
         /* Copy back data from tempBuf*/
         ptrdataInput =  (uint8_t*)(ptrData - hash_len);
         (void)memcpy(ptrdataInput, tempBuf, hash_len);
-    }
 
-    if (pkeStatus == PKE_NO_ERROR_STATUS) {
-        status  = ASYM_CRYPT_RETURN_SUCCESS;
-    } else {
-        status  = ASYM_CRYPT_RETURN_FAILURE;
+        if (pkeStatus == PKE_NO_ERROR_STATUS) {
+            status  = ASYM_CRYPT_RETURN_SUCCESS;
+        } else {
+            status  = ASYM_CRYPT_RETURN_FAILURE;
+        }
     }
 
     return (status);
@@ -774,12 +819,10 @@ AsymCrypt_Return_t AsymCrypt_EddsaVerify(AsymCrypt_Handle handle,
         hash_len = EDDSA_ED25519_HASH_LEN;
         key_len = EDDSA_ED25519_KEY_LEN;
         curve = cri_pke_get_curve(CRI_ECC_CURVE_ED25519);
-        curvelen = cri_pke_get_curve_length(curve);
     } else if (ASYM_CRYPT_CURVE_TYPE_EDDSA_448 == input_curve) {
         hash_len = EDDSA_ED448_HASH_LEN;
         key_len = EDDSA_ED448_KEY_LEN;
         curve = cri_pke_get_curve(CRI_ECC_CURVE_ED448);
-        curvelen = cri_pke_get_curve_length(curve);
     }else {
         /* Do Nothing, added to avoid MISRA.IF.NO_ELSE.*/
     }
@@ -787,6 +830,7 @@ AsymCrypt_Return_t AsymCrypt_EddsaVerify(AsymCrypt_Handle handle,
     if ((curve == NULL) || (handle == NULL) || (shaCbFxn == NULL)|| (ptrData == NULL) || (sig == NULL)) {
         status  = ASYM_CRYPT_RETURN_FAILURE;
     } else {
+        curvelen = cri_pke_get_curve_length(curve);
         /* Copy 64 bytes before message(ptrData) to tempBuf */
         ptrdataInput = (uint8_t*)(ptrData - hash_len);
         (void)memcpy(tempBuff, ptrdataInput, hash_len);
@@ -804,10 +848,7 @@ AsymCrypt_Return_t AsymCrypt_EddsaVerify(AsymCrypt_Handle handle,
             pkeStatus = cri_pke_eddsa_verify(gPKE, curve, pubKey, hash, curvelen, sig->R, sig->s, signatureRPrime);
 
             if (pkeStatus == PKE_NO_ERROR_STATUS) {
-                /* PKE Eddsa Verify operation success*/
-                status  = ASYM_CRYPT_RETURN_FAILURE;
-
-                if (memcmp(sig->R, signatureRPrime, key_len) == 0) {
+                if (memcmp((const void *)&sig->R[0], (const void *)&signatureRPrime[0], key_len) == 0) {
                     /* PKE Eddsa Verification Signature matches*/
                     status = ASYM_CRYPT_RETURN_SUCCESS;
                 } else {
@@ -839,6 +880,8 @@ AsymCrypt_Return_t AsymCrypt_EddsaGetPubKey(AsymCrypt_Handle handle,
     const uint8_t *privKeyPtr = &privKey[0U];
     uint32_t key_len = 0U;
 
+    (void)handle;
+
     if (ASYM_CRYPT_CURVE_TYPE_EDDSA_25519 == input_curve) {
         key_len = EDDSA_ED25519_KEY_LEN;
         curve = cri_pke_get_curve(CRI_ECC_CURVE_ED25519);
@@ -855,41 +898,43 @@ AsymCrypt_Return_t AsymCrypt_EddsaGetPubKey(AsymCrypt_Handle handle,
         /*Get 64 byte SHA-512 Hash of private key*/
         status = shaCbFxn(privKey, key_len, privKeyHash);
 
-        /*Only first half of privatekey hash is used, clamp the fist half and clear the second half*/
-        if (input_curve == ASYM_CRYPT_CURVE_TYPE_EDDSA_25519) {
-            privKeyHash[0U] &= 0xF8U;
-            privKeyHash[31U] &= 0x7FU;
-            privKeyHash[31U] |= 0x40U;
-        } else {
-            privKeyHash[0U] &= 0xFCU;
-            privKeyHash[31U] &= 0x00U;
-            for (uint8_t i = 1; i <= 31U ; i++) {
-                privKeyHash[i] |= 0x80U;
+        if (ASYM_CRYPT_RETURN_SUCCESS == status) {
+            /*Only first half of privatekey hash is used, clamp the fist half and clear the second half*/
+            if (input_curve == ASYM_CRYPT_CURVE_TYPE_EDDSA_25519) {
+                privKeyHash[0U]  = (privKeyHash[0U]  & 0xF8U);
+                privKeyHash[31U] = (privKeyHash[31U] & 0x7FU);
+                privKeyHash[31U] = (privKeyHash[31U] | 0x40U);
+            } else {
+                privKeyHash[0U]  = (privKeyHash[0U]  & 0xFCU);
+                privKeyHash[31U] = (privKeyHash[31U] & 0x00U);
+                for (uint32_t i = 1U; i <= 31U ; i++) {
+                    privKeyHash[i] = (privKeyHash[i] | 0x80U);
+                }
+            }
+
+            (void)memset((uint8_t*)&privKeyHash[key_len], 0, key_len);
+
+            /*Get publicKey for the given privateKey
+            * Note:-
+            * This function cri_pke_eddsa_sign_phase1() returns "[nonce]*G" in encoded form which is 'R' (sig.R) in the EdDSA signature.
+            * Nonce (64-byte value passed as 3rd parameter in this function), and G is base point of Ed25519 curve (G is stored in PKE-Rom)).
+            * Since pubKey = [privKeyHash_clamped]*G in encoded form, where privKeyHash_clamped is first half of clamped sha512-hash of private Key,
+            * So this function is used here to generate the public key from the given private key.
+            * The 4th parameter (i.e. 2nd half clamped of privKeyHash) is used to prepare for cri_pke_eddsa_sign_phase2() in signature 'S' (sig.S) generation.
+            * For generating public key, 4th parameter is dummy (so passing privKeyPtr just to ensure a valid pointer is passed).
+            */
+            pkeStatus = cri_pke_eddsa_sign_phase1(gPKE, curve, privKeyHash, privKeyPtr, pubKey);
+            if (pkeStatus == PKE_NO_ERROR_STATUS) {
+                /* Clear PKE Ram*/
+                pkeStatus = cri_pke_clear_ram();
+            }
+
+            if (pkeStatus == PKE_NO_ERROR_STATUS) {
+                status  = ASYM_CRYPT_RETURN_SUCCESS;
+            } else {
+                status  = ASYM_CRYPT_RETURN_FAILURE;
             }
         }
-
-        (void)memset((uint8_t*)&privKeyHash[key_len], 0, key_len);
-
-        /*Get publicKey for the given privateKey
-        * Note:-
-        * This function cri_pke_eddsa_sign_phase1() returns "[nonce]*G" in encoded form which is 'R' (sig.R) in the EdDSA signature.
-        * Nonce (64-byte value passed as 3rd parameter in this function), and G is base point of Ed25519 curve (G is stored in PKE-Rom)).
-        * Since pubKey = [privKeyHash_clamped]*G in encoded form, where privKeyHash_clamped is first half of clamped sha512-hash of private Key,
-        * So this function is used here to generate the public key from the given private key.
-        * The 4th parameter (i.e. 2nd half clamped of privKeyHash) is used to prepare for cri_pke_eddsa_sign_phase2() in signature 'S' (sig.S) generation.
-        * For generating public key, 4th parameter is dummy (so passing privKeyPtr just to ensure a valid pointer is passed).
-        */
-        pkeStatus = cri_pke_eddsa_sign_phase1(gPKE, curve, privKeyHash, privKeyPtr, pubKey);
-        if (pkeStatus == PKE_NO_ERROR_STATUS) {
-            /* Clear PKE Ram*/
-           pkeStatus = cri_pke_clear_ram();
-        }
-    }
-
-    if (pkeStatus == PKE_NO_ERROR_STATUS) {
-        status  = ASYM_CRYPT_RETURN_SUCCESS;
-    } else {
-        status  = ASYM_CRYPT_RETURN_FAILURE;
     }
 
     return (status);
@@ -906,6 +951,8 @@ AsymCrypt_Return_t AsymCrypt_EcdhGenSharedSecret(AsymCrypt_Handle handle,
     int32_t pkeStatus = PKE_FAULT_STATUS;
     cri_ecc_curve_t curve;
     uint32_t size = 0U;
+
+    (void)cp;
 
     /* Check if using curveId or curve parameters */
     if(curveType != 0xFFFFFFFFU)
@@ -969,8 +1016,8 @@ AsymCrypt_Return_t AsymCrypt_SM2DSASign(AsymCrypt_Handle handle,
     uint32_t size = 8U; /* 256bit (8words) is the size of SM2 */
     uint32_t curvelen = 0;
 
-    /* check sizes */
-    if (!((size < priv[0U]) || (size < h[0U]) || (size < k[0U])))
+    /* check sizes; k is optional (may be NULL), so only check its size when present */
+    if (!((size < priv[0U]) || (size < h[0U]) || ((k != (uint32_t *)NULL) && (size < k[0U]))))
     {
         /* Checking handle is opened or not */
         if(ASYM_CRYPT_NULL_HANDLE != handle)
@@ -981,20 +1028,28 @@ AsymCrypt_Return_t AsymCrypt_SM2DSASign(AsymCrypt_Handle handle,
 
     if(status == ASYM_CRYPT_RETURN_SUCCESS)
     {
-        if((k == (uint32_t *)NULL) || (PKE_isBigIntZero(&k[0U]) == ASYM_CRYPT_RETURN_SUCCESS))
+        if(k == (uint32_t *)NULL)
         {
             /* Signing operation will generate random nonce, if random 'k' is not provided or set to 0*/
-            noncePtr = (uint32_t *)NULL;
+            noncePtr = NULL;
         }
         else
         {
-            /* Get Nonce Value if not null, pad remaining bytes with 0
-             * Nonce length can be at max 2*curveLen for PKE, any extra bits will be truncated in signing operation
-             * For Deterministic SM2DSA, k is not NULL and nonceLen (k[0U]*4U) is less than 2*curveLen
-             */
-            (void)memset(nonce, 0, sizeof(nonce));
-            (void)memcpy(nonce, &k[1U], k[0U]*4U);
-            noncePtr = &nonce[0U];
+            if(PKE_isBigIntZero(&k[0U]) == ASYM_CRYPT_RETURN_SUCCESS)
+            {
+                /* Signing operation will generate random nonce if 'k' is not provided */
+                noncePtr = (uint32_t *)NULL;
+            }
+            else
+            {
+                /* Get Nonce Value if not null, pad remaining bytes with 0
+                * Nonce length can be at max 2*curveLen for PKE, any extra bits will be truncated in signing operation
+                * For Deterministic SM2DSA, k is not NULL and nonceLen (k[0U]*4U) is less than 2*curveLen
+                */
+                (void)memset(nonce, 0, sizeof(nonce));
+                (void)memcpy(nonce, &k[1U], k[0U]*4U);
+                noncePtr = &nonce[0U];
+            }
         }
 
         /* Get SM2 curve */
@@ -1159,7 +1214,7 @@ static uint32_t PKE_countLeadingZeros(uint32_t x)
 
     /* Left shift until Most significant bit doesn become 1 */
 
-    while ((temp_x & (1U << (bit_count - (uint32_t)1))) == 0U) {
+    while ((temp_x & ((uint32_t)1U << (bit_count - (uint32_t)1U))) == 0U) {
         temp_x <<= 1;
         lz++;
     }
@@ -1174,7 +1229,7 @@ static uint32_t PKE_countLeadingZeros(uint32_t x)
  *
  * \return Length in bits of the big number
  */
-static uint32_t PKE_bigIntBitLen(const uint32_t bn[ECDSA_MAX_LENGTH])
+static uint32_t PKE_bigIntBitLen(const uint32_t bn[RSA_MAX_LENGTH])
 {
     uint32_t i, status;
 
@@ -1187,7 +1242,7 @@ static uint32_t PKE_bigIntBitLen(const uint32_t bn[ECDSA_MAX_LENGTH])
     if (i == 0U) {
         status = 0U;
     } else {
-        status = (i * 32U) - PKE_countLeadingZeros((int32_t) bn[i]);
+        status = (i * 32U) - PKE_countLeadingZeros(bn[i]);
     }
 
     return (status);

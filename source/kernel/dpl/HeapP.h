@@ -123,8 +123,14 @@ typedef struct HeapP_Object_ {
 
 } HeapP_Object;
 
-#else
+#elif defined (OS_THREADX)
+#include "tx_api.h"
 
+typedef struct HeapP_Object_ {
+    TX_BYTE_POOL     heapHndl;
+} HeapP_Object;
+
+#else
 typedef struct HeapP_Object_ {
 
     StaticHeap_t heapHndl;

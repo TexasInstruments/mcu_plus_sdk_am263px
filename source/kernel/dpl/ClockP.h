@@ -85,8 +85,17 @@ typedef struct ClockP_Object_
     void (*callback)(struct ClockP_Object_ *obj, void *args);
     void *args;
 } ClockP_Object;
+#elif defined (OS_THREADX)
+#include "tx_api.h"
+typedef struct ClockP_Object_
+{
+    TX_TIMER timerObj;
+    void (*callback)(struct ClockP_Object_ *obj, void *args);
+    void *args;
+
+} ClockP_Object;
 #else 
-#error "Define OS_NORTOS, OS_FREERTOS or OS_SAFERTOS"
+#error "Define OS_NORTOS, OS_FREERTOS or OS_SAFERTOS or OS_THREADX"
 #endif
 
 /**

@@ -115,6 +115,8 @@ extern "C"
 #define HSM_MSG_FW_UPDATE_SECCFG                 (0x905AU)
 /** @brief Swap C29 CPU-1/3 flash banks*/
 #define HSM_MSG_BANK_SWAP                        (0x905BU)
+/** @brief Enable Failure Analysis Transition service ID */
+#define HSM_MSG_ENABLE_FA                        (0x905CU)
 /** @brief Generic Crypto service ID */
 #define HSM_MSG_CRYPTO_SERVICE                   (0xA001U)
 

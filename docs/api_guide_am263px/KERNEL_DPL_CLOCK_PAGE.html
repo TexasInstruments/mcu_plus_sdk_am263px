@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('KERNEL_DPL_CLOCK_PAGE.html',''); initR
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md892">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md893">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md894">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md895">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md896">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md895">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md896">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md897">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md898">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md899">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_dpl_ClockP"></a></p>
-<h1><a class="anchor" id="autotoc_md892"></a>
+<h1><a class="anchor" id="autotoc_md895"></a>
 Features Supported</h1>
 <ul>
 <li>Provide system tick functionality using a single timer to periodically interrupt the CPU</li>
@@ -116,10 +116,10 @@ Features Supported</h1>
 <li>Provides APIs to convert clock ticks to time in usecs and vica versa</li>
 <li>API to get current time in units of usecs</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md893"></a>
+<h1><a class="anchor" id="autotoc_md896"></a>
 Features NOT Supported</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md894"></a>
+<h1><a class="anchor" id="autotoc_md897"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>The user specific callback can be called in interrupt, SWI or task context depending on the underlying RTOS that is used<ul>
@@ -142,7 +142,7 @@ Important Usage Guidelines</h1>
 <li>In R5F, one of the many SOC level timer is used.</li>
 <li><a class="el" href="group__KERNEL__DPL__CLOCK.html#ga9f1e99a67f697549e08a65ccb6bcdea2">ClockP_getTimeUsec</a> shouldn't be called from an ISR with priority higher than that of Tick Interrupt. This is because Tick interrupt won't be able to preempt the current ISR and <a class="el" href="group__KERNEL__DPL__CLOCK.html#ga9f1e99a67f697549e08a65ccb6bcdea2">ClockP_getTimeUsec</a> may return incorrect value.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md895"></a>
+<h1><a class="anchor" id="autotoc_md898"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs, </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="ClockP_8h.html">kernel/dpl/ClockP.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Example callback that increments a global counter based on the clock that invoked the callback </p><div class="fragment"><div class="line">uint32_t gOneShotCount = 0;</div>
@@ -185,7 +185,7 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">    curTimeInUsecs = <a class="code" href="group__KERNEL__DPL__CLOCK.html#ga9f1e99a67f697549e08a65ccb6bcdea2">ClockP_getTimeUsec</a>() - curTimeInUsecs;</div>
 <div class="line"> </div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md896"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md899"></a>
 API</h1>
 <p><a class="el" href="group__KERNEL__DPL__CLOCK.html">APIs for Clock</a> </p>
 </div></div><!-- contents -->
@@ -193,15 +193,15 @@ API</h1>
 </div><!-- doc-content -->
 <div class="ttc" id="agroup__KERNEL__DPL__CLOCK_html_ga9f1e99a67f697549e08a65ccb6bcdea2"><div class="ttname"><a href="group__KERNEL__DPL__CLOCK.html#ga9f1e99a67f697549e08a65ccb6bcdea2">ClockP_getTimeUsec</a></div><div class="ttdeci">uint64_t ClockP_getTimeUsec(void)</div><div class="ttdoc">Get current time in units of usecs.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__CLOCK_html_ga269a53b277b945d1abdbf7b247770723"><div class="ttname"><a href="group__KERNEL__DPL__CLOCK.html#ga269a53b277b945d1abdbf7b247770723">ClockP_construct</a></div><div class="ttdeci">int32_t ClockP_construct(ClockP_Object *obj, ClockP_Params *params)</div><div class="ttdoc">Create a clock object.</div></div>
-<div class="ttc" id="astructClockP__Params_html_a050b0a858bbb561dd266794efb3e12e2"><div class="ttname"><a href="structClockP__Params.html#a050b0a858bbb561dd266794efb3e12e2">ClockP_Params::callback</a></div><div class="ttdeci">ClockP_FxnCallback callback</div><div class="ttdef"><b>Definition:</b> ClockP.h:123</div></div>
-<div class="ttc" id="astructClockP__Params_html_ae339e06c63c40995253d59265be1077f"><div class="ttname"><a href="structClockP__Params.html#ae339e06c63c40995253d59265be1077f">ClockP_Params::start</a></div><div class="ttdeci">uint32_t start</div><div class="ttdef"><b>Definition:</b> ClockP.h:120</div></div>
+<div class="ttc" id="astructClockP__Params_html_a050b0a858bbb561dd266794efb3e12e2"><div class="ttname"><a href="structClockP__Params.html#a050b0a858bbb561dd266794efb3e12e2">ClockP_Params::callback</a></div><div class="ttdeci">ClockP_FxnCallback callback</div><div class="ttdef"><b>Definition:</b> ClockP.h:132</div></div>
+<div class="ttc" id="astructClockP__Params_html_ae339e06c63c40995253d59265be1077f"><div class="ttname"><a href="structClockP__Params.html#ae339e06c63c40995253d59265be1077f">ClockP_Params::start</a></div><div class="ttdeci">uint32_t start</div><div class="ttdef"><b>Definition:</b> ClockP.h:129</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__CLOCK_html_ga666e9ded465c969456e6c4ef95e849f4"><div class="ttname"><a href="group__KERNEL__DPL__CLOCK.html#ga666e9ded465c969456e6c4ef95e849f4">ClockP_Params_init</a></div><div class="ttdeci">void ClockP_Params_init(ClockP_Params *params)</div><div class="ttdoc">Set default values to ClockP_Params.</div></div>
 <div class="ttc" id="aClockP_8h_html"><div class="ttname"><a href="ClockP_8h.html">ClockP.h</a></div></div>
-<div class="ttc" id="astructClockP__Params_html"><div class="ttname"><a href="structClockP__Params.html">ClockP_Params</a></div><div class="ttdoc">Parameters passed during ClockP_construct.</div><div class="ttdef"><b>Definition:</b> ClockP.h:118</div></div>
-<div class="ttc" id="astructClockP__Params_html_af4e1c68b5325d324a3f40d900ebed4b6"><div class="ttname"><a href="structClockP__Params.html#af4e1c68b5325d324a3f40d900ebed4b6">ClockP_Params::args</a></div><div class="ttdeci">void * args</div><div class="ttdef"><b>Definition:</b> ClockP.h:126</div></div>
-<div class="ttc" id="astructClockP__Params_html_af92c3f4d44aed9c643128e6049294f94"><div class="ttname"><a href="structClockP__Params.html#af92c3f4d44aed9c643128e6049294f94">ClockP_Params::period</a></div><div class="ttdeci">uint32_t period</div><div class="ttdef"><b>Definition:</b> ClockP.h:122</div></div>
+<div class="ttc" id="astructClockP__Params_html"><div class="ttname"><a href="structClockP__Params.html">ClockP_Params</a></div><div class="ttdoc">Parameters passed during ClockP_construct.</div><div class="ttdef"><b>Definition:</b> ClockP.h:127</div></div>
+<div class="ttc" id="astructClockP__Params_html_af4e1c68b5325d324a3f40d900ebed4b6"><div class="ttname"><a href="structClockP__Params.html#af4e1c68b5325d324a3f40d900ebed4b6">ClockP_Params::args</a></div><div class="ttdeci">void * args</div><div class="ttdef"><b>Definition:</b> ClockP.h:135</div></div>
+<div class="ttc" id="astructClockP__Params_html_af92c3f4d44aed9c643128e6049294f94"><div class="ttname"><a href="structClockP__Params.html#af92c3f4d44aed9c643128e6049294f94">ClockP_Params::period</a></div><div class="ttdeci">uint32_t period</div><div class="ttdef"><b>Definition:</b> ClockP.h:131</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__CLOCK_html_ga4e558cf2f30de1d449ba53af5229ee5e"><div class="ttname"><a href="group__KERNEL__DPL__CLOCK.html#ga4e558cf2f30de1d449ba53af5229ee5e">ClockP_usecToTicks</a></div><div class="ttdeci">uint32_t ClockP_usecToTicks(uint64_t usecs)</div><div class="ttdoc">Convert usecs to clock ticks.</div></div>
-<div class="ttc" id="astructClockP__Params_html_ab6b9b7154f4358a249b5545f8fd8a430"><div class="ttname"><a href="structClockP__Params.html#ab6b9b7154f4358a249b5545f8fd8a430">ClockP_Params::timeout</a></div><div class="ttdeci">uint32_t timeout</div><div class="ttdef"><b>Definition:</b> ClockP.h:121</div></div>
+<div class="ttc" id="astructClockP__Params_html_ab6b9b7154f4358a249b5545f8fd8a430"><div class="ttname"><a href="structClockP__Params.html#ab6b9b7154f4358a249b5545f8fd8a430">ClockP_Params::timeout</a></div><div class="ttdeci">uint32_t timeout</div><div class="ttdef"><b>Definition:</b> ClockP.h:130</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

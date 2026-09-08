@@ -626,6 +626,12 @@ typedef struct
     /**< TX FIFO trigger level in bytes */
     uint32_t                rxFifoTrigLvl;
     /**< RX FIFO trigger level in bytes */
+#if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)
+    uint32_t                enableTxFifo;
+    /**< Enable TX FIFO. Set to TRUE to enable FFEW bit, FALSE to disable */
+    uint32_t                enableRxFifo;
+    /**< Enable RX FIFO. Set to TRUE to enable FFER bit, FALSE to disable */
+#endif
 } MCSPI_ChConfig;
 
 /* ========================================================================== */
@@ -1418,6 +1424,10 @@ static inline void MCSPI_lld_ChConfig_init(MCSPI_ChConfig *chConfig)
         chConfig->startBitPolarity  = MCSPI_SB_POL_LOW;
         chConfig->csIdleTime        = MCSPI_TCS0_0_CLK;
         chConfig->defaultTxData     = 0x00000000U;
+#if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)
+        chConfig->enableTxFifo      = TRUE;
+        chConfig->enableRxFifo      = TRUE;
+#endif
     }
 }
 

@@ -19,7 +19,7 @@ var group__DRV__SIPC__NOTIFY__MODULE =
       [ "Qlength", "structSIPC__SwQueue.html#adc75c2a18bc0965ff9080d9c3112e24a", null ],
       [ "Qfifo", "structSIPC__SwQueue.html#ab2172a9c2368d801cc6875c190fe07e4", null ]
     ] ],
-    [ "SIPC_FxnCallback", "group__DRV__SIPC__NOTIFY__MODULE.html#gaff91d2f85a004ae8509bff4429426e39", null ],
+    [ "SIPC_FxnCallback", "group__DRV__SIPC__NOTIFY__MODULE.html#gab484efb3eaf3dbcc4a9b976bf6c56771", null ],
     [ "SIPC_coreId", "group__DRV__SIPC__NOTIFY__MODULE.html#ga8f15b433619d39950f2e2640a7f12c3b", null ],
     [ "SIPC_SecCoreId", "group__DRV__SIPC__NOTIFY__MODULE.html#gaefef436c99c3106b230a65a137334f61", null ],
     [ "SIPC_fifoFlags", "group__DRV__SIPC__NOTIFY__MODULE.html#gaa0d0d9f91fa3e18e46f08d7328b14b91", [
@@ -30,7 +30,7 @@ var group__DRV__SIPC__NOTIFY__MODULE =
     [ "SIPC_init", "group__DRV__SIPC__NOTIFY__MODULE.html#ga41b553325afa726d6add36b361d7bdbc", null ],
     [ "SIPC_deInit", "group__DRV__SIPC__NOTIFY__MODULE.html#ga10edc0f44a86498ea24c8977d03ded80", null ],
     [ "SIPC_sendMsg", "group__DRV__SIPC__NOTIFY__MODULE.html#gaf0c62c59f382b1cad7b460f7a016b7a1", null ],
-    [ "SIPC_registerClient", "group__DRV__SIPC__NOTIFY__MODULE.html#ga6824ed8d43c1424eccae8773b5d74a12", null ],
+    [ "SIPC_registerClient", "group__DRV__SIPC__NOTIFY__MODULE.html#ga51d797e7bbaf156ba214e777f837b5a4", null ],
     [ "SIPC_unregisterClient", "group__DRV__SIPC__NOTIFY__MODULE.html#ga28254046881ce2154e732ffe6cb97880", null ],
     [ "SIPC_getSelfCoreId", "group__DRV__SIPC__NOTIFY__MODULE.html#ga71570d851bacd0ab647a89a97ace7bd3", null ],
     [ "SIPC_getSelfSecMasterId", "group__DRV__SIPC__NOTIFY__MODULE.html#ga0dde1a05fc809a0b834b36f97645ba4b", null ],

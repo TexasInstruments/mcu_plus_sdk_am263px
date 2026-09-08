@@ -46,7 +46,7 @@ ifeq ($(wildcard $(CGT_TI_ARM_CLANG_PATH)),)
 endif
 CGT_IAR_ARM_PATH=$(IAR_TOOL_PATH)/arm
 CCS_NODE = $(CCS_PATH)/tools/node/node
-SYSCFG_PATH ?= $(TOOLS_PATH)/sysconfig_1.27.0
+SYSCFG_PATH ?= $(TOOLS_PATH)/sysconfig_1.28.0
 SYSCFG_CLI_PATH ?= $(SYSCFG_PATH)
 SYSCFG_NODE = $(SYSCFG_PATH)/nodejs/node
 SYSCFG_NWJS = $(SYSCFG_PATH)/nw/nw

@@ -64,7 +64,7 @@ basicConstraints = CA:true
 1.3.6.1.4.1.294.1.2=ASN1:SEQUENCE:image_integrity
 1.3.6.1.4.1.294.1.3=ASN1:SEQUENCE:swrv
 {ENCRYPTION_SEQUENCE}
-1.3.6.1.4.1.294.1.12=ASN1:SEQUENCE:keyring_index
+1.3.6.1.4.1.294.1.16=ASN1:SEQUENCE:keyring_index
 
 [ boot_seq ]
 certType     =  INTEGER:{CERT_TYPE}

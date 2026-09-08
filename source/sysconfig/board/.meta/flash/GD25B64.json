@@ -1,4 +1,5 @@
 {
+    "flashName": "GD25B64",
     "flashSize": 8388608,
     "flashPageSize": 256,
     "flashManfId": "0xC8",
@@ -46,12 +47,26 @@
         "p888d": null,
         "pCustom": null
     },
+    "addrByteSupport": "0",
+    "fourByteAddrEnSeq": "0x00",
+    "cmdExtType": "NONE",
     "resetType": "0x10",
+    "deviceBusyType": "0",
     "cmdWren": "0x06",
     "cmdRdsr": "0x05",
     "srWip": 0,
     "srWel": 1,
-    "cmdChipErase" : "0xC7",
+    "cmdChipErase": "0xC7",
+    "rdIdSettings": {
+        "cmd": "0x9F",
+        "numBytes": 3,
+        "dummy4": 0,
+        "dummy8": 0,
+        "addressBytesSize": 0
+    },
+    "xspiWipRdCmd": "0x00",
+    "xspiWipReg": "0x00000000",
+    "xspiWipBit": 0,
     "flashDeviceBusyTimeout": 6000000,
     "flashPageProgTimeout": 4000
 }

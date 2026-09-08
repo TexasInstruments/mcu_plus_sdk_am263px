@@ -73,9 +73,20 @@ extern "C" {
 #define NOR_SPI_SFDP_JESD216B_MINOR    (6U)
 #define NOR_SPI_SFDP_JESD216C_MINOR    (7U)
 #define NOR_SPI_SFDP_JESD216D_MINOR    (8U)
+#define NOR_SPI_SFDP_JESD216E_MINOR    (9U)
+#define NOR_SPI_SFDP_JESD216F_MINOR    (0xAU)
+#define NOR_SPI_SFDP_JESD216G_MINOR    (0xBU)
+#define NOR_SPI_SFDP_JESD216H_MINOR    (0xCU)
 
 /* SFDP Maximum numbers of parameter headers (only JEDEC ones included)*/
-#define NOR_SPI_SFDP_NPH_MAX       (13U)
+/* Increased from 13 to 18 to accommodate tables added in JESD216D through H:
+ *   +1 Secure Packet Table (FF8Eh, JESD216D)
+ *   +1 GRAM Table (FF0Fh, JESD216G)
+ *   +1 SPI Safety Extensions / CRC Table (FF90h, JESD216G)
+ *   +1 SFDP CRC-32 Table (FF11h, JESD216H)
+ *   +1 ECC Table (FF12h, JESD216H)
+ */
+#define NOR_SPI_SFDP_NPH_MAX       (18U)
 
 /* SFDP offsets */
 #define NOR_SPI_SFDP_HEADER_START_OFFSET        (0x00U)
@@ -96,10 +107,19 @@ extern "C" {
 #define NOR_SPI_SFDP_LONG_LATENCY_NVM_MSP_TABLE_ID   (0xFF8B)
 #define NOR_SPI_SFDP_QUAD_IO_WITH_DS_TABLE_ID        (0xFF0C)
 #define NOR_SPI_SFDP_QUAD_CMD_SEQ_TABLE_ID           (0xFF8D)
+#define NOR_SPI_SFDP_SECURE_PACKET_TABLE_ID          (0xFF8E) /* Added in JESD216D */
+#define NOR_SPI_SFDP_GRAM_TABLE_ID                   (0xFF0F) /* Added in JESD216G: Generic Register and Command Map */
+#define NOR_SPI_SFDP_SPI_SAFETY_EXT_TABLE_ID         (0xFF90) /* Added in JESD216G: SPI Safety Extensions / CRC */
+#define NOR_SPI_SFDP_CRC32_TABLE_ID                  (0xFF11) /* Added in JESD216H: SFDP CRC-32 */
+#define NOR_SPI_SFDP_ECC_TABLE_ID                    (0xFF12) /* Added in JESD216H: ECC */
 
 /* SFDP Number of DWORDS in BFPT for different revisions */
 #define NOR_SPI_SFDP_BFPT_MAX_DWORDS_JESD216         (9)
 #define NOR_SPI_SFDP_BFPT_MAX_DWORDS_JESD216B        (16)
+/* JESD216C/D/E added DWORDs 17-20 (octal read, byte order, OE requirements, max speed) */
+#define NOR_SPI_SFDP_BFPT_MAX_DWORDS_JESD216C        (20)
+/* JESD216F/G/H added DWORDs 21-23 (DTR half-duplex fast read: 1S-1D-1D, 1S-2D-2D, 1S-4D-4D, 4S-4D-4D) */
+#define NOR_SPI_SFDP_BFPT_MAX_DWORDS_JESD216F        (23)
 
 /* SFDP read command address type in 8D */
 #define NOR_SPI_SFDP_OCTAL_READ_ADDR_MSB_0           (0)
@@ -172,7 +192,10 @@ typedef struct NorSpi_SfdpBasicFlashParamTable_s
     /* 18th DWORD - DQS support, byte order, command extension type in 8D mode */
     /* 19th DWORD - Octal enable requirements, 0-8-8 mode support, entry and exit, 8-8-8 enable disable sequence */
     /* 20th DWORD - Maximum operational speed for 4-4-4 and 8-8-8 modes */
-    uint32_t dwords[20];
+    /* 21st DWORD - DTR fast read support flags: 1S-1D-1D, 1S-2D-2D, 1S-4D-4D, 4S-4D-4D (added in JESD216F) */
+    /* 22nd DWORD - 1S-1D-1D and 1S-2D-2D fast read wait states, mode clocks and instruction (added in JESD216F) */
+    /* 23rd DWORD - 1S-4D-4D and 4S-4D-4D fast read wait states, mode clocks and instruction (added in JESD216F) */
+    uint32_t dwords[23];
 
 } NorSpi_SfdpBasicFlashParamTable;
 
@@ -247,6 +270,43 @@ typedef struct
     uint32_t flashWriteTimeout;
     uint32_t flashBusyTimeout;
     uint32_t chipEraseTimeout;
+
+    /* Fields added for JESD216H compliance */
+
+    /* BFPT DWORD 16 bits [7:0]: volatile/non-volatile status register write support.
+     * Each bit indicates a supported write-enable/write mechanism:
+     *   bit 0: Write enable (06h) required before all commands
+     *   bit 1: Write enable (06h) required for volatile SR write
+     *   bit 2: Write enable latch not required for volatile SR write
+     *   bit 3: 0x50 volatile write enable supported
+     *   bit 4: Non-volatile SR write supported
+     *   bit 5: Volatile SR write supported (using 06h WREN)
+     *   bit 6: Volatile SR write using 50h
+     *   bit 7: Reserved
+     */
+    uint8_t  nvRegSupport;
+
+    /* BFPT DWORD 19 bits [19:16]: 0-8-8 mode entry sequence.
+     * Each bit indicates a supported entry method into 0-8-8 mode.
+     * 0x0 = not supported.
+     */
+    uint8_t  mode088EntrySeq;
+
+    /* BFPT DWORD 19 bits [15:12]: 0-8-8 mode exit sequence.
+     * Each bit indicates a supported exit method from 0-8-8 mode.
+     * 0x0 = not supported.
+     */
+    uint8_t  mode088ExitSeq;
+
+    /* BFPT DWORD 20 bits [31:16]: maximum operational speed for 4-4-4 mode in MHz.
+     * 0 = not specified.
+     */
+    uint16_t maxSpeed444;
+
+    /* BFPT DWORD 20 bits [15:0]: maximum operational speed for 8-8-8 mode in MHz.
+     * 0 = not specified.
+     */
+    uint16_t maxSpeed888;
 
 } NorSpi_SfdpGenericDefines;
 

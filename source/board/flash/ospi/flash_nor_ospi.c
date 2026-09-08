@@ -88,6 +88,10 @@ uint32_t gFlashToSpiProtocolMap[] =
     [FLASH_CFG_PROTO_4S_4D_4D] = OSPI_NOR_PROTOCOL(4,4,4,1),
     [FLASH_CFG_PROTO_8S_8S_8S] = OSPI_NOR_PROTOCOL(8,8,8,0),
     [FLASH_CFG_PROTO_8D_8D_8D] = OSPI_NOR_PROTOCOL(8,8,8,1),
+    /* DTR half-duplex protocols added in JESD216F */
+    [FLASH_CFG_PROTO_1S_1D_1D] = OSPI_NOR_PROTOCOL(1,1,1,1),
+    [FLASH_CFG_PROTO_1S_2D_2D] = OSPI_NOR_PROTOCOL(1,2,2,1),
+    [FLASH_CFG_PROTO_1S_4D_4D] = OSPI_NOR_PROTOCOL(1,4,4,1),
 };
 
 Flash_Fxns gFlashNorOspiFxns = {
@@ -785,6 +789,9 @@ static int32_t Flash_norOspiSetProtocol(Flash_Config *config, OSPI_Handle ospiHa
                 * 4S_4D_4D
                 * 8S_8S_8S
                 * 8D_8D_8D
+                * 1S_1D_1D (JESD216F)
+                * 1S_2D_2D (JESD216F)
+                * 1S_4D_4D (JESD216F)
                 */
             switch (protocol)
             {
@@ -850,6 +857,26 @@ static int32_t Flash_norOspiSetProtocol(Flash_Config *config, OSPI_Handle ospiHa
                         status = Flash_setOeBit(config, pCfg->enableType);
                         /* Set 888 mode */
                         status += Flash_set888mode(config, pCfg->enableSeq);
+                    }
+                    else
+                    {
+                        /* Nothing to be done, flash configuration is already done by previous SW entity */
+                    }
+                    break;
+
+                case FLASH_CFG_PROTO_1S_1D_1D:
+                case FLASH_CFG_PROTO_1S_2D_2D:
+                    /* Single-wire command, DTR address+data. No prior enable sequence needed;
+                     * the protocol is selected purely by issuing the DTR read command. */
+                    OSPI_setXferOpCodes(ospiHandle, pCfg->cmdRd, pCfg->cmdWr);
+                    break;
+
+                case FLASH_CFG_PROTO_1S_4D_4D:
+                    /* Single-wire command, 4-wire DTR address+data. Quad Enable must be set
+                     * before 4-wire DTR data can flow (same QE requirement as 1-1-4). */
+                    if(config->skipHwInit == FALSE)
+                    {
+                        status += Flash_setQeBit(config, pCfg->enableType);
                     }
                     else
                     {

@@ -57,9 +57,9 @@ included_files = ["hkdf.py", "kd_salt.txt", "mcu_custBmpk.pem", "mcu_custMek.key
 
 for device in devices :
 
-    #copy tools/boot folder inside tools/boot
+    #copy tools/boot folder inside tools/scripts
     src_path = os.path.join("tools", "boot", "signing")
-    dest_path = os.path.join(sdk_folder, "mcu_sdk_" + device, "tools", "boot", "signing")
+    dest_path = os.path.join(sdk_folder, "mcu_sdk_" + device, "tools", "scripts", "signing")
     #delete destination directory
     shutil.rmtree(dest_path, ignore_errors=True)
     #make empty destination directory

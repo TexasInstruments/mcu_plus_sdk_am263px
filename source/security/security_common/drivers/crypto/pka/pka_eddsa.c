@@ -264,14 +264,18 @@ AsymCrypt_Return_t AsymCrypt_EddsaSign(AsymCrypt_Handle handle,
     uint32_t hash_len = 0;
     uint32_t key_len = 0;
 
-    config  = (PKA_Config *)handle;
-    attrs   = config->attrs;
-
-    /* Checking handle and shaHandle is opened or not */
-    if ((!attrs->isOpen) || (handle == NULL) || (shaCbFxn == NULL)|| (ptrData == NULL)|| (key == NULL) || (sig == NULL)) {
+    if (handle == NULL) {
         status  = ASYM_CRYPT_RETURN_FAILURE;
     } else {
-        status  = ASYM_CRYPT_RETURN_SUCCESS;
+        config  = (PKA_Config *)handle;
+        attrs   = config->attrs;
+
+        /* Checking handle and shaHandle is opened or not */
+        if ((!attrs->isOpen) || (shaCbFxn == NULL)|| (ptrData == NULL)|| (key == NULL) || (sig == NULL)) {
+            status  = ASYM_CRYPT_RETURN_FAILURE;
+        } else {
+            status  = ASYM_CRYPT_RETURN_SUCCESS;
+        }
     }
 
     if (ASYM_CRYPT_CURVE_TYPE_EDDSA_25519 == input_curve) {
@@ -391,14 +395,18 @@ AsymCrypt_Return_t AsymCrypt_EddsaVerify(AsymCrypt_Handle handle,
     uint32_t hash_len = 0;
     uint32_t key_len = 0;
 
-    config  = (PKA_Config *) handle;
-    attrs   = config->attrs;
-
-    /* Checking handle and shaHandle is opened or not */
-    if ((!attrs->isOpen) || (handle == NULL) || (shaCbFxn == NULL)|| (ptrData == NULL) || (sig == NULL)) {
+    if (handle == NULL) {
         status  = ASYM_CRYPT_RETURN_FAILURE;
     } else {
-        status  = ASYM_CRYPT_RETURN_SUCCESS;
+        config  = (PKA_Config *) handle;
+        attrs   = config->attrs;
+
+        /* Checking handle and shaHandle is opened or not */
+        if ((!attrs->isOpen) || (shaCbFxn == NULL)|| (ptrData == NULL) || (sig == NULL)) {
+            status  = ASYM_CRYPT_RETURN_FAILURE;
+        } else {
+            status  = ASYM_CRYPT_RETURN_SUCCESS;
+        }
     }
 
     if (ASYM_CRYPT_CURVE_TYPE_EDDSA_25519 == input_curve) {

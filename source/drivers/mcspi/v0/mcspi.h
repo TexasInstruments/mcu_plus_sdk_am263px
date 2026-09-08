@@ -457,6 +457,10 @@ static inline void MCSPI_ChConfig_init(MCSPI_ChConfig *chConfig)
         chConfig->defaultTxData     = 0x00000000U;
         chConfig->txFifoTrigLvl     = 16;
         chConfig->rxFifoTrigLvl     = 16;
+#if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)
+        chConfig->enableTxFifo      = TRUE;
+        chConfig->enableRxFifo      = TRUE;
+#endif
     }
 }
 

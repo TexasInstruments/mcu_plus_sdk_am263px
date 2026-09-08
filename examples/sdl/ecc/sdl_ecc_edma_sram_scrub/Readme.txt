@@ -1,6 +1,11 @@
 # EDMA RTI SRAM Scrub Demo for AM263Px-CC
 
 ## Overview
+This EDMA scrubbing code is a workaround for the i2499 errata issue and workaround is required for devices
+up to Silicon Revision 1.2 on AM263x and Silicon Revision 1.1 on AM263Px. Therefore, the workaround is no
+longer required starting from Silicon Revision 1.3 on AM263x and Silicon Revision 1.2 on AM263Px, where the
+errata issue has been addressed in hardware.
+
 This example demonstrates how to use EDMA (Enhanced Direct Memory Access) and RTI (Real-Time Interrupt) 
 to implement a SRAM scrubbing mechanism for detecting and mitigating Single-Bit Errors (SBE) in AM263Px
 microcontrollers.

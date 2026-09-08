@@ -121,7 +121,8 @@ typedef uint8_t SDL_VTM_configTsCtrl;
 #define SDL_VTM_TSENSE1_HOT_FLAG          (1U << 6U)
 #define SDL_VTM_TSENSE1_COLD_FLAG         (1U << 5U)
 
-#define SDL_VTM_OVERRIDE_PATTERN           0x7U
+#define SDL_VTM_OVERRIDE_PATTERN          (0x7U)
+#define SDL_VTM_CONVERSION_COMPLETED      (0U)
 
 #define SDL_VTM_MASK_LOW_TH     (1U)
 #define SDL_VTM_MASK_COLD       (1U)

@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -121,6 +121,9 @@ Different OSPI Transfer functions</h2></td></tr>
 <tr class="memitem:ga5c6aa78b2b05cca8bd7a184a1b040f87"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__LLD__READ__WRITE__MODULE.html#ga5c6aa78b2b05cca8bd7a184a1b040f87">OSPI_lld_writeDirect</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> handle, <a class="el" href="structOSPI__Transaction.html">OSPI_Transaction</a> *trans)</td></tr>
 <tr class="memdesc:ga5c6aa78b2b05cca8bd7a184a1b040f87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to perform direct writes to the flash using DAC controller.  <a href="group__DRV__OSPI__LLD__READ__WRITE__MODULE.html#ga5c6aa78b2b05cca8bd7a184a1b040f87">More...</a><br /></td></tr>
 <tr class="separator:ga5c6aa78b2b05cca8bd7a184a1b040f87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga144d4f12e1dede2c43818543426ffbdb"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__LLD__READ__WRITE__MODULE.html#ga144d4f12e1dede2c43818543426ffbdb">OSPI_lld_writeDirectDma</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> handle, <a class="el" href="structOSPI__Transaction.html">OSPI_Transaction</a> *trans)</td></tr>
+<tr class="memdesc:ga144d4f12e1dede2c43818543426ffbdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to perform DMA-assisted direct writes to PSRAM via DAC.  <a href="group__DRV__OSPI__LLD__READ__WRITE__MODULE.html#ga144d4f12e1dede2c43818543426ffbdb">More...</a><br /></td></tr>
+<tr class="separator:ga144d4f12e1dede2c43818543426ffbdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gafccf7cee32027d511f06e5910e94780c"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__OSPI__LLD__READ__WRITE__MODULE.html#gafccf7cee32027d511f06e5910e94780c">OSPI_lld_writeIndirect</a> (<a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> handle, <a class="el" href="structOSPI__Transaction.html">OSPI_Transaction</a> *trans)</td></tr>
 <tr class="memdesc:gafccf7cee32027d511f06e5910e94780c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to perform indirect writes to the flash using INDAC controller.  <a href="group__DRV__OSPI__LLD__READ__WRITE__MODULE.html#gafccf7cee32027d511f06e5910e94780c">More...</a><br /></td></tr>
 <tr class="separator:gafccf7cee32027d511f06e5910e94780c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -279,6 +282,44 @@ Different OSPI Transfer functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="ospi__lld_8h.html#a55d0de1852596151ea5221adf3930c55" title="Return status when the API execution was successful.">OSPI_SYSTEM_SUCCESS</a> on successful write; else error on failure</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open</a> </dd></dl>
+
+</div>
+</div>
+<a id="ga144d4f12e1dede2c43818543426ffbdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga144d4f12e1dede2c43818543426ffbdb">&#9670;&nbsp;</a></span>OSPI_lld_writeDirectDma()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t OSPI_lld_writeDirectDma </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a>&#160;</td>
+          <td class="paramname"><em>handle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structOSPI__Transaction.html">OSPI_Transaction</a> *&#160;</td>
+          <td class="paramname"><em>trans</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to perform DMA-assisted direct writes to PSRAM via DAC. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td><a class="el" href="ospi__lld_8h.html#ad5f985cd90ddfb6100f3e4bffd425d2e">OSPILLD_Handle</a> returned from <a class="el" href="group__DRV__OSPI__MODULE.html#gaf74c4b8836a43513f0b2c0a7893c02da" title="This function opens a given OSPI peripheral.">OSPI_open()</a> </td></tr>
+    <tr><td class="paramname">trans</td><td>Pointer to <a class="el" href="structOSPI__Transaction.html" title="Data structure used with OSPI_Transfers - OSPI_lld_readDirect, OSPI_lld_writeDirect,...">OSPI_Transaction</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f" title="Return status when the API execution was successful.">SystemP_SUCCESS</a> on success, <a class="el" href="group__KERNEL__DPL__SYSTEM.html#gac64497676d49ad4e51a1d9513e3570d9" title="Return status when the API execution was not successful due to a failure.">SystemP_FAILURE</a> otherwise </dd></dl>
 
 </div>
 </div>

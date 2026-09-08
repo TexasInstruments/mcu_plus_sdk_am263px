@@ -55,6 +55,7 @@ void empty_main(void *args)
 #else
     DebugP_log("All tests have passed!!\r\n");
 #endif 
+    ClockP_sleep(10);
     Board_driversClose();
     Drivers_close();
 }

@@ -104,7 +104,7 @@ DMA_Params         globalEdmaParams[2];
 /*                          Function Definitions                              */
 /* ========================================================================== */
 
-int32_t EDMA_Config_TxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks, uint16_t blockSize, int32_t operationType)
+int32_t EDMA_Config_TxChannel(DMA_Handle handle, const uint32_t *srcAddress, const uint32_t *dstAddress, uint16_t numBlocks, uint16_t blockSize, int32_t operationType)
 {
     int32_t         status = SystemP_FAILURE;
     DMA_Config      *dmaCfg;
@@ -240,7 +240,7 @@ int32_t EDMA_WaitForTxTransfer(DMA_Handle handle)
 
     return (status);
 }
-int32_t EDMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks, int32_t operationType)
+int32_t EDMA_Config_RxChannel(DMA_Handle handle, const uint32_t *srcAddress, const uint32_t *dstAddress, uint16_t numBlocks, int32_t operationType)
 {
     int32_t         status = SystemP_FAILURE;
     DMA_Config      *dmaCfg;

@@ -1,10 +1,5 @@
-First commit tracked for mcelf: c8b7063656635f127aac2d94c4ce9277ca06f79c
+Changelog reset after release REL.MCUSDK.26.00.00.06.STS on 2026-05-09 12:50:54
 
-Recent commit history (last 20 commits):
-
-c8b7063 allsoc: genimage: refactor into SoC-specific variants
-
-Note: Detailed file changes will be shown in subsequent builds when comparing commits
 ========================================
 Changes from build on 2026-04-01 04:17:19
 Previous commit: c8b7063656635f127aac2d94c4ce9277ca06f79c (not found in current history)

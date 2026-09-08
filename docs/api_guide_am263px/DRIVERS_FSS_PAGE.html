@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,23 +92,23 @@ $(document).ready(function(){initNavTree('DRIVERS_FSS_PAGE.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1019">Usage of FSS driver</a></li>
-<li class="level1"><a href="#autotoc_md1020">Example Usage</a><ul><li class="level2"><a href="#autotoc_md1021">Configuring FSS for Bootseg peripheral</a></li>
-<li class="level2"><a href="#autotoc_md1022">Configuring FSS for ECCM</a></li>
+<ul><li class="level1"><a href="#autotoc_md1022">Usage of FSS driver</a></li>
+<li class="level1"><a href="#autotoc_md1023">Example Usage</a><ul><li class="level2"><a href="#autotoc_md1024">Configuring FSS for Bootseg peripheral</a></li>
+<li class="level2"><a href="#autotoc_md1025">Configuring FSS for ECCM</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1023">API</a></li>
+<li class="level1"><a href="#autotoc_md1026">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_fss"></a></p>
-<h1><a class="anchor" id="autotoc_md1019"></a>
+<h1><a class="anchor" id="autotoc_md1022"></a>
 Usage of FSS driver</h1>
 <p>FSS driver is used to configure bootseg IP and ECCM IP.</p>
 <p>Bootseg IP is used to perform A/B swap in Firmware-Update-Over-The-Air (FOTA) application. Please refer to Technical Resource Manual of the deivce for more details of this IP.</p>
 <p>ECCM is on-the-fly-Ecc module which perform ECC check on the fly which makes XIP from external flash secure. Please refer to Technical Resource Manual of the deivce for more details of this IP.</p>
-<h1><a class="anchor" id="autotoc_md1020"></a>
+<h1><a class="anchor" id="autotoc_md1023"></a>
 Example Usage</h1>
-<h2><a class="anchor" id="autotoc_md1021"></a>
+<h2><a class="anchor" id="autotoc_md1024"></a>
 Configuring FSS for Bootseg peripheral</h2>
 <p>Includes the following files</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;drivers/fss.h&gt;</span></div>
@@ -134,7 +134,7 @@ Configuring FSS for Bootseg peripheral</h2>
 <div class="line">    {</div>
 <div class="line">        <a class="code" href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">DebugP_log</a>(<span class="stringliteral">&quot;Booting from 1st half of flash (or A region).&quot;</span>);</div>
 <div class="line">    }</div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md1022"></a>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md1025"></a>
 Configuring FSS for ECCM</h2>
 <div class="fragment"><div class="line">    <a class="code" href="structFSS__ECCRegionConfig.html">FSS_ECCRegionConfig</a> region;</div>
 <div class="line">    <span class="comment">/*</span></div>
@@ -149,7 +149,7 @@ Configuring FSS for ECCM</h2>
 <div class="line">    <a class="code" href="group__DRV__FSS__MODULE.html#ga3e86c47b8477423956175589115b0014">FSS_configECCMRegion</a>(&amp;region);</div>
 <div class="line">    <a class="code" href="group__DRV__FSS__MODULE.html#ga936f9e2a951d31629a0af31aeb2f2fdc">FSS_enableECC</a>();</div>
 </div><!-- fragment --><p> make sure to disable ECC before configuring it.</p>
-<h1><a class="anchor" id="autotoc_md1023"></a>
+<h1><a class="anchor" id="autotoc_md1026"></a>
 API</h1>
 <p><a class="el" href="group__DRV__FSS__MODULE.html">APIs for FSS</a> </p>
 </div></div><!-- contents -->

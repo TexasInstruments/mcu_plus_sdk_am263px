@@ -237,7 +237,10 @@ MCSPI_Handle MCSPI_open(uint32_t index, const MCSPI_OpenParams *openPrms)
                 lldChCfg->defaultTxData = chConfig[configNum].defaultTxData;
                 lldChCfg->txFifoTrigLvl = chConfig[configNum].txFifoTrigLvl;
                 lldChCfg->rxFifoTrigLvl = chConfig[configNum].rxFifoTrigLvl;
-
+#if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)
+                lldChCfg->enableTxFifo  = chConfig[configNum].enableTxFifo;
+                lldChCfg->enableRxFifo  = chConfig[configNum].enableRxFifo;
+#endif
                 mcspiLldInithandle->chObj[chNum].dmaChCfg = dmaChConfig;
                 mcspiLldInithandle->chObj[chNum].dmaChConfigNum = configNum;
                 mcspiLldInithandle->chEnabled[chNum] = TRUE;

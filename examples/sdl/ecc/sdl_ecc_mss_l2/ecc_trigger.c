@@ -528,6 +528,7 @@ int32_t ECC_funcTest(void)
     sdlApp_dplInit();
 
 #if defined(SOC_AM263X) || defined(SOC_AM263PX) || defined (SOC_AM261X)
+    SDL_MMR_Unlock(SDL_MSS_CTRL_U_BASE);
     /* Clear Done memory*/
     SDL_REG32_WR(SDL_MSS_L2_MEM_INIT_DONE_ADDR, SDL_MSS_L2_BANK_INIT_DONE_CLR);
 #endif
@@ -539,6 +540,10 @@ int32_t ECC_funcTest(void)
 
     /* Clear Done memory after MEM init*/
     SDL_REG32_WR(SDL_MSS_L2_MEM_INIT_DONE_ADDR, SDL_ECC_MSS_L2_BANK_MEM_INIT);
+
+#if defined(SOC_AM263X) || defined(SOC_AM263PX) || defined (SOC_AM261X)
+    SDL_MMR_Lock(SDL_MSS_CTRL_U_BASE);
+#endif
 
     /*Clearing any old interrupt presented*/
     SDL_REG32_WR(SDL_ECC_AGGR_ERROR_STATUS1_ADDR, 0xF0Fu);

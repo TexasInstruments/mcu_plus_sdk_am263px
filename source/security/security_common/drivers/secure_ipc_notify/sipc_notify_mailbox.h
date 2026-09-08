@@ -94,7 +94,7 @@ static inline int32_t SIPC_mailboxRead(SIPC_SwQueue *swQ, uint8_t *Buff)
         if( rdIdx != wrIdx)
         {
             /* Copy EleSize bytes from Queue memory to the buffer */
-            (void)memcpy(Buff, SOC_phyToVirt((uint64_t)(swQ->Qfifo + (swQ->EleSize*rdIdx))),swQ->EleSize);
+            (void)memcpy((void *)Buff, (const void *)SOC_phyToVirt((uint64_t)(swQ->Qfifo + (swQ->EleSize*rdIdx))),(uint32_t)swQ->EleSize);
 
             rdIdx = (rdIdx+1U)%swQ->Qlength;
 
@@ -119,12 +119,12 @@ static inline int32_t SIPC_mailboxRead(SIPC_SwQueue *swQ, uint8_t *Buff)
 }
 
 /* Write to SW fifo and trigger HW interrupt using HW mailbox */
-static inline int32_t SIPC_mailboxWrite(uint32_t mailboxBaseAddr, uint32_t wrIntrBitPos, SIPC_SwQueue *swQ, uint8_t *Buff)
+static inline int32_t SIPC_mailboxWrite(uint32_t mailboxBaseAddr, uint32_t wrIntrBitPos, SIPC_SwQueue *swQ, const uint8_t *Buff)
 {
     int32_t status = SystemP_FAILURE;
 
-    volatile uint32_t rdIdx = swQ->rdIdx;
-    volatile uint32_t wrIdx = swQ->wrIdx;
+    uint32_t rdIdx = swQ->rdIdx;
+    uint32_t wrIdx = swQ->wrIdx;
 
     if((rdIdx < swQ->Qlength) && (wrIdx < swQ->Qlength))
     {
@@ -134,7 +134,7 @@ static inline int32_t SIPC_mailboxWrite(uint32_t mailboxBaseAddr, uint32_t wrInt
 
             /* There is some space in the FIFO */
 
-            (void)memcpy(SOC_phyToVirt((uint64_t)(swQ->Qfifo + (swQ->EleSize*wrIdx))),Buff,swQ->EleSize);
+            (void)memcpy((void *)SOC_phyToVirt((uint64_t)(swQ->Qfifo + (swQ->EleSize*wrIdx))),(const void *)Buff,(uint32_t)swQ->EleSize);
 
             wrIdx = (wrIdx+1U)%swQ->Qlength;
 
@@ -173,15 +173,6 @@ static inline void SIPC_mailboxClearPendingIntr(uint32_t mailboxBaseAddr, uint32
 {
     volatile uint32_t *addr = ( uint32_t *)mailboxBaseAddr;
     *addr = pendingIntr;
-}
-
-static inline uint32_t SIPC_mailboxIsPendingIntr(uint32_t pendingIntr, uint32_t coreId)
-{
-    extern uint32_t gSIPCCoreIntrBitPos[];
-
-    uint32_t isPending = 0;
-    isPending = pendingIntr & (1U << gSIPCCoreIntrBitPos[coreId]);
-    return isPending;
 }
 
 #ifdef __cplusplus

@@ -47,6 +47,12 @@ function getConfigurables(){
             displayFormat: "dec",
         },
         {
+            name: "sramPageSize",
+            displayName: defaultDevice + " Page Size In Bytes",
+            default: soc.getDefaultPsramConfig().pageSize,
+            displayFormat: "dec",
+        },
+        {
             name: "sramDevcfg",
             displayName: defaultDevice + " Configuration",
             collapsed: true,
@@ -101,10 +107,77 @@ function getConfigurables(){
                     displayName: defaultDevice + " Command Dummy Cycles",
                     default: soc.getDefaultPsramConfig().dummyClksCmd,
                 },
+                {
+                    name: "sramCmdExtType",
+                    displayName: defaultDevice + " Command Extension Type",
+                    description: "Selects how the command extension byte is formed in 8D-8D-8D / octal DDR mode",
+                    default: soc.getDefaultPsramConfig().cmdExtType || "NONE",
+                    options: [
+                        { name: "REPEAT",  description: "Extension byte is the same as the command byte" },
+                        { name: "INVERSE", description: "Extension byte is the bitwise inverse of the command byte" },
+                        { name: "NONE",    description: "No command extension byte" },
+                    ],
+                },
             ],
         },
 
     );
+
+    let defaultMrConfig = soc.getDefaultPsramConfig().mrConfig || [];
+    const MR_MAX = 8;
+    let mrConfigurables = [];
+
+    for (let i = 0; i < MR_MAX; i++) {
+        let defEnabled  = (i < defaultMrConfig.length);
+        let defAddr     = defEnabled ? parseInt(defaultMrConfig[i].address,  16) : 0;
+        let defVal      = defEnabled ? parseInt(defaultMrConfig[i].value,    16) : 0;
+        let defValWidth = defEnabled ? (defaultMrConfig[i].valWidth || "1")      : "1";
+        mrConfigurables.push(
+            {
+                name: `mr${i}`,
+                displayName: defaultDevice + ` Mode Register ${i}`,
+                collapsed: true,
+                config: [
+                    {
+                        name: `mrEn${i}`,
+                        displayName: "Enable",
+                        default: defEnabled,
+                    },
+                    {
+                        name: `mrAddr${i}`,
+                        displayName: "Address",
+                        default: defAddr,
+                        displayFormat: "hex",
+                    },
+                    {
+                        name: `mrVal${i}`,
+                        displayName: "Value",
+                        default: defVal,
+                        displayFormat: "hex",
+                    },
+                    {
+                        name: `mrValWidth${i}`,
+                        displayName: "Value Width (bytes)",
+                        description: "Number of bytes to write for this register: 1 = 8-bit, 2 = 16-bit, 4 = 32-bit",
+                        default: defValWidth,
+                        options: [
+                            { name: "1", displayName: "1 (8-bit)"  },
+                            { name: "2", displayName: "2 (16-bit)" },
+                            { name: "4", displayName: "4 (32-bit)" },
+                        ],
+                    },
+                ],
+            }
+        );
+    }
+
+    config.push({
+        name: "mrConfig",
+        displayName: defaultDevice + " Mode Register Configuration",
+        collapsed: true,
+        config: mrConfigurables,
+    });
+
     return config;
 }
 

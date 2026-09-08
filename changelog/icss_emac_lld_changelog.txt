@@ -205,3 +205,162 @@ Date:   Tue Jul 7 00:54:15 2026 -0500
  .../makefile.am64x.r5f.ti-arm-clang.nortos         |  124 +
  159 files changed, 48015 insertions(+)
 
+========================================
+Changes from build on 2026-09-08 21:10:09
+Previous commit: f39444f47ddedc18996aabc49e3e325194c11d25
+Current commit: af833cfa49e638f0f4c6e6bdca9db5aa23ad330f
+========================================
+
+commit 7a499050aa63ed784c2696e4848d46f43899d15d
+Author: Laxman <l-chinnannavar@ti.com>
+Date:   Fri Aug 21 16:39:20 2026 +0530
+
+    allsoc: icss_emac: Simplify redundant ICSS_EMAC_PATH/ICSS_TIMESYNC_PATH conditional check
+    
+    - Both MCUSDK and ICSDK branches now resolve to the same path. Remove conditional check
+    - Fix industrial_comms path check in icss_switch firmware example
+    
+    Fixes: PINDSW-11471
+    
+    Signed-off-by: Laxman <l-chinnannavar@ti.com>
+
+ icss_emac/.project/project_am243x.js                              | 4 +---
+ icss_emac/.project/project_am261x.js                              | 4 +---
+ icss_emac/.project/project_am261x_hsr_prp_icss_emac_mii.js        | 4 +---
+ icss_emac/.project/project_am263px.js                             | 4 +---
+ icss_emac/.project/project_am263px_hsr_prp_icss_emac_mii.js       | 4 +---
+ icss_emac/.project/project_am263x.js                              | 4 +---
+ icss_emac/.project/project_am64x.js                               | 4 +---
+ icss_emac/firmware/icss_dual_emac/mii/.project/project_am261x.js  | 4 +---
+ icss_emac/firmware/icss_dual_emac/mii/.project/project_am263px.js | 4 +---
+ icss_emac/firmware/icss_dual_emac/mii/.project/project_am263x.js  | 4 +---
+ icss_emac/firmware/icss_switch/mii/.project/project_am261x.js     | 8 +++-----
+ icss_emac/firmware/icss_switch/mii/.project/project_am263px.js    | 8 +++-----
+ icss_emac/firmware/icss_switch/mii/.project/project_am263x.js     | 8 +++-----
+ icss_emac/lwipif/.project/project_am243x.js                       | 4 +---
+ icss_emac/lwipif/.project/project_am261x.js                       | 4 +---
+ icss_emac/lwipif/.project/project_am263px.js                      | 4 +---
+ icss_emac/lwipif/.project/project_am263x.js                       | 4 +---
+ icss_emac/lwipif/.project/project_am64x.js                        | 4 +---
+ icss_timesync/.project/project_am243x.js                          | 4 +---
+ icss_timesync/.project/project_am261x.js                          | 4 +---
+ icss_timesync/.project/project_am263px.js                         | 4 +---
+ icss_timesync/.project/project_am263x.js                          | 4 +---
+ icss_timesync/.project/project_am64x.js                           | 4 +---
+ 23 files changed, 29 insertions(+), 75 deletions(-)
+
+commit 916d2b6c456b1e49c8942b405ff2127008f56533
+Author: Laxman <l-chinnannavar@ti.com>
+Date:   Fri Aug 21 12:32:14 2026 +0530
+
+    allsoc: icss_emac: fix stale icss_emac_lld project paths
+    
+    Update .project/project_*.js and firmware README references that
+    still pointed at the pre-move source/networking/icss_emac(_timesync)
+    location instead of source/networking/icss_emac_lld/icss_emac(_timesync).
+    Also correct the industrialCommsPathExists directory-depth check, which
+    was off by one level after the icss_emac_lld nesting was introduced and
+    was silently falling back to MCU_PLUS_SDK_PATH when built from
+    ind_comms_sdk.
+
+ icss_emac/.project/project_am243x.js                              | 6 +++---
+ icss_emac/.project/project_am261x.js                              | 6 +++---
+ icss_emac/.project/project_am261x_hsr_prp_icss_emac_mii.js        | 6 +++---
+ icss_emac/.project/project_am263px.js                             | 6 +++---
+ icss_emac/.project/project_am263px_hsr_prp_icss_emac_mii.js       | 6 +++---
+ icss_emac/.project/project_am263x.js                              | 6 +++---
+ icss_emac/.project/project_am64x.js                               | 6 +++---
+ icss_emac/firmware/README.md                                      | 4 ++--
+ icss_emac/firmware/icss_dual_emac/mii/.project/project_am261x.js  | 6 +++---
+ icss_emac/firmware/icss_dual_emac/mii/.project/project_am263px.js | 6 +++---
+ icss_emac/firmware/icss_dual_emac/mii/.project/project_am263x.js  | 6 +++---
+ icss_emac/firmware/icss_switch/mii/.project/project_am261x.js     | 2 +-
+ icss_emac/firmware/icss_switch/mii/.project/project_am263px.js    | 2 +-
+ icss_emac/firmware/icss_switch/mii/.project/project_am263x.js     | 2 +-
+ icss_emac/lwipif/.project/project_am243x.js                       | 6 +++---
+ icss_emac/lwipif/.project/project_am261x.js                       | 6 +++---
+ icss_emac/lwipif/.project/project_am263px.js                      | 6 +++---
+ icss_emac/lwipif/.project/project_am263x.js                       | 6 +++---
+ icss_emac/lwipif/.project/project_am64x.js                        | 6 +++---
+ icss_timesync/.project/project_am243x.js                          | 6 +++---
+ icss_timesync/.project/project_am261x.js                          | 6 +++---
+ icss_timesync/.project/project_am263px.js                         | 6 +++---
+ icss_timesync/.project/project_am263x.js                          | 6 +++---
+ icss_timesync/.project/project_am64x.js                           | 6 +++---
+ 24 files changed, 65 insertions(+), 65 deletions(-)
+
+commit 0d3f758ff0917a6ca46d22d3f345b143e256a8b3
+Author: Archit Dev <a-dev@ti.com>
+Date:   Wed Aug 12 12:24:43 2026 +0530
+
+    icss_emac: fix Klocwork MISRA findings in icss_emac.c/.h
+    
+    - ICSS_EMAC_open: guard pruRstIsoStatus assignment behind status
+      check to avoid dereferencing icssEmacObject when NULL
+      (NPD.GEN.MIGHT)
+    - icss_emac.h: add U suffix to ICSS_EMAC_OBJECT_SIZE_IN_BYTES to
+      fix signed/unsigned division (MISRA.ETYPE.CATEGORY.DIFFERENT.2012)
+    - Replace bare non-boolean if-conditions with explicit comparisons
+      in ICSS_EMAC_rxPktGet, ICSS_EMAC_txPacketEnqueue,
+      ICSS_EMAC_txInterruptHandler, ICSS_EMAC_updatePhyStatus, and
+      ICSS_EMAC_pollLink (MISRA.STMT.COND.NOT_BOOLEAN.2012)
+    - Add explicit casts for cross-essential-type assignments in
+      ICSS_EMAC_close, ICSS_EMAC_pollPkt, and ICSS_EMAC_pollLink
+      (MISRA.ETYPE.ASSIGN.2012)
+    
+    Fixes: PINDSW-11582
+    
+    Signed-off-by: Archit Dev <a-dev@ti.com>
+
+ icss_emac/icss_emac.h        |  8 ++++----
+ icss_emac/icss_emac_ver.h    |  2 +-
+ icss_emac/source/icss_emac.c | 41 ++++++++++++++++++++++-------------------
+ 3 files changed, 27 insertions(+), 24 deletions(-)
+
+commit 0aec6fd7dbbaff22cc433bd5118cbacc9bbd4a9b
+Author: Archit Dev <a-dev@ti.com>
+Date:   Mon Aug 10 17:25:02 2026 +0530
+
+    icss_emac: fix stale Learning FDB entries on link down
+    
+    ICSS_EMAC_pollLink() flushed Tx/Rx queues on link down but never
+    purged the per-port Learning FDB, leaving stale MAC-to-port entries
+    that could misdirect traffic until they aged out.
+    
+    This commit purges the affected port's hash table unconditionally on
+    link down.
+    
+    Gated to switch mode, since learning is not applicable
+    in single-MAC/dual-MAC mode.
+    
+    Fixes: PINDSW-11522
+    
+    Signed-off-by: Archit Dev <a-dev@ti.com>
+
+ icss_emac/icss_emac_ver.h    |  4 ++--
+ icss_emac/source/icss_emac.c | 10 ++++++++++
+ 2 files changed, 12 insertions(+), 2 deletions(-)
+
+commit 4c227c975a72d692c46d147fbc8af11c804f9234
+Author: Archit Dev <a-dev@ti.com>
+Date:   Sun Jul 19 20:11:45 2026 +0530
+
+    allsoc: icss_emac: introduce LLD version control via icss_emac_ver.h
+    
+    Add icss_emac_ver.h with MAJOR.MINOR.PATCH.BUILD version macros encoded
+    into a single 32-bit ICSS_EMAC_LLD_VERSION_ID.
+    
+    Include the header from icss_emac.h so it is
+    automatically available to all consumers.
+    
+    Downstream examples can use ICSS_EMAC_LLD_VERSION_ID for compile-time
+    compatibility checks against a minimum required LLD version.
+    
+    Fixes: PINDSW-11433
+    
+    Signed-off-by: Archit Dev <a-dev@ti.com>
+
+ icss_emac/icss_emac.h     |  1 +
+ icss_emac/icss_emac_ver.h | 70 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 71 insertions(+)
+

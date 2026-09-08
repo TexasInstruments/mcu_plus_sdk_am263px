@@ -51,6 +51,10 @@
 #include <drivers/bootloader/bootloader_priv.h>
 #include <string.h>
 
+#if defined(SOC_AM263X) || defined(SOC_AM263PX) || defined(SOC_AM261X)
+#include <sdl/ecc/sdl_ecc_utils.h>
+#endif
+
 /* ========================================================================== */
 /*                           Macros & Typedefs                                */
 /* ========================================================================== */
@@ -911,6 +915,7 @@ int32_t Bootloader_parseAndLoadMultiCoreELF(Bootloader_Handle handle, Bootloader
     uint32_t doAuth = FALSE;
     
     uint32_t phoff = 0U;
+    uint32_t phSize = 0U;
     uint32_t phtSize = 0U;
     uint32_t numSegments = 0U;
 
@@ -1003,14 +1008,6 @@ int32_t Bootloader_parseAndLoadMultiCoreELF(Bootloader_Handle handle, Bootloader
         elfPtr32 = (Bootloader_ELFH32 *)gElfHBuffer;
         elfPtr64 = (Bootloader_ELFH64 *)gElfHBuffer;
 
-        /* Calculate the Program Header Table size. */
-        phtSize = ((elfPtr32->e_phnum) * (elfPtr32->e_phentsize));
-
-        if(elfClass == ELFCLASS_64)
-        {
-            phtSize = ((elfPtr64->e_phnum) * (elfPtr64->e_phentsize));
-        }
-
         numSegments = elfPtr32->e_phnum;
 
         if(elfClass == ELFCLASS_64)
@@ -1022,6 +1019,30 @@ int32_t Bootloader_parseAndLoadMultiCoreELF(Bootloader_Handle handle, Bootloader
         if(numSegments > ELF_MAX_SEGMENTS)
         {
             status = SystemP_FAILURE;
+        }
+
+        phSize = elfPtr32->e_phentsize;
+
+        if(elfClass == ELFCLASS_64)
+        {
+            phSize = elfPtr64->e_phentsize;
+        }
+
+        /* Check if number of PHT entries are <= MAX */
+        if(phSize > ELF_P_HEADER_MAX_SIZE)
+        {
+            status = SystemP_FAILURE;
+        }
+
+        if(status == SystemP_SUCCESS)
+        {
+            /* Calculate the Program Header Table size. */
+            phtSize = ((elfPtr32->e_phnum) * (elfPtr32->e_phentsize));
+
+            if(elfClass == ELFCLASS_64)
+            {
+                phtSize = ((elfPtr64->e_phnum) * (elfPtr64->e_phentsize));
+            }
         }
     }
 
@@ -1102,6 +1123,9 @@ int32_t Bootloader_parseAndLoadMultiCoreELF(Bootloader_Handle handle, Bootloader
 						config->coresPresentMap |= 1 << cpuId;
 						Bootloader_profileAddCore(cpuId);
 						initCpuDone[cpuId] = 1;
+                        #if defined(SOC_AM263X) || defined(SOC_AM263PX) || defined(SOC_AM261X)
+                        SDL_ECC_UTILS_enableECCATCM();
+                        #endif
 					}
                     if (status == SystemP_SUCCESS)
                     {

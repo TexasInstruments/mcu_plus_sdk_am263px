@@ -431,7 +431,6 @@ void OSPI_lld_phyFindRxLow(OSPILLD_Handle hOspi, OSPI_PhyConfig *start, uint32_t
         rdAttackStatus = OSPI_lld_phyReadAttackVector(hOspi, offset);
 
     }
-
 }
 
 void OSPI_lld_phyFindRxHigh(OSPILLD_Handle hOspi, OSPI_PhyConfig *start, uint32_t offset, OSPI_PhyConfig *result)
@@ -812,6 +811,7 @@ int32_t OSPI_lld_phyFindOTP1(OSPILLD_Handle hOspi, uint32_t flashOffset, OSPI_Ph
             return status;
         }
     }
+
     /*
      * Check a different point if the rxLow and rxHigh are on the same rdDelay.
      * This avoids mistaking the metastability gap for an rxDLL boundary
@@ -987,6 +987,7 @@ int32_t OSPI_lld_phyFindOTP1(OSPILLD_Handle hOspi, uint32_t flashOffset, OSPI_Ph
         {
             rxHigh = backupPoint;
         }
+
     }
 
     /***************************** GOLDEN Tx_Low Search *********************/
@@ -1012,6 +1013,7 @@ int32_t OSPI_lld_phyFindOTP1(OSPILLD_Handle hOspi, uint32_t flashOffset, OSPI_Ph
             return status;
         }
     }
+
     /***************************** GOLDEN Tx_High Search *********************/
     /*
      * Find txDLL Max
@@ -1039,7 +1041,6 @@ int32_t OSPI_lld_phyFindOTP1(OSPILLD_Handle hOspi, uint32_t flashOffset, OSPI_Ph
      */
     if(txLow.rdDelay == txHigh.rdDelay)
     {
-
         /***************************** BACKUP Tx_Low Search *********************/
         /* Look for txDLL boundaries at 3/4 of rxDLL window */
         /* Find txDLL Min */
@@ -1162,6 +1163,7 @@ int32_t OSPI_lld_phyFindOTP1(OSPILLD_Handle hOspi, uint32_t flashOffset, OSPI_Ph
 
     /* Slope and Intercept*/
     slope = ((float)topRight.rxDLL-(float)bottomLeft.rxDLL)/((float)topRight.txDLL-(float)bottomLeft.txDLL);
+
     /* Binary Search */
     OSPI_PhyConfig left, right;
     /* Search along the diagonal between corners */
@@ -1288,7 +1290,7 @@ int32_t OSPI_lld_phyFindOTP1(OSPILLD_Handle hOspi, uint32_t flashOffset, OSPI_Ph
         otp->rdDelay = 0;
     }
 
-        return status;
+    return status;
 }
 
 int32_t OSPI_lld_phyTuneDDR(OSPILLD_Handle hOspi, uint32_t flashOffset)
@@ -1323,24 +1325,13 @@ int32_t OSPI_lld_phyTuneSDR(OSPILLD_Handle hOspi, uint32_t flashOffset)
     int32_t status = OSPI_SYSTEM_SUCCESS;
     OSPI_PhyConfig otp;
 
-    const CSL_ospi_flash_cfgRegs *pReg = (const CSL_ospi_flash_cfgRegs *)(hOspi->baseAddr);
 
-    /* Set Internal loopback mode */
-    CSL_REG32_FINS(&pReg->RD_DATA_CAPTURE_REG, OSPI_FLASH_CFG_RD_DATA_CAPTURE_REG_BYPASS_FLD, TRUE);
-
-    /* Set the baud rate div to zero. */
-    CSL_REG32_FINS(&pReg->CONFIG_REG, OSPI_FLASH_CFG_CONFIG_REG_MSTR_BAUD_DIV_FLD, 0);
-
-    /* Enable phy mode. */
-    CSL_REG32_FINS(&pReg->CONFIG_REG, OSPI_FLASH_CFG_CONFIG_REG_PHY_MODE_ENABLE_FLD, TRUE);
-
-    /* Disable PHY pipeline */
-    CSL_REG32_FINS(&pReg->CONFIG_REG, OSPI_FLASH_CFG_CONFIG_REG_PIPELINE_PHY_FLD, FALSE);
-
-    /* PHY DLL master operational mode */
-    CSL_REG32_FINS(&pReg->PHY_MASTER_CONTROL_REG,
-                    OSPI_FLASH_CFG_PHY_MASTER_CONTROL_REG_PHY_MASTER_BYPASS_MODE_FLD,
-                    FALSE);
+    /* Enable PHY */
+    OSPI_lld_enablePhy(hOspi);
+    /* keep phy pipeline disabled */
+    OSPI_lld_disablePhyPipeline(hOspi);
+    /* Perform the Basic PHY configuration for the OSPI controller */
+    OSPI_lld_phyBasicConfig(hOspi);
 
     /* Use the normal algorithm */
     status = OSPI_lld_phyFindOTP1(hOspi, flashOffset, &otp);
@@ -1350,6 +1341,8 @@ int32_t OSPI_lld_phyTuneSDR(OSPILLD_Handle hOspi, uint32_t flashOffset)
 
     /* Update the phyRdDelay book-keeping. This is needed when we enable PHY later */
     hOspi->phyRdDataCapDelay = otp.rdDelay;
+
+    OSPI_lld_disablePhy(hOspi);
 
     return status;
 }

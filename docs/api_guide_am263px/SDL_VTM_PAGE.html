@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,11 +92,11 @@ $(document).ready(function(){initNavTree('SDL_VTM_PAGE.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1762">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1763">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1764">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1765">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1766">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1774">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1775">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1776">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1777">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1778">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_vtm1"></a></p>
@@ -113,22 +113,22 @@ $(document).ready(function(){initNavTree('SDL_VTM_PAGE.html',''); initResizable(
 <li>Ability to check the status of the temperature sensor based on alert temperature</li>
 <li>Ability to clear and contorl the VTM event inerrupts</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1762"></a>
+<h1><a class="anchor" id="autotoc_md1774"></a>
 SysConfig Features</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1763"></a>
+<h1><a class="anchor" id="autotoc_md1775"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1764"></a>
+<h1><a class="anchor" id="autotoc_md1776"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1765"></a>
+<h1><a class="anchor" id="autotoc_md1777"></a>
 Example Usage</h1>
 <p>The following shows an example of SDL VTM API usage by the application to set up the VTM for monitoring for events. Events can be monitored by enabling the events in the associated ESM instance.</p>
 <p>Configure the VTM Thresholds and enable events </p><div class="fragment"><div class="line">int32_t retValue;</div>
@@ -184,15 +184,15 @@ Example Usage</h1>
 <div class="line"><span class="comment">/* Get current temperature value */</span></div>
 <div class="line"><a class="code" href="group__SDL__VTM__FUNCTION.html#gad33fa583d435c37ac29c24b82772373f">SDL_VTM_getTemp</a>(<a class="code" href="sdl__soc__vtm_8h.html#ad1764a56fd7ca1ae485dd8b509dc5289ae65e931925ae4ea782ff1394870f2327">SDL_VTM_INSTANCE_TS_0</a>, &amp;temp0);</div>
 </div><!-- fragment --><p>Acknowledge and Disable an interrupt </p><div class="fragment"><div class="line"><a class="code" href="group__SDL__VTM__FUNCTION.html#gab692fbfc5d1639e5b3b4d195ed32d427">SDL_VTM_setClearInterrupts</a>(<a class="code" href="sdl__soc__vtm_8h.html#ad1764a56fd7ca1ae485dd8b509dc5289ae65e931925ae4ea782ff1394870f2327">SDL_VTM_INSTANCE_TS_0</a>, <a class="code" href="group__SDL__IP__VTM__Enum.html#gaba2d46994418372f291e4e4836c07559">SDL_VTM_MASK_HOT</a>, <a class="code" href="group__SDL__IP__VTM__Enum.html#gad5652e75fdd70cbfed017df1590a50e7">SDL_VTM_MASK_COLD</a>, <a class="code" href="group__SDL__IP__VTM__Enum.html#ga08124d36194143a5f8facbb0bdf90a0c">SDL_VTM_MASK_LOW_TH</a>);</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1766"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1778"></a>
 API</h1>
 <p><a class="el" href="group__SDL__VTM__API.html">APIs for VTM</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <div class="ttc" id="asdl__soc__vtm_8h_html_ad1764a56fd7ca1ae485dd8b509dc5289acd360660368b7ac9dad4fcddfe57a0db"><div class="ttname"><a href="sdl__soc__vtm_8h.html#ad1764a56fd7ca1ae485dd8b509dc5289acd360660368b7ac9dad4fcddfe57a0db">SDL_VTM_INSTANCE_TS_3</a></div><div class="ttdeci">@ SDL_VTM_INSTANCE_TS_3</div><div class="ttdef"><b>Definition:</b> sdl_soc_vtm.h:62</div></div>
-<div class="ttc" id="agroup__SDL__IP__VTM__Enum_html_gad5652e75fdd70cbfed017df1590a50e7"><div class="ttname"><a href="group__SDL__IP__VTM__Enum.html#gad5652e75fdd70cbfed017df1590a50e7">SDL_VTM_MASK_COLD</a></div><div class="ttdeci">#define SDL_VTM_MASK_COLD</div><div class="ttdef"><b>Definition:</b> sdl_ip_vtm.h:127</div></div>
-<div class="ttc" id="agroup__SDL__IP__VTM__Enum_html_gaba2d46994418372f291e4e4836c07559"><div class="ttname"><a href="group__SDL__IP__VTM__Enum.html#gaba2d46994418372f291e4e4836c07559">SDL_VTM_MASK_HOT</a></div><div class="ttdeci">#define SDL_VTM_MASK_HOT</div><div class="ttdef"><b>Definition:</b> sdl_ip_vtm.h:128</div></div>
+<div class="ttc" id="agroup__SDL__IP__VTM__Enum_html_gad5652e75fdd70cbfed017df1590a50e7"><div class="ttname"><a href="group__SDL__IP__VTM__Enum.html#gad5652e75fdd70cbfed017df1590a50e7">SDL_VTM_MASK_COLD</a></div><div class="ttdeci">#define SDL_VTM_MASK_COLD</div><div class="ttdef"><b>Definition:</b> sdl_ip_vtm.h:128</div></div>
+<div class="ttc" id="agroup__SDL__IP__VTM__Enum_html_gaba2d46994418372f291e4e4836c07559"><div class="ttname"><a href="group__SDL__IP__VTM__Enum.html#gaba2d46994418372f291e4e4836c07559">SDL_VTM_MASK_HOT</a></div><div class="ttdeci">#define SDL_VTM_MASK_HOT</div><div class="ttdef"><b>Definition:</b> sdl_ip_vtm.h:129</div></div>
 <div class="ttc" id="asdl__soc__vtm_8h_html_ad1764a56fd7ca1ae485dd8b509dc5289a7d34ef855de83e18a0d4c30082ae482a"><div class="ttname"><a href="sdl__soc__vtm_8h.html#ad1764a56fd7ca1ae485dd8b509dc5289a7d34ef855de83e18a0d4c30082ae482a">SDL_VTM_INSTANCE_TS_1</a></div><div class="ttdeci">@ SDL_VTM_INSTANCE_TS_1</div><div class="ttdef"><b>Definition:</b> sdl_soc_vtm.h:58</div></div>
 <div class="ttc" id="agroup__SDL__VTM__FUNCTION_html_gab130febe63e9d13052c07d31bf9beef7"><div class="ttname"><a href="group__SDL__VTM__FUNCTION.html#gab130febe63e9d13052c07d31bf9beef7">SDL_VTM_enableTs</a></div><div class="ttdeci">void SDL_VTM_enableTs(uint32_t sensorSelect, uint8_t delay)</div><div class="ttdoc">Enable Required Temperature sensors.</div></div>
 <div class="ttc" id="asdl__soc__vtm_8h_html_ad1764a56fd7ca1ae485dd8b509dc5289a6dd1e58dead237b549930b74cba71a04"><div class="ttname"><a href="sdl__soc__vtm_8h.html#ad1764a56fd7ca1ae485dd8b509dc5289a6dd1e58dead237b549930b74cba71a04">SDL_VTM_INSTANCE_TS_2</a></div><div class="ttdeci">@ SDL_VTM_INSTANCE_TS_2</div><div class="ttdef"><b>Definition:</b> sdl_soc_vtm.h:60</div></div>
@@ -206,13 +206,13 @@ API</h1>
 <div class="ttc" id="asdl__soc__vtm_8h_html_ad1764a56fd7ca1ae485dd8b509dc5289ae65e931925ae4ea782ff1394870f2327"><div class="ttname"><a href="sdl__soc__vtm_8h.html#ad1764a56fd7ca1ae485dd8b509dc5289ae65e931925ae4ea782ff1394870f2327">SDL_VTM_INSTANCE_TS_0</a></div><div class="ttdeci">@ SDL_VTM_INSTANCE_TS_0</div><div class="ttdef"><b>Definition:</b> sdl_soc_vtm.h:56</div></div>
 <div class="ttc" id="agroup__SDL__IP__VTM__FUNCTION_html_ga97c2a20c535f0e82165c407cd9c8e436"><div class="ttname"><a href="group__SDL__IP__VTM__FUNCTION.html#ga97c2a20c535f0e82165c407cd9c8e436">SDL_VTM_tsConvTempToAdc</a></div><div class="ttdeci">int32_t SDL_VTM_tsConvTempToAdc(int32_t milliDegreeTempVal, SDL_VTM_adc_code *pAdcCode)</div><div class="ttdoc">VTM Temperature to ADC code conversion.</div></div>
 <div class="ttc" id="astructSDL__DPL__HwipParams_html_a486dcd26a28eb8cf607c19a9010dd720"><div class="ttname"><a href="structSDL__DPL__HwipParams.html#a486dcd26a28eb8cf607c19a9010dd720">SDL_DPL_HwipParams::callback</a></div><div class="ttdeci">pSDL_DPL_InterruptCallbackFunction callback</div><div class="ttdef"><b>Definition:</b> sdl_dpl.h:73</div></div>
-<div class="ttc" id="agroup__SDL__IP__VTM__Enum_html_gae10ff0bea1cd5ecd8f4470dc63c90082"><div class="ttname"><a href="group__SDL__IP__VTM__Enum.html#gae10ff0bea1cd5ecd8f4470dc63c90082">SDL_VTM_adc_code</a></div><div class="ttdeci">int16_t SDL_VTM_adc_code</div><div class="ttdoc">This typedef for VTM temperature sensor ADC code This is the data_out value of the temperature sensor...</div><div class="ttdef"><b>Definition:</b> sdl_ip_vtm.h:153</div></div>
-<div class="ttc" id="agroup__SDL__IP__VTM__Enum_html_ga08124d36194143a5f8facbb0bdf90a0c"><div class="ttname"><a href="group__SDL__IP__VTM__Enum.html#ga08124d36194143a5f8facbb0bdf90a0c">SDL_VTM_MASK_LOW_TH</a></div><div class="ttdeci">#define SDL_VTM_MASK_LOW_TH</div><div class="ttdef"><b>Definition:</b> sdl_ip_vtm.h:126</div></div>
+<div class="ttc" id="agroup__SDL__IP__VTM__Enum_html_gae10ff0bea1cd5ecd8f4470dc63c90082"><div class="ttname"><a href="group__SDL__IP__VTM__Enum.html#gae10ff0bea1cd5ecd8f4470dc63c90082">SDL_VTM_adc_code</a></div><div class="ttdeci">int16_t SDL_VTM_adc_code</div><div class="ttdoc">This typedef for VTM temperature sensor ADC code This is the data_out value of the temperature sensor...</div><div class="ttdef"><b>Definition:</b> sdl_ip_vtm.h:154</div></div>
+<div class="ttc" id="agroup__SDL__IP__VTM__Enum_html_ga08124d36194143a5f8facbb0bdf90a0c"><div class="ttname"><a href="group__SDL__IP__VTM__Enum.html#ga08124d36194143a5f8facbb0bdf90a0c">SDL_VTM_MASK_LOW_TH</a></div><div class="ttdeci">#define SDL_VTM_MASK_LOW_TH</div><div class="ttdef"><b>Definition:</b> sdl_ip_vtm.h:127</div></div>
 <div class="ttc" id="agroup__SDL__DPL__MODULE_html_ga640294d2c1ffb6d00677f1566da0ad96"><div class="ttname"><a href="group__SDL__DPL__MODULE.html#ga640294d2c1ffb6d00677f1566da0ad96">SDL_DPL_registerInterrupt</a></div><div class="ttdeci">int32_t SDL_DPL_registerInterrupt(SDL_DPL_HwipParams *pParams, pSDL_DPL_HwipHandle *handle)</div><div class="ttdoc">DPL register interrupt.</div></div>
 <div class="ttc" id="agroup__SDL__IP__VTM__Enum_html_gaa811bbe4600b16de828b3d3e94d43380"><div class="ttname"><a href="group__SDL__IP__VTM__Enum.html#gaa811bbe4600b16de828b3d3e94d43380">SDL_VTM_SENSOR_SEL0</a></div><div class="ttdeci">#define SDL_VTM_SENSOR_SEL0</div><div class="ttdef"><b>Definition:</b> sdl_ip_vtm.h:109</div></div>
 <div class="ttc" id="agroup__SDL__VTM__FUNCTION_html_gae6a5405fc66cdd5f420e98f4819f3dd4"><div class="ttname"><a href="group__SDL__VTM__FUNCTION.html#gae6a5405fc66cdd5f420e98f4819f3dd4">SDL_VTM_getSensorStatus</a></div><div class="ttdeci">int32_t SDL_VTM_getSensorStatus(SDL_VTM_Stat_val *pStat_val)</div><div class="ttdoc">Read VTM Temperature sensor status.</div></div>
 <div class="ttc" id="agroup__SDL__DPL__MODULE_html_gad63eb0de40d239b9b4ff420d2f62f36a"><div class="ttname"><a href="group__SDL__DPL__MODULE.html#gad63eb0de40d239b9b4ff420d2f62f36a">pSDL_DPL_HwipHandle</a></div><div class="ttdeci">void * pSDL_DPL_HwipHandle</div><div class="ttdef"><b>Definition:</b> sdl_dpl.h:79</div></div>
-<div class="ttc" id="astructSDL__VTM__Stat__val_html"><div class="ttname"><a href="structSDL__VTM__Stat__val.html">SDL_VTM_Stat_val</a></div><div class="ttdoc">VTM temperature sensor Stat values.</div><div class="ttdef"><b>Definition:</b> sdl_ip_vtm.h:162</div></div>
+<div class="ttc" id="astructSDL__VTM__Stat__val_html"><div class="ttname"><a href="structSDL__VTM__Stat__val.html">SDL_VTM_Stat_val</a></div><div class="ttdoc">VTM temperature sensor Stat values.</div><div class="ttdef"><b>Definition:</b> sdl_ip_vtm.h:163</div></div>
 <div class="ttc" id="agroup__SDL__VTM__FUNCTION_html_gad33fa583d435c37ac29c24b82772373f"><div class="ttname"><a href="group__SDL__VTM__FUNCTION.html#gad33fa583d435c37ac29c24b82772373f">SDL_VTM_getTemp</a></div><div class="ttdeci">int32_t SDL_VTM_getTemp(SDL_VTM_InstTs instance, uint32_t *pTempVal)</div><div class="ttdoc">Read VTM Temperature sensor values in degree celcius.</div></div>
 <div class="ttc" id="agroup__SDL__VTM__FUNCTION_html_ga9eb0d3f39fab4fd85d0f4ed8b86e7ee4"><div class="ttname"><a href="group__SDL__VTM__FUNCTION.html#ga9eb0d3f39fab4fd85d0f4ed8b86e7ee4">SDL_VTM_setAlertTemp</a></div><div class="ttdeci">int32_t SDL_VTM_setAlertTemp(SDL_VTM_InstTs instance, int32_t alert_th_hot, int32_t alert_th_cold)</div><div class="ttdoc">Set thresholds for temperature alerts.</div></div>
 <!-- HTML footer for doxygen 1.8.11-->

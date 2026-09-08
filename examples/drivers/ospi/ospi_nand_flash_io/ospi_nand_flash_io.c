@@ -30,13 +30,17 @@
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 #include <kernel/dpl/DebugP.h>
 #include "ti_drivers_open_close.h"
 #include "ti_board_open_close.h"
 
 #define APP_OSPI_FLASH_OFFSET_BASE  (0x200000U)
 
-#define APP_OSPI_DATA_SIZE (2048)
+#define APP_OSPI_DATA_SIZE (2048*20)
 #define CHIP_SEL_PIN (37)
 
 uint8_t gOspiTxBuf[APP_OSPI_DATA_SIZE];
@@ -51,6 +55,9 @@ void ospi_nand_flash_io_main(void *args)
     int32_t status = SystemP_SUCCESS;
     uint32_t offset;
     uint32_t blk, page;
+    uint64_t startTime, endTime, duration;
+    float writeSpeed = 0;
+    float readSpeed = 0;
 
     /* Open OSPI Driver, among others */
     Drivers_open();
@@ -83,7 +90,15 @@ void ospi_nand_flash_io_main(void *args)
     }
     if(SystemP_SUCCESS == status)
     {
+        startTime = ClockP_getTimeUsec();
         status = Flash_write(gFlashHandle[CONFIG_FLASH0], offset, gOspiTxBuf, APP_OSPI_DATA_SIZE);
+        endTime = ClockP_getTimeUsec();
+
+        if(status == SystemP_SUCCESS)
+        {
+            duration = endTime - startTime;
+            writeSpeed = ((float)APP_OSPI_DATA_SIZE * 8U)/(duration);
+        }
     }
     else
     {
@@ -91,8 +106,17 @@ void ospi_nand_flash_io_main(void *args)
     }
     if(SystemP_SUCCESS == status)
     {
+        startTime = ClockP_getTimeUsec();
         status = Flash_read(gFlashHandle[CONFIG_FLASH0], offset, gOspiRxBuf, APP_OSPI_DATA_SIZE);
+        endTime = ClockP_getTimeUsec();
+
+        if(status == SystemP_SUCCESS)
+        {
+            duration = endTime - startTime;
+            readSpeed = ((float)APP_OSPI_DATA_SIZE * 8U)/(duration);
+        }
     }
+
     if(SystemP_SUCCESS == status)
     {
         status |= ospi_nand_flash_io_compare_buffers();
@@ -100,6 +124,7 @@ void ospi_nand_flash_io_main(void *args)
 
     if(SystemP_SUCCESS == status)
     {
+        DebugP_log("Write Speed: %f Mbps\r\nRead Speed: %f Mbps\r\n", writeSpeed, readSpeed);
         DebugP_log("All tests have passed!!\r\n");
     }
     else
@@ -113,11 +138,12 @@ void ospi_nand_flash_io_main(void *args)
 
 void ospi_nand_flash_io_fill_buffers(void)
 {
-    uint32_t i;
+    srand(time(0));
 
-    for(i = 0U; i < APP_OSPI_DATA_SIZE; i++)
+    for(uint32_t i = 0U; i < APP_OSPI_DATA_SIZE; i++)
     {
-        gOspiTxBuf[i] = i % 256;
+        uint8_t val = rand()%(APP_OSPI_DATA_SIZE - i + 1);
+        gOspiTxBuf[i] = val%256;
         gOspiRxBuf[i] = 0U;
     }
 }
@@ -132,7 +158,7 @@ int32_t ospi_nand_flash_io_compare_buffers(void)
         if(gOspiTxBuf[i] != gOspiRxBuf[i])
         {
             status = SystemP_FAILURE;
-            DebugP_logError("OSPI read data mismatch !!!\r\n");
+            DebugP_logError("OSPI read data mismatch at idx %d!!!\r\n", i);
             break;
         }
     }

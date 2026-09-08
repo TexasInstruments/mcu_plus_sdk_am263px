@@ -82,6 +82,13 @@
 #define DTHESM4_WORD_SIZE_BYTES                             (4U)
 #define DTHESM4_PARTIAL_BLOCK_BUFFER_SIZE                   (32U)
 
+/** \brief Maximum data length, in bytes, that DTHE_SM4_execute() can process in a single
+ *         call. Derived from the uint16_t remainingBlocks field passed to
+ *         DMA_Config_TxChannel()/DMA_Config_RxChannel(): remainingBlocks = numBlocks - 1U
+ *         must fit uint16_t, i.e. numBlocks <= (UINT16_MAX + 1U), and
+ *         numBlocks == floor(dataLenBytes / DTHESM4_BLOCK_SIZE_BYTES). */
+#define DTHESM4_MAX_DATA_LEN_BYTES                          (1048591U)
+
 /* SM4 Key and IV Array Indices */
 #define DTHESM4_KEY_IV_INDEX_0                              (0U)
 #define DTHESM4_KEY_IV_INDEX_1                              (1U)
@@ -93,8 +100,8 @@
 /* ========================================================================== */
 
 static void DTHE_SM4_pollInputBufferAvailable(const CSL_SM4Regs *ptrSm4Registers);
-static void DTHE_SM4_setKey(CSL_SM4Regs *ptrSm4Registers, const uint32_t ptrKey[4]);
-static void DTHE_SM4_setIV(CSL_SM4Regs *ptrSm4Registers, const uint32_t ptrIV[4]);
+static void DTHE_SM4_setKey(CSL_SM4Regs *ptrSm4Registers, const uint32_t *ptrKey);
+static void DTHE_SM4_setIV(CSL_SM4Regs *ptrSm4Registers, const uint32_t *ptrIV);
 static void DTHE_SM4_setOpType(CSL_SM4Regs *ptrSm4Registers, uint32_t opType, uint32_t algoType);
 static void DTHE_SM4_writeDataBlock(CSL_SM4Regs *ptrSm4Registers, const uint32_t ptrData[4U]);
 static void DTHE_SM4_setDataAvailable(CSL_SM4Regs *ptrSm4Registers, uint32_t val);
@@ -109,6 +116,15 @@ static void DTHE_SM4_setAutoCtrl(CSL_SM4Regs *ptrSm4Registers, uint8_t autoCtrl)
 static void DTHE_SM4_setDMAInputRequestStatus(CSL_SM4Regs *ptrSm4Registers, uint8_t status);
 static void DTHE_SM4_setDMAOutputRequestStatus(CSL_SM4Regs *ptrSm4Registers, uint8_t status);
 static void DTHE_SM4_clearAllInterrupts(CSL_SM4Regs *ptrSm4Registers);
+
+static DTHE_SM4_Return_t DTHE_SM4_validateExecuteParams(DTHE_Handle handle, const DTHE_SM4_Params* ptrParams, DTHE_Config** ptrConfig, CSL_SM4Regs** ptrSm4Regs);
+static void DTHE_SM4_prepareCryptoSession(CSL_SM4Regs* ptrSm4Regs, const DTHE_SM4_Params* ptrParams, uint32_t** ptrInputBuffer, uint32_t** ptrOutputBuffer);
+static void DTHE_SM4_computeBlockCounts(uint32_t dataLenBytes, uint32_t* ptrPartialDataSize, uint32_t* ptrNumBlocks);
+static uint32_t DTHE_SM4_processFirstBlock(CSL_SM4Regs* ptrSm4Regs, const uint32_t* ptrWordInputBuffer, uint32_t* ptrWordOutputBuffer, uint32_t numBlocks);
+static uint32_t DTHE_SM4_processRemainingBlocksDMA(CSL_SM4Regs* ptrSm4Regs, const uint32_t* ptrWordInputBuffer, const uint32_t* ptrWordOutputBuffer, uint32_t numBlocks, uint32_t* ptrIndex);
+static uint32_t DTHE_SM4_processRemainingBlocksCPU(CSL_SM4Regs* ptrSm4Regs, const uint32_t* ptrWordInputBuffer, uint32_t* ptrWordOutputBuffer, uint32_t numBlocks, uint32_t* ptrIndex);
+static uint32_t DTHE_SM4_processRemainingBlocks(CSL_SM4Regs* ptrSm4Regs, const DTHE_Config* config, const uint32_t* ptrWordInputBuffer, uint32_t* ptrWordOutputBuffer, uint32_t numBlocks, uint32_t* ptrIndex);
+static uint32_t DTHE_SM4_processPartialBlock(CSL_SM4Regs* ptrSm4Regs, const uint32_t* ptrWordInputBuffer, uint32_t* ptrWordOutputBuffer, uint32_t index, uint32_t partialDataSize);
 
 /* ========================================================================== */
 /*                        Internal  Function Definitions                      */
@@ -148,7 +164,7 @@ static void DTHE_SM4_pollInputBufferAvailable(const CSL_SM4Regs *ptrSm4Registers
  *
  *
 */
-static void DTHE_SM4_setKey(CSL_SM4Regs *ptrSm4Registers, const uint32_t ptrKey[4])
+static void DTHE_SM4_setKey(CSL_SM4Regs *ptrSm4Registers, const uint32_t *ptrKey)
 {
     ptrSm4Registers->SM4_KEY_IN_0 = ptrKey[DTHESM4_KEY_IV_INDEX_0];
     ptrSm4Registers->SM4_KEY_IN_1 = ptrKey[DTHESM4_KEY_IV_INDEX_1];
@@ -167,7 +183,7 @@ static void DTHE_SM4_setKey(CSL_SM4Regs *ptrSm4Registers, const uint32_t ptrKey[
  *
  *
 */
-static void DTHE_SM4_setIV(CSL_SM4Regs *ptrSm4Registers, const uint32_t ptrIV[4])
+static void DTHE_SM4_setIV(CSL_SM4Regs *ptrSm4Registers, const uint32_t *ptrIV)
 {
     const uint32_t *ptrIvLocal = ptrIV;
     
@@ -530,6 +546,404 @@ static void DTHE_SM4_clearAllInterrupts(CSL_SM4Regs *ptrSm4Registers)
 }
 
 
+/**
+ * \brief Validates the arguments passed to DTHE_SM4_execute() and resolves the
+ *        config/register base needed to perform the operation.
+ */
+static DTHE_SM4_Return_t DTHE_SM4_validateExecuteParams(DTHE_Handle handle, const DTHE_SM4_Params* ptrParams, DTHE_Config** ptrConfig, CSL_SM4Regs** ptrSm4Regs)
+{
+    DTHE_SM4_Return_t status = DTHE_SM4_RETURN_FAILURE;
+    DTHE_Attrs        *attrs = (DTHE_Attrs *)NULL;
+
+    if ((NULL != handle) && (NULL != ptrParams))
+    {
+        status  = DTHE_SM4_RETURN_SUCCESS;
+    }
+
+    if (status == DTHE_SM4_RETURN_SUCCESS)
+    {
+        *ptrConfig  = (DTHE_Config *)handle;
+        attrs       = (*ptrConfig)->attrs;
+        *ptrSm4Regs = (CSL_SM4Regs *)attrs->sm4BaseAddr;
+
+        //
+        /* Validate decryption input meets hardware alignment */
+        /* requirements */
+        //
+        if ((ptrParams->opType == DTHE_SM4_DECRYPT) &&
+            ((ptrParams->dataLenBytes % DTHESM4_WORD_SIZE_BYTES) != 0U))
+        {
+            status = DTHE_SM4_RETURN_FAILURE;
+        }
+
+        //
+        /* Validate algorithm mode is supported by hardware */
+        //
+        if (status == DTHE_SM4_RETURN_SUCCESS)
+        {
+            if ((DTHE_SM4_ECB > ptrParams->algoType) ||
+                (DTHE_SM4_CFB < ptrParams->algoType))
+            {
+                status = DTHE_SM4_RETURN_FAILURE;
+            }
+        }
+
+        //
+        /* Validate operation type is either encryption or decryption */
+        //
+        if (status == DTHE_SM4_RETURN_SUCCESS)
+        {
+            if ((DTHE_SM4_ENCRYPT != ptrParams->opType) &&
+                (DTHE_SM4_DECRYPT != ptrParams->opType))
+            {
+                status = DTHE_SM4_RETURN_FAILURE;
+            }
+        }
+
+        //
+        /* Reject inputs which would overflow the uint16_t DMA block count */
+        /* computed further below */
+        //
+        if (status == DTHE_SM4_RETURN_SUCCESS)
+        {
+            if (ptrParams->dataLenBytes > DTHESM4_MAX_DATA_LEN_BYTES)
+            {
+                status = DTHE_SM4_RETURN_FAILURE;
+            }
+        }
+    }
+
+    return status;
+}
+
+/**
+ * \brief Loads the key/IV/mode into hardware, signals configuration is ready and
+ *        resolves the input/output word buffers based on the requested operation type.
+ */
+static void DTHE_SM4_prepareCryptoSession(CSL_SM4Regs* ptrSm4Regs, const DTHE_SM4_Params* ptrParams, uint32_t** ptrInputBuffer, uint32_t** ptrOutputBuffer)
+{
+    //
+    /* Prepare hardware to accept cryptographic configuration */
+    //
+    DTHE_SM4_pollInputBufferAvailable(ptrSm4Regs);
+
+    //
+    /* Load encryption/decryption key into hardware */
+    //
+    DTHE_SM4_setKey(ptrSm4Regs, ptrParams->ptrKey);
+
+    //
+    /* Configure initialization vector for chaining modes */
+    //
+    if (ptrParams->algoType != DTHE_SM4_ECB)
+    {
+        //
+        /* Load IV for modes that require chaining between blocks */
+        //
+        DTHE_SM4_setIV(ptrSm4Regs, ptrParams->ptrIV);
+    }
+
+    //
+    /* Configure hardware for requested cipher mode and operation */
+    //
+    DTHE_SM4_setOpType(ptrSm4Regs, ptrParams->opType, ptrParams->algoType);
+
+    if (ptrParams->algoType == DTHE_SM4_ECB)
+    {
+        //
+        /* Signal hardware that key and mode configuration are ready */
+        //
+        DTHE_SM4_setDataAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_KEY_MODE_AVAILABLE);
+    }
+    else
+    {
+        //
+        /* Signal hardware that key, mode, and IV configuration are */
+        /* ready */
+        //
+        DTHE_SM4_setDataAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_KEY_MODE_IV_AVAILABLE);
+    }
+
+    //
+    /* Determine data flow direction based on operation type */
+    //
+    if (ptrParams->opType == DTHE_SM4_ENCRYPT)
+    {
+        //
+        /* Setup for encryption: plaintext input, ciphertext output */
+        //
+        *ptrInputBuffer  = ptrParams->ptrPlainTextData;
+        *ptrOutputBuffer = ptrParams->ptrEncryptedData;
+    }
+    else
+    {
+        //
+        /* Setup for decryption: ciphertext input, plaintext output */
+        //
+        *ptrInputBuffer  = ptrParams->ptrEncryptedData;
+        *ptrOutputBuffer = ptrParams->ptrPlainTextData;
+    }
+
+    return;
+}
+
+/**
+ * \brief Computes the partial-block size and the number of complete blocks to be
+ *        processed for the requested data length.
+ */
+static void DTHE_SM4_computeBlockCounts(uint32_t dataLenBytes, uint32_t* ptrPartialDataSize, uint32_t* ptrNumBlocks)
+{
+    uint32_t dataLenWords = dataLenBytes / DTHESM4_WORD_SIZE_BYTES;
+
+    //
+    /* Identify any remaining data that doesn't fill a complete */
+    /* block */
+    //
+    *ptrPartialDataSize = dataLenBytes % DTHESM4_BLOCK_SIZE_BYTES;
+    //
+    /* Determine how many complete 16-byte blocks can be processed */
+    //
+    *ptrNumBlocks = (dataLenWords / DTHESM4_BLOCK_SIZE_WORDS);
+
+    return;
+}
+
+/**
+ * \brief Processes block 0 via the CPU to prime the hardware state machine.
+ *
+ * \return  the number of bytes processed (0 if there are no blocks to process).
+ */
+static uint32_t DTHE_SM4_processFirstBlock(CSL_SM4Regs* ptrSm4Regs, const uint32_t* ptrWordInputBuffer, uint32_t* ptrWordOutputBuffer, uint32_t numBlocks)
+{
+    uint32_t numBytes = 0U;
+
+    if (numBlocks > 0U)
+    {
+        //
+        /* Ensure hardware is ready to accept next block */
+        //
+        DTHE_SM4_pollInputBufferAvailable(ptrSm4Regs);
+        //
+        /* Submit block for encryption or decryption */
+        //
+        DTHE_SM4_writeDataBlock(ptrSm4Regs, &ptrWordInputBuffer[0U]);
+        //
+        /* Notify hardware that input block is complete */
+        //
+        DTHE_SM4_setDataAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_DATA_IN_AVAILABLE);
+
+        //
+        /* Track progress through the data */
+        //
+        numBytes = numBytes + (DTHESM4_BLOCK_SIZE_WORDS * sizeof(uint32_t));
+
+        //
+        /* Wait for hardware to complete cryptographic operation */
+        //
+        DTHE_SM4_pollOutputReady(ptrSm4Regs);
+        //
+        /* Retrieve processed block from hardware */
+        //
+        DTHE_SM4_readDataBlock(ptrSm4Regs, &ptrWordOutputBuffer[0U]);
+        //
+        /* Release output buffer for next operation */
+        //
+        DTHE_SM4_setOutputBufferAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_OUTPUT_AVAILABLE);
+    }
+
+    return numBytes;
+}
+
+/**
+ * \brief Processes blocks 1..numBlocks-1 via DMA.
+ *
+ * \return  the number of bytes processed; also writes the resulting block index
+ *          (numBlocks) via \c ptrIndex.
+ */
+static uint32_t DTHE_SM4_processRemainingBlocksDMA(CSL_SM4Regs* ptrSm4Regs, const uint32_t* ptrWordInputBuffer, const uint32_t* ptrWordOutputBuffer, uint32_t numBlocks, uint32_t* ptrIndex)
+{
+    uint32_t     numBytes        = 0U;
+    uint16_t     remainingBlocks = (uint16_t)(numBlocks - 1U);
+    DMA_Handle   dmaHandle       = DMA_open(0);
+
+    /* Configure TX channel: input starting at block 1 */
+    (void)DMA_Config_TxChannel(dmaHandle, &ptrWordInputBuffer[DTHESM4_BLOCK_SIZE_WORDS], (uint32_t *)&ptrSm4Regs->SM4_DATA_IN_0, remainingBlocks, 0U, DMA_SM4_ENABLE);
+
+    /* Configure RX channel: output starting at block 1 */
+    (void)DMA_Config_RxChannel(dmaHandle, (uint32_t *)&ptrSm4Regs->SM4_DATA_OUT_0, &ptrWordOutputBuffer[DTHESM4_BLOCK_SIZE_WORDS], remainingBlocks, DMA_SM4_ENABLE);
+
+    DTHE_SM4_clearAllInterrupts(ptrSm4Regs);
+
+    /* Enable auto control so the hardware asserts DMA requests
+     * when ready for the next block after processing block 0 */
+    DTHE_SM4_setAutoCtrl(ptrSm4Regs, 1U);
+
+    /* Enable DMA output request and arm RX channel */
+    (void)DMA_enableRxTransferRegion(dmaHandle);
+    DTHE_SM4_setDMAOutputRequestStatus(ptrSm4Regs, 1U);
+    (void)DMA_startRxChannel(dmaHandle);
+
+    /* Enable DMA input request and arm TX channel */
+    (void)DMA_enableTxTransferRegion(dmaHandle);
+    DTHE_SM4_setDMAInputRequestStatus(ptrSm4Regs, 1U);
+    (void)DMA_startTxChannel(dmaHandle);
+
+    (void)DMA_WaitForRxTransfer(dmaHandle);
+    (void)DMA_WaitForTxTransfer(dmaHandle);
+
+    /* Disable DMA request status */
+    DTHE_SM4_setDMAInputRequestStatus(ptrSm4Regs, 0U);
+    DTHE_SM4_setDMAOutputRequestStatus(ptrSm4Regs, 0U);
+
+    /* Disable auto control */
+    DTHE_SM4_setAutoCtrl(ptrSm4Regs, 0U);
+
+    /* Disable DMA channels */
+    (void)DMA_disableTxCh(dmaHandle);
+    (void)DMA_disableRxCh(dmaHandle);
+    (void)DMA_close(dmaHandle);
+
+    numBytes  = ((uint32_t)0 | remainingBlocks) * DTHESM4_BLOCK_SIZE_WORDS * sizeof(uint32_t);
+    *ptrIndex = numBlocks;
+
+    return numBytes;
+}
+
+/**
+ * \brief Processes blocks 1..numBlocks-1 via CPU polling.
+ *
+ * \return  the number of bytes processed; also writes the resulting block index
+ *          via \c ptrIndex.
+ */
+static uint32_t DTHE_SM4_processRemainingBlocksCPU(CSL_SM4Regs* ptrSm4Regs, const uint32_t* ptrWordInputBuffer, uint32_t* ptrWordOutputBuffer, uint32_t numBlocks, uint32_t* ptrIndex)
+{
+    uint32_t numBytes    = 0U;
+    uint32_t index;
+    uint32_t blockOffset;
+
+    /* CPU polling for remaining blocks */
+    for (index = 1U ; index < numBlocks; index++)
+    {
+        blockOffset = index * DTHESM4_BLOCK_SIZE_WORDS;
+        //
+        /* Ensure hardware is ready to accept next block */
+        //
+        DTHE_SM4_pollInputBufferAvailable(ptrSm4Regs);
+        //
+        /* Submit block for encryption or decryption */
+        //
+        DTHE_SM4_writeDataBlock(ptrSm4Regs, &ptrWordInputBuffer[blockOffset]);
+        //
+        /* Notify hardware that input block is complete */
+        //
+        DTHE_SM4_setDataAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_DATA_IN_AVAILABLE);
+        //
+        /* Track progress through the data */
+        //
+        numBytes = numBytes + (DTHESM4_BLOCK_SIZE_WORDS * sizeof(uint32_t));
+        //
+        /* Wait for hardware to complete cryptographic operation */
+        //
+        DTHE_SM4_pollOutputReady(ptrSm4Regs);
+        //
+        /* Retrieve processed block from hardware */
+        //
+        DTHE_SM4_readDataBlock(ptrSm4Regs, &ptrWordOutputBuffer[blockOffset]);
+        //
+        /* Release output buffer for next operation */
+        //
+        DTHE_SM4_setOutputBufferAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_OUTPUT_AVAILABLE);
+    }
+
+    *ptrIndex = index;
+
+    return numBytes;
+}
+
+/**
+ * \brief Processes blocks 1..numBlocks-1, choosing DMA when enabled and there is more
+ *        than one remaining block, or CPU polling otherwise.
+ */
+static uint32_t DTHE_SM4_processRemainingBlocks(CSL_SM4Regs* ptrSm4Regs, const DTHE_Config* config, const uint32_t* ptrWordInputBuffer, uint32_t* ptrWordOutputBuffer, uint32_t numBlocks, uint32_t* ptrIndex)
+{
+    uint32_t numBytes;
+
+    /* Remaining blocks (1..numBlocks-1): DMA if enabled, else CPU */
+    if ((config->dmaEnable == DMA_ENABLE) && (numBlocks > 1U))
+    {
+        numBytes = DTHE_SM4_processRemainingBlocksDMA(ptrSm4Regs, ptrWordInputBuffer, ptrWordOutputBuffer, numBlocks, ptrIndex);
+    }
+    else
+    {
+        numBytes = DTHE_SM4_processRemainingBlocksCPU(ptrSm4Regs, ptrWordInputBuffer, ptrWordOutputBuffer, numBlocks, ptrIndex);
+    }
+
+    return numBytes;
+}
+
+/**
+ * \brief Processes the final partial block (data length not block-aligned) using
+ *        zero-padded scratch buffers.
+ *
+ * \return  the number of bytes processed (partialDataSize).
+ */
+static uint32_t DTHE_SM4_processPartialBlock(CSL_SM4Regs* ptrSm4Regs, const uint32_t* ptrWordInputBuffer, uint32_t* ptrWordOutputBuffer, uint32_t index, uint32_t partialDataSize)
+{
+    uint32_t blockOffset = index * DTHESM4_BLOCK_SIZE_WORDS;
+    uint8_t  inPartialBlock[DTHESM4_PARTIAL_BLOCK_BUFFER_SIZE];
+    uint8_t  outPartialBlock[DTHESM4_PARTIAL_BLOCK_BUFFER_SIZE];
+
+    //
+    /* Ensure hardware is ready for final block */
+    //
+    DTHE_SM4_pollInputBufferAvailable(ptrSm4Regs);
+    //
+    /* Prepare zero-padded buffers for partial block processing */
+    //
+    (void)memset ((void *)&inPartialBlock[0], 0, sizeof(inPartialBlock));
+    (void)memset ((void *)&outPartialBlock[0], 0, sizeof(outPartialBlock));
+
+    //
+    /* Transfer partial data into padded block */
+    //
+    (void)memcpy ((void *)&inPartialBlock[0],
+            (const void *)&ptrWordInputBuffer[blockOffset],
+            partialDataSize);
+
+    //
+    /* Process padded block through cryptographic engine */
+    //
+    DTHE_SM4_writeDataBlock(ptrSm4Regs, (const uint32_t *)(const void *)&inPartialBlock[0U]);
+    //
+    /* Notify hardware that final block is ready */
+    //
+    DTHE_SM4_setDataAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_DATA_IN_AVAILABLE);
+
+    //
+    /* Wait for final block processing to complete */
+    //
+    DTHE_SM4_pollOutputReady(ptrSm4Regs);
+    //
+    /* Retrieve final processed block */
+    //
+    DTHE_SM4_readDataBlock(ptrSm4Regs, (uint32_t *)(void *)&outPartialBlock[0U]);
+
+    //
+    /* Release output buffer after final operation */
+    //
+    DTHE_SM4_setOutputBufferAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_OUTPUT_AVAILABLE);
+
+    //
+    /* Extract only the valid bytes from padded output block */
+    //
+    (void)memcpy ((void *)&ptrWordOutputBuffer[blockOffset],
+            (const void *)&outPartialBlock[0U],
+            partialDataSize);
+
+    return partialDataSize;
+}
+
+
 /* ========================================================================== */
 /*                          Function Definitions                              */
 /* ========================================================================== */
@@ -554,7 +968,7 @@ DTHE_SM4_Return_t DTHE_SM4_open(DTHE_Handle handle)
     {
         config          = (DTHE_Config *)handle;
         attrs           = config->attrs;
-        ptrSm4Regs      = (CSL_SM4Regs *)(uintptr_t)attrs->sm4BaseAddr;
+        ptrSm4Regs      = (CSL_SM4Regs *)attrs->sm4BaseAddr;
 
         //
         /* Ensure clean state by removing any residual cryptographic */
@@ -596,7 +1010,7 @@ DTHE_SM4_Return_t DTHE_SM4_close(DTHE_Handle handle)
     {
         config          = (DTHE_Config *)handle;
         attrs           = config->attrs;
-        ptrSm4Regs      = (CSL_SM4Regs *)(uintptr_t)attrs->sm4BaseAddr;
+        ptrSm4Regs      = (CSL_SM4Regs *)attrs->sm4BaseAddr;
 
         DTHE_SM4_disableDma(ptrSm4Regs);
 
@@ -616,144 +1030,28 @@ DTHE_SM4_Return_t DTHE_SM4_execute(DTHE_Handle handle, const DTHE_SM4_Params* pt
 {
     DTHE_SM4_Return_t status               = DTHE_SM4_RETURN_FAILURE;
     DTHE_Config       *config              = (DTHE_Config *)NULL;
-    DTHE_Attrs        *attrs               = (DTHE_Attrs  *)NULL;
     CSL_SM4Regs       *ptrSm4Regs          = (CSL_SM4Regs *)NULL;
     uint32_t          *ptrWordInputBuffer  = (uint32_t *)NULL;
     uint32_t          *ptrWordOutputBuffer = (uint32_t *)NULL;
-    uint32_t           dataLenWords;
-    uint32_t           numBlocks;
-    uint32_t           remainingBlocks;
-    uint32_t           partialDataSize;
-    uint32_t           index;
-    uint32_t           numBytes = 0U;
-    uint8_t            inPartialBlock[DTHESM4_PARTIAL_BLOCK_BUFFER_SIZE];
-    uint8_t            outPartialBlock[DTHESM4_PARTIAL_BLOCK_BUFFER_SIZE];
-    uint32_t           blockOffset;
-    DMA_Handle         dmaHandle           = NULL;
+    uint32_t           numBlocks           = 0U;
+    uint32_t           partialDataSize     = 0U;
+    uint32_t           index               = 0U;
+    uint32_t           numBytes            = 0U;
 
-    if ((NULL != handle) && (NULL != ptrParams))
-    {
-        status  = DTHE_SM4_RETURN_SUCCESS;
-    }
-
-    if (status  == DTHE_SM4_RETURN_SUCCESS)
-    {
-       config          = (DTHE_Config *)handle;
-       attrs           = config->attrs;
-       ptrSm4Regs      = (CSL_SM4Regs *)(uintptr_t)attrs->sm4BaseAddr;
-
-        //
-        /* Validate decryption input meets hardware alignment */
-        /* requirements */
-        //
-        if ((ptrParams->opType == DTHE_SM4_DECRYPT) &&
-            ((ptrParams->dataLenBytes % DTHESM4_WORD_SIZE_BYTES) != 0U))
-        {
-            status = DTHE_SM4_RETURN_FAILURE;
-        }
-
-        //
-        /* Validate algorithm mode is supported by hardware */
-        //
-        if (status  == DTHE_SM4_RETURN_SUCCESS)
-        {
-            if ((DTHE_SM4_ECB > ptrParams->algoType) ||
-                (DTHE_SM4_CFB < ptrParams->algoType))
-            {
-                status = DTHE_SM4_RETURN_FAILURE;
-            }
-        }
-
-        //
-        /* Validate operation type is either encryption or decryption */
-        //
-        if (status  == DTHE_SM4_RETURN_SUCCESS)
-        {
-            if ((DTHE_SM4_ENCRYPT != ptrParams->opType) &&
-                (DTHE_SM4_DECRYPT != ptrParams->opType))
-            {
-                status = DTHE_SM4_RETURN_FAILURE;
-            }
-        }
-    }
+    status = DTHE_SM4_validateExecuteParams(handle, ptrParams, &config, &ptrSm4Regs);
 
     if (status  == DTHE_SM4_RETURN_SUCCESS)
     {
         //
-        /* Prepare hardware to accept cryptographic configuration */
+        /* Load key/IV/mode, arm hardware and resolve the input/output */
+        /* buffers for the requested operation type */
         //
-        DTHE_SM4_pollInputBufferAvailable(ptrSm4Regs);
-
-        //
-        /* Load encryption/decryption key into hardware */
-        //
-        DTHE_SM4_setKey(ptrSm4Regs, ptrParams->ptrKey);
-
-        //
-        /* Configure initialization vector for chaining modes */
-        //
-        if (ptrParams->algoType != DTHE_SM4_ECB)
-        {
-            //
-            /* Load IV for modes that require chaining between blocks */
-            //
-            DTHE_SM4_setIV(ptrSm4Regs, ptrParams->ptrIV);
-        }
-
-        //
-        /* Configure hardware for requested cipher mode and operation */
-        //
-        DTHE_SM4_setOpType(ptrSm4Regs, ptrParams->opType, ptrParams->algoType);
-
-        if(ptrParams->algoType == DTHE_SM4_ECB)
-        {
-            //
-            /* Signal hardware that key and mode configuration are ready */
-            //
-            DTHE_SM4_setDataAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_KEY_MODE_AVAILABLE);
-        }
-        else
-        {
-            //
-            /* Signal hardware that key, mode, and IV configuration are */
-            /* ready */
-            //
-            DTHE_SM4_setDataAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_KEY_MODE_IV_AVAILABLE);
-        }
-
-        //
-        /* Determine data flow direction based on operation type */
-        //
-        if (ptrParams->opType == DTHE_SM4_ENCRYPT)
-        {
-            //
-            /* Setup for encryption: plaintext input, ciphertext output */
-            //
-            ptrWordInputBuffer  = ptrParams->ptrPlainTextData;
-            ptrWordOutputBuffer = ptrParams->ptrEncryptedData;
-        }
-        else
-        {
-            //
-            /* Setup for decryption: ciphertext input, plaintext output */
-            //
-            ptrWordInputBuffer  = ptrParams->ptrEncryptedData;
-            ptrWordOutputBuffer = ptrParams->ptrPlainTextData;
-        }
+        DTHE_SM4_prepareCryptoSession(ptrSm4Regs, ptrParams, &ptrWordInputBuffer, &ptrWordOutputBuffer);
 
         //
         /* Calculate processing parameters for block-based operation */
         //
-        dataLenWords = ptrParams->dataLenBytes / DTHESM4_WORD_SIZE_BYTES;
-        //
-        /* Identify any remaining data that doesn't fill a complete */
-        /* block */
-        //
-        partialDataSize = ptrParams->dataLenBytes % DTHESM4_BLOCK_SIZE_BYTES;
-        //
-        /* Determine how many complete 16-byte blocks can be processed */
-        //
-        numBlocks = (dataLenWords / DTHESM4_BLOCK_SIZE_WORDS);
+        DTHE_SM4_computeBlockCounts(ptrParams->dataLenBytes, &partialDataSize, &numBlocks);
 
         //
         /* Process all complete data blocks through the cryptographic */
@@ -761,190 +1059,23 @@ DTHE_SM4_Return_t DTHE_SM4_execute(DTHE_Handle handle, const DTHE_SM4_Params* pt
         /* hardware state machine; remaining blocks use DMA if       */
         /* enabled, or CPU polling otherwise (mirrors SM3 pattern).  */
         //
-        /* Block 0: always process via CPU */
-        if (numBlocks > 0U)
-        {
-            //
-            /* Ensure hardware is ready to accept next block */
-            //
-            DTHE_SM4_pollInputBufferAvailable(ptrSm4Regs);
-            //
-            /* Submit block for encryption or decryption */
-            //
-            DTHE_SM4_writeDataBlock(ptrSm4Regs, &ptrWordInputBuffer[0U]);
-            //
-            /* Notify hardware that input block is complete */
-            //
-            DTHE_SM4_setDataAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_DATA_IN_AVAILABLE);
+        numBytes = DTHE_SM4_processFirstBlock(ptrSm4Regs, ptrWordInputBuffer, ptrWordOutputBuffer, numBlocks);
 
-            //
-            /* Track progress through the data */
-            //
-            numBytes = numBytes + (DTHESM4_BLOCK_SIZE_WORDS * sizeof(uint32_t));
-
-            //
-            /* Wait for hardware to complete cryptographic operation */
-            //
-            DTHE_SM4_pollOutputReady(ptrSm4Regs);
-            //
-            /* Retrieve processed block from hardware */
-            //
-            DTHE_SM4_readDataBlock(ptrSm4Regs, &ptrWordOutputBuffer[0U]);
-            //
-            /* Release output buffer for next operation */
-            //
-            DTHE_SM4_setOutputBufferAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_OUTPUT_AVAILABLE);
-        }
-
-        /* Remaining blocks (1..numBlocks-1): DMA if enabled, else CPU */
-        if ((config->dmaEnable == DMA_ENABLE) && (numBlocks > 1U))
-        {
-            remainingBlocks = (uint32_t)(numBlocks - 1U);
-
-            dmaHandle = DMA_open(0);
-            
-            /* Configure TX channel: input starting at block 1 */
-            (void)DMA_Config_TxChannel(dmaHandle, &ptrWordInputBuffer[DTHESM4_BLOCK_SIZE_WORDS], (uint32_t *)&ptrSm4Regs->SM4_DATA_IN_0, remainingBlocks, 0U, DMA_SM4_ENABLE);
-
-            /* Configure RX channel: output starting at block 1 */
-            (void)DMA_Config_RxChannel(dmaHandle, (uint32_t *)&ptrSm4Regs->SM4_DATA_OUT_0, &ptrWordOutputBuffer[DTHESM4_BLOCK_SIZE_WORDS], remainingBlocks, DMA_SM4_ENABLE);
-
-            DTHE_SM4_clearAllInterrupts(ptrSm4Regs);
-
-            /* Enable auto control so the hardware asserts DMA requests
-             * when ready for the next block after processing block 0 */
-            DTHE_SM4_setAutoCtrl(ptrSm4Regs, 1U);
-
-            /* Enable DMA output request and arm RX channel */
-            (void)DMA_enableRxTransferRegion(dmaHandle);
-            DTHE_SM4_setDMAOutputRequestStatus(ptrSm4Regs, 1U);
-            (void)DMA_startRxChannel(dmaHandle);
-
-            /* Enable DMA input request and arm TX channel */
-            (void)DMA_enableTxTransferRegion(dmaHandle);
-            DTHE_SM4_setDMAInputRequestStatus(ptrSm4Regs, 1U);
-            (void)DMA_startTxChannel(dmaHandle);
-
-            (void)DMA_WaitForRxTransfer(dmaHandle);
-            (void)DMA_WaitForTxTransfer(dmaHandle);
-
-            /* Disable DMA request status */
-            DTHE_SM4_setDMAInputRequestStatus(ptrSm4Regs, 0U);
-            DTHE_SM4_setDMAOutputRequestStatus(ptrSm4Regs, 0U);
-
-            /* Disable auto control */
-            DTHE_SM4_setAutoCtrl(ptrSm4Regs, 0U);
-
-            /* Disable DMA channels */
-            (void)DMA_disableTxCh(dmaHandle);
-            (void)DMA_disableRxCh(dmaHandle);
-            (void)DMA_close(dmaHandle);
-
-            numBytes = numBytes + ((uint32_t)remainingBlocks * DTHESM4_BLOCK_SIZE_WORDS * sizeof(uint32_t));
-            index = numBlocks;
-        }
-        else
-        {
-            /* CPU polling for remaining blocks */
-            for (index = 1U ; index < numBlocks; index++)
-            {
-                blockOffset = index * DTHESM4_BLOCK_SIZE_WORDS;
-                //
-                /* Ensure hardware is ready to accept next block */
-                //
-                DTHE_SM4_pollInputBufferAvailable(ptrSm4Regs);
-                //
-                /* Submit block for encryption or decryption */
-                //
-                DTHE_SM4_writeDataBlock(ptrSm4Regs, &ptrWordInputBuffer[blockOffset]);
-                //
-                /* Notify hardware that input block is complete */
-                //
-                DTHE_SM4_setDataAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_DATA_IN_AVAILABLE);
-                //
-                /* Track progress through the data */
-                //
-                numBytes = numBytes + (DTHESM4_BLOCK_SIZE_WORDS * sizeof(uint32_t));
-                //
-                /* Wait for hardware to complete cryptographic operation */
-                //
-                DTHE_SM4_pollOutputReady(ptrSm4Regs);
-                //
-                /* Retrieve processed block from hardware */
-                //
-                DTHE_SM4_readDataBlock(ptrSm4Regs, &ptrWordOutputBuffer[blockOffset]);
-                //
-                /* Release output buffer for next operation */
-                //
-                DTHE_SM4_setOutputBufferAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_OUTPUT_AVAILABLE);
-            }
-        }
+        numBytes = numBytes + DTHE_SM4_processRemainingBlocks(ptrSm4Regs, config, ptrWordInputBuffer, ptrWordOutputBuffer, numBlocks, &index);
 
         //
         /* Handle final partial block if data length is not */
         /* block-aligned */
         //
-        if(partialDataSize != 0U)
+        if (partialDataSize != 0U)
         {
-            blockOffset = index * DTHESM4_BLOCK_SIZE_WORDS;
-            
-            //
-            /* Ensure hardware is ready for final block */
-            //
-            DTHE_SM4_pollInputBufferAvailable(ptrSm4Regs);
-            //
-            /* Prepare zero-padded buffers for partial block processing */
-            //
-            (void)memset ((void *)&inPartialBlock[0], 0, sizeof(inPartialBlock));
-            (void)memset ((void *)&outPartialBlock[0], 0, sizeof(outPartialBlock));
-
-           //
-           /* Transfer partial data into padded block */
-           //
-            (void)memcpy ((void *)&inPartialBlock[0],
-                    (const void *)&ptrWordInputBuffer[blockOffset],
-                    partialDataSize);
-
-            //
-            /* Process padded block through cryptographic engine */
-            //
-            DTHE_SM4_writeDataBlock(ptrSm4Regs, (const uint32_t *)(const void *)&inPartialBlock[0U]);
-           //
-           /* Notify hardware that final block is ready */
-           //
-            DTHE_SM4_setDataAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_DATA_IN_AVAILABLE);
-
-            //
-            /* Wait for final block processing to complete */
-            //
-            DTHE_SM4_pollOutputReady(ptrSm4Regs);
-            //
-            /* Retrieve final processed block */
-            //
-            DTHE_SM4_readDataBlock(ptrSm4Regs, (uint32_t *)(void *)&outPartialBlock[0U]);
-
-            //
-            /* Release output buffer after final operation */
-            //
-            DTHE_SM4_setOutputBufferAvailable(ptrSm4Regs, DTHESM4_IO_BUF_CTRL_OUTPUT_AVAILABLE);
-
-            //
-            /* Extract only the valid bytes from padded output block */
-            //
-            (void)memcpy ((void *)&ptrWordOutputBuffer[blockOffset],
-                    (const void *)&outPartialBlock[0U],
-                    partialDataSize);
-
-            //
-            /* Update total bytes processed including partial block */
-            //
-            numBytes = numBytes + partialDataSize;
+            numBytes = numBytes + DTHE_SM4_processPartialBlock(ptrSm4Regs, ptrWordInputBuffer, ptrWordOutputBuffer, index, partialDataSize);
         }
 
         //
         /* Verify all requested data was successfully processed */
         //
-        if(numBytes != ptrParams->dataLenBytes)
+        if (numBytes != ptrParams->dataLenBytes)
         {
             status = DTHE_SM4_RETURN_FAILURE;
         }

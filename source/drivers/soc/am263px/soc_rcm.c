@@ -1509,6 +1509,10 @@ static uint32_t SOC_rcmGetCLKOUTInFrequency(void)
 static uint32_t SOC_rcmGetModuleClkDivVal(uint32_t inFreq, uint32_t outFreq)
 {
     uint32_t moduleClkDivVal;
+
+    DebugP_assert(outFreq > 0);
+    DebugP_assert(inFreq >= outFreq);
+
     moduleClkDivVal = inFreq / outFreq;
     uint32_t actOutFreq = inFreq / moduleClkDivVal;
     DebugP_assert(actOutFreq == outFreq);
@@ -1796,6 +1800,12 @@ uint32_t SOC_rcmGetPeripheralClockFrequency(SOC_RcmPeripheralClockSource clkSour
         {
             Finp = gXTALInfo[clkFreqId].Finp;
             clkFreq = Finp * 1000 * 1000;
+            break;
+        }
+        case RCM_PLLID_RCCLK10M:
+        {
+            Finp = 10;  //10MHz
+            clkFreq = SOC_RCM_FREQ_MHZ2HZ(Finp);
             break;
         }
         default:
@@ -3183,15 +3193,13 @@ void SOC_generateSwWarmReset(void)
 void SOC_configureWarmResetSource(uint32_t source)
 {
     CSL_top_rcmRegs *ptrTOPRCMRegs;
-    uint32_t regVal;
 
     ptrTOPRCMRegs = SOC_rcmGetBaseAddressTOPRCM();
 
     /* Unlock CONTROLSS_CTRL registers */
     SOC_controlModuleUnlockMMR(SOC_DOMAIN_ID_MAIN, TOP_RCM_PARTITION0);
 
-    regVal = ptrTOPRCMRegs->WARM_RESET_CONFIG;
-    CSL_REG32_WR(regVal, source);
+    CSL_REG32_WR(&(ptrTOPRCMRegs->WARM_RESET_CONFIG), source);
 
     /* Lock CONTROLSS_CTRL registers */
     SOC_controlModuleLockMMR(SOC_DOMAIN_ID_MAIN, TOP_RCM_PARTITION0);

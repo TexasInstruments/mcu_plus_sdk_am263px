@@ -6,6 +6,72 @@ const yargs = require("yargs");
 //calculate the mcu_plus_sdk path using current directory
 let mcusdkPath = __dirname.split(path.sep).slice(0,-2).join(path.sep);
 
+//read imports.mak file to get sysconfig version
+const importsFile = fs.readFileSync(path.join(mcusdkPath, 'imports.mak'), "utf-8");
+let syscfgRegex = /sysconfig.+/gm;
+let sysconfigVersion = "sysconfig_1.19.0";
+const match = importsFile.match(syscfgRegex);
+if (null != match) {
+    sysconfigVersion = match[0];
+}
+
+//calculating the sysconfig path based on the environment
+let OS = process.platform;
+let syscfgPath = "";
+if (OS == "win32") {
+    syscfgPath = `C:\\ti\\${sysconfigVersion}\\tests\\sysConfig`;
+}
+if (OS == "linux") {
+    syscfgPath = process.env["HOME"] + `/ti/${sysconfigVersion}/tests/sysConfig`;
+}
+
+//load supported devices from deviceData
+let supportedDevices = [];
+try {
+    let deviceJsonPath = path.join(syscfgPath.split(path.sep).slice(0, -2).join(path.sep), 'dist', 'deviceData', 'devices.json');
+    let deviceJsonData = fs.readFileSync(deviceJsonPath);
+    let devices = JSON.parse(deviceJsonData).devices;
+    supportedDevices = devices.map(d => d.name).sort();
+} catch (e) {
+    // if we can't load devices, continue anyway - they'll be validated later
+}
+
+//function to format device list for help text
+function formatDeviceList() {
+    if (supportedDevices.length === 0) {
+        return "Unable to load device list. Ensure SysConfig is installed.";
+    }
+
+    // Filter to only show supported devices
+    const relevantFamilies = ['AM261x', 'AM263Px', 'AM273x'];
+    let filtered = supportedDevices.filter(device =>
+        relevantFamilies.some(family => device.startsWith(family))
+    );
+
+    let grouped = {};
+    filtered.forEach(device => {
+        let family = device.split('_')[0]; 
+        if (!grouped[family]) {
+            grouped[family] = [];
+        }
+        grouped[family].push(device);
+    });
+
+    let output = "\nCASE SENSITIVE: Device names are case-sensitive. Use exact case as shown below.\n";
+    output += "\nSupported Devices:\n";
+
+    ['AM261x', 'AM263Px', 'AM273x'].forEach(family => {
+        if (grouped[family]) {
+            output += `\n  ${family}:\n`;
+            grouped[family].forEach(device => {
+                output += `    • ${device}\n`;
+            });
+        }
+    });
+
+    return output;
+}
+
 //arguments
 const argv = yargs
     .option('product', {
@@ -58,6 +124,7 @@ const argv = yargs
     })
     .help('h')
     .alias('h', 'help')
+    .epilogue(formatDeviceList())
     .parse(process.argv.slice(2), { allowEquals: true });
 
 //command line arguments
@@ -72,11 +139,45 @@ let {
     migratePath
 } = argv;
 
-//convert arguments to sysconfig env supported format eg: AM263Px, ZCZ_F, AM263P4
-if (sourceDevice)
-    sourceDevice = sourceDevice.slice(0, -1).toUpperCase() + sourceDevice.slice(-1).toLowerCase();
-if (destinationDevice)
-    destinationDevice = destinationDevice.slice(0, -1).toUpperCase() + destinationDevice.slice(-1).toLowerCase();
+//convert arguments to sysconfig env supported format eg: AM263Px, AM261x_ZFG, AM263P4
+
+if (sourceDevice) {
+    if (sourceDevice.includes('_')) {
+        
+        let match = sourceDevice.match(/^([A-Za-z0-9]+)_([A-Z]+)(_\d+)?$/i);
+        if (match) {
+            // Format: [base]_[package](_[variant])?
+            let base = match[1].slice(0, -1).toUpperCase() + match[1].slice(-1).toLowerCase();
+            let pkg = match[2].toUpperCase();
+            let variant = match[3] ? match[3].toUpperCase() : '';
+            sourceDevice = base + '_' + pkg + variant;
+        } else {
+            sourceDevice = sourceDevice.toUpperCase();
+        }
+    } else {
+        // Legacy format without package: AM263Px
+        sourceDevice = sourceDevice.slice(0, -1).toUpperCase() + sourceDevice.slice(-1).toLowerCase();
+    }
+}
+if (destinationDevice) {
+
+    if (destinationDevice.includes('_')) {
+        
+        let match = destinationDevice.match(/^([A-Za-z0-9]+)_([A-Z]+)(_\d+)?$/i);
+        if (match) {
+            // Format: [base]_[package](_[variant])?
+            let base = match[1].slice(0, -1).toUpperCase() + match[1].slice(-1).toLowerCase();
+            let pkg = match[2].toUpperCase();
+            let variant = match[3] ? match[3].toUpperCase() : '';
+            destinationDevice = base + '_' + pkg + variant;
+        } else {
+            destinationDevice = destinationDevice.toUpperCase();
+        }
+    } else {
+        // Legacy format without package: AM263Px
+        destinationDevice = destinationDevice.slice(0, -1).toUpperCase() + destinationDevice.slice(-1).toLowerCase();
+    }
+}
 if (sourcePackage)
     sourcePackage = sourcePackage.toUpperCase();
 if (destinationPackage)
@@ -86,25 +187,7 @@ if (sourcePart)
 if (destinationPart)
     destinationPart = destinationPart.toUpperCase();
 
-//read imports.mak file to get sysconfig version
-const importsFile = fs.readFileSync(path.join(mcusdkPath, 'imports.mak'), "utf-8")
-
-let syscfgRegex = /sysconfig.+/gm
-let sysconfigVersion = "sysconfig_1.19.0";
-const match = importsFile.match(syscfgRegex)
-if (null != match) {
-    sysconfigVersion = match[0];
-}
-
-//calculating the sysconfig path based on the environment
-let OS = process.platform;
-let syscfgPath = ""
-if (OS == "win32") {
-    syscfgPath = `C:\\ti\\${sysconfigVersion}\\tests\\sysConfig`;
-}
-if (OS == "linux") {
-    syscfgPath = process.env["HOME"] + `/ti/${sysconfigVersion}/tests/sysConfig`;
-}
+//load sysconfig module
 const sysConfig = require(syscfgPath);
 
 // make list of all the examples paths to be excluded
@@ -124,26 +207,39 @@ function validate_inputs() {
     let srcDevice = devices.find(device => device.name === sourceDevice);
     let destDevice = devices.find(device => device.name === destinationDevice);
 
+    if (!srcDevice && sourceDevice.includes('_')) {
+        console.log(`Note: Device name '${sourceDevice}' includes package suffix. For AM261x devices, use format: AM261x_ZFG or similar.`);
+    }
+
+    if (!destDevice && destinationDevice.includes('_')) {
+        console.log(`Note: Device name '${destinationDevice}' includes package suffix. For AM261x devices, use format: AM261x_ZNC or similar.`);
+    }
+
     // Validate source device
     if (!srcDevice) {
-        console.log(`Source device '${sourceDevice}' not found in deviceData.\nMigration aborted !!`);
+        console.log(`Source device '${sourceDevice}' not found in deviceData.\nAvailable devices include: AM261x_ZFG, AM261x_ZNC, AM263Px, etc.\nMigration aborted !!`);
         return false;
     }
 
     // Validate destination device
     if (!destDevice) {
-        console.log(`Destination device '${destinationDevice}' not found in deviceData.\nMigration aborted !!`);
+        console.log(`Destination device '${destinationDevice}' not found in deviceData.\nAvailable devices include: AM261x_ZFG, AM261x_ZNC, AM263Px, etc.\nMigration aborted !!`);
         return false;
     }
 
     // Validate source,destination package
-    if (sourcePackage && !srcDevice.package.find(pkg => pkg.name === sourcePackage)) {
-        console.log(`Package '${sourcePackage}' not found for source device '${sourceDevice}' in deviceData.\nMigration aborted !!`);
-        return false;
+    // Skip package validation if device name already includes the package (e.g., AM261x_ZFG)
+    if (sourcePackage && !sourceDevice.includes('_')) {
+        if (!srcDevice.package.find(pkg => pkg.name === sourcePackage)) {
+            console.log(`Package '${sourcePackage}' not found for source device '${sourceDevice}' in deviceData.\nMigration aborted !!`);
+            return false;
+        }
     }
-    if (destinationPackage && !destDevice.package.find(pkg => pkg.name === destinationPackage)) {
-        console.log(`Package '${destinationPackage}' not found for destination device '${destinationDevice}' in deviceData.\nMigration aborted !!`);
-        return false;
+    if (destinationPackage && !destinationDevice.includes('_')) {
+        if (!destDevice.package.find(pkg => pkg.name === destinationPackage)) {
+            console.log(`Package '${destinationPackage}' not found for destination device '${destinationDevice}' in deviceData.\nMigration aborted !!`);
+            return false;
+        }
     }
 
     // Validate source,destination part
@@ -162,7 +258,8 @@ function validate_inputs() {
 
 //function to list all the paths to be excluded from migration -- input from exclude_list.txt
 function read_exclude_list() {
-    let exclude_list_filename = `exclude_list_${sourceDevice.toLowerCase()}.js`
+    let baseDeviceName = sourceDevice.includes('_') ? sourceDevice.split('_')[0] : sourceDevice;
+    let exclude_list_filename = `exclude_list_${baseDeviceName.toLowerCase()}.js`
     const content = require(path.join(mcusdkPath, 'tools', 'migration_script', 'soc', `${exclude_list_filename}`))
     return content.getExcludeList();
 }
@@ -245,7 +342,9 @@ const get_all_files = async function (dirPath, arrayOfFiles) {
             }
         }
         else {
-            if (dirPath.includes(sourceDevice.toLowerCase())) {
+            // Extract base device name for path matching (e.g., AM261x_ZFG -> am261x)
+            let baseDeviceForPathMatch = sourceDevice.includes('_') ? sourceDevice.split('_')[0] : sourceDevice;
+            if (dirPath.includes(baseDeviceForPathMatch.toLowerCase())) {
 
                 if (path.extname(file) == ".syscfg") {
 
@@ -296,12 +395,17 @@ const get_all_files = async function (dirPath, arrayOfFiles) {
                 let sourcePackageRegex = new RegExp(sourcePackage, "g")
                 let sourcePartRegex = new RegExp(sourcePart, "g")
                 const pathsep = OS === "win32" ? '\\\\' : '/'
-                let checkRegex = new RegExp(`${pathsep}.+` + sourceDevice, "gmi")
+                // Use base device name for path matching (e.g., am261x instead of AM261x_ZFG)
+                let checkRegex = new RegExp(`${pathsep}.+` + baseDeviceForPathMatch, "gmi")
 
                 if (migrateDone.some(ele => checkRegex.test(ele))) {
                     if ((null != filePath.match(projectspecRegex)) || (null != filePath.match(makefileRegex))) {
                         let data = fs.readFileSync(filePath, "utf-8");
                         if (null != data.match(sourcePackageRegex)) {
+                            
+                            let sourceDeviceRegex = new RegExp(sourceDevice.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), "g");
+                            data = data.replace(sourceDeviceRegex, destinationDevice);
+                            
                             data = data.replace(sourcePackageRegex, destinationPackage);
                             data = data.replace(sourcePartRegex, destinationPart);
                             fs.writeFileSync(filePath, data);

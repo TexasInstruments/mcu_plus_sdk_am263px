@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('DRIVERS_FSI_PAGE.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1024">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1025">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1026">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1027">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1028">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1029">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1027">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1028">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1029">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1030">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1031">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1032">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_drivers_fsi"></a></p>
 <p>The Fast Serial Interface (FSI) driver provides API to program the FSI module. FSI is a serial communication peripheral capable of reliable and robust high-speed communications. FSI is used to transfer/receive data frame with several available configurations e.g frame size, bandwidth etc, signaling events completion via interrupts or status registers.</p>
-<h1><a class="anchor" id="autotoc_md1024"></a>
+<h1><a class="anchor" id="autotoc_md1027"></a>
 Features Supported</h1>
 <ul>
 <li>Supports programmable packet data length of 1-to-16 words where each word consists of 16-bits</li>
@@ -113,13 +113,13 @@ Features Supported</h1>
 <li>Supports DMA mode. The DMA event will only be generated for data frames.</li>
 <li>Supports programmable TX delay line control</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1025"></a>
+<h1><a class="anchor" id="autotoc_md1028"></a>
 Features NOT Supported</h1>
 <ul>
 <li>Multi-Peripheral configuration</li>
 <li>clkstop_req/ack functionality. Software must ensure that the FSI IP's on both host and remote device are idle before triggering clkstop_req.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1026"></a>
+<h1><a class="anchor" id="autotoc_md1029"></a>
 SysConfig Features</h1>
 <dl class="section note"><dt>Note</dt><dd>It is strongly recommend to use SysConfig where it is available instead of using direct SW API calls. This will help simplify the SW application and also catch common mistakes early in the development cycle.</dd></dl>
 <ul>
@@ -127,13 +127,13 @@ SysConfig Features</h1>
 <li>Configuring pinmux based on selected instance and pin configuration</li>
 <li>Interrupt Crossbar configuration for FSI RX and TX.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1027"></a>
+<h1><a class="anchor" id="autotoc_md1030"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li>Note: FSI-RX and FSI-TX are completely independent and separate module. For communication, both needs to be configured separately.</li>
 <li>Interrupt Crossbar configuration should be done to route FSI RX and TX interrupts if SysCfg is not used.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1028"></a>
+<h1><a class="anchor" id="autotoc_md1031"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="fsi_8h.html">drivers/fsi.h</a>&gt;</span></div>
 </div><!-- fragment --><p> FSI tx config </p><div class="fragment"><div class="line">    int32_t     status;</div>
@@ -243,7 +243,7 @@ Example Usage</h1>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__SEMAPHORE.html#ga983b3b10c5d00c08d5caa9bcd3c0e9b2">SemaphoreP_destruct</a>(&amp;gFsiRxSemObject);</div>
 <div class="line">    <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1029"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1032"></a>
 API</h1>
 <p><a class="el" href="group__DRV__FSI__MODULE.html">APIs for FSI</a> </p>
 </div></div><!-- contents -->
@@ -255,7 +255,7 @@ API</h1>
 <div class="ttc" id="agroup__DRV__FSI__RX__MODULE_html_ga44b4cb2f8cc74371fbef6f8812460d5d"><div class="ttname"><a href="group__DRV__FSI__RX__MODULE.html#ga44b4cb2f8cc74371fbef6f8812460d5d">FSI_setRxBufferPtr</a></div><div class="ttdeci">int32_t FSI_setRxBufferPtr(uint32_t base, uint16_t bufPtrOff)</div><div class="ttdoc">This API sets the value for receive buffer pointer at desired location.</div></div>
 <div class="ttc" id="agroup__DRV__FSI__RX__MODULE_html_gab84bef42f754fed3e890c000371e502b"><div class="ttname"><a href="group__DRV__FSI__RX__MODULE.html#gab84bef42f754fed3e890c000371e502b">FSI_enableRxInterrupt</a></div><div class="ttdeci">int32_t FSI_enableRxInterrupt(uint32_t base, FSI_InterruptNum intNum, uint16_t intFlags)</div><div class="ttdoc">This API enables user to generate interrupt on occurrence of RX events.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__HWI_html_ga9dac4d4990b599de54662b9e32c0b47b"><div class="ttname"><a href="group__KERNEL__DPL__HWI.html#ga9dac4d4990b599de54662b9e32c0b47b">HwiP_destruct</a></div><div class="ttdeci">void HwiP_destruct(HwiP_Object *obj)</div><div class="ttdoc">Cleanup, delete, destruct a Hwi object.</div></div>
-<div class="ttc" id="astructHwiP__Params_html"><div class="ttname"><a href="structHwiP__Params.html">HwiP_Params</a></div><div class="ttdoc">Parameters passed during HwiP_construct.</div><div class="ttdef"><b>Definition:</b> HwiP.h:127</div></div>
+<div class="ttc" id="astructHwiP__Params_html"><div class="ttname"><a href="structHwiP__Params.html">HwiP_Params</a></div><div class="ttdoc">Parameters passed during HwiP_construct.</div><div class="ttdef"><b>Definition:</b> HwiP.h:132</div></div>
 <div class="ttc" id="afsi_2v0_2fsi_8h_html_a80a09bec51779807cd4c042c4f8b0b13"><div class="ttname"><a href="fsi_2v0_2fsi_8h.html#a80a09bec51779807cd4c042c4f8b0b13">FSI_INT1</a></div><div class="ttdeci">#define FSI_INT1</div><div class="ttdef"><b>Definition:</b> fsi/v0/fsi.h:138</div></div>
 <div class="ttc" id="agroup__DRV__FSI__RX__MODULE_html_gac2e03ccc8d65b92e55858315e9ba58a3"><div class="ttname"><a href="group__DRV__FSI__RX__MODULE.html#gac2e03ccc8d65b92e55858315e9ba58a3">FSI_disableRxInterrupt</a></div><div class="ttdeci">int32_t FSI_disableRxInterrupt(uint32_t base, FSI_InterruptNum intNum, uint16_t intFlags)</div><div class="ttdoc">This API enables user to disable interrupt generation on RX events.</div></div>
 <div class="ttc" id="agroup__DRV__FSI__RX__MODULE_html_ga98518d233fe2f79b8e3ed84248f13a97"><div class="ttname"><a href="group__DRV__FSI__RX__MODULE.html#ga98518d233fe2f79b8e3ed84248f13a97">FSI_performRxInitialization</a></div><div class="ttdeci">int32_t FSI_performRxInitialization(uint32_t base)</div><div class="ttdoc">This API initializes FSI RX module.</div></div>
@@ -278,16 +278,16 @@ API</h1>
 <div class="ttc" id="agroup__DRV__FSI__TX__MODULE_html_gadb26a6c5ab93ee1318e6fd540812967d"><div class="ttname"><a href="group__DRV__FSI__TX__MODULE.html#gadb26a6c5ab93ee1318e6fd540812967d">FSI_setTxFrameTag</a></div><div class="ttdeci">int32_t FSI_setTxFrameTag(uint32_t base, FSI_FrameTag frameTag)</div><div class="ttdoc">This API sets frame tag for transmission.</div></div>
 <div class="ttc" id="agroup__DRV__FSI__RX__MODULE_html_gaeed6850f729199549e7c1ed7c412dd6a"><div class="ttname"><a href="group__DRV__FSI__RX__MODULE.html#gaeed6850f729199549e7c1ed7c412dd6a">FSI_resetRxModule</a></div><div class="ttdeci">int32_t FSI_resetRxModule(uint32_t base, FSI_RxSubmoduleInReset submodule)</div><div class="ttdoc">This API resets frame watchdog, ping watchdog or entire RX module.</div></div>
 <div class="ttc" id="agroup__DRV__FSI__TX__MODULE_html_gabedc2a4c7cdf00ab0c159ab80b855d7d"><div class="ttname"><a href="group__DRV__FSI__TX__MODULE.html#gabedc2a4c7cdf00ab0c159ab80b855d7d">FSI_setTxUserDefinedData</a></div><div class="ttdeci">int32_t FSI_setTxUserDefinedData(uint32_t base, uint16_t userDefData)</div><div class="ttdoc">This API sets user defined data for transmission It is an extra data field (8 bit) apart from regular...</div></div>
-<div class="ttc" id="astructHwiP__Params_html_ab8f50b1b2f678cc3ce395ee6bc89c55c"><div class="ttname"><a href="structHwiP__Params.html#ab8f50b1b2f678cc3ce395ee6bc89c55c">HwiP_Params::callback</a></div><div class="ttdeci">HwiP_FxnCallback callback</div><div class="ttdef"><b>Definition:</b> HwiP.h:130</div></div>
+<div class="ttc" id="astructHwiP__Params_html_ab8f50b1b2f678cc3ce395ee6bc89c55c"><div class="ttname"><a href="structHwiP__Params.html#ab8f50b1b2f678cc3ce395ee6bc89c55c">HwiP_Params::callback</a></div><div class="ttdeci">HwiP_FxnCallback callback</div><div class="ttdef"><b>Definition:</b> HwiP.h:135</div></div>
 <div class="ttc" id="agroup__DRV__FSI__TX__MODULE_html_gaf372007b7814f6e7d46c59b3464d2721"><div class="ttname"><a href="group__DRV__FSI__TX__MODULE.html#gaf372007b7814f6e7d46c59b3464d2721">FSI_enableTxInterrupt</a></div><div class="ttdeci">int32_t FSI_enableTxInterrupt(uint32_t base, FSI_InterruptNum intNum, uint16_t intFlags)</div><div class="ttdoc">This API enables user to generate interrupt on occurrence of FSI_TxEventList events.</div></div>
 <div class="ttc" id="agroup__DRV__FSI__RX__MODULE_html_ga71df7339698c1595b844f1306480823c"><div class="ttname"><a href="group__DRV__FSI__RX__MODULE.html#ga71df7339698c1595b844f1306480823c">FSI_clearRxModuleReset</a></div><div class="ttdeci">int32_t FSI_clearRxModuleReset(uint32_t base, FSI_RxSubmoduleInReset submodule)</div><div class="ttdoc">This API clears resets on frame watchdog, ping watchdog or entire RX module.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SEMAPHORE_html_ga23075425da4d8a65a53209b5fdd3fafe"><div class="ttname"><a href="group__KERNEL__DPL__SEMAPHORE.html#ga23075425da4d8a65a53209b5fdd3fafe">SemaphoreP_post</a></div><div class="ttdeci">void SemaphoreP_post(SemaphoreP_Object *obj)</div><div class="ttdoc">Post a semaphore object or unlock a mutex.</div></div>
-<div class="ttc" id="astructHwiP__Params_html_a26ec86a18720de1a3fe54828ceb959d2"><div class="ttname"><a href="structHwiP__Params.html#a26ec86a18720de1a3fe54828ceb959d2">HwiP_Params::args</a></div><div class="ttdeci">void * args</div><div class="ttdef"><b>Definition:</b> HwiP.h:131</div></div>
+<div class="ttc" id="astructHwiP__Params_html_a26ec86a18720de1a3fe54828ceb959d2"><div class="ttname"><a href="structHwiP__Params.html#a26ec86a18720de1a3fe54828ceb959d2">HwiP_Params::args</a></div><div class="ttdeci">void * args</div><div class="ttdef"><b>Definition:</b> HwiP.h:136</div></div>
 <div class="ttc" id="agroup__DRV__FSI__TX__MODULE_html_ga00ded17f9d497a3c626741483f8da779"><div class="ttname"><a href="group__DRV__FSI__TX__MODULE.html#ga00ded17f9d497a3c626741483f8da779">FSI_setTxDataWidth</a></div><div class="ttdeci">int32_t FSI_setTxDataWidth(uint32_t base, FSI_DataWidth dataWidth)</div><div class="ttdoc">This API sets Data width for transmission.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__SEMAPHORE_html_ga2de8d925b9ae035fd8a749927463aef5"><div class="ttname"><a href="group__KERNEL__DPL__SEMAPHORE.html#ga2de8d925b9ae035fd8a749927463aef5">SemaphoreP_constructBinary</a></div><div class="ttdeci">int32_t SemaphoreP_constructBinary(SemaphoreP_Object *obj, uint32_t initValue)</div><div class="ttdoc">Create a binary semaphore object.</div></div>
 <div class="ttc" id="agroup__DRV__FSI__RX__MODULE_html_ga1d9d8f05d9476fe75cbd83e5529db856"><div class="ttname"><a href="group__DRV__FSI__RX__MODULE.html#ga1d9d8f05d9476fe75cbd83e5529db856">FSI_RX_MAIN_CORE_RESET</a></div><div class="ttdeci">#define FSI_RX_MAIN_CORE_RESET</div><div class="ttdef"><b>Definition:</b> fsi_rx.h:148</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
-<div class="ttc" id="astructHwiP__Params_html_a943b3d55a5aaa669f8bcb04017fdf2a1"><div class="ttname"><a href="structHwiP__Params.html#a943b3d55a5aaa669f8bcb04017fdf2a1">HwiP_Params::intNum</a></div><div class="ttdeci">uint32_t intNum</div><div class="ttdef"><b>Definition:</b> HwiP.h:129</div></div>
+<div class="ttc" id="astructHwiP__Params_html_a943b3d55a5aaa669f8bcb04017fdf2a1"><div class="ttname"><a href="structHwiP__Params.html#a943b3d55a5aaa669f8bcb04017fdf2a1">HwiP_Params::intNum</a></div><div class="ttdeci">uint32_t intNum</div><div class="ttdef"><b>Definition:</b> HwiP.h:134</div></div>
 <div class="ttc" id="agroup__DRV__FSI__TX__MODULE_html_ga3d2add9c6ceca89ae90f1006c952cca8"><div class="ttname"><a href="group__DRV__FSI__TX__MODULE.html#ga3d2add9c6ceca89ae90f1006c952cca8">FSI_clearTxModuleReset</a></div><div class="ttdeci">int32_t FSI_clearTxModuleReset(uint32_t base, FSI_TxSubmoduleInReset submodule)</div><div class="ttdoc">This API clears reset on clock or ping timeout counter or entire TX module.</div></div>
 <div class="ttc" id="agroup__DRV__FSI__TX__MODULE_html_gaa80e44d32baf2476cd603b130f793f59"><div class="ttname"><a href="group__DRV__FSI__TX__MODULE.html#gaa80e44d32baf2476cd603b130f793f59">FSI_TX_EVT_FRAME_DONE</a></div><div class="ttdeci">#define FSI_TX_EVT_FRAME_DONE</div><div class="ttdef"><b>Definition:</b> fsi_tx.h:96</div></div>
 <div class="ttc" id="agroup__DRV__FSI__RX__MODULE_html_gadb4886595a1ec142928bc4bd3f23a3fe"><div class="ttname"><a href="group__DRV__FSI__RX__MODULE.html#gadb4886595a1ec142928bc4bd3f23a3fe">FSI_setRxDataWidth</a></div><div class="ttdeci">int32_t FSI_setRxDataWidth(uint32_t base, FSI_DataWidth dataWidth)</div><div class="ttdoc">This API selects number of data lines used for receiving.</div></div>

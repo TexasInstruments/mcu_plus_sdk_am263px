@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,21 +92,21 @@ $(document).ready(function(){initNavTree('EXAMPLES_SDL_CCM.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3853">Introduction</a><ul><li class="level2"><a href="#autotoc_md3854">Use Cases</a></li>
+<ul><li class="level1"><a href="#autotoc_md3908">Introduction</a><ul><li class="level2"><a href="#autotoc_md3909">Use Cases</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_SDL_CCM_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3855">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3856">Steps to Test the Example</a></li>
-<li class="level1"><a href="#autotoc_md3857">See Also</a></li>
-<li class="level1"><a href="#autotoc_md3858">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md3910">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3911">Steps to Test the Example</a></li>
+<li class="level1"><a href="#autotoc_md3912">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3913">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_sdl_ccm_main"></a></p>
-<h1><a class="anchor" id="autotoc_md3853"></a>
+<h1><a class="anchor" id="autotoc_md3908"></a>
 Introduction</h1>
 <p>This example demonstrates the usage of the SDL R5 CCM TMU/RL2 module. The example shows how to setup and use the R5 CCM Safety Diagnostic operation for R5F, TMU and RL2.</p>
-<h2><a class="anchor" id="autotoc_md3854"></a>
+<h2><a class="anchor" id="autotoc_md3909"></a>
 Use Cases</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -136,17 +136,17 @@ Supported Combinations</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/sdl/ccm/sdl_ccm_rl2_example/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3855"></a>
+<h1><a class="anchor" id="autotoc_md3910"></a>
 Steps to Run the Example</h1>
 <ul>
 <li><b>When using CCS projects to build</b>, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Launch a CCS debug session and run the executable, see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3856"></a>
+<h1><a class="anchor" id="autotoc_md3911"></a>
 Steps to Test the Example</h1>
 <ul>
-<li>CCM example should only be tested in QSPI boot mode and should not be tested in no boot mode with debugger connected.</li>
+<li>CCM example should only be tested in QSPI/OSPI boot mode and should not be tested in no boot mode with debugger connected.</li>
 <li>Follow the below procedure to test the CCM and CCM_VIM example.<ol type="1">
 <li>A quick recap of steps done so far that are needed for the flashing to work<ul>
 <li>Make sure the UART port used for terminal is identified as mentioned in <a class="el" href="EVM_SETUP_PAGE.html#CCS_UART_TERMINAL">Setup UART Terminal</a></li>
@@ -158,8 +158,12 @@ Steps to Test the Example</h1>
 <li>As part of the build process in the final step a file with extension .appimage is generated. This is the file we need to flash.</li>
 <li>When building with makefiles and single-core projects, this file can be found here <pre class="fragment">   ${SDK_INSTALL_PATH}/examples/sdl/ccm/sdl_ccm_example/{board}/r5fss0-0_nortos/ti-arm-clang/sdl_ccm_example.release.appimage
 </pre></li>
-<li>A default configuration file can be found at below path. You can edit this file directly or take a copy and edit this file. <pre class="fragment">   ${SDK_INSTALL_PATH}/tools/boot/sbl_prebuilt/{board}/default_sbl_qspi.cfg
-</pre></li>
+<li>A default configuration file can be found at below path. You can edit this file directly or take a copy and edit this file.</li>
+</ol>
+</li>
+</ul>
+<pre class="fragment">        ${SDK_INSTALL_PATH}/tools/boot/sbl_prebuilt/{board}/mcelf_sbl_ospi.cfg
+</pre><ol type="1">
 <li>Edit below line in the config file to point to your application .appimage file. Give the absolute path to the .appimage file or path relative to ${SDK_INSTALL_PATH}/tools/boot. <b>Make sure to use forward slash / in the filename path</b>. &ndash;file=../../examples/sdl/ccm/sdl_ccm_example/{board}/r5fss0-0_nortos/ti-arm-clang/sdl_ccm_example.release.appimage &ndash;operation=flash-sector-write &ndash;flash-offset=0x81000<ul>
 <li><b>NOTE</b> : edit sdl_ccm_example to sdl_ccm_vim for ccm vim example testing.</li>
 </ul>
@@ -167,12 +171,10 @@ Steps to Test the Example</h1>
 <li>Save and close the config file.</li>
 <li>Flash the application by follow the steps mentioned in the page, <a class="el" href="GETTING_STARTED_FLASH.html">Flash a Hello World example</a></li>
 </ol>
-</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md3857"></a>
+<h1><a class="anchor" id="autotoc_md3912"></a>
 See Also</h1>
 <p><a class="el" href="SDL_CCM_PAGE.html">CCM</a></p>
-<h1><a class="anchor" id="autotoc_md3858"></a>
+<h1><a class="anchor" id="autotoc_md3913"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the CCM application is run.</p>
 <div class="fragment"><div class="line">R5 CPU Application</div>

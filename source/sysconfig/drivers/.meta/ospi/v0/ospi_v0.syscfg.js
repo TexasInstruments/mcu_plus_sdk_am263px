@@ -13,7 +13,11 @@ function getInstanceConfig(moduleInstance) {
     let configArr = getConfigArr();
     let config = configArr.find(o => o.name === solution.peripheralName);
 
-    config.clockFrequencies[0].clkRate = moduleInstance.inputClkFreq;
+    if(common.getSocName() === "am261x" && moduleInstance.overrideInputClkFreq) {
+        config.clockFrequencies[0].clkRate = moduleInstance.customInputClkFreq;
+    } else {
+        config.clockFrequencies[0].clkRate = moduleInstance.inputClkFreq;
+    }
     if(["am263px", "am261x"].includes(common.getSocName())){
         config.clockFrequencies[0].clkId = moduleInstance.clockSource;
     }
@@ -240,43 +244,71 @@ function getConfigurables()
 
     if(["am263px", "am261x"].includes(common.getSocName())){
         config.push(
-                    {
-            name: "clockSource",
-            displayName: "Clock Source",
-            default: soc.getDefaultClkSource(),
-            description: "Clock Source",
-            getValue: (inst) => {
-                const interfaceName = getInterfaceName(inst)
-                const ospiSolution = inst[interfaceName].$solution
-                let ospiInstanceName = ""
-                if(ospiSolution)
-                    ospiInstanceName   = ospiSolution.peripheralName
-                else
-                    ospiInstanceName = "OSPI0"
-                return soc.getDefaultClkSource(ospiInstanceName)
-            }
+            {
+                name: "clockSource",
+                displayName: "Clock Source",
+                default: soc.getDefaultClkSource(),
+                description: "Clock Source",
+                getValue: (inst) => {
+                    const interfaceName = getInterfaceName(inst)
+                    const ospiSolution = inst[interfaceName].$solution
+                    let ospiInstanceName = ""
+                    if(ospiSolution)
+                        ospiInstanceName   = ospiSolution.peripheralName
+                    else
+                        ospiInstanceName = "OSPI0"
+                    return soc.getDefaultClkSource(ospiInstanceName)
+                }
+            },
+            {
+                name: "inputClkFreq",
+                displayName: "Input Clock Frequency (Hz)",
+                longDescription: `Only in Tap Mode of operation, the OSPI Output Clock is Input Clock Frequency / Input Clock Divider `,
+                default: soc.getDefaultClkRate(),
+                displayFormat: "dec",
+                getValue: (inst) => {
+                    if(common.getSocName() === "am261x" && inst.overrideInputClkFreq) {
+                        return inst.customInputClkFreq;
+                    }
+                    const interfaceName = getInterfaceName(inst)
+                    const ospiSolution = inst[interfaceName].$solution
+                    let ospiInstanceName = ""
+                    if(ospiSolution)
+                        ospiInstanceName   = ospiSolution.peripheralName
+                    else
+                        ospiInstanceName = "OSPI0"
+                    return (soc.getDefaultClkRate(ospiInstanceName))
+                }
+            },
+        )
+    }
 
+    if(common.getSocName() === "am261x"){
+        config.push(
+        {
+            name: "overrideInputClkFreq",
+            displayName: "Override Input Clock Frequency",
+            description: "WARNING: Overriding the input clock frequency is a risky operation. Only use this if you know what you are doing.",
+            longDescription: `Enable this option to manually specify the OSPI input clock frequency instead of using the value derived from the SoC clock tree. \
+\n\nWARNING: Setting an incorrect frequency will cause misconfigured baud rate divisor and OSPI timing parameters, potentially resulting in data corruption, \
+flash communication failures, or system instability. Ensure the custom frequency matches the actual clock supplied to the OSPI peripheral.`,
+            default: false,
+            onChange: function(inst, ui) {
+                ui.customInputClkFreq.hidden = !inst.overrideInputClkFreq;
+            },
         },
         {
-            name: "inputClkFreq",
-            displayName: "Input Clock Frequency (Hz)",
-            longDescription: `Only in Tap Mode of operation, the OSPI Output Clock is Input Clock Frequency / Input Clock Divider `,
-            default: ["am263px", "am261x"].includes(common.getSocName())? soc.getDefaultClkRate(): soc.getDefaultConfig().inputClkFreq,
+            name: "customInputClkFreq",
+            displayName: "Custom Input Clock Frequency (Hz)",
+            description: "Custom input clock frequency in Hz. Only used when 'Override Input Clock Frequency' is enabled.",
+            default: soc.getDefaultClkRate(),
             displayFormat: "dec",
-            getValue: (inst) => {
-                const interfaceName = getInterfaceName(inst)
-                const ospiSolution = inst[interfaceName].$solution
-                let ospiInstanceName = ""
-                if(ospiSolution)
-                    ospiInstanceName   = ospiSolution.peripheralName
-                else
-                    ospiInstanceName = "OSPI0"
-                return  (soc.getDefaultClkRate(ospiInstanceName))
-            }
+            hidden: true,
         },
         )
     }
-    else{
+
+    if(!["am263px", "am261x"].includes(common.getSocName())){
         config.push(
             {
                 name: "inputClkFreq",
@@ -773,6 +805,14 @@ function validate(inst, report) {
     if(inst.baudRateDiv % 2)
     {
         report.logError("Value MUST be EVEN number", inst, "baudRateDiv");
+    }
+    if(common.getSocName() === "am261x" && inst.overrideInputClkFreq)
+    {
+        report.logWarning(
+            "Overriding the input clock frequency is a risky operation. " +
+            "Ensure the custom frequency exactly matches the actual clock supplied to the OSPI peripheral. " +
+            "An incorrect value will misconfigure baud rate and timing parameters, potentially causing data corruption or flash communication failures.",
+            inst, "customInputClkFreq");
     }
 }
 

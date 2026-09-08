@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,31 +92,31 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_DTHE_HMAC_SHA_512.htm
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3719">Introduction</a><ul><li class="level2"><a href="#autotoc_md3720">Build the hmac sha 512 example</a></li>
+<ul><li class="level1"><a href="#autotoc_md3774">Introduction</a><ul><li class="level2"><a href="#autotoc_md3775">Build the hmac sha 512 example</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3721">Steps to Run through ROM Boot flow</a><ul><li class="level2"><a href="#autotoc_md3722">Via SBL_uart bootloader</a><ul><li class="level3"><a href="#autotoc_md3723">Build sbl_uart</a></li>
-<li class="level3"><a href="#autotoc_md3724">Set board for UART boot</a></li>
-<li class="level3"><a href="#autotoc_md3725">Run UART_bootloader</a></li>
-<li class="level3"><a href="#autotoc_md3726">Sample output</a></li>
+<li class="level1"><a href="#autotoc_md3776">Steps to Run through ROM Boot flow</a><ul><li class="level2"><a href="#autotoc_md3777">Via SBL_uart bootloader</a><ul><li class="level3"><a href="#autotoc_md3778">Build sbl_uart</a></li>
+<li class="level3"><a href="#autotoc_md3779">Set board for UART boot</a></li>
+<li class="level3"><a href="#autotoc_md3780">Run UART_bootloader</a></li>
+<li class="level3"><a href="#autotoc_md3781">Sample output</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3727">Via SBL_qspi bootloader</a><ul><li class="level3"><a href="#autotoc_md3728">Build sbl_qspi</a></li>
-<li class="level3"><a href="#autotoc_md3729">Build sbl_uart_uniflash</a></li>
-<li class="level3"><a href="#autotoc_md3730">Set UART boot mode</a></li>
-<li class="level3"><a href="#autotoc_md3731">Edit default_sbl_qspi.cfg to include the correct images</a></li>
-<li class="level3"><a href="#autotoc_md3732">Run UART_uniflash</a></li>
-<li class="level3"><a href="#autotoc_md3733">Set QSPI boot mode</a></li>
-<li class="level3"><a href="#autotoc_md3734">Sample output</a></li>
+<li class="level2"><a href="#autotoc_md3782">Via SBL_qspi bootloader</a><ul><li class="level3"><a href="#autotoc_md3783">Build sbl_qspi</a></li>
+<li class="level3"><a href="#autotoc_md3784">Build sbl_uart_uniflash</a></li>
+<li class="level3"><a href="#autotoc_md3785">Set UART boot mode</a></li>
+<li class="level3"><a href="#autotoc_md3786">Edit default_sbl_qspi.cfg to include the correct images</a></li>
+<li class="level3"><a href="#autotoc_md3787">Run UART_uniflash</a></li>
+<li class="level3"><a href="#autotoc_md3788">Set QSPI boot mode</a></li>
+<li class="level3"><a href="#autotoc_md3789">Sample output</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3735">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3790">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_security_crypto_dthe_hmac_sha512"></a></p>
-<h1><a class="anchor" id="autotoc_md3719"></a>
+<h1><a class="anchor" id="autotoc_md3774"></a>
 Introduction</h1>
 <p>This example demonstrates HMAC SHA-512 algorithm running on SHA/MD5 module. This example explains the steps to build and run HMAC SHA-512.</p>
 <table class="markdownTable">
@@ -133,54 +133,54 @@ Introduction</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Supported Device Type  </td><td class="markdownTableBodyNone">HS-FS   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md3720"></a>
+<h2><a class="anchor" id="autotoc_md3775"></a>
 Build the hmac sha 512 example</h2>
 <div class="fragment"><div class="line">$make -s -C examples/security/crypto/dthe_sha/crypto_hmac_sha512/&lt;soc&gt;-&lt;board&gt;/r5fss0-0_nortos/ti-arm-clang all DEVICE=&lt;soc&gt;</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3721"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3776"></a>
 Steps to Run through ROM Boot flow</h1>
 <dl class="section note"><dt>Note</dt><dd>If the device type is HS-SE, an additional flag "DEVICE_TYPE=HS" is passed for building SBL. The flag results in generation of SBL image with suffix "hs.tiimage" which can only be used when device type is HS-SE.</dd></dl>
-<h2><a class="anchor" id="autotoc_md3722"></a>
+<h2><a class="anchor" id="autotoc_md3777"></a>
 Via SBL_uart bootloader</h2>
-<h3><a class="anchor" id="autotoc_md3723"></a>
+<h3><a class="anchor" id="autotoc_md3778"></a>
 Build sbl_uart</h3>
 <div class="fragment"><div class="line">make -s -C examples/drivers/boot/sbl_uart_multicore_elf/&lt;soc&gt;-&lt;board&gt;/r5fss0-0_nortos/ti-arm-clang/ all DEVICE=&lt;soc&gt;</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3724"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3779"></a>
 Set board for UART boot</h3>
 <p>See <a href="https://software-dl.ti.com/mcu-plus-sdk/esd/AM263PX/latest/exports/docs/api_guide_am263px/EVM_SETUP_PAGE.html#autotoc_md29">EVM setup</a></p>
-<h3><a class="anchor" id="autotoc_md3725"></a>
+<h3><a class="anchor" id="autotoc_md3780"></a>
 Run UART_bootloader</h3>
 <div class="fragment"><div class="line">python uart_bootloader.py -p &lt;COMxx&gt; --bootloader=sbl_prebuilt/&lt;soc&gt;-&lt;board&gt;/sbl_uart.release.hs.tiimage --file=../../examples/security/crypto/dthe_sha/crypto_hmac_sha512/&lt;soc&gt;-&lt;board&gt;/r5fss0-0_nortos/ti-arm-clang/dthe_hmac_sha512.release.mcelf</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3726"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3781"></a>
 Sample output</h3>
 <p>On successful boot, R5 log at uart terminal, will have the following output. UART Console: </p><div class="fragment"><div class="line">[CRYPTO] DTHE HMAC SHA-512 example started ...</div>
 <div class="line">[CRYPTO] DTHE HMAC SHA-512 example completed!!</div>
 <div class="line">All tests have passed!!</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3727"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3782"></a>
 Via SBL_qspi bootloader</h2>
-<h3><a class="anchor" id="autotoc_md3728"></a>
+<h3><a class="anchor" id="autotoc_md3783"></a>
 Build sbl_qspi</h3>
 <div class="fragment"><div class="line">make -C examples/drivers/boot/sbl_qspi_multicore_elf/&lt;soc&gt;-&lt;board&gt;/r5fss0-0_nortos/ti-arm-clang/ all DEVICE=&lt;soc&gt;</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3729"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3784"></a>
 Build sbl_uart_uniflash</h3>
 <div class="fragment"><div class="line">make -s -C examples/drivers/boot/sbl_uart_uniflash/&lt;soc&gt;-&lt;board&gt;/r5fss0-0_nortos/ti-arm-clang/ all DEVICE=&lt;soc&gt;</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3730"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3785"></a>
 Set UART boot mode</h3>
 <p>See <a href="https://software-dl.ti.com/mcu-plus-sdk/esd/AM263PX/latest/exports/docs/api_guide_am263px/EVM_SETUP_PAGE.html#autotoc_md29">EVM setup</a></p>
-<h3><a class="anchor" id="autotoc_md3731"></a>
+<h3><a class="anchor" id="autotoc_md3786"></a>
 Edit default_sbl_qspi.cfg to include the correct images</h3>
-<h3><a class="anchor" id="autotoc_md3732"></a>
+<h3><a class="anchor" id="autotoc_md3787"></a>
 Run UART_uniflash</h3>
 <div class="fragment"><div class="line">python uart_uniflash.py -p &lt;COMxx&gt; --cfg=sbl_prebuilt/&lt;soc&gt;-&lt;board&gt;/default_sbl_qspi.cfg</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3733"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md3788"></a>
 Set QSPI boot mode</h3>
 <p>See <a href="https://software-dl.ti.com/mcu-plus-sdk/esd/AM263PX/latest/exports/docs/api_guide_am263px/EVM_SETUP_PAGE.html#autotoc_md29">EVM setup</a></p>
-<h3><a class="anchor" id="autotoc_md3734"></a>
+<h3><a class="anchor" id="autotoc_md3789"></a>
 Sample output</h3>
 <p>On successful boot, R5 log at uart terminal, will have the following output.</p>
 <p>UART Console: </p><div class="fragment"><div class="line">[CRYPTO] DTHE HMAC SHA-512 example started ...</div>
 <div class="line">[CRYPTO] DTHE HMAC SHA-512 example completed!!</div>
 <div class="line">All tests have passed!!</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3735"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3790"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_DTHE_PAGE.html">DTHE</a> </p>
 </div></div><!-- contents -->

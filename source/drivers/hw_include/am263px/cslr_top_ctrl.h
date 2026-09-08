@@ -547,7 +547,7 @@ typedef struct {
 #define CSL_TOP_CTRL_DFT_CTRL_5                                                (0x00000E54U)
 #define CSL_TOP_CTRL_PROBE_BUS_SEL0                                            (0x00000F04U)
 #define CSL_TOP_CTRL_PROBE_BUS_SEL1                                            (0x00000F08U)
-#define CSL_TOP_CTRL_HW_SPARE_RW0                                              (0x00000FD0U)
+#define CSL_TOP_CTRL_EFUSE_VPP_EN                                              (0x00000FD0U)
 #define CSL_TOP_CTRL_HW_SPARE_RW1                                              (0x00000FD4U)
 #define CSL_TOP_CTRL_HW_SPARE_RW2                                              (0x00000FD8U)
 #define CSL_TOP_CTRL_HW_SPARE_RW3                                              (0x00000FDCU)
@@ -4706,14 +4706,14 @@ typedef struct {
 
 #define CSL_TOP_CTRL_PROBE_BUS_SEL1_RESETVAL                                   (0x00000000U)
 
-/* HW_SPARE_RW0 */
+/* EFUSE_VPP_EN */
 
-#define CSL_TOP_CTRL_HW_SPARE_RW0_HW_SPARE_RW0_HW_SPARE_RW0_MASK               (0xFFFFFFFFU)
-#define CSL_TOP_CTRL_HW_SPARE_RW0_HW_SPARE_RW0_HW_SPARE_RW0_SHIFT              (0x00000000U)
-#define CSL_TOP_CTRL_HW_SPARE_RW0_HW_SPARE_RW0_HW_SPARE_RW0_RESETVAL           (0x00000000U)
-#define CSL_TOP_CTRL_HW_SPARE_RW0_HW_SPARE_RW0_HW_SPARE_RW0_MAX                (0xFFFFFFFFU)
+#define CSL_TOP_CTRL_EFUSE_VPP_EN_EFUSE_VPP_EN_VPP_EN_MASK                    (0x00000001U)
+#define CSL_TOP_CTRL_EFUSE_VPP_EN_EFUSE_VPP_EN_VPP_EN_SHIFT                   (0x00000000U)
+#define CSL_TOP_CTRL_EFUSE_VPP_EN_EFUSE_VPP_EN_VPP_EN_RESETVAL                (0x00000000U)
+#define CSL_TOP_CTRL_EFUSE_VPP_EN_EFUSE_VPP_EN_VPP_EN_MAX                     (0x00000001U)
 
-#define CSL_TOP_CTRL_HW_SPARE_RW0_RESETVAL                                     (0x00000000U)
+#define CSL_TOP_CTRL_EFUSE_VPP_EN_RESETVAL                                    (0x00000000U)
 
 /* HW_SPARE_RW1 */
 

@@ -48,6 +48,10 @@ var group__ENET__MOD__MACPORT =
       [ "macPort", "structEnetMacPort__SetPreemptQueueInArgs.html#a3de150e85834178fa587963ba460aded", null ],
       [ "queuePreemptCfg", "structEnetMacPort__SetPreemptQueueInArgs.html#a11eb77230bea6b3df95eac0fea70fbb0", null ]
     ] ],
+    [ "EnetMacPort_CutThruParams", "structEnetMacPort__CutThruParams.html", [
+      [ "macPort", "structEnetMacPort__CutThruParams.html#af505d0953141c33562a1a9102941091c", null ],
+      [ "cutThruCfg", "structEnetMacPort__CutThruParams.html#abe65be3e49f10d45aaca10d8a8c562c5", null ]
+    ] ],
     [ "ENET_MACPORT_PUBLIC_IOCTL", "group__ENET__MOD__MACPORT.html#gac26cf4e386c6e23b4d77d0bf33d8e691", null ],
     [ "ENET_MACPORT_PRIVATE_IOCTL", "group__ENET__MOD__MACPORT.html#ga7a84ce4364666bc0909466f7c3b4f266", null ],
     [ "EnetMacPort_Ioctl", "group__ENET__MOD__MACPORT.html#gaae019ccdc5a774caa8ffdb35123ca59d", [
@@ -78,7 +82,9 @@ var group__ENET__MOD__MACPORT =
       [ "ENET_MACPORT_IOCTL_GET_PREEMPTION_ACTIVE_STATUS", "group__ENET__MOD__MACPORT.html#ggaae019ccdc5a774caa8ffdb35123ca59da3a8cb401ed5704a540e1578dc2df6e15", null ],
       [ "ENET_MACPORT_IOCTL_GET_PREEMPTION_ENABLE_STATUS", "group__ENET__MOD__MACPORT.html#ggaae019ccdc5a774caa8ffdb35123ca59daaed5486986b7fb70e12d24a1d6b9cbe3", null ],
       [ "ENET_MACPORT_IOCTL_DISABLE_PREEMPTION", "group__ENET__MOD__MACPORT.html#ggaae019ccdc5a774caa8ffdb35123ca59da00c6cd2b3b8c3210e5003739f116dd3a", null ],
-      [ "ENET_MACPORT_IOCTL_ENABLE_PREEMPTION", "group__ENET__MOD__MACPORT.html#ggaae019ccdc5a774caa8ffdb35123ca59daac808204e8cc9a081b1dd779897dee4d", null ]
+      [ "ENET_MACPORT_IOCTL_ENABLE_PREEMPTION", "group__ENET__MOD__MACPORT.html#ggaae019ccdc5a774caa8ffdb35123ca59daac808204e8cc9a081b1dd779897dee4d", null ],
+      [ "ENET_MACPORT_IOCTL_SET_CUT_THRU_PARAMS", "group__ENET__MOD__MACPORT.html#ggaae019ccdc5a774caa8ffdb35123ca59da6b6f7e3674a508b76e416df7e2a6d790", null ],
+      [ "ENET_MACPORT_IOCTL_GET_CUT_THRU_PARAMS", "group__ENET__MOD__MACPORT.html#ggaae019ccdc5a774caa8ffdb35123ca59daf79bdd057bafba5e010e44f75034cc23", null ]
     ] ],
     [ "EnetMac_LayerType", "group__ENET__MOD__MACPORT.html#ga046d087375dda93eb619534f98d934d1", [
       [ "ENET_MAC_LAYER_MII", "group__ENET__MOD__MACPORT.html#gga046d087375dda93eb619534f98d934d1a0790bb1636710804abf922f1b3e617cf", null ],

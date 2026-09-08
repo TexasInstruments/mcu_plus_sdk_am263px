@@ -244,6 +244,48 @@ let serialNorDefaultProtocolName = soc.getDefaultProtocol().name;
 let serialNandDefaultName = soc.getDefaultNandFlashName();
 let serialNandDefaultProtocolName = soc.getDefaultNandProtocol().name;
 
+/*
+ * Build the dropdown list of all known NOR flash JSON configurations.
+ * Only NOR flashes are included (identified by the presence of cmdSectorErase3B).
+ * The list is intentionally explicit so that new flashes are added deliberately.
+ * "new_flash" is omitted as it is a blank template.
+ */
+function getNorFlashOptions() {
+    let flashDir = "/board/flash/";
+    let norFlashJsonNames = [
+        "GD25B64",
+        "GD25LX256",
+        "IS25LX064",
+        "IS25LX256",
+        "IS25WX064",
+        "MT35XU512A",
+        "MX25UW064",
+        "MX25UW512",
+        "S25FL128P",
+        "S25FL128SA",
+        "S25FL128SA_ospi",
+        "S25HL512T",
+        "S28HS512T",
+        "CUSTOM_FLASH_TEMPLATE",
+    ];
+    let options = [];
+    for (let name of norFlashJsonNames) {
+        try {
+            let cfg = system.getScript(flashDir + name + ".json");
+            /* Only add if it is a NOR flash (has sector erase config) */
+            if (cfg.cmdSectorErase3B !== undefined || cfg.flashSectorSize !== undefined) {
+                let dispName = (cfg.flashName && cfg.flashName.length > 0) ? cfg.flashName : name;
+                options.push({ name: name, displayName: dispName });
+            }
+        } catch(e) {
+            /* Skip files that cannot be loaded */
+        }
+    }
+    return options;
+}
+
+let norFlashOptions = getNorFlashOptions();
+
 function changeFlashType(inst, ui)
 {
     if(inst.dummy_isAddrReg == true) {
@@ -318,6 +360,8 @@ function changeFlashType(inst, ui)
         ui.srEraseStatus.hidden = true;
         ui.badBlockCheck.hidden = true;
         ui.quirks.hidden = false;
+        /* Flash dropdown only applies for NOR + TI default device */
+        ui.flashSelect.hidden = (inst.device != "TI_DEFAULT_FLASH");
     } else if(inst.flashType == "SERIAL_NAND") {
         ui.cmdWrsr.hidden = false;
         ui.skipHwInit.hidden = true;
@@ -367,6 +411,8 @@ function changeFlashType(inst, ui)
         ui.srEraseStatus.hidden = false;
         ui.badBlockCheck.hidden = false;
         ui.quirks.hidden = true;
+        /* Flash dropdown is not applicable for NAND */
+        ui.flashSelect.hidden = true;
     }
 }
 
@@ -419,16 +465,38 @@ function getConfigurables()
             ],
             onChange: function(inst, ui) {
                 if(inst.device == "TI_DEFAULT_FLASH") {
-                    inst.fname = soc.getDefaultFlashName();
+                    /* Reload from the currently-selected flash in the dropdown */
+                    let selectedName = inst.flashSelect || soc.getDefaultFlashName();
+                    let cfg = system.getScript("/board/flash/" + selectedName + ".json");
                     inst.protocol = soc.getDefaultProtocol().name;
+                    fillConfigs(inst, cfg);
+                    inst.flashData = JSON.stringify(cfg);
+                    ui.flashSelect.hidden = (inst.flashType != "SERIAL_NOR");
                     ui.customFlashResetFxn.hidden = true;
                 } else if(inst.device == "CUSTOM_FLASH") {
                     inst.fname = "";
+                    ui.flashSelect.hidden = true;
                     if(inst.enableFlashReset == true){
                         ui.customFlashResetFxn.hidden = false;
                     }
                 }
             }
+        },
+        {
+            name: "flashSelect",
+            displayName: "Select NOR Flash",
+            description: "Select a NOR flash device; all parameters are auto-populated from the bundled JSON configuration",
+            default: soc.getDefaultFlashName(),
+            options: norFlashOptions,
+            hidden: false,
+            onChange: function(inst, ui) {
+                if(inst.device != "TI_DEFAULT_FLASH") return;
+                let cfg = system.getScript("/board/flash/" + inst.flashSelect + ".json");
+                /* Start from 1s_1s_1s so that all protocol fields are populated cleanly */
+                inst.protocol = "1s_1s_1s";
+                fillConfigs(inst, cfg);
+                inst.flashData = JSON.stringify(cfg);
+            },
         },
         {
             name: "skipHwInit",
@@ -446,59 +514,16 @@ function getConfigurables()
             ],
             onChange: function(inst,ui) {
                 if(inst.flashType == "SERIAL_NOR") {
-                    inst.fname = serialNorDefaultName;
-                    inst.protocol = serialNorDefaultProtocolName;
-                    inst.flashSize = serialNorDefaultCfg.flashSize;
-                    inst.flashPageSize = serialNorDefaultCfg.flashPageSize;
-
-                    inst.flashManfId = serialNorDefaultCfg.flashManfId;
-                    inst.flashDeviceId = serialNorDefaultCfg.flashDeviceId;
-
-                    inst.flashBlockSize = serialNorDefaultCfg.flashBlockSize;
-                    inst.flashSectorSize = serialNorDefaultCfg.flashSectorSize;
-                    inst.cmdBlockErase3B = serialNorDefaultCfg.cmdBlockErase3B;
-                    inst.cmdBlockErase4B = serialNorDefaultCfg.cmdBlockErase4B;
-                    inst.cmdSectorErase3B = serialNorDefaultCfg.cmdSectorErase3B;
-                    inst.cmdSectorErase4B = serialNorDefaultCfg.cmdSectorErase4B;
-
-                    inst.cmdRd = serialNorDefaultCfg.protos[defProtoJson].cmdRd;
-                    inst.cmdWr = serialNorDefaultCfg.protos[defProtoJson].cmdWr;
-                    inst.dummyClksCmd = serialNorDefaultCfg.protos[defProtoJson].dummyClksCmd;
-                    inst.dummyClksRd = serialNorDefaultCfg.protos[defProtoJson].dummyClksRd;
-
-                    inst.dummy_isAddrReg = serialNorDefaultCfg.protos[defProtoJson].dummyCfg == null ? false : serialNorDefaultCfg.protos[defProtoJson].dummyCfg.isAddrReg;
-                    inst.dummy_cfgReg = serialNorDefaultCfg.protos[defProtoJson].dummyCfg == null ? "0x00" : serialNorDefaultCfg.protos[defProtoJson].dummyCfg.cfgReg;
-                    inst.dummy_cmdRegRd = serialNorDefaultCfg.protos[defProtoJson].dummyCfg == null ? "0x00" : serialNorDefaultCfg.protos[defProtoJson].dummyCfg.cmdRegRd;
-                    inst.dummy_cmdRegWr = serialNorDefaultCfg.protos[defProtoJson].dummyCfg == null ? "0x00" : serialNorDefaultCfg.protos[defProtoJson].dummyCfg.cmdRegWr;
-
-                    inst.dummy_shift = serialNorDefaultCfg.protos[defProtoJson].dummyCfg == null ? 0 : serialNorDefaultCfg.protos[defProtoJson].dummyCfg.shift;
-                    inst.dummy_mask = serialNorDefaultCfg.protos[defProtoJson].dummyCfg == null ? "0x00" : serialNorDefaultCfg.protos[defProtoJson].dummyCfg.mask;
-                    inst.dummy_bitP = serialNorDefaultCfg.protos[defProtoJson].dummyCfg == null ? 0 : serialNorDefaultCfg.protos[defProtoJson].dummyCfg.bitP;
-
-
-                    inst.proto_isAddrReg = serialNorDefaultCfg.protos[defProtoJson].protoCfg == null ? false : serialNorDefaultCfg.protos[defProtoJson].protoCfg.isAddrReg;
-                    inst.proto_cfgReg = serialNorDefaultCfg.protos[defProtoJson].protoCfg == null ? "0x00" : serialNorDefaultCfg.protos[defProtoJson].protoCfg.cfgReg;
-                    inst.proto_cmdRegRd = serialNorDefaultCfg.protos[defProtoJson].protoCfg == null ? "0x00" : serialNorDefaultCfg.protos[defProtoJson].protoCfg.cmdRegRd;
-                    inst.proto_cmdRegWr = serialNorDefaultCfg.protos[defProtoJson].protoCfg == null ? "0x00" : serialNorDefaultCfg.protos[defProtoJson].protoCfg.cmdRegWr;
-
-                    inst.proto_shift = serialNorDefaultCfg.protos[defProtoJson].protoCfg == null ? 0 : serialNorDefaultCfg.protos[defProtoJson].protoCfg.shift;
-                    inst.proto_mask = serialNorDefaultCfg.protos[defProtoJson].protoCfg == null ? "0x00" : serialNorDefaultCfg.protos[defProtoJson].protoCfg.mask;
-                    inst.proto_bitP = serialNorDefaultCfg.protos[defProtoJson].protoCfg == null ? 0 : serialNorDefaultCfg.protos[defProtoJson].protoCfg.bitP;
-
-                    inst.strDtr_isAddrReg = serialNorDefaultCfg.protos[defProtoJson].strDtrCfg == null ? false : serialNorDefaultCfg.protos[defProtoJson].strDtrCfg.isAddrReg;
-                    inst.strDtr_cfgReg = serialNorDefaultCfg.protos[defProtoJson].strDtrCfg == null ? "0x00" : serialNorDefaultCfg.protos[defProtoJson].strDtrCfg.cfgReg;
-                    inst.strDtr_cmdRegRd = serialNorDefaultCfg.protos[defProtoJson].strDtrCfg == null ? "0x00" : serialNorDefaultCfg.protos[defProtoJson].strDtrCfg.cmdRegRd;
-                    inst.strDtr_cmdRegWr = serialNorDefaultCfg.protos[defProtoJson].strDtrCfg == null ? "0x00" : serialNorDefaultCfg.protos[defProtoJson].strDtrCfg.cmdRegWr;
-
-                    inst.strDtr_shift = serialNorDefaultCfg.protos[defProtoJson].strDtrCfg == null ? 0 : serialNorDefaultCfg.protos[defProtoJson].strDtrCfg.shift;
-                    inst.strDtr_mask = serialNorDefaultCfg.protos[defProtoJson].strDtrCfg == null ? "0x00" : serialNorDefaultCfg.protos[defProtoJson].strDtrCfg.mask;
-                    inst.strDtr_bitP = serialNorDefaultCfg.protos[defProtoJson].strDtrCfg == null ? 0 : serialNorDefaultCfg.protos[defProtoJson].strDtrCfg.bitP;
-
-                    inst.cmdRdsr = serialNorDefaultCfg.cmdRdsr;
-                    inst.xspiWipRdCmd = serialNorDefaultCfg.xspiWipRdCmd;
-                    inst.quirks = "Flash_quirkSpansionUNHYSADisable";
-                    inst.xspiWipReg = serialNorDefaultCfg.xspiWipReg;
-                    inst.flashData = JSON.stringify(serialNorDefaultCfg);
+                    /* When switching to NOR, reload from the currently-selected flash dropdown
+                       (or SOC default if device != TI_DEFAULT_FLASH). Protocol is always set to
+                       1s_1s_1s (per user request) */
+                    let selectedFlash = (inst.device == "TI_DEFAULT_FLASH" && inst.flashSelect)
+                        ? inst.flashSelect
+                        : soc.getDefaultFlashName();
+                    let cfg = system.getScript("/board/flash/" + selectedFlash + ".json");
+                    inst.protocol = "1s_1s_1s";
+                    fillConfigs(inst, cfg);
+                    inst.flashData = JSON.stringify(cfg);
 
                 } else if(inst.flashType == "SERIAL_NAND") {
                     inst.fname = serialNandDefaultName;

@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -94,7 +94,7 @@ $(document).ready(function(){initNavTree('EXAMPLES_SDL_INTEGRATED_MCAN.html','')
 <div class="toc"><h3>Table of Contents</h3>
 <ul><li class="level1"><a href="#EXAMPLES_SDL_MCAN_INTRO">Introduction</a></li>
 <li class="level1"><a href="#EXAMPLES_SDL_MCAN_OVERVIEW">Overview</a></li>
-<li class="level1"><a href="#autotoc_md3841">SDL Diagnostics</a><ul><li class="level2"><a href="#EXAMPLES_SDL_MCAN_COMMONESM">Common ESM</a></li>
+<li class="level1"><a href="#autotoc_md3896">SDL Diagnostics</a><ul><li class="level2"><a href="#EXAMPLES_SDL_MCAN_COMMONESM">Common ESM</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_SDL_MCAN_FREERTOSTASKS">FreeRTOS Tasks</a></li>
@@ -107,7 +107,7 @@ $(document).ready(function(){initNavTree('EXAMPLES_SDL_INTEGRATED_MCAN.html','')
 </li>
 <li class="level1"><a href="#EXAMPLES_SDL_MCAN_COMBOS">Supported Combinations</a></li>
 <li class="level1"><a href="#EXAMPLES_SDL_MCAN_STEPSTORUN">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3842">Steps to Test the Example</a></li>
+<li class="level1"><a href="#autotoc_md3897">Steps to Test the Example</a></li>
 <li class="level1"><a href="#EXAMPLES_SDL_MCAN_SEEALSO">See Also</a></li>
 <li class="level1"><a href="#EXAMPLES_SDL_MCAN_SAMPLEOUT">Sample Output</a></li>
 </ul>
@@ -129,7 +129,7 @@ Overview</h1>
 <li>the results of the runtime diagnostics: PASS or FAIL.</li>
 </ul>
 <p>The SDK Users Guide talks about how to configure and use the UART.</p>
-<h1><a class="anchor" id="autotoc_md3841"></a>
+<h1><a class="anchor" id="autotoc_md3896"></a>
 SDL Diagnostics</h1>
 <p>The table below describes the diagnostics used from SDL in this example. In general, they will not be used to perform negative or destructive tests.</p>
 <table class="markdownTable">
@@ -263,10 +263,10 @@ Steps to Run the Example</h1>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Flash the image and access the UART.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3842"></a>
+<h1><a class="anchor" id="autotoc_md3897"></a>
 Steps to Test the Example</h1>
 <ul>
-<li>Integrated example should only be tested in QSPI boot mode and should not be tested in no boot mode with debugger connected.</li>
+<li>Integrated example should only be tested in QSPI/OSPI boot mode and should not be tested in no boot mode with debugger connected.</li>
 <li>Follow the below procedure to test the Integrated example.<ol type="1">
 <li>A quick recap of steps done so far that are needed for the flashing to work<ul>
 <li>Make sure the UART port used for terminal is identified as mentioned in <a class="el" href="EVM_SETUP_PAGE.html#CCS_UART_TERMINAL">Setup UART Terminal</a></li>
@@ -276,16 +276,18 @@ Steps to Test the Example</h1>
 </li>
 <li>Build the integrated application as mentioned in Build a Hello World example, <a class="el" href="GETTING_STARTED_BUILD.html">Build a Hello World example</a></li>
 <li>As part of the build process in the final step a file with extension .appimage is generated. This is the file we need to flash.</li>
-<li>When building with makefiles and single-core projects, this file can be found here <pre class="fragment">   ${SDK_INSTALL_PATH}/examples/sdl/integrtaed_examples/{board}/r5fss0-0_freertos/ti-arm-clang/mcan_sdl.release.appimage
+<li>When building with makefiles and single-core projects, this file can be found here <pre class="fragment">   ${SDK_INSTALL_PATH}/examples/sdl/integrated_examples/{board}/r5fss0-0_freertos/ti-arm-clang/mcan_sdl.release.appimage
 </pre></li>
-<li>A default configuration file can be found at below path. You can edit this file directly or take a copy and edit this file. <pre class="fragment">   ${SDK_INSTALL_PATH}/tools/boot/sbl_prebuilt/{board}/default_sbl_qspi.cfg
-</pre></li>
-<li>Edit below line in the config file to point to your application .appimage file. Give the absolute path to the .appimage file or path relative to ${SDK_INSTALL_PATH}/tools/boot. <b>Make sure to use forward slash / in the filename path</b>. &ndash;file=../../examples/sdl/integrtaed_examples/{board}/r5fss0-0_freertos/ti-arm-clang/mcan_sdl.release.appimage &ndash;operation=flash-sector-write &ndash;flash-offset=0x81000</li>
-<li>Save and close the config file.</li>
-<li>Flash the application by follow the steps mentioned in the page, <a class="el" href="GETTING_STARTED_FLASH.html">Flash a Hello World example</a></li>
+<li>A default configuration file can be found at below path. You can edit this file directly or take a copy and edit this file.</li>
 </ol>
 </li>
 </ul>
+<pre class="fragment">        ${SDK_INSTALL_PATH}/tools/boot/sbl_prebuilt/{board}/mcelf_sbl_ospi.cfg
+</pre><ol type="1">
+<li>Edit below line in the config file to point to your application .appimage file. Give the absolute path to the .appimage file or path relative to ${SDK_INSTALL_PATH}/tools/boot. <b>Make sure to use forward slash / in the filename path</b>. &ndash;file=../../examples/sdl/integrated_examples/{board}/r5fss0-0_freertos/ti-arm-clang/mcan_sdl.release.appimage &ndash;operation=flash-sector-write &ndash;flash-offset=0x81000</li>
+<li>Save and close the config file.</li>
+<li>Flash the application by follow the steps mentioned in the page, <a class="el" href="GETTING_STARTED_FLASH.html">Flash a Hello World example</a></li>
+</ol>
 <h1><a class="anchor" id="EXAMPLES_SDL_MCAN_SEEALSO"></a>
 See Also</h1>
 <ul>

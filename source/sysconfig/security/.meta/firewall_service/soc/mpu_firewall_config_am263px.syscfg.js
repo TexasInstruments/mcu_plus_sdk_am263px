@@ -47,7 +47,7 @@ const mpu_firewall_config = [
         memSpace : [
             { startAddr: 0x78000000, size: 0x10000 },
             { startAddr: 0x78060000, size: 0x400 },
-            { startAddr: 0x78100000, size: 0x10000 },
+            { startAddr: 0x78100000, size: 0x30000 },
             { startAddr: 0x74000000, size: 0x800000 },
             { startAddr: 0x74800000, size: 0x800000 },
         ]
@@ -58,7 +58,7 @@ const mpu_firewall_config = [
         memSpace : [
             { startAddr: 0x78200000, size: 0x8000 },
             { startAddr: 0x78260000, size: 0x400 },
-            { startAddr: 0x78300000, size: 0x8000 },
+            { startAddr: 0x78300000, size: 0x18000 },
             { startAddr: 0x75000000, size: 0x800000 },
             { startAddr: 0x75800000, size: 0x800000 },
         ]
@@ -69,7 +69,7 @@ const mpu_firewall_config = [
         memSpace : [
             { startAddr: 0x78400000, size: 0x10000 },
             { startAddr: 0x78460000, size: 0x400 },
-            { startAddr: 0x78500000, size: 0x10000 },
+            { startAddr: 0x78500000, size: 0x30000 },
             { startAddr: 0x76000000, size: 0x800000 },
             { startAddr: 0x76800000, size: 0x800000 },
         ]
@@ -80,7 +80,7 @@ const mpu_firewall_config = [
         memSpace : [
             { startAddr: 0x78600000, size: 0x8000 },
             { startAddr: 0x78660000, size: 0x400 },
-            { startAddr: 0x78700000, size: 0x8000 },
+            { startAddr: 0x78700000, size: 0x18000 },
             { startAddr: 0x77000000, size: 0x800000 },
             { startAddr: 0x77800000, size: 0x800000 },
         ]

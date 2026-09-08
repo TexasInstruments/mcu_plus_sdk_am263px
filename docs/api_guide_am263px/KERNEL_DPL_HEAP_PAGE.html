@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,15 +92,15 @@ $(document).ready(function(){initNavTree('KERNEL_DPL_HEAP_PAGE.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md916">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md917">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md918">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md919">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md920">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md919">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md920">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md921">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md922">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md923">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_kernel_dpl_HeapP"></a></p>
-<h1><a class="anchor" id="autotoc_md916"></a>
+<h1><a class="anchor" id="autotoc_md919"></a>
 Features Supported</h1>
 <ul>
 <li>Ability to create multiple user defined heaps</li>
@@ -109,22 +109,22 @@ Features Supported</h1>
 <li>Thread safe APIs with RTOS</li>
 <li>Minimum alignment of <a class="el" href="group__KERNEL__DPL__HEAP.html#ga1351fc36530e348ee85e68a23f36e9a9">HeapP_BYTE_ALIGNMENT</a> for all allocations</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md917"></a>
+<h1><a class="anchor" id="autotoc_md920"></a>
 Features NOT Supported</h1>
 <ul>
 <li>Memory allocation with alignment as a input. Users should allocate extra and align after allocation.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md918"></a>
+<h1><a class="anchor" id="autotoc_md921"></a>
 Important Usage Guidelines</h1>
 <p>NA</p>
-<h1><a class="anchor" id="autotoc_md919"></a>
+<h1><a class="anchor" id="autotoc_md922"></a>
 Example Usage</h1>
 <p>Include the below file to access the APIs, </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="HeapP_8h.html">kernel/dpl/HeapP.h</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="DebugP_8h.html">kernel/dpl/DebugP.h</a>&gt;</span></div>
 </div><!-- fragment --><p> Example usage to define a heap memory and heap handle </p><div class="fragment"><div class="line"><span class="comment">/* Heap memory, recommend to align to HeapP_BYTE_ALIGNMENT */</span></div>
 <div class="line"><span class="preprocessor">#define MY_HEAP_MEM_SIZE  (32*1024u)</span></div>
-<div class="line">uint8_t gMyHeapMem[MY_HEAP_MEM_SIZE] <a class="code" href="group__lld__ethernet.html#ga8c1dfc1ccf00a08192611433ee7f17b4">__attribute__</a>((aligned(<a class="code" href="group__KERNEL__DPL__HEAP.html#ga1351fc36530e348ee85e68a23f36e9a9">HeapP_BYTE_ALIGNMENT</a>)));</div>
+<div class="line">uint8_t gMyHeapMem[MY_HEAP_MEM_SIZE] <a class="code" href="group__lld__ethernet.html#gadea7c881f4c0cb2f214a494076f67cca">__attribute__</a>((aligned(<a class="code" href="group__KERNEL__DPL__HEAP.html#ga1351fc36530e348ee85e68a23f36e9a9">HeapP_BYTE_ALIGNMENT</a>)));</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* Heap handle */</span></div>
 <div class="line"><a class="code" href="structHeapP__Object.html">HeapP_Object</a> gMyHeapObj;</div>
@@ -139,20 +139,20 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* free the memory back to the same heap */</span></div>
 <div class="line">    <a class="code" href="group__KERNEL__DPL__HEAP.html#ga50ee8d4828f2b9be907e0778876b599c">HeapP_free</a>(&amp;gMyHeapObj, ptr);</div>
-</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md920"></a>
+</div><!-- fragment --> <h1><a class="anchor" id="autotoc_md923"></a>
 API</h1>
 <p><a class="el" href="group__KERNEL__DPL__HEAP.html">APIs for Heap management</a> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
+<div class="ttc" id="agroup__lld__ethernet_html_gadea7c881f4c0cb2f214a494076f67cca"><div class="ttname"><a href="group__lld__ethernet.html#gadea7c881f4c0cb2f214a494076f67cca">__attribute__</a></div><div class="ttdeci">struct lld_sockaddr __attribute__</div><div class="ttdoc">This is the SecureBoot Stream type which holds the data for a specific bootloader to HSM call....</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__HEAP_html_ga01535a563dd2ff463e392b4a3182fca9"><div class="ttname"><a href="group__KERNEL__DPL__HEAP.html#ga01535a563dd2ff463e392b4a3182fca9">HeapP_alloc</a></div><div class="ttdeci">void * HeapP_alloc(HeapP_Object *heapObj, size_t allocSize)</div><div class="ttdoc">Alloc memory from user defined heap.</div></div>
 <div class="ttc" id="aHeapP_8h_html"><div class="ttname"><a href="HeapP_8h.html">HeapP.h</a></div></div>
-<div class="ttc" id="agroup__lld__ethernet_html_ga8c1dfc1ccf00a08192611433ee7f17b4"><div class="ttname"><a href="group__lld__ethernet.html#ga8c1dfc1ccf00a08192611433ee7f17b4">__attribute__</a></div><div class="ttdeci">struct lld_sockaddr __attribute__</div><div class="ttdoc">This is the SecureBoot Stream type which holds the data for a specific bootloader to HSM call....</div></div>
 <div class="ttc" id="aDebugP_8h_html"><div class="ttname"><a href="DebugP_8h.html">DebugP.h</a></div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__HEAP_html_ga50ee8d4828f2b9be907e0778876b599c"><div class="ttname"><a href="group__KERNEL__DPL__HEAP.html#ga50ee8d4828f2b9be907e0778876b599c">HeapP_free</a></div><div class="ttdeci">int32_t HeapP_free(HeapP_Object *heapObj, void *ptr)</div><div class="ttdoc">Free memory from user defined heap.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__DEBUG_html_ga552e9055ca7eab5fe6c224c6cd5a9d4c"><div class="ttname"><a href="group__KERNEL__DPL__DEBUG.html#ga552e9055ca7eab5fe6c224c6cd5a9d4c">DebugP_assert</a></div><div class="ttdeci">#define DebugP_assert(expression)</div><div class="ttdoc">Function to call for assert check.</div><div class="ttdef"><b>Definition:</b> DebugP.h:187</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__HEAP_html_ga6261cb76788cc3cbaec7e4f24a323f65"><div class="ttname"><a href="group__KERNEL__DPL__HEAP.html#ga6261cb76788cc3cbaec7e4f24a323f65">HeapP_construct</a></div><div class="ttdeci">int32_t HeapP_construct(HeapP_Object *heapObj, void *heapAddr, size_t heapSize)</div><div class="ttdoc">Create a user defined heap.</div></div>
-<div class="ttc" id="astructHeapP__Object_html"><div class="ttname"><a href="structHeapP__Object.html">HeapP_Object</a></div><div class="ttdoc">Opaque heap object used with the heap APIs.</div><div class="ttdef"><b>Definition:</b> HeapP.h:128</div></div>
+<div class="ttc" id="astructHeapP__Object_html"><div class="ttname"><a href="structHeapP__Object.html">HeapP_Object</a></div><div class="ttdoc">Opaque heap object used with the heap APIs.</div><div class="ttdef"><b>Definition:</b> HeapP.h:134</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__HEAP_html_ga1351fc36530e348ee85e68a23f36e9a9"><div class="ttname"><a href="group__KERNEL__DPL__HEAP.html#ga1351fc36530e348ee85e68a23f36e9a9">HeapP_BYTE_ALIGNMENT</a></div><div class="ttdeci">#define HeapP_BYTE_ALIGNMENT</div><div class="ttdoc">Minimum alignment for heap allocations, in units of bytes.</div><div class="ttdef"><b>Definition:</b> HeapP.h:56</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->

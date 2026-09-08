@@ -189,12 +189,6 @@ typedef struct DTHE_AES_Params_t
     uint32_t            opType;
 
     /**
-     *< This is a boolean flag which indicates if the KEK mode is to be used or not. If this is set to TRUE then the 'ptrKey' below is not used.
-     * The operation mode is ignored and this is only used for encryption.
-     */
-    Bool                useKEKMode;
-
-    /**
      *< Pointer to the key to be used to perform the decryption. The driver supports AES-CBC with 256bit keys.
      * This is only valid if the KEK mode flag above is set to be FALSE.
      */
@@ -209,11 +203,6 @@ typedef struct DTHE_AES_Params_t
      *< To be used only for CMAC
      */
     uint32_t*           ptrKey2;
-
-    /**
-        \brief   Length of the Key
-     */
-    uint8_t             keyLen;
 
     /**
      *<   Pointer to the Initialization Vector to be used.
@@ -306,6 +295,17 @@ typedef struct DTHE_AES_Params_t
      * Supported values are 1, 2 and 3.
      */
     uint32_t           modeSelect;
+
+    /**
+     *< This is a boolean flag which indicates if the KEK mode is to be used or not. If this is set to TRUE then the 'ptrKey' below is not used.
+     * The operation mode is ignored and this is only used for encryption.
+     */
+    Bool                useKEKMode;
+
+    /**
+        \brief   Length of the Key
+     */
+    uint8_t             keyLen;
 }DTHE_AES_Params;
 /* ========================================================================== */
 /*                            Global Variables                                */

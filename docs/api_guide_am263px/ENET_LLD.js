@@ -3,9 +3,9 @@ var ENET_LLD =
     [ "Enet LLD Introduction", "enetlld_top.html", [
       [ "Introduction", "enetlld_top.html#enetlld_intro", null ],
       [ "Application Programming Interface", "enetlld_top.html#enetlld_api_overview", [
-        [ "Control path API", "enetlld_top.html#autotoc_md1399", null ],
-        [ "Data path (DMA) API", "enetlld_top.html#autotoc_md1400", null ],
-        [ "Life cycle of an Enet LLD based application", "enetlld_top.html#autotoc_md1401", null ]
+        [ "Control path API", "enetlld_top.html#autotoc_md1402", null ],
+        [ "Data path (DMA) API", "enetlld_top.html#autotoc_md1403", null ],
+        [ "Life cycle of an Enet LLD based application", "enetlld_top.html#autotoc_md1404", null ]
       ] ],
       [ "Enet Peripherals", "enetlld_top.html#enetlld_enetpers", [
         [ "CPSW Peripheral", "enetlld_top.html#enetper_cpsw", null ]
@@ -42,8 +42,8 @@ var ENET_LLD =
         [ "Init Sequence", "enet_integration_guide_top.html#enet_init_sequence", null ],
         [ "Peripheral Open Sequence", "enet_integration_guide_top.html#enet_open_sequence", null ],
         [ "Port Open Sequence", "enet_integration_guide_top.html#enet_openport_sequence", [
-          [ "MAC-PHY link", "enet_integration_guide_top.html#autotoc_md1402", null ],
-          [ "MAC-to-MAC link", "enet_integration_guide_top.html#autotoc_md1403", null ]
+          [ "MAC-PHY link", "enet_integration_guide_top.html#autotoc_md1405", null ],
+          [ "MAC-to-MAC link", "enet_integration_guide_top.html#autotoc_md1406", null ]
         ] ],
         [ "Packet Send/Receive Sequence", "enet_integration_guide_top.html#enet_pktrxtx_sequence", null ],
         [ "IOCTL Sequence", "enet_integration_guide_top.html#enet_ioctl_sequence", null ],
@@ -54,85 +54,91 @@ var ENET_LLD =
       ] ]
     ] ],
     [ "MDIO Manual Mode Enablement", "enetmdio_manualmode.html", [
-      [ "Workaround for details errata i2329-MDIO interface corruption and its impact:", "enetmdio_manualmode.html#autotoc_md1405", null ],
-      [ "Limitations", "enetmdio_manualmode.html#autotoc_md1406", null ],
-      [ "Not supported MDIO IOCTL APIs in MDIO Manual mode", "enetmdio_manualmode.html#autotoc_md1407", null ]
+      [ "Workaround for details errata i2329-MDIO interface corruption and its impact:", "enetmdio_manualmode.html#autotoc_md1408", null ],
+      [ "Limitations", "enetmdio_manualmode.html#autotoc_md1409", null ],
+      [ "Not supported MDIO IOCTL APIs in MDIO Manual mode", "enetmdio_manualmode.html#autotoc_md1410", null ]
     ] ],
     [ "MDIO PHY Register Access - Clause45 Support", "enet_mdio_clause45_support.html", [
-      [ "Overview", "enet_mdio_clause45_support.html#autotoc_md1408", null ],
-      [ "Background", "enet_mdio_clause45_support.html#autotoc_md1409", [
-        [ "Clause 22 v/s Clause 45", "enet_mdio_clause45_support.html#autotoc_md1410", null ],
-        [ "MMD (Management/MDIO Manageable Device) : Required for Clause45 support", "enet_mdio_clause45_support.html#autotoc_md1411", null ]
+      [ "Overview", "enet_mdio_clause45_support.html#autotoc_md1411", null ],
+      [ "Background", "enet_mdio_clause45_support.html#autotoc_md1412", [
+        [ "Clause 22 v/s Clause 45", "enet_mdio_clause45_support.html#autotoc_md1413", null ],
+        [ "MMD (Management/MDIO Manageable Device) : Required for Clause45 support", "enet_mdio_clause45_support.html#autotoc_md1414", null ]
       ] ],
-      [ "Implementation Requirements", "enet_mdio_clause45_support.html#autotoc_md1412", null ],
-      [ "Implementation Steps", "enet_mdio_clause45_support.html#autotoc_md1413", [
-        [ "Step-1: Modify PHY Driver code with the MMD register as an input argument", "enet_mdio_clause45_support.html#autotoc_md1414", null ],
-        [ "Step-2: Update EnetPhy Configuration", "enet_mdio_clause45_support.html#autotoc_md1415", null ],
-        [ "Step-3: Common PHY registers access, such as PHY alive, PHY link status, etc uses Clause 22 in order to suport backward compatibility. Replace them with Clause 45 support", "enet_mdio_clause45_support.html#autotoc_md1416", null ]
+      [ "Implementation Requirements", "enet_mdio_clause45_support.html#autotoc_md1415", null ],
+      [ "Implementation Steps", "enet_mdio_clause45_support.html#autotoc_md1416", [
+        [ "Step-1: Modify PHY Driver code with the MMD register as an input argument", "enet_mdio_clause45_support.html#autotoc_md1417", null ],
+        [ "Step-2: Update EnetPhy Configuration", "enet_mdio_clause45_support.html#autotoc_md1418", null ],
+        [ "Step-3: Common PHY registers access, such as PHY alive, PHY link status, etc uses Clause 22 in order to suport backward compatibility. Replace them with Clause 45 support", "enet_mdio_clause45_support.html#autotoc_md1419", null ]
       ] ],
-      [ "Detailed API Reference", "enet_mdio_clause45_support.html#autotoc_md1417", [
-        [ "Clause 45 Read Operation", "enet_mdio_clause45_support.html#autotoc_md1418", null ],
-        [ "Clause 45 Write Operation", "enet_mdio_clause45_support.html#autotoc_md1419", null ],
-        [ "Clause 45 Read-Modify-Write Operation", "enet_mdio_clause45_support.html#autotoc_md1420", null ]
+      [ "Detailed API Reference", "enet_mdio_clause45_support.html#autotoc_md1420", [
+        [ "Clause 45 Read Operation", "enet_mdio_clause45_support.html#autotoc_md1421", null ],
+        [ "Clause 45 Write Operation", "enet_mdio_clause45_support.html#autotoc_md1422", null ],
+        [ "Clause 45 Read-Modify-Write Operation", "enet_mdio_clause45_support.html#autotoc_md1423", null ]
       ] ],
-      [ "Key Parameters Explained", "enet_mdio_clause45_support.html#autotoc_md1421", null ],
-      [ "Current Limitations", "enet_mdio_clause45_support.html#autotoc_md1422", null ],
-      [ "Summary", "enet_mdio_clause45_support.html#autotoc_md1423", null ],
-      [ "Limitations", "enet_mdio_clause45_support.html#autotoc_md1424", null ]
+      [ "Key Parameters Explained", "enet_mdio_clause45_support.html#autotoc_md1424", null ],
+      [ "Current Limitations", "enet_mdio_clause45_support.html#autotoc_md1425", null ],
+      [ "Summary", "enet_mdio_clause45_support.html#autotoc_md1426", null ],
+      [ "Limitations", "enet_mdio_clause45_support.html#autotoc_md1427", null ]
     ] ],
     [ "Version Updates from earlier SDKs to Latest", "enet_mcupsdk_10_00_update.html", [
-      [ "While upgrading from 11.01 or earlier to latest SDK", "enet_mcupsdk_10_00_update.html#autotoc_md1425", [
-        [ "Change Set", "enet_mcupsdk_10_00_update.html#autotoc_md1426", [
-          [ "Change-1 Description", "enet_mcupsdk_10_00_update.html#autotoc_md1427", null ],
-          [ "Change-1 Impact", "enet_mcupsdk_10_00_update.html#autotoc_md1428", null ],
-          [ "Change-2 Description", "enet_mcupsdk_10_00_update.html#autotoc_md1429", null ],
-          [ "Change-2 Impact", "enet_mcupsdk_10_00_update.html#autotoc_md1430", null ]
+      [ "While upgrading from 11.01 or earlier to latest SDK", "enet_mcupsdk_10_00_update.html#autotoc_md1428", [
+        [ "Change Set", "enet_mcupsdk_10_00_update.html#autotoc_md1429", [
+          [ "Change-1 Description", "enet_mcupsdk_10_00_update.html#autotoc_md1430", null ],
+          [ "Change-1 Impact", "enet_mcupsdk_10_00_update.html#autotoc_md1431", null ],
+          [ "Change-2 Description", "enet_mcupsdk_10_00_update.html#autotoc_md1432", null ],
+          [ "Change-2 Impact", "enet_mcupsdk_10_00_update.html#autotoc_md1433", null ]
         ] ]
       ] ],
-      [ "While upgrading from 11.00 SDK to 11.01 SDK", "enet_mcupsdk_10_00_update.html#autotoc_md1431", [
-        [ "Change Set", "enet_mcupsdk_10_00_update.html#autotoc_md1432", [
-          [ "Change-1 Description", "enet_mcupsdk_10_00_update.html#autotoc_md1433", null ]
-        ] ]
-      ] ],
-      [ "While upgrading from 10.00 SDK", "enet_mcupsdk_10_00_update.html#autotoc_md1434", [
+      [ "While upgrading from 11.00 SDK to 11.01 SDK", "enet_mcupsdk_10_00_update.html#autotoc_md1434", [
         [ "Change Set", "enet_mcupsdk_10_00_update.html#autotoc_md1435", [
-          [ "Change-1 Description", "enet_mcupsdk_10_00_update.html#autotoc_md1436", null ],
-          [ "Change-1 Impact", "enet_mcupsdk_10_00_update.html#autotoc_md1437", null ],
-          [ "Change-1 Solution", "enet_mcupsdk_10_00_update.html#autotoc_md1438", null ],
-          [ "Change-2 Description", "enet_mcupsdk_10_00_update.html#autotoc_md1439", null ],
-          [ "Change-2 Impact", "enet_mcupsdk_10_00_update.html#autotoc_md1440", null ],
-          [ "Change-2 Solution", "enet_mcupsdk_10_00_update.html#autotoc_md1441", null ]
+          [ "Change-1 Description", "enet_mcupsdk_10_00_update.html#autotoc_md1436", null ]
         ] ]
       ] ],
-      [ "While upgrading from 09.02 SDK or earlier", "enet_mcupsdk_10_00_update.html#autotoc_md1442", [
-        [ "Change-1 Description", "enet_mcupsdk_10_00_update.html#autotoc_md1443", null ],
-        [ "Change-1 Impact", "enet_mcupsdk_10_00_update.html#autotoc_md1444", null ],
-        [ "Change-1 Solution", "enet_mcupsdk_10_00_update.html#autotoc_md1445", [
-          [ "Option 1:", "enet_mcupsdk_10_00_update.html#autotoc_md1446", null ],
-          [ "Option 2:", "enet_mcupsdk_10_00_update.html#autotoc_md1447", null ]
+      [ "While upgrading from 10.00 SDK", "enet_mcupsdk_10_00_update.html#autotoc_md1437", [
+        [ "Change Set", "enet_mcupsdk_10_00_update.html#autotoc_md1438", [
+          [ "Change-1 Description", "enet_mcupsdk_10_00_update.html#autotoc_md1439", null ],
+          [ "Change-1 Impact", "enet_mcupsdk_10_00_update.html#autotoc_md1440", null ],
+          [ "Change-1 Solution", "enet_mcupsdk_10_00_update.html#autotoc_md1441", null ],
+          [ "Change-2 Description", "enet_mcupsdk_10_00_update.html#autotoc_md1442", null ],
+          [ "Change-2 Impact", "enet_mcupsdk_10_00_update.html#autotoc_md1443", null ],
+          [ "Change-2 Solution", "enet_mcupsdk_10_00_update.html#autotoc_md1444", null ]
+        ] ]
+      ] ],
+      [ "While upgrading from 09.02 SDK or earlier", "enet_mcupsdk_10_00_update.html#autotoc_md1445", [
+        [ "Change-1 Description", "enet_mcupsdk_10_00_update.html#autotoc_md1446", null ],
+        [ "Change-1 Impact", "enet_mcupsdk_10_00_update.html#autotoc_md1447", null ],
+        [ "Change-1 Solution", "enet_mcupsdk_10_00_update.html#autotoc_md1448", [
+          [ "Option 1:", "enet_mcupsdk_10_00_update.html#autotoc_md1449", null ],
+          [ "Option 2:", "enet_mcupsdk_10_00_update.html#autotoc_md1450", null ]
         ] ],
-        [ "Change-2 Description", "enet_mcupsdk_10_00_update.html#autotoc_md1448", null ],
-        [ "Change-2 Impact", "enet_mcupsdk_10_00_update.html#autotoc_md1449", null ],
-        [ "Change-2 Solution", "enet_mcupsdk_10_00_update.html#autotoc_md1450", null ]
+        [ "Change-2 Description", "enet_mcupsdk_10_00_update.html#autotoc_md1451", null ],
+        [ "Change-2 Impact", "enet_mcupsdk_10_00_update.html#autotoc_md1452", null ],
+        [ "Change-2 Solution", "enet_mcupsdk_10_00_update.html#autotoc_md1453", null ]
       ] ]
     ] ],
     [ "Ethernet Performance on AM263Px", "enetlld_performance.html", [
-      [ "Introduction", "enetlld_performance.html#autotoc_md1461", null ],
-      [ "Setup Details", "enetlld_performance.html#autotoc_md1462", null ],
-      [ "Layer 2 Performance", "enetlld_performance.html#autotoc_md1463", [
-        [ "Configuration Details", "enetlld_performance.html#autotoc_md1464", null ],
-        [ "Layer 2 Latency", "enetlld_performance.html#autotoc_md1465", null ]
+      [ "Introduction", "enetlld_performance.html#autotoc_md1464", null ],
+      [ "Setup Details", "enetlld_performance.html#autotoc_md1465", null ],
+      [ "Layer 2 Performance", "enetlld_performance.html#autotoc_md1466", [
+        [ "Configuration Details", "enetlld_performance.html#autotoc_md1467", null ],
+        [ "Layer 2 Latency", "enetlld_performance.html#autotoc_md1468", null ]
       ] ],
-      [ "TCP/IP Performance", "enetlld_performance.html#autotoc_md1466", [
-        [ "Configuration Details", "enetlld_performance.html#autotoc_md1467", [
-          [ "TCP Throughput", "enetlld_performance.html#autotoc_md1468", null ],
-          [ "UDP Throughput", "enetlld_performance.html#autotoc_md1469", null ]
+      [ "TCP/IP Performance", "enetlld_performance.html#autotoc_md1469", [
+        [ "Configuration Details", "enetlld_performance.html#autotoc_md1470", [
+          [ "TCP Throughput", "enetlld_performance.html#autotoc_md1471", null ],
+          [ "UDP Throughput", "enetlld_performance.html#autotoc_md1472", null ]
         ] ]
       ] ],
-      [ "Ether-Ring Performance", "enetlld_performance.html#autotoc_md1470", null ],
-      [ "Ether-Ring Round Trip Latency with CAN(Vehicle) traffic", "enetlld_performance.html#autotoc_md1471", null ],
+      [ "Ether-Ring Performance", "enetlld_performance.html#autotoc_md1473", null ],
+      [ "Ether-Ring Round Trip Latency with CAN(Vehicle) traffic", "enetlld_performance.html#autotoc_md1474", null ],
+      [ "Daisy Chain KPI performance with TSN Features(EST,Gptp)", "enetlld_performance.html#autotoc_md1475", [
+        [ "Test Setup", "enetlld_performance.html#autotoc_md1476", null ],
+        [ "Test Configuration", "enetlld_performance.html#autotoc_md1477", null ],
+        [ "Round Trip Latencies with 3 nodes(1 talker, 2listener)", "enetlld_performance.html#autotoc_md1478", null ],
+        [ "KPI Summary", "enetlld_performance.html#autotoc_md1479", null ]
+      ] ],
       [ "XIP Performance", "enetlld_performance.html#networking_xip_performance", null ],
-      [ "See Also", "enetlld_performance.html#autotoc_md1472", null ]
+      [ "See Also", "enetlld_performance.html#autotoc_md1480", null ]
     ] ],
     [ "Enet EST/TAS Support", "enet_tas_top.html", [
       [ "Introduction", "enet_tas_top.html#enet_est_intro", [
@@ -167,23 +173,23 @@ var ENET_LLD =
       [ "External PHY management", "enet_migration_guide_top.html#ExternalPhyManagement", null ],
       [ "Tuning memory usage of enet driver for non-lwip apps", "enet_migration_guide_top.html#MemoryTuningNonLwip", null ],
       [ "Tuning memory usage of enet driver for lwip apps", "enet_migration_guide_top.html#MemoryTuningLwip", null ],
-      [ "Compatibilty Breaks During MCU+ SDK Version Update", "enet_migration_guide_top.html#autotoc_md1458", [
-        [ "Updating to version 10.00", "enet_migration_guide_top.html#autotoc_md1459", null ]
+      [ "Compatibilty Breaks During MCU+ SDK Version Update", "enet_migration_guide_top.html#autotoc_md1461", [
+        [ "Updating to version 10.00", "enet_migration_guide_top.html#autotoc_md1462", null ]
       ] ]
     ] ],
     [ "Ethernet Add-on Boards", "ETHERNET_ADDON_BOARDS_TOP.html", [
       [ "Introduction", "ETHERNET_ADDON_BOARDS_TOP.html#ethernet_addon_boards_intro", [
-        [ "Important Usage Guidelines", "ETHERNET_ADDON_BOARDS_TOP.html#autotoc_md1460", null ]
+        [ "Important Usage Guidelines", "ETHERNET_ADDON_BOARDS_TOP.html#autotoc_md1463", null ]
       ] ]
     ] ],
     [ "Ethernet Packet Pool Allocation Guidelines", "PACKETPOOL_CONFIG_TOP.html", null ],
     [ "Ether-Ring Overview", "ETHERRING_OVERVIEW.html", [
-      [ "Software Architecture", "ETHERRING_OVERVIEW.html#autotoc_md1473", null ],
-      [ "CAN to Ethernet Traffic Simulation", "ETHERRING_OVERVIEW.html#autotoc_md1474", null ],
-      [ "Packet Duplication on Transmission", "ETHERRING_OVERVIEW.html#autotoc_md1475", null ],
-      [ "Software Assistance on Transmission side", "ETHERRING_OVERVIEW.html#autotoc_md1476", null ],
-      [ "Software Assistance on Reception side", "ETHERRING_OVERVIEW.html#autotoc_md1477", null ],
-      [ "Duplicate packet Rejection on Reception side(Duplicate Packet Rejection)", "ETHERRING_OVERVIEW.html#autotoc_md1478", null ]
+      [ "Software Architecture", "ETHERRING_OVERVIEW.html#autotoc_md1481", null ],
+      [ "CAN to Ethernet Traffic Simulation", "ETHERRING_OVERVIEW.html#autotoc_md1482", null ],
+      [ "Packet Duplication on Transmission", "ETHERRING_OVERVIEW.html#autotoc_md1483", null ],
+      [ "Software Assistance on Transmission side", "ETHERRING_OVERVIEW.html#autotoc_md1484", null ],
+      [ "Software Assistance on Reception side", "ETHERRING_OVERVIEW.html#autotoc_md1485", null ],
+      [ "Duplicate packet Rejection on Reception side(Duplicate Packet Rejection)", "ETHERRING_OVERVIEW.html#autotoc_md1486", null ]
     ] ],
     [ "Ethernet interface (RGMII / MII) selection", "enet_interface_selection.html", null ]
 ];

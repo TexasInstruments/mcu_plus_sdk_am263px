@@ -71,7 +71,7 @@ extern "C" {
  * \param args          [in] Argument pointer passed by user when \ref SIPC_registerClient is called
  */
 
-typedef void (*SIPC_FxnCallback)(uint8_t remoteSecCoreId, uint8_t localClientId, uint8_t remoteClientId ,uint8_t *msgValue, void *args);
+typedef void (*SIPC_FxnCallback)(uint8_t remoteSecCoreId, uint8_t localClientId, uint8_t remoteClientId ,uint8_t *msgValue, const void *args);
 
 
 /**
@@ -179,7 +179,7 @@ int32_t SIPC_sendMsg(uint8_t remoteSecCoreId, uint8_t remoteClientId, uint8_t lo
  * @return SystemP_SUCCESS, callback registered sucessfully
  * @return SystemP_FAILURE, callback registration failed, either remoteCoreId or localClientId is invalid or callback already registered.
  */
-int32_t SIPC_registerClient(uint8_t localClientId, SIPC_FxnCallback msgCallback, void *args);
+int32_t SIPC_registerClient(uint8_t localClientId, SIPC_FxnCallback msgCallback, const void *args);
 
 
 /**

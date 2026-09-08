@@ -55,7 +55,12 @@ extern "C" {
   // #define HWIP_FPU_CONTEXT_SAVE_RESTORE_ENABLE
   
   /* compile flag to enable or disable interrupt nesting */
+#if defined (OS_THREADX)
+  /* Interrupt nesting is not yet supported / validated with Threadx */
+  //   #define HWIP_NESTED_INTERRUPTS_IRQ_ENABLE
+#else
   #define HWIP_NESTED_INTERRUPTS_IRQ_ENABLE
+#endif
   
   #if defined (OS_NORTOS)
   

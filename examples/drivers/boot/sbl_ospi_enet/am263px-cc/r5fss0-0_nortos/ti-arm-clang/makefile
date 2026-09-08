@@ -128,13 +128,13 @@ LIBS_PATH_common = \
 	-Wl,-i${CG_TOOL_ROOT}/lib \
 
 LIBS_common = \
-	-lnortos.am263px.r5f.ti-arm-clang.${ConfigName}.lib \
-	-ldrivers.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
-	-lboard.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
-	-lsdl.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
-	-lsecurity.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
-	-lenet-cpsw.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
-	-lmiddleware.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
+	-lnortos.am263px.r5f.ti-arm-clang.release.lib \
+	-ldrivers.am263px.r5f.ti-arm-clang.nortos.release.lib \
+	-lboard.am263px.r5f.ti-arm-clang.nortos.release.lib \
+	-lsdl.am263px.r5f.ti-arm-clang.nortos.release.lib \
+	-lsecurity.am263px.r5f.ti-arm-clang.nortos.release.lib \
+	-lenet-cpsw.am263px.r5f.ti-arm-clang.nortos.release.lib \
+	-lmiddleware.am263px.r5f.ti-arm-clang.nortos.release.lib \
 	-llibc.a \
 	-llibsysbm.a \
 
@@ -146,13 +146,13 @@ LFLAGS_common = \
 
 
 LIBS_NAME = \
-	nortos.am263px.r5f.ti-arm-clang.${ConfigName}.lib \
-	drivers.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
-	board.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
-	sdl.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
-	security.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
-	enet-cpsw.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
-	middleware.am263px.r5f.ti-arm-clang.nortos.${ConfigName}.lib \
+	nortos.am263px.r5f.ti-arm-clang.release.lib \
+	drivers.am263px.r5f.ti-arm-clang.nortos.release.lib \
+	board.am263px.r5f.ti-arm-clang.nortos.release.lib \
+	sdl.am263px.r5f.ti-arm-clang.nortos.release.lib \
+	security.am263px.r5f.ti-arm-clang.nortos.release.lib \
+	enet-cpsw.am263px.r5f.ti-arm-clang.nortos.release.lib \
+	middleware.am263px.r5f.ti-arm-clang.nortos.release.lib \
 	libc.a \
 	libsysbm.a \
 

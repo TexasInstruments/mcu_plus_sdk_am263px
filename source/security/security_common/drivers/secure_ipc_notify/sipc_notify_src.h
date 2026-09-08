@@ -115,7 +115,7 @@ extern SIPC_SwQueue* gSIPC_QueHsmToSecureHost[MAX_SEC_CORES_WITH_HSM - 1U];
  * interrupts for different SOCs having different 
  * interrupt controllers
  */
-int32_t SIPC_Register_Isr(HwiP_Params *pHwiParams, SIPC_InterruptConfig *pInterruptConfig, SIPC_Params *params, HwiP_FxnCallback callback);
+int32_t SIPC_Register_Isr(HwiP_Params *pHwiParams, SIPC_InterruptConfig *pInterruptConfig, const SIPC_Params *params, HwiP_FxnCallback callback);
 
 /* Secure IPC Isr */
 void SIPC_isr(void *args);

@@ -6,16 +6,18 @@ col0 = "red"
 col1 = "blue"
 col2 = "green"
 col3 = "pink"
+col4 = "yellow"
 
 f_name = sys.argv[1]
 f_size = os.path.getsize(f_name)
 
 f = open(f_name, "rb")
 
-data0 = f.read(int(f_size/4))
-data1 = f.read(int(f_size/4))
-data2 = f.read(int(f_size/4))
-data3 = f.read(int(f_size/4))
+data0 = f.read(int(f_size/5))
+data1 = f.read(int(f_size/5))
+data2 = f.read(int(f_size/5))
+data3 = f.read(int(f_size/5))
+data4 = f.read(int(f_size/5))
 
 x0 = []
 y0 = []
@@ -62,10 +64,21 @@ for tx in range(0, 128):
 			x3.append(tx)
 			y3.append(rx)
 
+x4 = []
+y4 = []
+
+for tx in range(0, 128):
+	for rx in range(0, 128):
+		idx = 128*tx + rx
+		if(int(data4[idx]) == 1):
+			x4.append(tx)
+			y4.append(rx)
+
 plt.scatter(x0,y0,c=col0,linewidths=2)
 plt.scatter(x1,y1,c=col1,linewidths=2)
 plt.scatter(x2,y2,c=col2,linewidths=2)
 plt.scatter(x3,y3,c=col3,linewidths=2)
+plt.scatter(x4,y4,c=col4,linewidths=2)
 
 
 plt.xlabel("TX")

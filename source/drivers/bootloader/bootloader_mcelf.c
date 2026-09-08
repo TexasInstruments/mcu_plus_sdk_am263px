@@ -1209,6 +1209,12 @@ int32_t Bootloader_parseELFMeta(Bootloader_Handle handle, Bootloader_BootImageIn
                 status = SystemP_FAILURE;
             }
 
+            /* Check if PHT entry size is <= MAX */
+            if (mcelfMetaInfo->elfPtr64->e_phentsize > ELF_P_HEADER_MAX_SIZE)
+            {
+                status = SystemP_FAILURE;
+            }
+
             if(status == SystemP_SUCCESS)
             {
                 mcelfMetaInfo->elfPhdrPtr64 = (Bootloader_ELFPH64*) &gElfBuffer[mcelfMetaInfo->elfPtr64->e_phoff];
@@ -1233,6 +1239,12 @@ int32_t Bootloader_parseELFMeta(Bootloader_Handle handle, Bootloader_BootImageIn
 
             /* Check if number of PHT entries are <= MAX */
             if (mcelfMetaInfo->numSegments > ELF_MAX_SEGMENTS)
+            {
+                status = SystemP_FAILURE;
+            }
+
+            /* Check if PHT entry size is <= MAX */
+            if (mcelfMetaInfo->elfPtr32->e_phentsize > ELF_P_HEADER_MAX_SIZE)
             {
                 status = SystemP_FAILURE;
             }
@@ -1380,7 +1392,8 @@ int32_t Bootloader_parseAndLoadMultiCoreELF(Bootloader_Handle handle, Bootloader
                     mcelfMetaInfo.elfPtr64 = (Bootloader_ELFH64 *)gElfBuffer;
                     mcelfMetaInfo.numSegments = mcelfMetaInfo.elfPtr64->e_phnum;
 
-                    if (mcelfMetaInfo.numSegments > ELF_MAX_SEGMENTS)
+                    if ((mcelfMetaInfo.numSegments > ELF_MAX_SEGMENTS) ||
+                        (mcelfMetaInfo.elfPtr64->e_phentsize > ELF_P_HEADER_MAX_SIZE))
                     {
                         status = SystemP_FAILURE;
                     }
@@ -1397,7 +1410,8 @@ int32_t Bootloader_parseAndLoadMultiCoreELF(Bootloader_Handle handle, Bootloader
                     mcelfMetaInfo.elfPtr32 = (Bootloader_ELFH32 *)gElfBuffer;
                     mcelfMetaInfo.numSegments = mcelfMetaInfo.elfPtr32->e_phnum;
 
-                    if (mcelfMetaInfo.numSegments > ELF_MAX_SEGMENTS)
+                    if ((mcelfMetaInfo.numSegments > ELF_MAX_SEGMENTS) ||
+                        (mcelfMetaInfo.elfPtr32->e_phentsize > ELF_P_HEADER_MAX_SIZE))
                     {
                         status = SystemP_FAILURE;
                     }
@@ -1814,7 +1828,8 @@ int32_t Bootloader_parseAndLoadMultiCoreELFLinux(Bootloader_Handle handle, Bootl
                     mcelfMetaInfo.elfPtr64 = (Bootloader_ELFH64 *)gElfBuffer;
                     mcelfMetaInfo.numSegments = mcelfMetaInfo.elfPtr64->e_phnum;
 
-                    if (mcelfMetaInfo.numSegments > ELF_MAX_SEGMENTS)
+                    if ((mcelfMetaInfo.numSegments > ELF_MAX_SEGMENTS) ||
+                        (mcelfMetaInfo.elfPtr64->e_phentsize > ELF_P_HEADER_MAX_SIZE))
                     {
                         status = SystemP_FAILURE;
                     }
@@ -1831,7 +1846,8 @@ int32_t Bootloader_parseAndLoadMultiCoreELFLinux(Bootloader_Handle handle, Bootl
                     mcelfMetaInfo.elfPtr32 = (Bootloader_ELFH32 *)gElfBuffer;
                     mcelfMetaInfo.numSegments = mcelfMetaInfo.elfPtr32->e_phnum;
 
-                    if (mcelfMetaInfo.numSegments > ELF_MAX_SEGMENTS)
+                    if ((mcelfMetaInfo.numSegments > ELF_MAX_SEGMENTS) ||
+                        (mcelfMetaInfo.elfPtr32->e_phentsize > ELF_P_HEADER_MAX_SIZE))
                     {
                         status = SystemP_FAILURE;
                     }

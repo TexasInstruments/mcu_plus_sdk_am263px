@@ -52,7 +52,7 @@ typedef struct
 }SOC_VirtToPhyMap;
 
 SOC_VirtToPhyMap virtToPhymap;
-uint8_t isMapAvailable = 0u;
+uint8_t isMapAvailable;
 
 int32_t SOC_moduleClockEnable(uint32_t moduleId, uint32_t enable)
 {
@@ -1651,4 +1651,25 @@ void SOC_sendSoftwareInterrupt(uint16_t coreId)
             regs->R5SS1_CORE1_SW_INT = 1;
             break;
     };
+}
+
+void SOC_enableVpp(void)
+{
+    /* Set EFUSE_MODE_CTRL[0] = 1 to prevent eFuse lifetime degradation when VPP is always connected to VDDA18_LDO */
+    /* This should be done early in device configuration after power up (TRM recommendation) */
+    /* Unlock TOP_CTRL space */
+    SOC_controlModuleUnlockMMR(SOC_DOMAIN_ID_MAIN, TOP_CTRL_PARTITION0);
+
+    /* Read and modify EFUSE_VPP_EN register to enable VPP */
+    uint32_t regVal = CSL_REG32_RD(CSL_TOP_CTRL_U_BASE + CSL_TOP_CTRL_EFUSE_VPP_EN);
+    regVal |= CSL_TOP_CTRL_EFUSE_VPP_EN_EFUSE_VPP_EN_VPP_EN_MASK;
+    CSL_REG32_WR(CSL_TOP_CTRL_U_BASE + CSL_TOP_CTRL_EFUSE_VPP_EN, regVal);
+
+    /* Verify write succeeded */
+    uint32_t readback = CSL_REG32_RD(CSL_TOP_CTRL_U_BASE + CSL_TOP_CTRL_EFUSE_VPP_EN);
+    uint32_t vppEnBit = (readback & CSL_TOP_CTRL_EFUSE_VPP_EN_EFUSE_VPP_EN_VPP_EN_MASK) >> CSL_TOP_CTRL_EFUSE_VPP_EN_EFUSE_VPP_EN_VPP_EN_SHIFT;
+    DebugP_assert(vppEnBit == 0x1U);
+
+    /* Lock TOP_CTRL space */
+    SOC_controlModuleLockMMR(SOC_DOMAIN_ID_MAIN, TOP_CTRL_PARTITION0);
 }

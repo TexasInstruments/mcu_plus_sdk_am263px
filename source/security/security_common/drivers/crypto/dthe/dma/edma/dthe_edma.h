@@ -79,7 +79,7 @@ extern DMA_Fxns gEdmaFxns;
  *
  *  \return SystemP_SUCCESS on success or SystemP_SUCCESS_FAILURE on Failure.
  */
-int32_t EDMA_Config_TxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks, uint16_t blockSize, int32_t operationType);
+int32_t EDMA_Config_TxChannel(DMA_Handle handle, const uint32_t *srcAddress, const uint32_t *dstAddress, uint16_t numBlocks, uint16_t blockSize, int32_t operationType);
 
 /**
  * \brief This EDMA api implemented to enable DMA TX transfer region.
@@ -119,7 +119,7 @@ int32_t EDMA_disableTxChannel(DMA_Handle handle);
  *
  *  \return SystemP_SUCCESS on success or SystemP_SUCCESS_FAILURE on Failure.
  */
-int32_t EDMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks, int32_t operationType);
+int32_t EDMA_Config_RxChannel(DMA_Handle handle, const uint32_t *srcAddress, const uint32_t *dstAddress, uint16_t numBlocks, int32_t operationType);
 
 /**
  * \brief This EDMA api implemented to enable Rx Transfer Region.

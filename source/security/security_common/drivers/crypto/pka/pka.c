@@ -153,6 +153,11 @@
  */
 #define ASYM_CRYPT_ECDSA_SIGN_TIMEOUT              (10000U * PKA_CPU_FREQ_MHZ)
 
+/**
+ * Timeout for ECpMULxyz (prime-curve point scalar-multiply) operation - 10ms
+ */
+#define PKA_ECPMUL_TIMEOUT                         (10000U * PKA_CPU_FREQ_MHZ)
+
 /** Command to PKA firmware - MODEXP_CRT */
 #define PKA_MODEXP_CRT_CMD   (((uint32_t) 0x0U) << PKA_FUNCTION_CMD_HI_SHIFT) | \
     (((uint32_t) 0x1U) << PKA_FUNCTION_CMD_LO_SHIFT)
@@ -176,6 +181,15 @@
 /** Command to PKA firmware - PKA_ModInv*/
 #define PKA_MODINVP_CMD   (((uint32_t) 0x0U) << PKA_FUNCTION_CMD_HI_SHIFT) | \
     (((uint32_t) 0x7U) << PKA_FUNCTION_CMD_LO_SHIFT)
+
+/** Command to PKA firmware - ECpMULxyz (scalar multiply a point on a
+ *  short-Weierstrass prime curve: k * P1_xy -> P0_xyz).
+ *  PKA_Function[18:16,14:12] = 001 001, per the EIP-29t2 Programmer Manual
+ *  section 4.3 / Table 10 - confirmed against the worked example in section
+ *  5.2 (FUNCTION register value 0x19000 = this command | RUN bit).
+ */
+#define PKA_ECPMUL_CMD   (((uint32_t) 0x1U) << PKA_FUNCTION_CMD_HI_SHIFT) | \
+    (((uint32_t) 0x1U) << PKA_FUNCTION_CMD_LO_SHIFT)
 
 #define PKA_ADDMODP        0
 #define PKA_SUBMODP        1
@@ -204,6 +218,10 @@ static inline uint32_t PKA_dwAlign(uint32_t size);
 static void PKA_delay(int32_t delayCount);
 static uint32_t PKA_bigIntBitLen(const uint32_t bn[ECDSA_MAX_LENGTH]);
 static AsymCrypt_Return_t PKA_isBigIntZero(const uint32_t bn[RSA_MAX_LENGTH]);
+static AsymCrypt_Return_t PKA_ECGenRandomInRange(AsymCrypt_Handle handle,
+                        const struct AsymCrypt_ECPrimeCurveP *cp,
+                        uint32_t size,
+                        uint32_t result[EC_PARAM_MAXLEN]);
 static CSL_Eip_29t2_ramRegs* PKA_getBaseAddress(PKA_Attrs *attrs);
 static void PKA_setALength(CSL_Eip_29t2_ramRegs *pka_regs, uint32_t size);
 static void PKA_setBLength(CSL_Eip_29t2_ramRegs *pka_regs, uint32_t size);
@@ -428,7 +446,7 @@ AsymCrypt_Handle AsymCrypt_open(uint32_t index)
         config = &gPkaConfig[index];
         DebugP_assert(NULL != config->attrs);
         attrs = config->attrs;
-        if(TRUE == attrs->isOpen)
+        if(1U == attrs->isOpen)
         {
             /* Handle is already opened */
             status = ASYM_CRYPT_RETURN_FAILURE;
@@ -454,8 +472,19 @@ AsymCrypt_Handle AsymCrypt_open(uint32_t index)
 
     if(ASYM_CRYPT_RETURN_SUCCESS == status)
     {
-        attrs->isOpen = TRUE;
+        attrs->isOpen = 1U;
         handle = (AsymCrypt_Handle) config;
+
+        /* Enable the TRNG hardware  so that RNG_read() -
+         * used by AsymCrypt_ECDSAKeyGenPrivate() - succeeds */
+        if (NULL != gRngHandle)
+        {
+            (void) RNG_setup(gRngHandle);
+        }
+        else
+        {
+            handle = NULL;
+        }
     }
 
     return (handle);
@@ -477,6 +506,9 @@ AsymCrypt_Return_t AsymCrypt_close(AsymCrypt_Handle handle)
         /* TO disable module*/
         handle = NULL;
         status  = ASYM_CRYPT_RETURN_SUCCESS;
+
+        /* close the RNG instance */
+        (void) RNG_close(gRngHandle);
     }
     return (status);
 }
@@ -492,19 +524,22 @@ AsymCrypt_Return_t AsymCrypt_RSAPrivate(AsymCrypt_Handle handle,
     CSL_Eip_29t2_ramRegs *pka_regs;
     PKA_Config      *config;
     PKA_Attrs *attrs;
-    config  = (PKA_Config *) handle;
-    attrs   = config->attrs;
-    size = k->p[0];
-
-    /* check sizes, sizes of s and n must match. */
-    if ((!((size <= 1U) || (size > ((RSA_MAX_LENGTH - 1U) >> 1)) ||
-           (k->q[0] > size) || (k->dp[0] > size) || (k->dq[0] > size) ||
-           (k->coefficient[0] > size) || (m[0] > (size * 2U)))))
+    if (NULL != handle)
     {
-        /* Checking handle is opened or not */
-        if((attrs->isOpen) && (NULL != handle))
+        config  = (PKA_Config *) handle;
+        attrs   = config->attrs;
+        size = k->p[0];
+
+        /* check sizes, sizes of s and n must match. */
+        if ((!((size <= 1U) || (size > ((RSA_MAX_LENGTH - 1U) >> 1)) ||
+               (k->q[0] > size) || (k->dp[0] > size) || (k->dq[0] > size) ||
+               (k->coefficient[0] > size) || (m[0] > (size * 2U)))))
         {
-            status = ASYM_CRYPT_RETURN_SUCCESS;
+            /* Checking handle is opened or not */
+            if(attrs->isOpen)
+            {
+                status = ASYM_CRYPT_RETURN_SUCCESS;
+            }
         }
     }
     if(ASYM_CRYPT_RETURN_SUCCESS == status)
@@ -665,19 +700,22 @@ AsymCrypt_Return_t AsymCrypt_RSAPublic(AsymCrypt_Handle handle,
     CSL_Eip_29t2_ramRegs *pka_regs;
     PKA_Config      *config;
     PKA_Attrs *attrs;
-    config  = (PKA_Config *) handle;
-    attrs   = config->attrs;
-
-    size = k->n[0];
-
-    /* check sizes, sizes of s and n must match. */
-    if ((!((size <= 1U) || (size > (RSA_MAX_LENGTH - 1U)) ||
-           (m[0] != size) || (k->e[0] > (RSA_MAX_LENGTH - 1U)))))
+    if (NULL != handle)
     {
-        /* Checking handle is opened or not */
-        if((attrs->isOpen) && (NULL != handle))
+        config  = (PKA_Config *) handle;
+        attrs   = config->attrs;
+
+        size = k->n[0];
+
+        /* check sizes, sizes of s and n must match. */
+        if ((!((size <= 1U) || (size > (RSA_MAX_LENGTH - 1U)) ||
+               (m[0] != size) || (k->e[0] > (ASYM_CRYPT_LEN(RSA_KEY_E_MAXLEN) - 1U)))))
         {
-            status = ASYM_CRYPT_RETURN_SUCCESS;
+            /* Checking handle is opened or not */
+            if(attrs->isOpen)
+            {
+                status = ASYM_CRYPT_RETURN_SUCCESS;
+            }
         }
     }
     if(status == ASYM_CRYPT_RETURN_SUCCESS)
@@ -812,31 +850,54 @@ AsymCrypt_Return_t AsymCrypt_ECDSASign(AsymCrypt_Handle handle,
     uint32_t startCycleCount, elapsedCycles = 0U;
     uint32_t offset, reg, size, numCount;
     uint32_t bn_one[2] = { 1U, 1U };
+    uint32_t nonceBuf[EC_PARAM_MAXLEN];
+    const uint32_t *effK;
     CSL_Eip_29t2_ramRegs *pka_regs;
     PKA_Config      *config;
     PKA_Attrs *attrs;
-    config  = (PKA_Config *) handle;
-    attrs   = config->attrs;
-
-    /* Silence the usage of curveId */
-    (void)curveId;
-
-    size = cp->prime[0];
-
-    /* check sizes */
-    if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
-           (size != cp->order[0]) || (size < cp->a[0]) ||
-           (size < cp->b[0]) || (size < cp->g.x[0]) ||
-           (size < cp->g.y[0]) || (size < priv[0]) ||
-           (size < h[0]) || (size < k[0]))) &&
-           (PKA_bigIntBitLen(cp->order) >= PKA_bigIntBitLen(h)))
+    if ((NULL != handle) && (NULL != cp) && (NULL != h) && (NULL != priv))
     {
-        /* Checking handle is opened or not */
-        if((attrs->isOpen) && (NULL != handle))
+        config  = (PKA_Config *) handle;
+        attrs   = config->attrs;
+
+        /* Silence the usage of curveId */
+        (void)curveId;
+
+        size = cp->prime[0];
+
+        /* No nonce supplied (NULL or all-zero): generate one, matching PKE's
+         * behavior of auto-generating a nonce when 'k' isn't provided. */
+        if ((k == NULL) || (PKA_isBigIntZero(k) == ASYM_CRYPT_RETURN_SUCCESS))
         {
-            status = ASYM_CRYPT_RETURN_SUCCESS;
+            effK = NULL;
+        }
+        else
+        {
+            effK = k;
+        }
+
+        /* check sizes */
+        if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
+               (size != cp->order[0]) || (size < cp->a[0]) ||
+               (size < cp->b[0]) || (size < cp->g.x[0]) ||
+               (size < cp->g.y[0]) || (size < priv[0]) ||
+               (size < h[0]) || ((effK != NULL) && (size < effK[0])))) &&
+               (PKA_bigIntBitLen(cp->order) >= PKA_bigIntBitLen(h)))
+        {
+            /* Checking handle is opened or not */
+            if(attrs->isOpen)
+            {
+                status = ASYM_CRYPT_RETURN_SUCCESS;
+            }
         }
     }
+
+    if ((status == ASYM_CRYPT_RETURN_SUCCESS) && (effK == NULL))
+    {
+        status = PKA_ECGenRandomInRange(handle, cp, size, nonceBuf);
+        effK = nonceBuf;
+    }
+
     if(status == ASYM_CRYPT_RETURN_SUCCESS)
     {
         pka_regs = PKA_getBaseAddress(attrs);
@@ -878,7 +939,7 @@ AsymCrypt_Return_t AsymCrypt_ECDSASign(AsymCrypt_Handle handle,
         offset += PKA_dwAlign(size + 2U);
 
         PKA_setDPtr(pka_regs, offset);
-        PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, k);
+        PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, effK);
 
         CSL_REG_WR(&pka_regs->EIP_27B_EIP27_REGISTERS.PKA_FUNCTION, ASYM_CRYPT_ECDSA_SIGN_CMD | (((uint32_t) 1U) << PKA_FUNCTION_RUN_SHIFT));
 
@@ -937,108 +998,112 @@ AsymCrypt_Return_t AsymCrypt_ECDSAVerify(AsymCrypt_Handle handle,
     CSL_Eip_29t2_ramRegs *pka_regs;
     PKA_Config      *config;
     PKA_Attrs *attrs;
-    config  = (PKA_Config *) handle;
-    attrs   = config->attrs;
-
-    /* Silence the usage of curveId */
-    (void)curveId;
-
-    size = cp->prime[0];
-
-    /* check sizes */
-    if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
-           (size != cp->order[0]) || (size < cp->a[0]) ||
-           (size < cp->b[0]) || (size < cp->g.x[0]) ||
-           (size < cp->g.y[0]) || (size < pub->x[0]) ||
-           (size < pub->y[0]) || (size < sig->r[0]) ||
-           (size < sig->s[0]) || (size < h[0]))) &&
-            (PKA_bigIntBitLen(cp->order) >= PKA_bigIntBitLen(h)) &&
-            PKA_isBigIntZero(sig->r) && PKA_isBigIntZero(sig->s))
+    if ((NULL != handle) && (NULL != cp))
     {
-        /* Checking handle is opened or not */
-        if((attrs->isOpen) && (NULL != handle))
+        config  = (PKA_Config *) handle;
+        attrs   = config->attrs;
+
+        /* Silence the usage of curveId */
+        (void)curveId;
+
+        size = cp->prime[0];
+
+        /* check sizes */
+        if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
+               (size != cp->order[0]) || (size < cp->a[0]) ||
+               (size < cp->b[0]) || (size < cp->g.x[0]) ||
+               (size < cp->g.y[0]) || (size < pub->x[0]) ||
+               (size < pub->y[0]) || (size < sig->r[0]) ||
+               (size < sig->s[0]) || (size < h[0]))) &&
+                (PKA_bigIntBitLen(cp->order) >= PKA_bigIntBitLen(h)) &&
+                (PKA_isBigIntZero(sig->r) != ASYM_CRYPT_RETURN_SUCCESS) &&
+                (PKA_isBigIntZero(sig->s) != ASYM_CRYPT_RETURN_SUCCESS))
         {
-            status = ASYM_CRYPT_RETURN_SUCCESS;
-        }
-        if(status == ASYM_CRYPT_RETURN_SUCCESS)
-        {
-            pka_regs = PKA_getBaseAddress(attrs);
-
-            PKA_setALength(pka_regs, size);
-            PKA_setBLength(pka_regs, size);
-
-            offset = 0;
-            /* Vector B has p, a, b, gz, gy and Rz (must be 1) */
-            PKA_setBPtr(pka_regs, offset);
-            PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, cp->prime);
-            offset += PKA_dwAlign(size + 2U);
-
-            PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, cp->a);
-            offset += PKA_dwAlign(size + 2U);
-
-            PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, cp->b);
-            offset += PKA_dwAlign(size + 2U);
-
-            PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, cp->order);
-            offset += PKA_dwAlign(size + 2U);
-
-            PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, cp->g.x);
-            offset += PKA_dwAlign(size + 2U);
-
-            PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, cp->g.y);
-            offset += PKA_dwAlign(size + 2U);
-
-            PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, bn_one);
-            offset += PKA_dwAlign(size + 2U);
-
-            /* Vector C has h */
-            PKA_setCPtr(pka_regs, offset);
-            PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, h);
-            offset += PKA_dwAlign(size + 2U);
-
-            /* Vector A has px, py and R'z (must be 1) */
-            PKA_setAPtr(pka_regs, offset);
-            PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, pub->x);
-            offset += PKA_dwAlign(size + 2U);
-
-            PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, pub->y);
-            offset += PKA_dwAlign(size + 2U);
-
-            PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, bn_one);
-            offset += PKA_dwAlign(size + 2U);
-
-            PKA_setDPtr(pka_regs, offset);
-            PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, sig->r);
-            offset += PKA_dwAlign(size + 2U);
-
-            PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, sig->s);
-
-            CSL_REG_WR(&pka_regs->EIP_27B_EIP27_REGISTERS.PKA_FUNCTION, ASYM_CRYPT_ECDSA_VERIFY_CMD | (((uint32_t) 1U) << PKA_FUNCTION_RUN_SHIFT));
-
-            /* Wait for completion */
-            startCycleCount = CycleCounterP_getCount32();
-            elapsedCycles = 0U;
-
-            while(((PKA_SEQ_CTRL_DONE_MASK & CSL_REG_RD(&pka_regs->EIP_28PX12_GF2_2PRAM_EIP28_REGISTERS.PKA_SEQ_CTRL)) != ((uint32_t) 1U) << PKA_SEQ_CTRL_DONE_SHIFT) )
+            /* Checking handle is opened or not */
+            if(attrs->isOpen)
             {
-                elapsedCycles = CycleCounterP_getCount32() - startCycleCount;
-                if(elapsedCycles > ASYM_CRYPT_ECDSA_VERIFY_TIMEOUT)
-                {
-                    status = ASYM_CRYPT_RETURN_FAILURE;
-                    break;
-                }
+                status = ASYM_CRYPT_RETURN_SUCCESS;
             }
-            
-            if(ASYM_CRYPT_RETURN_SUCCESS == status)
+            if(status == ASYM_CRYPT_RETURN_SUCCESS)
             {
-                reg = CSL_REG_RD(&pka_regs->EIP_28PX12_GF2_2PRAM_EIP28_REGISTERS.PKA_SEQ_CTRL);
-                if((reg & PKA_SEQ_CTRL_RESULT_MASK) == (PKA_COMMAND_RESULT_SUCCESS << PKA_SEQ_CTRL_RESULT_SHIFT))
+                pka_regs = PKA_getBaseAddress(attrs);
+
+                PKA_setALength(pka_regs, size);
+                PKA_setBLength(pka_regs, size);
+
+                offset = 0;
+                /* Vector B has p, a, b, gz, gy and Rz (must be 1) */
+                PKA_setBPtr(pka_regs, offset);
+                PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, cp->prime);
+                offset += PKA_dwAlign(size + 2U);
+
+                PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, cp->a);
+                offset += PKA_dwAlign(size + 2U);
+
+                PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, cp->b);
+                offset += PKA_dwAlign(size + 2U);
+
+                PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, cp->order);
+                offset += PKA_dwAlign(size + 2U);
+
+                PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, cp->g.x);
+                offset += PKA_dwAlign(size + 2U);
+
+                PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, cp->g.y);
+                offset += PKA_dwAlign(size + 2U);
+
+                PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, bn_one);
+                offset += PKA_dwAlign(size + 2U);
+
+                /* Vector C has h */
+                PKA_setCPtr(pka_regs, offset);
+                PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, h);
+                offset += PKA_dwAlign(size + 2U);
+
+                /* Vector A has px, py and R'z (must be 1) */
+                PKA_setAPtr(pka_regs, offset);
+                PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, pub->x);
+                offset += PKA_dwAlign(size + 2U);
+
+                PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, pub->y);
+                offset += PKA_dwAlign(size + 2U);
+
+                PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, bn_one);
+                offset += PKA_dwAlign(size + 2U);
+
+                PKA_setDPtr(pka_regs, offset);
+                PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, sig->r);
+                offset += PKA_dwAlign(size + 2U);
+
+                PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, sig->s);
+
+                CSL_REG_WR(&pka_regs->EIP_27B_EIP27_REGISTERS.PKA_FUNCTION, ASYM_CRYPT_ECDSA_VERIFY_CMD | (((uint32_t) 1U) << PKA_FUNCTION_RUN_SHIFT));
+
+                /* Wait for completion */
+                startCycleCount = CycleCounterP_getCount32();
+                elapsedCycles = 0U;
+
+                while(((PKA_SEQ_CTRL_DONE_MASK & CSL_REG_RD(&pka_regs->EIP_28PX12_GF2_2PRAM_EIP28_REGISTERS.PKA_SEQ_CTRL)) != ((uint32_t) 1U) << PKA_SEQ_CTRL_DONE_SHIFT) )
                 {
-                    status = ASYM_CRYPT_RETURN_SUCCESS;
+                    elapsedCycles = CycleCounterP_getCount32() - startCycleCount;
+                    if(elapsedCycles > ASYM_CRYPT_ECDSA_VERIFY_TIMEOUT)
+                    {
+                        status = ASYM_CRYPT_RETURN_FAILURE;
+                        break;
+                    }
                 }
-                else
+
+                if(ASYM_CRYPT_RETURN_SUCCESS == status)
                 {
-                    status = ASYM_CRYPT_RETURN_FAILURE;
+                    reg = CSL_REG_RD(&pka_regs->EIP_28PX12_GF2_2PRAM_EIP28_REGISTERS.PKA_SEQ_CTRL);
+                    if((reg & PKA_SEQ_CTRL_RESULT_MASK) == (PKA_COMMAND_RESULT_SUCCESS << PKA_SEQ_CTRL_RESULT_SHIFT))
+                    {
+                        status = ASYM_CRYPT_RETURN_SUCCESS;
+                    }
+                    else
+                    {
+                        status = ASYM_CRYPT_RETURN_FAILURE;
+                    }
                 }
             }
         }
@@ -1046,23 +1111,342 @@ AsymCrypt_Return_t AsymCrypt_ECDSAVerify(AsymCrypt_Handle handle,
     return (status);
 }
 
+/* Result = k * P1 on a short-Weierstrass prime curve, via the EIP-29t2's
+ * ECpMULxyz command. Hardware requires 1 < k <= n. Does not validate that
+ * P1 lies on the curve. */
+AsymCrypt_Return_t PKA_ECpMultiply(AsymCrypt_Handle handle,
+                        const struct AsymCrypt_ECPrimeCurveP *cp,
+                        const struct AsymCrypt_ECPoint *P1,
+                        const uint32_t k[EC_PARAM_MAXLEN],
+                        struct AsymCrypt_ECPoint *Result)
+{
+    AsymCrypt_Return_t status = ASYM_CRYPT_RETURN_FAILURE;
+    uint32_t startCycleCount, elapsedCycles = 0U;
+    uint32_t offset, reg, size, numCount;
+    const uint32_t bn_one[2] = { 1U, 1U };
+    uint32_t P0_x[EC_PARAM_MAXLEN], P0_y[EC_PARAM_MAXLEN], P0_z[EC_PARAM_MAXLEN];
+    uint32_t zInv[EC_PARAM_MAXLEN];
+    CSL_Eip_29t2_ramRegs *pka_regs;
+    PKA_Config      *config;
+    PKA_Attrs *attrs;
+    config  = (PKA_Config *) handle;
+    attrs   = config->attrs;
+
+    size = cp->prime[0];
+
+    /* check sizes */
+    if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
+           (size < cp->a[0]) || (size < cp->b[0]) ||
+           (size < P1->x[0]) || (size < P1->y[0]) || (size < k[0]) ||
+           (k[0] == 0U))))
+    {
+        /* Checking handle is opened or not */
+        if((attrs->isOpen) && (NULL != handle))
+        {
+            status = ASYM_CRYPT_RETURN_SUCCESS;
+        }
+    }
+
+    if(status == ASYM_CRYPT_RETURN_SUCCESS)
+    {
+        pka_regs = PKA_getBaseAddress(attrs);
+
+        PKA_setALength(pka_regs, k[0]);
+        PKA_setBLength(pka_regs, size);
+
+        offset = 0U;
+
+        /* Vector A = bare k[ALen] - no buffer words, ALen independent of BLen */
+        size = k[0];
+        PKA_setAPtr(pka_regs, offset);
+        PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size, k);
+        offset += PKA_dwAlign(size);
+
+        /* Vector B has p, a, b */
+        size = cp->prime[0];
+        PKA_setBPtr(pka_regs, offset);
+        PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, cp->prime);
+        offset += PKA_dwAlign(size + 2U);
+
+        PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, cp->a);
+        offset += PKA_dwAlign(size + 2U);
+
+        PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, cp->b);
+        offset += PKA_dwAlign(size + 2U);
+
+        /* Vector C has P1_x, P1_y, P1_z (must be 1) */
+        PKA_setCPtr(pka_regs, offset);
+        PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, P1->x);
+        offset += PKA_dwAlign(size + 2U);
+
+        PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, P1->y);
+        offset += PKA_dwAlign(size + 2U);
+
+        PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size + 2U, bn_one);
+        offset += PKA_dwAlign(size + 2U);
+
+        /* Vector D = P0_x/P0_y/P0_z + WorkSpace, all hardware-written */
+        PKA_setDPtr(pka_regs, offset);
+
+        CSL_REG_WR(&pka_regs->EIP_27B_EIP27_REGISTERS.PKA_FUNCTION, PKA_ECPMUL_CMD | (((uint32_t) 1U) << PKA_FUNCTION_RUN_SHIFT));
+
+        /* Wait for completion */
+        startCycleCount = CycleCounterP_getCount32();
+        elapsedCycles = 0U;
+
+        while(((PKA_SEQ_CTRL_DONE_MASK & CSL_REG_RD(&pka_regs->EIP_28PX12_GF2_2PRAM_EIP28_REGISTERS.PKA_SEQ_CTRL)) != ((uint32_t) 1U) << PKA_SEQ_CTRL_DONE_SHIFT) )
+        {
+            elapsedCycles = CycleCounterP_getCount32() - startCycleCount;
+            if(elapsedCycles > PKA_ECPMUL_TIMEOUT)
+            {
+                status = ASYM_CRYPT_RETURN_FAILURE;
+                break;
+            }
+        }
+
+        if(ASYM_CRYPT_RETURN_SUCCESS == status)
+        {
+            reg = CSL_REG_RD(&pka_regs->EIP_28PX12_GF2_2PRAM_EIP28_REGISTERS.PKA_SEQ_CTRL);
+            if((reg & PKA_SEQ_CTRL_RESULT_MASK) == (PKA_COMMAND_RESULT_SUCCESS << PKA_SEQ_CTRL_RESULT_SHIFT))
+            {
+                /* P0_z isn't guaranteed to be 1 (that restriction is on the
+                 * input P1_z, not the output) - convert projective to
+                 * affine: x = P0_x/P0_z mod p, y = P0_y/P0_z mod p. */
+                P0_x[0] = size;
+                for(numCount = 0; numCount < size; numCount++)
+                {
+                    P0_x[1 + numCount] = pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset + numCount];
+                }
+                offset += PKA_dwAlign(size + 2U);
+
+                P0_y[0] = size;
+                for(numCount = 0; numCount < size; numCount++)
+                {
+                    P0_y[1 + numCount] = pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset + numCount];
+                }
+                offset += PKA_dwAlign(size + 2U);
+
+                P0_z[0] = size;
+                for(numCount = 0; numCount < size; numCount++)
+                {
+                    P0_z[1 + numCount] = pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset + numCount];
+                }
+
+                /* Safe to reuse PKA-RAM here - P0_x/P0_y/P0_z are already
+                 * copied out above. */
+                status = PKA_ModPInv(handle, P0_z, cp->prime, zInv);
+
+                if(status == ASYM_CRYPT_RETURN_SUCCESS)
+                {
+                    status = PKA_ModPMul(handle, P0_x, zInv, cp->prime, Result->x);
+                }
+                if(status == ASYM_CRYPT_RETURN_SUCCESS)
+                {
+                    status = PKA_ModPMul(handle, P0_y, zInv, cp->prime, Result->y);
+                }
+                if(status == ASYM_CRYPT_RETURN_SUCCESS)
+                {
+                    /* Re-pad to `size` words - PKA_ModPMul may trim trailing
+                     * zero words. */
+                    for(numCount = Result->x[0] + 1U; numCount <= size; numCount++)
+                    {
+                        Result->x[numCount] = 0U;
+                    }
+                    Result->x[0] = size;
+
+                    for(numCount = Result->y[0] + 1U; numCount <= size; numCount++)
+                    {
+                        Result->y[numCount] = 0U;
+                    }
+                    Result->y[0] = size;
+                }
+            }
+            else
+            {
+                status = ASYM_CRYPT_RETURN_FAILURE;
+            }
+        }
+    }
+
+    return (status);
+}
+
+/* ecShSecret = priv * pubKey. curveType is unused - PKA has no ROM curve
+ * table, so curve params always come from cp. */
+AsymCrypt_Return_t AsymCrypt_EcdhGenSharedSecret(AsymCrypt_Handle handle,
+                        const struct AsymCrypt_ECPrimeCurveP *cp,
+                        const uint32_t priv[ECDSA_MAX_LENGTH],
+                        const struct AsymCrypt_ECPoint *pubKey,
+                        struct AsymCrypt_ECPoint *ecShSecret,
+                        uint32_t curveType)
+{
+    (void) curveType;
+
+    return PKA_ECpMultiply(handle, cp, pubKey, priv, ecShSecret);
+}
+
+/* Draws a value uniformly at random in [1, n-1], n = cp->order, via
+ * rejection sampling. Shared by AsymCrypt_ECDSAKeyGenPrivate() (private key)
+ * and AsymCrypt_ECDSASign() (per-signature nonce k). */
+static AsymCrypt_Return_t PKA_ECGenRandomInRange(AsymCrypt_Handle handle,
+                        const struct AsymCrypt_ECPrimeCurveP *cp,
+                        uint32_t size,
+                        uint32_t result[EC_PARAM_MAXLEN])
+{
+    AsymCrypt_Return_t status = ASYM_CRYPT_RETURN_FAILURE;
+    PKA_Config      *config;
+    PKA_Attrs *attrs;
+    CSL_Eip_29t2_ramRegs *pka_regs;
+    uint32_t offset, reg, numCount, i;
+    uint32_t startCycleCount, elapsedCycles;
+    uint32_t nMinusOne[EC_PARAM_MAXLEN];
+    uint32_t candidate[EC_PARAM_MAXLEN];
+    uint32_t randWord[4];
+    uint32_t orderBitLen, topWordBits, topWordMask;
+    const uint32_t bn_one[2] = { 1U, 1U };
+    Bool valid = FALSE;
+
+    config  = (PKA_Config *) handle;
+    attrs   = config->attrs;
+
+    /* n - 1 (mod-reduction is a no-op since order-1 < order) */
+    status = PKA_ModPSub(handle, cp->order, bn_one, cp->order, nMinusOne);
+    if (status == ASYM_CRYPT_RETURN_SUCCESS)
+    {
+        /* Re-pad to `size` words - PKA_ModPSub may trim trailing zero words */
+        for (i = nMinusOne[0] + 1U; i <= size; i++)
+        {
+            nMinusOne[i] = 0U;
+        }
+        nMinusOne[0] = size;
+    }
+
+    /* Mask top word to n's actual bit length, or curves whose order isn't a
+     * whole number of words (e.g. secp521r1) reject almost every candidate */
+    topWordMask = 0xFFFFFFFFU;
+    if (status == ASYM_CRYPT_RETURN_SUCCESS)
+    {
+        orderBitLen = PKA_bigIntBitLen(cp->order);
+        topWordBits = orderBitLen - ((size - 1U) * 32U);
+        if (topWordBits < 32U)
+        {
+            topWordMask = (((uint32_t) 1U) << topWordBits) - 1U;
+        }
+    }
+
+    while ((status == ASYM_CRYPT_RETURN_SUCCESS) && (valid == FALSE))
+    {
+        /* Draw `size` words of random data, 4 words per RNG_read call */
+        for (numCount = 0U; numCount < size; numCount += 4U)
+        {
+            if (RNG_RETURN_SUCCESS != RNG_read(gRngHandle, randWord))
+            {
+                status = ASYM_CRYPT_RETURN_FAILURE;
+                break;
+            }
+            for (i = 0U; (i < 4U) && ((numCount + i) < size); i++)
+            {
+                candidate[1U + numCount + i] = randWord[i];
+            }
+        }
+
+        if (status == ASYM_CRYPT_RETURN_SUCCESS)
+        {
+            candidate[size] &= topWordMask;
+            candidate[0] = size;
+
+            /* candidate must land in [1, n-1]: compare against n-1 */
+            pka_regs = PKA_getBaseAddress(attrs);
+
+            PKA_setALength(pka_regs, size);
+            PKA_setBLength(pka_regs, size);
+
+            offset = 0U;
+            PKA_setAPtr(pka_regs, offset);
+            PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size, candidate);
+            offset += PKA_dwAlign(size);
+
+            PKA_setBPtr(pka_regs, offset);
+            PKA_cpyz(&pka_regs->EIP_29T2_RAM_PKA_RAM.PKA_RAM[offset], size, nMinusOne);
+
+            CSL_REG_WR(&pka_regs->EIP_27B_EIP27_REGISTERS.PKA_FUNCTION,
+                       (((uint32_t) 1U) << PKA_FUNCTION_COMPARE_SHIFT) |
+                       (((uint32_t) 1U) << PKA_FUNCTION_RUN_SHIFT));
+
+            /* Wait for completion */
+            startCycleCount = CycleCounterP_getCount32();
+            elapsedCycles = 0U;
+
+            while((PKA_FUNCTION_RUN_MASK & CSL_REG_RD(&pka_regs->EIP_27B_EIP27_REGISTERS.PKA_FUNCTION)) != 0U)
+            {
+                elapsedCycles = CycleCounterP_getCount32() - startCycleCount;
+                if(elapsedCycles > PKA_COMPARE_TIMEOUT)
+                {
+                    status = ASYM_CRYPT_RETURN_FAILURE;
+                    break;
+                }
+            }
+
+            if(status == ASYM_CRYPT_RETURN_SUCCESS)
+            {
+                reg = CSL_REG_RD(&pka_regs->EIP_27B_EIP27_REGISTERS.PKA_COMPARE);
+
+                if((reg & PKA_COMPARE_A_LT_B_MASK) != 0U)
+                {
+                    /* candidate < n-1: result = candidate + 1, landing in [1, n-1] */
+                    status = PKA_ModPAdd(handle, candidate, bn_one, cp->order, result);
+                    valid = TRUE;
+                }
+                /* else candidate >= n-1: draw a fresh candidate and retry */
+            }
+        }
+    }
+
+    return (status);
+}
+
 AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPrivate(AsymCrypt_Handle handle,
-                        const struct AsymCrypt_ECPrimeCurveP *cp, 
+                        const struct AsymCrypt_ECPrimeCurveP *cp,
                         uint32_t priv[ECDSA_MAX_LENGTH],
                         uint32_t curveType)
 {
-    /* This is not supported for PKA Engine */
-    return ASYM_CRYPT_RETURN_FAILURE;
+    AsymCrypt_Return_t status = ASYM_CRYPT_RETURN_FAILURE;
+    PKA_Attrs *attrs;
+    uint32_t size;
+
+    (void) curveType;
+
+    attrs = ((PKA_Config *) handle)->attrs;
+
+    size = cp->prime[0];
+
+    if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) || (size != cp->order[0]))))
+    {
+        if((attrs->isOpen) && (NULL != handle))
+        {
+            status = ASYM_CRYPT_RETURN_SUCCESS;
+        }
+    }
+
+    if (status == ASYM_CRYPT_RETURN_SUCCESS)
+    {
+        status = PKA_ECGenRandomInRange(handle, cp, size, priv);
+    }
+
+    return (status);
 }
 
+/* pub = priv * G (curve generator) - same op as EcdhGenSharedSecret, just
+ * with G instead of a peer's point. */
 AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPublic(AsymCrypt_Handle handle,
-                        const struct AsymCrypt_ECPrimeCurveP *cp, 
-                        struct AsymCrypt_ECPoint *pub, 
+                        const struct AsymCrypt_ECPrimeCurveP *cp,
+                        struct AsymCrypt_ECPoint *pub,
                         const uint32_t priv[ECDSA_MAX_LENGTH],
                         uint32_t curveType)
 {
-    /* This is not supported for PKA Engine */
-    return ASYM_CRYPT_RETURN_FAILURE;
+    (void) curveType;
+
+    return PKA_ECpMultiply(handle, cp, &cp->g, priv, pub);
 }
 
 AsymCrypt_Return_t PKA_ECMontMultiply(AsymCrypt_Handle handle,

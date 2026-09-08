@@ -86,9 +86,18 @@
       xSemaphoreHandle semHndl;
       uint32_t isRecursiveMutex;
   } SemaphoreP_Object;
-  
+  #elif defined(OS_THREADX)
+  #include "tx_api.h"
+typedef struct SemaphoreP_Object_ {
+    TX_SEMAPHORE semObj;
+    TX_MUTEX mutexObj;
+    uint32_t maxCount;
+    uint32_t isMutex;
+    uint32_t isCounting;
+} SemaphoreP_Object;
+
   #else
-  #error "Define OS_NORTOS, OS_FREERTOS, or OS_SAFERTOS"
+  #error "Define OS_NORTOS, OS_FREERTOS, OS_SAFERTOS or OS_THREADX"
   #endif
  
  /**

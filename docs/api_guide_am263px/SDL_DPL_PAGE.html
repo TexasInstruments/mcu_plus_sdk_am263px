@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,17 +92,17 @@ $(document).ready(function(){initNavTree('SDL_DPL_PAGE.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1611">Features Supported</a></li>
-<li class="level1"><a href="#autotoc_md1612">SysConfig Features</a></li>
-<li class="level1"><a href="#autotoc_md1613">Features NOT Supported</a></li>
-<li class="level1"><a href="#autotoc_md1614">Important Usage Guidelines</a></li>
-<li class="level1"><a href="#autotoc_md1615">Example Usage</a></li>
-<li class="level1"><a href="#autotoc_md1616">API</a></li>
+<ul><li class="level1"><a href="#autotoc_md1623">Features Supported</a></li>
+<li class="level1"><a href="#autotoc_md1624">SysConfig Features</a></li>
+<li class="level1"><a href="#autotoc_md1625">Features NOT Supported</a></li>
+<li class="level1"><a href="#autotoc_md1626">Important Usage Guidelines</a></li>
+<li class="level1"><a href="#autotoc_md1627">Example Usage</a></li>
+<li class="level1"><a href="#autotoc_md1628">API</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_sdl_sdl_dpl"></a></p>
 <p>The SDL requires the application to provide an DPL implementation for various functionalities in order to keep SDL as OS-agnostic. Primarily, the SDL requires DPL implementations for interrupt registration and enable/disable, and also for a delay mechanism needed for POK programming.</p>
-<h1><a class="anchor" id="autotoc_md1611"></a>
+<h1><a class="anchor" id="autotoc_md1623"></a>
 Features Supported</h1>
 <p>The SDL DPL layer provides support for the application to define the following functionalities to be used by SDL:</p>
 <ul>
@@ -112,22 +112,22 @@ Features Supported</h1>
 <li>Delay</li>
 </ul>
 <p>These features are provided by the application by calling <a class="el" href="group__SDL__DPL__MODULE.html#ga4538516a80bcb6c5af394a68e7b91fbb" title="DPL init.">SDL_DPL_init()</a> with the appropriate function pointers.</p>
-<h1><a class="anchor" id="autotoc_md1612"></a>
+<h1><a class="anchor" id="autotoc_md1624"></a>
 SysConfig Features</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1613"></a>
+<h1><a class="anchor" id="autotoc_md1625"></a>
 Features NOT Supported</h1>
 <ul>
 <li>None</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1614"></a>
+<h1><a class="anchor" id="autotoc_md1626"></a>
 Important Usage Guidelines</h1>
 <ul>
 <li><a class="el" href="group__SDL__DPL__MODULE.html#ga4538516a80bcb6c5af394a68e7b91fbb" title="DPL init.">SDL_DPL_init()</a> must be called before using any SDL module that utilizes the SDL DPL APIs.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1615"></a>
+<h1><a class="anchor" id="autotoc_md1627"></a>
 Example Usage</h1>
 <p>The SDL provides a sample implementation of these APIs as part of the SDL examples. The sample implementation re-uses PDK DPL APIs from the SDK in order to provide the services. This is verified with the following Operating Systems:</p>
 <ul>
@@ -202,7 +202,7 @@ Example Usage</h1>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> ret;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1616"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md1628"></a>
 API</h1>
 <p><a class="el" href="group__SDL__DPL__MODULE.html">APIs for SDL DPL</a> </p>
 </div></div><!-- contents -->
@@ -210,7 +210,7 @@ API</h1>
 </div><!-- doc-content -->
 <div class="ttc" id="agroup__KERNEL__DPL__HWI_html_ga9dac4d4990b599de54662b9e32c0b47b"><div class="ttname"><a href="group__KERNEL__DPL__HWI.html#ga9dac4d4990b599de54662b9e32c0b47b">HwiP_destruct</a></div><div class="ttdeci">void HwiP_destruct(HwiP_Object *obj)</div><div class="ttdoc">Cleanup, delete, destruct a Hwi object.</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__HWI_html_ga2038ae2b7b264bf3ad8b68a9a117ad20"><div class="ttname"><a href="group__KERNEL__DPL__HWI.html#ga2038ae2b7b264bf3ad8b68a9a117ad20">HwiP_disableInt</a></div><div class="ttdeci">uint32_t HwiP_disableInt(uint32_t intNum)</div><div class="ttdoc">Disable a specific interrupt.</div></div>
-<div class="ttc" id="astructHwiP__Params_html"><div class="ttname"><a href="structHwiP__Params.html">HwiP_Params</a></div><div class="ttdoc">Parameters passed during HwiP_construct.</div><div class="ttdef"><b>Definition:</b> HwiP.h:127</div></div>
+<div class="ttc" id="astructHwiP__Params_html"><div class="ttname"><a href="structHwiP__Params.html">HwiP_Params</a></div><div class="ttdoc">Parameters passed during HwiP_construct.</div><div class="ttdef"><b>Definition:</b> HwiP.h:132</div></div>
 <div class="ttc" id="astructSDL__DPL__Interface_html_a7e68c86eff8104d0dcd0742adefe3fdc"><div class="ttname"><a href="structSDL__DPL__Interface.html#a7e68c86eff8104d0dcd0742adefe3fdc">SDL_DPL_Interface::enableInterrupt</a></div><div class="ttdeci">pSDL_DPL_InterruptFunction enableInterrupt</div><div class="ttdef"><b>Definition:</b> sdl_dpl.h:123</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__CLOCK_html_ga44c15f99499caf08795011fcc8b6db7b"><div class="ttname"><a href="group__KERNEL__DPL__CLOCK.html#ga44c15f99499caf08795011fcc8b6db7b">ClockP_sleep</a></div><div class="ttdeci">void ClockP_sleep(uint32_t sec)</div><div class="ttdoc">Sleep for user specified seconds.</div></div>
 <div class="ttc" id="agroup__SDL__DPL__MODULE_html_ga4538516a80bcb6c5af394a68e7b91fbb"><div class="ttname"><a href="group__SDL__DPL__MODULE.html#ga4538516a80bcb6c5af394a68e7b91fbb">SDL_DPL_init</a></div><div class="ttdeci">int32_t SDL_DPL_init(SDL_DPL_Interface *dplInterface)</div><div class="ttdoc">DPL init.</div></div>
@@ -224,13 +224,13 @@ API</h1>
 <div class="ttc" id="agroup__KERNEL__DPL__HWI_html_gaccf47c6fb95111f0fbba1b86705d5907"><div class="ttname"><a href="group__KERNEL__DPL__HWI.html#gaccf47c6fb95111f0fbba1b86705d5907">HwiP_enableInt</a></div><div class="ttdeci">void HwiP_enableInt(uint32_t intNum)</div><div class="ttdoc">Enable a specific interrupt.</div></div>
 <div class="ttc" id="astructSDL__DPL__HwipParams_html_adca42b99f629291d3c68b2a5dd24c050"><div class="ttname"><a href="structSDL__DPL__HwipParams.html#adca42b99f629291d3c68b2a5dd24c050">SDL_DPL_HwipParams::intNum</a></div><div class="ttdeci">int32_t intNum</div><div class="ttdef"><b>Definition:</b> sdl_dpl.h:71</div></div>
 <div class="ttc" id="agroup__KERNEL__DPL__ADDR__TRANSLATE_html_ga1769ebed3fd7df26bb09d95a3149ba78"><div class="ttname"><a href="group__KERNEL__DPL__ADDR__TRANSLATE.html#ga1769ebed3fd7df26bb09d95a3149ba78">AddrTranslateP_getLocalAddr</a></div><div class="ttdeci">void * AddrTranslateP_getLocalAddr(uint64_t systemAddr)</div><div class="ttdoc">Translate from system address to a CPU address as seen via the RAT module.</div></div>
-<div class="ttc" id="astructHwiP__Params_html_ab8f50b1b2f678cc3ce395ee6bc89c55c"><div class="ttname"><a href="structHwiP__Params.html#ab8f50b1b2f678cc3ce395ee6bc89c55c">HwiP_Params::callback</a></div><div class="ttdeci">HwiP_FxnCallback callback</div><div class="ttdef"><b>Definition:</b> HwiP.h:130</div></div>
+<div class="ttc" id="astructHwiP__Params_html_ab8f50b1b2f678cc3ce395ee6bc89c55c"><div class="ttname"><a href="structHwiP__Params.html#ab8f50b1b2f678cc3ce395ee6bc89c55c">HwiP_Params::callback</a></div><div class="ttdeci">HwiP_FxnCallback callback</div><div class="ttdef"><b>Definition:</b> HwiP.h:135</div></div>
 <div class="ttc" id="astructSDL__DPL__HwipParams_html_a72c16b7f209d1f8da940ca3cc43d97b2"><div class="ttname"><a href="structSDL__DPL__HwipParams.html#a72c16b7f209d1f8da940ca3cc43d97b2">SDL_DPL_HwipParams::callbackArg</a></div><div class="ttdeci">uintptr_t callbackArg</div><div class="ttdef"><b>Definition:</b> sdl_dpl.h:75</div></div>
 <div class="ttc" id="astructSDL__DPL__HwipParams_html_a486dcd26a28eb8cf607c19a9010dd720"><div class="ttname"><a href="structSDL__DPL__HwipParams.html#a486dcd26a28eb8cf607c19a9010dd720">SDL_DPL_HwipParams::callback</a></div><div class="ttdeci">pSDL_DPL_InterruptCallbackFunction callback</div><div class="ttdef"><b>Definition:</b> sdl_dpl.h:73</div></div>
-<div class="ttc" id="astructHwiP__Params_html_a26ec86a18720de1a3fe54828ceb959d2"><div class="ttname"><a href="structHwiP__Params.html#a26ec86a18720de1a3fe54828ceb959d2">HwiP_Params::args</a></div><div class="ttdeci">void * args</div><div class="ttdef"><b>Definition:</b> HwiP.h:131</div></div>
+<div class="ttc" id="astructHwiP__Params_html_a26ec86a18720de1a3fe54828ceb959d2"><div class="ttname"><a href="structHwiP__Params.html#a26ec86a18720de1a3fe54828ceb959d2">HwiP_Params::args</a></div><div class="ttdeci">void * args</div><div class="ttdef"><b>Definition:</b> HwiP.h:136</div></div>
 <div class="ttc" id="agroup__SDL__DPL__MODULE_html_ga0fce25c12330fe219a07559686902afa"><div class="ttname"><a href="group__SDL__DPL__MODULE.html#ga0fce25c12330fe219a07559686902afa">pSDL_DPL_DeregisterFunction</a></div><div class="ttdeci">int32_t(* pSDL_DPL_DeregisterFunction)(pSDL_DPL_HwipHandle handle)</div><div class="ttdoc">Prototype for the interrupt de-register function.</div><div class="ttdef"><b>Definition:</b> sdl_dpl.h:94</div></div>
 <div class="ttc" id="agroup__SDL__DPL__MODULE_html_gad63eb0de40d239b9b4ff420d2f62f36a"><div class="ttname"><a href="group__SDL__DPL__MODULE.html#gad63eb0de40d239b9b4ff420d2f62f36a">pSDL_DPL_HwipHandle</a></div><div class="ttdeci">void * pSDL_DPL_HwipHandle</div><div class="ttdef"><b>Definition:</b> sdl_dpl.h:79</div></div>
-<div class="ttc" id="astructHwiP__Params_html_a943b3d55a5aaa669f8bcb04017fdf2a1"><div class="ttname"><a href="structHwiP__Params.html#a943b3d55a5aaa669f8bcb04017fdf2a1">HwiP_Params::intNum</a></div><div class="ttdeci">uint32_t intNum</div><div class="ttdef"><b>Definition:</b> HwiP.h:129</div></div>
+<div class="ttc" id="astructHwiP__Params_html_a943b3d55a5aaa669f8bcb04017fdf2a1"><div class="ttname"><a href="structHwiP__Params.html#a943b3d55a5aaa669f8bcb04017fdf2a1">HwiP_Params::intNum</a></div><div class="ttdeci">uint32_t intNum</div><div class="ttdef"><b>Definition:</b> HwiP.h:134</div></div>
 <div class="ttc" id="agroup__SDL__DPL__MODULE_html_ga255bf9d74dd4518cedc80ee78d2a6501"><div class="ttname"><a href="group__SDL__DPL__MODULE.html#ga255bf9d74dd4518cedc80ee78d2a6501">pSDL_DPL_DelayFunction</a></div><div class="ttdeci">int32_t(* pSDL_DPL_DelayFunction)(int32_t ndelay)</div><div class="ttdoc">Prototype for the delay function.</div><div class="ttdef"><b>Definition:</b> sdl_dpl.h:99</div></div>
 <!-- HTML footer for doxygen 1.8.11-->
 <!-- start footer part -->

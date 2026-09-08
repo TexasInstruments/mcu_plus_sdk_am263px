@@ -334,27 +334,43 @@ int32_t SDL_VTM_getTemp(SDL_VTM_InstTs instance, uint32_t *pTempVal)
     switch(instance)
     {
         case SDL_VTM_INSTANCE_TS_0:
+        if(SDL_REG32_FEXT(SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE0_RESULT, \
+            TOP_CTRL_TSENSE0_RESULT_TSENSE0_RESULT_ECOZ) == SDL_VTM_CONVERSION_COMPLETED)
+        {
             adcCode = (SDL_VTM_adc_code)SDL_REG32_FEXT(      \
                  (SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE0_RESULT), \
                 TOP_CTRL_TSENSE0_RESULT_TSENSE0_RESULT_DTEMP);
+        }
         break;
 
         case SDL_VTM_INSTANCE_TS_1:
+        if(SDL_REG32_FEXT(SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE1_RESULT, \
+            TOP_CTRL_TSENSE1_RESULT_TSENSE1_RESULT_ECOZ) == SDL_VTM_CONVERSION_COMPLETED)
+        {
             adcCode = (SDL_VTM_adc_code)SDL_REG32_FEXT((SDL_TOP_CTRL_U_BASE+ \
                                                      SDL_VTM_TSENSE1_RESULT), \
                                  TOP_CTRL_TSENSE1_RESULT_TSENSE1_RESULT_DTEMP);
+        }
         break;
 
         case SDL_VTM_INSTANCE_TS_2:
+        if(SDL_REG32_FEXT(SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE2_RESULT, \
+            TOP_CTRL_TSENSE2_RESULT_TSENSE2_RESULT_ECOZ) == SDL_VTM_CONVERSION_COMPLETED)
+        {
             adcCode = (SDL_VTM_adc_code)SDL_REG32_FEXT((SDL_TOP_CTRL_U_BASE+ \
                                                     SDL_VTM_TSENSE2_RESULT),  \
                                  TOP_CTRL_TSENSE2_RESULT_TSENSE2_RESULT_DTEMP);
+        }
         break;
 
         case SDL_VTM_INSTANCE_TS_3:
+        if(SDL_REG32_FEXT(SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE3_RESULT, \
+            TOP_CTRL_TSENSE3_RESULT_TSENSE3_RESULT_ECOZ) == SDL_VTM_CONVERSION_COMPLETED)
+        {
             adcCode = (SDL_VTM_adc_code)SDL_REG32_FEXT((SDL_TOP_CTRL_U_BASE+ \
                                                      SDL_VTM_TSENSE3_RESULT), \
                                  TOP_CTRL_TSENSE3_RESULT_TSENSE3_RESULT_DTEMP);
+        }
         break;
 
         default:

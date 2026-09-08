@@ -906,6 +906,7 @@ int32_t OSPI_readDirect(OSPI_Handle handle, OSPI_Transaction *trans)
         {
             status += OSPI_lld_readDirect(hOspi, trans);
         }
+        
         /* Switch to INDAC mode if DAC was initially in disabled state */
         if (FALSE == OSPI_isDacEnable(handle))
         {
@@ -981,6 +982,7 @@ int32_t OSPI_writeCmd(OSPI_Handle handle, OSPI_WriteCmdParams *wrParams)
 int32_t OSPI_writeDirect(OSPI_Handle handle, OSPI_Transaction *trans)
 {
     int32_t status = SystemP_SUCCESS;
+    uint32_t dmaInterruptStatus = 0;
     OSPILLD_Handle hOspi;
 
     if((OSPI_Handle) NULL != handle)
@@ -989,7 +991,21 @@ int32_t OSPI_writeDirect(OSPI_Handle handle, OSPI_Transaction *trans)
         const OSPI_Attrs *attrs = ((OSPI_Config *)handle)->attrs;
         hOspi = &obj->ospilldObject;
 
-        status = OSPI_lld_writeDirect(hOspi, trans);
+        if(hOspi->hOspiInit->dmaEnable == OSPI_TRUE)
+        {
+            dmaInterruptStatus = OSPI_isDmaInterruptEnabled(hOspi);
+
+            status = OSPI_lld_writeDirectDma(hOspi, trans);
+
+            if(dmaInterruptStatus == OSPI_TRUE && hOspi->currTrans->state == OSPI_TRANSFER_MODE_BLOCKING)
+            {
+                (void) SemaphoreP_pend(&obj->transferSemObj, SystemP_WAIT_FOREVER);
+            }
+        }
+        else
+        {
+            status = OSPI_lld_writeDirect(hOspi, trans);
+        }
 
         CacheP_wbInv((void*)(attrs->dataBaseAddr + trans->addrOffset), trans->count, CacheP_TYPE_ALL);
     }
@@ -1009,9 +1025,14 @@ int32_t OSPI_writeIndirect(OSPI_Handle handle, OSPI_Transaction *trans)
     if((OSPI_Handle) NULL != handle)
     {
         OSPI_Object *obj = ((OSPI_Config *)handle)->object;
+        const OSPI_Attrs *attrs = ((OSPI_Config *)handle)->attrs;
         hOspi = &obj->ospilldObject;
 
+        CacheP_wb((void*)(trans->buf), trans->count, CacheP_TYPE_ALL);
+
         status += OSPI_lld_writeIndirect(hOspi, trans);
+
+        CacheP_wbInv((void*)(attrs->dataBaseAddr + trans->addrOffset), trans->count, CacheP_TYPE_ALL);
 
         if(OSPI_TRUE == hOspi->hOspiInit->intrEnable)
         {

@@ -15,8 +15,10 @@
 extern volatile uint32_t gMemLogAddress;
 void memLogPrintBuffer(uint8_t ch);
 %}
+void putchar_(char character);
 void putchar_(char character)
-{
+{   
+    (void)character;
 % if((soc != "f29h85x") && (soc != "f29p32x")){
 % if(instance.enableCssLog) {
     /* Output to CCS console */

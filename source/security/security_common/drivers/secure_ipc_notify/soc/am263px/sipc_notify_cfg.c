@@ -162,6 +162,8 @@ SIPC_InterruptConfig gSIPC_InterruptConfig[INTR_CFG_NUM_MAX][CORE_ID_MAX] =
             .numCores = 1U,  /* number of cores that send messages which tied to this interrupt line */
             .coreIdList = { /* sec core ID's tied to this interrupt line */
                 CORE_INDEX_HSM,
+                CORE_INDEX_SEC_MASTER_0,
+                CORE_INDEX_SEC_MASTER_0
             },
             .clearIntOnInit = 1 ,
         },
@@ -172,6 +174,8 @@ SIPC_InterruptConfig gSIPC_InterruptConfig[INTR_CFG_NUM_MAX][CORE_ID_MAX] =
             .numCores = 1U,  /* number of cores that send messages which tied to this interrupt line */
             .coreIdList = { /* sec core ID's tied to this interrupt line */
                 CORE_INDEX_HSM,
+                CORE_INDEX_SEC_MASTER_1,
+                CORE_INDEX_SEC_MASTER_1
             },
             .clearIntOnInit = 1,
         },
@@ -182,6 +186,8 @@ SIPC_InterruptConfig gSIPC_InterruptConfig[INTR_CFG_NUM_MAX][CORE_ID_MAX] =
             .numCores = 1U,  /* number of cores that send messages which tied to this interrupt line */
             .coreIdList = { /* sec core ID's tied to this interrupt line */
                 CORE_INDEX_HSM,
+                CORE_INDEX_SEC_MASTER_0,
+                CORE_INDEX_SEC_MASTER_0
             },
             .clearIntOnInit = 1,
         },
@@ -192,6 +198,8 @@ SIPC_InterruptConfig gSIPC_InterruptConfig[INTR_CFG_NUM_MAX][CORE_ID_MAX] =
             .numCores = 1U,  /* number of cores that send messages which tied to this interrupt line */
             .coreIdList = { /* sec core ID's tied to this interrupt line */
                 CORE_INDEX_HSM,
+                CORE_INDEX_SEC_MASTER_1,
+                CORE_INDEX_SEC_MASTER_1
             },
             .clearIntOnInit = 1,
         },
@@ -203,13 +211,14 @@ SIPC_InterruptConfig gSIPC_InterruptConfig[INTR_CFG_NUM_MAX][CORE_ID_MAX] =
             .coreIdList = { /* sec core ID's tied to this interrupt line */
                 CORE_INDEX_SEC_MASTER_0,
                 CORE_INDEX_SEC_MASTER_1,
+                CORE_INDEX_HSM
             },
             .clearIntOnInit = 1,
         }
     }
 };
 
-int32_t SIPC_Register_Isr(HwiP_Params *pHwiParams, SIPC_InterruptConfig *pInterruptConfig, SIPC_Params *params, HwiP_FxnCallback callback)
+int32_t SIPC_Register_Isr(HwiP_Params *pHwiParams, SIPC_InterruptConfig *pInterruptConfig, const SIPC_Params *params, HwiP_FxnCallback callback)
 {
     int32_t status = 0;
 
@@ -221,7 +230,7 @@ int32_t SIPC_Register_Isr(HwiP_Params *pHwiParams, SIPC_InterruptConfig *pInterr
     /* READ_ACK interrupt line is a pulse interrupt */
     pHwiParams->isPulse = 0;
 
-    status |= HwiP_construct(
+    status = HwiP_construct(
             &pInterruptConfig->hwiObj,
             pHwiParams);
     

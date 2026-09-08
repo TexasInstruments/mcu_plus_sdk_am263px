@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,50 +92,50 @@ $(document).ready(function(){initNavTree('EXAMPLES_ENET_CPSW_ETHERRING.html','')
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3297">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md3298">Ether-Ring overview</a></li>
-<li class="level1"><a href="#autotoc_md3299">Configuration Parameters</a></li>
-<li class="level1"><a href="#autotoc_md3300">Application Functionality</a><ul><li class="level2"><a href="#autotoc_md3301">Ether-Ring Application Flow</a></li>
-<li class="level2"><a href="#autotoc_md3302">EST Schedule</a></li>
-<li class="level2"><a href="#autotoc_md3303">Application Startup Flow - EST, GENF, and Traffic Generation</a><ul><li class="level3"><a href="#autotoc_md3304">Phase 1: Initialization &amp; GPTP Synchronization</a></li>
-<li class="level3"><a href="#autotoc_md3305">Phase 2: EST Gate Scheduling (gBaseTime Reference)</a></li>
-<li class="level3"><a href="#autotoc_md3306">Phase 3: GENF0 Enable (Immediate)</a></li>
-<li class="level3"><a href="#autotoc_md3307">Phase 4: GENF1 Enable (gBaseTime - 20μs)</a></li>
-<li class="level3"><a href="#autotoc_md3308">Phase 5: RTI Timer &amp; Periodic Traffic Generation</a></li>
-<li class="level3"><a href="#autotoc_md3309">Phase 6: RX Processing &amp; EtherRing Duplicate Detection</a></li>
-<li class="level3"><a href="#autotoc_md3310">Application Startup Sequence</a></li>
+<ul><li class="level1"><a href="#autotoc_md3319">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3320">Ether-Ring overview</a></li>
+<li class="level1"><a href="#autotoc_md3321">Configuration Parameters</a></li>
+<li class="level1"><a href="#autotoc_md3322">Application Functionality</a><ul><li class="level2"><a href="#autotoc_md3323">Ether-Ring Application Flow</a></li>
+<li class="level2"><a href="#autotoc_md3324">EST Schedule</a></li>
+<li class="level2"><a href="#autotoc_md3325">Application Startup Flow - EST, GENF, and Traffic Generation</a><ul><li class="level3"><a href="#autotoc_md3326">Phase 1: Initialization &amp; GPTP Synchronization</a></li>
+<li class="level3"><a href="#autotoc_md3327">Phase 2: EST Gate Scheduling (gBaseTime Reference)</a></li>
+<li class="level3"><a href="#autotoc_md3328">Phase 3: GENF0 Enable (Immediate)</a></li>
+<li class="level3"><a href="#autotoc_md3329">Phase 4: GENF1 Enable (gBaseTime - 20μs)</a></li>
+<li class="level3"><a href="#autotoc_md3330">Phase 5: RTI Timer &amp; Periodic Traffic Generation</a></li>
+<li class="level3"><a href="#autotoc_md3331">Phase 6: RX Processing &amp; EtherRing Duplicate Detection</a></li>
+<li class="level3"><a href="#autotoc_md3332">Application Startup Sequence</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3311">RX Host Time stamping</a></li>
-<li class="level2"><a href="#autotoc_md3312">ALE Configuration</a></li>
-<li class="level2"><a href="#autotoc_md3313">Ether-Ring Start Menu</a></li>
+<li class="level2"><a href="#autotoc_md3333">RX Host Time stamping</a></li>
+<li class="level2"><a href="#autotoc_md3334">ALE Configuration</a></li>
+<li class="level2"><a href="#autotoc_md3335">Ether-Ring Start Menu</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3314">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3315">Packet pool configuration</a></li>
-<li class="level1"><a href="#autotoc_md3316">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3317">Build the example</a></li>
-<li class="level2"><a href="#autotoc_md3318">HW Setup</a></li>
-<li class="level2"><a href="#autotoc_md3319">Run the example</a><ul><li class="level3"><a href="#autotoc_md3320">Basic Test</a></li>
+<li class="level1"><a href="#autotoc_md3336">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md3337">Packet pool configuration</a></li>
+<li class="level1"><a href="#autotoc_md3338">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3339">Build the example</a></li>
+<li class="level2"><a href="#autotoc_md3340">HW Setup</a></li>
+<li class="level2"><a href="#autotoc_md3341">Run the example</a><ul><li class="level3"><a href="#autotoc_md3342">Basic Test</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3321">Sample output</a></li>
-<li class="level2"><a href="#autotoc_md3322">Troubleshooting issues</a></li>
+<li class="level2"><a href="#autotoc_md3343">Sample output</a></li>
+<li class="level2"><a href="#autotoc_md3344">Troubleshooting issues</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3323">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3345">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_enet_cpsw_etherring"></a></p>
-<h1><a class="anchor" id="autotoc_md3297"></a>
+<h1><a class="anchor" id="autotoc_md3319"></a>
 Introduction</h1>
 <p>This example application illustrates the configuration and usage of Ether-Ring topology with 4 nodes connected in loop where each node works as central compute, zone left, zone right and zone tail. The example application enables both MAC ports by default and each node is connected to it's neighbouring node in a loop. This application uses Concurrence execution of gPTP IEEE 802.1AS stack and IEEE 802.1 Qbv (EST) configuration and Ether-ring to support Packet Duplication, Ring Termination in Hardware and Duplicate Rejection in Software.</p>
 <p>The example application opens two DMA TX channels and two DMA RX channels. The TX0 and RX0 DMA channel will be used by the application to send the Class-A and Class-D stream packets via Ether-Ring Driver. The TX0 and RX0 DMA channel will be used for GPTP.</p>
 <p>The application will also open the both MAC port and will wait until the port gets link up with neighbouring node. The application waits for GPTP synchronization to happen and then applies the EST Schedule on both MAC ports. The application uses <a class="el" href="group__ENET__MOD__TAS.html">Enet Time Aware Shaper</a> API for EST configuration ,<a class="el" href="ENET_CPSW_TSN_GPTP.html">Ethernet TSN and gPTP Stack - API and Integration Guide</a> for gPTP and <a class="el" href="group__ENET__DMA__API.html">Enet Data Path (DMA)</a></p>
 <p>API for packet transmission.</p>
-<h1><a class="anchor" id="autotoc_md3298"></a>
+<h1><a class="anchor" id="autotoc_md3320"></a>
 Ether-Ring overview</h1>
 <p>Please refer <b><a class="el" href="ETHERRING_OVERVIEW.html">here</a></b> for Ether-Ring overview</p>
-<h1><a class="anchor" id="autotoc_md3299"></a>
+<h1><a class="anchor" id="autotoc_md3321"></a>
 Configuration Parameters</h1>
 <p>Typically, the application's parameters that a developer may want to change are:</p>
 <ul>
@@ -144,9 +144,9 @@ Configuration Parameters</h1>
 <li><b>Class A Payload Length</b>. Class A payload length is configured as 1000 be default and user can update <code>CLASSA_PAYLOAD_LENGTH</code> in <code>config.h</code> .</li>
 <li><b>Class D Payload Length</b>. Class D payload length is configured as 1450 be default and user can update <code>CLASSD_PAYLOAD_LENGTH</code> in <code>config.h</code> .</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3300"></a>
+<h1><a class="anchor" id="autotoc_md3322"></a>
 Application Functionality</h1>
-<h2><a class="anchor" id="autotoc_md3301"></a>
+<h2><a class="anchor" id="autotoc_md3323"></a>
 Ether-Ring Application Flow</h2>
 <p>The Application creates Class-A, Class-D stream RTOS tasks which creates the 802.1Q Ethernet Multicast packet with stream configuration and calls "EtherRing_submitTxPktQ" API from Ether-Ring Driver. "EtherRing_submitTxPktQ" creates a custom Custom header(4 bytes) which consists of CB-like Ethertype(0x88B5), unique sequence ID for each Ethernet packet and adds the custom Header to the packet sent from application without modifying the payload using zero-copy (using Transmit Scatter-Gather feature of HW). The packet is submitted to DMA and CPSW duplicates the multicast packet and sent it to both MAC ports.</p>
 <div class="image">
@@ -158,7 +158,7 @@ Ether-Ring Transmit Flow </div></div>
 <img src="etherring_rx.png" alt="" width="60%"/>
 <div class="caption">
 Ether-Ring Receive Flow </div></div>
- <h2><a class="anchor" id="autotoc_md3302"></a>
+ <h2><a class="anchor" id="autotoc_md3324"></a>
 EST Schedule</h2>
 <p>This EST schedule is 1 msec long and is composed of 8 intervals, each with a gate mask that enables transmission of 2,3 are configured for Class A and Class D streams.</p>
 <center> <table class="doxtable">
@@ -196,17 +196,17 @@ EST Schedule</h2>
 <div class="line">hostPortCfg-&gt;rxVlanRemapEn     = <span class="keyword">true</span>;</div>
 <div class="line">hostPortCfg-&gt;rxDscpIPv4RemapEn = <span class="keyword">true</span>;</div>
 <div class="line">hostPortCfg-&gt;rxDscpIPv6RemapEn = <span class="keyword">true</span>;</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3303"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3325"></a>
 Application Startup Flow - EST, GENF, and Traffic Generation</h2>
 <p>The application follows a coordinated startup sequence using GPTP synchronization, EST scheduling, and hardware pulse generation:</p>
-<h3><a class="anchor" id="autotoc_md3304"></a>
+<h3><a class="anchor" id="autotoc_md3326"></a>
 Phase 1: Initialization &amp; GPTP Synchronization</h3>
 <p>All nodes initialize networking stack and wait for GPTP (802.1AS) clock synchronization:</p><ul>
 <li>GPTP daemon exchanges timing messages across ring topology</li>
 <li>Nodes transition through states: INITIALIZING → SYNCING → LOCKED</li>
 <li>Once synchronized, all nodes share common wall-clock time reference</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md3305"></a>
+<h3><a class="anchor" id="autotoc_md3327"></a>
 Phase 2: EST Gate Scheduling (gBaseTime Reference)</h3>
 <p>After GPTP reaches LOCKED state, the EST schedule is applied:</p><ul>
 <li>EST gate control lists applied on both CPSW MAC ports</li>
@@ -215,14 +215,14 @@ Phase 2: EST Gate Scheduling (gBaseTime Reference)</h3>
 <li>All nodes' gates open/close at same wall-clock time due to GPTP synchronization</li>
 <li>See EST schedule table above for gate mask timing (125μs intervals)</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md3306"></a>
+<h3><a class="anchor" id="autotoc_md3328"></a>
 Phase 3: GENF0 Enable (Immediate)</h3>
 <ul>
 <li>GENF0 (General Function 0) configured for 50MHz reference pulse (4 clocks = 80ns)</li>
 <li>Starts immediately after EST configuration</li>
 <li>Provides general timing reference used by EST for gate transition synchronization</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md3307"></a>
+<h3><a class="anchor" id="autotoc_md3329"></a>
 Phase 4: GENF1 Enable (gBaseTime - 20μs)</h3>
 <ul>
 <li>GENF1 (General Function 1) configured for 125μs pulse interval (25000*2 clocks)</li>
@@ -231,7 +231,7 @@ Phase 4: GENF1 Enable (gBaseTime - 20μs)</h3>
 <li>Ensures packets meet scheduled transmission deadline and gate window efficiency</li>
 <li>Generates periodic pulses that trigger stream task wake-ups</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md3308"></a>
+<h3><a class="anchor" id="autotoc_md3330"></a>
 Phase 5: RTI Timer &amp; Periodic Traffic Generation</h3>
 <ul>
 <li>Real-Time Interrupt (RTI) timer created with GENF1 pulse as clock source</li>
@@ -245,7 +245,7 @@ Phase 5: RTI Timer &amp; Periodic Traffic Generation</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md3309"></a>
+<h3><a class="anchor" id="autotoc_md3331"></a>
 Phase 6: RX Processing &amp; EtherRing Duplicate Detection</h3>
 <ul>
 <li>RX task collects arriving packets from network</li>
@@ -258,7 +258,7 @@ Phase 6: RX Processing &amp; EtherRing Duplicate Detection</h3>
 <li>RX timestamps stored for jitter and latency analysis</li>
 <li>Final output prints RX/TX packet counts and latency statistics</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md3310"></a>
+<h3><a class="anchor" id="autotoc_md3332"></a>
 Application Startup Sequence</h3>
 <center> <table class="doxtable">
 <caption>Startup Phase Timeline</caption>
@@ -291,16 +291,16 @@ Application Startup Sequence</h3>
 <tr>
 <td>6 </td><td>Continuous </td><td>Timestamps logged for latency and jitter analysis </td></tr>
 </table>
-</center><h2><a class="anchor" id="autotoc_md3311"></a>
+</center><h2><a class="anchor" id="autotoc_md3333"></a>
 RX Host Time stamping</h2>
 <p>RX Host time stamping is enabled from syscfg to measure the jitter in latency for the Received packets and timestamp value is stored in "rxPktTs" for each received packet(pktInfo). The timestamp values are stored in Ether-Ring driver for Jitter measurement.</p>
-<h2><a class="anchor" id="autotoc_md3312"></a>
+<h2><a class="anchor" id="autotoc_md3334"></a>
 ALE Configuration</h2>
 <ul>
 <li>The Default Multicast ALE Entry for PTP has been updated to send PTP Packets only to the Host port. The port mask has been updated to <code>0x1</code> and ALE Entry is added.</li>
 <li>Vlan entry for default port vlan is updated to enable <code>forceUntaggedEgressMask</code> for all ports so that vlan tag is not added to ptp packets when ALE is in vlanAware mode.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3313"></a>
+<h2><a class="anchor" id="autotoc_md3335"></a>
 Ether-Ring Start Menu</h2>
 <p>The following helper options are also provided in the application's start menu to configure the each node uniquely in Etherring:</p>
 <div class="fragment"><div class="line">0 - Central Compute Node</div>
@@ -308,7 +308,7 @@ Ether-Ring Start Menu</h2>
 <div class="line">2 - Zone Right Node</div>
 <div class="line">3 - Zone Tail Node</div>
 <div class="line">Enter the nodeId : </div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3314"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3336"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -322,18 +322,18 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/ether_ring   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3315"></a>
+<h1><a class="anchor" id="autotoc_md3337"></a>
 Packet pool configuration</h1>
 <p>To change packet pool configuration from syscfg, please refer to <a class="el" href="PACKETPOOL_CONFIG_TOP.html">Ethernet Packet Pool Allocation Guidelines</a></p>
-<h1><a class="anchor" id="autotoc_md3316"></a>
+<h1><a class="anchor" id="autotoc_md3338"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md3317"></a>
+<h2><a class="anchor" id="autotoc_md3339"></a>
 Build the example</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3318"></a>
+<h2><a class="anchor" id="autotoc_md3340"></a>
 HW Setup</h2>
 <p>Make sure you have setup the EVM with cable connections as shown in below Diagram. In addition, follow the steps in the next section.</p>
 <div class="image">
@@ -341,9 +341,9 @@ HW Setup</h2>
 <div class="caption">
 Ether-Ring EVM Connections </div></div>
 <dl class="section note"><dt>Note</dt><dd>Ethernet cable must be connected to both the ports in loop for the example application to run with expected results.</dd></dl>
-<h2><a class="anchor" id="autotoc_md3319"></a>
+<h2><a class="anchor" id="autotoc_md3341"></a>
 Run the example</h2>
-<h3><a class="anchor" id="autotoc_md3320"></a>
+<h3><a class="anchor" id="autotoc_md3342"></a>
 Basic Test</h3>
 <p>The simplest test that one can run with the ETHERRING example consists of:</p><ul>
 <li>Configuring the each node uniqly in the Ether-ring Network and wait for PTP synchronization to happen for all the Nodes.</li>
@@ -357,7 +357,7 @@ Basic Test</h3>
 <li>Application logs such as cycle time, time intervals and gate masks will be printed in the serial console. Sample logs are shown in the next section.</li>
 <li>Configure the each node as mentioned in <b>Ether-Ring Start Menu</b> section using UART Terminal around the same time in all the Nodes to start the application and wait for <code>----------ETHERRING DEMONSTRATION COMPLETED----------</code> to be printed on UART Terminal.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3321"></a>
+<h2><a class="anchor" id="autotoc_md3343"></a>
 Sample output</h2>
 <div class="fragment"><div class="line">==========================</div>
 <div class="line">       EtherRing App      </div>
@@ -593,12 +593,12 @@ Sample output</h2>
 <div class="line">[LAT]: 31250010974</div>
 <div class="line">[RX] Packet Count of stream0: 30000 </div>
 <div class="line">[TX] Packet Count of stream0: 30000 </div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3322"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3344"></a>
 Troubleshooting issues</h2>
 <ul>
 <li>To ensure compatibility with CPSW RGMII2 port on am263px-cc board, make sure that SW-15(switch) should be set to <code>LOW</code> for board versions(E2/A/B versions). This configuration ensures seamless out-of-box support and functionality with the CPSW RGMII2 port on the specified versions.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3323"></a>
+<h1><a class="anchor" id="autotoc_md3345"></a>
 See Also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> </p>
 </div></div><!-- contents -->

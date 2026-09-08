@@ -36,7 +36,9 @@
     let socName = system.getScript('/common').getSocName();
     let cpuName = system.getScript('/common').getSelfSysCfgCoreName();
 %%}
+% if(socName != "f29h85x") {
 #include <stdio.h>
+% }
 #include <drivers/soc.h>
 #include <kernel/dpl/AddrTranslateP.h>
 #include "ti_dpl_config.h"

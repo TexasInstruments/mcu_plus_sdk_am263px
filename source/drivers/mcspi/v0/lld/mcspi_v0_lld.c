@@ -1640,6 +1640,45 @@ static uint32_t MCSPI_continueTxRx(MCSPILLD_Handle hMcspi,
                 MCSPI_fifoWrite(baseAddr, chObj, numWordsToWrite);
             }
         }
+#if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)
+        /*
+         * No-FIFO completion path: when both FIFOs are disabled, the EOW
+         * interrupt is never asserted by hardware. Complete the transfer
+         * once all TX and RX words have been serviced via TX0_EMPTY / RX0_FULL.
+         */
+        if ((chObj->chCfg->enableTxFifo == FALSE) &&
+            (chObj->chCfg->enableRxFifo == FALSE))
+        {
+            uint32_t txDone = (chObj->chCfg->trMode == MCSPI_TR_MODE_RX_ONLY) ||
+                              (transaction->count == chObj->curTxWords);
+            uint32_t rxDone = (chObj->chCfg->trMode == MCSPI_TR_MODE_TX_ONLY) ||
+                              (transaction->count == chObj->curRxWords);
+            if ((txDone != 0U) && (rxDone != 0U))
+            {
+                uint32_t timeout = transaction->timeout;
+                uint32_t startTicks = hMcspi->hMcspiInit->clockP_get();
+                uint32_t elapsedTicks = 0U;
+
+                /* Wait for EOT with timeout to prevent ISR hang */
+                while ((0U == (CSL_REG32_RD(baseAddr + MCSPI_CHSTAT(chNum)) &
+                        CSL_MCSPI_CH0STAT_EOT_MASK)) &&
+                       ((elapsedTicks = hMcspi->hMcspiInit->clockP_get() - startTicks) < timeout))
+                {
+                    /* Spin wait for EOT */
+                }
+
+                /* Drain any remaining RX words if TX finished first */
+                if ((MCSPI_TR_MODE_TX_ONLY != chObj->chCfg->trMode) &&
+                    (transaction->count != chObj->curRxWords))
+                {
+                    MCSPI_fifoRead(baseAddr, chObj, (transaction->count - chObj->curRxWords));
+                }
+
+                MCSPI_intrStatusClear(chObj, baseAddr, chObj->intrMask);
+                retVal = (elapsedTicks >= timeout) ? MCSPI_TIMEOUT : MCSPI_TRANSFER_COMPLETED;
+            }
+        }
+#endif
         if ((irqStatus & CSL_MCSPI_IRQSTATUS_EOW_MASK) == CSL_MCSPI_IRQSTATUS_EOW_MASK)
         {
             if (MCSPI_TR_MODE_RX_ONLY != chObj->chCfg->trMode)
@@ -2535,16 +2574,41 @@ static void MCSPI_setFifoConfig(MCSPILLD_Handle hMcspi,
     chObj->chConfRegVal &= ~(CSL_MCSPI_CH0CONF_FFEW_MASK | CSL_MCSPI_CH0CONF_FFER_MASK);
     if(MCSPI_TR_MODE_TX_RX == chObj->chCfg->trMode)
     {
+#if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)
+        if(chObj->chCfg->enableTxFifo != FALSE)
+        {
+            chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFEW_FFENABLED << CSL_MCSPI_CH0CONF_FFEW_SHIFT);
+        }
+        if(chObj->chCfg->enableRxFifo != FALSE)
+        {
+            chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFER_FFENABLED << CSL_MCSPI_CH0CONF_FFER_SHIFT);
+        }
+#else
         chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFEW_FFENABLED << CSL_MCSPI_CH0CONF_FFEW_SHIFT);
         chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFER_FFENABLED << CSL_MCSPI_CH0CONF_FFER_SHIFT);
+#endif
     }
     else if(MCSPI_TR_MODE_TX_ONLY == chObj->chCfg->trMode)
     {
+#if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)
+        if(chObj->chCfg->enableTxFifo != FALSE)
+        {
+            chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFEW_FFENABLED << CSL_MCSPI_CH0CONF_FFEW_SHIFT);
+        }
+#else
         chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFEW_FFENABLED << CSL_MCSPI_CH0CONF_FFEW_SHIFT);
+#endif
     }
     else
     {
+#if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)
+        if(chObj->chCfg->enableRxFifo != FALSE)
+        {
+            chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFER_FFENABLED << CSL_MCSPI_CH0CONF_FFER_SHIFT);
+        }
+#else
         chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFER_FFENABLED << CSL_MCSPI_CH0CONF_FFER_SHIFT);
+#endif
     }
     CSL_REG32_WR(baseAddr + MCSPI_CHCONF(chObj->chCfg->chNum), chObj->chConfRegVal);
 
@@ -2581,10 +2645,15 @@ static void MCSPI_setPeripheralFifoConfig(MCSPI_ChObject *chObj,
     uint32_t regVal;
 
     /* Find Fifo depth to configure to be multiple of number of words to transfer. */
+#if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)
+    chObj->effTxFifoDepth = (chObj->chCfg->txFifoTrigLvl != 1U) ?
+                            MCSPI_getFifoTrigLvl(numWordsTxRx, chObj->chCfg->txFifoTrigLvl >> chObj->bufWidthShift) : 1U;
+    chObj->effRxFifoDepth = (chObj->chCfg->rxFifoTrigLvl != 1U) ?
+                            MCSPI_getFifoTrigLvl(numWordsTxRx, chObj->chCfg->rxFifoTrigLvl >> chObj->bufWidthShift) : 1U;
+#else
     chObj->effTxFifoDepth = MCSPI_getFifoTrigLvl(numWordsTxRx, chObj->chCfg->txFifoTrigLvl >> chObj->bufWidthShift);
     chObj->effRxFifoDepth = MCSPI_getFifoTrigLvl(numWordsTxRx, chObj->chCfg->rxFifoTrigLvl >> chObj->bufWidthShift);
-
-
+#endif
     txFifoTrigLvl = chObj->effTxFifoDepth << chObj->bufWidthShift;
     rxFifoTrigLvl = chObj->effRxFifoDepth << chObj->bufWidthShift;
 
@@ -2602,16 +2671,41 @@ static void MCSPI_setPeripheralFifoConfig(MCSPI_ChObject *chObj,
     chObj->chConfRegVal &= ~(CSL_MCSPI_CH0CONF_FFEW_MASK | CSL_MCSPI_CH0CONF_FFER_MASK);
     if(MCSPI_TR_MODE_TX_RX == chObj->chCfg->trMode)
     {
+#if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)
+        if(chObj->chCfg->enableTxFifo != FALSE)
+        {
+            chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFEW_FFENABLED << CSL_MCSPI_CH0CONF_FFEW_SHIFT);
+        }
+        if(chObj->chCfg->enableRxFifo != FALSE)
+        {
+            chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFER_FFENABLED << CSL_MCSPI_CH0CONF_FFER_SHIFT);
+        }
+#else
         chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFEW_FFENABLED << CSL_MCSPI_CH0CONF_FFEW_SHIFT);
         chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFER_FFENABLED << CSL_MCSPI_CH0CONF_FFER_SHIFT);
+#endif
     }
     else if(MCSPI_TR_MODE_TX_ONLY == chObj->chCfg->trMode)
     {
+#if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)
+        if(chObj->chCfg->enableTxFifo != FALSE)
+        {
+            chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFEW_FFENABLED << CSL_MCSPI_CH0CONF_FFEW_SHIFT);
+        }
+#else
         chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFEW_FFENABLED << CSL_MCSPI_CH0CONF_FFEW_SHIFT);
+#endif
     }
     else
     {
+#if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)
+        if(chObj->chCfg->enableRxFifo != FALSE)
+        {
+            chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFER_FFENABLED << CSL_MCSPI_CH0CONF_FFER_SHIFT);
+        }
+#else
         chObj->chConfRegVal |= ((uint32_t)CSL_MCSPI_CH0CONF_FFER_FFENABLED << CSL_MCSPI_CH0CONF_FFER_SHIFT);
+#endif
     }
     CSL_REG32_WR(baseAddr + MCSPI_CHCONF(chObj->chCfg->chNum), chObj->chConfRegVal);
 
@@ -2886,8 +2980,15 @@ void MCSPI_setChDataSize(uint32_t baseAddr, MCSPI_ChObject *chObj,
     /* Calculate data width mask depending on SPI word size */
     chObj->dataWidthBitMask = MCSPI_getDataWidthBitMask(dataSize);
 
+#if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)
+    chObj->effTxFifoDepth = (chObj->chCfg->txFifoTrigLvl != 1U) ?
+                            (chObj->chCfg->txFifoTrigLvl >> chObj->bufWidthShift) : 1U;
+    chObj->effRxFifoDepth = (chObj->chCfg->rxFifoTrigLvl != 1U) ?
+                            (chObj->chCfg->rxFifoTrigLvl >> chObj->bufWidthShift) : 1U;
+#else
     chObj->effTxFifoDepth = chObj->chCfg->txFifoTrigLvl >> chObj->bufWidthShift;
     chObj->effRxFifoDepth = chObj->chCfg->rxFifoTrigLvl >> chObj->bufWidthShift;
+#endif
 
     return;
 }

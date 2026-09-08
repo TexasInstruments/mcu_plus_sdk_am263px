@@ -59,11 +59,11 @@ firmware/
 3. Click **Browse...** and navigate to the desired project location:
    - For **ICSS Dual EMAC**:
      ```
-     <SDK>/source/networking/icss_emac/firmware/icss_dual_emac/mii/<board>/icss_m0_pru<0|1>_fw/ti-pru-cgt/
+     <SDK>/source/networking/icss_emac_lld/icss_emac/firmware/icss_dual_emac/mii/<board>/icss_m0_pru<0|1>_fw/ti-pru-cgt/
      ```
    - For **ICSS Switch**:
      ```
-     <SDK>/source/networking/icss_emac/firmware/icss_switch/mii/<board>/icss_m0_pru<0|1>_fw/ti-pru-cgt/
+     <SDK>/source/networking/icss_emac_lld/icss_emac/firmware/icss_switch/mii/<board>/icss_m0_pru<0|1>_fw/ti-pru-cgt/
      ```
 4. Click **Finish** to import the project
 

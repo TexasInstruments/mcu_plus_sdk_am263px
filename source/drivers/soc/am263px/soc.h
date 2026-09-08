@@ -719,6 +719,11 @@ uint32_t SOC_getFlashDataBaseAddr(void);
  */
 void SOC_sendSoftwareInterrupt(uint16_t coreId);
 
+/**
+ * \brief Enable VPP_EN bit on EFUSE_MODE_CTRL.
+ */
+void SOC_enableVpp(void);
+
 /** \brief API to validate UART base address */
 static inline int32_t UART_IsBaseAddrValid(uint32_t baseAddr)
 {

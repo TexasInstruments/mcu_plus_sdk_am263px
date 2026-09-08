@@ -127,7 +127,7 @@ typedef struct
 /* ========================================================================== */
 
 /** \brief Externally defined driver configuration array */
-extern RNG_Config            gRngConfig[];
+extern RNG_Config            gRngConfig[1U];
 /** \brief Externally defined driver configuration Num */
 extern uint32_t              gRngConfigNum;
 

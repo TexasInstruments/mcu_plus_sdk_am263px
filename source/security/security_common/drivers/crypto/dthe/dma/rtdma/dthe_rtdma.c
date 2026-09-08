@@ -46,18 +46,24 @@
 /* ========================================================================== */
 
 #define RTDMA_AES_SM4_BURST_SIZE        (16U)
-#define RTDMA_WORD_SIZE                 (4U)
+#define RTDMA_WORD_SIZE                 (4)
 #define RTDMA_WORD_SIZE_NEG             ((int16_t)-4)   /* Negative word size step for DMA burst/transfer step config */
-#define RTDMA_WORD_SIZE_NEG_12          ((int16_t)-12)  /* Negative (wordSize-1)*wordSize = -(3*4) = -12 for AES/SM4 transfer step reset */
-#define RTDMA_SM3_TRANSFER_STEP_NEG     ((int16_t)-60)  /* Negative (SM3_blockSize-1)*wordSize = -(15*4) = -60 for SM3 transfer step reset */
+#define RTDMA_WORD_SIZE_NEG_12          (-12)  /* Negative (wordSize-1)*wordSize = -(3*4) = -12 for AES/SM4 transfer step reset */
+#define RTDMA_SM3_TRANSFER_STEP_NEG     (-60)  /* Negative (SM3_blockSize-1)*wordSize = -(15*4) = -60 for SM3 transfer step reset */
+
+/* Maximum blockSize, in words, that RTDMA_Config_TxChannel() can accept for its
+ * SHA/SM3 burst-size calculation without overflowing the uint16_t burstSize
+ * value passed to DMA_configBurst(): burstSize = blockSize * RTDMA_WORD_SIZE
+ * must fit uint16_t, i.e. blockSize <= (UINT16_MAX / RTDMA_WORD_SIZE) = 16383. */
+#define RTDMA_MAX_BLOCK_SIZE_WORDS      (16383U)
 
 /* DTHE AES/SHA/SM3/SM4 DMA trigger sources for HSM RTDMA */
-#define RTDMA_TRIGGER_DTHE_AES_DATAIN   DMA_TRIGGER_DTHE_AES_DMA_S_DATAIN_REQ
-#define RTDMA_TRIGGER_DTHE_AES_DATAOUT  DMA_TRIGGER_DTHE_AES_DMA_S_DATAOUT_REQ
-#define RTDMA_TRIGGER_DTHE_SHA_DATAIN   DMA_TRIGGER_DTHE_SHA_DMA_S_DATAIN_REQ
-#define RTDMA_TRIGGER_DTHE_SM3_DATAIN   DMA_TRIGGER_DTHE_SM3_DATAIN_REQ
-#define RTDMA_TRIGGER_DTHE_SM4_DATAIN   DMA_TRIGGER_DTHE_SM4_DATAIN_REQ
-#define RTDMA_TRIGGER_DTHE_SM4_DATAOUT  DMA_TRIGGER_DTHE_SM4_DATAOUT_REQ
+#define RTDMA_TRIGGER_DTHE_AES_DATAIN   (DMA_TRIGGER_DTHE_AES_DMA_S_DATAIN_REQ)
+#define RTDMA_TRIGGER_DTHE_AES_DATAOUT  (DMA_TRIGGER_DTHE_AES_DMA_S_DATAOUT_REQ)
+#define RTDMA_TRIGGER_DTHE_SHA_DATAIN   (DMA_TRIGGER_DTHE_SHA_DMA_S_DATAIN_REQ)
+#define RTDMA_TRIGGER_DTHE_SM3_DATAIN   (DMA_TRIGGER_DTHE_SM3_DATAIN_REQ)
+#define RTDMA_TRIGGER_DTHE_SM4_DATAIN   (DMA_TRIGGER_DTHE_SM4_DATAIN_REQ)
+#define RTDMA_TRIGGER_DTHE_SM4_DATAOUT  (DMA_TRIGGER_DTHE_SM4_DATAOUT_REQ)
 
 /* RTDMA channel parameter indices */
 #define RTDMA_TX_CH_PARAMS_INDEX        (0U)
@@ -74,11 +80,35 @@ typedef struct RTDMA_ChannelParams_s
     bool        isConfigured;
 } RTDMA_ChannelParams;
 
+/* Structure to hold the inputs of RTDMA_selectTxChannelParams(). Members are
+ * ordered largest-to-smallest so the compiler does not need to insert any
+ * padding between them. */
+typedef struct RTDMA_TxSelectInput_s
+{
+    int32_t     operationType;
+    uint16_t    numBlocks;
+    uint16_t    blockSize;
+} RTDMA_TxSelectInput;
+
+/* Structure to hold the outputs of RTDMA_selectTxChannelParams(). Members are
+ * ordered largest-to-smallest so the compiler does not need to insert any
+ * padding between them. */
+typedef struct RTDMA_TxSelectOutput_s
+{
+    DMA_Trigger trigger;
+    uint16_t    burstSize;
+    uint16_t    transferSize;
+    int16_t     srcBurstStep;
+    int16_t     destBurstStep;
+    int16_t     srcTransferStep;
+    int16_t     destTransferStep;
+} RTDMA_TxSelectOutput;
+
 /* ========================================================================== */
 /*                          Function Declarations                             */
 /* ========================================================================== */
 
-/* None */
+static int32_t RTDMA_selectTxChannelParams(const RTDMA_TxSelectInput *ptrInput, RTDMA_TxSelectOutput *ptrOutput);
 
 /* ========================================================================== */
 /*                            Global Variables                                */
@@ -127,6 +157,95 @@ void RTDMA_init(void)
 }
 
 /**
+ *  \brief Select trigger/burst/transfer parameters for a TX channel operation type
+ *
+ *  Extracted out of RTDMA_Config_TxChannel() to keep its nesting level within
+ *  the HIS Metrics limit - this chain (AES/SHA/SM3/SM4, with a nested blockSize
+ *  check for SHA/SM3) was itself nested inside the handle-null and address-alignment
+ *  checks, pushing the overall nesting depth past the threshold.
+ *
+ *  \return SystemP_SUCCESS on success, SystemP_FAILURE on an invalid operationType
+ *          or an oversized blockSize
+ */
+static int32_t RTDMA_selectTxChannelParams(const RTDMA_TxSelectInput *ptrInput, RTDMA_TxSelectOutput *ptrOutput)
+{
+    int32_t status = SystemP_FAILURE;
+
+    if(ptrInput->operationType == DMA_AES_ENABLE)
+    {
+        /* AES configuration */
+        ptrOutput->trigger = RTDMA_TRIGGER_DTHE_AES_DATAIN;
+        ptrOutput->burstSize = RTDMA_AES_SM4_BURST_SIZE;
+        ptrOutput->transferSize = ptrInput->numBlocks;
+        ptrOutput->srcBurstStep = RTDMA_WORD_SIZE;       /* Increment source by 4 bytes per word */
+        ptrOutput->destBurstStep = RTDMA_WORD_SIZE_NEG;   /* Destination stays at same location (peripheral register) */
+        ptrOutput->srcTransferStep = RTDMA_WORD_SIZE;  /* Move to next burst */
+        ptrOutput->destTransferStep = ((RTDMA_WORD_SIZE - 1U) * RTDMA_WORD_SIZE); /* Destination doesn't change between transfers */
+        status = SystemP_SUCCESS;
+    }
+    else if(ptrInput->operationType == DMA_SHA_ENABLE)
+    {
+        if(ptrInput->blockSize > RTDMA_MAX_BLOCK_SIZE_WORDS)
+        {
+            status = SystemP_FAILURE;
+        }
+        else
+        {
+            /* SHA configuration */
+            ptrOutput->trigger = RTDMA_TRIGGER_DTHE_SHA_DATAIN;
+            ptrOutput->burstSize = ptrInput->blockSize*RTDMA_WORD_SIZE;
+            ptrOutput->transferSize = ptrInput->numBlocks;
+            ptrOutput->srcBurstStep = RTDMA_WORD_SIZE;       /* Increment source by 4 bytes per word */
+            ptrOutput->destBurstStep = 0;                              /* Destination stays at same location (peripheral register) */
+            ptrOutput->srcTransferStep = RTDMA_WORD_SIZE;  /* Move to next block */
+            ptrOutput->destTransferStep = 0;                           /* Destination doesn't change between transfers */
+            status = SystemP_SUCCESS;
+        }
+    }
+    else if(ptrInput->operationType == DMA_SM3_ENABLE)
+    {
+        if(ptrInput->blockSize > RTDMA_MAX_BLOCK_SIZE_WORDS)
+        {
+            status = SystemP_FAILURE;
+        }
+        else
+        {
+            /* SM3 configuration - SM3 has a 16-word register array (not FIFO like SHA)
+             * Data must be written to SM3_DATA_IN[0] through SM3_DATA_IN[15] sequentially.
+             * Burst step is applied (blockSize-1) times, so transfer step must compensate. */
+            ptrOutput->trigger = RTDMA_TRIGGER_DTHE_SM3_DATAIN;
+            ptrOutput->burstSize = ptrInput->blockSize*RTDMA_WORD_SIZE;                        /* Burst size in bytes (16 words × 4 = 64 bytes) */
+            ptrOutput->transferSize = ptrInput->numBlocks;
+            ptrOutput->srcBurstStep = RTDMA_WORD_SIZE;        /* Increment source by 4 bytes per word */
+            ptrOutput->destBurstStep = RTDMA_WORD_SIZE;       /* Increment dest to write to SM3_DATA_IN[0], [1], ..., [15] */
+            ptrOutput->srcTransferStep = RTDMA_WORD_SIZE;   /* Continue to next block in source buffer */
+            ptrOutput->destTransferStep = RTDMA_SM3_TRANSFER_STEP_NEG; /* Reset dest back to SM3_DATA_IN[0] */
+            status = SystemP_SUCCESS;
+        }
+    }
+    else if(ptrInput->operationType == DMA_SM4_ENABLE)
+    {
+        /* SM4 configuration - SM4 has 4 individual registers (SM4_DATA_IN_0/1/2/3)
+         * Opposite to AES, writes from DATA_IN_0 up to DATA_IN_3 using positive step.
+         * Block size: 16 bytes (4 words) */
+        ptrOutput->trigger = RTDMA_TRIGGER_DTHE_SM4_DATAIN;
+        ptrOutput->burstSize = RTDMA_AES_SM4_BURST_SIZE;               /* 16 bytes (4 words) per block */
+        ptrOutput->transferSize = ptrInput->numBlocks;
+        ptrOutput->srcBurstStep = RTDMA_WORD_SIZE;        /* Increment source by 4 bytes per word */
+        ptrOutput->destBurstStep = RTDMA_WORD_SIZE;     /* Increment dest: DATA_IN_0 → DATA_IN_1 → DATA_IN_2 → DATA_IN_3 */
+        ptrOutput->srcTransferStep = RTDMA_WORD_SIZE;   /* Continue to next block in source buffer */
+        ptrOutput->destTransferStep = RTDMA_WORD_SIZE_NEG_12; /* Reset dest back to DATA_IN_0 */
+        status = SystemP_SUCCESS;
+    }
+    else
+    {
+        status = SystemP_FAILURE;
+    }
+
+    return status;
+}
+
+/**
  *  \brief Configure RTDMA TX channel for both AES and SHA operations
  *
  *  This function handles both AES and SHA channel configuration in a unified manner,
@@ -144,17 +263,11 @@ void RTDMA_init(void)
  *
  *  \return SystemP_SUCCESS on success, SystemP_FAILURE on error
  */
-int32_t RTDMA_Config_TxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks, uint16_t blockSize, int32_t operationType)
+int32_t RTDMA_Config_TxChannel(DMA_Handle handle, const uint32_t *srcAddress, const uint32_t *dstAddress, uint16_t numBlocks, uint16_t blockSize, int32_t operationType)
 {
-    int32_t         status = SystemP_FAILURE;
-    uint32_t        rtdmaChannelBase;
-    DMA_Trigger     trigger;
-    uint16_t        burstSize;
-    uint16_t        transferSize;
-    int16_t         srcBurstStep;
-    int16_t         destBurstStep;
-    int16_t         srcTransferStep;
-    int16_t         destTransferStep;
+    int32_t                 status = SystemP_FAILURE;
+    uint32_t                rtdmaChannelBase;
+    RTDMA_TxSelectOutput    selectOutput;
 
     if(NULL == handle)
     {
@@ -172,64 +285,14 @@ int32_t RTDMA_Config_TxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t
         uint32_t *rtdmaHandleArray = (uint32_t *)handle;
         rtdmaChannelBase = rtdmaHandleArray[RTDMA_TX_CH_PARAMS_INDEX];
 
-        /* Configure based on operation type */
-        if(operationType == DMA_AES_ENABLE)
+        /* Select trigger/burst/transfer parameters based on operation type */
+        RTDMA_TxSelectInput selectInput =
         {
-            /* AES configuration */
-            trigger = RTDMA_TRIGGER_DTHE_AES_DATAIN;
-            burstSize = RTDMA_AES_SM4_BURST_SIZE;
-            transferSize = numBlocks;
-            srcBurstStep = (int16_t)RTDMA_WORD_SIZE;       /* Increment source by 4 bytes per word */
-            destBurstStep = RTDMA_WORD_SIZE_NEG;   /* Destination stays at same location (peripheral register) */
-            srcTransferStep = (int16_t)(RTDMA_WORD_SIZE);  /* Move to next burst */
-            destTransferStep = (int16_t)((RTDMA_WORD_SIZE - 1U) * RTDMA_WORD_SIZE); /* Destination doesn't change between transfers */
-            status = SystemP_SUCCESS;
-        }
-        else if(operationType == DMA_SHA_ENABLE)
-        {
-            /* SHA configuration */
-            trigger = RTDMA_TRIGGER_DTHE_SHA_DATAIN;
-            burstSize = blockSize*RTDMA_WORD_SIZE;
-            transferSize = numBlocks;
-            srcBurstStep = (int16_t)RTDMA_WORD_SIZE;       /* Increment source by 4 bytes per word */
-            destBurstStep = 0U;                              /* Destination stays at same location (peripheral register) */
-            srcTransferStep = (int16_t)(RTDMA_WORD_SIZE);  /* Move to next block */
-            destTransferStep = 0U;                           /* Destination doesn't change between transfers */
-            status = SystemP_SUCCESS;
-
-        }
-        else if(operationType == DMA_SM3_ENABLE)
-        {
-            /* SM3 configuration - SM3 has a 16-word register array (not FIFO like SHA)
-             * Data must be written to SM3_DATA_IN[0] through SM3_DATA_IN[15] sequentially.
-             * Burst step is applied (blockSize-1) times, so transfer step must compensate. */
-            trigger = RTDMA_TRIGGER_DTHE_SM3_DATAIN;
-            burstSize = blockSize*RTDMA_WORD_SIZE;                        /* Burst size in bytes (16 words × 4 = 64 bytes) */
-            transferSize = numBlocks;
-            srcBurstStep = (int16_t)RTDMA_WORD_SIZE;        /* Increment source by 4 bytes per word */
-            destBurstStep = (int16_t)RTDMA_WORD_SIZE;       /* Increment dest to write to SM3_DATA_IN[0], [1], ..., [15] */
-            srcTransferStep = (int16_t)(RTDMA_WORD_SIZE);   /* Continue to next block in source buffer */
-            destTransferStep = RTDMA_SM3_TRANSFER_STEP_NEG; /* Reset dest back to SM3_DATA_IN[0] */
-            status = SystemP_SUCCESS;
-        }
-        else if(operationType == DMA_SM4_ENABLE)
-        {
-            /* SM4 configuration - SM4 has 4 individual registers (SM4_DATA_IN_0/1/2/3)
-             * Opposite to AES, writes from DATA_IN_0 up to DATA_IN_3 using positive step.
-             * Block size: 16 bytes (4 words) */
-            trigger = RTDMA_TRIGGER_DTHE_SM4_DATAIN;
-            burstSize = RTDMA_AES_SM4_BURST_SIZE;               /* 16 bytes (4 words) per block */
-            transferSize = numBlocks;
-            srcBurstStep = (int16_t)RTDMA_WORD_SIZE;        /* Increment source by 4 bytes per word */
-            destBurstStep = (int16_t)(RTDMA_WORD_SIZE);     /* Increment dest: DATA_IN_0 → DATA_IN_1 → DATA_IN_2 → DATA_IN_3 */
-            srcTransferStep = (int16_t)(RTDMA_WORD_SIZE);   /* Continue to next block in source buffer */
-            destTransferStep = RTDMA_WORD_SIZE_NEG_12; /* Reset dest back to DATA_IN_0 */
-            status = SystemP_SUCCESS;
-        }
-        else
-        {
-            status = SystemP_FAILURE;
-        }
+            .operationType = operationType,
+            .numBlocks = numBlocks,
+            .blockSize = blockSize,
+        };
+        status = RTDMA_selectTxChannelParams(&selectInput, &selectOutput);
 
         if(status != SystemP_FAILURE)
         {
@@ -238,19 +301,19 @@ int32_t RTDMA_Config_TxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t
 
             /* Configure burst parameters */
             DMA_configBurst(rtdmaChannelBase,
-                        burstSize,
-                        srcBurstStep,
-                        destBurstStep);
+                        selectOutput.burstSize,
+                        selectOutput.srcBurstStep,
+                        selectOutput.destBurstStep);
 
             /* Configure transfer parameters */
             DMA_configTransfer(rtdmaChannelBase,
-                            transferSize,
-                            srcTransferStep,
-                            destTransferStep);
+                            (uint32_t)selectOutput.transferSize,
+                            selectOutput.srcTransferStep,
+                            selectOutput.destTransferStep);
 
             /* Configure mode and trigger */
             DMA_configMode(rtdmaChannelBase,
-                        trigger,
+                        selectOutput.trigger,
                         DMA_CFG_ONESHOT_DISABLE |
                         DMA_CFG_CONTINUOUS_DISABLE |
                         DMA_CFG_SIZE_32BIT);
@@ -314,6 +377,8 @@ int32_t RTDMA_WaitForTxTransfer(DMA_Handle handle)
 {
     int32_t status = SystemP_FAILURE;
 
+    (void)handle;
+
     /* Poll until transfer is complete (transfer count reaches zero) */
     while(DMA_getRunStatusFlag(gRtdmaChParams[RTDMA_TX_CH_PARAMS_INDEX].channelBase))
     {
@@ -325,7 +390,7 @@ int32_t RTDMA_WaitForTxTransfer(DMA_Handle handle)
     return (status);
 }
 
-int32_t RTDMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t *dstAddress, uint16_t numBlocks, int32_t operationType)
+int32_t RTDMA_Config_RxChannel(DMA_Handle handle, const uint32_t *srcAddress, const uint32_t *dstAddress, uint16_t numBlocks, int32_t operationType)
 {
     int32_t         status = SystemP_FAILURE;
     uint32_t        rtdmaChannelBase;
@@ -387,7 +452,7 @@ int32_t RTDMA_Config_RxChannel(DMA_Handle handle, uint32_t *srcAddress, uint32_t
 
             /* Configure transfer parameters */
             DMA_configTransfer(rtdmaChannelBase,
-                            numBlocks,
+                            (uint32_t)numBlocks,
                             srcTransferStep,
                             destTransferStep);
 
@@ -453,9 +518,11 @@ int32_t RTDMA_enableRxTransferRegion(DMA_Handle handle)
     return (status);
 }
 
-int32_t RTDMA_WaitForRxTransfer(DMA_Handle handle)
+int32_t RTDMA_WaitForRxTransfer(DMA_Handle  handle)
 {
     int32_t status = SystemP_FAILURE;
+
+    (void)handle;
 
     /* Poll until transfer is complete (transfer count reaches zero) */
     while(DMA_getRunStatusFlag(gRtdmaChParams[RTDMA_RX_CH_PARAMS_INDEX].channelBase))

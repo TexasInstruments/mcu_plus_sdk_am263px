@@ -10,7 +10,7 @@
     % let config = module.getInstanceConfig(instance);
 /* FLASH Object - initialized during Flash_open() */
 Flash_NorOspiObject gFlashObject_`config.fname`;
-%if (common.getSocName() === 'am64x' || common.getSocName() === 'am243'){
+%if (common.getSocName() === 'am64x' || common.getSocName() === 'am243x'){
 Flash_NorOspiFallBackCfg gFlashFallBackCfg_`config.fname` =
 {
     .fallBackFreq = 200000000U,
@@ -67,6 +67,8 @@ Flash_Attrs gFlashAttrs_`config.fname` =
     .sectorSize = `config.flashSectorSize`,
 %if (common.getSocName() === 'am263px' || common.getSocName() === 'am261x'){
     .phyTuningOffset = 0x80000,
+%} else if (common.getSocName() === 'am64x' || common.getSocName() === 'am243x'){
+    .phyTuningOffset = `config.flashSize` - `config.flashBlockSize`,
 %} else {
     .phyTuningOffset = `config.flashSize`/2,
 %}
@@ -180,7 +182,7 @@ Flash_Config gFlashConfig[CONFIG_FLASH_NUM_INSTANCES] =
         .devConfig = &gFlashDevCfg_`config.fname`,
         .object = (void *)&gFlashObject_`config.fname`,
         .skipHwInit = `config.skipHwInit.toString(10).toUpperCase()`,
-        %if (common.getSocName() === 'am64x' || common.getSocName() === 'am243'){
+        %if (common.getSocName() === 'am64x' || common.getSocName() === 'am243x'){
         .fallBackCfg = (void *)&gFlashFallBackCfg_`config.fname`,
         % } else {
         .fallBackCfg = NULL,

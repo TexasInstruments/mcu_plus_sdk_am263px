@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('INSTRUMENTED_APPLICATION_SPECIAL_SECTI
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md742">Introduction</a><ul><li class="level2"><a href="#autotoc_md743">Using Memory Configurator</a></li>
-<li class="level2"><a href="#autotoc_md744">Linker changes</a></li>
+<ul><li class="level1"><a href="#autotoc_md745">Introduction</a><ul><li class="level2"><a href="#autotoc_md746">Using Memory Configurator</a></li>
+<li class="level2"><a href="#autotoc_md747">Linker changes</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_developer_guides_instrumented_application_special_section"></a></p>
-<h1><a class="anchor" id="autotoc_md742"></a>
+<h1><a class="anchor" id="autotoc_md745"></a>
 Introduction</h1>
 <p>When all libraries and application is compiled in instrumentation mode, some extra ELF sections are created by the compiler. In any examples, these additional section handling needs to be done in linker script.</p>
 <p>If custom linker command file is used then changes in <code>Memory Configurator</code> (<a class="el" href="MEMORY_CONFIGURATOR.html">Memory Configurator</a>) is not required.</p>
-<h2><a class="anchor" id="autotoc_md743"></a>
+<h2><a class="anchor" id="autotoc_md746"></a>
 Using Memory Configurator</h2>
 <p>Open <code>Memory Configurator</code>. And under that, open "`Section`". Something like following will be shown: </p><div class="image">
 <img src="sw_instr_sp_mc_sec_open.png" alt=""/>
@@ -147,7 +147,7 @@ Using Memory Configurator</h2>
 <div class="line">RUN_START(__BSS_START)</div>
 <div class="line">RUN_END(__BSS_END)</div>
 </div><!-- fragment --><p>In this particular example, load and run address is chosen as MSRAM which is just a representative name of a part of on chip RAM memory.</p>
-<h2><a class="anchor" id="autotoc_md744"></a>
+<h2><a class="anchor" id="autotoc_md747"></a>
 Linker changes</h2>
 <p>In the linker file, some change are required. Add following lines of code in linker file when using ti-arm-clang compiler. This code should be inside <code>SECTIONS</code>.</p>
 <div class="fragment"><div class="line">GROUP</div>

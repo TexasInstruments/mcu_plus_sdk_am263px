@@ -57,6 +57,21 @@
 /** \brief This is the Block Size for the SHA256 in words */
 #define DTHE_SHA256_BLOCK_SIZE                  (16U)
 
+/** \brief Maximum dataLenBytes allowed for a SHA512 block computation.
+ *
+ *  DTHE_SHA_writeDataBuffer() computes
+ *  numBlocks = (uint16_t)((dataLenBytes / 4U) / DTHE_SHA512_BLOCK_SIZE), which
+ *  must not exceed UINT16_MAX (65535) or numBlocks silently truncates. The
+ *  largest dataLenBytes for which this holds is
+ *  (((UINT16_MAX + 1U) * DTHE_SHA512_BLOCK_SIZE) * 4U) - 1U. */
+#define DTHE_SHA512_MAX_DATA_LEN_BYTES           (8388607U)
+
+/** \brief Maximum dataLenBytes allowed for a SHA256 block computation.
+ *
+ *  Same truncation risk as DTHE_SHA512_MAX_DATA_LEN_BYTES above, but for
+ *  DTHE_SHA256_BLOCK_SIZE: (((UINT16_MAX + 1U) * DTHE_SHA256_BLOCK_SIZE) * 4U) - 1U. */
+#define DTHE_SHA256_MAX_DATA_LEN_BYTES           (4194303U)
+
 /** \brief This is the Data Shift Size for the SHA512 */
 #define DTHE_SHA512_SHIFT_SIZE                  (5U)
 
@@ -80,7 +95,7 @@ uint32_t                gDTHESHAdigestCount;
 /* ========================================================================== */
 static void DTHE_SHA_setInterruptStatus(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t intStatus);
 static void DTHE_SHA_setDMA(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t dmaStatus);
-static void DTHE_SHA_pollContextReady(CSL_EIP57T_SHARegs* ptrSHARegs);
+static void DTHE_SHA_pollContextReady(const CSL_EIP57T_SHARegs* ptrSHARegs);
 static uint32_t DTHE_SHA_isContextReadyIRQ(const CSL_EIP57T_SHARegs* ptrSHARegs);
 static void DTHE_SHA_setUseAlgoConstants(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t useAlgConstants);
 static void DTHE_SHA_setCloseHash(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t closeHashFlag);
@@ -92,9 +107,9 @@ static void DTHE_SHA512_setHMACKeyProcessing(CSL_EIP57T_SHARegs* ptrSHARegs, uin
 static void DTHE_SHA512_setHMACOuterHash(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t hmacOuterHash);
 static void DTHE_SHA_setHashLength(CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t length);
 static void DTHE_SHA512_setHashLength(CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t length);
-static void DTHE_SHA_pollInputReady(CSL_EIP57T_SHARegs* ptrSHARegs);
+static void DTHE_SHA_pollInputReady(const CSL_EIP57T_SHARegs* ptrSHARegs);
 static void DTHE_SHA_writeDataBlock(CSL_EIP57T_SHARegs* ptrSHARegs, const uint32_t* ptrDataBlock, uint8_t blockSize);
-static void DTHE_SHA_pollOutputReady (CSL_EIP57T_SHARegs* ptrSHARegs);
+static void DTHE_SHA_pollOutputReady (const CSL_EIP57T_SHARegs* ptrSHARegs);
 static void DTHE_SHA_getHashDigest(const CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t* ptrDigest);
 static void DTHE_SHA512_getHashDigest(const CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t* ptrDigest);
 static void DTHE_SHA_setAlgorithm(CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t algorithm);
@@ -106,6 +121,14 @@ static void DTHE_SHA_setHMACOuterKey(CSL_EIP57T_SHARegs* ptrSHARegs, const uint3
 static void DTHE_SHA_setHMACInnerKey(CSL_EIP57T_SHARegs* ptrSHARegs, const uint32_t* ptrHMACKey);
 static void DTHE_SHA512_setHMACOuterKey(CSL_EIP57T_SHARegs* ptrSHARegs, const uint32_t* ptrHMACKey);
 static void DTHE_SHA512_setHMACInnerKey(CSL_EIP57T_SHARegs* ptrSHARegs, const uint32_t* ptrHMACKey);
+static DTHE_SHA_Return_t DTHE_SHA_validateBlockAlignment(uint32_t algoType, uint32_t dataLenBytes, Bool isLastBlock);
+static DTHE_SHA_Return_t DTHE_SHA_validateMaxDataLen(uint32_t algoType, uint32_t dataLenBytes);
+static void DTHE_SHA_configureHashMode(CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t algoType, uint8_t useAlgoConstants, uint8_t closeHash);
+static void DTHE_SHA_setLengthAndBlockParams(CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t algoType, uint32_t dataLenBytes, uint8_t* ptrBlockSize, uint32_t* ptrShiftSize);
+static void DTHE_SHA_writeDataBuffer(uint32_t dmaEnable, CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t* ptrDataBuffer, uint32_t dataLenBytes, uint8_t blockSize, uint32_t shiftSize);
+static void DTHE_SHA_readDigestAndCount(const CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t algoType, uint32_t* ptrDigest);
+static void DTHE_HMACSHA_preparePaddedKey(const DTHE_SHA_Params* ptrShaParams, uint32_t* ptrHmacPaddedKey);
+static void DTHE_HMACSHA_configureKeyAndMode(CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t algoType, const uint32_t* ptrHmacPaddedKey, uint32_t dataLenBytes, uint8_t* ptrBlockSize, uint32_t* ptrShiftSize);
 
 /* ========================================================================== */
 /*                          Function Definitions                              */
@@ -186,23 +209,14 @@ DTHE_SHA_Return_t DTHE_SHA_close(DTHE_Handle handle)
 DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaParams, Bool isLastBlock)
 {
     DTHE_SHA_Return_t       status = DTHE_SHA_RETURN_SUCCESS;
-    DMA_Handle              dmaHandle = NULL;
-    DMA_Return_t            dmaStatus = DMA_RETURN_FAILURE;
-    uint32_t                index = 0U;
-    uint32_t                dataLenWords;
-    uint32_t                dataLenBytes;
-    uint8_t                 *ptrByteDataBuffer;
-    uint16_t                numBlocks;
     uint8_t                 useAlgoConstants;
     uint8_t                 closeHash;
-    uint8_t                 blockSize;
-    uint32_t                shiftSize;
-    uint32_t                numPartialWords;
-    uint32_t                partialWord = 0U;
-    uint32_t                numBytes    = 0U;
+    uint8_t                 blockSize = 0U;
+    uint32_t                shiftSize = 0U;
+    uint32_t                dataLenBytes = 0U;
     DTHE_Config             *config = NULL;
     DTHE_Attrs              *attrs  = NULL;
-    CSL_EIP57T_SHARegs      *ptrShaRegs;
+    CSL_EIP57T_SHARegs      *ptrShaRegs = NULL;
 
     if((NULL == handle) || (NULL == ptrShaParams))
     {
@@ -218,31 +232,17 @@ DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaPa
 
         DTHE_SHA_setAlgorithm(ptrShaRegs, ptrShaParams->algoType);
 
+        /* Sanity Checking: Ensure that the data length does not exceed the
+         * maximum supported for the selected algorithm, else the block count
+         * computed in DTHE_SHA_writeDataBuffer() would silently truncate. */
+        status = DTHE_SHA_validateMaxDataLen(ptrShaParams->algoType, dataLenBytes);
     }
-    /* Sanity Checking: Any data buffer except the last block should be aligned as per
-     * the SHA Size. For SHA256 this is 64byte while for SHA512 this should be 128byte */
-    if((status == DTHE_SHA_RETURN_SUCCESS) && (isLastBlock == FALSE))
+
+    if (status == DTHE_SHA_RETURN_SUCCESS)
     {
-        if (ptrShaParams->algoType == DTHE_SHA_ALGO_SHA256)
-        {
-            if ((dataLenBytes % (DTHE_SHA256_BLOCK_SIZE * sizeof(uint32_t))) != 0U)
-            {
-                /* Error: Ensure that the data length is a word multiple. */
-                status = DTHE_SHA_RETURN_FAILURE;
-            }
-        }
-        else
-        {
-            if ((dataLenBytes % (DTHE_SHA512_BLOCK_SIZE * sizeof(uint32_t))) != 0U)
-            {
-                /* Error: Ensure that the data length is a word multiple. */
-                status = DTHE_SHA_RETURN_FAILURE;
-            }
-        }
-    }
-    else
-    {
-        /* Last Blocks: These need no alignment. */
+        /* Sanity Checking: Any data buffer except the last block should be aligned as per
+         * the SHA Size. For SHA256 this is 64byte while for SHA512 this should be 128byte */
+        status = DTHE_SHA_validateBlockAlignment(ptrShaParams->algoType, dataLenBytes, isLastBlock);
     }
 
     /* Perform the SHA Computation */
@@ -251,9 +251,7 @@ DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaPa
         /* Ensure that the SHA IP Block is ready to receive data: */
         DTHE_SHA_pollContextReady (ptrShaRegs);
 
-        /********************************************************************
-         * Is this the first block which is being passed to the SHA Engine?
-         ********************************************************************/
+        /* Is this the first block which is being passed to the SHA Engine? */
         if (gDTHESHAInProgress == FALSE)
         {
             /* Yes: For the first block we will use the algorithm constants */
@@ -278,140 +276,19 @@ DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaPa
         }
 
         /* Update the Hash Mode: */
-        if (ptrShaParams->algoType == DTHE_SHA_ALGO_SHA256)
-        {
-            DTHE_SHA_setUseAlgoConstants(ptrShaRegs, useAlgoConstants);
-            DTHE_SHA_setCloseHash(ptrShaRegs, closeHash);
+        DTHE_SHA_configureHashMode(ptrShaRegs, ptrShaParams->algoType, useAlgoConstants, closeHash);
 
-            /* Reset the HMAC Processing: */
-            DTHE_SHA_setHMACKeyProcessing(ptrShaRegs, 0U);
-            DTHE_SHA_setHMACOuterHash(ptrShaRegs, 0U);
-        }
-        else
-        {
-            DTHE_SHA512_setUseAlgoConstants(ptrShaRegs, useAlgoConstants);
-            DTHE_SHA512_setCloseHash(ptrShaRegs, closeHash);
+        /* Write the length of the data and setup the block & shift size: */
+        DTHE_SHA_setLengthAndBlockParams(ptrShaRegs, ptrShaParams->algoType, dataLenBytes, &blockSize, &shiftSize);
 
-            /* Reset the HMAC Processing: */
-            DTHE_SHA512_setHMACKeyProcessing(ptrShaRegs, 0U);
-            DTHE_SHA512_setHMACOuterHash(ptrShaRegs, 0U);
-        }
-
-        /* Write the length of the data: */
-        if (ptrShaParams->algoType == DTHE_SHA_ALGO_SHA256)
-        {
-            /* SHA256: Setup the block & shift size: */
-            blockSize = DTHE_SHA256_BLOCK_SIZE;
-            shiftSize = DTHE_SHA256_SHIFT_SIZE;
-
-            /* Set the data length: */
-            DTHE_SHA_setHashLength(ptrShaRegs, dataLenBytes);
-        }
-        else
-        {
-            /* SHA512: Setup the block & shift size: */
-            blockSize = DTHE_SHA512_BLOCK_SIZE;
-            shiftSize = DTHE_SHA512_SHIFT_SIZE;
-
-            /* Set the data length: */
-            DTHE_SHA512_setHashLength(ptrShaRegs, dataLenBytes);
-        }
-
-        /* Determine the data length in words: */
-        dataLenWords = dataLenBytes / 4U;
-
-        /* Compute the number of blocks: */
-        numBlocks = dataLenWords / blockSize;
-
-        /* Compute the number of partial words which need to be handled seperately */
-        numPartialWords = dataLenWords % blockSize;
-
-        if ((config->dmaEnable == DMA_ENABLE) && (numBlocks > 0U))
-        {
-            dmaHandle = DMA_open(0);
-            dmaStatus = DMA_Config_TxChannel(dmaHandle, ptrShaParams->ptrDataBuffer, (uint32_t *)&ptrShaRegs->DATA_IN[0], numBlocks, blockSize, DMA_SHA_ENABLE);
-        }
-
-        if (dmaStatus == DMA_RETURN_SUCCESS)
-        {
-            /* Compute the number of full blocks which need to be processed: */
-            (void)DMA_enableTxTransferRegion(dmaHandle);
-            DTHE_SHA_setDMA(ptrShaRegs, 1);
-            (void)DMA_startTxChannel(dmaHandle);
-
-            (void)DMA_WaitForTxTransfer(dmaHandle);
-
-            DTHE_SHA_setDMA(ptrShaRegs, 0);
-
-            (void)DMA_disableTxCh(dmaHandle);
-
-            /* Compute the number of bytes which have been processed: */
-            numBytes = numBytes + (numBlocks * blockSize * sizeof(uint32_t));
-            index = numBlocks;
-        }
-        else
-        {
-            /* Compute the number of full blocks which need to be processed: */
-            for (index = 0U; index < numBlocks; index = index + 1U)
-            {
-                /* Ensure that the SHA IP Block is ready to receive data: */
-                DTHE_SHA_pollInputReady(ptrShaRegs);
-
-                /* Write the data block: */
-                DTHE_SHA_writeDataBlock(ptrShaRegs,
-                                        &ptrShaParams->ptrDataBuffer[index << shiftSize],
-                                        blockSize);
-
-                /* Compute the number of bytes which have been processed: */
-                numBytes = numBytes + (blockSize * sizeof(uint32_t));
-            }
-        }
-
-        /* Process any left over data: */
-        if (numPartialWords != 0U)
-        {
-            /* Ensure that the SHA IP Block is ready to receive data: */
-            DTHE_SHA_pollInputReady(ptrShaRegs);
-
-            /* Write the data block: */
-            DTHE_SHA_writeDataBlock(ptrShaRegs,
-                                    &ptrShaParams->ptrDataBuffer[index << shiftSize],
-                                    (uint8_t)numPartialWords);
-
-            /* Compute the number of bytes which have been processed: */
-            numBytes = numBytes + (numPartialWords * sizeof(uint32_t));
-        }
-
-        /* Do we need to account for some additional bytes? */
-        if (dataLenBytes != numBytes)
-        {
-            /* Get the pointer to the data buffer in bytes which will be written: */
-            ptrByteDataBuffer = (uint8_t*)ptrShaParams->ptrDataBuffer;
-
-            /* Copy into the partial word: */
-            (void)memcpy ((void *)&partialWord, (void *)&ptrByteDataBuffer[numBytes], (dataLenBytes - numBytes));
-
-            /* Ensure that the SHA IP Block is ready to receive data: */
-            DTHE_SHA_pollInputReady(ptrShaRegs);
-
-            /* Write the data block: */
-            DTHE_SHA_writeDataBlock(ptrShaRegs, &partialWord, 1U);
-        }
+        /* Write the data buffer to the SHA Engine: */
+        DTHE_SHA_writeDataBuffer(config->dmaEnable, ptrShaRegs, ptrShaParams->ptrDataBuffer, dataLenBytes, blockSize, shiftSize);
 
         /* Poll till the intermediate hash results are available: */
         DTHE_SHA_pollOutputReady (ptrShaRegs);
 
         /* Get the digest count and value: */
-        if (ptrShaParams->algoType == DTHE_SHA_ALGO_SHA256)
-        {
-            DTHE_SHA_getHashDigest(ptrShaRegs, &ptrShaParams->digest[0]);
-            gDTHESHAdigestCount = DTHE_SHA_getDigestCount(ptrShaRegs);
-        }
-        else
-        {
-            DTHE_SHA512_getHashDigest(ptrShaRegs, &ptrShaParams->digest[0]);
-            gDTHESHAdigestCount = DTHE_SHA512_getDigestCount(ptrShaRegs);
-        }
+        DTHE_SHA_readDigestAndCount(ptrShaRegs, ptrShaParams->algoType, &ptrShaParams->digest[0]);
 
         if( isLastBlock == TRUE )
         {
@@ -434,22 +311,13 @@ DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaPa
 DTHE_SHA_Return_t DTHE_HMACSHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaParams)
 {
     DTHE_SHA_Return_t       status = DTHE_SHA_RETURN_FAILURE;
-    DMA_Handle              dmaHandle = NULL;
-    DMA_Return_t            dmaStatus = DMA_RETURN_FAILURE;
-    uint32_t                index;
-    uint32_t                dataLenWords;
-    uint32_t                dataLenBytes;
-    uint8_t                 *ptrByteDataBuffer;
-    uint16_t                numBlocks;
-    uint8_t                 blockSize;
-    uint32_t                shiftSize;
-    uint32_t                numPartialWords;
-    uint32_t                partialWord = 0U;
-    uint32_t                numBytes    = 0U;
+    uint8_t                 blockSize = 0U;
+    uint32_t                shiftSize = 0U;
+    uint32_t                dataLenBytes = 0U;
     uint32_t                hmacPaddedKey[DTHE_HMAC_SHA_MAX_KEY_SIZE_BYTES/4U];
     DTHE_Config             *config = NULL;
     DTHE_Attrs              *attrs  = NULL;
-    CSL_EIP57T_SHARegs      *ptrShaRegs;
+    CSL_EIP57T_SHARegs      *ptrShaRegs = NULL;
 
     if((NULL != handle) && (NULL != ptrShaParams))
     {
@@ -463,168 +331,41 @@ DTHE_SHA_Return_t DTHE_HMACSHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrS
         ptrShaRegs          = (CSL_EIP57T_SHARegs *)attrs->shaBaseAddr;
         dataLenBytes        = ptrShaParams->dataLenBytes;
         DTHE_SHA_setAlgorithm(ptrShaRegs, ptrShaParams->algoType);
+
         /* Sanity Check: The HMAC Key Size cannot be greater than the MAX allowed. */
         if (ptrShaParams->keySize > DTHE_HMAC_SHA_MAX_KEY_SIZE_BYTES)
         {
             /* Long HMAC Keys are not supported. */
             status = DTHE_SHA_RETURN_FAILURE;
         }
-
-        if(status == DTHE_SHA_RETURN_SUCCESS)
+        else
         {
-            /* Initialize the padded key */
-            (void)memset ((void *)&hmacPaddedKey[0], 0, sizeof(hmacPaddedKey));
-
-            /* Copy the key if one was provided: */
-            if (ptrShaParams->keySize != 0U)
-            {
-                /* Copy the key data into the HMAC Padded Key: */
-                (void)memcpy ((void *)&hmacPaddedKey[0], (const void*)ptrShaParams->ptrKey, ptrShaParams->keySize);
-            }
-
-            /* Which algorithm are we executing? */
-            if (ptrShaParams->algoType == DTHE_SHA_ALGO_SHA256)
-            {
-                /* SHA256: Outer & Inner Keys are 256bits = 32bytes = 8words */
-                DTHE_SHA_setHMACOuterKey(ptrShaRegs, &hmacPaddedKey[0U]);
-                DTHE_SHA_setHMACInnerKey(ptrShaRegs, &hmacPaddedKey[8U]);
-
-                /* HMAC Processing:-
-                *  - Algorithm Constants are not used
-                *  - Compute the hash and close it here. */
-                DTHE_SHA_setUseAlgoConstants(ptrShaRegs, 0U);
-                DTHE_SHA_setCloseHash(ptrShaRegs, 1U);
-                DTHE_SHA_setHMACKeyProcessing(ptrShaRegs, 1U);
-                DTHE_SHA_setHMACOuterHash(ptrShaRegs, 1U);
-
-                /* Set the data length: */
-                DTHE_SHA_setHashLength(ptrShaRegs, dataLenBytes);
-
-                /* SHA256: Setup the block & shift size: */
-                blockSize = DTHE_SHA256_BLOCK_SIZE;
-                shiftSize = DTHE_SHA256_SHIFT_SIZE;
-            }
-            else
-            {
-                /* SHA512: Outer & Inner Keys are 512bits = 64bytes = 16words */
-                DTHE_SHA512_setHMACOuterKey(ptrShaRegs, &hmacPaddedKey[0U]);
-                DTHE_SHA512_setHMACInnerKey(ptrShaRegs, &hmacPaddedKey[16U]);
-
-                /* HMAC Processing:-
-                *  - Algorithm Constants are not used
-                *  - Compute the hash and close it here. */
-                DTHE_SHA512_setUseAlgoConstants(ptrShaRegs, 0U);
-                DTHE_SHA512_setCloseHash(ptrShaRegs, 1U);
-                DTHE_SHA512_setHMACKeyProcessing(ptrShaRegs, 1U);
-                DTHE_SHA512_setHMACOuterHash(ptrShaRegs, 1U);
-
-                /* Set the data length: */
-                DTHE_SHA512_setHashLength(ptrShaRegs, dataLenBytes);
-
-                /* SHA512: Setup the block & shift size: */
-                blockSize = DTHE_SHA512_BLOCK_SIZE;
-                shiftSize = DTHE_SHA512_SHIFT_SIZE;
-            }
-
-            /* Determine the data length in words: */
-            dataLenWords = dataLenBytes / 4U;
-
-            /* Compute the number of blocks: */
-            numBlocks = dataLenWords / blockSize;
-
-            /* Compute the number of partial words which need to be handled seperately */
-            numPartialWords = dataLenWords % blockSize;
-
-            if ((config->dmaEnable == DMA_ENABLE) && (numBlocks > 0U))
-            {
-                dmaHandle = DMA_open(0);
-                dmaStatus = DMA_Config_TxChannel(dmaHandle, ptrShaParams->ptrDataBuffer, (uint32_t *)&ptrShaRegs->DATA_IN[0], numBlocks, blockSize, DMA_SHA_ENABLE);
-            }
-
-            if (dmaStatus == DMA_RETURN_SUCCESS)
-            {
-                /* Compute the number of full blocks which need to be processed: */
-                (void)DMA_enableTxTransferRegion(dmaHandle);
-                DTHE_SHA_setDMA(ptrShaRegs, 1);
-                (void)DMA_startTxChannel(dmaHandle);
-
-                (void)DMA_WaitForTxTransfer(dmaHandle);
-
-                DTHE_SHA_setDMA(ptrShaRegs, 0);
-
-                (void)DMA_disableTxCh(dmaHandle);
-
-                /* Compute the number of bytes which have been processed: */
-                numBytes = numBytes + (numBlocks * blockSize * sizeof(uint32_t));
-                index = numBlocks;
-            }
-            else
-            {
-                /* Compute the number of full blocks which need to be processed: */
-                for (index = 0U; index < numBlocks; index = index + 1U)
-                {
-                    /* Ensure that the SHA IP Block is ready to receive data: */
-                    DTHE_SHA_pollInputReady(ptrShaRegs);
-
-                    /* Write the data block: */
-                    DTHE_SHA_writeDataBlock(ptrShaRegs,
-                                            &ptrShaParams->ptrDataBuffer[index << shiftSize],
-                                            blockSize);
-
-                    /* Compute the number of bytes which have been processed: */
-                    numBytes = numBytes + (blockSize * sizeof(uint32_t));
-                }
-            }
-
-            /* Process any left over data: */
-            if (numPartialWords != 0U)
-            {
-                /* Ensure that the SHA IP Block is ready to receive data: */
-                DTHE_SHA_pollInputReady(ptrShaRegs);
-
-                /* Write the data block: */
-                DTHE_SHA_writeDataBlock(ptrShaRegs,
-                                        &ptrShaParams->ptrDataBuffer[index << shiftSize],
-                                        (uint8_t)numPartialWords);
-
-                /* Compute the number of bytes which have been processed: */
-                numBytes = numBytes + (numPartialWords * sizeof(uint32_t));
-            }
-
-             /* Do we need to account for some additional bytes? */
-            if (dataLenBytes != numBytes)
-            {
-                /* Get the pointer to the data buffer in bytes which will be written: */
-                ptrByteDataBuffer = (uint8_t*)ptrShaParams->ptrDataBuffer;
-
-                /* Copy into the partial word: */
-                (void)memcpy ((void *)&partialWord, (void *)&ptrByteDataBuffer[numBytes], (dataLenBytes - numBytes));
-
-                /* Ensure that the SHA IP Block is ready to receive data: */
-                DTHE_SHA_pollInputReady(ptrShaRegs);
-
-                /* Write the data block: */
-                DTHE_SHA_writeDataBlock(ptrShaRegs, &partialWord, 1U);
-            }
-
-            /* Poll till the intermediate hash results are available: */
-            DTHE_SHA_pollOutputReady (ptrShaRegs);
-
-            /* Get the digest count and value: */
-            if (ptrShaParams->algoType == DTHE_SHA_ALGO_SHA256)
-            {
-                DTHE_SHA_getHashDigest(ptrShaRegs, &ptrShaParams->digest[0]);
-                gDTHESHAdigestCount = DTHE_SHA_getDigestCount(ptrShaRegs);
-            }
-            else
-            {
-                DTHE_SHA512_getHashDigest(ptrShaRegs, &ptrShaParams->digest[0]);
-                gDTHESHAdigestCount = DTHE_SHA512_getDigestCount(ptrShaRegs);
-            }
-
-            /* SHA Computation is in progress: */
-            gDTHESHAInProgress = FALSE;
+            /* Sanity Checking: Ensure that the data length does not exceed the
+             * maximum supported for the selected algorithm, else the block count
+             * computed in DTHE_SHA_writeDataBuffer() would silently truncate. */
+            status = DTHE_SHA_validateMaxDataLen(ptrShaParams->algoType, dataLenBytes);
         }
+    }
+
+    if(status == DTHE_SHA_RETURN_SUCCESS)
+    {
+        /* Initialize the padded key and copy the key if one was provided: */
+        DTHE_HMACSHA_preparePaddedKey(ptrShaParams, &hmacPaddedKey[0]);
+
+        /* Configure the HMAC keys, hash mode and the block & shift size for the algorithm: */
+        DTHE_HMACSHA_configureKeyAndMode(ptrShaRegs, ptrShaParams->algoType, &hmacPaddedKey[0], dataLenBytes, &blockSize, &shiftSize);
+
+        /* Write the data buffer to the SHA Engine: */
+        DTHE_SHA_writeDataBuffer(config->dmaEnable, ptrShaRegs, ptrShaParams->ptrDataBuffer, dataLenBytes, blockSize, shiftSize);
+
+        /* Poll till the intermediate hash results are available: */
+        DTHE_SHA_pollOutputReady (ptrShaRegs);
+
+        /* Get the digest count and value: */
+        DTHE_SHA_readDigestAndCount(ptrShaRegs, ptrShaParams->algoType, &ptrShaParams->digest[0]);
+
+        /* SHA Computation is in progress: */
+        gDTHESHAInProgress = FALSE;
     }
     return (status);
 }
@@ -667,7 +408,7 @@ static void DTHE_SHA_setDMA(CSL_EIP57T_SHARegs* ptrSHARegs, uint8_t dmaStatus)
  *  \param  ptrSHARegs      Pointer to the SHA Driver Context Object
  *
  */
-static void DTHE_SHA_pollContextReady(CSL_EIP57T_SHARegs* ptrSHARegs)
+static void DTHE_SHA_pollContextReady(const CSL_EIP57T_SHARegs* ptrSHARegs)
 {
     uint32_t     done = 0U;
 
@@ -835,7 +576,7 @@ static void DTHE_SHA512_setHashLength(CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t l
  *  \param ptrSHARegs       Pointer to the SHA Driver Context Object
  *
  */
-static void DTHE_SHA_pollInputReady(CSL_EIP57T_SHARegs* ptrSHARegs)
+static void DTHE_SHA_pollInputReady(const CSL_EIP57T_SHARegs* ptrSHARegs)
 {
     uint32_t     done = 0U;
 
@@ -873,7 +614,7 @@ static void DTHE_SHA_writeDataBlock(CSL_EIP57T_SHARegs* ptrSHARegs, const uint32
  *  \param ptrSHARegs       Pointer to the SHA Driver Context Object
  *
  */
-static void DTHE_SHA_pollOutputReady (CSL_EIP57T_SHARegs* ptrSHARegs)
+static void DTHE_SHA_pollOutputReady (const CSL_EIP57T_SHARegs* ptrSHARegs)
 {
     uint32_t     done = 0U;
 
@@ -930,41 +671,35 @@ static void DTHE_SHA512_getHashDigest(const CSL_EIP57T_SHARegs* ptrSHARegs, uint
  */
 static void DTHE_SHA_setAlgorithm(CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t algorithm)
 {
-    uint8_t     value;
+    uint32_t     value;
 
     switch (algorithm)
     {
         case CSL_EIP57T_SHAAlgo_MD5:
-        {
             value = 0U;
             break;
-        }
+
         case CSL_EIP57T_SHAAlgo_SHA384:
-        {
             value = 1U;
             break;
-        }
+
         case CSL_EIP57T_SHAAlgo_SHA1:
-        {
             value = 2U;
             break;
-        }
+        
         case CSL_EIP57T_SHAAlgo_SHA512:
-        {
             value = 3U;
             break;
-        }
+        
         case CSL_EIP57T_SHAAlgo_SHA224:
-        {
             value = 4U;
             break;
-        }
+        
         default:
-        {
             value = 6U;
             break;
-        }
     }
+    
     CSL_FINSR (ptrSHARegs->HASH_MODE, 2U, 0U, value);
     return;
 }
@@ -1087,6 +822,362 @@ static void DTHE_SHA512_setHMACInnerKey(CSL_EIP57T_SHARegs* ptrSHARegs, const ui
     for (index = 0U; index < 16U; index = index + 1U)
     {
         ptrSHARegs->HASH512_IDIGEST[index] = ptrHMACKey[index];
+    }
+    return;
+}
+
+/**
+ *  \brief  The function checks that a non-final data block is aligned to
+ *          the SHA block size for the selected algorithm.
+ *
+ *  \param  algoType        Algorithm to be executed
+ *  \param  dataLenBytes    Size of the data in bytes
+ *  \param  isLastBlock     Used for singleshot and multishot sha
+ *
+ *  \retval                 #DTHE_SHA_RETURN_SUCCESS if the data length is aligned
+ *                          #DTHE_SHA_RETURN_FAILURE if the data length is not aligned
+ */
+static DTHE_SHA_Return_t DTHE_SHA_validateBlockAlignment(uint32_t algoType, uint32_t dataLenBytes, Bool isLastBlock)
+{
+    DTHE_SHA_Return_t status = DTHE_SHA_RETURN_SUCCESS;
+
+    /* Sanity Checking: Any data buffer except the last block should be aligned as per
+     * the SHA Size. For SHA256 this is 64byte while for SHA512 this should be 128byte */
+    if (isLastBlock == FALSE)
+    {
+        if (algoType == DTHE_SHA_ALGO_SHA256)
+        {
+            if ((dataLenBytes % (DTHE_SHA256_BLOCK_SIZE * sizeof(uint32_t))) != 0U)
+            {
+                /* Error: Ensure that the data length is a word multiple. */
+                status = DTHE_SHA_RETURN_FAILURE;
+            }
+        }
+        else
+        {
+            if ((dataLenBytes % (DTHE_SHA512_BLOCK_SIZE * sizeof(uint32_t))) != 0U)
+            {
+                /* Error: Ensure that the data length is a word multiple. */
+                status = DTHE_SHA_RETURN_FAILURE;
+            }
+        }
+    }
+
+    return (status);
+}
+
+/**
+ *  \brief  The function checks that the data length does not exceed the
+ *          maximum value supported for the selected algorithm, so that the
+ *          block count computed in DTHE_SHA_writeDataBuffer() cannot
+ *          silently truncate when narrowed to uint16_t.
+ *
+ *  \param  algoType        Algorithm to be executed
+ *  \param  dataLenBytes    Size of the data in bytes
+ *
+ *  \retval                 #DTHE_SHA_RETURN_SUCCESS if the data length is within range
+ *                          #DTHE_SHA_RETURN_FAILURE if the data length is too large
+ */
+static DTHE_SHA_Return_t DTHE_SHA_validateMaxDataLen(uint32_t algoType, uint32_t dataLenBytes)
+{
+    DTHE_SHA_Return_t status = DTHE_SHA_RETURN_SUCCESS;
+
+    if (algoType == DTHE_SHA_ALGO_SHA256)
+    {
+        if (dataLenBytes > DTHE_SHA256_MAX_DATA_LEN_BYTES)
+        {
+            status = DTHE_SHA_RETURN_FAILURE;
+        }
+    }
+    else
+    {
+        if (dataLenBytes > DTHE_SHA512_MAX_DATA_LEN_BYTES)
+        {
+            status = DTHE_SHA_RETURN_FAILURE;
+        }
+    }
+
+    return (status);
+}
+
+/**
+ *  \brief  The function is used to update the Hash Mode for a plain SHA
+ *          computation, resetting the HMAC processing bits.
+ *
+ *  \param  ptrSHARegs          Pointer to the EIP57T SHA Registers
+ *  \param  algoType            Algorithm to be executed
+ *  \param  useAlgoConstants    Flag which will use enable(1)/disable(0) the usage of the algorithm constants
+ *  \param  closeHash           Flag which will close(1)/continue(0) the hash algorithm
+ *
+ */
+static void DTHE_SHA_configureHashMode(CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t algoType, uint8_t useAlgoConstants, uint8_t closeHash)
+{
+    if (algoType == DTHE_SHA_ALGO_SHA256)
+    {
+        DTHE_SHA_setUseAlgoConstants(ptrSHARegs, useAlgoConstants);
+        DTHE_SHA_setCloseHash(ptrSHARegs, closeHash);
+
+        /* Reset the HMAC Processing: */
+        DTHE_SHA_setHMACKeyProcessing(ptrSHARegs, 0U);
+        DTHE_SHA_setHMACOuterHash(ptrSHARegs, 0U);
+    }
+    else
+    {
+        DTHE_SHA512_setUseAlgoConstants(ptrSHARegs, useAlgoConstants);
+        DTHE_SHA512_setCloseHash(ptrSHARegs, closeHash);
+
+        /* Reset the HMAC Processing: */
+        DTHE_SHA512_setHMACKeyProcessing(ptrSHARegs, 0U);
+        DTHE_SHA512_setHMACOuterHash(ptrSHARegs, 0U);
+    }
+    return;
+}
+
+/**
+ *  \brief  The function is used to set the data length and derive the
+ *          block & shift size for the selected algorithm.
+ *
+ *  \param  ptrSHARegs      Pointer to the EIP57T SHA Registers
+ *  \param  algoType        Algorithm to be executed
+ *  \param  dataLenBytes    Size of the data in bytes
+ *  \param  ptrBlockSize    Pointer populated with the block size for the algorithm
+ *  \param  ptrShiftSize    Pointer populated with the shift size for the algorithm
+ *
+ */
+static void DTHE_SHA_setLengthAndBlockParams(CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t algoType, uint32_t dataLenBytes, uint8_t* ptrBlockSize, uint32_t* ptrShiftSize)
+{
+    if (algoType == DTHE_SHA_ALGO_SHA256)
+    {
+        /* SHA256: Setup the block & shift size: */
+        *ptrBlockSize = DTHE_SHA256_BLOCK_SIZE;
+        *ptrShiftSize = DTHE_SHA256_SHIFT_SIZE;
+
+        /* Set the data length: */
+        DTHE_SHA_setHashLength(ptrSHARegs, dataLenBytes);
+    }
+    else
+    {
+        /* SHA512: Setup the block & shift size: */
+        *ptrBlockSize = DTHE_SHA512_BLOCK_SIZE;
+        *ptrShiftSize = DTHE_SHA512_SHIFT_SIZE;
+
+        /* Set the data length: */
+        DTHE_SHA512_setHashLength(ptrSHARegs, dataLenBytes);
+    }
+    return;
+}
+
+/**
+ *  \brief  The function writes the full data buffer to the SHA Engine,
+ *          using DMA when available and falling back to a polled write
+ *          of the full blocks, any partial block and any left over bytes.
+ *
+ *  \param  dmaEnable       Flag indicating whether DMA is enabled for the DTHE instance
+ *  \param  ptrSHARegs      Pointer to the EIP57T SHA Registers
+ *  \param  ptrDataBuffer   Pointer to the Plain Text data buffer
+ *  \param  dataLenBytes    Size of the data in bytes
+ *  \param  blockSize       Block Size. This is selected on the basis of the algorithm.
+ *  \param  shiftSize       Shift Size. This is selected on the basis of the algorithm.
+ *
+ */
+static void DTHE_SHA_writeDataBuffer(uint32_t dmaEnable, CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t* ptrDataBuffer, uint32_t dataLenBytes, uint8_t blockSize, uint32_t shiftSize)
+{
+    DMA_Handle              dmaHandle = NULL;
+    DMA_Return_t            dmaStatus = DMA_RETURN_FAILURE;
+    uint32_t                index = 0U;
+    uint32_t                dataLenWords;
+    uint32_t                numPartialWords;
+    uint32_t                partialWord = 0U;
+    uint32_t                numBytes    = 0U;
+    uint16_t                numBlocks;
+    uint8_t                 *ptrByteDataBuffer;
+
+    /* Determine the data length in words: */
+    dataLenWords = dataLenBytes / 4U;
+
+    /* Compute the number of blocks: */
+    numBlocks = (uint16_t)(dataLenWords / blockSize);
+
+    /* Compute the number of partial words which need to be handled seperately */
+    numPartialWords = dataLenWords % blockSize;
+
+    if ((dmaEnable == DMA_ENABLE) && (numBlocks > 0U))
+    {
+        dmaHandle = DMA_open(0);
+        dmaStatus = DMA_Config_TxChannel(dmaHandle, ptrDataBuffer, (uint32_t *)&ptrSHARegs->DATA_IN[0], numBlocks, (uint16_t)blockSize, DMA_SHA_ENABLE);
+    }
+
+    if (dmaStatus == DMA_RETURN_SUCCESS)
+    {
+        /* Compute the number of full blocks which need to be processed: */
+        (void)DMA_enableTxTransferRegion(dmaHandle);
+        DTHE_SHA_setDMA(ptrSHARegs, 1U);
+        (void)DMA_startTxChannel(dmaHandle);
+
+        (void)DMA_WaitForTxTransfer(dmaHandle);
+
+        DTHE_SHA_setDMA(ptrSHARegs, 0U);
+
+        (void)DMA_disableTxCh(dmaHandle);
+
+        /* Compute the number of bytes which have been processed: */
+        numBytes = numBytes + (uint32_t)((uint32_t)numBlocks * (uint32_t)blockSize * sizeof(uint32_t));
+        index = numBlocks;
+    }
+    else
+    {
+        /* Compute the number of full blocks which need to be processed: */
+        for (index = 0U; index < numBlocks; index = index + 1U)
+        {
+            /* Ensure that the SHA IP Block is ready to receive data: */
+            DTHE_SHA_pollInputReady(ptrSHARegs);
+
+            /* Write the data block: */
+            DTHE_SHA_writeDataBlock(ptrSHARegs,
+                                    &ptrDataBuffer[index << shiftSize],
+                                    blockSize);
+
+            /* Compute the number of bytes which have been processed: */
+            numBytes = numBytes + (uint32_t)((uint32_t)blockSize * sizeof(uint32_t));
+        }
+    }
+
+    /* Process any left over data: */
+    if (numPartialWords != 0U)
+    {
+        /* Ensure that the SHA IP Block is ready to receive data: */
+        DTHE_SHA_pollInputReady(ptrSHARegs);
+
+        /* Write the data block: */
+        DTHE_SHA_writeDataBlock(ptrSHARegs,
+                                &ptrDataBuffer[index << shiftSize],
+                                (uint8_t)numPartialWords);
+
+        /* Compute the number of bytes which have been processed: */
+        numBytes = numBytes + (numPartialWords * sizeof(uint32_t));
+    }
+
+    /* Do we need to account for some additional bytes? */
+    if (dataLenBytes != numBytes)
+    {
+        /* Get the pointer to the data buffer in bytes which will be written: */
+        ptrByteDataBuffer = (uint8_t*)ptrDataBuffer;
+
+        /* Copy into the partial word: */
+        (void)memcpy ((void *)&partialWord, (void *)&ptrByteDataBuffer[numBytes], (dataLenBytes - numBytes));
+
+        /* Ensure that the SHA IP Block is ready to receive data: */
+        DTHE_SHA_pollInputReady(ptrSHARegs);
+
+        /* Write the data block: */
+        DTHE_SHA_writeDataBlock(ptrSHARegs, &partialWord, 1U);
+    }
+    return;
+}
+
+/**
+ *  \brief  The function is used to read back the hash digest and digest
+ *          count for the selected algorithm.
+ *
+ *  \param  ptrSHARegs      Pointer to the EIP57T SHA Registers
+ *  \param  algoType        Algorithm to be executed
+ *  \param  ptrDigest       Pointer to the digest populated by the API
+ *
+ */
+static void DTHE_SHA_readDigestAndCount(const CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t algoType, uint32_t* ptrDigest)
+{
+    if (algoType == DTHE_SHA_ALGO_SHA256)
+    {
+        DTHE_SHA_getHashDigest(ptrSHARegs, ptrDigest);
+        gDTHESHAdigestCount = DTHE_SHA_getDigestCount(ptrSHARegs);
+    }
+    else
+    {
+        DTHE_SHA512_getHashDigest(ptrSHARegs, ptrDigest);
+        gDTHESHAdigestCount = DTHE_SHA512_getDigestCount(ptrSHARegs);
+    }
+    return;
+}
+
+/**
+ *  \brief  The function initializes the HMAC padded key and copies in the
+ *          caller supplied key, if one was provided.
+ *
+ *  \param  ptrShaParams        Pointer to the parameters to be used to execute the driver
+ *  \param  ptrHmacPaddedKey    Pointer to the padded key buffer to be initialized
+ *
+ */
+static void DTHE_HMACSHA_preparePaddedKey(const DTHE_SHA_Params* ptrShaParams, uint32_t* ptrHmacPaddedKey)
+{
+    /* Initialize the padded key */
+    (void)memset ((void *)ptrHmacPaddedKey, 0, DTHE_HMAC_SHA_MAX_KEY_SIZE_BYTES);
+
+    /* Copy the key if one was provided: */
+    if (ptrShaParams->keySize != 0U)
+    {
+        /* Copy the key data into the HMAC Padded Key: */
+        (void)memcpy ((void *)ptrHmacPaddedKey, (const void*)ptrShaParams->ptrKey, ptrShaParams->keySize);
+    }
+    return;
+}
+
+/**
+ *  \brief  The function is used to write the HMAC keys to the Outer/Inner
+ *          Digest, update the Hash Mode for HMAC processing and derive the
+ *          block & shift size for the selected algorithm.
+ *
+ *  \param  ptrSHARegs          Pointer to the EIP57T SHA Registers
+ *  \param  algoType            Algorithm to be executed
+ *  \param  ptrHmacPaddedKey    Pointer to the padded HMAC key
+ *  \param  dataLenBytes        Size of the data in bytes
+ *  \param  ptrBlockSize        Pointer populated with the block size for the algorithm
+ *  \param  ptrShiftSize        Pointer populated with the shift size for the algorithm
+ *
+ */
+static void DTHE_HMACSHA_configureKeyAndMode(CSL_EIP57T_SHARegs* ptrSHARegs, uint32_t algoType, const uint32_t* ptrHmacPaddedKey, uint32_t dataLenBytes, uint8_t* ptrBlockSize, uint32_t* ptrShiftSize)
+{
+    /* Which algorithm are we executing? */
+    if (algoType == DTHE_SHA_ALGO_SHA256)
+    {
+        /* SHA256: Outer & Inner Keys are 256bits = 32bytes = 8words */
+        DTHE_SHA_setHMACOuterKey(ptrSHARegs, &ptrHmacPaddedKey[0U]);
+        DTHE_SHA_setHMACInnerKey(ptrSHARegs, &ptrHmacPaddedKey[8U]);
+
+        /* HMAC Processing:-
+        *  - Algorithm Constants are not used
+        *  - Compute the hash and close it here. */
+        DTHE_SHA_setUseAlgoConstants(ptrSHARegs, 0U);
+        DTHE_SHA_setCloseHash(ptrSHARegs, 1U);
+        DTHE_SHA_setHMACKeyProcessing(ptrSHARegs, 1U);
+        DTHE_SHA_setHMACOuterHash(ptrSHARegs, 1U);
+
+        /* Set the data length: */
+        DTHE_SHA_setHashLength(ptrSHARegs, dataLenBytes);
+
+        /* SHA256: Setup the block & shift size: */
+        *ptrBlockSize = DTHE_SHA256_BLOCK_SIZE;
+        *ptrShiftSize = DTHE_SHA256_SHIFT_SIZE;
+    }
+    else
+    {
+        /* SHA512: Outer & Inner Keys are 512bits = 64bytes = 16words */
+        DTHE_SHA512_setHMACOuterKey(ptrSHARegs, &ptrHmacPaddedKey[0U]);
+        DTHE_SHA512_setHMACInnerKey(ptrSHARegs, &ptrHmacPaddedKey[16U]);
+
+        /* HMAC Processing:-
+        *  - Algorithm Constants are not used
+        *  - Compute the hash and close it here. */
+        DTHE_SHA512_setUseAlgoConstants(ptrSHARegs, 0U);
+        DTHE_SHA512_setCloseHash(ptrSHARegs, 1U);
+        DTHE_SHA512_setHMACKeyProcessing(ptrSHARegs, 1U);
+        DTHE_SHA512_setHMACOuterHash(ptrSHARegs, 1U);
+
+        /* Set the data length: */
+        DTHE_SHA512_setHashLength(ptrSHARegs, dataLenBytes);
+
+        /* SHA512: Setup the block & shift size: */
+        *ptrBlockSize = DTHE_SHA512_BLOCK_SIZE;
+        *ptrShiftSize = DTHE_SHA512_SHIFT_SIZE;
     }
     return;
 }

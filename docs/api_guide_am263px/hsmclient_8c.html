@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -98,9 +98,14 @@ $(document).ready(function(){initNavTree('hsmclient_8c.html',''); initResizable(
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a1bab7bce04b0b1a03beea7b504637419"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hsmclient_8c.html#a1bab7bce04b0b1a03beea7b504637419">GET_CACHE_ALIGNED_SIZE</a>(x)&#160;&#160;&#160;((x + <a class="el" href="group__KERNEL__DPL__CACHE.html#ga00e1218cd411e9968bd2a6af570a786c">CacheP_CACHELINE_ALIGNMENT</a>) &amp; ~(<a class="el" href="group__KERNEL__DPL__CACHE.html#ga00e1218cd411e9968bd2a6af570a786c">CacheP_CACHELINE_ALIGNMENT</a> - 1))</td></tr>
+<tr class="memitem:a1bab7bce04b0b1a03beea7b504637419"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hsmclient_8c.html#a1bab7bce04b0b1a03beea7b504637419">GET_CACHE_ALIGNED_SIZE</a>(x)&#160;&#160;&#160;(((x) + (<a class="el" href="group__KERNEL__DPL__CACHE.html#ga00e1218cd411e9968bd2a6af570a786c">CacheP_CACHELINE_ALIGNMENT</a> - 1U)) &amp; ~(<a class="el" href="group__KERNEL__DPL__CACHE.html#ga00e1218cd411e9968bd2a6af570a786c">CacheP_CACHELINE_ALIGNMENT</a> - 1U))</td></tr>
 <tr class="memdesc:a1bab7bce04b0b1a03beea7b504637419"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro calculates the cache-aligned size for a given buffer or data structure.  <a href="hsmclient_8c.html#a1bab7bce04b0b1a03beea7b504637419">More...</a><br /></td></tr>
 <tr class="separator:a1bab7bce04b0b1a03beea7b504637419"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7f195f3164f8bcd90f0059fe109a5c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hsmclient_8c.html#ad7f195f3164f8bcd90f0059fe109a5c1">HSMCLIENT_CACHE_WB_INV</a>(addr,  size,  type)&#160;&#160;&#160;/* cache disabled */</td></tr>
+<tr class="memdesc:ad7f195f3164f8bcd90f0059fe109a5c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conditional cache writeback-and-invalidate wrapper. When HSMCLIENT_CACHE_ENABLE is 0 (buffers in non-cacheable memory) this expands to nothing, avoiding unnecessary cache maintenance.  <a href="hsmclient_8c.html#ad7f195f3164f8bcd90f0059fe109a5c1">More...</a><br /></td></tr>
+<tr class="separator:ad7f195f3164f8bcd90f0059fe109a5c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49df1f440caa08c0d18448b41bac7a9f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hsmclient_8c.html#a49df1f440caa08c0d18448b41bac7a9f">HSMCLIENT_CACHE_INV</a>(addr,  size,  type)&#160;&#160;&#160;/* cache disabled */</td></tr>
+<tr class="separator:a49df1f440caa08c0d18448b41bac7a9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -121,8 +126,8 @@ Functions</h2></td></tr>
 <tr class="memitem:aef2033bcf5058cb0015e58d6e8625d55"><td class="memItemLeft" align="right" valign="top">static int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hsmclient_8c.html#aef2033bcf5058cb0015e58d6e8625d55">HsmClient_waitForAllResponses</a> ()</td></tr>
 <tr class="memdesc:aef2033bcf5058cb0015e58d6e8625d55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic api which waits for all responses to be received.  <a href="hsmclient_8c.html#aef2033bcf5058cb0015e58d6e8625d55">More...</a><br /></td></tr>
 <tr class="separator:aef2033bcf5058cb0015e58d6e8625d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bd2778df320fe0eebb2b0b09db8384f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hsmclient_8c.html#a0bd2778df320fe0eebb2b0b09db8384f">HsmClient_isr</a> (uint8_t remoteCoreId, uint8_t localClientId, uint8_t remoteClientId, uint8_t *msgValue, void *<a class="el" href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a>)</td></tr>
-<tr class="separator:a0bd2778df320fe0eebb2b0b09db8384f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ee9b8d256f79f858a416ad1ded5b6e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hsmclient_8c.html#a5ee9b8d256f79f858a416ad1ded5b6e7">HsmClient_isr</a> (uint8_t remoteCoreId, uint8_t localClientId, uint8_t remoteClientId, uint8_t *msgValue, const void *<a class="el" href="hsmclient__msg_8h.html#add0eb34e0cef9e763462cf9080f9be0a">args</a>)</td></tr>
+<tr class="separator:a5ee9b8d256f79f858a416ad1ded5b6e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadf502ebd6e67f563777ec1345822cdb3"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gadf502ebd6e67f563777ec1345822cdb3">HsmClient_checkAndWaitForBootNotification</a> (void)</td></tr>
 <tr class="memdesc:gadf502ebd6e67f563777ec1345822cdb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API waits for HSMRT load if requested and then waits for boot notification. In case of failure in HSMRT load it returns SystemP_FAILURE.  <a href="group__DRV__HSMCLIENT__MODULE.html#gadf502ebd6e67f563777ec1345822cdb3">More...</a><br /></td></tr>
 <tr class="separator:gadf502ebd6e67f563777ec1345822cdb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,6 +145,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga2d712c43bc058c71d3c1134a3b2501c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga2d712c43bc058c71d3c1134a3b2501c5">HsmClient_unregister</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, uint8_t clientId)</td></tr>
 <tr class="memdesc:ga2d712c43bc058c71d3c1134a3b2501c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">unregister a client to a particular ClientId  <a href="group__DRV__HSMCLIENT__MODULE.html#ga2d712c43bc058c71d3c1134a3b2501c5">More...</a><br /></td></tr>
 <tr class="separator:ga2d712c43bc058c71d3c1134a3b2501c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63a8a62384c42e5839b8ae32bc9624b0"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hsmclient_8c.html#a63a8a62384c42e5839b8ae32bc9624b0">HsmClient_getIPCBuffPtr</a> (void *src, uint32_t size)</td></tr>
+<tr class="memdesc:a63a8a62384c42e5839b8ae32bc9624b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer suitable for passing into an HSM IPC message.  <a href="hsmclient_8c.html#a63a8a62384c42e5839b8ae32bc9624b0">More...</a><br /></td></tr>
+<tr class="separator:a63a8a62384c42e5839b8ae32bc9624b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5a7cf77bef07fbffe27cbe64b4a60b6"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hsmclient_8c.html#aa5a7cf77bef07fbffe27cbe64b4a60b6">HsmClient_syncIPCBuffPtr</a> (void *dst, uint32_t size)</td></tr>
+<tr class="memdesc:aa5a7cf77bef07fbffe27cbe64b4a60b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Response data was staged through the driver-owned host buffer (gHsmClientHostBuff)  <a href="hsmclient_8c.html#aa5a7cf77bef07fbffe27cbe64b4a60b6">More...</a><br /></td></tr>
+<tr class="separator:aa5a7cf77bef07fbffe27cbe64b4a60b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga70b2b53821f5782e083984e34df972b7"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga70b2b53821f5782e083984e34df972b7">HsmClient_getVersion</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, HsmVer_t *hsmVer, uint32_t timeout)</td></tr>
 <tr class="memdesc:ga70b2b53821f5782e083984e34df972b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">populates the current HSMRT version Id by default the hsm flag is set to HSM_FLAG_AOP for this service  <a href="group__DRV__HSMCLIENT__MODULE.html#ga70b2b53821f5782e083984e34df972b7">More...</a><br /></td></tr>
 <tr class="separator:ga70b2b53821f5782e083984e34df972b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -218,6 +229,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga530b1603d591126ac346c31f30414f7d"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga530b1603d591126ac346c31f30414f7d">HsmClient_UpdateKeyRevsion</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, uint32_t timeout)</td></tr>
 <tr class="memdesc:ga530b1603d591126ac346c31f30414f7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">service request issued to HSM server to update key revision to 0x2 which changes the root of trust key from secondary keys to back up keys.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga530b1603d591126ac346c31f30414f7d">More...</a><br /></td></tr>
 <tr class="separator:ga530b1603d591126ac346c31f30414f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadd40318bdbd516da054ce2bc690c9f7f"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gadd40318bdbd516da054ce2bc690c9f7f">HsmClient_EnableFATransition</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, uint8_t *cert, uint32_t cert_size, uint32_t timeout)</td></tr>
+<tr class="memdesc:gadd40318bdbd516da054ce2bc690c9f7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send FA transition certificate to HSM to permanently enable FA mode. IRREVERSIBLE — writes FA_EN to OTP. Only valid on HS-SE/HS-KP devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#gadd40318bdbd516da054ce2bc690c9f7f">More...</a><br /></td></tr>
+<tr class="separator:gadd40318bdbd516da054ce2bc690c9f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5ea570bc441bb6c6a9dff879b0600e27"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga5ea570bc441bb6c6a9dff879b0600e27">HsmClient_configOTFARegions</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structOTFA__Config__t.html">OTFA_Config_t</a> *OTFA_ConfigInfo, uint32_t timeout)</td></tr>
 <tr class="memdesc:ga5ea570bc441bb6c6a9dff879b0600e27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client request to configure the OTFA regions.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga5ea570bc441bb6c6a9dff879b0600e27">More...</a><br /></td></tr>
 <tr class="separator:ga5ea570bc441bb6c6a9dff879b0600e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -227,9 +241,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga6634bc2f8d0d9f5574111f6070838002"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga6634bc2f8d0d9f5574111f6070838002">HsmClient_secCfgValidate</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structSecCfgValidate__t.html">SecCfgValidate_t</a> *pSecCfgParams, uint32_t timeout)</td></tr>
 <tr class="memdesc:ga6634bc2f8d0d9f5574111f6070838002"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client request to validate sec-cfg Valid only for F29x family of devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga6634bc2f8d0d9f5574111f6070838002">More...</a><br /></td></tr>
 <tr class="separator:ga6634bc2f8d0d9f5574111f6070838002"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaad4edba07fb1e870a576a281a48d1472"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gaad4edba07fb1e870a576a281a48d1472">HsmClient_CryptoService</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structCryptoServiceReq__t.html">CryptoServiceReq_t</a> *svcReq, uint32_t timeout)</td></tr>
-<tr class="memdesc:gaad4edba07fb1e870a576a281a48d1472"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submit a generic crypto service request to the HSM. Set svcReq-&gt;algoId to the algorithm (HSM_CRYPTO_SVC_MAC_CMAC, etc.) and svcReq-&gt;subSvcId to the operation (HSM_CRYPTO_SVC_MAC_GENERATE, etc.). Set svcReq-&gt;keyId to the keyring index and point svcReq-&gt;ptrArgs at the corresponding args struct (e.g. <a class="el" href="structCMACArgs__t.html" title="Args for CMAC generate and verify Note: These services are only available in HSSE mode.">CMACArgs_t</a>).  <a href="group__DRV__HSMCLIENT__MODULE.html#gaad4edba07fb1e870a576a281a48d1472">More...</a><br /></td></tr>
-<tr class="separator:gaad4edba07fb1e870a576a281a48d1472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5d455e29e9539fbd6b0ceb3eaead24cd"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga5d455e29e9539fbd6b0ceb3eaead24cd">HsmClient_CryptoService</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structCryptoServiceReq__t.html">CryptoServiceReq_t</a> *svcReq, <a class="el" href="structCryptoServiceReq__t.html">CryptoServiceReq_t</a> *respReq, uint32_t timeout)</td></tr>
+<tr class="memdesc:ga5d455e29e9539fbd6b0ceb3eaead24cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submit a generic crypto service request to the HSM. Set svcReq-&gt;algoId to the algorithm (HSM_CRYPTO_SVC_MAC_CMAC, etc.) and svcReq-&gt;subSvcId to the operation (HSM_CRYPTO_SVC_MAC_GENERATE, etc.). Set svcReq-&gt;keyId to the keyring index and point svcReq-&gt;ptrArgs at the corresponding args struct (e.g. <a class="el" href="structCMACArgs__t.html" title="Args for CMAC generate and verify Note: These services are only available in HSSE mode.">CMACArgs_t</a>).  <a href="group__DRV__HSMCLIENT__MODULE.html#ga5d455e29e9539fbd6b0ceb3eaead24cd">More...</a><br /></td></tr>
+<tr class="separator:ga5d455e29e9539fbd6b0ceb3eaead24cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2a4fabce99d63a311aab8352a9fe890b"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga2a4fabce99d63a311aab8352a9fe890b">HsmClient_activeToDormantBankCopy</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structFlashBankCopy__t.html">FlashBankCopy_t</a> *pFlashBankCopyObject, uint32_t timeout)</td></tr>
 <tr class="memdesc:ga2a4fabce99d63a311aab8352a9fe890b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client request to copy active flash bank contents to dormant flash bank Valid only for F29x family of devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga2a4fabce99d63a311aab8352a9fe890b">More...</a><br /></td></tr>
 <tr class="separator:ga2a4fabce99d63a311aab8352a9fe890b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -243,7 +257,6 @@ Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:af04631aa89cf2fd00226e22bbdc85d85"><td class="memItemLeft" align="right" valign="top">volatile uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hsmclient_8c.html#af04631aa89cf2fd00226e22bbdc85d85">gHsmrtLoadStatus</a> = <a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gae70b88f1db290b0e6c2a39af4b08bac5">HSMRT_LOAD_NOT_REQUESTED</a></td></tr>
-<tr class="memdesc:af04631aa89cf2fd00226e22bbdc85d85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum size of the HSM client message queue For Streaming Secure Boot, the break up is as follows, 1 start message (includes the certificate) + 1 finish message + 1 ELF Header Buffer update message + 1 PHT Buffer update message 1024 ELF segment update messages (including the two note segments)  <a href="hsmclient_8c.html#af04631aa89cf2fd00226e22bbdc85d85">More...</a><br /></td></tr>
 <tr class="separator:af04631aa89cf2fd00226e22bbdc85d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af04d01d211eba3388ef4bf0813b111c4"><td class="memItemLeft" align="right" valign="top">static volatile int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hsmclient_8c.html#af04d01d211eba3388ef4bf0813b111c4">gSecureBootStatus</a> = <a class="el" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a></td></tr>
 <tr class="separator:af04d01d211eba3388ef4bf0813b111c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -260,6 +273,7 @@ Variables</h2></td></tr>
 <tr class="memitem:a296cdef879b3056b481d365c2d63748a"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hsmclient_8c.html#a296cdef879b3056b481d365c2d63748a">hsm_client_msg_queue_size</a> = 64U</td></tr>
 <tr class="separator:a296cdef879b3056b481d365c2d63748a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a239bcc865876ed0c0f5493ad4572a292"><td class="memItemLeft" align="right" valign="top">HsmMsg_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hsmclient_8c.html#a239bcc865876ed0c0f5493ad4572a292">gHsmClientMsgQueue</a> []</td></tr>
+<tr class="memdesc:a239bcc865876ed0c0f5493ad4572a292"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum size of the HSM client message queue For Streaming Secure Boot, the break up is as follows, 1 start message (includes the certificate) + 1 finish message + 1 ELF Header Buffer update message + 1 PHT Buffer update message 1024 ELF segment update messages (including the two note segments)  <a href="hsmclient_8c.html#a239bcc865876ed0c0f5493ad4572a292">More...</a><br /></td></tr>
 <tr class="separator:a239bcc865876ed0c0f5493ad4572a292"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -274,12 +288,82 @@ Variables</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">x</td><td>)</td>
-          <td>&#160;&#160;&#160;((x + <a class="el" href="group__KERNEL__DPL__CACHE.html#ga00e1218cd411e9968bd2a6af570a786c">CacheP_CACHELINE_ALIGNMENT</a>) &amp; ~(<a class="el" href="group__KERNEL__DPL__CACHE.html#ga00e1218cd411e9968bd2a6af570a786c">CacheP_CACHELINE_ALIGNMENT</a> - 1))</td>
+          <td>&#160;&#160;&#160;(((x) + (<a class="el" href="group__KERNEL__DPL__CACHE.html#ga00e1218cd411e9968bd2a6af570a786c">CacheP_CACHELINE_ALIGNMENT</a> - 1U)) &amp; ~(<a class="el" href="group__KERNEL__DPL__CACHE.html#ga00e1218cd411e9968bd2a6af570a786c">CacheP_CACHELINE_ALIGNMENT</a> - 1U))</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Macro calculates the cache-aligned size for a given buffer or data structure. </p>
+
+</div>
+</div>
+<a id="ad7f195f3164f8bcd90f0059fe109a5c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7f195f3164f8bcd90f0059fe109a5c1">&#9670;&nbsp;</a></span>HSMCLIENT_CACHE_WB_INV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSMCLIENT_CACHE_WB_INV</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">addr, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">size, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">type&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;/* cache disabled */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Conditional cache writeback-and-invalidate wrapper. When HSMCLIENT_CACHE_ENABLE is 0 (buffers in non-cacheable memory) this expands to nothing, avoiding unnecessary cache maintenance. </p>
+
+</div>
+</div>
+<a id="a49df1f440caa08c0d18448b41bac7a9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49df1f440caa08c0d18448b41bac7a9f">&#9670;&nbsp;</a></span>HSMCLIENT_CACHE_INV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSMCLIENT_CACHE_INV</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">addr, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">size, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">type&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;/* cache disabled */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -492,8 +576,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a0bd2778df320fe0eebb2b0b09db8384f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0bd2778df320fe0eebb2b0b09db8384f">&#9670;&nbsp;</a></span>HsmClient_isr()</h2>
+<a id="a5ee9b8d256f79f858a416ad1ded5b6e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ee9b8d256f79f858a416ad1ded5b6e7">&#9670;&nbsp;</a></span>HsmClient_isr()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -525,7 +609,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">void *&#160;</td>
+          <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>args</em>&#160;</td>
         </tr>
         <tr>
@@ -556,6 +640,97 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a63a8a62384c42e5839b8ae32bc9624b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63a8a62384c42e5839b8ae32bc9624b0">&#9670;&nbsp;</a></span>HsmClient_getIPCBuffPtr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void* HsmClient_getIPCBuffPtr </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a pointer suitable for passing into an HSM IPC message. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>Pointer to the source struct (caller-owned, any alignment). </td></tr>
+    <tr><td class="paramname">size</td><td>Size in bytes of the struct pointed to by <code>src</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to use when populating the IPC message args field. </dd></dl>
+
+</div>
+</div>
+<a id="aa5a7cf77bef07fbffe27cbe64b4a60b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5a7cf77bef07fbffe27cbe64b4a60b6">&#9670;&nbsp;</a></span>HsmClient_syncIPCBuffPtr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HsmClient_syncIPCBuffPtr </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Response data was staged through the driver-owned host buffer (gHsmClientHostBuff) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dst</td><td>Pointer to the caller-owned destination struct. </td></tr>
+    <tr><td class="paramname">size</td><td>Size in bytes of the struct pointed to by <code>dst</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Variable Documentation</h2>
 <a id="af04631aa89cf2fd00226e22bbdc85d85"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af04631aa89cf2fd00226e22bbdc85d85">&#9670;&nbsp;</a></span>gHsmrtLoadStatus</h2>
@@ -568,12 +743,6 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Maximum size of the HSM client message queue For Streaming Secure Boot, the break up is as follows, 1 start message (includes the certificate) + 1 finish message + 1 ELF Header Buffer update message + 1 PHT Buffer update message 1024 ELF segment update messages (including the two note segments) </p>
-<ul>
-<li>PT note for boot sequence info</li>
-<li>PT note containing Random string for decryption verification </li>
-</ul>
 
 </div>
 </div>
@@ -750,6 +919,12 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Maximum size of the HSM client message queue For Streaming Secure Boot, the break up is as follows, 1 start message (includes the certificate) + 1 finish message + 1 ELF Header Buffer update message + 1 PHT Buffer update message 1024 ELF segment update messages (including the two note segments) </p>
+<ul>
+<li>PT note for boot sequence info</li>
+<li>PT note containing Random string for decryption verification </li>
+</ul>
 
 </div>
 </div>

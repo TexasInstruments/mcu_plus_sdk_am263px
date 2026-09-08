@@ -21,36 +21,43 @@
     "num_of_symm_keys" : 3,
     "keyring_asymm" :  [
                 {
+                    "key_id": 0,
                     "key_rights": "000000AA",
                     "pub_key": "aux_keys/public2k.pem",
                     "hash_algo": "SHA256"
                 },
                 {
+                    "key_id": 1,
                     "key_rights": "000000AA",
                     "pub_key": "aux_keys/public3k.pem",
                     "hash_algo" : "SHA512"
                 },
                 {
+                    "key_id": 2,
                     "key_rights": "000000AA",
                     "pub_key": "aux_keys/public4k.pem",
                     "hash_algo" : "SHA512"
                 },
                 {
+                    "key_id": 3,
                     "key_rights": "000000AA",
                     "pub_key": "aux_keys/prime265v1_public.pem",
                     "hash_algo" : "SHA512"
                 },
                 {
+                    "key_id": 4,
                     "key_rights": "000000AA",
                     "pub_key": "aux_keys/secp384r1_public.pem",
                     "hash_algo" : "SHA512"
                 },
                 {
+                    "key_id": 5,
                     "key_rights": "000000AA",
                     "pub_key": "aux_keys/secp521r1_public.pem",
                     "hash_algo" : "SHA384"
                 },
                 {
+                    "key_id": 6,
                     "key_rights": "000000AA",
                     "pub_key": "aux_keys/brainpoolp512r1_public.pem",
                     "hash_algo" : "SHA384"
@@ -58,16 +65,19 @@
       ],
       "keyring_symm" :  [
                 {
+                    "key_id": 0,
                     "key_rights" : "0000000A",
                     "key_length" : 128,
                     "aes_key" : "aux_keys/aes128.key" 
                 },
                 {
+                    "key_id": 1,
                     "key_rights" : "0000000A",
                     "key_length" : 192,
                     "aes_key" : "aux_keys/aes192.key" 
                 },
                 {
+                    "key_id": 2,
                     "key_rights" : "0000000A",
                     "key_length" : 256,
                     "aes_key" : "aux_keys/aes256.key" 
@@ -76,7 +86,8 @@
 }
 
 \endcode
-- Each asymmetric key json object contain 3 fields:
+- Each asymmetric key json object contain 4 fields:
+    - key_id: The identifier serves as a distinct number for the keyring, employed by various services including debug authentication and proc auth boot. The actual storage location will be `AUXILIARY_START_INDEX + key_id` (stored at index `32 + key_id`).
     - key_rights: Integer value in HEX format which signifies the rights associated with the key.
         - debugAuth (0-3b) - flag to indicate key right for debug certificate authentication
         - imageAuth (4-7b) - flag to indicate key right for application image authentication
@@ -87,7 +98,8 @@
 - keyring_cert_gen.py expects 2 mandatory arguments:
     - root_key: certificate is signed using customer MPK and expects path to customer active ROT.
     - keys_info: json file with keyring meta data.
-- Each Symmetric key json object contain 3 fields:
+- Each Symmetric key json object contain 4 fields:
+    - key_id: The identifier serves as a distinct number for the keyring. The actual storage location will be `AUXILIARY_START_INDEX + key_id` (stored at index `32 + key_id`).
     - key_rights: Integer value in HEX format which signifies the rights associated with the key.
         - imageDecrypt (0-3b) - flag to indicate key right for decryption during secure boot.
         - For example: 0x0000000A represents the key can be used for image decryption during secure boot.

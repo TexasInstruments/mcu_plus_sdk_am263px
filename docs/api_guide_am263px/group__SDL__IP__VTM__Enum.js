@@ -35,6 +35,7 @@ var group__SDL__IP__VTM__Enum =
     [ "SDL_VTM_TSENSE1_HOT_FLAG", "group__SDL__IP__VTM__Enum.html#ga1506f08c743d073b2a56de5479360e98", null ],
     [ "SDL_VTM_TSENSE1_COLD_FLAG", "group__SDL__IP__VTM__Enum.html#ga67766f57433f5feaac018695c8f7fdd0", null ],
     [ "SDL_VTM_OVERRIDE_PATTERN", "group__SDL__IP__VTM__Enum.html#ga37b435511faae00692a57b8df9ebfbe0", null ],
+    [ "SDL_VTM_CONVERSION_COMPLETED", "group__SDL__IP__VTM__Enum.html#ga521b67aeffb4769448f00946c0bbe4ac", null ],
     [ "SDL_VTM_MASK_LOW_TH", "group__SDL__IP__VTM__Enum.html#ga08124d36194143a5f8facbb0bdf90a0c", null ],
     [ "SDL_VTM_MASK_COLD", "group__SDL__IP__VTM__Enum.html#gad5652e75fdd70cbfed017df1590a50e7", null ],
     [ "SDL_VTM_MASK_HOT", "group__SDL__IP__VTM__Enum.html#gaba2d46994418372f291e4e4836c07559", null ],

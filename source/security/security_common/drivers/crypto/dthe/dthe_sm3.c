@@ -48,16 +48,18 @@
 /*                           Global variables                                */
 /* ========================================================================== */
 /** \brief Flag to check SHA in Progress */
-DTHE_SM3_CryptoStateMachine_t  gDTHESM3InProgress = DTHE_SM3_CRYPTO_STATEMACHINE_NEW;
-
-/** \brief sm3 Digest Count */
-uint32_t              gDTHESM3digestCount;
+static DTHE_SM3_CryptoStateMachine_t  gDTHESM3InProgress = DTHE_SM3_CRYPTO_STATEMACHINE_NEW;
 
 /** \brief This is the Block Size for the SM3 in words */
 #define DTHE_SM3_BLOCK_SIZE                  (16ULL)
 
 /** \brief This is the Data Shift Size for the SM3 */
 #define DTHE_SM3_SHIFT_SIZE                  (4U)
+
+/** \brief Maximum data length, in bytes, that DTHE_SM3_compute() can process in a single
+ *         call. Derived from the uint16_t dmaNumBlocks field passed to DMA_Config_TxChannel():
+ *         (UINT16_MAX + 2U) intermediate+boundary blocks, 64 bytes (DTHE_SM3_BLOCK_SIZE words) each. */
+#define DTHE_SM3_MAX_DATA_LEN_BYTES           (4194368ULL)
 
 /* ========================================================================== */
 /*                 Internal Function Declarations                             */
@@ -76,6 +78,15 @@ static void DTHE_SM3_setHashDigest(CSL_EIP52_SM3Regs* ptrSM3Regs, const uint32_t
 static void DTHE_SM3_getHashDigest(const CSL_EIP52_SM3Regs* ptrSM3Regs, uint32_t* ptrDigest);
 static void DTHE_SM3_set_output_buff_available(CSL_EIP52_SM3Regs* ptrSM3Regs, uint32_t output_buffer_available);
 static void DTHE_SM3_set_length (CSL_EIP52_SM3Regs* ptrSM3Regs, uint64_t length);
+
+static DTHE_SM3_Return_t DTHE_SM3_validateComputeParams(DTHE_Handle handle, const DTHE_SM3_Params* ptrSm3Params, DTHE_SM3_LastBlockState_t isLastBlock, DTHE_Config** ptrConfig, CSL_EIP52_SM3Regs** ptrSm3Regs, uint64_t* ptrDataLenBytes);
+static void DTHE_SM3_prepareHashSession(CSL_EIP52_SM3Regs* ptrSm3Regs, const DTHE_SM3_Params* ptrSm3Params, uint64_t dataLenBytes);
+static void DTHE_SM3_computeBlockCounts(uint64_t dataLenBytes, uint64_t* ptrNumBlocks, uint64_t* ptrDataLenWords, uint64_t* ptrNumPartialWords, uint64_t* ptrNumPartialBlocks);
+static void DTHE_SM3_writeSingleBlockData(CSL_EIP52_SM3Regs* ptrSm3Regs, const DTHE_SM3_Params* ptrSm3Params);
+static uint64_t DTHE_SM3_writeIntermediateBlocks(CSL_EIP52_SM3Regs* ptrSm3Regs, const DTHE_Config* config, const DTHE_SM3_Params* ptrSm3Params, uint64_t numBlocks, uint64_t blockSize, uint32_t shiftSize);
+static void DTHE_SM3_writeLastBlock(CSL_EIP52_SM3Regs* ptrSm3Regs, const DTHE_SM3_Params* ptrSm3Params, uint64_t index, uint32_t shiftSize, uint64_t numPartialWords, uint64_t numPartialBlocks);
+static void DTHE_SM3_writeMultiBlockData(CSL_EIP52_SM3Regs* ptrSm3Regs, const DTHE_Config* config, const DTHE_SM3_Params* ptrSm3Params, uint64_t numBlocks, uint32_t shiftSize, uint64_t numPartialWords, uint64_t numPartialBlocks);
+static void DTHE_SM3_finalizeHash(CSL_EIP52_SM3Regs* ptrSm3Regs, DTHE_SM3_Params* ptrSm3Params, DTHE_SM3_LastBlockState_t isLastBlock);
 
 
 /* ========================================================================== */
@@ -299,13 +310,13 @@ static void DTHE_SM3_set_length (CSL_EIP52_SM3Regs* ptrSM3Regs, uint64_t length)
     uint32_t upper_hash_length, lower_hash_length;
 
     /* Write the length of the data: */
-    lower_hash_length = (uint32_t)(0xFFFFFFFFU & (8ULL*length));  /*in bits*/
+    lower_hash_length = (uint32_t)(0xFFFFFFFFULL & (8ULL*length));  /*in bits*/
     DTHE_SM3_setHashLength_lower(ptrSM3Regs, lower_hash_length);
 
     /*set the upper hash length if the data length size is more than 2^32*/
     if (length > (0xffffffffU))
     {
-        upper_hash_length = (uint32_t)(0xFFFFFFFFU & (8ULL*(length>>32ULL)));
+        upper_hash_length = (uint32_t)(0xFFFFFFFFULL & (8ULL*(length>>32ULL)));
         DTHE_SM3_setHashLength_upper(ptrSM3Regs, upper_hash_length);
     }
 
@@ -327,6 +338,285 @@ static void DTHE_SM3_set_length (CSL_EIP52_SM3Regs* ptrSM3Regs, uint64_t length)
 static void DTHE_SM3_set_output_buff_available(CSL_EIP52_SM3Regs* ptrSM3Regs, uint32_t output_buffer_available)
 {
     CSL_FINSR(ptrSM3Regs->SM3_IO_BUF_CTRL_STAT, 0U, 0U, output_buffer_available);
+
+    return;
+}
+
+/**
+ * \brief validate the arguments passed to DTHE_SM3_compute() and resolve the register
+ *        base, config and data length needed to perform the computation.
+ */
+static DTHE_SM3_Return_t DTHE_SM3_validateComputeParams(DTHE_Handle handle, const DTHE_SM3_Params* ptrSm3Params, DTHE_SM3_LastBlockState_t isLastBlock, DTHE_Config** ptrConfig, CSL_EIP52_SM3Regs** ptrSm3Regs, uint64_t* ptrDataLenBytes)
+{
+    DTHE_SM3_Return_t   status = DTHE_SM3_RETURN_FAILURE;
+    DTHE_Attrs          *attrs = (DTHE_Attrs *)NULL;
+
+    if(((DTHE_Handle)NULL != handle) && ((DTHE_SM3_Params *)NULL != ptrSm3Params))
+    {
+        status = DTHE_SM3_RETURN_SUCCESS;
+
+        /* Proceed only if initial checks pass */
+        *ptrConfig       = (DTHE_Config *) handle;
+        attrs            = (*ptrConfig)->attrs;
+        *ptrSm3Regs      = (CSL_EIP52_SM3Regs *)attrs->sm3BaseAddr;
+        *ptrDataLenBytes = ptrSm3Params->dataLenBytes;
+
+        /* Check if SM3 hardware is available for this platform */
+        if(*ptrSm3Regs == NULL)
+        {
+            /* Error: DTHE SM3 is not enabled for this platform. */
+            status = DTHE_SM3_RETURN_FAILURE;
+        }
+
+        /* Sanity Checking: Any data buffer except the last block should be aligned as per
+         * the SM3 block Size. For SM3 this is 64byte aligned */
+        if((DTHE_SM3_LAST_BLOCK_FALSE == isLastBlock) &&
+           ((*ptrDataLenBytes % (DTHE_SM3_BLOCK_SIZE * 4ULL)) != 0ULL))
+        {
+            /* Error: Ensure that the data length is a word multiple. */
+            status = DTHE_SM3_RETURN_FAILURE;
+        }
+
+        /* Sanity Checking: reject inputs which would overflow the uint16_t DMA block
+         * count computed further below */
+        if (*ptrDataLenBytes > DTHE_SM3_MAX_DATA_LEN_BYTES)
+        {
+            /* Error: data length exceeds what a single call can process. */
+            status = DTHE_SM3_RETURN_FAILURE;
+        }
+    }
+
+    return status;
+}
+
+/**
+ * \brief set up the hash mode/digest-resume/length registers for the upcoming hash session.
+ */
+static void DTHE_SM3_prepareHashSession(CSL_EIP52_SM3Regs* ptrSm3Regs, const DTHE_SM3_Params* ptrSm3Params, uint64_t dataLenBytes)
+{
+    /*wait until input buffer available for writing by host*/
+    DTHE_SM3_pollInput_buff_available(ptrSm3Regs);
+
+    if(gDTHESM3InProgress == DTHE_SM3_CRYPTO_STATEMACHINE_INPROGRESS)
+    {
+        /* set the hash mode as RESUME */
+        DTHE_SM3_setHashMode(ptrSm3Regs, 0U);
+    }
+    else
+    {
+        /* set the hash mode as NEW */
+        DTHE_SM3_setHashMode(ptrSm3Regs, 1U);
+    }
+
+    if(gDTHESM3InProgress == DTHE_SM3_CRYPTO_STATEMACHINE_INPROGRESS)
+    {
+        /* set the length value as expected size */
+        DTHE_SM3_setHashDigest(ptrSm3Regs, &ptrSm3Params->digest[0U]);
+    }
+
+    /* set the length value as expected size */
+    DTHE_SM3_set_length (ptrSm3Regs, dataLenBytes);
+
+    return;
+}
+
+/**
+ * \brief compute the block/word counts used to decide the single-block vs multi-block
+ *        write path and the size of the final (possibly partial) block.
+ */
+static void DTHE_SM3_computeBlockCounts(uint64_t dataLenBytes, uint64_t* ptrNumBlocks, uint64_t* ptrDataLenWords, uint64_t* ptrNumPartialWords, uint64_t* ptrNumPartialBlocks)
+{
+    uint64_t dataLenWords = dataLenBytes / 4ULL;
+    uint64_t numBlocks    = dataLenWords / DTHE_SM3_BLOCK_SIZE;
+
+    if((dataLenBytes % 64ULL) != 0ULL)
+    {
+        /*Last block is partial*/
+        numBlocks++;
+    }
+
+    *ptrDataLenWords     = dataLenWords;
+    *ptrNumBlocks        = numBlocks;
+    /* Compute the number of partial words which need to be handled separately */
+    *ptrNumPartialWords  = dataLenBytes % 4ULL;
+    *ptrNumPartialBlocks = dataLenWords % DTHE_SM3_BLOCK_SIZE;
+
+    return;
+}
+
+/**
+ * \brief write the entire message as a single data block (dataLenWords <= DTHE_SM3_BLOCK_SIZE).
+ */
+static void DTHE_SM3_writeSingleBlockData(CSL_EIP52_SM3Regs* ptrSm3Regs, const DTHE_SM3_Params* ptrSm3Params)
+{
+    /*write the data block*/
+    DTHE_SM3_writeDataBlock(ptrSm3Regs, &ptrSm3Params->ptrDataBuffer[0U], DTHE_SM3_BLOCK_SIZE);
+    if(gDTHESM3InProgress == DTHE_SM3_CRYPTO_STATEMACHINE_INPROGRESS)
+    {
+        /* set the digest in + input available in */
+        DTHE_SM3_set_data_available(ptrSm3Regs, 0x1BEU);
+    }
+    else
+    {
+        /* set the input available */
+        DTHE_SM3_set_data_available(ptrSm3Regs, 0x13EU);
+    }
+
+    return;
+}
+
+/**
+ * \brief write the first block and all intermediate blocks of a multi-block message, via
+ *        DMA when available or the CPU polling loop otherwise.
+ *
+ * \return  the block index of the last (possibly partial) block still to be written.
+ */
+static uint64_t DTHE_SM3_writeIntermediateBlocks(CSL_EIP52_SM3Regs* ptrSm3Regs, const DTHE_Config* config, const DTHE_SM3_Params* ptrSm3Params, uint64_t numBlocks, uint64_t blockSize, uint32_t shiftSize)
+{
+    DMA_Handle      dmaHandle = NULL;
+    DMA_Return_t    dmaStatus = DMA_RETURN_FAILURE;
+    uint64_t        index     = 0ULL;
+
+    /* write first block */
+    DTHE_SM3_writeDataBlock(ptrSm3Regs, &ptrSm3Params->ptrDataBuffer[0U], blockSize);
+
+    /* write data in ava and ctrl valid */
+    DTHE_SM3_set_data_available(ptrSm3Regs, 0x126U);
+
+    /*intermediate blocks*/
+    /* numBlocks > 2 is required here so that (numBlocks - 2ULL) below cannot underflow;
+     * DTHE_SM3_MAX_DATA_LEN_BYTES above guarantees numBlocks also fits uint16_t once reduced by 2 */
+    if ((config->dmaEnable == DMA_ENABLE) && (numBlocks > 2ULL))
+    {
+        uint16_t dmaNumBlocks = (uint16_t)(numBlocks - 2ULL);
+
+        dmaHandle = DMA_open(0);
+        dmaStatus = DMA_Config_TxChannel(dmaHandle, &ptrSm3Params->ptrDataBuffer[1UL << shiftSize], (uint32_t *)&ptrSm3Regs->SM3_DATA_IN[0], dmaNumBlocks, (uint16_t)blockSize, DMA_SM3_ENABLE);
+    }
+
+    if (dmaStatus == DMA_RETURN_SUCCESS)
+    {
+        /* Enable auto control and DMA mode BEFORE starting DMA transfer.
+         * This ensures the SM3 engine can generate DMA requests when ready
+         * for the next block after processing block 0. */
+        DTHE_SM3_set_autoctrl(ptrSm3Regs, 1U);
+
+        /* Enable the transfer region (starts DMA) */
+        (void)DMA_enableTxTransferRegion(dmaHandle);
+        DTHE_SM3_setDMA(ptrSm3Regs, 1U);
+        (void)DMA_startTxChannel(dmaHandle);
+
+        /* Wait for DMA transfer to complete */
+        (void)DMA_WaitForTxTransfer(dmaHandle);
+
+        /* Disable DMA mode */
+        DTHE_SM3_setDMA(ptrSm3Regs, 0U);
+
+        /* Disable auto control */
+        DTHE_SM3_set_autoctrl(ptrSm3Regs, 0U);
+
+        (void)DMA_disableTxCh(dmaHandle);
+
+        /* Update index to skip DMA processed blocks */
+        /* numBlocks >= 2 is guaranteed here since dataLenWords > DTHE_SM3_BLOCK_SIZE */
+        if (numBlocks >= 1ULL)
+        {
+            index = numBlocks - 1ULL;
+        }
+    }
+    else
+    {
+        /* DMA not available or source address not aligned: use CPU path. */
+        /* numBlocks >= 2 is guaranteed here since dataLenWords > DTHE_SM3_BLOCK_SIZE */
+        if (numBlocks >= 1ULL)
+        {
+            for (index = 1ULL; index < (numBlocks-1ULL); index++)
+            {
+                /* wait until input buffer available for writing by host */
+                DTHE_SM3_pollInput_buff_available(ptrSm3Regs);
+                /* write the input data */
+                DTHE_SM3_writeDataBlock(ptrSm3Regs, &ptrSm3Params->ptrDataBuffer[index << shiftSize], blockSize);
+                /* set only teh data in and in ava bit */
+                DTHE_SM3_set_data_available(ptrSm3Regs, 0x006U);
+            }
+            index = numBlocks - 1ULL;
+        }
+    }
+
+    return index;
+}
+
+/**
+ * \brief write the final (possibly partial) data block of a multi-block message.
+ */
+static void DTHE_SM3_writeLastBlock(CSL_EIP52_SM3Regs* ptrSm3Regs, const DTHE_SM3_Params* ptrSm3Params, uint64_t index, uint32_t shiftSize, uint64_t numPartialWords, uint64_t numPartialBlocks)
+{
+    uint64_t blockSize = DTHE_SM3_BLOCK_SIZE;
+
+    /*check for the partial data blocks*/
+
+    /*wait until input buffer available for writing by host*/
+    DTHE_SM3_pollInput_buff_available(ptrSm3Regs);
+
+    if((numPartialWords != 0ULL) || (numPartialBlocks != 0ULL) )
+    {
+        /* Update blockSize to match the number of partial blocks for the last data block */
+        blockSize = numPartialBlocks;
+
+        /*Increment by one to include additional partial word, padding is done by HW based on message bit length*/
+        if(numPartialWords != 0ULL)
+        {
+            blockSize++;
+        }
+    }
+
+    /*Write last msg data block to DATA_IN register*/
+
+    /*write the input data*/
+    DTHE_SM3_writeDataBlock(ptrSm3Regs, &ptrSm3Params->ptrDataBuffer[index << shiftSize], blockSize);
+    /*set only ctrl stat data*/
+    DTHE_SM3_set_data_available(ptrSm3Regs, 0x01EU);
+
+    return;
+}
+
+/**
+ * \brief write a multi-block message: the first/intermediate blocks (DMA or CPU path),
+ *        followed by the final (possibly partial) block.
+ */
+static void DTHE_SM3_writeMultiBlockData(CSL_EIP52_SM3Regs* ptrSm3Regs, const DTHE_Config* config, const DTHE_SM3_Params* ptrSm3Params, uint64_t numBlocks, uint32_t shiftSize, uint64_t numPartialWords, uint64_t numPartialBlocks)
+{
+    uint64_t index = DTHE_SM3_writeIntermediateBlocks(ptrSm3Regs, config, ptrSm3Params, numBlocks, DTHE_SM3_BLOCK_SIZE, shiftSize);
+
+    DTHE_SM3_writeLastBlock(ptrSm3Regs, ptrSm3Params, index, shiftSize, numPartialWords, numPartialBlocks);
+
+    return;
+}
+
+/**
+ * \brief poll for the hash result, read out the digest and update the crypto state machine.
+ */
+static void DTHE_SM3_finalizeHash(CSL_EIP52_SM3Regs* ptrSm3Regs, DTHE_SM3_Params* ptrSm3Params, DTHE_SM3_LastBlockState_t isLastBlock)
+{
+    /* Poll till the hash results are available: */
+    DTHE_SM3_pollOutputReady (ptrSm3Regs);
+
+    /* Get the digest value: */
+    DTHE_SM3_getHashDigest(ptrSm3Regs, &ptrSm3Params->digest[0U]);
+
+    /*indicate finished reading output data*/
+    DTHE_SM3_set_output_buff_available(ptrSm3Regs, 1U);
+
+    if( isLastBlock == DTHE_SM3_LAST_BLOCK_TRUE )
+    {
+        /* Sm3 Computation is in progress: */
+        gDTHESM3InProgress = DTHE_SM3_CRYPTO_STATEMACHINE_NEW;
+    }
+    else
+    {
+        /* Sm3 Computation is in progress: */
+        gDTHESM3InProgress = DTHE_SM3_CRYPTO_STATEMACHINE_INPROGRESS;
+    }
 
     return;
 }
@@ -385,7 +675,6 @@ DTHE_SM3_Return_t DTHE_SM3_close(DTHE_Handle handle)
             DTHE_SM3_set_autoctrl(ptrSm3Regs, 0U);
 
             gDTHESM3InProgress = DTHE_SM3_CRYPTO_STATEMACHINE_NEW;
-            gDTHESM3digestCount = 0U;
 
             status = DTHE_SM3_RETURN_SUCCESS;
         }
@@ -404,214 +693,37 @@ DTHE_SM3_Return_t DTHE_SM3_close(DTHE_Handle handle)
 
 DTHE_SM3_Return_t DTHE_SM3_compute(DTHE_Handle handle, DTHE_SM3_Params* ptrSm3Params, DTHE_SM3_LastBlockState_t isLastBlock)
 {
-    DTHE_SM3_Return_t       status       = DTHE_SM3_RETURN_FAILURE;
-    DMA_Handle              dmaHandle    = NULL;
-    DMA_Return_t            dmaStatus    = DMA_RETURN_FAILURE;
-    uint64_t                index        = 0ULL;
-    uint64_t                numBlocks    = 0ULL;
-    uint64_t                blockSize    = 0ULL;
-    uint64_t                dataLenWords = 0ULL;
-    uint64_t                dataLenBytes = 0ULL;
-    uint64_t                numPartialWords = 0ULL;
+    DTHE_SM3_Return_t       status           = DTHE_SM3_RETURN_FAILURE;
+    uint64_t                numBlocks        = 0ULL;
+    uint64_t                dataLenWords     = 0ULL;
+    uint64_t                dataLenBytes     = 0ULL;
+    uint64_t                numPartialWords  = 0ULL;
     uint64_t                numPartialBlocks = 0ULL;
-    uint8_t                 shiftSize;
+    uint32_t                shiftSize        = DTHE_SM3_SHIFT_SIZE;
 
-    DTHE_Config             *config = (DTHE_Config *)NULL;
-    DTHE_Attrs              *attrs  = (DTHE_Attrs *)NULL;
-    CSL_EIP52_SM3Regs       *ptrSm3Regs;
+    DTHE_Config             *config     = (DTHE_Config *)NULL;
+    CSL_EIP52_SM3Regs       *ptrSm3Regs = (CSL_EIP52_SM3Regs *)NULL;
 
-    if(((DTHE_Handle)NULL != handle) && ((DTHE_SM3_Params *)NULL != ptrSm3Params))
-    {
-        status = DTHE_SM3_RETURN_SUCCESS;
-        
-        /* Proceed only if initial checks pass */
-        config              = (DTHE_Config *) handle;
-        attrs               = config->attrs;
-        ptrSm3Regs          = (CSL_EIP52_SM3Regs *)attrs->sm3BaseAddr;
-        dataLenBytes        = ptrSm3Params->dataLenBytes;
+    status = DTHE_SM3_validateComputeParams(handle, ptrSm3Params, isLastBlock, &config, &ptrSm3Regs, &dataLenBytes);
 
-        /* Check if SM3 hardware is available for this platform */
-        if(ptrSm3Regs == NULL)
-        {
-            /* Error: DTHE SM3 is not enabled for this platform. */
-            status = DTHE_SM3_RETURN_FAILURE;
-        }
-
-        /* Sanity Checking: Any data buffer except the last block should be aligned as per
-         * the SM3 block Size. For SM3 this is 64byte aligned */
-        if((DTHE_SM3_LAST_BLOCK_FALSE == isLastBlock) && 
-           ((dataLenBytes % (DTHE_SM3_BLOCK_SIZE * 4ULL)) != 0ULL))
-        {
-            /* Error: Ensure that the data length is a word multiple. */
-            status = DTHE_SM3_RETURN_FAILURE;
-        }
-    }
-     
     /* Perform the SHA Computation */
     if (DTHE_SM3_RETURN_SUCCESS == status)
     {
-        /*wait until input buffer available for writing by host*/
-        DTHE_SM3_pollInput_buff_available(ptrSm3Regs);
+        DTHE_SM3_prepareHashSession(ptrSm3Regs, ptrSm3Params, dataLenBytes);
 
-        if(gDTHESM3InProgress == DTHE_SM3_CRYPTO_STATEMACHINE_INPROGRESS)
-        {
-            /* set the hash mode as RESUME */
-            DTHE_SM3_setHashMode(ptrSm3Regs, 0U);
-        }
-        else
-        {
-            /* set the hash mode as NEW */
-            DTHE_SM3_setHashMode(ptrSm3Regs, 1U);
-        }
-
-        if(gDTHESM3InProgress == DTHE_SM3_CRYPTO_STATEMACHINE_INPROGRESS)
-        {
-            /* set the length value as expected size */ 
-            DTHE_SM3_setHashDigest(ptrSm3Regs, &ptrSm3Params->digest[0U]);
-        }
-
-        /* set the length value as expected size */ 
-        DTHE_SM3_set_length (ptrSm3Regs, dataLenBytes);
-
-        /* Determine the data length in words: */
-        dataLenWords = dataLenBytes/4ULL;
-        
-        /* Compute the number of blocks: */
-        blockSize = DTHE_SM3_BLOCK_SIZE;
-        numBlocks = dataLenWords / DTHE_SM3_BLOCK_SIZE;
-
-        if((dataLenBytes % 64ULL) != 0ULL)
-        {
-            /*Last block is partial*/
-            numBlocks++;
-        }
-
-        /* Compute the number of partial words which need to be handled separately */
-        numPartialWords =  dataLenBytes % 4ULL;
-        numPartialBlocks = dataLenWords % DTHE_SM3_BLOCK_SIZE;
-
-        /* write the data input to the input buffer: */
-        blockSize = DTHE_SM3_BLOCK_SIZE;
-        shiftSize = DTHE_SM3_SHIFT_SIZE;
+        DTHE_SM3_computeBlockCounts(dataLenBytes, &numBlocks, &dataLenWords, &numPartialWords, &numPartialBlocks);
 
         /* check the block size */
         if (dataLenWords <= DTHE_SM3_BLOCK_SIZE)
         {
-            /*write the data block*/
-            DTHE_SM3_writeDataBlock(ptrSm3Regs, &ptrSm3Params->ptrDataBuffer[0U], blockSize);
-            if(gDTHESM3InProgress == DTHE_SM3_CRYPTO_STATEMACHINE_INPROGRESS)
-            {
-                /* set the digest in + input available in */
-                DTHE_SM3_set_data_available(ptrSm3Regs, 0x1BEU);
-            }
-            else
-            {
-                /* set the input available */
-                DTHE_SM3_set_data_available(ptrSm3Regs, 0x13EU);
-            }
+            DTHE_SM3_writeSingleBlockData(ptrSm3Regs, ptrSm3Params);
         }
         else
         {
-            /* write first block */
-            DTHE_SM3_writeDataBlock(ptrSm3Regs, &ptrSm3Params->ptrDataBuffer[0U], blockSize);
-
-            /* write data in ava and ctrl valid */
-            DTHE_SM3_set_data_available(ptrSm3Regs, 0x126U);
-
-            /*intermediate blocks*/
-            if ((config->dmaEnable == DMA_ENABLE) && ((numBlocks - 1ULL) > 1ULL))
-            {
-                 uint16_t dmaNumBlocks = (uint16_t)(numBlocks - 2ULL);
-
-                dmaHandle = DMA_open(0);
-                dmaStatus = DMA_Config_TxChannel(dmaHandle, &ptrSm3Params->ptrDataBuffer[1U << shiftSize], (uint32_t *)&ptrSm3Regs->SM3_DATA_IN[0], dmaNumBlocks, (uint16_t)blockSize, DMA_SM3_ENABLE);
-            }
-
-            if (dmaStatus == DMA_RETURN_SUCCESS)
-            {
-                /* Enable auto control and DMA mode BEFORE starting DMA transfer.
-                 * This ensures the SM3 engine can generate DMA requests when ready
-                 * for the next block after processing block 0. */
-                DTHE_SM3_set_autoctrl(ptrSm3Regs, 1U);
-                
-                /* Enable the transfer region (starts DMA) */
-                (void)DMA_enableTxTransferRegion(dmaHandle);
-                DTHE_SM3_setDMA(ptrSm3Regs, 1U);
-                (void)DMA_startTxChannel(dmaHandle);
-
-                /* Wait for DMA transfer to complete */
-                (void)DMA_WaitForTxTransfer(dmaHandle);
-
-                /* Disable DMA mode */
-                DTHE_SM3_setDMA(ptrSm3Regs, 0U);
-
-                /* Disable auto control */
-                DTHE_SM3_set_autoctrl(ptrSm3Regs, 0U);
-
-                (void)DMA_disableTxCh(dmaHandle);
-
-                /* Update index to skip DMA processed blocks */
-                index = numBlocks - 1ULL;
-            }
-            else
-            {
-                /* DMA not available or source address not aligned: use CPU path. */
-                for (index = 1ULL; index < (numBlocks-1ULL); index++)
-                {
-                    /* wait until input buffer available for writing by host */
-                    DTHE_SM3_pollInput_buff_available(ptrSm3Regs);
-                    /* write the input data */
-                    DTHE_SM3_writeDataBlock(ptrSm3Regs, &ptrSm3Params->ptrDataBuffer[index << shiftSize], blockSize);
-                    /* set only teh data in and in ava bit */
-                    DTHE_SM3_set_data_available(ptrSm3Regs, 0x006U);
-                }
-                index = numBlocks - 1ULL;
-            }
-
-            /*check for the partial data blocks*/
-
-            /*wait until input buffer available for writing by host*/
-            DTHE_SM3_pollInput_buff_available(ptrSm3Regs);
-
-            if((numPartialWords != 0ULL) || (numPartialBlocks != 0ULL) )
-            {
-                /* Update blockSize to match the number of partial blocks for the last data block */
-                blockSize = numPartialBlocks;
-
-                /*Increment by one to include additional partial word, padding is done by HW based on message bit length*/
-                if(numPartialWords != 0ULL)
-                {
-                    blockSize++;
-                }
-            }
-            
-            /*Write last msg data block to DATA_IN register*/
-
-            /*write the input data*/
-            DTHE_SM3_writeDataBlock(ptrSm3Regs, &ptrSm3Params->ptrDataBuffer[index << shiftSize], blockSize);
-            /*set only ctrl stat data*/
-            DTHE_SM3_set_data_available(ptrSm3Regs, 0x01EU);
+            DTHE_SM3_writeMultiBlockData(ptrSm3Regs, config, ptrSm3Params, numBlocks, shiftSize, numPartialWords, numPartialBlocks);
         }
 
-        /* Poll till the hash results are available: */
-        DTHE_SM3_pollOutputReady (ptrSm3Regs);
-
-        /* Get the digest value: */
-        DTHE_SM3_getHashDigest(ptrSm3Regs, &ptrSm3Params->digest[0U]);
-
-        /*indicate finished reading output data*/
-        DTHE_SM3_set_output_buff_available(ptrSm3Regs, 1U);
-
-        if( isLastBlock == DTHE_SM3_LAST_BLOCK_TRUE )
-        {
-            /* Sm3 Computation is in progress: */
-            gDTHESM3InProgress = DTHE_SM3_CRYPTO_STATEMACHINE_NEW;
-        }
-        else
-        {
-            /* Sm3 Computation is in progress: */
-            gDTHESM3InProgress = DTHE_SM3_CRYPTO_STATEMACHINE_INPROGRESS;
-        }
+        DTHE_SM3_finalizeHash(ptrSm3Regs, ptrSm3Params, isLastBlock);
     }
 
    return (status);

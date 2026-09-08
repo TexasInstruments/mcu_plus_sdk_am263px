@@ -75,6 +75,8 @@ extern "C"
 #define HASH_ALG_SHA2_256         (0x1U)
 /** \brief Hash Algo SHA-512 */
 #define HASH_ALG_SHA2_512         (0x2U)
+/** \brief Hash Algo SHA-384 */
+#define HASH_ALG_SHA2_384         (0x3U)
 /** @} */
 
 /* ========================================================================== */
@@ -134,9 +136,14 @@ void Crypto_bigIntToUint32(uint32_t *source, uint32_t sourceLengthInWords, uint3
 /**
  *  \brief  Padding function for sign
  *
+ *  Builds the full EMSA-PKCS1-v1_5 encoding as per RFC 8017 Section 9.2:
+ *  EM = 0x00 || 0x01 || PS (0xFF..) || 0x00 || DigestInfo (ASN.1 DER) || Hash
+ *
  *  \param  shaHash             Calculated Hash of the message for padding
  *
- *  \param  keyLengthInBytes    Used while padding to match key and padded mesage size
+ *  \param  keyLengthInBytes    Used while padding to match key and padded mesage size.
+ *                              Must be >= 3 + digestInfoLen + hash length for typeOfAlgo,
+ *                              otherwise output is left untouched.
  *
  *  \param  typeOfAlgo          Used while padding to check sha length, refer \ref Crypto_AlgoTypes
  *
@@ -145,17 +152,124 @@ void Crypto_bigIntToUint32(uint32_t *source, uint32_t sourceLengthInWords, uint3
 void Crypto_PKCSPaddingForSign(const uint8_t *shaHash, uint32_t keyLengthInBytes, uint32_t typeOfAlgo, uint8_t *output);
 
 /**
- *  \brief  Padding function for Message
+ *  \brief  Callback used by Crypto_MGF1/Crypto_PSSPaddingForSign/Crypto_PSSVerify
+ *          to compute a hash digest. Same parameter shape as
+ *          AsymCrypt_ExecuteShaCallback (asym_crypt.h) so existing SHA wrapper
+ *          functions can be passed in directly without an adapter.
  *
- *  \param  message             Message for padding
+ *  \note   Crypto_MGF1/Crypto_PSSPaddingForSign/Crypto_PSSVerify share
+ *          internal static scratch buffers (to keep their stack footprint
+ *          small) and are therefore NOT reentrant: do not call them
+ *          concurrently from multiple contexts (e.g. an ISR and main, or
+ *          multiple RTOS tasks) or recursively/nested within each other.
  *
- *  \param  msgLengthInBytes    Used while padding to match key and padded mesage size
+ *  \param  inputBuf        Buffer to hash
  *
- *  \param  keyLengthInBytes    Used while padding to check key length
+ *  \param  inputLenBytes   Length of inputBuf in bytes
  *
- *  \param  output              Resultant padded buffer stored in dest
+ *  \param  digestBuf       Resultant digest buffer (caller-sized to hashLenInBytes)
+ *
+ *  \return 0 on success, non-zero on failure
  */
-void Crypto_PKCSPaddingForMessage(const uint8_t *message, uint32_t msgLengthInBytes, uint32_t keyLengthInBytes, uint8_t *output);
+typedef uint32_t (*Crypto_ShaCallback)(uint8_t *inputBuf, uint32_t inputLenBytes, uint8_t *digestBuf);
+
+/**
+ *  \brief  Message hash and salt inputs to \ref Crypto_PSSPaddingForSign,
+ *          bundled to keep the function's parameter count down.
+ *
+ *  \param  msgHash         mHash, precomputed hash of the message, hashLenInBytes long
+ *
+ *  \param  salt            Random salt, saltLenInBytes long
+ *
+ *  \param  saltLenInBytes  Salt length (RFC 8017 recommends saltLen == hashLen)
+ */
+struct Crypto_PSSSaltInfo {
+    /** mHash, precomputed hash of the message, hashLenInBytes long */
+    const uint8_t *msgHash;
+    /** Random salt, saltLenInBytes long */
+    const uint8_t *salt;
+    /** Salt length (RFC 8017 recommends saltLen == hashLen) */
+    uint32_t       saltLenInBytes;
+};
+
+/**
+ *  \brief  MGF1 mask generation function, refer to RFC 8017 Appendix B.2.1
+ *          https://www.rfc-editor.org/rfc/rfc8017#appendix-B.2.1
+ *
+ *  \param  shaCbFxn        Hash callback, refer \ref Crypto_ShaCallback
+ *
+ *  \param  hashLenInBytes  Digest length produced by shaCbFxn (e.g. 32 for SHA-256)
+ *
+ *  \param  seedBuf         Seed buffer; MUST have (seedLenInBytes + 4) bytes of
+ *                          writable space - the trailing 4 bytes are scratch used
+ *                          to append the big-endian counter before each hash call
+ *
+ *  \param  seedLenInBytes  Length of the seed (excluding the 4-byte counter scratch)
+ *
+ *  \param  mask            Resultant mask, caller-allocated, maskLenInBytes long
+ *
+ *  \param  maskLenInBytes  Requested mask length
+ *
+ *  \return 0 on success, non-zero if shaCbFxn ever fails
+ */
+uint32_t Crypto_MGF1(Crypto_ShaCallback shaCbFxn, uint32_t hashLenInBytes,
+                      uint8_t *seedBuf, uint32_t seedLenInBytes,
+                      uint8_t *mask, uint32_t maskLenInBytes);
+
+/**
+ *  \brief  Builds the EMSA-PSS encoding for RSA signing, refer to RFC 8017
+ *          Section 9.1.1 https://www.rfc-editor.org/rfc/rfc8017#section-9.1.1
+ *
+ *  EM = maskedDB || H || 0xBC, where
+ *  M' = 0x00^8 || mHash || salt, H = Hash(M'),
+ *  DB = 0x00^psLen || 0x01 || salt, maskedDB = DB XOR MGF1(H, dbLen),
+ *  with the leftmost bits of maskedDB[0] cleared per emBits = modBits - 1.
+ *
+ *  \param  shaCbFxn        Hash callback, refer \ref Crypto_ShaCallback
+ *
+ *  \param  typeOfAlgo      Hash algorithm used for mHash/H/MGF1, refer \ref Crypto_AlgoTypes
+ *
+ *  \param  saltInfo        Message hash and salt, refer \ref Crypto_PSSSaltInfo
+ *
+ *  \param  modBits         Bit length of the RSA modulus n
+ *
+ *  \param  emLenInBytes    Length of the output EM buffer (ceil(modBits/8))
+ *
+ *  \param  output          Resultant EM buffer, emLenInBytes long
+ *
+ *  \return 0 on success, non-zero on failure (shaCbFxn failure or emLenInBytes too small)
+ */
+uint32_t Crypto_PSSPaddingForSign(Crypto_ShaCallback shaCbFxn, uint32_t typeOfAlgo,
+                                   const struct Crypto_PSSSaltInfo *saltInfo,
+                                   uint32_t modBits, uint32_t emLenInBytes, uint8_t *output);
+
+/**
+ *  \brief  Verifies an EMSA-PSS encoding for RSA signature verification,
+ *          refer to RFC 8017 Section 9.1.2
+ *          https://www.rfc-editor.org/rfc/rfc8017#section-9.1.2
+ *
+ *  Recovers the salt from EM itself (unlike re-running Crypto_PSSPaddingForSign,
+ *  which requires the original salt and is therefore NOT valid verification).
+ *
+ *  \param  shaCbFxn        Hash callback, refer \ref Crypto_ShaCallback
+ *
+ *  \param  typeOfAlgo      Hash algorithm used for mHash/H/MGF1, refer \ref Crypto_AlgoTypes
+ *
+ *  \param  msgHash         mHash, precomputed hash of the message, hashLenInBytes long
+ *
+ *  \param  saltLenInBytes  Expected salt length
+ *
+ *  \param  modBits         Bit length of the RSA modulus n
+ *
+ *  \param  EM              Encoded message recovered from the signature (RSA public op output)
+ *
+ *  \param  emLenInBytes    Length of EM in bytes
+ *
+ *  \return 0 if consistent (verification passed), non-zero if inconsistent or on failure
+ */
+uint32_t Crypto_PSSVerify(Crypto_ShaCallback shaCbFxn, uint32_t typeOfAlgo,
+                           const uint8_t *msgHash, uint32_t saltLenInBytes,
+                           uint32_t modBits, const uint8_t *EM, uint32_t emLenInBytes);
 
 
 #ifdef __cplusplus

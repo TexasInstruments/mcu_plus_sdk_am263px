@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,29 +92,35 @@ $(document).ready(function(){initNavTree('enetlld_performance.html',''); initRes
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md1461">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md1462">Setup Details</a></li>
-<li class="level1"><a href="#autotoc_md1463">Layer 2 Performance</a><ul><li class="level2"><a href="#autotoc_md1464">Configuration Details</a></li>
-<li class="level2"><a href="#autotoc_md1465">Layer 2 Latency</a></li>
+<ul><li class="level1"><a href="#autotoc_md1464">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md1465">Setup Details</a></li>
+<li class="level1"><a href="#autotoc_md1466">Layer 2 Performance</a><ul><li class="level2"><a href="#autotoc_md1467">Configuration Details</a></li>
+<li class="level2"><a href="#autotoc_md1468">Layer 2 Latency</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1466">TCP/IP Performance</a><ul><li class="level2"><a href="#autotoc_md1467">Configuration Details</a><ul><li class="level3"><a href="#autotoc_md1468">TCP Throughput</a></li>
-<li class="level3"><a href="#autotoc_md1469">UDP Throughput</a></li>
+<li class="level1"><a href="#autotoc_md1469">TCP/IP Performance</a><ul><li class="level2"><a href="#autotoc_md1470">Configuration Details</a><ul><li class="level3"><a href="#autotoc_md1471">TCP Throughput</a></li>
+<li class="level3"><a href="#autotoc_md1472">UDP Throughput</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1470">Ether-Ring Performance</a></li>
-<li class="level1"><a href="#autotoc_md1471">Ether-Ring Round Trip Latency with CAN(Vehicle) traffic</a></li>
+<li class="level1"><a href="#autotoc_md1473">Ether-Ring Performance</a></li>
+<li class="level1"><a href="#autotoc_md1474">Ether-Ring Round Trip Latency with CAN(Vehicle) traffic</a></li>
+<li class="level1"><a href="#autotoc_md1475">Daisy Chain KPI performance with TSN Features(EST,Gptp)</a><ul><li class="level2"><a href="#autotoc_md1476">Test Setup</a></li>
+<li class="level2"><a href="#autotoc_md1477">Test Configuration</a></li>
+<li class="level2"><a href="#autotoc_md1478">Round Trip Latencies with 3 nodes(1 talker, 2listener)</a></li>
+<li class="level2"><a href="#autotoc_md1479">KPI Summary</a></li>
+</ul>
+</li>
 <li class="level1"><a href="#networking_xip_performance">XIP Performance</a></li>
-<li class="level1"><a href="#autotoc_md1472">See Also</a></li>
+<li class="level1"><a href="#autotoc_md1480">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_enet_lld_enet_cpsw_performance_am263px"></a> </p>
-<h1><a class="anchor" id="autotoc_md1461"></a>
+<h1><a class="anchor" id="autotoc_md1464"></a>
 Introduction</h1>
 <p>This section provides the performance numbers of Ethernet drivers using CPSW peripheral in MCU+ SDK</p>
-<h1><a class="anchor" id="autotoc_md1462"></a>
+<h1><a class="anchor" id="autotoc_md1465"></a>
 Setup Details</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -128,13 +134,13 @@ Setup Details</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Cache status  </td><td class="markdownTableBodyNone">Enabled   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1463"></a>
+<h1><a class="anchor" id="autotoc_md1466"></a>
 Layer 2 Performance</h1>
 <p> <style>div.image img[src="CPSW_latency_measurement_diagram.bmp"]{width:30%}</style> </p><div class="image">
 <img src="CPSW_latency_measurement_diagram.bmp" alt=""/>
 <div class="caption">
 Latency defination</div></div>
-<h2><a class="anchor" id="autotoc_md1464"></a>
+<h2><a class="anchor" id="autotoc_md1467"></a>
 Configuration Details</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -167,7 +173,7 @@ Configuration Details</h2>
 </table>
 <p><br  />
  </p>
-<h2><a class="anchor" id="autotoc_md1465"></a>
+<h2><a class="anchor" id="autotoc_md1468"></a>
 Layer 2 Latency</h2>
 <table class="doxtable">
 <tr>
@@ -180,9 +186,9 @@ Layer 2 Latency</h2>
 <tr>
 <td>TX Latency </td><td>13225 </td><td>384 </td><td>13609  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1466"></a>
+<h1><a class="anchor" id="autotoc_md1469"></a>
 TCP/IP Performance</h1>
-<h2><a class="anchor" id="autotoc_md1467"></a>
+<h2><a class="anchor" id="autotoc_md1470"></a>
 Configuration Details</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -219,7 +225,7 @@ Configuration Details</h2>
 </table>
 <p><br  />
 </p>
-<h3><a class="anchor" id="autotoc_md1468"></a>
+<h3><a class="anchor" id="autotoc_md1471"></a>
 TCP Throughput</h3>
 <table class="doxtable">
 <tr>
@@ -242,7 +248,7 @@ TCP Throughput</h3>
  $<code>iperf -c &lt;evm_ip&gt; -d</code><br  />
  </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1469"></a>
+<h3><a class="anchor" id="autotoc_md1472"></a>
 UDP Throughput</h3>
 <table class="doxtable">
 <tr>
@@ -278,7 +284,7 @@ where &lt;bw&gt; is 25M, 50M, 100M, etc<br  />
 where &lt;bw&gt; is 25M, 50M, 100M, etc<br  />
  </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1470"></a>
+<h1><a class="anchor" id="autotoc_md1473"></a>
 Ether-Ring Performance</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -290,13 +296,83 @@ Ether-Ring Performance</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Profile-C(Symmetric Traffic)  </td><td class="markdownTableBodyNone">27  </td><td class="markdownTableBodyNone">80   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1471"></a>
+<h1><a class="anchor" id="autotoc_md1474"></a>
 Ether-Ring Round Trip Latency with CAN(Vehicle) traffic</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Packet Rate(per sec)  </th><th class="markdownTableHeadNone">Average Latency(us)  </th><th class="markdownTableHeadNone">Max Latency(us)   </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">2000  </td><td class="markdownTableBodyNone">561  </td><td class="markdownTableBodyNone">569   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md1475"></a>
+Daisy Chain KPI performance with TSN Features(EST,Gptp)</h1>
+<h2><a class="anchor" id="autotoc_md1476"></a>
+Test Setup</h2>
+<p>A line (daisy-chain) topology with 1 talker and N listeners, each board connecting its MAC port 2 to the next node's MAC port 1. An external PC is connected to the talker's MAC port 1 to inject the saturating bulk background load.</p>
+<div class="image">
+<img src="tsn_demo_talker_listener_setup.png" alt="" width="60%"/>
+<div class="caption">
+Talker,Listener EVM Connections </div></div>
+<ul>
+<li>Talker (CPSW_TSN_DEMO_TALKER): gPTP grandmaster, generates the express probe stream, computes/reports round-trip latency statistics.</li>
+<li>Listener 1, Listener 2 (CPSW_TSN_DEMO_LISTENER): gPTP slaves; each echoes its own express probe back to the talker.</li>
+<li>PC -&gt; Talker MAC port 1: bulk background load only.</li>
+<li>Talker MAC port 2 -&gt; Listener 1 MAC port 1; Listener 1 MAC port 2 -&gt; Listener 2 MAC port 1.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md1477"></a>
+Test Configuration</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Configuration  </th><th class="markdownTableHeadNone">Value   </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Boards  </td><td class="markdownTableBodyNone">1x AM263Px-LP(talker) + 2x AM263Px-LP (listener)   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Chain length  </td><td class="markdownTableBodyNone">3 nodes (1 talker + 2 listeners)   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">RTOS  </td><td class="markdownTableBodyNone">FreeRTOS   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">RTOS application  </td><td class="markdownTableBodyNone">CPSW_TSN_DEMO_TALKER, CPSW_TSN_DEMO_LISTENER   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Ethernet Interface Type  </td><td class="markdownTableBodyNone">RGMII at 1 Gbps   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Express probe stream  </td><td class="markdownTableBodyNone">256 B payload, 125 µs period, VLAN 100, PCP 5   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Background bulk load  </td><td class="markdownTableBodyNone">External PC on talker's MAC port 1, ~900 Mbit/s, PC-driven   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">TSN features under test  </td><td class="markdownTableBodyNone">gPTP (802.1AS), EST (802.1Qbv)   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Latency measurement  </td><td class="markdownTableBodyNone">Round-trip calculated by Tsn Talker   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Sample size  </td><td class="markdownTableBodyNone">10,000 samples/run   </td></tr>
+</table>
+<p><br  />
+ </p>
+<h2><a class="anchor" id="autotoc_md1478"></a>
+Round Trip Latencies with 3 nodes(1 talker, 2listener)</h2>
+<table class="doxtable">
+<tr>
+<td rowspan="2" style="text-align: left;"><b>Feature Configuration</b> </td><td colspan="3" style="text-align: center;"><b>Listener 1 Round Trip Latency (us)</b> </td><td colspan="3" style="text-align: center;"><b>Listener 2 Round Trip Latency (us)</b>  </td></tr>
+<tr>
+<td><b>Min</b></td><td><b>Max</b></td><td><b>Avg</b> </td><td><b>Min</b></td><td><b>Max</b></td><td><b>Avg</b>  </td></tr>
+<tr>
+<td><b>Baseline (TSN off)</b> </td><td>29.10</td><td>61.93</td><td>43.01 </td><td>37.14</td><td>97.46</td><td>67.70  </td></tr>
+<tr>
+<td><b>EST only</b> </td><td>29.37</td><td>59.21</td><td>39.05 </td><td>39.81</td><td>91.92</td><td>72.00  </td></tr>
+</table>
+<h2><a class="anchor" id="autotoc_md1479"></a>
+KPI Summary</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">KPI  </th><th class="markdownTableHeadNone">Value   </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Round trip latency (EST only)  </td><td class="markdownTableBodyNone">Listener 1: Min 29.37 us / Max 59.21 us / Avg 39.05 us <br  />
+ Listener 2: Min 39.81 us / Max 91.92 us / Avg 72.00 us   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">gPTP sync accuracy  </td><td class="markdownTableBodyNone">&lt; 100 ns   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">CPU load - Talker  </td><td class="markdownTableBodyNone">45%   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">CPU load - Listener  </td><td class="markdownTableBodyNone">32%   </td></tr>
 </table>
 <h1><a class="anchor" id="networking_xip_performance"></a>
 XIP Performance</h1>
@@ -331,7 +407,7 @@ XIP Performance</h1>
 <tr>
 <td>UDP Rx </td><td>116Mbps ~1% pkt drop&#160;92% CPU load </td><td>39Mbps&#160; ~1% pkt drop&#160;97% CPU load </td><td>53Mbps&#160; ~1% pkt drop&#160;98% CPU load </td><td>82Mbps ~1% pkt drop 99% CPU load </td><td>110Mbps ~1% pkt drop&#160;90% CPU load </td><td>110Mbps ~1% pkt drop&#160;88% CPU load </td><td>116Mbps ~1% pkt drop&#160;92% CPU load  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1472"></a>
+<h1><a class="anchor" id="autotoc_md1480"></a>
 See Also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> <a class="el" href="EXAMPLES_ENET_LWIP_CPSW.html">Enet Lwip CPSW Example</a> <a class="el" href="EXAMPLES_ENET_CPSW_ETHERRING_CAN.html">Enet CPSW Ether-Ring CAN Example</a> <a class="el" href="EXAMPLES_ENET_CPSW_ETHERRING_TRAFFICGEN.html">Enet CPSW Ether-Ring Real-time and LWIP Traffic Generator Application</a> <a class="el" href="EXAMPLES_ENET_CPSW_ETHERRING.html">Enet CPSW Ether-Ring TSN Example</a> </p>
 </div></div><!-- contents -->

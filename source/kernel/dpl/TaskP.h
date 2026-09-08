@@ -117,6 +117,18 @@ typedef struct TaskP_Object_ {
 
 } TaskP_Object;
 
+#elif defined (OS_THREADX)
+
+#include "tx_api.h"
+
+typedef struct TaskP_Object_ {
+    TX_THREAD     taskObj;
+    void          *args;
+    TaskP_FxnMain taskMain;
+    uint32_t      lastRunTime;
+    uint64_t      accRunTime;
+} TaskP_Object;
+
 #elif defined (OS_NORTOS)
 
 /** Add a dummy `TaskP_Object` since `TaskP.h` is included by drivers which will be built with NORTOS as well.
@@ -130,7 +142,7 @@ typedef struct TaskP_Object_ {
 
 #else 
 
-#error "Define OS_FREERTOS or OS_FREERTOS_SMP or OS_FREERTOS_MPU or OS_SAFERTOS or OS_NORTOS"
+#error "Define OS_FREERTOS or OS_FREERTOS_SMP or OS_FREERTOS_MPU or OS_SAFERTOS or OS_NORTOS or OS_THREADX"
 
 #endif
 

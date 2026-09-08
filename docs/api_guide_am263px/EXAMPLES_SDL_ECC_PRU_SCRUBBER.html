@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">AM263Px MCU+ SDK
-   &#160;<span id="projectnumber">26.00.00</span>
+   &#160;<span id="projectnumber">26.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -92,43 +92,43 @@ $(document).ready(function(){initNavTree('EXAMPLES_SDL_ECC_PRU_SCRUBBER.html',''
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3801">Overview</a><ul><li class="level2"><a href="#autotoc_md3802">Features</a></li>
-<li class="level2"><a href="#autotoc_md3803">Communication Interface</a></li>
-<li class="level2"><a href="#autotoc_md3804">How the Active Scrubber Works</a><ul><li class="level3"><a href="#autotoc_md3805">Normal Operation Flow:</a></li>
-<li class="level3"><a href="#autotoc_md3806">Error Detection and Resolution:</a></li>
+<ul><li class="level1"><a href="#autotoc_md3856">Overview</a><ul><li class="level2"><a href="#autotoc_md3857">Features</a></li>
+<li class="level2"><a href="#autotoc_md3858">Communication Interface</a></li>
+<li class="level2"><a href="#autotoc_md3859">How the Active Scrubber Works</a><ul><li class="level3"><a href="#autotoc_md3860">Normal Operation Flow:</a></li>
+<li class="level3"><a href="#autotoc_md3861">Error Detection and Resolution:</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3807">Project Structure</a><ul><li class="level3"><a href="#autotoc_md3808">R5F Host Application:</a></li>
-<li class="level3"><a href="#autotoc_md3809">PRU Firmware:</a></li>
+<li class="level2"><a href="#autotoc_md3862">Project Structure</a><ul><li class="level3"><a href="#autotoc_md3863">R5F Host Application:</a></li>
+<li class="level3"><a href="#autotoc_md3864">PRU Firmware:</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3810">SRAM Bank Configuration</a></li>
-<li class="level2"><a href="#autotoc_md3811">Building and Running</a><ul><li class="level3"><a href="#autotoc_md3812">Build Process:</a></li>
-<li class="level3"><a href="#autotoc_md3813">Example Usage:</a></li>
+<li class="level2"><a href="#autotoc_md3865">SRAM Bank Configuration</a></li>
+<li class="level2"><a href="#autotoc_md3866">Building and Running</a><ul><li class="level3"><a href="#autotoc_md3867">Build Process:</a></li>
+<li class="level3"><a href="#autotoc_md3868">Example Usage:</a></li>
 </ul>
 </li>
-<li class="level2"><a href="#autotoc_md3814">Technical Notes</a><ul><li class="level3"><a href="#autotoc_md3815">Memory Scrubbing Considerations:</a></li>
-<li class="level3"><a href="#autotoc_md3816">ECC Aggregator Access:</a></li>
-<li class="level3"><a href="#autotoc_md3817">ESM Interrupt Configuration:</a></li>
-<li class="level3"><a href="#autotoc_md3818">Error Handling Strategy:</a></li>
+<li class="level2"><a href="#autotoc_md3869">Technical Notes</a><ul><li class="level3"><a href="#autotoc_md3870">Memory Scrubbing Considerations:</a></li>
+<li class="level3"><a href="#autotoc_md3871">ECC Aggregator Access:</a></li>
+<li class="level3"><a href="#autotoc_md3872">ESM Interrupt Configuration:</a></li>
+<li class="level3"><a href="#autotoc_md3873">Error Handling Strategy:</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3819">Supported Combinations</a><ul><li class="level2"><a href="#EXAMPLES_SDL_ECC_PRU_SCRUBBER_PRU0_COMBOS">PRU Firmware Combinations</a></li>
+<li class="level1"><a href="#autotoc_md3874">Supported Combinations</a><ul><li class="level2"><a href="#EXAMPLES_SDL_ECC_PRU_SCRUBBER_PRU0_COMBOS">PRU Firmware Combinations</a></li>
 <li class="level2"><a href="#EXAMPLES_SDL_ECC_PRU_SCRUBBER_R5F0_COMBOS">R5F Host Application Combinations</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3820">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md3821">See Also</a></li>
-<li class="level1"><a href="#autotoc_md3822">Sample Output</a><ul><li class="level2"><a href="#autotoc_md3823">When application runs with no critical ECC errors:</a></li>
-<li class="level2"><a href="#autotoc_md3824">When a critical ECC error is detected by the PRU, the R5F host receives notification</a></li>
+<li class="level1"><a href="#autotoc_md3875">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md3876">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3877">Sample Output</a><ul><li class="level2"><a href="#autotoc_md3878">When application runs with no critical ECC errors:</a></li>
+<li class="level2"><a href="#autotoc_md3879">When a critical ECC error is detected by the PRU, the R5F host receives notification</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3825">Use Cases</a><ul><li class="level2"><a href="#autotoc_md3826">R5F Host Application Specific Use Cases</a></li>
-<li class="level2"><a href="#autotoc_md3827">Shared DMEM Communication Interface (R5F Host Perspective)</a></li>
-<li class="level2"><a href="#autotoc_md3828">Detailed Component Descriptions</a><ul><li class="level3"><a href="#autotoc_md3829">PRU Firmware Component</a></li>
-<li class="level3"><a href="#autotoc_md3830">R5F Host Application Component</a></li>
+<li class="level1"><a href="#autotoc_md3880">Use Cases</a><ul><li class="level2"><a href="#autotoc_md3881">R5F Host Application Specific Use Cases</a></li>
+<li class="level2"><a href="#autotoc_md3882">Shared DMEM Communication Interface (R5F Host Perspective)</a></li>
+<li class="level2"><a href="#autotoc_md3883">Detailed Component Descriptions</a><ul><li class="level3"><a href="#autotoc_md3884">PRU Firmware Component</a></li>
+<li class="level3"><a href="#autotoc_md3885">R5F Host Application Component</a></li>
 </ul>
 </li>
 </ul>
@@ -136,7 +136,7 @@ $(document).ready(function(){initNavTree('EXAMPLES_SDL_ECC_PRU_SCRUBBER.html',''
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_sdl_sdl_ecc_pru_scrubber"></a></p>
-<h1><a class="anchor" id="autotoc_md3801"></a>
+<h1><a class="anchor" id="autotoc_md3856"></a>
 Overview</h1>
 <p>This PRU scrubbing code is a workaround for the i2499 errata issue. It implements Option 3 (SRAM Scrubbing via ICSS), as described in the i2499 errata issue.</p>
 <p>This workaround is required for devices up to Silicon Revision 1.2 on AM263x and Silicon Revision 1.1 on AM263Px. Therefore, the workaround is no longer required starting from Silicon Revision 1.3 on AM263x and Silicon Revision 1.2 on AM263Px, where the errata issue has been addressed in hardware.</p>
@@ -164,7 +164,7 @@ Overview</h1>
 </li>
 </ol>
 <p>This "active" scrubber implementation uses the ESM (Error Signaling Module) to intercept ECC SEC (Single Error Correction) events and determine whether the PRU scrubber triggered the correction, enabling safe fault clearance vs. device reset.</p>
-<h2><a class="anchor" id="autotoc_md3802"></a>
+<h2><a class="anchor" id="autotoc_md3857"></a>
 Features</h2>
 <ul>
 <li>Performs memory reads (scrubbing) over configurable memory range</li>
@@ -174,7 +174,7 @@ Features</h2>
 <li>Uses direct ECC Aggregator (ECCAGG) register access via serial bus vector interface</li>
 <li>Supports scrubbing for entire OCRAM, for example in the case of AM263x it is 2MB (MSS_L2_SLV0, MSS_L2_SLV1, MSS_L2_SLV2 and MSS_L2_SLV3), and in the case of AM263Px it is 3MB (MSS_L2_SLV0, MSS_L2_SLV1, MSS_L2_SLV2, MSS_L2_SLV3, MSS_L2_SLV4 and MSS_L2_SLV5)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3803"></a>
+<h2><a class="anchor" id="autotoc_md3858"></a>
 Communication Interface</h2>
 <p>The R5F and PRU communicate through a shared memory structure in PRU DMEM:</p>
 <div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
@@ -183,16 +183,16 @@ Communication Interface</h2>
 <div class="line">    <span class="keyword">volatile</span> uint8_t     pruECCStatusReadBit; <span class="comment">// Set by PRU while it is reading each burst, this is a handshake signal between PRU and R5F in the case of SEC error occurred</span></div>
 <div class="line">    <span class="keyword">volatile</span> uint8_t     pruTriggerBit;       <span class="comment">// Set by PRU to confirm it triggered the SEC (scrub successful)</span></div>
 <div class="line">} dmemParameters;</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3804"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3859"></a>
 How the Active Scrubber Works</h2>
-<h3><a class="anchor" id="autotoc_md3805"></a>
+<h3><a class="anchor" id="autotoc_md3860"></a>
 Normal Operation Flow:</h3>
 <ol type="1">
 <li>R5F loads the PRU firmware and initializes the DMEM parameters</li>
 <li>PRU reads memory in burst mode starting at <code>startAddress</code> for <code>numOfBursts</code> times, after scrubbing entire memory the PRU will start scrubbing again from 'startAddress' and this process will continue forever from PRU side.</li>
 <li>If there is no SEC then PRU will just continue its scrubbing in background</li>
 </ol>
-<h3><a class="anchor" id="autotoc_md3806"></a>
+<h3><a class="anchor" id="autotoc_md3861"></a>
 Error Detection and Resolution:</h3>
 <ol type="1">
 <li>If there is a SEC error detection then R5F will first enter into SEC interrupt handler routine and there it will verify whether SEC is caused by PRU or R5F itself.</li>
@@ -203,9 +203,9 @@ Error Detection and Resolution:</h3>
 </li>
 <li>If the SEC event occurred but the PRU did not confirm (CPU may have read corrupted data), the R5F halts in an infinite loop (device reset required)</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md3807"></a>
+<h2><a class="anchor" id="autotoc_md3862"></a>
 Project Structure</h2>
-<h3><a class="anchor" id="autotoc_md3808"></a>
+<h3><a class="anchor" id="autotoc_md3863"></a>
 R5F Host Application:</h3>
 <ul>
 <li><code>main.c</code> - Entry point and FreeRTOS initialization</li>
@@ -219,14 +219,14 @@ R5F Host Application:</h3>
 <li><code>edma_rti_sram_scrub.h</code> - SRAM scrub defines (bank count, bank size, chunk size) and public API</li>
 <li><code>pru0_load_bin.h</code> - PRU firmware binary in array format for loading</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md3809"></a>
+<h3><a class="anchor" id="autotoc_md3864"></a>
 PRU Firmware:</h3>
 <ul>
 <li><code>main.asm</code> - PRU assembly code implementing scrubbing and ECC status signaling</li>
 <li><code>icss_constant_defines.inc</code> - PRU constant table definitions</li>
 <li><code>linker.cmd</code> - Custom linker command file for PRU firmware</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3810"></a>
+<h2><a class="anchor" id="autotoc_md3865"></a>
 SRAM Bank Configuration</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -241,9 +241,9 @@ SRAM Bank Configuration</h2>
 <td class="markdownTableBodyNone">Bank 3  </td><td class="markdownTableBodyNone">MSS_L2_SLV3  </td><td class="markdownTableBodyNone">0x70180000  </td><td class="markdownTableBodyNone">512 KB   </td></tr>
 </table>
 <p>|If device is AM263Px:| | Bank 4 | MSS_L2_SLV4 | 0x70200000 | 512 KB | | Bank 5 | MSS_L2_SLV5 | 0x70270000 | 512 KB |</p>
-<h2><a class="anchor" id="autotoc_md3811"></a>
+<h2><a class="anchor" id="autotoc_md3866"></a>
 Building and Running</h2>
-<h3><a class="anchor" id="autotoc_md3812"></a>
+<h3><a class="anchor" id="autotoc_md3867"></a>
 Build Process:</h3>
 <ol type="1">
 <li>There are 3 projects in the PRU scrubber (R5F0, PRU and System)</li>
@@ -251,7 +251,7 @@ Build Process:</h3>
 <li>Connect the AM26x board to your computer</li>
 <li>Load and run the R5F application, which will initialize ECC/ESM and load the PRU firmware</li>
 </ol>
-<h3><a class="anchor" id="autotoc_md3813"></a>
+<h3><a class="anchor" id="autotoc_md3868"></a>
 Example Usage:</h3>
 <p>The example demonstrates scrubbing a 2MB for AM263x and 3MB for AM263Px </p><div class="fragment"><div class="line">#define  SDL_ECC_RAM_TEST_ADDR   0x70000000U</div>
 <div class="line">#if defined(SOC_AM263X)</div>
@@ -260,15 +260,15 @@ Example Usage:</h3>
 <div class="line">    #define  SDL_ECC_RAM_NUM_BYTES   0x300000U</div>
 <div class="line">#else</div>
 <div class="line">#endif</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3814"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3869"></a>
 Technical Notes</h2>
-<h3><a class="anchor" id="autotoc_md3815"></a>
+<h3><a class="anchor" id="autotoc_md3870"></a>
 Memory Scrubbing Considerations:</h3>
 <ul>
 <li>The solution uses a read-only approach to avoid modifying memory content</li>
 <li>Each scrub operation reads memory in bursts; PRU burst size determines bytes per iteration</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md3816"></a>
+<h3><a class="anchor" id="autotoc_md3871"></a>
 ECC Aggregator Access:</h3>
 <ul>
 <li>The ECC Aggregator exposes per-endpoint registers through a serial bus vector mechanism</li>
@@ -276,21 +276,21 @@ ECC Aggregator Access:</h3>
 <li><code>ECCAGG_writeRegister()</code> writes the vector register with endpoint ID (read bit cleared), then writes the value</li>
 <li>Worst-case serial read latency is ~35ms; the implementation waits up to ~70ms</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md3817"></a>
+<h3><a class="anchor" id="autotoc_md3872"></a>
 ESM Interrupt Configuration:</h3>
 <ul>
 <li>ECC SEC (interrupt 19) â†’ ESM low-priority ISR â†’ <code>App_serviceSecInterrupt()</code></li>
 <li>ECC DED (interrupt 20) â†’ ESM high-priority ISR (no action currently implemented)</li>
 <li>ESM config-register-corruption ISR is also registered for safety</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md3818"></a>
+<h3><a class="anchor" id="autotoc_md3873"></a>
 Error Handling Strategy:</h3>
 <ul>
 <li>PRU sets <code>pruTriggerBit</code> before R5F can service the SEC interrupt</li>
 <li>R5F confirms the PRU was responsible for the SEC event before clearing the fault</li>
 <li>If the PRU did not confirm (CPU read corrupted data before correction), R5F halts to prevent propagation of bad data â€” a device reset is required in this case</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3819"></a>
+<h1><a class="anchor" id="autotoc_md3874"></a>
 Supported Combinations</h1>
 <h2><a class="anchor" id="EXAMPLES_SDL_ECC_PRU_SCRUBBER_PRU0_COMBOS"></a>
 PRU Firmware Combinations</h2>
@@ -320,7 +320,7 @@ R5F Host Application Combinations</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/sdl/ecc/sdl_ecc_pru_scrubber_r5f0/   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3820"></a>
+<h1><a class="anchor" id="autotoc_md3875"></a>
 Steps to Run the Example</h1>
 <dl class="section note"><dt>Note</dt><dd>This PRU firmware project must be built <b>before</b> the R5F host project (<a class="el" href="EXAMPLES_SDL_ECC_PRU_SCRUBBER.html">SDL ECC PRU Scrubber Example</a>). After building, the generated firmware binary must be embedded in <code>pru0_load_bin.h</code> in the R5F host project. The PRU firmware is loaded and started at runtime by the R5F host application — it is not loaded directly via CCS.</dd></dl>
 <ul>
@@ -328,12 +328,12 @@ Steps to Run the Example</h1>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>).</li>
 <li>After building, proceed to build and run the R5F host application (<a class="el" href="EXAMPLES_SDL_ECC_PRU_SCRUBBER.html">SDL ECC PRU Scrubber Example</a>), which loads this firmware onto ICSS_M0_PRU0.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3821"></a>
+<h1><a class="anchor" id="autotoc_md3876"></a>
 See Also</h1>
 <p><a class="el" href="SDL_ECC_PAGE.html">ECC : Error Correcting Code</a></p>
-<h1><a class="anchor" id="autotoc_md3822"></a>
+<h1><a class="anchor" id="autotoc_md3877"></a>
 Sample Output</h1>
-<h2><a class="anchor" id="autotoc_md3823"></a>
+<h2><a class="anchor" id="autotoc_md3878"></a>
 When application runs with no critical ECC errors:</h2>
 <div class="fragment"><div class="line">PRU Scrubber: Initializing R5F host application ...</div>
 <div class="line">Loading PRU firmware onto ICSS_M0_PRU0 ...</div>
@@ -342,10 +342,10 @@ When application runs with no critical ECC errors:</h2>
 <div class="line">Scrub in progress ...</div>
 <div class="line">Scrub complete. hostTriggerBit cleared by PRU.</div>
 <div class="line">No critical ECC errors detected.</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3824"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3879"></a>
 When a critical ECC error is detected by the PRU, the R5F host receives notification</h2>
 <p>via <code>pruTriggerBit</code> and can implement appropriate error handling (memory reset, system restart, or safety state transition).</p>
-<h1><a class="anchor" id="autotoc_md3825"></a>
+<h1><a class="anchor" id="autotoc_md3880"></a>
 Use Cases</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -355,7 +355,7 @@ Use Cases</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">UC-2  </td><td class="markdownTableBodyNone">SEC error detected during scrubbing; PRU analyzes adjacent beat values — if another master caused the error, PRU sets <code>pruTriggerBit = 1</code> to notify the R5F host.   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md3826"></a>
+<h2><a class="anchor" id="autotoc_md3881"></a>
 R5F Host Application Specific Use Cases</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -365,7 +365,7 @@ R5F Host Application Specific Use Cases</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">UC-2  </td><td class="markdownTableBodyNone">PRU detects a critical SEC error (another master caused corruption); <code>pruTriggerBit</code> is set and R5F performs error handling.   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md3827"></a>
+<h2><a class="anchor" id="autotoc_md3882"></a>
 Shared DMEM Communication Interface (R5F Host Perspective)</h2>
 <div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line">    uint32_t             startAddress;     <span class="comment">/* Memory address to start scrubbing   */</span></div>
@@ -375,9 +375,9 @@ Shared DMEM Communication Interface (R5F Host Perspective)</h2>
 <div class="line">} dmemParameters;</div>
 </div><!-- fragment --><p>The example demonstrates scrubbing a 256 KB region starting at address <code>0x70000000</code>:</p>
 <div class="fragment"><div class="line">status = scrub_mem(0x70000000, 0x40000);</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3828"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3883"></a>
 Detailed Component Descriptions</h2>
-<h3><a class="anchor" id="autotoc_md3829"></a>
+<h3><a class="anchor" id="autotoc_md3884"></a>
 PRU Firmware Component</h3>
 <p>The PRU firmware:</p><ul>
 <li>Reads a configurable memory range in 4-beat bursts (16 bytes at a time) to perform active memory scrubbing</li>
@@ -391,7 +391,7 @@ PRU Firmware Component</h3>
 <li>Clears <code>hostTriggerBit</code> on completion to signal the R5F host</li>
 </ul>
 <p>The PRU firmware is written in PRU assembly (<code>main.asm</code>) and supports scrubbing memory ranges up to approximately 7 MB (limited by the 16-bit iteration counter).</p>
-<h3><a class="anchor" id="autotoc_md3830"></a>
+<h3><a class="anchor" id="autotoc_md3885"></a>
 R5F Host Application Component</h3>
 <p>The R5F host application:</p><ul>
 <li>Loads and starts the PRU firmware on ICSS_M0_PRU0</li>

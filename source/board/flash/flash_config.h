@@ -55,7 +55,7 @@
  * \brief Flash protocols supported
  */
 
-#define FLASH_CFG_MAX_PROTO (10U)
+#define FLASH_CFG_MAX_PROTO (14U)
 
 #define FLASH_CFG_PROTO_1S_1S_1S (0x0001)
 #define FLASH_CFG_PROTO_1S_1S_2S (0x0002)
@@ -67,6 +67,10 @@
 #define FLASH_CFG_PROTO_8S_8S_8S (0x0007)
 #define FLASH_CFG_PROTO_8D_8D_8D (0x0008)
 #define FLASH_CFG_PROTO_CUSTOM   (0x0009)
+/* DTR half-duplex read protocols added in JESD216F (BFPT DWORDs 21-23) */
+#define FLASH_CFG_PROTO_1S_1D_1D (0x000B)
+#define FLASH_CFG_PROTO_1S_2D_2D (0x000C)
+#define FLASH_CFG_PROTO_1S_4D_4D (0x000D)
 
 /**
  * \brief Configuration structure for flash erase
