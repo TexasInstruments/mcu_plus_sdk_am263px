@@ -363,6 +363,10 @@ static int32_t HsmClient_SendAndRecv(HsmClient_t *HsmClient, uint32_t timeout)
  *                          Public Function definition.
  *==============================================================================*/
 
+/**
+ *  Design: TIFSMCU-4416
+ */
+
 void HsmClient_isr(uint8_t remoteCoreId, uint8_t localClientId,
                    uint8_t remoteClientId, uint8_t *msgValue, const void *args)
 {
@@ -481,6 +485,9 @@ int32_t HsmClient_checkAndWaitForBootNotification(void)
     return status;
 }
 
+/**
+ *  Design: TIFSMCU-4415
+ */
 /* return SystemP_FAILURE if clientId is greater the max or
  * A callback has been registered. already */
 int32_t HsmClient_register(HsmClient_t *HsmClient, uint8_t clientId)
@@ -516,6 +523,10 @@ int32_t HsmClient_register(HsmClient_t *HsmClient, uint8_t clientId)
     return status;
 }
 
+/**
+ *  Design: TIFSMCU-4414
+ */
+
 int32_t HsmClient_init(SIPC_Params *params)
 {
     /* get the params and do SIPC init */
@@ -536,11 +547,18 @@ void HsmClient_SecureBootQueueInit(uint32_t configured_hsm_client_msg_queue_size
     hsm_client_msg_queue_size = configured_hsm_client_msg_queue_size; 
 }
 
+/**
+ *  Design: TIFSMCU-4420
+ */
 /* do sipc deinit */
 void HsmClient_deinit(void)
 {
     SIPC_deInit();
 }
+
+/**
+ *  Design: TIFSMCU-4419
+ */
 
 void HsmClient_unregister(HsmClient_t *HsmClient, uint8_t clientId)
 {

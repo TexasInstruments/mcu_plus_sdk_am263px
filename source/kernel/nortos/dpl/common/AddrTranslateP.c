@@ -115,9 +115,11 @@ void *AddrTranslateP_getLocalAddr(uint64_t systemAddr)
     {
         uint64_t startAddr, endAddr;
         uint32_t sizeMask;
+        uint32_t size = gAddrTranslateConfig.regionConfig[regionId].size;
 
         /* we assume gAddrTranslateConfig.regionConfig[] address and size is aligned */
-        sizeMask = ( (uint32_t)( ((uint64_t)1U << gAddrTranslateConfig.regionConfig[regionId].size) - 1U) );
+        DebugP_assertNoLog(size < 64U);
+        sizeMask = ( (uint32_t)( ((uint64_t)1U << size) - 1U) );
 
         startAddr = gAddrTranslateConfig.regionConfig[regionId].systemAddr;
 
@@ -135,9 +137,10 @@ void *AddrTranslateP_getLocalAddr(uint64_t systemAddr)
     if(found != 0U)
     {
         /* translate input address to output address */
-        uint32_t offset = systemAddr - gAddrTranslateConfig.regionConfig[regionId].systemAddr;
+        uint64_t offset = systemAddr - gAddrTranslateConfig.regionConfig[regionId].systemAddr;
+        DebugP_assertNoLog(offset <= 0xFFFFFFFFU);
 
-        localAddr = (void *) (gAddrTranslateConfig.regionConfig[regionId].localAddr + offset);
+        localAddr = (void *) (gAddrTranslateConfig.regionConfig[regionId].localAddr + (uint32_t)offset);
     }
     else
     {

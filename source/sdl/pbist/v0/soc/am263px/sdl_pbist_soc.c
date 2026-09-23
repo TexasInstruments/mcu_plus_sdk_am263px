@@ -842,12 +842,3 @@ SDL_pbistInstInfo * SDL_PBIST_getInstInfo(SDL_PBIST_inst instance)
 
     return pInfo;
 }
-
-
-void SDL_PBIST_eventHandler( uint32_t instanceId)
-{
-
-    SDL_PBIST_InstInfoArray[instanceId].doneFlag = PBIST_DONE;
-
-    return;
-}

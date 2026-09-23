@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('enetphy_guide_top.html',''); initResiz
 <li class="level1"><a href="#enetphy_guide_driver">PHY Driver</a><ul><li class="level2"><a href="#enetphy_guide_device_specific">Device-Specific Drivers</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#CustomBoardPhySupport">Custom Board Support</a><ul><ul><li class="level3"><a href="#autotoc_md1407">Board config C file</a></li>
+<li class="level1"><a href="#CustomBoardPhySupport">Custom Board Support</a><ul><ul><li class="level3"><a href="#autotoc_md1408">Board config C file</a></li>
 </ul>
 <li class="level2"><a href="#enetphy_guide_binding">PHY to Driver Binding</a></li>
 </ul>
@@ -194,7 +194,7 @@ Custom Board Support</h1>
 <li>Enabling “Custom Board” will prevent auto generation of board specific code.</li>
 <li>A C file will have to be then written that is specific to the board.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1407"></a>
+<h3><a class="anchor" id="autotoc_md1408"></a>
 Board config C file</h3>
 <p>The board specific file should contain the following</p><ul>
 <li><b>const EnetPhy_DrvInfoTbl gEnetPhyDrvTbl</b>: This is a table of ENET PHY drivers supported on the board. Refer Enet custom PHY integration guide for details on how to populate this table <a class="el" href="enetphy_guide_top.html">Ethernet PHY Driver User Guide</a></li>
@@ -208,10 +208,7 @@ Board config C file</h3>
 </li>
 <li><b>EnetBoard_getMacAddrList()</b>: This function should populate any board specific MAC addresses that are available on board eeprom. If the board does not have any board specific macAddresses this function should set argument <code>*pAvailMacEntries = 0</code></li>
 <li><b>EnetBoard_getId()</b>: This function should return the board id. This is not used anywhere outside this file so the board id returned will depend on the implementation of EnetBoard_setupPorts()/EnetBoard_getPhyCfg() for the custom board if it refers the boardId to determine PHY config/setup ports.</li>
-<li>Refer mcu_plus_sdk/examples/networking/enet_layer2_multi_channel<ul>
-<li>enet_custom_board_config.c for example illustrating custom board integration</li>
-</ul>
-</li>
+<li>Refer to enet_custom_board_config.c (located at ${MCU_PLUS_SDK_PATH}/source/networking/enet/core/enet_layer2_cpsw/am263px-cc-dp83869/am263px-cc/r5fss0-0_freertos/) as an example of custom board integration. Note that the IO expander function (EnetBoard_setMacPort2IOExpanderCfg) is specific to TI EVMs and should be updated or modified to match the target board design</li>
 </ul>
 <h2><a class="anchor" id="enetphy_guide_binding"></a>
 PHY to Driver Binding</h2>

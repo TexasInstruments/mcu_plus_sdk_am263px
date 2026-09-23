@@ -75,7 +75,7 @@ int32_t ICSS_EMAC_initStormPreventionTable(uint8_t             portnum,
     int32_t                     retVal = SystemP_FAILURE;
     ICSS_EMAC_StormPrevention   *stormPrevPtr;
 
-    if(ICSS_EMAC_MODE_SWITCH != ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
+    if (ICSS_EMAC_MODE_SWITCH != ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
     {
         portnum = 1U;
     }
@@ -113,7 +113,7 @@ int32_t ICSS_EMAC_disableStormPrevention(uint8_t           portnum,
 
     if (portnum <= (uint8_t)ICSS_EMAC_PORT_2)
     {
-        if(ICSS_EMAC_MODE_SWITCH != ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
+        if (ICSS_EMAC_MODE_SWITCH != ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
         {
             portnum = 1U;
         }
@@ -124,7 +124,7 @@ int32_t ICSS_EMAC_disableStormPrevention(uint8_t           portnum,
 
         *(suppressionEnabledPtr) = 0;
 
-        if(portnum == (uint8_t)ICSS_EMAC_PORT_1)
+        if (portnum == (uint8_t)ICSS_EMAC_PORT_1)
         {
             temp_addr = (uint32_t)stormPreventionOffsetPtr[0];
             controlPointer = (uint16_t*)(temp_addr);
@@ -147,7 +147,7 @@ int32_t ICSS_EMAC_setCreditValue(uint16_t                  creditValue,
 {
     uint16_t *creditsPtr = NULL;
 
-    switch(spType)
+    switch (spType)
     {
         case ICSS_EMAC_BC_STORM_PREVENTION:
             creditsPtr = &(stormPrevPtr->creditsBC);
@@ -183,7 +183,7 @@ int32_t ICSS_EMAC_enableStormPrevention(uint8_t            portnum,
 
     if (portnum <= (uint8_t)ICSS_EMAC_PORT_2)
     {
-        if(ICSS_EMAC_MODE_SWITCH != ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
+        if (ICSS_EMAC_MODE_SWITCH != ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
         {
             portnum = 1u;
         }
@@ -195,7 +195,7 @@ int32_t ICSS_EMAC_enableStormPrevention(uint8_t            portnum,
 
         *(suppressionEnabledPtr) = 1;
 
-        if(portnum == (uint8_t)ICSS_EMAC_PORT_1)
+        if (portnum == (uint8_t)ICSS_EMAC_PORT_1)
         {
             temp_addr = (uint32_t)stormPreventionOffsetPtr[0];
             controlPointer = (uint16_t*)(temp_addr);
@@ -226,7 +226,7 @@ int32_t ICSS_EMAC_resetStormPreventionCounter(ICSS_EMAC_Handle icssEmacHandle,
     int32_t                     retVal = SystemP_FAILURE;
 
     retVal = ICSS_EMAC_checkStormPreventionType(stormPreventionOffsetPtr, &suppressionEnabledPtr, &creditsPtr, spType, icssEmacHandle, stormPrevPtr);
-    if(*suppressionEnabledPtr)
+    if (*suppressionEnabledPtr)
     {
         temp_addr = (uint32_t)stormPreventionOffsetPtr[0];
         controlPointer = (uint32_t*)(temp_addr);
@@ -235,13 +235,13 @@ int32_t ICSS_EMAC_resetStormPreventionCounter(ICSS_EMAC_Handle icssEmacHandle,
         ICSS_EMAC_byteCopy((uint8_t*)controlPointer, (uint8_t*)(&controlWord), 4);
     }
 
-    if( (ICSS_EMAC_MODE_SWITCH == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask) && (retVal == SystemP_SUCCESS))
+    if ( (ICSS_EMAC_MODE_SWITCH == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask) && (retVal == SystemP_SUCCESS))
     {
         /*Access next port member*/
         stormPrevPtr += 1;
         retVal = ICSS_EMAC_checkStormPreventionType(stormPreventionOffsetPtr, &suppressionEnabledPtr, &creditsPtr, spType, icssEmacHandle, stormPrevPtr);
 
-        if(*suppressionEnabledPtr)
+        if (*suppressionEnabledPtr)
         {
             temp_addr = (uint32_t)stormPreventionOffsetPtr[1];
             controlPointer = (uint32_t*)(temp_addr);
@@ -265,7 +265,7 @@ int32_t ICSS_EMAC_checkStormPreventionType(uint32_t                    **stormPr
     PRUICSS_HwAttrs const   *pruicssHwAttrs = (PRUICSS_HwAttrs const *)(pruicssHandle->hwAttrs);
     int32_t                 retVal = SystemP_FAILURE;
 
-    switch(spType)
+    switch (spType)
     {
         case ICSS_EMAC_BC_STORM_PREVENTION:
             stormPreventionOffsetPtr[0] = (uint32_t *)(pruicssHwAttrs->pru0DramBase + pStaticMMap->stormPreventionOffsetBC);
@@ -308,7 +308,7 @@ inline uint8_t ICSS_EMAC_ifStormPreventionEnabled(const ICSS_EMAC_StormPreventio
 {
     uint16_t suppressionEnabled;
 
-    switch(spType)
+    switch (spType)
     {
         case ICSS_EMAC_BC_STORM_PREVENTION:
             suppressionEnabled = (stormPrevPtr->suppressionEnabledBC);

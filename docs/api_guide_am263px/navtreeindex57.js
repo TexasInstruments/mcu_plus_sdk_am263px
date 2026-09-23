@@ -1,7 +1,5 @@
 var NAVTREEINDEX57 =
 {
-"group__SDL__ROMCHECKSUM__MACROS.html#ga4b49f01e41d19a69209eb5cf7d3b6a67":[18,6,10,0,3,0],
-"group__SDL__ROMCHECKSUM__MACROS.html#ga4b509e4834357b76b20678f888b4f5e2":[18,6,10,0,3,8],
 "group__SDL__ROMCHECKSUM__MACROS.html#ga4fc34177b0159af69f2e8d43e8feedff":[18,6,10,0,3,6],
 "group__SDL__ROMCHECKSUM__MACROS.html#gaaa4bce356c7b4a439110089fc690133c":[18,6,10,0,3,3],
 "group__SDL__ROMCHECKSUM__MACROS.html#gab298c309e0fc27f3d16abb00b734e1e0":[18,6,10,0,3,2],
@@ -39,8 +37,8 @@ var NAVTREEINDEX57 =
 "group__SDL__RTI__FUNCTION.html#ga9d0a7581878f65bb8ed3f3c4846a9ced":[18,6,8,2,2],
 "group__SDL__RTI__FUNCTION.html#gaa7603e25174a8b3c5ed120f49edc3d9d":[18,6,8,2,1],
 "group__SDL__RTI__FUNCTION.html#gaa7603e25174a8b3c5ed120f49edc3d9d":[18,5,1,2,1],
-"group__SDL__RTI__FUNCTION.html#gaeb97a10085312dea93779234f57e789c":[18,5,1,2,0],
 "group__SDL__RTI__FUNCTION.html#gaeb97a10085312dea93779234f57e789c":[18,6,8,2,0],
+"group__SDL__RTI__FUNCTION.html#gaeb97a10085312dea93779234f57e789c":[18,5,1,2,0],
 "group__SDL__STC__API.html":[18,6,9,0],
 "group__SDL__STC__DATASTRUCT.html":[18,6,9,0,0],
 "group__SDL__STC__ENUM.html":[18,6,9,0,1],
@@ -79,8 +77,8 @@ var NAVTREEINDEX57 =
 "group__SDL__STC__MACROS.html#gaa84c16b3899df9d5127dddbf79aa1370":[18,6,9,0,3,8],
 "group__SDL__STC__MACROS.html#gaa86c1e707115941fa1a6a8a5a62ca3e2":[18,6,9,0,3,16],
 "group__SDL__STC__MACROS.html#gaae571d564a39d1e2af560aeb841c1bde":[18,6,9,0,3,13],
-"group__SDL__STC__MACROS.html#gacb288348e06b369353cfe721aa6640c4":[18,6,9,0,3,9],
 "group__SDL__STC__MACROS.html#gacb288348e06b369353cfe721aa6640c4":[18,6,9,0,3,10],
+"group__SDL__STC__MACROS.html#gacb288348e06b369353cfe721aa6640c4":[18,6,9,0,3,9],
 "group__SDL__STC__MACROS.html#gad0d32fcf2da7275b7e944bee7bc5e7c3":[18,6,9,0,3,5],
 "group__SDL__STC__MACROS.html#gad9066a0c6f68f701aad45feabe824064":[18,6,9,0,3,17],
 "group__SDL__STC__MODULE.html":[18,6,9],
@@ -249,5 +247,7 @@ var NAVTREEINDEX57 =
 "group__gptp.html#ga7d9a7991988c53c7abbbcce5c39f2cb3":[18,9,0,26],
 "group__gptp.html#ga83a078c4b226fc4daa8388a992826a38":[18,9,0,33],
 "group__gptp.html#ga85bb9d1838663679377383eb216bf783":[18,9,0,13],
-"group__gptp.html#ga91e3f77e41c6dae18410fde312601fde":[18,9,0,28]
+"group__gptp.html#ga91e3f77e41c6dae18410fde312601fde":[18,9,0,28],
+"group__gptp.html#gaaa98238fc5a0ddfc7526b3348b5a250d":[18,9,0,32],
+"group__gptp.html#gaab94630500fe33bc7a5cc3c391a1a3ed":[18,9,0,38]
 };

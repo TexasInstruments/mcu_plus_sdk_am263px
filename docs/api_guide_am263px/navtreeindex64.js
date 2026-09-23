@@ -1,7 +1,5 @@
 var NAVTREEINDEX64 =
 {
-"structCpsw__MdioLinkStateChangeInfo.html#a229777a008b8bc26ad213a337ce94f36":[18,4,0,6,0,11,4],
-"structCpsw__MdioLinkStateChangeInfo.html#a5f5a2540b8d8aec8367c99bc390cfd4d":[18,4,0,6,0,11,3],
 "structCpsw__MdioLinkStateChangeInfo.html#a90893956d3eb819cbcc111f984aba6ee":[18,4,0,6,0,11,1],
 "structCpsw__MdioLinkStateChangeInfo.html#a9d72ce771f7133ada5c35c0a59b752e2":[18,4,0,6,0,11,2],
 "structCpsw__MdioLinkStateChangeInfo.html#aa6688e01a6a1087be359a19220a60650":[18,4,0,6,0,11,0],
@@ -249,5 +247,7 @@ var NAVTREEINDEX64 =
 "structEDMA__Attrs.html#a51b72bfe6e9e3ec895c564ec9eec95f0":[18,7,6,10,2],
 "structEDMA__Attrs.html#a7d0b7fb8e82f2dd7861226292841c4cb":[18,7,6,10,10],
 "structEDMA__Attrs.html#a85ccd7732000baa064d9c131991e2e24":[18,7,6,10,9],
-"structEDMA__Attrs.html#aa988fb8e1c6211ea89b595455cc6a665":[18,7,6,10,8]
+"structEDMA__Attrs.html#aa988fb8e1c6211ea89b595455cc6a665":[18,7,6,10,8],
+"structEDMA__Attrs.html#ab13d1c6a7882a9d89afd5dc0043bd893":[18,7,6,10,3],
+"structEDMA__Attrs.html#acd76d31ff34ebae83641a9a8fd584d93":[18,7,6,10,1]
 };

@@ -1,7 +1,5 @@
 var NAVTREEINDEX76 =
 {
-"struct____attribute____.html#ad80dafb98a52657e199176eec42e29a9":[18,7,6,1,5],
-"struct____attribute____.html#aeeb50d6fc31f2781f4b680cfc7ec3e4a":[18,7,6,1,8],
 "struct____attribute____.html#af75f0b2337ae015cde9695a5f39070c6":[18,7,6,1,13],
 "structbaselineParameters.html":[18,7,38,12],
 "structbaselineParameters.html#a0eb5d4b799d813b61e7116a4af5ea12a":[18,7,38,12,0],

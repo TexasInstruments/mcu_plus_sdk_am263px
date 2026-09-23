@@ -208,33 +208,6 @@ SDL_VTM_adc_code SDL_VTM_getAdcCode(SDL_VTM_InstTs  instance);
 int32_t SDL_VTM_tsGetCtrl (SDL_VTM_InstTs   instance,
                           uint32_t         *pTsCtrlCfg);
 
-/**
- *  \brief VTM Temperature ADC code to Temperature conversion
- *
- *  \param adcCode                 [IN]   7 Bit ADC code
- *  \param pMilliDegreeTempVal     [OUT]  Pointer to Temperature in milli
- *                                        degree celcius
- *
- *  \return The SDL error code for the API.
- *                                 Success      : SDL_PASS
- *                                 Invalid Args : SDL_EBADARGS
- */
-int32_t SDL_VTM_tsConvADCToTemp (SDL_VTM_adc_code        adcCode,
-                                int32_t                 *pMilliDegreeTempVal);
-
-/**
- *  \brief VTM Temperature to ADC code conversion
- *
- *  \param milliDegreeTempVal    [IN]   Temperature in milli degree celcius
- *  \param pAdcCode              [OUT]  Pointer to 7 Bit ADC code
- *
- *  \return The SDL error code for the API.
- *                                 Success      : SDL_PASS
- *                                 Invalid Args : SDL_EBADARGS
- */
-int32_t SDL_VTM_tsConvTempToAdc (int32_t milliDegreeTempVal,
-                                 SDL_VTM_adc_code *pAdcCode);
-
 
 /** @} */
 /** @} */

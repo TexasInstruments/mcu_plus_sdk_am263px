@@ -392,7 +392,7 @@ void SDL_ESM_configInterruptHandler(void *arg);
  *
  * \return  Interrupt Number or SDL_ESM_INTNUMBER_INVALID error
  */
-int32_t SDL_ESM_getIntNumber(SDL_ESM_Inst esmInstType,
+int32_t SDL_ESM_getIntNumber(const SDL_ESM_Inst esmInstType,
                               SDL_ESM_IntType esmIntType);
 
 

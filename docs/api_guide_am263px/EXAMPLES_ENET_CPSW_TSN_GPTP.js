@@ -9,16 +9,16 @@ var EXAMPLES_ENET_CPSW_TSN_GPTP =
         [ "Prerequisites", "EXAMPLES_ENET_CPSW_TSN_GPTP_TR.html#autotoc_md3408", null ],
         [ "Build the example", "EXAMPLES_ENET_CPSW_TSN_GPTP_TR.html#autotoc_md3409", null ],
         [ "HW Setup", "EXAMPLES_ENET_CPSW_TSN_GPTP_TR.html#autotoc_md3410", [
-          [ "Scatter Gather list related change", "enet_migration_guide_top.html#autotoc_md1454", null ],
-          [ "DisableCacheOps related change", "enet_migration_guide_top.html#autotoc_md1455", null ],
-          [ "Checksum offload related change", "enet_migration_guide_top.html#autotoc_md1456", null ],
-          [ "Board config C file", "enet_migration_guide_top.html#autotoc_md1457", null ],
-          [ "Ethernet MAC address Management", "enet_migration_guide_top.html#autotoc_md1458", null ],
-          [ "1. Using Syscfg GUI tool", "enet_migration_guide_top.html#autotoc_md1459", null ],
-          [ "2. Using Custom Board Option", "enet_migration_guide_top.html#autotoc_md1460", [
-            [ "Board config C file", "enetphy_guide_top.html#autotoc_md1407", null ],
-            [ "To Configure DHCP", "NETWORKING_LWIP_STATIC_IP.html#autotoc_md464", null ],
-            [ "To Configure Static IP", "NETWORKING_LWIP_STATIC_IP.html#autotoc_md465", null ]
+          [ "Scatter Gather list related change", "enet_migration_guide_top.html#autotoc_md1455", null ],
+          [ "DisableCacheOps related change", "enet_migration_guide_top.html#autotoc_md1456", null ],
+          [ "Checksum offload related change", "enet_migration_guide_top.html#autotoc_md1457", null ],
+          [ "Board config C file", "enet_migration_guide_top.html#autotoc_md1458", null ],
+          [ "Ethernet MAC address Management", "enet_migration_guide_top.html#autotoc_md1459", null ],
+          [ "1. Using Syscfg GUI tool", "enet_migration_guide_top.html#autotoc_md1460", null ],
+          [ "2. Using Custom Board Option", "enet_migration_guide_top.html#autotoc_md1461", [
+            [ "Board config C file", "enetphy_guide_top.html#autotoc_md1408", null ],
+            [ "To Configure DHCP", "NETWORKING_LWIP_STATIC_IP.html#autotoc_md465", null ],
+            [ "To Configure Static IP", "NETWORKING_LWIP_STATIC_IP.html#autotoc_md466", null ]
           ] ],
           [ "PPS Output", "EXAMPLES_ENET_CPSW_TSN_GPTP_TR.html#autotoc_md3411", null ]
         ] ],

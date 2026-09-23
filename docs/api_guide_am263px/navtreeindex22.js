@@ -1,10 +1,10 @@
 var NAVTREEINDEX22 =
 {
-"enetmdio_manualmode.html#autotoc_md1409":[5,1,6,1],
-"enetmdio_manualmode.html#autotoc_md1410":[5,1,6,2],
+"enetmdio_manualmode.html#autotoc_md1410":[5,1,6,1],
+"enetmdio_manualmode.html#autotoc_md1411":[5,1,6,2],
 "enetphy_guide_top.html":[5,1,3,2],
 "enetphy_guide_top.html#CustomBoardPhySupport":[5,1,3,2,2],
-"enetphy_guide_top.html#autotoc_md1407":[0],
+"enetphy_guide_top.html#autotoc_md1408":[0],
 "enetphy_guide_top.html#enetphy_guide_appendix":[5,1,3,2,5],
 "enetphy_guide_top.html#enetphy_guide_appendix_a":[5,1,3,2,5,0],
 "enetphy_guide_top.html#enetphy_guide_binding":[5,1,3,2,2,0],

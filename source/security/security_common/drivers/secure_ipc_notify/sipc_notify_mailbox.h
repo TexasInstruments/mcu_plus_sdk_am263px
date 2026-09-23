@@ -148,7 +148,7 @@ static inline int32_t SIPC_mailboxWrite(uint32_t mailboxBaseAddr, uint32_t wrInt
             #endif
 
             /* Trigger interrupt to other core */
-            *addr = (1U << (wrIntrBitPos));
+            *addr = ((uint32_t)1 << (wrIntrBitPos));
 
             status = SystemP_SUCCESS;
         }

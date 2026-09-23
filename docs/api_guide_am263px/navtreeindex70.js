@@ -1,7 +1,5 @@
 var NAVTREEINDEX70 =
 {
-"structLED__Object.html#a940a72eec63e8dbd90e99a0e5e6a724a":[18,1,3,4,5],
-"structLED__Object.html#a9877c94f86144ee4ea4eb49c8149512d":[18,1,3,4,0],
 "structLED__Object.html#aea771e63676c65b8671a6ab885145b37":[18,1,3,4,4],
 "structLED__Params__s.html":[18,1,3,0],
 "structLED__Params__s.html#a34f68c1dd367c3010d3f1ac2a765baa3":[18,1,3,0,4],
@@ -249,5 +247,7 @@ var NAVTREEINDEX70 =
 "structMCAN__RevisionId.html#a48516f5383be13e0ffdfb4bea4c9af1c":[18,7,26,16,9],
 "structMCAN__RevisionId.html#a5fc6ca0836a929c478119de2c68e05b0":[18,7,26,16,12],
 "structMCAN__RevisionId.html#a9160468322bb2ed0958a427900e3e203":[18,7,26,16,0],
-"structMCAN__RevisionId.html#af64f97a26dfd80ff0be43bafd4983ead":[18,7,26,16,5]
+"structMCAN__RevisionId.html#af64f97a26dfd80ff0be43bafd4983ead":[18,7,26,16,5],
+"structMCAN__RevisionId.html#af72c2b6b044021e27664ecbd168d93e7":[18,7,26,16,7],
+"structMCAN__RevisionId.html#af8cf9dd040cfe94dd86920d84f31fbdc":[18,7,26,16,3]
 };

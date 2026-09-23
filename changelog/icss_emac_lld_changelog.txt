@@ -364,3 +364,124 @@ Date:   Sun Jul 19 20:11:45 2026 +0530
  icss_emac/icss_emac_ver.h | 70 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  2 files changed, 71 insertions(+)
 
+========================================
+Changes from build on 2026-09-23 20:47:09
+Previous commit: af833cfa49e638f0f4c6e6bdca9db5aa23ad330f
+Current commit: 9f2da368d4d7acd2998b11ba5995226ed2e3f855
+========================================
+
+commit fba7644b175c44df99c8963c8a8afeb54a14b138
+Author: Archit Dev <a-dev@ti.com>
+Date:   Thu Sep 17 13:31:05 2026 +0530
+
+    allsoc: icss emac: add DebugP_assert check for invalid init params
+    
+    Fixes: PINDSW-11655
+    
+    Signed-off-by: Archit Dev <a-dev@ti.com>
+
+ icss_emac/source/icss_emac_local.c | 96 +++++++++++++++++++++++++++++++++++++++---------------------------------------
+ 1 file changed, 48 insertions(+), 48 deletions(-)
+
+commit 753be72bc205640bd4970d2a24b4a2d203a82ad8
+Author: Archit Dev <a-dev@ti.com>
+Date:   Thu Sep 17 12:18:21 2026 +0530
+
+    allsoc: icss emac/timesync: standardize spacing around comparison and assignment operators
+    
+    Fixed inconsistent spacing across the driver files to enforce code
+    uniformity.
+    
+    Fixes: PINDSW-11655
+    
+    Signed-off-by: Archit Dev <a-dev@ti.com>
+
+ icss_emac/lwipif/src/lwip2icss_emac.c   | 10 +++++-----
+ icss_emac/lwipif/src/lwip2lwipif.c      |  2 +-
+ icss_emac/source/icss_emac.c            | 34 +++++++++++++++++-----------------
+ icss_emac/source/icss_emac_learning.c   | 10 +++++-----
+ icss_emac/source/icss_emac_local.c      | 32 ++++++++++++++++----------------
+ icss_emac/source/icss_emac_statistics.c |  4 ++--
+ icss_timesync/icss_timeSync.c           |  4 ++--
+ icss_timesync/icss_timeSync_osal.c      |  6 +++---
+ 8 files changed, 51 insertions(+), 51 deletions(-)
+
+commit 795c5d149d117d3d08bd468cb2926dc1d514d698
+Author: Archit Dev <a-dev@ti.com>
+Date:   Thu Sep 17 11:34:57 2026 +0530
+
+    allsoc: icss emac/timesync: standardize keyword and operator spacing
+    
+    - Standardized formatting across the driver codebase to ensure consistency.
+    - Added spaces after control keywords (if, while, for, switch).
+    - No functional changes introduced.
+    - Change Tabs into 4 spaces in the TimeSync driver src file.
+    
+    Fixes: PINDSW-11655
+    
+    Signed-off-by: Archit Dev <a-dev@ti.com>
+
+ icss_emac/lwipif/src/lwip2icss_emac.c     |  40 +++----
+ icss_emac/lwipif/src/lwip2lwipif.c        |  24 ++--
+ icss_emac/source/icss_emac.c              | 460 +++++++++++++++++++++++++++++++++++-----------------------------------
+ icss_emac/source/icss_emac_learning.c     |  76 ++++++------
+ icss_emac/source/icss_emac_local.c        | 142 +++++++++++-----------
+ icss_emac/source/icss_emac_statistics.c   |  24 ++--
+ icss_emac/source/icss_emac_stormControl.c |  22 ++--
+ icss_timesync/icss_timeSync.c             | 224 +++++++++++++++++-----------------
+ icss_timesync/icss_timeSyncApi.c          |  52 ++++----
+ icss_timesync/icss_timeSync_init.c        |  50 ++++----
+ icss_timesync/icss_timeSync_osal.c        | 176 +++++++++++++--------------
+ icss_timesync/icss_timeSync_utils.c       |  16 +--
+ 12 files changed, 653 insertions(+), 653 deletions(-)
+
+commit 8b7232918c80c2395198e1835ad93c954da87f9b
+Author: Archit Dev <a-dev@ti.com>
+Date:   Wed Sep 16 10:41:40 2026 +0530
+
+    allsoc: icss_timesync: enforce lower bound on ptpGeneralSize in memcpy branch
+    
+    Addresses a Klockwork static analysis warning regarding a suspicious use of
+    the index 'ptpGeneralSize' in a 'memcpy' call due to missing lower-bound
+    branch validation.
+    
+    When 'hsrEnabled' is false, the execution path dropped into an 'else if' block
+    that only checked the maximum MTU upper bound. If 'ptpGeneralSize' evaluated
+    to zero, it would bypass the primary 'if' block and attempt to execute a 'memcpy'
+    with an unvalidated length, risking undefined behavior.
+    
+    Fixes: PINDSW-11655
+    
+    Signed-off-by: Archit Dev <a-dev@ti.com>
+
+ icss_timesync/icss_timeSync.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 99c29a79990bbd9f75afd698241a7e92bdf6fd84
+Author: Archit Dev <a-dev@ti.com>
+Date:   Wed Sep 16 10:34:34 2026 +0530
+
+    allsoc: icss_emac: address Klockwork array index tracking vulnerabilities
+    
+    Consolidates index and boundary tracking validations across various ICSS EMAC
+    initialization functions to satisfy static analysis.
+    
+    1. ICSS_EMAC_txPacket:
+       - Converted an open-ended 'else' block into an explicit 'else if' check
+         for 'ICSS_EMAC_PORT_2'.
+       - Avoids passing unvalidated integers into 'ICSS_EMAC_txPacketEnqueue'.
+    
+    2. ICSS_EMAC_initLinkState:
+       - Wrapped operations in an 'ICSS_EMAC_MAX_PORTS_PER_INSTANCE' check.
+       - Explicitly validated 'interfaceId == 1U' in the switch use case.
+       - Added a 'temp_addr != 0U' safety guard before the pointer write to
+         mitigate null-pointer exceptions.
+    
+    Fixes: PINDSW-11655
+    
+    Signed-off-by: Archit Dev <a-dev@ti.com>
+
+ icss_emac/source/icss_emac.c       | 22 ++++++++++----------
+ icss_emac/source/icss_emac_local.c | 88 ++++++++++++++++++++++++++++++++++++++++++------------------------------------
+ 2 files changed, 58 insertions(+), 52 deletions(-)
+

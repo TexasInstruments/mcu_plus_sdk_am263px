@@ -206,18 +206,18 @@ int8_t TimeSync_drvInit(TimeSync_ParamsHandle_t timeSyncHandle)
     if (TC != timeSyncHandle->timeSyncConfig.config)
         returnVal = TimeSync_isrAndTaskInit(timeSyncHandle);
 
-    if(returnVal != TIME_SYNC_OK)
+    if (returnVal != TIME_SYNC_OK)
     {
         return returnVal;
     }
 
-    if((UDP_IPV4 == timeSyncHandle->timeSyncConfig.protocol)
+    if ((UDP_IPV4 == timeSyncHandle->timeSyncConfig.protocol)
             && (P2P == timeSyncHandle->timeSyncConfig.type))
     {
         return TIME_SYNC_UNSUPPORTED_FORMAT;
     }
 
-    if((IEEE_802_3 == timeSyncHandle->timeSyncConfig.protocol)
+    if ((IEEE_802_3 == timeSyncHandle->timeSyncConfig.protocol)
             && (E2E == timeSyncHandle->timeSyncConfig.type))
     {
         return TIME_SYNC_UNSUPPORTED_FORMAT;
@@ -231,7 +231,7 @@ int8_t TimeSync_drvInit(TimeSync_ParamsHandle_t timeSyncHandle)
 int8_t TimeSync_alloc_PktBuffer(TimeSync_ParamsHandle_t timeSyncHandle)
 {
     /*First configure sizes for allocation*/
-    if(E2E == timeSyncHandle->timeSyncConfig.type)
+    if (E2E == timeSyncHandle->timeSyncConfig.type)
     {
         timeSyncHandle->timeSyncBuff.syncBuf_size = TIMESYNC_SYNC_BUF_ANNEX_E_SIZE;
         timeSyncHandle->timeSyncBuff.flwUpBuf_size =
@@ -255,7 +255,7 @@ int8_t TimeSync_alloc_PktBuffer(TimeSync_ParamsHandle_t timeSyncHandle)
     timeSyncHandle->timeSyncBuff.sync_TxBuf = (uint8_t *) malloc(
                 timeSyncHandle->timeSyncBuff.syncBuf_size);
 
-    if(timeSyncHandle->timeSyncBuff.sync_TxBuf == NULL)
+    if (timeSyncHandle->timeSyncBuff.sync_TxBuf == NULL)
     {
         return TIME_SYNC_UNABLE_TO_ALLOC_MEM;
     }
@@ -265,7 +265,7 @@ int8_t TimeSync_alloc_PktBuffer(TimeSync_ParamsHandle_t timeSyncHandle)
     timeSyncHandle->timeSyncBuff.followUp_TxBuf[1] = (uint8_t *) malloc(
                 timeSyncHandle->timeSyncBuff.flwUpBuf_size);
 
-    if((timeSyncHandle->timeSyncBuff.followUp_TxBuf[0] == NULL) ||
+    if ((timeSyncHandle->timeSyncBuff.followUp_TxBuf[0] == NULL) ||
             (timeSyncHandle->timeSyncBuff.followUp_TxBuf[1] == NULL))
     {
         return TIME_SYNC_UNABLE_TO_ALLOC_MEM;
@@ -274,13 +274,13 @@ int8_t TimeSync_alloc_PktBuffer(TimeSync_ParamsHandle_t timeSyncHandle)
     timeSyncHandle->timeSyncBuff.announce_TxBuf = (uint8_t *) malloc(
                 timeSyncHandle->timeSyncBuff.announceBuf_size);
 
-    if(timeSyncHandle->timeSyncBuff.announce_TxBuf == NULL)
+    if (timeSyncHandle->timeSyncBuff.announce_TxBuf == NULL)
     {
         return TIME_SYNC_UNABLE_TO_ALLOC_MEM;
     }
 
     /*Configure P2P buffers. Both Rx and Tx*/
-    if(P2P == timeSyncHandle->timeSyncConfig.type)
+    if (P2P == timeSyncHandle->timeSyncConfig.type)
     {
 
         timeSyncHandle->timeSyncBuff.pdelayReq_RxBuf[0] = (uint8_t *) malloc(
@@ -288,7 +288,7 @@ int8_t TimeSync_alloc_PktBuffer(TimeSync_ParamsHandle_t timeSyncHandle)
         timeSyncHandle->timeSyncBuff.pdelayReq_RxBuf[1] = (uint8_t *) malloc(
                     TIMESYNC_PDELAY_BUF_SIZE);
 
-        if((timeSyncHandle->timeSyncBuff.pdelayReq_RxBuf[0] == NULL) ||
+        if ((timeSyncHandle->timeSyncBuff.pdelayReq_RxBuf[0] == NULL) ||
                 (timeSyncHandle->timeSyncBuff.pdelayReq_RxBuf[1] == NULL))
         {
             return TIME_SYNC_UNABLE_TO_ALLOC_MEM;
@@ -299,7 +299,7 @@ int8_t TimeSync_alloc_PktBuffer(TimeSync_ParamsHandle_t timeSyncHandle)
         timeSyncHandle->timeSyncBuff.pdelayResFlwUp_RxBuf[1] = (uint8_t *) malloc(
                     TIMESYNC_PDELAY_BUF_SIZE);
 
-        if((timeSyncHandle->timeSyncBuff.pdelayResFlwUp_RxBuf[0] == NULL) ||
+        if ((timeSyncHandle->timeSyncBuff.pdelayResFlwUp_RxBuf[0] == NULL) ||
                 (timeSyncHandle->timeSyncBuff.pdelayResFlwUp_RxBuf[1] == NULL))
         {
             return TIME_SYNC_UNABLE_TO_ALLOC_MEM;
@@ -310,7 +310,7 @@ int8_t TimeSync_alloc_PktBuffer(TimeSync_ParamsHandle_t timeSyncHandle)
         timeSyncHandle->timeSyncBuff.pdelayRes_RxBuf[1] = (uint8_t *) malloc(
                     TIMESYNC_PDELAY_BUF_SIZE);
 
-        if((timeSyncHandle->timeSyncBuff.pdelayRes_RxBuf[0] == NULL) ||
+        if ((timeSyncHandle->timeSyncBuff.pdelayRes_RxBuf[0] == NULL) ||
                 (timeSyncHandle->timeSyncBuff.pdelayRes_RxBuf[1] == NULL))
         {
             return TIME_SYNC_UNABLE_TO_ALLOC_MEM;
@@ -321,7 +321,7 @@ int8_t TimeSync_alloc_PktBuffer(TimeSync_ParamsHandle_t timeSyncHandle)
         timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[1] = (uint8_t *) malloc(
                     TIMESYNC_PDELAY_BUF_SIZE);
 
-        if((timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[0] == NULL) ||
+        if ((timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[0] == NULL) ||
                 (timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[1] == NULL))
         {
             return TIME_SYNC_UNABLE_TO_ALLOC_MEM;
@@ -332,7 +332,7 @@ int8_t TimeSync_alloc_PktBuffer(TimeSync_ParamsHandle_t timeSyncHandle)
         timeSyncHandle->timeSyncBuff.pdelayResFlwUp_TxBuf[1] = (uint8_t *) malloc(
                     TIMESYNC_PDELAY_BUF_SIZE);
 
-        if((timeSyncHandle->timeSyncBuff.pdelayResFlwUp_TxBuf[0] == NULL) ||
+        if ((timeSyncHandle->timeSyncBuff.pdelayResFlwUp_TxBuf[0] == NULL) ||
                 (timeSyncHandle->timeSyncBuff.pdelayResFlwUp_TxBuf[1] == NULL))
         {
             return TIME_SYNC_UNABLE_TO_ALLOC_MEM;
@@ -343,7 +343,7 @@ int8_t TimeSync_alloc_PktBuffer(TimeSync_ParamsHandle_t timeSyncHandle)
         timeSyncHandle->timeSyncBuff.pdelayRes_TxBuf[1] = (uint8_t *) malloc(
                     TIMESYNC_PDELAY_BUF_SIZE);
 
-        if((timeSyncHandle->timeSyncBuff.pdelayRes_TxBuf[0] == NULL) ||
+        if ((timeSyncHandle->timeSyncBuff.pdelayRes_TxBuf[0] == NULL) ||
                 (timeSyncHandle->timeSyncBuff.pdelayRes_TxBuf[1] == NULL))
         {
             return TIME_SYNC_UNABLE_TO_ALLOC_MEM;
@@ -356,7 +356,7 @@ int8_t TimeSync_alloc_PktBuffer(TimeSync_ParamsHandle_t timeSyncHandle)
         timeSyncHandle->timeSyncBuff.delayReq_TxBuf = (uint8_t *) malloc(
                     TIMESYNC_DELAY_REQ_BUF_SIZE);
 
-        if(timeSyncHandle->timeSyncBuff.delayReq_TxBuf == NULL)
+        if (timeSyncHandle->timeSyncBuff.delayReq_TxBuf == NULL)
         {
             return TIME_SYNC_UNABLE_TO_ALLOC_MEM;
         }
@@ -379,7 +379,7 @@ void TimeSync_unAlloc_PktBuffer(TimeSync_ParamsHandle_t timeSyncHandle)
     free(timeSyncHandle->timeSyncBuff.announce_TxBuf);
 
     /*Configure P2P buffers. Both Rx and Tx*/
-    if(P2P == timeSyncHandle->timeSyncConfig.type)
+    if (P2P == timeSyncHandle->timeSyncConfig.type)
     {
 
         free(timeSyncHandle->timeSyncBuff.pdelayReq_RxBuf[0]);
@@ -625,7 +625,7 @@ void TimeSync_setDefaultValue(TimeSync_ParamsHandle_t timeSyncHandle)
     timeSyncHandle->timeSyncConfig.pdelayBurstInterval *= (normalization_factor);
 
     /*Calculate offset used for non link local frames*/
-    if(E2E == timeSyncHandle->timeSyncConfig.type)
+    if (E2E == timeSyncHandle->timeSyncConfig.type)
     {
         timeSyncHandle->timeSyncConfig.frame_offset = 0;
     }
@@ -701,7 +701,7 @@ void TimeSync_formatPTPFrames(TimeSync_ParamsHandle_t timeSyncHandle,
     uint8_t offset = timeSyncHandle->timeSyncConfig.frame_offset;
 
     /*Initialize frame buffers with standard types*/
-    if(P2P == timeSyncHandle->timeSyncConfig.type)
+    if (P2P == timeSyncHandle->timeSyncConfig.type)
     {
         memcpy(timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[0], ptpPDelayReqPacket,
                TIMESYNC_PDELAY_BUF_SIZE);
@@ -794,14 +794,14 @@ void TimeSync_formatPTPFrames(TimeSync_ParamsHandle_t timeSyncHandle,
     memcpy(bytePtr, ifMacID, 6);
 
     /*--------------add source mac----------------*/
-    if(E2E == timeSyncHandle->timeSyncConfig.type)
+    if (E2E == timeSyncHandle->timeSyncConfig.type)
     {
         bytePtr = (uint8_t *)(timeSyncHandle->timeSyncBuff.delayReq_TxBuf +
                               SRC_MAC_OFFSET);
         memcpy(bytePtr, ifMacID, 6);
     }
 
-    if(P2P == timeSyncHandle->timeSyncConfig.type)
+    if (P2P == timeSyncHandle->timeSyncConfig.type)
     {
         bytePtr = (uint8_t *)(timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[0] +
                               SRC_MAC_OFFSET);
@@ -830,7 +830,7 @@ void TimeSync_formatPTPFrames(TimeSync_ParamsHandle_t timeSyncHandle,
     }
 
     /*--------------------Add clock identity--------------------*/
-    if(E2E == timeSyncHandle->timeSyncConfig.type)
+    if (E2E == timeSyncHandle->timeSyncConfig.type)
     {
         /*add clock identity*/
         bytePtr = (uint8_t *)(timeSyncHandle->timeSyncBuff.delayReq_TxBuf +
@@ -839,7 +839,7 @@ void TimeSync_formatPTPFrames(TimeSync_ParamsHandle_t timeSyncHandle,
 
     }
 
-    if(P2P == timeSyncHandle->timeSyncConfig.type)
+    if (P2P == timeSyncHandle->timeSyncConfig.type)
     {
         /*add clock identity to Pdelay Req frame*/
         bytePtr = (uint8_t *)(timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[0] +
@@ -910,7 +910,7 @@ void TimeSync_formatPTPFrames(TimeSync_ParamsHandle_t timeSyncHandle,
     /*Other flags are applicable only to Announce*/
     *(bytePtr + 1) = 0;
 
-    if(E2E == timeSyncHandle->timeSyncConfig.type)
+    if (E2E == timeSyncHandle->timeSyncConfig.type)
     {
         /*--Delay Req*/
         bytePtr = (uint8_t *)(timeSyncHandle->timeSyncBuff.delayReq_TxBuf +
@@ -928,7 +928,7 @@ void TimeSync_formatPTPFrames(TimeSync_ParamsHandle_t timeSyncHandle,
     *(bytePtr + 1) = flag_byte1;
 
 
-    if(P2P == timeSyncHandle->timeSyncConfig.type)
+    if (P2P == timeSyncHandle->timeSyncConfig.type)
     {
         /*--Pdelay Req--*/
         bytePtr = (uint8_t *)(timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[0] +
@@ -1148,7 +1148,7 @@ void TimeSync_initializeFollowUp(TimeSync_ParamsHandle_t timeSyncHandle)
 void TimeSync_addIP(TimeSync_ParamsHandle_t timeSyncHandle, uint32_t IP)
 {
     /*For P2P this should not be called*/
-    if(P2P == timeSyncHandle->timeSyncConfig.type)
+    if (P2P == timeSyncHandle->timeSyncConfig.type)
     {
         return;
     }

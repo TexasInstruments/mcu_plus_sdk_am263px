@@ -58,7 +58,9 @@ extern "C" {
 
 SDL_pbistInstInfo * SDL_PBIST_getInstInfo(SDL_PBIST_inst instance);
 
+#if defined (SOC_AM64X) || defined (SOC_AM243X) || defined (SOC_AM273X) || defined (SOC_AWR294X)
 void SDL_PBIST_eventHandler(uint32_t instanceId);
+#endif
 
 void SDL_PBIST_checkDone(SDL_pbistInstInfo *pInfo);
 

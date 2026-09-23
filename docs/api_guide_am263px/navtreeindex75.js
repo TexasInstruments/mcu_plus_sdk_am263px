@@ -1,7 +1,5 @@
 var NAVTREEINDEX75 =
 {
-"structSIPC__Params.html#ae5275d68d7243a328a8a640ebec6f048":[18,7,43,0,4],
-"structSIPC__Params.html#aec09e6f0113c173c3e6e28c2c5651cc3":[18,7,43,0,9],
 "structSIPC__Params.html#af8dc68c8fb765c81272f4d0e0dfc1423":[18,7,43,0,8],
 "structSIPC__SwQueue.html":[18,7,43,1],
 "structSIPC__SwQueue.html#a5a9724f399cfe87455b13164331603ac":[18,7,43,1,2],
@@ -249,5 +247,7 @@ var NAVTREEINDEX75 =
 "struct____attribute____.html#a8321420bd78021231438b0a3fbb52d18":[18,7,6,1,3],
 "struct____attribute____.html#a90c157780a83dfc485cb409237792f1c":[18,7,6,1,1],
 "struct____attribute____.html#ab9d2e63ea0896bf923026b09cc1fce42":[18,7,6,1,2],
-"struct____attribute____.html#accdf9e557e42d2771794ba3619c0d070":[18,7,6,1,12]
+"struct____attribute____.html#accdf9e557e42d2771794ba3619c0d070":[18,7,6,1,12],
+"struct____attribute____.html#ad80dafb98a52657e199176eec42e29a9":[18,7,6,1,5],
+"struct____attribute____.html#aeeb50d6fc31f2781f4b680cfc7ec3e4a":[18,7,6,1,8]
 };

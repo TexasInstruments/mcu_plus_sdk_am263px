@@ -58,7 +58,9 @@ uint32_t gRngDrbgDefaultSeed[RNG_DRBG_SEED_MAX_ARRY_SIZE_IN_DWORD]={0x425F4941U,
 /* ========================================================================== */
 /*                          Function Definitions                              */
 /* ========================================================================== */
-
+/**
+ *  Design: TIFSMCU-6142
+ */
 RNG_Handle RNG_open(uint32_t index)
 {
     RNG_Return_t    status  = RNG_RETURN_SUCCESS;
@@ -110,6 +112,9 @@ RNG_Handle RNG_open(uint32_t index)
     return (handle);
 }
 
+/**
+ *  Design: TIFSMCU-6143
+ */
 RNG_Return_t RNG_close(RNG_Handle handle)
 {
     RNG_Return_t status  = RNG_RETURN_FAILURE;
@@ -126,6 +131,9 @@ RNG_Return_t RNG_close(RNG_Handle handle)
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-6144
+*/
 RNG_Return_t RNG_setup(RNG_Handle handle)
 {
     uint32_t val = 0, updated_bits = 0, i = 0;
@@ -225,6 +233,9 @@ RNG_Return_t RNG_setup(RNG_Handle handle)
     return (retVal);
 }
 
+/**
+ *  Design: TIFSMCU-6145
+ */
 RNG_Return_t RNG_read(RNG_Handle handle, uint32_t *out)
 {
     RNG_Return_t retVal  = RNG_RETURN_FAILURE;

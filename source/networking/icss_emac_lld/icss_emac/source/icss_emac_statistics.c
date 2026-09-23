@@ -111,12 +111,12 @@ int32_t ICSS_EMAC_readStats(ICSS_EMAC_Handle           icssEmacHandle,
     statisticsOffset = ((ICSS_EMAC_Object *)icssEmacHandle->object)->fwStaticMMap.statisticsOffset;
     statsSize = ((ICSS_EMAC_Object *)icssEmacHandle->object)->fwStaticMMap.statisticsSize;
 
-    if(ICSS_EMAC_MODE_SWITCH != ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
+    if (ICSS_EMAC_MODE_SWITCH != ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
     {
         portNum = ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask;
     }
 
-    if((uint8_t)ICSS_EMAC_PORT_1 == portNum)
+    if ((uint8_t)ICSS_EMAC_PORT_1 == portNum)
     {
         temp_addr = (pruicssHwAttrs->pru0DramBase + statisticsOffset);
         statsPointer = (uint8_t*)(temp_addr);
@@ -145,7 +145,7 @@ int32_t ICSS_EMAC_purgeStats(ICSS_EMAC_Handle icssEmacHandle, uint8_t portNum)
 
     hostStatsPtr = (ICSS_EMAC_HostStatistics *)(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->hostStat));
 
-    if(ICSS_EMAC_MODE_SWITCH != ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
+    if (ICSS_EMAC_MODE_SWITCH != ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
     {
         portNum = ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask;
     }
@@ -154,7 +154,7 @@ int32_t ICSS_EMAC_purgeStats(ICSS_EMAC_Handle icssEmacHandle, uint8_t portNum)
         hostStatsPtr += (portNum - 1U);
     }
 
-    if((uint8_t)ICSS_EMAC_PORT_1 == portNum)
+    if ((uint8_t)ICSS_EMAC_PORT_1 == portNum)
     {
         temp_addr = (pruicssHwAttrs->pru0DramBase + pStaticMMap->statisticsOffset);
         statsPointer = (uint32_t *)(temp_addr);
@@ -193,13 +193,13 @@ void ICSS_EMAC_updateRxStats(const uint8_t              *macAddr,
                              uint16_t                   protIdent,
                              ICSS_EMAC_HostStatistics   *hostStatsPtr)
 {
-    uint8_t count=0;
+    uint8_t count = 0;
     bool    prot_found = 0;
     uint8_t Bcast_mac[6] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
 
 #ifdef TEST_DEBUG
     /*This is to make sure that the stats query and other custom queries are not counted  */
-    if(doNotUpdateStatsRX[portNum-1])
+    if (doNotUpdateStatsRX[portNum-1])
     {
         /*clear the flag  */
         doNotUpdateStatsRX[portNum-1] = 0;
@@ -208,11 +208,11 @@ void ICSS_EMAC_updateRxStats(const uint8_t              *macAddr,
 #endif
 
     /*Broadcast  */
-    if(COMPARE_MAC(macAddr, Bcast_mac))
+    if (COMPARE_MAC(macAddr, Bcast_mac))
     {
         hostStatsPtr->rxBcast++;
     }
-    else if((macAddr[0] & 0x01U) == 1u)      /*Multicast*/
+    else if ((macAddr[0] & 0x01U) == 1u)      /*Multicast*/
     {
         hostStatsPtr->rxMcast++;
     }
@@ -224,9 +224,9 @@ void ICSS_EMAC_updateRxStats(const uint8_t              *macAddr,
 
     hostStatsPtr->rxOctets += (packet_len+4U);
 
-    for(count=0; count < numImplementedProtocols; count++)
+    for (count = 0; count < numImplementedProtocols; count++)
     {
-        if(protIdent == protocol_impl[count])
+        if (protIdent == protocol_impl[count])
         {
             prot_found = (bool)true;
             break;
@@ -246,7 +246,7 @@ void ICSS_EMAC_updateTxStats(const uint8_t              *macAddr,
 
 #ifdef TEST_DEBUG
     /*This is to make sure that the stats query and other custom queries are not counted   */
-    if(doNotUpdateStatsTX[portNum-1])
+    if (doNotUpdateStatsTX[portNum-1])
     {
         /*clear the flag  */
         doNotUpdateStatsTX[portNum-1] = 0;
@@ -256,11 +256,11 @@ void ICSS_EMAC_updateTxStats(const uint8_t              *macAddr,
 
     uint8_t Bcast_mac[6] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
 
-    if(COMPARE_MAC(macAddr, Bcast_mac))
+    if (COMPARE_MAC(macAddr, Bcast_mac))
     {
         hostStatsPtr->txBcast++;
     }
-    else if((macAddr[0] & 0x01U) == 1u)
+    else if ((macAddr[0] & 0x01U) == 1u)
     {
         hostStatsPtr->txMcast++;
     }

@@ -161,6 +161,75 @@ var EXAMPLES_SECURITY =
       ] ],
       [ "See Also", "EXAMPLES_DRIVERS_DTHE_AES_GCM.html#autotoc_md3673", null ]
     ] ],
+    [ "DTHE SHA 1", "EXAMPLES_DRIVERS_DTHE_SHA_1.html", [
+      [ "Introduction", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3725", [
+        [ "Build the sha 1 example", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3726", null ]
+      ] ],
+      [ "Steps to Run through ROM Boot flow", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3727", [
+        [ "Via SBL_uart bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3728", [
+          [ "Build sbl_uart", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3729", null ],
+          [ "Set board for UART boot", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3730", null ],
+          [ "Run UART_bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3731", null ],
+          [ "Sample output", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3732", null ]
+        ] ],
+        [ "Via SBL_qspi bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3733", [
+          [ "Build sbl_qspi", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3734", null ],
+          [ "Build sbl_uart_uniflash", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3735", null ],
+          [ "Set UART boot mode", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3736", null ],
+          [ "Edit default_sbl_qspi.cfg to include the correct images", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3737", null ],
+          [ "Run UART_uniflash", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3738", null ],
+          [ "Set QSPI boot mode", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3739", null ],
+          [ "Sample output", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3740", null ]
+        ] ]
+      ] ],
+      [ "See Also", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3741", null ]
+    ] ],
+    [ "DTHE SHA 224", "EXAMPLES_DRIVERS_DTHE_SHA_224.html", [
+      [ "Introduction", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3742", [
+        [ "Build the sha 224 example", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3743", null ]
+      ] ],
+      [ "Steps to Run through ROM Boot flow", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3744", [
+        [ "Via SBL_uart bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3745", [
+          [ "Build sbl_uart", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3746", null ],
+          [ "Set board for UART boot", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3747", null ],
+          [ "Run UART_bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3748", null ],
+          [ "Sample output", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3749", null ]
+        ] ],
+        [ "Via SBL_qspi bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3750", [
+          [ "Build sbl_qspi", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3751", null ],
+          [ "Build sbl_uart_uniflash", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3752", null ],
+          [ "Set UART boot mode", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3753", null ],
+          [ "Edit default_sbl_qspi.cfg to include the correct images", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3754", null ],
+          [ "Run UART_uniflash", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3755", null ],
+          [ "Set QSPI boot mode", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3756", null ],
+          [ "Sample output", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3757", null ]
+        ] ]
+      ] ],
+      [ "See Also", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3758", null ]
+    ] ],
+    [ "DTHE SHA 384", "EXAMPLES_DRIVERS_DTHE_SHA_384.html", [
+      [ "Introduction", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3776", [
+        [ "Build the sha 384 example", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3777", null ]
+      ] ],
+      [ "Steps to Run through ROM Boot flow", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3778", [
+        [ "Via SBL_uart bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3779", [
+          [ "Build sbl_uart", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3780", null ],
+          [ "Set board for UART boot", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3781", null ],
+          [ "Run UART_bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3782", null ],
+          [ "Sample output", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3783", null ]
+        ] ],
+        [ "Via SBL_qspi bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3784", [
+          [ "Build sbl_qspi", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3785", null ],
+          [ "Build sbl_uart_uniflash", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3786", null ],
+          [ "Set UART boot mode", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3787", null ],
+          [ "Edit default_sbl_qspi.cfg to include the correct images", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3788", null ],
+          [ "Run UART_uniflash", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3789", null ],
+          [ "Set QSPI boot mode", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3790", null ],
+          [ "Sample output", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3791", null ]
+        ] ]
+      ] ],
+      [ "See Also", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3792", null ]
+    ] ],
     [ "DTHE AES STREAMING", "EXAMPLES_DRIVERS_DTHE_AES_STREAMING.html", [
       [ "Introduction", "EXAMPLES_DRIVERS_DTHE_AES_STREAMING.html#autotoc_md3674", [
         [ "Build the aes cmac 256 example", "EXAMPLES_DRIVERS_DTHE_AES_STREAMING.html#autotoc_md3675", null ]
@@ -230,52 +299,6 @@ var EXAMPLES_SECURITY =
       ] ],
       [ "See Also", "EXAMPLES_DRIVERS_DTHE_AES_CMAC_256.html#autotoc_md3656", null ]
     ] ],
-    [ "DTHE SHA 1", "EXAMPLES_DRIVERS_DTHE_SHA_1.html", [
-      [ "Introduction", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3725", [
-        [ "Build the sha 1 example", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3726", null ]
-      ] ],
-      [ "Steps to Run through ROM Boot flow", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3727", [
-        [ "Via SBL_uart bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3728", [
-          [ "Build sbl_uart", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3729", null ],
-          [ "Set board for UART boot", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3730", null ],
-          [ "Run UART_bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3731", null ],
-          [ "Sample output", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3732", null ]
-        ] ],
-        [ "Via SBL_qspi bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3733", [
-          [ "Build sbl_qspi", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3734", null ],
-          [ "Build sbl_uart_uniflash", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3735", null ],
-          [ "Set UART boot mode", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3736", null ],
-          [ "Edit default_sbl_qspi.cfg to include the correct images", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3737", null ],
-          [ "Run UART_uniflash", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3738", null ],
-          [ "Set QSPI boot mode", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3739", null ],
-          [ "Sample output", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3740", null ]
-        ] ]
-      ] ],
-      [ "See Also", "EXAMPLES_DRIVERS_DTHE_SHA_1.html#autotoc_md3741", null ]
-    ] ],
-    [ "DTHE SHA 224", "EXAMPLES_DRIVERS_DTHE_SHA_224.html", [
-      [ "Introduction", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3742", [
-        [ "Build the sha 224 example", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3743", null ]
-      ] ],
-      [ "Steps to Run through ROM Boot flow", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3744", [
-        [ "Via SBL_uart bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3745", [
-          [ "Build sbl_uart", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3746", null ],
-          [ "Set board for UART boot", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3747", null ],
-          [ "Run UART_bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3748", null ],
-          [ "Sample output", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3749", null ]
-        ] ],
-        [ "Via SBL_qspi bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3750", [
-          [ "Build sbl_qspi", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3751", null ],
-          [ "Build sbl_uart_uniflash", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3752", null ],
-          [ "Set UART boot mode", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3753", null ],
-          [ "Edit default_sbl_qspi.cfg to include the correct images", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3754", null ],
-          [ "Run UART_uniflash", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3755", null ],
-          [ "Set QSPI boot mode", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3756", null ],
-          [ "Sample output", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3757", null ]
-        ] ]
-      ] ],
-      [ "See Also", "EXAMPLES_DRIVERS_DTHE_SHA_224.html#autotoc_md3758", null ]
-    ] ],
     [ "DTHE SHA 256", "EXAMPLES_DRIVERS_DTHE_SHA_256.html", [
       [ "Introduction", "EXAMPLES_DRIVERS_DTHE_SHA_256.html#autotoc_md3759", [
         [ "Build the sha 256 example", "EXAMPLES_DRIVERS_DTHE_SHA_256.html#autotoc_md3760", null ]
@@ -298,29 +321,6 @@ var EXAMPLES_SECURITY =
         ] ]
       ] ],
       [ "See Also", "EXAMPLES_DRIVERS_DTHE_SHA_256.html#autotoc_md3775", null ]
-    ] ],
-    [ "DTHE SHA 384", "EXAMPLES_DRIVERS_DTHE_SHA_384.html", [
-      [ "Introduction", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3776", [
-        [ "Build the sha 384 example", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3777", null ]
-      ] ],
-      [ "Steps to Run through ROM Boot flow", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3778", [
-        [ "Via SBL_uart bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3779", [
-          [ "Build sbl_uart", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3780", null ],
-          [ "Set board for UART boot", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3781", null ],
-          [ "Run UART_bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3782", null ],
-          [ "Sample output", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3783", null ]
-        ] ],
-        [ "Via SBL_qspi bootloader", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3784", [
-          [ "Build sbl_qspi", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3785", null ],
-          [ "Build sbl_uart_uniflash", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3786", null ],
-          [ "Set UART boot mode", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3787", null ],
-          [ "Edit default_sbl_qspi.cfg to include the correct images", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3788", null ],
-          [ "Run UART_uniflash", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3789", null ],
-          [ "Set QSPI boot mode", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3790", null ],
-          [ "Sample output", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3791", null ]
-        ] ]
-      ] ],
-      [ "See Also", "EXAMPLES_DRIVERS_DTHE_SHA_384.html#autotoc_md3792", null ]
     ] ],
     [ "DTHE SHA 512", "EXAMPLES_DRIVERS_DTHE_SHA_512.html", [
       [ "Introduction", "EXAMPLES_DRIVERS_DTHE_SHA_512.html#autotoc_md3793", [

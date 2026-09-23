@@ -135,9 +135,10 @@ $(document).ready(function(){initNavTree('RELEASE_NOTES_26_01_00_PAGE.html','');
 <li class="level3"><a href="#autotoc_md358">SDL PBIST Self test</a></li>
 <li class="level3"><a href="#autotoc_md359">SDL STC Configuration</a></li>
 <li class="level3"><a href="#autotoc_md360">SDL Handler API name update</a></li>
-<li class="level3"><a href="#autotoc_md361">Compiler Options</a></li>
-<li class="level3"><a href="#autotoc_md362">SOC Device Drivers</a></li>
-<li class="level3"><a href="#autotoc_md363">Ethernet and Networking</a></li>
+<li class="level3"><a href="#autotoc_md361">SDL MMR Control</a></li>
+<li class="level3"><a href="#autotoc_md362">Compiler Options</a></li>
+<li class="level3"><a href="#autotoc_md363">SOC Device Drivers</a></li>
+<li class="level3"><a href="#autotoc_md364">Ethernet and Networking</a></li>
 </ul>
 </li>
 </ul>
@@ -163,6 +164,14 @@ New in this Release</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Feature  </th><th class="markdownTableHeadNone">Module   </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ThreadX RTOS support added  </td><td class="markdownTableBodyNone">Kernel   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">OSPI/QSPI NAND Flash support on OSPI interface  </td><td class="markdownTableBodyNone">Flash/OSPI   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">SBL QSPI flash examples added for AM261x  </td><td class="markdownTableBodyNone">Flash/QSPI   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Option to disable FIFO via Sysconfig for a McSPI instance  </td><td class="markdownTableBodyNone">McSPI   </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">ICSS-EMAC and ICSS TimeSync driver sources are now at <code>source/networking/icss_emac_lld/</code> . Check <a class="el" href="ICSS_EMAC_MIGRATION_GUIDE.html#ICSS_EMAC_SOURCE_PATH_CHANGE">Source Path Change (MCU+ SDK &gt;= 26.01.00)</a> &zwj; for the migration guide  </td><td class="markdownTableBodyNone">Networking   </td></tr>
 <tr class="markdownTableRowEven">
@@ -455,6 +464,14 @@ Fixed Issues</h2>
 <tr>
 <td>PROC_SDL-9986 </td><td>[AM263Px]: SDL_SOC_ECC_AGGR_MAILBOX_ECC_RAM_SIZE incorrectly defined as 524288U (512KB) — correct value is 16384U (16KB) per TRM SPRUJ55D </td><td>SDL </td><td>10.02.00 onwards </td><td>AM263x </td><td>Fixed in header file  </td></tr>
 <tr>
+<td>PROC_SDL-10274 </td><td>Remove sdl_rom_checksum.h from AM26x SDK package </td><td>SDL </td><td>26.00.00 onwards </td><td>Fixed in installer package script  </td></tr>
+<tr>
+<td>PROC_SDL-10283 </td><td>SDL is not unlocked before write CTRL MMR registers </td><td>SDL </td><td>26.00.00 onwards </td><td>Fixed in code and example  </td></tr>
+<tr>
+<td>PROC_SDL-10276 </td><td>AM26x: Altering R5 register values directly in SDL_UTILS_enable_event_bus and SDL_UTILS_enable_cache_event_bus APIs without store and restore creating issues in customer application </td><td>SDL </td><td>26.00.00 onwards </td><td>Fixed in r5 asm code  </td></tr>
+<tr>
+<td>PROC_SDL-10190 </td><td>Fix reverted bug and testcase on SDL_RTI_clearStatus </td><td>SDL </td><td>26.00.00 onwards </td><td>Fixed in library and test  </td></tr>
+<tr>
 <td>MCUSDK-15576 </td><td>I2C Target doesn't work with 0 write size interaction </td><td>I2C </td><td>26.00.00 onwards </td><td>AM263x, AM263Px, AM261x </td><td>Updated source code  </td></tr>
 <tr>
 <td>PSIRT-276 </td><td>Buffer overflow in MCELF Program Header Table parsing due to unvalidated e_phentsize field </td><td>SBL </td><td>10.00.00 onwards </td><td>AM263x, AM263Px, AM261x </td><td>Added validation of the ELF Program Header entry size (e_phentsize) in Bootloader_parseAndLoadMultiCoreELF to prevent an out-of-bounds write into the PHT buffer  </td></tr>
@@ -468,6 +485,32 @@ Fixed Issues</h2>
 <td>MCUSDK-15562 </td><td>EEPROM dependency cannot be removed even if MAC address is configured manually </td><td>Networking </td><td>11.01.00 </td><td>AM263x, AM263Px, AM261x </td><td>Remove EEPROM dependency for Manual MAC address assignment mode  </td></tr>
 <tr>
 <td>MCUSDK-15754 </td><td>UDP port number in lwip cpsw example </td><td>Networking </td><td>26.00.00 </td><td>AM263x, AM263Px, AM261x </td><td>Corrected the UDP Port number in LWIP CPSW example  </td></tr>
+<tr>
+<td>MCUSDK-15738 </td><td>Unable to disable shadow loading for Action Qualifier using sysconfig </td><td>EPWM </td><td>10.02.00, 11.01.00 </td><td>AM261x, AM263Px, AM263x </td><td>Generate EPWM_setActionQualifierShadowLoadMode only when shadow load mode is enabled  </td></tr>
+<tr>
+<td>MCUSDK-15591 </td><td>SOC_configureWarmResetSource API needs to be corrected </td><td>SOC </td><td>11.01.00 </td><td>AM261x, AM263Px </td><td>Corrected address being passed to the API  </td></tr>
+<tr>
+<td>MCUSDK-15749 </td><td>AM26x: Multicore FreeRTOS project with IPC enabled on all cores crashes </td><td>IPC </td><td>26.00.00 </td><td>AM261x, AM263Px, AM263x </td><td>Updated docs with correct steps to run and debug multicore examples  </td></tr>
+<tr>
+<td>MCUSDK-15337 </td><td>AM26x: RTI: Sysconfig does not free up the RTI instance used by clock module </td><td>RTI </td><td>11.01.00 </td><td>AM261x, AM263Px, AM263x </td><td>Workaround provided to free up the RTI instance used by clock module  </td></tr>
+<tr>
+<td>MCUSDK-15386 </td><td>AM26x: CPSW ethernet examples have issues with RJ-45 LEDs configuration </td><td>Networking </td><td>11.01.00 </td><td>AM261x, AM263Px, AM263x </td><td>Updated default PHY LED configuration based on schematics  </td></tr>
+<tr>
+<td>MCUSDK-15132 </td><td>OSPI: phy tuning failure causing boot fail </td><td>OSPI </td><td>11.01.00 </td><td>AM261x, AM263Px </td><td>Fixed phy tuning failure causing boot fail  </td></tr>
+<tr>
+<td>MCUSDK-15221 </td><td>AM26x: Issues with Parsing the MMCSD response register </td><td>MMCSD </td><td>11.01.00 </td><td>AM261x, AM263Px, AM263x </td><td>Fixed parsing of CSD and CID registers in mmcsd_parse.c  </td></tr>
+<tr>
+<td>MCUSDK-15577 </td><td>OSPI EDMA copy is not working correctly after STC reset </td><td>OSPI </td><td>26.00.00 </td><td>AM261x, AM263Px, AM263x </td><td>Fixed in driver (soc.c) - Kept isMapAvailable flag uninitialized so it stays in .bss area  </td></tr>
+<tr>
+<td>MCUSDK-15144 </td><td>GPMC syscfg data not populated. </td><td>GPMC </td><td>11.00.00 </td><td>AM263Px, AM263x </td><td>Fixed in GPMC Sysconfig  </td></tr>
+<tr>
+<td>MCUSDK-15145 </td><td>AM263Px: SBL: SBL over Ethernet example broken </td><td>Networking </td><td>11.00.00 </td><td>AM263Px </td><td>Example fixed  </td></tr>
+<tr>
+<td>MCUSDK-15916 </td><td><a class="el" href="group__DRV__I2C__HLD__MODULE.html#ga6c82327e0d17600c67b45a8616905c10" title="API to initiate a transfer from I2C Instance.">I2C_transfer()</a> returns success after timeout when enableIntr=true, causing data corruption </td><td>I2C </td><td>26.00.00 </td><td>AM261x, AM263Px, AM263x </td><td>Implemented fix similar to the poll-mode code path  </td></tr>
+<tr>
+<td>MCUSDK-15708 </td><td>AM261x: WDT: RCCLK23K and RCCLK10M are marked as unsupported in SOC RCM CLock settings </td><td>SOC </td><td>26.00.01 </td><td>AM261x, AM263Px, AM263x </td><td>Enabled support for RCCLK10M  </td></tr>
+<tr>
+<td>MCUSDK-15261 </td><td>VPP_EN bit to be set to 1 after boot to disconnect VDDA18_LDO from Vpp circuit when eFuse is not being programmed </td><td>SBL </td><td>11.01.00 </td><td>AM261x, AM263Px </td><td>Set the VPP_EN bit in all SBLs  </td></tr>
 </table>
 <h2><a class="anchor" id="autotoc_md334"></a>
 Known Issues</h2>
@@ -483,8 +526,6 @@ Known Issues</h2>
 <tr>
 <td>MCUSDK-14059 </td><td>CMPSS DE example has Glitch in PWM output </td><td>CMPSS </td><td>10.00.01 onwards </td><td>None  </td></tr>
 <tr>
-<td>MCUSDK-13011 </td><td>Multicore Empty project not working properly </td><td>FreeRTOS </td><td>09.01.00 onwards </td><td>-  </td></tr>
-<tr>
 <td>PINDSW-7715 </td><td>Dual EMAC instance not working with both ports together for icss_emac_lwip example </td><td>ICSS-EMAC </td><td>09.02.00 onwards </td><td>None  </td></tr>
 <tr>
 <td>PINDSW-7746 </td><td>Low iperf values in TCP and UDP </td><td>ICSS-EMAC </td><td>09.02.00 onwards </td><td>None  </td></tr>
@@ -497,7 +538,7 @@ Known Issues</h2>
 <tr>
 <td>PROC_SDL-10004 </td><td>ECC Injection example for TPTC memory is not working on latest released MCU PLUS SDK </td><td>SDL </td><td>26.00.00 onwards </td><td>Example not working in SBL and Use CCS testing.  </td></tr>
 <tr>
-<td>PROC_SDL-9596 </td><td>SEC and DED failure in ecc_bus_safety example </td><td>SDL </td><td>11.01.00 onwards </td><td>For AXI_RD_SEC nodes can test in specific core.  </td></tr>
+<td>PROC_SDL-9596 </td><td>SEC and DED failure in ecc_bus_safety example and function test </td><td>SDL </td><td>11.01.00 onwards </td><td>For AXI_RD_SEC nodes can test in specific core.  </td></tr>
 <tr>
 <td>PROC_SDL-9617 </td><td>AXI_S SEC and DED failure </td><td>SDL </td><td>11.01.00 onwards </td><td>For AXI_S node, use CCS to test.  </td></tr>
 <tr>
@@ -511,7 +552,11 @@ Known Issues</h2>
 <tr>
 <td>PROC_SDL-9131 </td><td>CLK-T1 MSS_DCCC and DCCA diag failure </td><td>SDL </td><td>10.02.00 onwards </td><td>None  </td></tr>
 <tr>
-<td>PROC_SDL-9820 </td><td>End of Conversion bit (EOCZ) is not using for reading temperature sensor results in SDL_VTM_getTemp API for AM26x controllers </td><td>SDL </td><td>11.01.00 onwards </td><td>None  </td></tr>
+<td>PROC_SDL-9517 </td><td>Wrong key is configuring for CCMSelfTestErrorForce test in CCM example </td><td>SDL </td><td>11.01.00 onwards </td><td>None  </td></tr>
+<tr>
+<td>PROC_SDL-10277 </td><td>ECC EDMA Example not run in SBL </td><td>SDL </td><td>26.00.00 onwards </td><td>None  </td></tr>
+<tr>
+<td>PROC_SDL-10284 </td><td>AM263Px SDL_TEST_CCMSelftestPolarityInvert test fail </td><td>SDL </td><td>26.00.00 onwards </td><td>None  </td></tr>
 <tr>
 <td>MCUSDK-13652 </td><td>Readelf throws warning while parsing RS note </td><td>SBL, QSPI </td><td>10.00.00 onwards </td><td>-  </td></tr>
 <tr>
@@ -531,8 +576,6 @@ Known Issues</h2>
 <tr>
 <td>MCUSDK-14895 </td><td>UART LLD Rx error checking logic checks if all errors exist at once </td><td>UART </td><td>10.00.00 onwards </td><td>-  </td></tr>
 <tr>
-<td>MCUSDK-13011 </td><td>Data Abort in application when all cores are running freertos using Gel files(CCS) </td><td>FreeRTOS </td><td>10.00.00 onwards </td><td>Flash and use SBL NULL instead of gel files  </td></tr>
-<tr>
 <td>MCUSDK-14941 </td><td>McSPI: Non Multiple's of FIFO cannot be transferred in DMA mode </td><td>McSPI </td><td>10.00.00 onwards </td><td>Use FIFO Trigger level of 1.  </td></tr>
 <tr>
 <td>MCUSDK-14936 </td><td>Uniflash unable to connect to target in OSPI boot mode </td><td>Uniflash </td><td>10.01.00 onwards </td><td>-  </td></tr>
@@ -541,7 +584,9 @@ Known Issues</h2>
 <tr>
 <td>MCUSDK-14644 </td><td>EST <a class="el" href="structTimestamp.html" title="The Timestamp type represents a positive time with respect to the epoch.">Timestamp</a> verification is failing after link down event </td><td>Networking </td><td>11.00.00 onwards </td><td>Re-apply the EST configuration post link-up  </td></tr>
 <tr>
-<td>MCUSDK-15145 </td><td>SBL over Ethernet example broken </td><td>Networking </td><td>11.00.00 onwards </td><td>-  </td></tr>
+<td>MCUSDK-15963 </td><td>MCSPI LLD driver generates redundant TX_EMPTY interrupt during single transfer </td><td>McSPI </td><td>26.01.00 onwards </td><td>Disable FIFO in the driver/SysConfig. This results in one interrupt per word (no buffering), but eliminates the initial TXx_EMPTY burst. Or Use DMA mode (<a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#gaae2d0e9af00185a61a45e225c733270c" title="This API reads writes data from the McSPI instance in DMA mode.">MCSPI_lld_readWriteDma()</a>) to offload data movement and bypass the interrupt-driven FIFO filling.  </td></tr>
+<tr>
+<td>MCUSDK-15953 </td><td>AllSoc: Libraries Don't Build When DebugP_ASSERT_ENABLED is 0 </td><td>Build </td><td>26.00.00 onwards </td><td>None  </td></tr>
 </table>
 <h2><a class="anchor" id="autotoc_md335"></a>
 Errata</h2>
@@ -577,9 +622,9 @@ Errata</h2>
  Workaround: Do not use initial bytes (0x40-0x3A0) of ATCM from CPU1 allocation. Initial bytes (0x40-0x3A0 =&gt; 868 bytes) of CORE1 TCM are blocked using linker command settings of multi-core application/examples. <br  />
  Refer <a class="el" href="EXAMPLES_DRIVERS_TMU_CORES_SUPPORT.html">TMU 4 Cores Support</a>  </td></tr>
 <tr>
-<td>i2427 </td><td>SDL: RAM SEC can cause spurious RAM writes resulting in L2 and MBOX memory corruption </td><td>ECC </td><td>Workaround added as an example in examples/sdl/ecc/ (EDMA case only; PRU fix is ongoing)  </td></tr>
+<td>i2427 </td><td>SDL: RAM SEC can cause spurious RAM writes resulting in L2 and MBOX memory corruption </td><td>ECC </td><td>Workaround added as an example in examples/sdl/ecc/  </td></tr>
 <tr>
-<td>i2499 </td><td>SDL: Incorrect data returned to master on single error detection during burst read </td><td>ECC </td><td>Workaround added as an example in examples/sdl/ecc/ (EDMA case only; PRU fix is ongoing)  </td></tr>
+<td>i2499 </td><td>SDL: Incorrect data returned to master on single error detection during burst read </td><td>ECC </td><td>Workaround added as an example in examples/sdl/ecc/  </td></tr>
 </table>
 <h2><a class="anchor" id="autotoc_md336"></a>
 Limitations</h2>
@@ -765,6 +810,9 @@ SDL STC Configuration</h3>
 SDL Handler API name update</h3>
 <p>Handler API names are added prefix with "SDL_". For example, undefInstructionExptnHandler changed to SDL_undefInstructionExptnHandler.</p>
 <h3><a class="anchor" id="autotoc_md361"></a>
+SDL MMR Control</h3>
+<p>Added unlock and lock APIs before write CTRL MMRs like MSS_CTRL and MSS_RCM.</p>
+<h3><a class="anchor" id="autotoc_md362"></a>
 Compiler Options</h3>
 <table class="doxtable">
 <tr>
@@ -772,7 +820,7 @@ Compiler Options</h3>
 <tr>
 <th>- </th><th>- </th><th>- </th><th>-  </th></tr>
 </table>
-<h3><a class="anchor" id="autotoc_md362"></a>
+<h3><a class="anchor" id="autotoc_md363"></a>
 SOC Device Drivers</h3>
 <table class="doxtable">
 <tr>
@@ -780,7 +828,7 @@ SOC Device Drivers</h3>
 <tr>
 <th>- </th><th>- </th><th>- </th><th>-  </th></tr>
 </table>
-<h3><a class="anchor" id="autotoc_md363"></a>
+<h3><a class="anchor" id="autotoc_md364"></a>
 Ethernet and Networking</h3>
 <table class="doxtable">
 <tr>

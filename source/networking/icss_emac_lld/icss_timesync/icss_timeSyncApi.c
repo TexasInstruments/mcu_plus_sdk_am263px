@@ -51,13 +51,13 @@ int32_t TimeSync_config(TimeSync_ParamsHandle_t timeSyncParamsHandle)
     uint8_t i;
     uint32_t regVal;
 
-    if(timeSyncParamsHandle == NULL)
+    if (timeSyncParamsHandle == NULL)
     {
         return ERROR_HANDLE_INVALID;
     }
 
     /* Configures domainNumber list */
-    for(i = 0; i < TS_NUM_DOMAINS; i++)
+    for (i = 0; i < TS_NUM_DOMAINS; i++)
     {
         HW_WR_REG8(pruicssHwAttrs->pru0DramBase + TIMESYNC_DOMAIN_NUMBER_LIST + i,
             timeSyncParamsHandle->timeSyncConfig.domainNumber[i]);
@@ -88,27 +88,27 @@ int32_t TimeSync_getTxTimestamp(TimeSync_ParamsHandle_t timeSyncParamsHandle, \
     uint8_t *bytePtr;
     uint64_t Nanoseconds64;
 
-    if(timeSyncParamsHandle->emacHandle == NULL)
+    if (timeSyncParamsHandle->emacHandle == NULL)
     {
         return ERROR_HANDLE_INVALID;
     }
 
     /* Input error check */
-    if((txFrameType != SYNC_FRAME) && (txFrameType != DELAY_REQ_FRAME)
+    if ((txFrameType != SYNC_FRAME) && (txFrameType != DELAY_REQ_FRAME)
             && (txFrameType != DELAY_RESP_FRAME))
     {
         return ERROR_TX_FRAMETYPE_NOTVALID;    /* not a valid frameType value */
     }
 
-    if((txPort != ICSS_EMAC_PORT_1) && (txPort != ICSS_EMAC_PORT_2))
+    if ((txPort != ICSS_EMAC_PORT_1) && (txPort != ICSS_EMAC_PORT_2))
     {
         return ERROR_TX_PORTNUMBER_NOTVALID;    /* not a valid port number */
     }
 
     /* Read timestamp */
-    if(txFrameType == SYNC_FRAME)
+    if (txFrameType == SYNC_FRAME)
     {
-        if(txPort == ICSS_EMAC_PORT_1)
+        if (txPort == ICSS_EMAC_PORT_1)
         {
             timeStampOffsetAddr = TX_SYNC_TIMESTAMP_OFFSET_P1;
         }
@@ -119,9 +119,9 @@ int32_t TimeSync_getTxTimestamp(TimeSync_ParamsHandle_t timeSyncParamsHandle, \
         }
     }
 
-    else if(txFrameType == DELAY_REQ_FRAME)
+    else if (txFrameType == DELAY_REQ_FRAME)
     {
-        if(txPort == ICSS_EMAC_PORT_1)
+        if (txPort == ICSS_EMAC_PORT_1)
         {
             timeStampOffsetAddr = TX_PDELAY_REQ_TIMESTAMP_OFFSET_P1;
         }
@@ -134,7 +134,7 @@ int32_t TimeSync_getTxTimestamp(TimeSync_ParamsHandle_t timeSyncParamsHandle, \
 
     else /* (rxFrameType == DELAY_RESP_FRAME) */
     {
-        if(txPort == ICSS_EMAC_PORT_1)
+        if (txPort == ICSS_EMAC_PORT_1)
         {
             timeStampOffsetAddr = TX_PDELAY_RESP_TIMESTAMP_OFFSET_P1;
         }
@@ -164,28 +164,28 @@ int32_t TimeSync_getRxTimestamp(TimeSync_ParamsHandle_t timeSyncParamsHandle,
     uint8_t *bytePtr;
     uint64_t Nanoseconds64;
 
-    if(timeSyncParamsHandle->emacHandle == NULL)
+    if (timeSyncParamsHandle->emacHandle == NULL)
     {
         return ERROR_HANDLE_INVALID;
     }
 
     /* Input error check */
-    if((rxFrameType != SYNC_FRAME)
+    if ((rxFrameType != SYNC_FRAME)
             && (rxFrameType != DELAY_REQ_FRAME)
             && (rxFrameType != DELAY_RESP_FRAME))
     {
         return -1;    /* not a valid frameType value */
     }
 
-    if((rxPort != ICSS_EMAC_PORT_1)
+    if ((rxPort != ICSS_EMAC_PORT_1)
             && (rxPort != ICSS_EMAC_PORT_2))
     {
         return -2;    /* not a valid port number */
     }
 
-    if(rxFrameType == SYNC_FRAME)
+    if (rxFrameType == SYNC_FRAME)
     {
-        if(rxPort == ICSS_EMAC_PORT_1)
+        if (rxPort == ICSS_EMAC_PORT_1)
         {
             timeStampOffsetAddr = RX_SYNC_TIMESTAMP_OFFSET_P1;
         }
@@ -196,9 +196,9 @@ int32_t TimeSync_getRxTimestamp(TimeSync_ParamsHandle_t timeSyncParamsHandle,
         }
     }
 
-    else if(rxFrameType == DELAY_REQ_FRAME)
+    else if (rxFrameType == DELAY_REQ_FRAME)
     {
-        if(rxPort == ICSS_EMAC_PORT_1)
+        if (rxPort == ICSS_EMAC_PORT_1)
         {
             timeStampOffsetAddr = RX_PDELAY_REQ_TIMESTAMP_OFFSET_P1;
         }
@@ -211,7 +211,7 @@ int32_t TimeSync_getRxTimestamp(TimeSync_ParamsHandle_t timeSyncParamsHandle,
 
     else /* (rxFrameType == DELAY_RESP_FRAME) */
     {
-        if(rxPort == ICSS_EMAC_PORT_1)
+        if (rxPort == ICSS_EMAC_PORT_1)
         {
             timeStampOffsetAddr = RX_PDELAY_RESP_TIMESTAMP_OFFSET_P1;
         }
@@ -238,12 +238,12 @@ int32_t TimeSync_getRxTimestampFromFrame(TimeSync_ParamsHandle_t timeSyncParamsH
 {
     uint64_t Nanoseconds64;
 
-    if(timeSyncParamsHandle->emacHandle == NULL)
+    if (timeSyncParamsHandle->emacHandle == NULL)
     {
         return ERROR_HANDLE_INVALID;
     }
 
-    if((rxPort != ICSS_EMAC_PORT_1)
+    if ((rxPort != ICSS_EMAC_PORT_1)
             && (rxPort != ICSS_EMAC_PORT_2))
     {
         return -2;    /* not a valid port number */
@@ -262,13 +262,13 @@ int8_t TimeSync_adjTimeSlowComp(TimeSync_ParamsHandle_t timeSyncParamsHandle,
     uint32_t compensation_period, iepCfgCmd;
     uintptr_t iepBaseAddress = (((PRUICSS_HwAttrs const *)(timeSyncParamsHandle->pruicssHandle->hwAttrs))->iep0RegBase);
 
-    if(timeSyncParamsHandle->emacHandle == NULL)
+    if (timeSyncParamsHandle->emacHandle == NULL)
     {
         return ERROR_HANDLE_INVALID;
     }
 
     /* Calculate the compensation period */
-    if(adjOffset == 0)
+    if (adjOffset == 0)
     {
         /* If the adjOffset is 0, then no compensation is required. In this case, compensation_period = 0 */
         compensation_period  = 0;
@@ -281,13 +281,13 @@ int8_t TimeSync_adjTimeSlowComp(TimeSync_ParamsHandle_t timeSyncParamsHandle,
                                           (double)(abs(adjOffset)));
     }
     
-    if(adjOffset == 0) /*Since time receiver is perfectly in sync with the time transmitter, no compensation required*/
+    if (adjOffset == 0) /*Since time receiver is perfectly in sync with the time transmitter, no compensation required*/
     {
         /* Get the command for the IEP Global CFG Register */
         iepCfgCmd = TimeSync_prepareIEPCfgCommand(timeSyncParamsHandle, PTP_NO_COMPENSATION_REQUIRED);
         HW_WR_REG32(iepBaseAddress + CSL_ICSS_PR1_IEP0_SLV_GLOBAL_CFG_REG, iepCfgCmd);
     }
-    else if(adjOffset < 0) /* Since the time transmitter is faster, time receiver needs to run faster */
+    else if (adjOffset < 0) /* Since the time transmitter is faster, time receiver needs to run faster */
     {
         /* Get the command for the IEP Global CFG Register */
         iepCfgCmd = TimeSync_prepareIEPCfgCommand(timeSyncParamsHandle, PTP_TIME_TRANSMITTER_FASTER);
@@ -312,7 +312,7 @@ int32_t TimeSync_setClockTime(TimeSync_ParamsHandle_t timeSyncParamsHandle)
     uint32_t iepBaseAddress;
     uint8_t *bytePtr;
 
-    if(timeSyncParamsHandle->emacHandle == NULL)
+    if (timeSyncParamsHandle->emacHandle == NULL)
     {
         return ERROR_HANDLE_INVALID;
     }
@@ -348,7 +348,7 @@ void TimeSync_updateDomainNumberInPTPFrames(TimeSync_ParamsHandle_t timeSyncHand
     uint8_t *bytePtr = NULL;
     uint8_t offset = timeSyncHandle->timeSyncConfig.frame_offset;
 
-    if(P2P == timeSyncHandle->timeSyncConfig.type)
+    if (P2P == timeSyncHandle->timeSyncConfig.type)
     {
         bytePtr = (uint8_t *)(timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[0] + PTP_DOMAIN_NUM_OFFSET - offset);
         *bytePtr = timeSyncHandle->timeSyncConfig.domainNumber[0];

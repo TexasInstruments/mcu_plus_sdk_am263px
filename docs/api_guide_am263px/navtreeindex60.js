@@ -1,7 +1,5 @@
 var NAVTREEINDEX60 =
 {
-"structADC__RepeaterConfig.html#a88ea7220762abddcfb8ffd750466d779":[18,7,0,0,2],
-"structADC__RepeaterConfig.html#ace022e8dfa30b6091980473e370a696e":[18,7,0,0,5],
 "structADC__RepeaterConfig.html#adebaca46948e3f9033fa81e901330394":[18,7,0,0,4],
 "structADC__observationalData.html":[18,7,38,9],
 "structADC__observationalData.html#a02acdc15b931aa95052df5eeb0336819":[18,7,38,9,2],
@@ -249,5 +247,7 @@ var NAVTREEINDEX60 =
 "structCANFD__OptionTLV.html":[18,7,2,13],
 "structCANFD__OptionTLV.html#a5fca1db5897ba2df41f476ea99d9e55f":[18,7,2,13,0],
 "structCANFD__OptionTLV.html#abfda5d1d7ad7be5b46e4f1baf6a77f24":[18,7,2,13,1],
-"structCANFD__OptionTLV.html#ae0e9bbb0ecfcd91a2b3fcaf8f6eefe9c":[18,7,2,13,2]
+"structCANFD__OptionTLV.html#ae0e9bbb0ecfcd91a2b3fcaf8f6eefe9c":[18,7,2,13,2],
+"structCMACArgs__t.html":[18,7,16,21],
+"structCMACArgs__t.html#a357c11d508a9bc72727f234ce8907549":[18,7,16,21,0]
 };

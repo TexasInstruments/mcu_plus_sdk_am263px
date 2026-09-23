@@ -1,7 +1,5 @@
 var NAVTREEINDEX59 =
 {
-"group__network.html#ga8ab8cf704992a6c0bf58008101ac92eb":[18,12,1,27],
-"group__network.html#ga906f6ed4a12f6bfd0fec5fc546e35f45":[18,12,1,18],
 "group__network.html#ga92a58f4c8a15cd38c6b6f4fcc978eed7":[18,12,1,16],
 "group__network.html#ga9b86c8ca27b643666c00fbdbb3382db0":[18,12,1,33],
 "group__network.html#ga9ca90e68d8cddc54703af02c301563e6":[18,12,1,23],
@@ -249,5 +247,7 @@ var NAVTREEINDEX59 =
 "structADC__RepeaterConfig.html":[18,7,0,0],
 "structADC__RepeaterConfig.html#a409593297e4c6d2bbcc7bd42f904b913":[18,7,0,0,0],
 "structADC__RepeaterConfig.html#a6d8da0cd46c62663c8888248b897b9fa":[18,7,0,0,1],
-"structADC__RepeaterConfig.html#a816e33451c4ea2dfd85eb4709f532557":[18,7,0,0,3]
+"structADC__RepeaterConfig.html#a816e33451c4ea2dfd85eb4709f532557":[18,7,0,0,3],
+"structADC__RepeaterConfig.html#a88ea7220762abddcfb8ffd750466d779":[18,7,0,0,2],
+"structADC__RepeaterConfig.html#ace022e8dfa30b6091980473e370a696e":[18,7,0,0,5]
 };

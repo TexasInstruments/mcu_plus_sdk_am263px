@@ -61,7 +61,7 @@ var group__SDL__ESM__MODULE =
     [ "SDL_ESM_hiInterruptHandler", "group__SDL__ESM__MODULE.html#gaecd02e2460de4f1e6d875294967ac568", null ],
     [ "SDL_ESM_loInterruptHandler", "group__SDL__ESM__MODULE.html#gae749f189c2e934d3bfe6f6e544cddb3e", null ],
     [ "SDL_ESM_configInterruptHandler", "group__SDL__ESM__MODULE.html#ga119c6bd3778b3631b96ccfa7ec75e95c", null ],
-    [ "SDL_ESM_getIntNumber", "group__SDL__ESM__MODULE.html#gaa26439961840d13971074ce883e9f595", null ],
+    [ "SDL_ESM_getIntNumber", "group__SDL__ESM__MODULE.html#gaa9cecf16a528a0f665f09c962d00714e", null ],
     [ "SDL_ESM_getWarmResetReason", "group__SDL__ESM__MODULE.html#ga1851f414917f84582ce450318670d95e", null ],
     [ "SDL_ESM_enableESMWarmReset", "group__SDL__ESM__MODULE.html#gaa1335a0a51eee5a4f8cfaca9348c72b1", null ]
 ];

@@ -84,7 +84,7 @@ void ICSS_EMAC_memInitToZero(uint32_t *addr, uint32_t size)
 
     if (addr != NULL)
     {
-        for(i = 0U; i < (size/4u); i++)
+        for (i = 0U; i < (size/4u); i++)
         {
             *(addr + i) = 0x00000000U;
         }
@@ -237,7 +237,7 @@ void ICSS_EMAC_calcPort0BufferOffset(ICSS_EMAC_Handle icssEmacHandle,
     ICSS_EMAC_FwDynamicMmap *pDynamicMMap = (&((ICSS_EMAC_Object *)icssEmacHandle->object)->fwDynamicMMap);
 
     bufferOffsets[ICSS_EMAC_QUEUE1] = pDynamicMMap->p0Q1BufferOffset;
-    if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
+    if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
     {
         numHostQueues = pDynamicMMap->numQueues * ICSS_EMAC_MAX_PORTS_PER_INSTANCE;
     }
@@ -325,7 +325,7 @@ void ICSS_EMAC_calcPort1BufferOffset(ICSS_EMAC_Handle icssEmacHandle,
 
 #ifdef BUILD_HSR_PRP_MII
     bdOffsets[ICSS_EMAC_QUEUE16] = p0Q16BdOffset;/* To avoid "variable unused" warning in case of "treat warning as an error" build*/
-    bdOffsets[ICSS_EMAC_QUEUE1] =p0Q3BdOffset + pDynamicMMap->rxHostQueueSize[ICSS_EMAC_QUEUE16] * ICSS_EMAC_DEFAULT_FW_BD_SIZE;
+    bdOffsets[ICSS_EMAC_QUEUE1] = p0Q3BdOffset + pDynamicMMap->rxHostQueueSize[ICSS_EMAC_QUEUE16] * ICSS_EMAC_DEFAULT_FW_BD_SIZE;
 #else
     bdOffsets[ICSS_EMAC_QUEUE1] = p0Q16BdOffset + pDynamicMMap->rxHostQueueSize[ICSS_EMAC_QUEUE16] * ICSS_EMAC_DEFAULT_FW_BD_SIZE;
 #endif
@@ -472,12 +472,12 @@ void ICSS_EMAC_clearStatistics(ICSS_EMAC_Handle icssEmacHandle)
     ICSS_EMAC_PortParams *sPort;
 
     uint32_t i, j;
-    for (j=0U; j<3U; j++)
+    for (j = 0U; j<3U; j++)
     {
         sPort = &(((ICSS_EMAC_Object *)icssEmacHandle->object)->switchPort[j]);
         sPort->errCount = 0U;
         sPort->rawCount = 0U;
-        for (i=0U; i<ICSS_EMAC_NUMQUEUES; i++)
+        for (i = 0U; i<ICSS_EMAC_NUMQUEUES; i++)
         {
             sPort->queue[i].qStat.errCount = 0U;
             sPort->queue[i].qStat.rawCount = 0U;
@@ -497,7 +497,7 @@ int32_t ICSS_EMAC_portInit(ICSS_EMAC_Handle icssEmacHandle)
 
     /* Clear counters */
     ICSS_EMAC_clearStatistics(icssEmacHandle);
-    if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
+    if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
     {
         numHostQueues = pDynamicMMap->numQueues * ICSS_EMAC_MAX_PORTS_PER_INSTANCE;
     }
@@ -512,9 +512,9 @@ int32_t ICSS_EMAC_portInit(ICSS_EMAC_Handle icssEmacHandle)
     {
         sPort->queue[qCount].buffer_offset      = bufferOffsets[qCount];
         sPort->queue[qCount].buffer_desc_offset = bdOffsets[qCount];
-        if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
+        if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
         {
-            if(qCount < (numHostQueues/ICSS_EMAC_MAX_PORTS_PER_INSTANCE))
+            if (qCount < (numHostQueues/ICSS_EMAC_MAX_PORTS_PER_INSTANCE))
             {
                 sPort->queue[qCount].queue_desc_offset  = pStaticMMap->p0QueueDescOffset + (qCount * ICSS_EMAC_DEFAULT_FW_QD_SIZE);
             }
@@ -577,7 +577,7 @@ uint8_t ICSS_EMAC_switchConfig(ICSS_EMAC_Handle icssEmacHandle)
     uint8_t                 *pTemp8;
     int32_t                 i;
     ICSS_EMAC_IoctlCmd      ioctlParams;
-    uint8_t                 portVal=0;
+    uint8_t                 portVal = 0;
 
     uint8_t                 *charPtr1;
     uint8_t                 *charPtr2;
@@ -822,7 +822,7 @@ uint8_t ICSS_EMAC_switchConfig(ICSS_EMAC_Handle icssEmacHandle)
     *pTemp16 = (uint16_t)((pDynamicMMap->collisionQueueSize * ICSS_EMAC_DEFAULT_FW_BD_SIZE) + bdOffsetsPort2[ICSS_EMAC_COLQUEUE] - ICSS_EMAC_DEFAULT_FW_BD_SIZE);
     pTemp16++;
 
-    if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
+    if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
     {
         /********************** */
         /* Rx Context Initialize data for Host Port from P2, (Q1,Q2,Q3,Q4,Qn) */
@@ -901,7 +901,7 @@ uint8_t ICSS_EMAC_switchConfig(ICSS_EMAC_Handle icssEmacHandle)
     temp_addr = (dataRAM1BaseAddr + pStaticMMap->interfaceMacAddrOffset);
     pTemp8 = (uint8_t *)(temp_addr);
 
-    for (i=0; i<6; i++)
+    for (i = 0; i < 6; i++)
     {
         ifMAC[i] = (((ICSS_EMAC_Object *)icssEmacHandle->object)->macId[i]);
         *charPtr1 = ifMAC[i];
@@ -960,7 +960,7 @@ uint8_t ICSS_EMAC_switchConfig(ICSS_EMAC_Handle icssEmacHandle)
         pTemp32++;
     }
 
-    if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
+    if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
     {
         for (qCount = 4U; qCount < (pDynamicMMap->numQueues)*ICSS_EMAC_MAX_PORTS_PER_INSTANCE; qCount++)
         {
@@ -1052,9 +1052,9 @@ static void ICSS_EMAC_pruicssMiiRtCfgInit(ICSS_EMAC_Handle icssEmacHandle)
         CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_TXCFG0_TX_32_MODE_EN0, 1);
 
     /* Need this change for tx pin swap in mii mode for AM64x, AM243x and AM263x only*/
-    if( (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_MII_MODE) && (((((ICSS_EMAC_Object *)icssEmacHandle->object)->icssRevision) == 0x103) || ((((ICSS_EMAC_Object *)icssEmacHandle->object)->icssRevision) == 0x203)) )
+    if ( (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_MII_MODE) && (((((ICSS_EMAC_Object *)icssEmacHandle->object)->icssRevision) == 0x103) || ((((ICSS_EMAC_Object *)icssEmacHandle->object)->icssRevision) == 0x203)) )
     {
-        if(ICSS_EMAC_MODE_SWITCH == (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs))->portMask)
+        if (ICSS_EMAC_MODE_SWITCH == (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs))->portMask)
         { /*Switch mode*/
             HW_WR_FIELD32((pruicssHwAttrs->miiRtCfgRegBase) + CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_TXCFG0,
                     CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_TXCFG0_TX_MUX_SEL0, 0x0);
@@ -1067,7 +1067,7 @@ static void ICSS_EMAC_pruicssMiiRtCfgInit(ICSS_EMAC_Handle icssEmacHandle)
     }
     else
     {
-        if(ICSS_EMAC_MODE_SWITCH == (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs))->portMask)
+        if (ICSS_EMAC_MODE_SWITCH == (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs))->portMask)
         { /*Switch mode*/
             HW_WR_FIELD32((pruicssHwAttrs->miiRtCfgRegBase) + CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_TXCFG0,
                 CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_TXCFG0_TX_MUX_SEL0, 0x1);
@@ -1116,9 +1116,9 @@ static void ICSS_EMAC_pruicssMiiRtCfgInit(ICSS_EMAC_Handle icssEmacHandle)
 
 
     /* Need this change for tx pin swap in mii mode for AM64x, AM243x and AM263x only*/
-    if( (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_MII_MODE) && (((((ICSS_EMAC_Object *)icssEmacHandle->object)->icssRevision) == 0x103) || ((((ICSS_EMAC_Object *)icssEmacHandle->object)->icssRevision) == 0x203)) )
+    if ( (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_MII_MODE) && (((((ICSS_EMAC_Object *)icssEmacHandle->object)->icssRevision) == 0x103) || ((((ICSS_EMAC_Object *)icssEmacHandle->object)->icssRevision) == 0x203)) )
     {
-        if(ICSS_EMAC_MODE_SWITCH == (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs))->portMask)
+        if (ICSS_EMAC_MODE_SWITCH == (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs))->portMask)
         { /*Switch mode*/
             HW_WR_FIELD32((pruicssHwAttrs->miiRtCfgRegBase) + CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_TXCFG1,
                     CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_TXCFG1_TX_MUX_SEL1, 0x1);
@@ -1131,7 +1131,7 @@ static void ICSS_EMAC_pruicssMiiRtCfgInit(ICSS_EMAC_Handle icssEmacHandle)
     }
     else
     {
-        if(ICSS_EMAC_MODE_SWITCH == (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs))->portMask)
+        if (ICSS_EMAC_MODE_SWITCH == (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs))->portMask)
         { /*Switch mode*/
             HW_WR_FIELD32((pruicssHwAttrs->miiRtCfgRegBase) + CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_TXCFG1,
                     CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_TXCFG1_TX_MUX_SEL1, 0x0);
@@ -1146,7 +1146,7 @@ static void ICSS_EMAC_pruicssMiiRtCfgInit(ICSS_EMAC_Handle icssEmacHandle)
     HW_WR_FIELD32((pruicssHwAttrs->miiRtCfgRegBase) + CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_TXCFG1,
             CSL_ICSS_PR1_MII_RT_PR1_MII_RT_CFG_TXCFG1_TX_START_DELAY1, 0x0);
 
-    if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_MII_MODE)
+    if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_MII_MODE)
     {
         PRUICSS_setIcssCfgTxFifo(pruicssHandle, PRUICSS_TX_L1_FIFO, 0);
         PRUICSS_setIcssCfgTxFifo(pruicssHandle, PRUICSS_TX_L2_FIFO, 1);
@@ -1154,7 +1154,7 @@ static void ICSS_EMAC_pruicssMiiRtCfgInit(ICSS_EMAC_Handle icssEmacHandle)
         PRUICSS_setIcssCfgMiiMode(pruicssHandle, 0, PRUICSS_ICSS_CFG_MII_MODE_MII);
         PRUICSS_setIcssCfgMiiMode(pruicssHandle, 1, PRUICSS_ICSS_CFG_MII_MODE_MII);
     }
-    else if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_RGMII_MODE)
+    else if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_RGMII_MODE)
     {
         PRUICSS_setIcssCfgTxFifo(pruicssHandle, PRUICSS_TX_L1_FIFO, 1);
         PRUICSS_setIcssCfgTxFifo(pruicssHandle, PRUICSS_TX_L2_FIFO, 1);
@@ -1433,12 +1433,12 @@ void ICSS_EMAC_portMemInit(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
     PRUICSS_Handle          pruicssHandle = ((ICSS_EMAC_Object *)icssEmacHandle->object)->pruicssHandle;
     PRUICSS_HwAttrs const   *pruicssHwAttrs = (PRUICSS_HwAttrs const *)(pruicssHandle->hwAttrs);
 
-    if((uint8_t)ICSS_EMAC_PORT_1 == portNum)
+    if ((uint8_t)ICSS_EMAC_PORT_1 == portNum)
     {
         dataRamSize = pruicssHwAttrs->pru0DramSize;
         pTemp = (uint32_t *)pruicssHwAttrs->pru0DramBase;
     }
-    if((uint8_t)ICSS_EMAC_PORT_2 == portNum)
+    if ((uint8_t)ICSS_EMAC_PORT_2 == portNum)
      {
         dataRamSize = pruicssHwAttrs->pru1DramSize;
         pTemp = (uint32_t *)pruicssHwAttrs->pru1DramBase;
@@ -1453,7 +1453,7 @@ uint8_t ICSS_EMAC_macConfig(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
     ICSS_EMAC_IoctlCmd      ioctlParams;
     uint8_t                 portVal = 0;
     uint16_t                *pTemp16;
-    uint8_t                 *pTemp8=NULL;
+    uint8_t                 *pTemp8 = NULL;
     uint8_t                 i;
     uint32_t                bufferOffsets[ICSS_EMAC_NUMQUEUES];
     uint32_t                bdOffsets[ICSS_EMAC_NUMQUEUES];
@@ -1468,29 +1468,29 @@ uint8_t ICSS_EMAC_macConfig(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
 
     uint32_t temp_addr = 0U;
 
-    if((uint8_t)ICSS_EMAC_PORT_1 == portNum)
+    if ((uint8_t)ICSS_EMAC_PORT_1 == portNum)
     {
         temp_addr = (dataRAM0BaseAddr + pStaticMMap->portMacAddr);
         pTemp8 = (uint8_t *)(temp_addr);
     }
 
-    if((uint8_t)ICSS_EMAC_PORT_2 == portNum)
+    if ((uint8_t)ICSS_EMAC_PORT_2 == portNum)
     {
         temp_addr = (dataRAM1BaseAddr + pStaticMMap->portMacAddr);
         pTemp8 = (uint8_t *)(temp_addr);
     }
 
-    for (i=0; i<6U; i++)
+    for (i = 0; i < 6U; i++)
     {
         ifMAC[i] = (((ICSS_EMAC_Object *)icssEmacHandle->object)->macId[i]);
-        if(pTemp8 != NULL)
+        if (pTemp8 != NULL)
         {
             *pTemp8 = ifMAC[i];
             pTemp8++;
         }
     }
 
-    if((uint8_t)ICSS_EMAC_PORT_1 == portNum)
+    if ((uint8_t)ICSS_EMAC_PORT_1 == portNum)
     {
         /********************** */
         /* Tx Context Initialize data. Port 1, (Q1,Q2,Q3,Q4 Qn) */
@@ -1532,7 +1532,7 @@ uint8_t ICSS_EMAC_macConfig(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
 
     }
 
-    if((uint8_t)ICSS_EMAC_PORT_2 == portNum)
+    if ((uint8_t)ICSS_EMAC_PORT_2 == portNum)
     {
         /********************** */
         /* Tx Context Initialize data. Port 2, (Q1,Q2,Q3,Q4,Qn) */
@@ -1575,7 +1575,7 @@ uint8_t ICSS_EMAC_macConfig(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
 
     qCount = 0U;
 
-    if(((uint8_t)(ICSS_EMAC_PORT_1)) == portNum)
+    if (((uint8_t)(ICSS_EMAC_PORT_1)) == portNum)
     {
         /* Initialize port 1*/
         sPort = &(((ICSS_EMAC_Object *)icssEmacHandle->object)->switchPort[ICSS_EMAC_PORT_1]);
@@ -1589,7 +1589,7 @@ uint8_t ICSS_EMAC_macConfig(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
         }
     }
 
-    if(((uint8_t)(ICSS_EMAC_PORT_2)) == portNum)
+    if (((uint8_t)(ICSS_EMAC_PORT_2)) == portNum)
     {
         /* Initialize port 2*/
         sPort = &(((ICSS_EMAC_Object *)icssEmacHandle->object)->switchPort[ICSS_EMAC_PORT_2]);
@@ -1615,11 +1615,11 @@ int8_t ICSS_EMAC_macInit(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
     uint32_t                sharedDataRamBase;
     uint32_t                l3OcmcBase;
 
-    if((uint8_t)ICSS_EMAC_PORT_1 == portNum)
+    if ((uint8_t)ICSS_EMAC_PORT_1 == portNum)
     {
         PRUICSS_disableCore(pruicssHandle, PRUICSS_PRU0);
     }
-    else if((uint8_t)ICSS_EMAC_PORT_2 == portNum)
+    else if ((uint8_t)ICSS_EMAC_PORT_2 == portNum)
     {
         PRUICSS_disableCore(pruicssHandle, PRUICSS_PRU1);
     }
@@ -1631,7 +1631,7 @@ int8_t ICSS_EMAC_macInit(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
     sharedDataRamBase = pruicssHwAttrs->sharedDramBase;
     l3OcmcBase = ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->l3OcmcBaseAddr;
 
-    if((uint8_t)ICSS_EMAC_PORT_1 == portNum)
+    if ((uint8_t)ICSS_EMAC_PORT_1 == portNum)
     {
         temp_addr = (pruicssHwAttrs->pru0CtrlRegBase + CSL_ICSS_PR1_PDSP0_IRAM_CONSTANT_TABLE_PROG_PTR_0);
         /* Set in constant table C28 to ICSS Shared memory 0x10000 */
@@ -1641,7 +1641,7 @@ int8_t ICSS_EMAC_macInit(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
         HW_WR_REG32(temp_addr, (l3OcmcBase & ICSS_EMAC_OCMC_CTPPR_MASK) >> 8U);
     }
 
-    if((uint8_t)ICSS_EMAC_PORT_2 == portNum)
+    if ((uint8_t)ICSS_EMAC_PORT_2 == portNum)
     {
         temp_addr = (pruicssHwAttrs->pru1CtrlRegBase + CSL_ICSS_PR1_PDSP1_IRAM_CONSTANT_TABLE_PROG_PTR_0);
         HW_WR_REG32(temp_addr, (sharedDataRamBase & 0x000FFFFFU) >> 8U);
@@ -1687,15 +1687,18 @@ void ICSS_EMAC_initLinkState(ICSS_EMAC_Handle   icssEmacHandle,
     PRUICSS_Handle          pruicssHandle = ((ICSS_EMAC_Object *)icssEmacHandle->object)->pruicssHandle;
     PRUICSS_HwAttrs const   *pruicssHwAttrs = (PRUICSS_HwAttrs const *)(pruicssHandle->hwAttrs);
 
+    /* Check for the interface id upper bound */ 
+    DebugP_assert(interfaceId < ICSS_EMAC_MAX_PORTS_PER_INSTANCE);
+    
     pStaticMMap = &((ICSS_EMAC_Object *)icssEmacHandle->object)->fwStaticMMap;
 
     linkStatus = 0;
     retVal = MDIO_phyLinkStatus(pruicssHwAttrs->miiMdioRegBase,
                                 (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs))->phyAddr[interfaceId]);
-    if(retVal == SystemP_SUCCESS)
+    if (retVal == SystemP_SUCCESS)
         linkStatus = 1;
 
-    if(linkStatus)
+    if (linkStatus)
     {
         portVal = ICSS_EMAC_IOCTL_PORT_CTRL_ENABLE;
         ioctlParams.ioctlVal = &portVal;
@@ -1713,18 +1716,21 @@ void ICSS_EMAC_initLinkState(ICSS_EMAC_Handle   icssEmacHandle,
         else
         {
             /* ICSS_EMAC_PORT_1 of switch */
-            if (interfaceId ==0U)
+            if (interfaceId == 0U)
             {
                 ICSS_EMAC_ioctl(icssEmacHandle, ICSS_EMAC_IOCTL_PORT_CTRL, ICSS_EMAC_PORT_1, &ioctlParams);
                 temp_addr = (pruicssHwAttrs->pru0DramBase + pStaticMMap->portStatusOffset);
             }
             /* ICSS_EMAC_PORT_2 of switch */
-            else
+            else if (interfaceId == 1U)
             {
                 ICSS_EMAC_ioctl(icssEmacHandle, ICSS_EMAC_IOCTL_PORT_CTRL, ICSS_EMAC_PORT_2, &ioctlParams);
                 temp_addr = (pruicssHwAttrs->pru1DramBase + pStaticMMap->portStatusOffset);
             }
         }
+
+        /* check the physical address to ensure that the temp_addr has been populated correctly */
+        DebugP_assert(temp_addr != 0U);
         portStatusPtr = (uint8_t*)(temp_addr);
         *(portStatusPtr) = ICSS_EMAC_PORT_LINK_MASK;
 
@@ -1756,12 +1762,12 @@ int32_t ICSS_EMAC_osInit(ICSS_EMAC_Handle icssEmacHandle)
 
     retValSemLink = SemaphoreP_constructBinary(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->linkSemaphoreObject), 0);
 
-    if(SystemP_SUCCESS == retValSemLink)
+    if (SystemP_SUCCESS == retValSemLink)
     {
         retValSemRx = SemaphoreP_constructBinary(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->rxSemaphoreObject), 0);
     }
 
-    if(SystemP_SUCCESS == retValSemRx)
+    if (SystemP_SUCCESS == retValSemRx)
     {
         HwiP_Params_init(&hwiParams);
         hwiParams.intNum = ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->linkIntNum;
@@ -1772,7 +1778,7 @@ int32_t ICSS_EMAC_osInit(ICSS_EMAC_Handle icssEmacHandle)
         retValHwiLink = HwiP_construct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->linkInterruptObject), &hwiParams);
     }
 
-    if(SystemP_SUCCESS == retValHwiLink)
+    if (SystemP_SUCCESS == retValHwiLink)
     {
         HwiP_Params_init(&hwiParams);
         hwiParams.intNum = ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->rxIntNum;
@@ -1783,7 +1789,7 @@ int32_t ICSS_EMAC_osInit(ICSS_EMAC_Handle icssEmacHandle)
         retValHwiRx = HwiP_construct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->rxInterruptObject), &hwiParams);
     }
 
-    if(SystemP_SUCCESS == retValHwiRx)
+    if (SystemP_SUCCESS == retValHwiRx)
     {
         TaskP_Params_init(&taskParams);
         taskParams.name = "LinkTask";
@@ -1795,7 +1801,7 @@ int32_t ICSS_EMAC_osInit(ICSS_EMAC_Handle icssEmacHandle)
         retValTaskLink = TaskP_construct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->linkTaskObject), &taskParams);
     }
 
-    if(SystemP_SUCCESS == retValTaskLink)
+    if (SystemP_SUCCESS == retValTaskLink)
     {
         TaskP_Params_init(&taskParams);
         taskParams.name = "RxTask";
@@ -1809,11 +1815,11 @@ int32_t ICSS_EMAC_osInit(ICSS_EMAC_Handle icssEmacHandle)
 
     retVal = retValTaskRx;
 
-    if((1 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->txInterruptEnable) && (SystemP_SUCCESS == retVal))
+    if ((1 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->txInterruptEnable) && (SystemP_SUCCESS == retVal))
     {
         retValSemTx = SemaphoreP_constructBinary(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->txSemaphoreObject), 0);
 
-        if(SystemP_SUCCESS == retValSemTx)
+        if (SystemP_SUCCESS == retValSemTx)
         {
             HwiP_Params_init(&hwiParams);
             hwiParams.intNum = ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->txIntNum;
@@ -1824,7 +1830,7 @@ int32_t ICSS_EMAC_osInit(ICSS_EMAC_Handle icssEmacHandle)
             retValHwiTx = HwiP_construct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->txInterruptObject), &hwiParams);
         }
 
-        if(SystemP_SUCCESS == retValHwiTx)
+        if (SystemP_SUCCESS == retValHwiTx)
         {
             TaskP_Params_init(&taskParams);
             taskParams.name = "TxTask";
@@ -1839,49 +1845,49 @@ int32_t ICSS_EMAC_osInit(ICSS_EMAC_Handle icssEmacHandle)
         retVal = retValTaskTx;
     }
 
-    if(SystemP_FAILURE == retVal)
+    if (SystemP_FAILURE == retVal)
     {
-        if(SystemP_SUCCESS == retValSemLink)
+        if (SystemP_SUCCESS == retValSemLink)
         {
             SemaphoreP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->linkSemaphoreObject));
         }
 
-        if(SystemP_SUCCESS == retValSemRx)
+        if (SystemP_SUCCESS == retValSemRx)
         {
             SemaphoreP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->rxSemaphoreObject));
         }
 
-        if(SystemP_SUCCESS == retValSemTx)
+        if (SystemP_SUCCESS == retValSemTx)
         {
             SemaphoreP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->txSemaphoreObject));
         }
 
-        if(SystemP_SUCCESS == retValHwiLink)
+        if (SystemP_SUCCESS == retValHwiLink)
         {
             HwiP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->linkInterruptObject));
         }
 
-        if(SystemP_SUCCESS == retValHwiRx)
+        if (SystemP_SUCCESS == retValHwiRx)
         {
             HwiP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->rxInterruptObject));
         }
 
-        if(SystemP_SUCCESS == retValHwiTx)
+        if (SystemP_SUCCESS == retValHwiTx)
         {
             HwiP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->txInterruptObject));
         }
 
-        if(SystemP_SUCCESS == retValTaskLink)
+        if (SystemP_SUCCESS == retValTaskLink)
         {
             TaskP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->linkTaskObject));
         }
 
-        if(SystemP_SUCCESS == retValTaskRx)
+        if (SystemP_SUCCESS == retValTaskRx)
         {
             TaskP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->rxTaskObject));
         }
 
-        if(SystemP_SUCCESS == retValTaskTx)
+        if (SystemP_SUCCESS == retValTaskTx)
         {
             TaskP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->txTaskObject));
         }
@@ -1901,14 +1907,14 @@ void ICSS_EMAC_mdioIntrDisableSwitch(uint8_t portNum,
     uint32_t                phyAddr = (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs))->phyAddr[0];
 
     /* TODO: Add MDIO API for this*/
-    phySel=phyAddr;
+    phySel = phyAddr;
     phySel &=  ((uint8_t)~(0x40U));
     HW_WR_REG32(baseAddr,phySel);
 
     baseAddr = pruicssHwAttrs->miiMdioRegBase + CSL_MDIO_USER_PHY_SEL_REG(portNum);
     phyAddr = (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs))->phyAddr[1];
 
-    phySel=phyAddr;
+    phySel = phyAddr;
     phySel &=  ((uint8_t)~(0x40U));
     HW_WR_REG32(baseAddr,phySel);
 }
@@ -1923,7 +1929,7 @@ void ICSS_EMAC_mdioIntrDisable(uint8_t portNum,
     uint32_t                phyAddr = (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs))->phyAddr[0];
 
     /* TODO: Add MDIO API for this*/
-    phySel=phyAddr;
+    phySel = phyAddr;
     phySel &=  ((uint8_t)~(0x40U));
     HW_WR_REG32(baseAddr,phySel);
 }
@@ -1933,19 +1939,19 @@ int32_t ICSS_EMAC_osDeinit(ICSS_EMAC_Handle icssEmacHandle)
 {
     SemaphoreP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->linkSemaphoreObject));
     SemaphoreP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->rxSemaphoreObject));
-    if(1 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->txInterruptEnable)
+    if (1 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->txInterruptEnable)
     {
         SemaphoreP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->txSemaphoreObject));
     }
     HwiP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->linkInterruptObject));
     HwiP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->rxInterruptObject));
-    if(1 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->txInterruptEnable)
+    if (1 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->txInterruptEnable)
     {
         HwiP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->txInterruptObject));
     }
     TaskP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->linkTaskObject));
     TaskP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->rxTaskObject));
-    if(1 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->txInterruptEnable)
+    if (1 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->txInterruptEnable)
     {
         TaskP_destruct(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->txTaskObject));
     }
@@ -1967,7 +1973,7 @@ int32_t ICSS_EMAC_validateFeatureSet(ICSS_EMAC_Handle icssEmacHandle,
     PRUICSS_HwAttrs const   *pruicssHwAttrs = (PRUICSS_HwAttrs const *)(pruicssHandle->hwAttrs);
     ICSS_EMAC_FwStaticMmap  *pStaticMMap = (&((ICSS_EMAC_Object *)icssEmacHandle->object)->fwStaticMMap);
     /* ICSS_EMAC_PORT_0 is switch mode, need to validate for both ports */
-    if(ICSS_EMAC_PORT_0 == portNo)
+    if (ICSS_EMAC_PORT_0 == portNo)
     {
         pruDataMem = pruicssHwAttrs->pru0DramBase;
 
@@ -1977,12 +1983,12 @@ int32_t ICSS_EMAC_validateFeatureSet(ICSS_EMAC_Handle icssEmacHandle,
         /* Only check the feature set field if fw release settings are non-zero implying they are valid*/
         if ((icssFwRelease1 != 0U) && (icssFwRelease2 != 0U))
         {
-            if (0U==(icssFwFeatureSet & featureCtrl))
+            if (0U == (icssFwFeatureSet & featureCtrl))
             {
                 ret = SystemP_FAILURE;
             }
         }
-        if(ret == SystemP_SUCCESS)
+        if (ret == SystemP_SUCCESS)
         {
             icssFwRelease1 = 0U;
             icssFwRelease2 = 0U;
@@ -1994,14 +2000,14 @@ int32_t ICSS_EMAC_validateFeatureSet(ICSS_EMAC_Handle icssEmacHandle,
             /* Only check the feature set field if fw release settings are non-zero implying they are valid*/
             if ((icssFwRelease1 != 0U) && (icssFwRelease2 != 0U))
             {
-                if (0U==(icssFwFeatureSet & featureCtrl))
+                if (0U == (icssFwFeatureSet & featureCtrl))
                 {
                     ret = SystemP_FAILURE;
                 }
             }
         }
     }
-    else if(ICSS_EMAC_PORT_1 == portNo)
+    else if (ICSS_EMAC_PORT_1 == portNo)
     {
         pruDataMem = pruicssHwAttrs->pru0DramBase;
         icssFwRelease1 = HW_RD_REG32(pruDataMem + pStaticMMap->versionOffset);
@@ -2010,13 +2016,13 @@ int32_t ICSS_EMAC_validateFeatureSet(ICSS_EMAC_Handle icssEmacHandle,
         /* Only check the feature set field if fw release settings are non-zero implying they are valid*/
         if ((icssFwRelease1 != 0U) && (icssFwRelease2 != 0U))
         {
-            if (0U==(icssFwFeatureSet & featureCtrl))
+            if (0U == (icssFwFeatureSet & featureCtrl))
             {
                 ret = SystemP_FAILURE;
             }
         }
     }
-    else if(ICSS_EMAC_PORT_2 == portNo)    /*    ICSS_EMAC_PORT_2    */
+    else if (ICSS_EMAC_PORT_2 == portNo)    /*    ICSS_EMAC_PORT_2    */
     {
         pruDataMem1 = pruicssHwAttrs->pru1DramBase;
         icssFwRelease1 = HW_RD_REG32(pruDataMem1 +pStaticMMap->versionOffset);
@@ -2025,7 +2031,7 @@ int32_t ICSS_EMAC_validateFeatureSet(ICSS_EMAC_Handle icssEmacHandle,
         /* Only check the feature set field if fw release settings are non-zero implying they are valid*/
         if ((icssFwRelease1 != 0U) && (icssFwRelease2 != 0U))
         {
-            if (0U==(icssFwFeatureSet & featureCtrl))
+            if (0U == (icssFwFeatureSet & featureCtrl))
             {
                 ret = SystemP_FAILURE;
             }
@@ -2050,7 +2056,7 @@ int32_t ICSS_EMAC_promiscuousModeInit(uint8_t portNum, ICSS_EMAC_Handle icssEmac
 
     retVal = ICSS_EMAC_validateFeatureSet(icssEmacHandle, portNum, ICSS_EMAC_FW_PROMISCOUS_MODE_FEATURE_CTRL);
 
-    if(SystemP_SUCCESS == retVal)
+    if (SystemP_SUCCESS == retVal)
     {
         temp_addr = (pruicssHwAttrs->sharedDramBase + pStaticMMap->promiscuousModeOffset);
         pTemp32 = (uint32_t *)(temp_addr);
@@ -2071,7 +2077,7 @@ int32_t ICSS_EMAC_promiscuousModeDeinit(uint8_t portNum, ICSS_EMAC_Handle icssEm
 
     retVal = ICSS_EMAC_validateFeatureSet(icssEmacHandle, portNum, ICSS_EMAC_FW_PROMISCOUS_MODE_FEATURE_CTRL);
 
-    if(SystemP_SUCCESS == retVal)
+    if (SystemP_SUCCESS == retVal)
     {
         temp_addr = (pruicssHwAttrs->sharedDramBase + pStaticMMap->promiscuousModeOffset);
         pTemp32 = (uint32_t *)(temp_addr);
@@ -2111,7 +2117,7 @@ static void ICSS_EMAC_multicastFilterUpdateMacId(ICSS_EMAC_FwMulticastFilterPara
     uint8_t hashVal, i;
 
     /* compute the hashVal by XORing all 6 bytes of multicastAddr*/
-    for(i = 0, hashVal = 0; i < pMulticastFilterParams->maskSizeBytes; i++)
+    for (i = 0, hashVal = 0; i < pMulticastFilterParams->maskSizeBytes; i++)
     {
         multicastAddrTemp[i] = multicastFilterMask[i] & multicastAddr[i];
         hashVal = hashVal ^ multicastAddrTemp[i];
@@ -2119,7 +2125,7 @@ static void ICSS_EMAC_multicastFilterUpdateMacId(ICSS_EMAC_FwMulticastFilterPara
 
     multicastTablePtr = multicastTableBaseAddr + hashVal;
 
-    if(command == ICSS_EMAC_IOCTL_MULTICAST_FILTER_CTRL_ADD_MACID)
+    if (command == ICSS_EMAC_IOCTL_MULTICAST_FILTER_CTRL_ADD_MACID)
     {
         *multicastTablePtr = pMulticastFilterParams->hostRcvAllowedValue;
     }
@@ -2144,7 +2150,7 @@ int32_t ICSS_EMAC_multicastFilterConfig(ICSS_EMAC_FwMulticastFilterParams *pMult
 
     memset((void *)defaultMask, pMulticastFilterParams->maskInitVal, pMulticastFilterParams->maskSizeBytes);
 
-    switch(ioctlCmd)
+    switch (ioctlCmd)
     {
         case ICSS_EMAC_IOCTL_MULTICAST_FILTER_CTRL_ENABLE:
             ICSS_EMAC_multicastFilterFeatureCtrl(pMulticastFilterParams, dataRamAddr, pMulticastFilterParams->ctrlEnabledValue);
@@ -2184,7 +2190,7 @@ static void ICSS_EMAC_vlanFilterFeatureCtrl(ICSS_EMAC_FwVlanFilterParams  *pVlan
     uint8_t ctrlVal = *vlanFilterCtrlByte;
     uint8_t mask;
 
-    switch(ioctlCmd)
+    switch (ioctlCmd)
     {
         case ICSS_EMAC_IOCTL_VLAN_FILTER_CTRL_ENABLE_CMD:
              mask     = (uint8_t)( 1 << pVlanFilterParams->ctrlEnableBit);
@@ -2262,7 +2268,7 @@ int32_t ICSS_EMAC_vlanFilterConfig(ICSS_EMAC_FwVlanFilterParams   *pVlanFilterPa
 {
     int32_t retVal = SystemP_SUCCESS;
 
-    switch(ioctlCmd)
+    switch (ioctlCmd)
     {
         case ICSS_EMAC_IOCTL_VLAN_FILTER_CTRL_ENABLE_CMD:
         case ICSS_EMAC_IOCTL_VLAN_FILTER_CTRL_DISABLE_CMD:
@@ -2295,9 +2301,9 @@ int32_t ICSS_EMAC_rgmiiInbandConfig(ICSS_EMAC_Handle icssEmacHandle,
     PRUICSS_Handle          pruicssHandle = ((ICSS_EMAC_Object *)icssEmacHandle->object)->pruicssHandle;
     PRUICSS_HwAttrs const   *pruicssHwAttrs = (PRUICSS_HwAttrs const *)(pruicssHandle->hwAttrs);
 
-    if(inbandEnable == ICSS_RGMII_INBAND_ENABLE)
+    if (inbandEnable == ICSS_RGMII_INBAND_ENABLE)
     {
-        if((uint8_t)ICSS_EMAC_PORT_1 == portNum)
+        if ((uint8_t)ICSS_EMAC_PORT_1 == portNum)
         {    
             /* Enable RGMII Inband */
             HW_WR_FIELD32((pruicssHwAttrs->miiGRtCfgRegBase) + CSL_ICSS_G_PR1_MII_RT_PR1_MII_RT_G_CFG_REGS_G_RGMII_CFG,
@@ -2306,7 +2312,7 @@ int32_t ICSS_EMAC_rgmiiInbandConfig(ICSS_EMAC_Handle icssEmacHandle,
             /* Read back the register value to ensure the configuration has taken effect */
             tempVal = HW_RD_REG32(pruicssHwAttrs->miiGRtCfgRegBase + CSL_ICSS_G_PR1_MII_RT_PR1_MII_RT_G_CFG_REGS_G_RGMII_CFG);
             tempVal = (tempVal & CSL_ICSS_G_PR1_MII_RT_PR1_MII_RT_G_CFG_REGS_G_RGMII_CFG_RGMII0_INBAND_MASK);
-            if(tempVal != CSL_ICSS_G_PR1_MII_RT_PR1_MII_RT_G_CFG_REGS_G_RGMII_CFG_RGMII0_INBAND_MASK)
+            if (tempVal != CSL_ICSS_G_PR1_MII_RT_PR1_MII_RT_G_CFG_REGS_G_RGMII_CFG_RGMII0_INBAND_MASK)
             {
                 retVal = SystemP_FAILURE; 
             }
@@ -2320,7 +2326,7 @@ int32_t ICSS_EMAC_rgmiiInbandConfig(ICSS_EMAC_Handle icssEmacHandle,
             /* Read back the register value to ensure the configuration has taken effect */
             tempVal = HW_RD_REG32(pruicssHwAttrs->miiGRtCfgRegBase + CSL_ICSS_G_PR1_MII_RT_PR1_MII_RT_G_CFG_REGS_G_RGMII_CFG);
             tempVal = (tempVal & CSL_ICSS_G_PR1_MII_RT_PR1_MII_RT_G_CFG_REGS_G_RGMII_CFG_RGMII1_INBAND_MASK);
-            if(tempVal != CSL_ICSS_G_PR1_MII_RT_PR1_MII_RT_G_CFG_REGS_G_RGMII_CFG_RGMII1_INBAND_MASK)
+            if (tempVal != CSL_ICSS_G_PR1_MII_RT_PR1_MII_RT_G_CFG_REGS_G_RGMII_CFG_RGMII1_INBAND_MASK)
             {
                 retVal = SystemP_FAILURE; 
             }
@@ -2328,7 +2334,7 @@ int32_t ICSS_EMAC_rgmiiInbandConfig(ICSS_EMAC_Handle icssEmacHandle,
     }
     else
     {
-        if((uint8_t)ICSS_EMAC_PORT_1 == portNum)
+        if ((uint8_t)ICSS_EMAC_PORT_1 == portNum)
         {    
             /* Disable RGMII Inband */
             HW_WR_FIELD32((pruicssHwAttrs->miiGRtCfgRegBase) + CSL_ICSS_G_PR1_MII_RT_PR1_MII_RT_G_CFG_REGS_G_RGMII_CFG,
@@ -2337,7 +2343,7 @@ int32_t ICSS_EMAC_rgmiiInbandConfig(ICSS_EMAC_Handle icssEmacHandle,
             /* Read back the register value to ensure the configuration has taken effect */
             tempVal = HW_RD_REG32(pruicssHwAttrs->miiGRtCfgRegBase + CSL_ICSS_G_PR1_MII_RT_PR1_MII_RT_G_CFG_REGS_G_RGMII_CFG);
             tempVal = (tempVal & CSL_ICSS_G_PR1_MII_RT_PR1_MII_RT_G_CFG_REGS_G_RGMII_CFG_RGMII0_INBAND_MASK);
-            if(tempVal != 0)
+            if (tempVal != 0)
             {
                 retVal = SystemP_FAILURE; 
             }
@@ -2351,7 +2357,7 @@ int32_t ICSS_EMAC_rgmiiInbandConfig(ICSS_EMAC_Handle icssEmacHandle,
             /* Read back the register value to ensure the configuration has taken effect */
             tempVal = HW_RD_REG32(pruicssHwAttrs->miiGRtCfgRegBase + CSL_ICSS_G_PR1_MII_RT_PR1_MII_RT_G_CFG_REGS_G_RGMII_CFG);
             tempVal = (tempVal & CSL_ICSS_G_PR1_MII_RT_PR1_MII_RT_G_CFG_REGS_G_RGMII_CFG_RGMII1_INBAND_MASK);
-            if(tempVal != 0)
+            if (tempVal != 0)
             {
                 retVal = SystemP_FAILURE; 
             }

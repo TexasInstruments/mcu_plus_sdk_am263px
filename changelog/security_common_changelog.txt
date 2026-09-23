@@ -1528,3 +1528,75 @@ Date:   Mon Sep 7 12:54:34 2026 +0530
  drivers/crypto/pke/pke.c                   |  6 +++---
  2 files changed, 10 insertions(+), 10 deletions(-)
 
+========================================
+Changes from build on 2026-09-23 20:47:08
+Previous commit: 5ab89e3e13812801d0c9321152b4f49ff33458e8
+Current commit: 8695773f6fba249e870c8b17460375e71c30f047
+========================================
+
+commit 8695773f6fba249e870c8b17460375e71c30f047
+Author: Seema.Khatib <seema.khatib@ti.com>
+Date:   Tue Sep 22 12:05:18 2026 +0530
+
+    f29h85x: secure_ipc_notify: misra fixes
+    
+    -Fix unapproved deviation "MISRA.ETYPE.COMP.ASSIGN.2012"
+    -explicitly cast uint32_t for shift operation.
+    
+    Fixes: TIFSMCU-6161,TIFSMCU-6019
+    
+    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
+
+ drivers/secure_ipc_notify/sipc_notify_mailbox.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 29d1a0a2737a9ab9991de7662de4fd1407a29dc6
+Author: Seema.Khatib <seema.khatib@ti.com>
+Date:   Fri Sep 18 14:17:20 2026 +0530
+
+    f29x: rng/pke: Add design ID
+    
+    - Add design IDs for rng and pke
+    
+    Fixes: TIFSMCU-6151
+    
+    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
+
+ drivers/crypto/pke/pke.c | 28 +++++++++++++++++++++++++++-
+ drivers/crypto/rng/rng.c | 13 ++++++++++++-
+ 2 files changed, 39 insertions(+), 2 deletions(-)
+
+commit d09ea5809de2676d2e697ac322fc46950b3ea008
+Author: Arush Pant <a-pant@ti.com>
+Date:   Thu Sep 17 13:53:41 2026 +0530
+
+    f29x: sipc: Add design ID
+    
+    - Add design IDs for
+      sipc
+    
+    Fixes: TIFSMCU-6136
+    
+    Signed-off-by: Arush Pant <a-pant@ti.com>
+
+ drivers/secure_ipc_notify/sipc_notify_src.c | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+commit 065c9368f1ebb824be8b9926df55c034480b2c6f
+Author: Arush Pant <a-pant@ti.com>
+Date:   Thu Sep 17 13:53:24 2026 +0530
+
+    f29x: hsmclient: Add design ID
+    
+    - Add design IDs for
+      hsm client
+    
+    Fixes: TIFSMCU-6135
+    
+    Signed-off-by: Arush Pant <a-pant@ti.com>
+
+ drivers/hsmclient/hsmclient.c                                  | 18 ++++++++++++++++++
+ drivers/hsmclient/soc/f29h85x/hsmclient_loadhsmrt.c            |  4 ++++
+ drivers/hsmclient/soc/f29h85x/hsmclient_wait_for_boot_notify.c |  4 ++++
+ 3 files changed, 26 insertions(+)
+

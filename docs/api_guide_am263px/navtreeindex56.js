@@ -1,7 +1,5 @@
 var NAVTREEINDEX56 =
 {
-"group__SDL__MCRC__API.html#ga60811f0a23edcd4a8d108ca6a03eb547":[18,6,7,0,56],
-"group__SDL__MCRC__API.html#ga65be0d3f16b7ccc25da3c0ecac58c04d":[18,6,7,0,10],
 "group__SDL__MCRC__API.html#ga66e191bb8c7bfc7f6eca4f32f11c5e3b":[18,6,7,0,60],
 "group__SDL__MCRC__API.html#ga6921ef1358634450f1af71142bef9ea7":[18,6,7,0,11],
 "group__SDL__MCRC__API.html#ga6d40b2ebd3aa539550c9e54866c57f4e":[18,6,7,0,15],
@@ -249,5 +247,7 @@ var NAVTREEINDEX56 =
 "group__SDL__R5FCPU__StaticRegisterRead__FUNCTIONS.html#gac91a37140f8629d474fba9d6f6054a8e":[18,6,12,1,1],
 "group__SDL__ROMCHECKSUM__ENUM.html":[18,6,10,0,1],
 "group__SDL__ROMCHECKSUM__FUNCTIONS.html":[18,6,10,0,2],
-"group__SDL__ROMCHECKSUM__MACROS.html":[18,6,10,0,3]
+"group__SDL__ROMCHECKSUM__MACROS.html":[18,6,10,0,3],
+"group__SDL__ROMCHECKSUM__MACROS.html#ga4b49f01e41d19a69209eb5cf7d3b6a67":[18,6,10,0,3,0],
+"group__SDL__ROMCHECKSUM__MACROS.html#ga4b509e4834357b76b20678f888b4f5e2":[18,6,10,0,3,8]
 };

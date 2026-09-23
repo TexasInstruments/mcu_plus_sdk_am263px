@@ -1,7 +1,5 @@
 var NAVTREEINDEX72 =
 {
-"structMMCSD__Config.html#a04c6979e6db65bbed57e3b930881c784":[18,7,30,4,0],
-"structMMCSD__Config.html#ad48569ab424f83942b0b1cea16a28bc3":[18,7,30,4,1],
 "structMMCSD__EmmcDeviceData.html":[18,7,31,1],
 "structMMCSD__EmmcDeviceData.html#a01fe4f22792706cabcaf95f572a82d5f":[18,7,31,1,1],
 "structMMCSD__EmmcDeviceData.html#a0774e342c516a9fcabe34ea88e81e22e":[18,7,31,1,5],
@@ -249,5 +247,7 @@ var NAVTREEINDEX72 =
 "structPeakHistogram__observationalData.html":[18,7,38,13],
 "structPeakHistogram__observationalData.html#a98ab7d5dd6e45c1041db3b89969e5841":[18,7,38,13,0],
 "structPhy__DrvObj__t.html":[18,4,0,13,8,2],
-"structPhy__DrvObj__t.html#a0222e90947468d268a73459eb38361a4":[18,4,0,13,8,2,23]
+"structPhy__DrvObj__t.html#a0222e90947468d268a73459eb38361a4":[18,4,0,13,8,2,23],
+"structPhy__DrvObj__t.html#a0435e37b6ae17a6578b277952cdc702e":[18,4,0,13,8,2,30],
+"structPhy__DrvObj__t.html#a0a7f3bc91330cfa0544e01f451f4b258":[18,4,0,13,8,2,22]
 };

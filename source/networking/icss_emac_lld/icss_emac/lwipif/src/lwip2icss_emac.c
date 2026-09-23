@@ -125,7 +125,7 @@ static void Lwip2Emac_initConfig(Lwip2Emac_Handle hLwip2Emac)
 
     /*Getting Emac driver Handle from application to fill driver handle in hLwip2Emac Handle*/
     status = app_getEmacHandle(hLwip2Emac);
-    if(hLwip2Emac->emacHandle == NULL)
+    if (hLwip2Emac->emacHandle == NULL)
     {
         DebugP_log("[LWIPIF_LWIP_EMAC]ICSS EMAC Handle is not initilialised.\r\n");
     }
@@ -139,7 +139,7 @@ static void Lwip2Emac_initConfig(Lwip2Emac_Handle hLwip2Emac)
     /*Getting Link status from Emac driver*/
     int32_t port = Lwip2Emac_getDriverLinkStatus(hLwip2Emac);
 
-    if(port)
+    if (port)
     {
         DebugP_log("[LWIPIF_LWIP_EMAC]Link is Up on port %d\r\n",port);
     }
@@ -149,10 +149,10 @@ static void Lwip2Emac_initConfig(Lwip2Emac_Handle hLwip2Emac)
     }
 
      /* Init aleTicks */
-    hLwip2Emac->aleTicks=(LWIP_ICSS_ALE_AGE_OUT_TIME / 100U);
+    hLwip2Emac->aleTicks = (LWIP_ICSS_ALE_AGE_OUT_TIME / 100U);
 
      /* Init aleTimerActive */
-    hLwip2Emac->aleTimerActive=0;
+    hLwip2Emac->aleTimerActive = 0;
 }
 
 /**
@@ -168,12 +168,12 @@ static void Lwip2Emac_initConfig(Lwip2Emac_Handle hLwip2Emac)
 int32_t Lwip2Emac_getDriverLinkStatus(Lwip2Emac_Handle hLwip2Emac)
 {
     uint8_t portNumber = 0;
-    if(1 == ((ICSS_EMAC_Object *)hLwip2Emac->emacHandle->object)->linkStatus[0])
+    if (1 == ((ICSS_EMAC_Object *)hLwip2Emac->emacHandle->object)->linkStatus[0])
     {
         hLwip2Emac->linkIsUp = 1;   /* update link status */
         portNumber = 1;
     }
-    else if(1 == ((ICSS_EMAC_Object *)hLwip2Emac->emacHandle->object)->linkStatus[1])
+    else if (1 == ((ICSS_EMAC_Object *)hLwip2Emac->emacHandle->object)->linkStatus[1])
     {
         hLwip2Emac->linkIsUp = 1;   /* update link status */
         portNumber = 2;
@@ -268,15 +268,15 @@ int32_t Lwip2Emac_sendTxPackets(Lwip2Emac_Handle hLwip2Emac, struct pbuf *p)
 
     if (hLwip2Emac->linkIsUp)
     {
-        if(ICSS_EMAC_MODE_SWITCH == (((ICSS_EMAC_Attrs*)hLwip2Emac->emacHandle->attrs)->portMask))
+        if (ICSS_EMAC_MODE_SWITCH == (((ICSS_EMAC_Attrs*)hLwip2Emac->emacHandle->attrs)->portMask))
         { /*Switch Mode*/
             txPort = ICSS_EMAC_PORT_0;
         }
-        else if(ICSS_EMAC_MODE_MAC1 == (((ICSS_EMAC_Attrs*)hLwip2Emac->emacHandle->attrs)->portMask))
+        else if (ICSS_EMAC_MODE_MAC1 == (((ICSS_EMAC_Attrs*)hLwip2Emac->emacHandle->attrs)->portMask))
         {
             txPort = ICSS_EMAC_PORT_1;
         }
-        else if(ICSS_EMAC_MODE_MAC2 == (((ICSS_EMAC_Attrs*)hLwip2Emac->emacHandle->attrs)->portMask))
+        else if (ICSS_EMAC_MODE_MAC2 == (((ICSS_EMAC_Attrs*)hLwip2Emac->emacHandle->attrs)->portMask))
         {
             txPort = ICSS_EMAC_PORT_2;
         }
@@ -293,7 +293,7 @@ int32_t Lwip2Emac_sendTxPackets(Lwip2Emac_Handle hLwip2Emac, struct pbuf *p)
         ret = ICSS_EMAC_txPacket(&txArgs, NULL);
         pbuf_free(p);
 
-        if(ret != 0)
+        if (ret != 0)
         {
             retVal = SystemP_FAILURE;
         }
@@ -356,7 +356,7 @@ int32_t Lwip2Emac_serviceRx(void *icssEmacHandleVoidPtr, void *queueNum, void *u
     ICSS_EMAC_RxArgument rxArgs;
     Lwip2Emac_Handle hLwip2emac = (Lwip2Emac_Handle)userArg;
 
-    if(hLwip2emac->initDone)
+    if (hLwip2emac->initDone)
     {
         rxArgs.icssEmacHandle = hLwip2emac->emacHandle;
 
@@ -436,22 +436,22 @@ void Lwip2Emac_getHandle(Lwip2Emac_Handle *AppLwipHandle)
     ICSS_EMAC_IoctlCmd ioctlParams;
 
     ICSS_EMAC_Handle icsshandle = hLwip2Emac->emacHandle;
-    ICSS_EMAC_StormPrevention* strmPreventionEnable1=NULL;
-    ICSS_EMAC_StormPrevention* strmPreventionEnable2=NULL;
+    ICSS_EMAC_StormPrevention* strmPreventionEnable1 = NULL;
+    ICSS_EMAC_StormPrevention* strmPreventionEnable2 = NULL;
 
-    if(ICSS_EMAC_MODE_SWITCH == ((ICSS_EMAC_Attrs*)icsshandle->attrs)->portMask)
+    if (ICSS_EMAC_MODE_SWITCH == ((ICSS_EMAC_Attrs*)icsshandle->attrs)->portMask)
     {
-        if(((ICSS_EMAC_Attrs*)icsshandle->attrs)->learningEnable)
+        if (((ICSS_EMAC_Attrs*)icsshandle->attrs)->learningEnable)
         {
             /*Increment counter in learning for ageing*/
             ioctlParams.command = ICSS_EMAC_LEARN_CTRL_INC_COUNTER;
             ICSS_EMAC_ioctl(icsshandle, ICSS_EMAC_IOCTL_LEARNING_CTRL, 0, (void*)&ioctlParams);
 
-            if( (0u != hLwip2Emac->aleTimerActive) && (0 != hLwip2Emac->aleTicks))
+            if ( (0u != hLwip2Emac->aleTimerActive) && (0 != hLwip2Emac->aleTicks))
             {
                 /* Ageoutnow. aleTickCount can become greater if timeout period is changed in between */
                 aleTickCount = aleTickCount + 1U;
-                if( (aleTickCount) >=  (hLwip2Emac->aleTicks))
+                if ( (aleTickCount) >= (hLwip2Emac->aleTicks))
                 {
                     ioctlParams.command = ICSS_EMAC_LEARN_CTRL_AGEING;
                     ICSS_EMAC_ioctl(icsshandle, ICSS_EMAC_IOCTL_LEARNING_CTRL, ICSS_EMAC_PORT_1, (void*)&ioctlParams);
@@ -464,21 +464,21 @@ void Lwip2Emac_getHandle(Lwip2Emac_Handle *AppLwipHandle)
 
 
     /*Reset the credit values used for Storm prevention*/
-    if(ICSS_EMAC_MODE_SWITCH == ((ICSS_EMAC_Attrs*)icsshandle->attrs)->portMask)
+    if (ICSS_EMAC_MODE_SWITCH == ((ICSS_EMAC_Attrs*)icsshandle->attrs)->portMask)
     {
         strmPreventionEnable1 = (ICSS_EMAC_StormPrevention*)(((ICSS_EMAC_Object*)(icsshandle)->object)->stormPrev);
         strmPreventionEnable2 = ((ICSS_EMAC_StormPrevention*)(((ICSS_EMAC_Object*)(icsshandle)->object)->stormPrev)) + 1;
-        if((strmPreventionEnable1->suppressionEnabledBC) | (strmPreventionEnable2->suppressionEnabledBC))
+        if ((strmPreventionEnable1->suppressionEnabledBC) | (strmPreventionEnable2->suppressionEnabledBC))
         {
             ioctlParams.command = ICSS_EMAC_STORM_PREV_CTRL_RESET_BC;
             ICSS_EMAC_ioctl(icsshandle, ICSS_EMAC_IOCTL_STORM_PREV_CTRL, 0, (void*)&ioctlParams);
         }
-        if((strmPreventionEnable1->suppressionEnabledMC) | (strmPreventionEnable2->suppressionEnabledMC))
+        if ((strmPreventionEnable1->suppressionEnabledMC) | (strmPreventionEnable2->suppressionEnabledMC))
         {
             ioctlParams.command = ICSS_EMAC_STORM_PREV_CTRL_RESET_MC;
             ICSS_EMAC_ioctl(icsshandle, ICSS_EMAC_IOCTL_STORM_PREV_CTRL, 0, (void*)&ioctlParams);
         }
-        if((strmPreventionEnable1->suppressionEnabledUC) | (strmPreventionEnable2->suppressionEnabledUC))
+        if ((strmPreventionEnable1->suppressionEnabledUC) | (strmPreventionEnable2->suppressionEnabledUC))
         {
             ioctlParams.command = ICSS_EMAC_STORM_PREV_CTRL_RESET_UC;
             ICSS_EMAC_ioctl(icsshandle, ICSS_EMAC_IOCTL_STORM_PREV_CTRL, 0, (void*)&ioctlParams);
@@ -487,17 +487,17 @@ void Lwip2Emac_getHandle(Lwip2Emac_Handle *AppLwipHandle)
     else
     {
         strmPreventionEnable1 = (ICSS_EMAC_StormPrevention*)(((ICSS_EMAC_Object*)(icsshandle)->object)->stormPrev);
-        if(strmPreventionEnable1->suppressionEnabledBC)
+        if (strmPreventionEnable1->suppressionEnabledBC)
         {
             ioctlParams.command = ICSS_EMAC_STORM_PREV_CTRL_RESET_BC;
             ICSS_EMAC_ioctl(icsshandle, ICSS_EMAC_IOCTL_STORM_PREV_CTRL, (uint8_t)port, (void*)&ioctlParams);
         }
-        if(strmPreventionEnable1->suppressionEnabledMC)
+        if (strmPreventionEnable1->suppressionEnabledMC)
         {
             ioctlParams.command = ICSS_EMAC_STORM_PREV_CTRL_RESET_MC;
             ICSS_EMAC_ioctl(icsshandle, ICSS_EMAC_IOCTL_STORM_PREV_CTRL, (uint8_t)port, (void*)&ioctlParams);
         }
-        if(strmPreventionEnable1->suppressionEnabledUC)
+        if (strmPreventionEnable1->suppressionEnabledUC)
         {
             ioctlParams.command = ICSS_EMAC_STORM_PREV_CTRL_RESET_UC;
             ICSS_EMAC_ioctl(icsshandle, ICSS_EMAC_IOCTL_STORM_PREV_CTRL, (uint8_t)port, (void*)&ioctlParams);

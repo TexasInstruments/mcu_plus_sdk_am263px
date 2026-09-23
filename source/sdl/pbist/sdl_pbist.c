@@ -456,6 +456,7 @@ static int32_t SDL_PBIST_runTest(SDL_PBIST_testType testType, SDL_pbistRegs *pRe
 }
 #endif
 
+#if defined (SOC_AM64X) || defined (SOC_AM243X) || defined (SOC_AM273X) || defined (SOC_AWR294X)
 static int32_t SDL_PBIST_cleanupTest(pSDL_DPL_HwipHandle PBIST_intrHandle)
 {
     int32_t ret = SDL_PASS;
@@ -468,6 +469,7 @@ static int32_t SDL_PBIST_cleanupTest(pSDL_DPL_HwipHandle PBIST_intrHandle)
 
     return ret;
 }
+#endif
 
 /**
  * Design: PROC_SDL-947,PROC_SDL-948,PROC_SDL-974,PROC_SDL-949,PROC_SDL-950,PROC_SDL-951,PROC_SDL-952,PROC_SDL-957,PROC_SDL-958,PROC_SDL-1178,PROC_SDL-1179,PROC_SDL-1180,PROC_SDL-1181,PROC_SDL-1182

@@ -144,7 +144,13 @@ uint32_t ClockP_getTimeout(ClockP_Object *handle)
 
     if(xTimerIsTimerActive(pTimer->timerHndl) != 0)
     {
-        value = xTimerGetExpiryTime( pTimer->timerHndl ) - xTaskGetTickCount();
+        uint32_t expiryTime = xTimerGetExpiryTime(pTimer->timerHndl);
+        uint32_t currentTick = xTaskGetTickCount();
+
+        if(expiryTime > currentTick)
+        {
+            value = expiryTime - currentTick;
+        }
     }
     return value;
 }

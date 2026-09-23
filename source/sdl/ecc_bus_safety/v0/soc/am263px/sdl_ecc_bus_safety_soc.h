@@ -53,7 +53,7 @@ extern "C" {
 /* ========================================================================== */
 /*                            Macros & Typedefs                               */
 /* ========================================================================== */
-#define SDL_ECC_BUS_SAFETY_MSS_BUS_CFG              (uint32_t)SDL_MSS_CTRL_U_BASE
+#define SDL_ECC_BUS_SAFETY_MSS_BUS_CFG              ((uint32_t)SDL_MSS_CTRL_U_BASE)
 #define DWORD                                       (0x20U)
 #define SDL_MSS_CTRL_R5SS0_CORE0_AHB_BASE           (0x000000A0U)
 #define SDL_MSS_CTRL_R5SS1_CORE0_AHB_BASE           (0x000000A4U)

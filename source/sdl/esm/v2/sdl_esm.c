@@ -595,8 +595,8 @@ static SDL_Result ESM_init (const SDL_ESM_Inst esmInstType,
 /**
  * Design: PROC_SDL-1064,PROC_SDL-1065
  */
-int32_t SDL_ESM_registerECCCallback(SDL_ESM_Inst instance,uint32_t eventBitmap[],
-                                    SDL_ESM_applicationCallback callBack,
+int32_t SDL_ESM_registerECCCallback(SDL_ESM_Inst instance,uint32_t eventBitMap[],
+                                    SDL_ESM_applicationCallback eccCallback,
                                     void *callbackArg)
 {
     uint8_t i;
@@ -610,9 +610,9 @@ int32_t SDL_ESM_registerECCCallback(SDL_ESM_Inst instance,uint32_t eventBitmap[]
 
     for(i=INIT_VAL;i<SDL_ESM_MAX_EVENT_MAP_NUM_WORDS;i++)
     {
-        SDL_ESM_Instance->eccenableBitmap[i] = eventBitmap[i];
+        SDL_ESM_Instance->eccenableBitmap[i] = eventBitMap[i];
     }
-    SDL_ESM_Instance->eccCallBackFunction = callBack;
+    SDL_ESM_Instance->eccCallBackFunction = eccCallback;
     SDL_ESM_Instance->eccCallBackFunctionArg = callbackArg;
 
     return result;
@@ -620,7 +620,7 @@ int32_t SDL_ESM_registerECCCallback(SDL_ESM_Inst instance,uint32_t eventBitmap[]
 /**
  * Design: PROC_SDL-1066,PROC_SDL-1067
  */
-int32_t SDL_ESM_registerCCMCallback(SDL_ESM_Inst instance,uint32_t eventBitmap[],
+int32_t SDL_ESM_registerCCMCallback(SDL_ESM_Inst instance,uint32_t eventBitMap[],
                                       SDL_ESM_applicationCallback ccmCallback,
                                       void *callbackArg)
 {
@@ -635,7 +635,7 @@ int32_t SDL_ESM_registerCCMCallback(SDL_ESM_Inst instance,uint32_t eventBitmap[]
 
     for(i=0U;i<SDL_ESM_MAX_EVENT_MAP_NUM_WORDS;i++)
     {
-        SDL_ESM_Instance_CCM->ccmenableBitmap[i] = eventBitmap[i];
+        SDL_ESM_Instance_CCM->ccmenableBitmap[i] = eventBitMap[i];
     }
     SDL_ESM_Instance_CCM->ccmCallBackFunction = ccmCallback;
     SDL_ESM_Instance_CCM->ccmCallBackFunctionArg = callbackArg;

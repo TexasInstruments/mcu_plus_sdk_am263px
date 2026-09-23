@@ -37,6 +37,7 @@
 extern "C" {
 #endif
 
+#include <sdl/vtm/v1/sdl_vtm_pvt_sensor.h>
 #include <sdl/vtm/v1/soc/sdl_soc_vtm.h>
 #include <sdl/vtm/v1/sdl_ip_vtm.h>
 

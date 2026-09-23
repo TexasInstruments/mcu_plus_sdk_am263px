@@ -236,7 +236,7 @@ $(document).ready(function(){initNavTree('sipc__notify__mailbox_8h_source.html',
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">            #endif</span></div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            <span class="comment">/* Trigger interrupt to other core */</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            *addr = (1U &lt;&lt; (wrIntrBitPos));</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            *addr = ((uint32_t)1 &lt;&lt; (wrIntrBitPos));</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            status = <a class="code" href="group__KERNEL__DPL__SYSTEM.html#ga47e638d7c694e6d42e57b96b071b8a6f">SystemP_SUCCESS</a>;</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        }</div>

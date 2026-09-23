@@ -71,7 +71,7 @@ uint32_t TimeSync_calcChecksum(uint8_t *packet, uint16_t len)
     uint16_t shortVal;
     uint8_t byte1, byte2;
 
-    while(len > 1)
+    while (len > 1)
     {
         byte1 = *(packet++);
         byte2 = *(packet++);
@@ -81,7 +81,7 @@ uint32_t TimeSync_calcChecksum(uint8_t *packet, uint16_t len)
 
         sum += shortVal;
 
-        if(sum & 0xffff0000)   /* if high order bit set, fold */
+        if (sum & 0xffff0000)   /* if high order bit set, fold */
         {
             sum = (sum & 0xFFFF) + (sum >> 16);
         }
@@ -89,12 +89,12 @@ uint32_t TimeSync_calcChecksum(uint8_t *packet, uint16_t len)
         len -= 2;
     }
 
-    if(len)         /* take care of left over byte */
+    if (len)         /* take care of left over byte */
     {
         sum += (uint16_t) * (uint8_t *)packet;
     }
 
-    while(sum >> 16)
+    while (sum >> 16)
     {
         sum = (sum & 0xFFFF) + (sum >> 16);
     }
@@ -129,11 +129,11 @@ void TimeSync_convEndianess(volatile void *src, volatile void *dst, uint8_t numB
     uint8_t *dstPtr = (uint8_t *)dst;
 
     /*If multiple of 2*/
-    if((numBytes & 0x1) == 0)
+    if ((numBytes & 0x1) == 0)
     {
         dstPtr = dstPtr + numBytes - 1;
 
-        for(i = 0; i < numBytes; i++)
+        for (i = 0; i < numBytes; i++)
         {
             *(dstPtr--) = *(srcPtr++);
         }
@@ -160,7 +160,7 @@ uint32_t TimeSync_getIEPCountValue(TimeSync_ParamsHandle_t timeSyncHandle)
 {
     uint32_t iepCountVal = 0;
     
-    switch(timeSyncHandle->timeSyncConfig.icssIepClkFreq)
+    switch (timeSyncHandle->timeSyncConfig.icssIepClkFreq)
     {
         case ICSS_IEP_CLK_FREQ_200MHZ:
             iepCountVal = 5; /* Since IEP is operating at 200 MHz, use counter increment value of 5 */
@@ -189,7 +189,7 @@ uint32_t TimeSync_prepareIEPCfgCommand(TimeSync_ParamsHandle_t timeSyncHandle, c
     /* Get the default counter increment value depending on the IEP Clock frequency */
     defaultInc = TimeSync_getIEPCountValue(timeSyncHandle);
     /* Get the counter increment value depending when the compensation is active */
-    switch(compType)
+    switch (compType)
     {
         case PTP_NO_COMPENSATION_REQUIRED:
             /* Since no compensation is required, compensation increment is set the same as default increment */

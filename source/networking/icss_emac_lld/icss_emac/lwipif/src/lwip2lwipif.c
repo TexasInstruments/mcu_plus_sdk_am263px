@@ -136,12 +136,12 @@ static err_t LWIPIF_LWIP_EMAC_send(struct netif *netif,
     Lwip2Emac_Handle hLwip2Emac;
     err_t retVal = ERR_OK;
 
-    if(netif == NULL || p == NULL)
+    if (netif == NULL || p == NULL)
     {
         retVal = ERR_ARG;
     }
 
-    if(retVal == ERR_OK)
+    if (retVal == ERR_OK)
     {
         /* Get the pointer to the private data */
         hLwip2Emac = (Lwip2Emac_Handle)netif->state;
@@ -186,12 +186,12 @@ void LWIPIF_LWIP_EMAC_input(struct netif *netif,
     uint32_t bufSize;
     int32_t status = SystemP_SUCCESS;
 
-    if(netif == NULL || hPbufPacket == NULL)
+    if (netif == NULL || hPbufPacket == NULL)
     {
         status = SystemP_FAILURE;
     }
 
-    if(status == SystemP_SUCCESS)
+    if (status == SystemP_SUCCESS)
     {
         hLwip2Emac = (Lwip2Emac_Handle)netif->state;
 
@@ -234,7 +234,7 @@ static void LWIPIF_LWIP_EMAC_poll(void *arg0)
     Lwip2Emac_Handle hLwip2Emac;
     SemaphoreP_Object *hpollSem;
 
-    if(arg0 != NULL)
+    if (arg0 != NULL)
     {
         netif = (struct netif*) arg0;
         hLwip2Emac = (Lwip2Emac_Handle)netif->state;
@@ -247,9 +247,9 @@ static void LWIPIF_LWIP_EMAC_poll(void *arg0)
             /* Periodic Function to update Link status */
             Lwip2Emac_periodicFxn(hLwip2Emac);
 
-            if(!(hLwip2Emac->linkIsUp == (netif->flags & 0x04U)>>2))
+            if (!(hLwip2Emac->linkIsUp == (netif->flags & 0x04U) >> 2))
             {
-                if(hLwip2Emac->linkIsUp)
+                if (hLwip2Emac->linkIsUp)
                 {
                     sys_lock_tcpip_core();
                     netif_set_link_up(netif);
@@ -269,7 +269,7 @@ static void LWIPIF_LWIP_EMAC_poll(void *arg0)
 
 static void LWIPIF_LWIP_EMAC_postPollLink(ClockP_Object *clkObj, void *arg)
 {
-    if(arg != NULL)
+    if (arg != NULL)
     {
         SemaphoreP_Object *hpollSem = (SemaphoreP_Object *) arg;
         SemaphoreP_post(hpollSem);
@@ -298,7 +298,7 @@ static int LWIPIF_LWIP_EMAC_start(struct netif *netif)
     int32_t status;
     ClockP_Params clkPrms;
 
-    if(netif != NULL)
+    if (netif != NULL)
     {
         /* Open the translation layer, It also gets hardware driver handle */
         hLwip2Emac = Lwip2Emac_open(netif);
@@ -346,7 +346,7 @@ static int LWIPIF_LWIP_EMAC_start(struct netif *netif)
             }
 
             /*Copy the MAC Address into the network interface object here. */
-            if(hLwip2Emac->emacHandle != NULL)
+            if (hLwip2Emac->emacHandle != NULL)
             {
                 memcpy(netif->hwaddr, (void*)(&(((ICSS_EMAC_Object *)hLwip2Emac->emacHandle->object)->macId[0])), (uint32_t)6U);
                 netif->hwaddr_len = 6U;
@@ -389,7 +389,7 @@ static void LWIPIF_LWIP_EMAC_stop(struct netif *netif)
 {
     Lwip2Emac_Handle hLwip2Emac;
 
-    if(netif != NULL)
+    if (netif != NULL)
     {
         /* Get the pointer to the private data */
         hLwip2Emac = (Lwip2Emac_Handle)netif->state;
@@ -419,7 +419,7 @@ err_t LWIPIF_LWIP_EMAC_init(struct netif *netif)
 {
     err_t retVal = ERR_OK;
 
-    if(netif == NULL)
+    if (netif == NULL)
     {
         retVal = ERR_ARG;
     }

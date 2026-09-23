@@ -166,6 +166,8 @@ int32_t pbist_run(void *args)
         CacheP_disable(CacheP_TYPE_L1D);
         /* Run test on selected instance */
         testResult = PBIST_runTest(SDL_PBIST_INST_TOP, false);
+        CacheP_enable(CacheP_TYPE_L1P);
+        CacheP_enable(CacheP_TYPE_L1D);
     }
 
     return testResult;

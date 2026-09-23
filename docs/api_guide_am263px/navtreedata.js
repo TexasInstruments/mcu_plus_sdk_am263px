@@ -36,48 +36,48 @@ var NAVTREE =
     [ "Getting Started", "GETTING_STARTED.html", "GETTING_STARTED" ],
     [ "Release Notes", "RELEASE_NOTES_PAGE.html", "RELEASE_NOTES_PAGE" ],
     [ "Datasheet", "DATASHEET_AM263PX_EVM.html", [
-      [ "Introduction", "DATASHEET_AM263PX_EVM.html#autotoc_md400", null ],
-      [ "Generic Setup details", "DATASHEET_AM263PX_EVM.html#autotoc_md401", null ],
-      [ "Performance Numbers", "DATASHEET_AM263PX_EVM.html#autotoc_md402", [
-        [ "SBL OSPI MULTICORE ELF performance", "DATASHEET_AM263PX_EVM.html#autotoc_md403", null ],
-        [ "SBL OSPI SWAP performance", "DATASHEET_AM263PX_EVM.html#autotoc_md404", null ],
-        [ "SBL OSPI Fastboot performance", "DATASHEET_AM263PX_EVM.html#autotoc_md405", null ],
-        [ "SBL SD MULTICORE ELF performance", "DATASHEET_AM263PX_EVM.html#autotoc_md406", null ],
-        [ "MCAN performance", "DATASHEET_AM263PX_EVM.html#autotoc_md407", [
-          [ "Theoretical Rate Calculation", "DATASHEET_AM263PX_EVM.html#autotoc_md408", null ],
-          [ "Actual Numbers", "DATASHEET_AM263PX_EVM.html#autotoc_md409", null ]
+      [ "Introduction", "DATASHEET_AM263PX_EVM.html#autotoc_md401", null ],
+      [ "Generic Setup details", "DATASHEET_AM263PX_EVM.html#autotoc_md402", null ],
+      [ "Performance Numbers", "DATASHEET_AM263PX_EVM.html#autotoc_md403", [
+        [ "SBL OSPI MULTICORE ELF performance", "DATASHEET_AM263PX_EVM.html#autotoc_md404", null ],
+        [ "SBL OSPI SWAP performance", "DATASHEET_AM263PX_EVM.html#autotoc_md405", null ],
+        [ "SBL OSPI Fastboot performance", "DATASHEET_AM263PX_EVM.html#autotoc_md406", null ],
+        [ "SBL SD MULTICORE ELF performance", "DATASHEET_AM263PX_EVM.html#autotoc_md407", null ],
+        [ "MCAN performance", "DATASHEET_AM263PX_EVM.html#autotoc_md408", [
+          [ "Theoretical Rate Calculation", "DATASHEET_AM263PX_EVM.html#autotoc_md409", null ],
+          [ "Actual Numbers", "DATASHEET_AM263PX_EVM.html#autotoc_md410", null ]
         ] ],
-        [ "IPC performance", "DATASHEET_AM263PX_EVM.html#autotoc_md410", [
-          [ "IPC NOTIFY", "DATASHEET_AM263PX_EVM.html#autotoc_md411", null ],
-          [ "IPC RPMSG", "DATASHEET_AM263PX_EVM.html#autotoc_md412", null ]
+        [ "IPC performance", "DATASHEET_AM263PX_EVM.html#autotoc_md411", [
+          [ "IPC NOTIFY", "DATASHEET_AM263PX_EVM.html#autotoc_md412", null ],
+          [ "IPC RPMSG", "DATASHEET_AM263PX_EVM.html#autotoc_md413", null ]
         ] ],
-        [ "MCSPI performance", "DATASHEET_AM263PX_EVM.html#autotoc_md413", null ],
-        [ "MCSPI driver performance in different modes", "DATASHEET_AM263PX_EVM.html#autotoc_md414", null ],
-        [ "DPL Low latency interrupt performance", "DATASHEET_AM263PX_EVM.html#autotoc_md415", null ],
-        [ "ARM R5F", "DATASHEET_AM263PX_EVM.html#autotoc_md416", null ],
-        [ "COREMARK", "DATASHEET_AM263PX_EVM.html#autotoc_md417", null ],
-        [ "DHRYSTONE", "DATASHEET_AM263PX_EVM.html#autotoc_md418", null ],
-        [ "DTHE", "DATASHEET_AM263PX_EVM.html#autotoc_md419", null ],
-        [ "AES CMAC", "DATASHEET_AM263PX_EVM.html#autotoc_md420", null ],
-        [ "AES ECB", "DATASHEET_AM263PX_EVM.html#autotoc_md421", null ],
-        [ "AES ECB STREAM", "DATASHEET_AM263PX_EVM.html#autotoc_md422", null ],
-        [ "AES CBC", "DATASHEET_AM263PX_EVM.html#autotoc_md423", null ],
+        [ "MCSPI performance", "DATASHEET_AM263PX_EVM.html#autotoc_md414", null ],
+        [ "MCSPI driver performance in different modes", "DATASHEET_AM263PX_EVM.html#autotoc_md415", null ],
+        [ "DPL Low latency interrupt performance", "DATASHEET_AM263PX_EVM.html#autotoc_md416", null ],
+        [ "ARM R5F", "DATASHEET_AM263PX_EVM.html#autotoc_md417", null ],
+        [ "COREMARK", "DATASHEET_AM263PX_EVM.html#autotoc_md418", null ],
+        [ "DHRYSTONE", "DATASHEET_AM263PX_EVM.html#autotoc_md419", null ],
+        [ "DTHE", "DATASHEET_AM263PX_EVM.html#autotoc_md420", null ],
+        [ "AES CMAC", "DATASHEET_AM263PX_EVM.html#autotoc_md421", null ],
+        [ "AES ECB", "DATASHEET_AM263PX_EVM.html#autotoc_md422", null ],
+        [ "AES ECB STREAM", "DATASHEET_AM263PX_EVM.html#autotoc_md423", null ],
         [ "AES CBC", "DATASHEET_AM263PX_EVM.html#autotoc_md424", null ],
-        [ "SHA", "DATASHEET_AM263PX_EVM.html#autotoc_md425", null ],
-        [ "AES CTR", "DATASHEET_AM263PX_EVM.html#autotoc_md426", null ],
+        [ "AES CBC", "DATASHEET_AM263PX_EVM.html#autotoc_md425", null ],
+        [ "SHA", "DATASHEET_AM263PX_EVM.html#autotoc_md426", null ],
         [ "AES CTR", "DATASHEET_AM263PX_EVM.html#autotoc_md427", null ],
-        [ "HMAC SHA", "DATASHEET_AM263PX_EVM.html#autotoc_md428", null ],
-        [ "AES CMAC", "DATASHEET_AM263PX_EVM.html#autotoc_md429", null ],
+        [ "AES CTR", "DATASHEET_AM263PX_EVM.html#autotoc_md428", null ],
+        [ "HMAC SHA", "DATASHEET_AM263PX_EVM.html#autotoc_md429", null ],
         [ "AES CMAC", "DATASHEET_AM263PX_EVM.html#autotoc_md430", null ],
-        [ "EDMA", "DATASHEET_AM263PX_EVM.html#autotoc_md431", null ],
-        [ "EDMA MEMORY COPY BENCHMARK", "DATASHEET_AM263PX_EVM.html#autotoc_md432", null ],
-        [ "MATHLIB", "DATASHEET_AM263PX_EVM.html#autotoc_md433", null ],
-        [ "MATHLIB BENCHMARK", "DATASHEET_AM263PX_EVM.html#autotoc_md434", null ],
-        [ "Ethernet Performance", "DATASHEET_AM263PX_EVM.html#autotoc_md435", null ],
-        [ "XIP Benchmark", "DATASHEET_AM263PX_EVM.html#autotoc_md436", null ],
-        [ "Flash performance Benchmark", "DATASHEET_AM263PX_EVM.html#autotoc_md437", [
-          [ "CPU Read", "DATASHEET_AM263PX_EVM.html#autotoc_md438", null ],
-          [ "DMA Read", "DATASHEET_AM263PX_EVM.html#autotoc_md439", null ]
+        [ "AES CMAC", "DATASHEET_AM263PX_EVM.html#autotoc_md431", null ],
+        [ "EDMA", "DATASHEET_AM263PX_EVM.html#autotoc_md432", null ],
+        [ "EDMA MEMORY COPY BENCHMARK", "DATASHEET_AM263PX_EVM.html#autotoc_md433", null ],
+        [ "MATHLIB", "DATASHEET_AM263PX_EVM.html#autotoc_md434", null ],
+        [ "MATHLIB BENCHMARK", "DATASHEET_AM263PX_EVM.html#autotoc_md435", null ],
+        [ "Ethernet Performance", "DATASHEET_AM263PX_EVM.html#autotoc_md436", null ],
+        [ "XIP Benchmark", "DATASHEET_AM263PX_EVM.html#autotoc_md437", null ],
+        [ "Flash performance Benchmark", "DATASHEET_AM263PX_EVM.html#autotoc_md438", [
+          [ "CPU Read", "DATASHEET_AM263PX_EVM.html#autotoc_md439", null ],
+          [ "DMA Read", "DATASHEET_AM263PX_EVM.html#autotoc_md440", null ]
         ] ]
       ] ]
     ] ],
@@ -85,19 +85,19 @@ var NAVTREE =
     [ "Ethernet And Networking", "NETWORKING.html", "NETWORKING" ],
     [ "PRU IO", "PRU_IO.html", "PRU_IO" ],
     [ "OptiFlash Memory Technology", "OPTIFLASH.html", [
-      [ "Introduction", "OPTIFLASH.html#autotoc_md729", null ],
-      [ "Software Tools", "OPTIFLASH.html#autotoc_md730", [
-        [ "Smart placement", "OPTIFLASH.html#autotoc_md731", null ],
-        [ "Optishare", "OPTIFLASH.html#autotoc_md732", null ],
-        [ "Overlay Manager", "OPTIFLASH.html#autotoc_md733", null ]
+      [ "Introduction", "OPTIFLASH.html#autotoc_md730", null ],
+      [ "Software Tools", "OPTIFLASH.html#autotoc_md731", [
+        [ "Smart placement", "OPTIFLASH.html#autotoc_md732", null ],
+        [ "Optishare", "OPTIFLASH.html#autotoc_md733", null ],
+        [ "Overlay Manager", "OPTIFLASH.html#autotoc_md734", null ]
       ] ],
-      [ "SDK Drivers", "OPTIFLASH.html#autotoc_md734", [
-        [ "Fast Local Copy (FLC)", "OPTIFLASH.html#autotoc_md735", null ],
-        [ "Region Address Translation (RAT)", "OPTIFLASH.html#autotoc_md736", null ],
-        [ "Remote L2 Cache (RL2)", "OPTIFLASH.html#autotoc_md737", null ],
-        [ "On-the-fly-Safety and Security", "OPTIFLASH.html#autotoc_md738", null ],
-        [ "Firmware-Update-Over-Air (FOTA)", "OPTIFLASH.html#autotoc_md739", null ],
-        [ "Flash Controller (OSPI)", "OPTIFLASH.html#autotoc_md740", null ]
+      [ "SDK Drivers", "OPTIFLASH.html#autotoc_md735", [
+        [ "Fast Local Copy (FLC)", "OPTIFLASH.html#autotoc_md736", null ],
+        [ "Region Address Translation (RAT)", "OPTIFLASH.html#autotoc_md737", null ],
+        [ "Remote L2 Cache (RL2)", "OPTIFLASH.html#autotoc_md738", null ],
+        [ "On-the-fly-Safety and Security", "OPTIFLASH.html#autotoc_md739", null ],
+        [ "Firmware-Update-Over-Air (FOTA)", "OPTIFLASH.html#autotoc_md740", null ],
+        [ "Flash Controller (OSPI)", "OPTIFLASH.html#autotoc_md741", null ]
       ] ]
     ] ],
     [ "OS Kernel", "KERNEL_OS_PAGE.html", "KERNEL_OS_PAGE" ],
@@ -136,9 +136,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ADDITIONAL_DETAILS_PAGE.html",
-"DRIVERS_CANFD_HLD_PAGE.html#autotoc_md1120",
-"DRIVERS_MCSPI_LLD_PAGE.html#autotoc_md1154",
-"EVM_SYSCONFIG_GUIDE.html#autotoc_md505",
+"DRIVERS_CANFD_HLD_PAGE.html#autotoc_md1121",
+"DRIVERS_MCSPI_LLD_PAGE.html#autotoc_md1155",
+"EVM_SYSCONFIG_GUIDE.html#autotoc_md506",
 "EXAMPLES_DRIVERS_ADC_BURST_MODE_EPWM.html#autotoc_md2097",
 "EXAMPLES_DRIVERS_ADC_SOC_RTI.html#autotoc_md2250",
 "EXAMPLES_DRIVERS_DTHE_AES_CCM_128.html",
@@ -153,11 +153,11 @@ var NAVTREEINDEX =
 "EXAMPLES_SDL_ECC_MCAN.html#autotoc_md3901",
 "EXAMPLES_SDL_R5F_ECC_DTAG.html#autotoc_md3879",
 "ICSS_EMAC_MIGRATION_GUIDE.html#autotoc_md1567",
-"KERNEL_FREERTOS_MPU_IMPORTANT_GUIDELINES_PAGE.html#autotoc_md883",
+"KERNEL_FREERTOS_MPU_IMPORTANT_GUIDELINES_PAGE.html#autotoc_md884",
 "RELEASE_NOTES_09_02_00_PAGE.html#autotoc_md115",
-"ROV_INTRO_PAGE.html#autotoc_md624",
-"TI_UNIFLASH_TOOL.html#autotoc_md705",
-"enetmdio_manualmode.html#autotoc_md1409",
+"ROV_INTRO_PAGE.html",
+"TI_UNIFLASH_TOOL.html#UNIFLASH_1MB_ISSUE",
+"enetmdio_manualmode.html#autotoc_md1410",
 "group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98a9ef653497d3b87cf33794ffcde82222b",
 "group__DRV__ADC__MODULE.html#ga81735dd3e764c8fbb700bbc21ef15c2d",
 "group__DRV__ADC__MODULE.html#gga7973b7d12fc7bfb96bd276b0a5926834a46888c7fb4c852cce01fb25d7ba2e4df",
@@ -191,27 +191,27 @@ var NAVTREEINDEX =
 "group__PHY__COMMON__H.html#ga39d30d33ae6e4bec55ef3b969cb0993f",
 "group__SDL__ECC__AGGR__FUNCTION.html#ga5a3e77d0089427bae4e0ce94cdf0b143",
 "group__SDL__ESM__MODULE.html#ga88a5b9811c099098f9e7cbf47b2e3d47",
-"group__SDL__MCRC__API.html#ga60811f0a23edcd4a8d108ca6a03eb547",
-"group__SDL__ROMCHECKSUM__MACROS.html#ga4b49f01e41d19a69209eb5cf7d3b6a67",
-"group__gptp.html#gaaa98238fc5a0ddfc7526b3348b5a250d",
-"group__network.html#ga8ab8cf704992a6c0bf58008101ac92eb",
-"structADC__RepeaterConfig.html#a88ea7220762abddcfb8ffd750466d779",
-"structCMACArgs__t.html",
-"structCpswAle__SetMcastEntryInArgs.html#aab128a3a459b074ab397c620eccc3277",
-"structCpswStats__HostPort__2g.html#aee0df83e4902ca590961f61e507a181f",
-"structCpsw__MdioLinkStateChangeInfo.html#a229777a008b8bc26ad213a337ce94f36",
-"structEDMA__Attrs.html#ab13d1c6a7882a9d89afd5dc0043bd893",
-"structEnetPhy__Cfg.html#a326170d15fbd5660cd42f4058afca30b",
-"structFlash__Attrs.html#a5cfc97971673e73d889b25eafb805392",
-"structICSS__EMAC__Attrs.html#aac443d272373170f727ead5ba714ed3c",
-"structIcssgStats__Pa.html#a0aa71a85e6233edf17db859188b2d35d",
-"structLED__Object.html#a940a72eec63e8dbd90e99a0e5e6a724a",
-"structMCAN__RevisionId.html#af72c2b6b044021e27664ecbd168d93e7",
-"structMMCSD__Config.html#a04c6979e6db65bbed57e3b930881c784",
-"structPhy__DrvObj__t.html#a0435e37b6ae17a6578b277952cdc702e",
-"structSDL__ESM__staticRegs.html#aa5ac2e0d6faa76f35a4a7498e259c638",
-"structSIPC__Params.html#ae5275d68d7243a328a8a640ebec6f048",
-"struct____attribute____.html#ad80dafb98a52657e199176eec42e29a9"
+"group__SDL__MCRC__API.html#ga66e191bb8c7bfc7f6eca4f32f11c5e3b",
+"group__SDL__ROMCHECKSUM__MACROS.html#ga4fc34177b0159af69f2e8d43e8feedff",
+"group__gptp.html#gaabd9516ebd0328d50673fc52f05f2552",
+"group__network.html#ga92a58f4c8a15cd38c6b6f4fcc978eed7",
+"structADC__RepeaterConfig.html#adebaca46948e3f9033fa81e901330394",
+"structCMACArgs__t.html#ac5d24d39baa181184775edb3adb07c75",
+"structCpswAle__SetPolicerEntryInArgs.html#a20cf12764269523fb4339bd1136b2c56",
+"structCpswStats__HostPort__2g.html#af4e23627511201d6a1eb905b314e52bf",
+"structCpsw__MdioLinkStateChangeInfo.html#a90893956d3eb819cbcc111f984aba6ee",
+"structEDMA__Attrs.html#ad785af10627181ac450ddab72caae961",
+"structEnetPhy__Cfg.html#a546102a2223d30e56cac6efc5b1f95fd",
+"structFlash__Attrs.html#a6368a95e532743116b74afe277349046",
+"structICSS__EMAC__Attrs.html#aaed986c0e9b652d4affd08e1f55891de",
+"structIcssgStats__Pa.html#a0cc793ff5eede1ce9cf7f9070e43aa7f",
+"structLED__Object.html#aea771e63676c65b8671a6ab885145b37",
+"structMCAN__RxBufElement.html",
+"structMMCSD__EmmcDeviceData.html",
+"structPhy__DrvObj__t.html#a0bc78eb65b9034f9bdbc065b7b8a7973",
+"structSDL__ESM__staticRegs.html#ac5a5b070abc23282405a66767f176e03",
+"structSIPC__Params.html#af8dc68c8fb765c81272f4d0e0dfc1423",
+"struct____attribute____.html#af75f0b2337ae015cde9695a5f39070c6"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

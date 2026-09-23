@@ -183,6 +183,9 @@ AsymCrypt_Return_t AsymCrypt_close(AsymCrypt_Handle handle)
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-4398
+ */
 AsymCrypt_Return_t AsymCrypt_RSAPrivate(AsymCrypt_Handle handle,
                     const uint32_t m[RSA_MAX_LENGTH],
                     const struct AsymCrypt_RSAPrivkey *k,
@@ -241,6 +244,9 @@ AsymCrypt_Return_t AsymCrypt_RSAPrivate(AsymCrypt_Handle handle,
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-4399
+ */
 AsymCrypt_Return_t AsymCrypt_RSAPublic(AsymCrypt_Handle handle,
                     const uint32_t m[RSA_MAX_LENGTH],
                     const struct AsymCrypt_RSAPubkey *k,
@@ -387,6 +393,9 @@ AsymCrypt_Return_t AsymCrypt_RSAKeyGenPublic(AsymCrypt_Handle handle,
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-4394
+*/
 AsymCrypt_Return_t AsymCrypt_ECDSASign(AsymCrypt_Handle handle,
                     const struct AsymCrypt_ECPrimeCurveP *cp,
                     const uint32_t priv[ECDSA_MAX_LENGTH],
@@ -486,6 +495,9 @@ AsymCrypt_Return_t AsymCrypt_ECDSASign(AsymCrypt_Handle handle,
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-4395
+*/
 AsymCrypt_Return_t AsymCrypt_ECDSAVerify(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
                         const struct AsymCrypt_ECPoint *pub,
@@ -558,6 +570,9 @@ AsymCrypt_Return_t AsymCrypt_ECDSAVerify(AsymCrypt_Handle handle,
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-4388
+ */
 AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPrivate(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
                         uint32_t priv[ECDSA_MAX_LENGTH],
@@ -620,6 +635,9 @@ AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPrivate(AsymCrypt_Handle handle,
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-4393
+*/
 AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPublic(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
                         struct AsymCrypt_ECPoint *pub,
@@ -683,6 +701,9 @@ AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPublic(AsymCrypt_Handle handle,
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-4394
+ */
 AsymCrypt_Return_t AsymCrypt_EddsaSign(AsymCrypt_Handle handle,
                              AsymCrypt_ExecuteShaCallback shaCbFxn,
                              const struct AsymCrypt_EddsaKey *key,
@@ -797,6 +818,9 @@ AsymCrypt_Return_t AsymCrypt_EddsaSign(AsymCrypt_Handle handle,
 
 }
 
+/**
+ *  Design: TIFSMCU-4395
+ */
 AsymCrypt_Return_t AsymCrypt_EddsaVerify(AsymCrypt_Handle handle,
                               AsymCrypt_ExecuteShaCallback shaCbFxn,
                               const uint8_t pubKey[EDDSA_MAX_KEY_LEN],
@@ -866,7 +890,9 @@ AsymCrypt_Return_t AsymCrypt_EddsaVerify(AsymCrypt_Handle handle,
     return (status);
 }
 
-
+/**
+ *  Design: TIFSMCU-4393
+*/
 AsymCrypt_Return_t AsymCrypt_EddsaGetPubKey(AsymCrypt_Handle handle,
                                    AsymCrypt_ExecuteShaCallback shaCbFxn,
                                    uint8_t privKey[EDDSA_MAX_KEY_LEN],

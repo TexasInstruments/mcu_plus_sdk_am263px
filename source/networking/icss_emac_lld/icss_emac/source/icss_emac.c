@@ -225,19 +225,19 @@ ICSS_EMAC_Handle ICSS_EMAC_open(uint32_t idx, const ICSS_EMAC_Params *params)
     ICSS_EMAC_Object        *icssEmacObject = NULL;
     const ICSS_EMAC_Attrs   *icssEmacAttrs = NULL;
 
-    if((idx >= gIcssEmacConfigNum) || (params == NULL))
+    if ((idx >= gIcssEmacConfigNum) || (params == NULL))
     {
         status = SystemP_FAILURE;
     }
 
-    if(status == SystemP_SUCCESS)
+    if (status == SystemP_SUCCESS)
     {
         icssEmacHandle = (ICSS_EMAC_Handle)&(gIcssEmacConfig[idx]);
         /* Get the pointer to the object and attrs */
         icssEmacObject = (ICSS_EMAC_Object *)icssEmacHandle->object;
         icssEmacAttrs = (const ICSS_EMAC_Attrs *)icssEmacHandle->attrs;
     }
-    if(SystemP_SUCCESS == status)
+    if (SystemP_SUCCESS == status)
     {
         DebugP_assert(icssEmacObject != NULL);
         DebugP_assert(icssEmacAttrs != NULL);
@@ -250,7 +250,7 @@ ICSS_EMAC_Handle ICSS_EMAC_open(uint32_t idx, const ICSS_EMAC_Params *params)
         DebugP_assert(icssEmacAttrs->phyToMacInterfaceMode <= ICSS_EMAC_RGMII_MODE);
         DebugP_assert(icssEmacAttrs->halfDuplexEnable < 2);
         DebugP_assert(icssEmacAttrs->enableIntrPacing <= ICSS_EMAC_DISABLE_PACING);
-        if(icssEmacAttrs->enableIntrPacing == ICSS_EMAC_ENABLE_PACING)
+        if (icssEmacAttrs->enableIntrPacing == ICSS_EMAC_ENABLE_PACING)
         {
             DebugP_assert(icssEmacAttrs->intrPacingMode <= ICSS_EMAC_INTR_PACING_MODE1);
         }
@@ -264,7 +264,7 @@ ICSS_EMAC_Handle ICSS_EMAC_open(uint32_t idx, const ICSS_EMAC_Params *params)
         DebugP_assert(params->fwStaticMMap != NULL);
         DebugP_assert(params->fwDynamicMMap != NULL);
         DebugP_assert(params->ethphyHandle[0] != NULL);
-        if(icssEmacAttrs->emacMode == ICSS_EMAC_MODE_SWITCH)
+        if (icssEmacAttrs->emacMode == ICSS_EMAC_MODE_SWITCH)
         {
             DebugP_assert(params->ethphyHandle[1] != NULL);
         }
@@ -272,7 +272,7 @@ ICSS_EMAC_Handle ICSS_EMAC_open(uint32_t idx, const ICSS_EMAC_Params *params)
         /* Determine if handle with this index was already opened */
         key = HwiP_disable();
 
-        if(icssEmacObject->isOpen == (bool)true)
+        if (icssEmacObject->isOpen == (bool)true)
         {
             status = SystemP_FAILURE;
         }
@@ -285,7 +285,7 @@ ICSS_EMAC_Handle ICSS_EMAC_open(uint32_t idx, const ICSS_EMAC_Params *params)
         HwiP_restore(key);
     }
 
-    if(SystemP_SUCCESS == status)
+    if (SystemP_SUCCESS == status)
     {
         icssEmacObject->pruicssHandle = params->pruicssHandle;
 
@@ -293,7 +293,7 @@ ICSS_EMAC_Handle ICSS_EMAC_open(uint32_t idx, const ICSS_EMAC_Params *params)
 
         memcpy((void *)(&(icssEmacObject->fwDynamicMMap)), (void *)(params->fwDynamicMMap), sizeof(ICSS_EMAC_FwDynamicMmap));
 
-        if(params->fwVlanFilterParams != NULL)
+        if (params->fwVlanFilterParams != NULL)
         {
             icssEmacObject->fwVlanFilterConfigProvided = (bool)true;
             memcpy((void *)(&(icssEmacObject->fwVlanFilterParams)), (void *)(params->fwVlanFilterParams), sizeof(ICSS_EMAC_FwVlanFilterParams));
@@ -303,7 +303,7 @@ ICSS_EMAC_Handle ICSS_EMAC_open(uint32_t idx, const ICSS_EMAC_Params *params)
             icssEmacObject->fwVlanFilterConfigProvided = (bool)false;
         }
 
-        if(params->fwMulticastFilterParams != NULL)
+        if (params->fwMulticastFilterParams != NULL)
         {
             icssEmacObject->fwMulticastFilterConfigProvided = (bool)true;
             memcpy((void *)(&(icssEmacObject->fwMulticastFilterParams)), (void *)(params->fwMulticastFilterParams), sizeof(ICSS_EMAC_FwMulticastFilterParams));
@@ -324,7 +324,7 @@ ICSS_EMAC_Handle ICSS_EMAC_open(uint32_t idx, const ICSS_EMAC_Params *params)
         icssEmacObject->icssRevision = PRUICSS_getVersion(icssEmacObject->pruicssHandle);
     }
 
-    if(SystemP_SUCCESS == status)
+    if (SystemP_SUCCESS == status)
     {
 #if defined (SOC_AM243X) || defined(SOC_AM64X)
         /*Set the pruRstIsoStatus in object structure according to the value stored in params structure*/
@@ -335,12 +335,12 @@ ICSS_EMAC_Handle ICSS_EMAC_open(uint32_t idx, const ICSS_EMAC_Params *params)
 #endif
     }
 
-    if(SystemP_SUCCESS == status)
+    if (SystemP_SUCCESS == status)
     {
-        switch(icssEmacAttrs->emacMode)
+        switch (icssEmacAttrs->emacMode)
         {
             case ICSS_EMAC_MODE_SWITCH:
-                if(params->enableHostQueueIsolation == 1)
+                if (params->enableHostQueueIsolation == 1)
                 {
                     ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode = 1;
                     ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portPrioritySelection = 1;
@@ -383,9 +383,9 @@ ICSS_EMAC_Handle ICSS_EMAC_open(uint32_t idx, const ICSS_EMAC_Params *params)
         }
     }
 
-    if(SystemP_SUCCESS == status)
+    if (SystemP_SUCCESS == status)
     {
-        if(ICSS_EMAC_MODE_SWITCH == icssEmacAttrs->emacMode)
+        if (ICSS_EMAC_MODE_SWITCH == icssEmacAttrs->emacMode)
         {
             ICSS_EMAC_initLinkState(icssEmacHandle, 0U, port);
             ICSS_EMAC_initLinkState(icssEmacHandle, 1U, port);
@@ -398,7 +398,7 @@ ICSS_EMAC_Handle ICSS_EMAC_open(uint32_t idx, const ICSS_EMAC_Params *params)
         status = ICSS_EMAC_osInit(icssEmacHandle);
     }
 
-    if(SystemP_FAILURE == status)
+    if (SystemP_FAILURE == status)
     {
         icssEmacHandle = NULL;
     }
@@ -410,10 +410,10 @@ void ICSS_EMAC_close(ICSS_EMAC_Handle icssEmacHandle)
 {
     int32_t emacMode;
 
-    if(NULL != icssEmacHandle)
+    if (NULL != icssEmacHandle)
     {
         emacMode = (int32_t)(((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->emacMode);
-        switch(emacMode)
+        switch (emacMode)
         {
             case ICSS_EMAC_MODE_SWITCH:
                 ICSS_EMAC_mdioIntrDisableSwitch(ICSS_EMAC_PORT_1, icssEmacHandle);
@@ -458,7 +458,7 @@ int32_t ICSS_EMAC_ioctl(ICSS_EMAC_Handle icssEmacHandle,
     {
         case ICSS_EMAC_IOCTL_PROMISCUOUS_CTRL:
             /*TODO: Create macro for following if condition*/
-            if(1U == *((uint32_t*)ioctlData))
+            if (1U == *((uint32_t*)ioctlData))
             {
                 retVal = ICSS_EMAC_promiscuousModeInit(portNo, icssEmacHandle);
             }
@@ -469,13 +469,13 @@ int32_t ICSS_EMAC_ioctl(ICSS_EMAC_Handle icssEmacHandle,
             break;
 
         case ICSS_EMAC_IOCTL_PORT_CTRL:
-            if((uint8_t)ICSS_EMAC_PORT_1 == portNo)
+            if ((uint8_t)ICSS_EMAC_PORT_1 == portNo)
             {
                 temp_addr = (pruicssHwAttrs->pru0DramBase + pStaticMMap->portControlAddr);
                 pControl = (uint8_t*)(temp_addr);
                 retVal = SystemP_SUCCESS;
             }
-            else if((uint8_t)ICSS_EMAC_PORT_2 == portNo)
+            else if ((uint8_t)ICSS_EMAC_PORT_2 == portNo)
             {
                 temp_addr = (pruicssHwAttrs->pru1DramBase + pStaticMMap->portControlAddr);
                 pControl = (uint8_t*)(temp_addr);
@@ -490,7 +490,7 @@ int32_t ICSS_EMAC_ioctl(ICSS_EMAC_Handle icssEmacHandle,
             break;
 
         case ICSS_EMAC_IOCTL_LEARNING_CTRL:
-            switch(ioctlCmd->command)
+            switch (ioctlCmd->command)
             {
                 case ICSS_EMAC_LEARN_CTRL_UPDATE_TABLE:
                     retVal = ICSS_EMAC_updateHashTable(icssEmacHandle,
@@ -501,12 +501,12 @@ int32_t ICSS_EMAC_ioctl(ICSS_EMAC_Handle icssEmacHandle,
                     break;
 
                 case ICSS_EMAC_LEARN_CTRL_CLR_TABLE:
-                    if(portNo == (uint8_t)ICSS_EMAC_PORT_1)
+                    if (portNo == (uint8_t)ICSS_EMAC_PORT_1)
                     {
                         retVal = ICSS_EMAC_purgeTable(portNo,
                                                       &(((ICSS_EMAC_Object *)icssEmacHandle->object)->macTable[portNo - 1]));
                     }
-                    if(portNo == (uint8_t)ICSS_EMAC_PORT_2)
+                    if (portNo == (uint8_t)ICSS_EMAC_PORT_2)
                     {
                         retVal = ICSS_EMAC_purgeTable(portNo,
                                                       &(((ICSS_EMAC_Object *)icssEmacHandle->object)->macTable[portNo - 1]));
@@ -514,12 +514,12 @@ int32_t ICSS_EMAC_ioctl(ICSS_EMAC_Handle icssEmacHandle,
                     break;
 
                 case ICSS_EMAC_LEARN_CTRL_AGEING:
-                    if(portNo == (uint8_t)ICSS_EMAC_PORT_1)
+                    if (portNo == (uint8_t)ICSS_EMAC_PORT_1)
                     {
                         retVal = ICSS_EMAC_ageingRoutine(portNo,
                                                          &(((ICSS_EMAC_Object *)icssEmacHandle->object)->macTable[portNo - 1]));
                     }
-                    if(portNo == (uint8_t)ICSS_EMAC_PORT_2)
+                    if (portNo == (uint8_t)ICSS_EMAC_PORT_2)
                     {
                         retVal = ICSS_EMAC_ageingRoutine(portNo,
                                                          &(((ICSS_EMAC_Object *)icssEmacHandle->object)->macTable[portNo - 1]));
@@ -559,78 +559,78 @@ int32_t ICSS_EMAC_ioctl(ICSS_EMAC_Handle icssEmacHandle,
             retVal = ICSS_EMAC_validateFeatureSet(icssEmacHandle, portNo, ICSS_EMAC_FW_STORM_PREVENTIION_FEATURE_CTRL);
             if (retVal == SystemP_SUCCESS)
             {
-                switch(ioctlCmd->command)
+                switch (ioctlCmd->command)
                 {
                     case ICSS_EMAC_STORM_PREV_CTRL_ENABLE:
                         retVal = ICSS_EMAC_enableStormPrevention(portNo, icssEmacHandle, ICSS_EMAC_BC_STORM_PREVENTION);
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_setCreditValue((*((uint16_t *)ioctlData)), (ICSS_EMAC_StormPrevention *)(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->stormPrev)), ICSS_EMAC_BC_STORM_PREVENTION);
                         }
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_enableStormPrevention(portNo, icssEmacHandle, ICSS_EMAC_MC_STORM_PREVENTION);
                         }
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_setCreditValue((*((uint16_t *)ioctlData)), (ICSS_EMAC_StormPrevention *)(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->stormPrev)), ICSS_EMAC_MC_STORM_PREVENTION);
                         }
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_enableStormPrevention(portNo, icssEmacHandle, ICSS_EMAC_UC_STORM_PREVENTION);
                         }
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_setCreditValue((*((uint16_t *)ioctlData)), (ICSS_EMAC_StormPrevention *)(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->stormPrev)), ICSS_EMAC_UC_STORM_PREVENTION);
                         }
                         break;
                     case ICSS_EMAC_STORM_PREV_CTRL_DISABLE:
                         retVal = ICSS_EMAC_disableStormPrevention(portNo, icssEmacHandle, ICSS_EMAC_BC_STORM_PREVENTION);
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_disableStormPrevention(portNo, icssEmacHandle, ICSS_EMAC_MC_STORM_PREVENTION);
                         }
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_disableStormPrevention(portNo, icssEmacHandle, ICSS_EMAC_UC_STORM_PREVENTION);
                         }
                         break;
                     case ICSS_EMAC_STORM_PREV_CTRL_SET_CREDITS:
                         retVal = ICSS_EMAC_setCreditValue((*((uint16_t *)ioctlData)), (ICSS_EMAC_StormPrevention *)(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->stormPrev)), ICSS_EMAC_BC_STORM_PREVENTION);
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_setCreditValue((*((uint16_t *)ioctlData)), (ICSS_EMAC_StormPrevention *)(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->stormPrev)), ICSS_EMAC_MC_STORM_PREVENTION);
                         }
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_setCreditValue((*((uint16_t *)ioctlData)), (ICSS_EMAC_StormPrevention *)(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->stormPrev)), ICSS_EMAC_UC_STORM_PREVENTION);
                         }
                         break;
                     case ICSS_EMAC_STORM_PREV_CTRL_INIT:
                         retVal = ICSS_EMAC_initStormPreventionTable(portNo, icssEmacHandle, ICSS_EMAC_BC_STORM_PREVENTION);
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_initStormPreventionTable(portNo, icssEmacHandle, ICSS_EMAC_MC_STORM_PREVENTION);
                         }
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_initStormPreventionTable(portNo, icssEmacHandle, ICSS_EMAC_UC_STORM_PREVENTION);
                         }
                         break;
                     case ICSS_EMAC_STORM_PREV_CTRL_RESET:
                         retVal = ICSS_EMAC_resetStormPreventionCounter(icssEmacHandle, ICSS_EMAC_BC_STORM_PREVENTION);
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_resetStormPreventionCounter(icssEmacHandle, ICSS_EMAC_MC_STORM_PREVENTION);
                         }
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_resetStormPreventionCounter(icssEmacHandle, ICSS_EMAC_UC_STORM_PREVENTION);
                         }
                         break;
                     case ICSS_EMAC_STORM_PREV_CTRL_ENABLE_BC:
                         retVal = ICSS_EMAC_enableStormPrevention(portNo, icssEmacHandle, ICSS_EMAC_BC_STORM_PREVENTION);
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_setCreditValue((*((uint16_t *)ioctlData)), (ICSS_EMAC_StormPrevention *)(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->stormPrev)), ICSS_EMAC_BC_STORM_PREVENTION);
                         }
@@ -649,7 +649,7 @@ int32_t ICSS_EMAC_ioctl(ICSS_EMAC_Handle icssEmacHandle,
                         break;
                     case ICSS_EMAC_STORM_PREV_CTRL_ENABLE_MC:
                         retVal = ICSS_EMAC_enableStormPrevention(portNo, icssEmacHandle, ICSS_EMAC_MC_STORM_PREVENTION);
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_setCreditValue((*((uint16_t *)ioctlData)), (ICSS_EMAC_StormPrevention *)(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->stormPrev)), ICSS_EMAC_MC_STORM_PREVENTION);
                         }
@@ -668,7 +668,7 @@ int32_t ICSS_EMAC_ioctl(ICSS_EMAC_Handle icssEmacHandle,
                         break;
                     case ICSS_EMAC_STORM_PREV_CTRL_ENABLE_UC:
                         retVal = ICSS_EMAC_enableStormPrevention(portNo, icssEmacHandle, ICSS_EMAC_UC_STORM_PREVENTION);
-                        if(retVal == SystemP_SUCCESS)
+                        if (retVal == SystemP_SUCCESS)
                         {
                             retVal = ICSS_EMAC_setCreditValue((*((uint16_t *)ioctlData)), (ICSS_EMAC_StormPrevention *)(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->stormPrev)), ICSS_EMAC_UC_STORM_PREVENTION);
                         }
@@ -693,7 +693,7 @@ int32_t ICSS_EMAC_ioctl(ICSS_EMAC_Handle icssEmacHandle,
             break;
 
         case ICSS_EMAC_IOCTL_STATS_CTRL:
-            switch(ioctlCmd->command)
+            switch (ioctlCmd->command)
             {
                 case ICSS_EMAC_IOCTL_STAT_CTRL_GET:
                     retVal = ICSS_EMAC_readStats(icssEmacHandle, portNo, (ICSS_EMAC_PruStatistics *)ioctlData);
@@ -709,18 +709,18 @@ int32_t ICSS_EMAC_ioctl(ICSS_EMAC_Handle icssEmacHandle,
 
         case ICSS_EMAC_IOCTL_MULTICAST_FILTER_CTRL:
 
-            if(((ICSS_EMAC_Object *)icssEmacHandle->object)->fwMulticastFilterConfigProvided == (bool)true)
+            if (((ICSS_EMAC_Object *)icssEmacHandle->object)->fwMulticastFilterConfigProvided == (bool)true)
             {
                 retVal = ICSS_EMAC_validateFeatureSet(icssEmacHandle, portNo, ICSS_EMAC_FW_MULTICAST_FILTER_FEATURE_CTRL);
                 if (retVal == SystemP_SUCCESS)
                 {
-                    if((uint8_t)ICSS_EMAC_PORT_1 == portNo)
+                    if ((uint8_t)ICSS_EMAC_PORT_1 == portNo)
                     {
                         temp_addr = (pruicssHwAttrs->pru0DramBase);
                         pControl = (uint8_t*)(temp_addr);
                         retVal = SystemP_SUCCESS;
                     }
-                    else if((uint8_t)ICSS_EMAC_PORT_2 == portNo)
+                    else if ((uint8_t)ICSS_EMAC_PORT_2 == portNo)
                     {
                         temp_addr = (pruicssHwAttrs->pru1DramBase);
                         pControl = (uint8_t*)(temp_addr);
@@ -741,18 +741,18 @@ int32_t ICSS_EMAC_ioctl(ICSS_EMAC_Handle icssEmacHandle,
             break;
 
         case ICSS_EMAC_IOCTL_VLAN_FILTER_CTRL:
-            if(((ICSS_EMAC_Object *)icssEmacHandle->object)->fwVlanFilterConfigProvided == (bool)true)
+            if (((ICSS_EMAC_Object *)icssEmacHandle->object)->fwVlanFilterConfigProvided == (bool)true)
             {
                 retVal = ICSS_EMAC_validateFeatureSet(icssEmacHandle, portNo, ICSS_EMAC_FW_VLAN_FILTER_FEATURE_CTRL);
                 if (retVal == SystemP_SUCCESS)
                 {
-                    if((uint8_t)ICSS_EMAC_PORT_1 == portNo)
+                    if ((uint8_t)ICSS_EMAC_PORT_1 == portNo)
                     {
                         temp_addr = (pruicssHwAttrs->pru0DramBase);
                         pControl = (uint8_t*)(temp_addr);
                         retVal = SystemP_SUCCESS;
                     }
-                    else if((uint8_t)ICSS_EMAC_PORT_2 == portNo)
+                    else if ((uint8_t)ICSS_EMAC_PORT_2 == portNo)
                     {
                         temp_addr = (pruicssHwAttrs->pru1DramBase);
                         pControl = (uint8_t*)(temp_addr);
@@ -778,7 +778,7 @@ int32_t ICSS_EMAC_ioctl(ICSS_EMAC_Handle icssEmacHandle,
             break;
 
         case ICSS_EMAC_IOCTL_SPECIAL_UNICAST_MAC_CTRL:
-            switch(ioctlCmd->command)
+            switch (ioctlCmd->command)
             {
                 case ICSS_EMAC_IOCTL_SPECIAL_UNICAST_MAC_CTRL_DISABLE_CMD:
                     retVal = ICSS_EMAC_handleSpecialUnicastMACAddress(icssEmacHandle, ICSS_EMAC_IOCTL_SPECIAL_UNICAST_MAC_CTRL_DISABLE_CMD, (uint8_t *)ioctlData);
@@ -844,7 +844,7 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
     PRUICSS_HwAttrs const       *pruicssHwAttrs = (PRUICSS_HwAttrs const *)(pruicssHandle->hwAttrs);
     uint8_t                     numHostQueues = pDynamicMMap->numQueues;
 
-    if(((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).customRxCallBack).callBack != NULL)
+    if (((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).customRxCallBack).callBack != NULL)
     {
         /* Invoke  custom Rx packet callback function */
         ret_val = (((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).customRxCallBack).callBack)(
@@ -854,7 +854,7 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
         return(ret_val);
     }
 
-    if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == ICSS_EMAC_MODE_SWITCH)
+    if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == ICSS_EMAC_MODE_SWITCH)
     {
         emacMode = 0;
     }
@@ -867,12 +867,12 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
     ICSS_EMAC_HostStatistics    *hostStatPtr;
     ICSS_EMAC_CallBackConfig    *learningExcCallback;
 
-    if(emacMode == 0U)
+    if (emacMode == 0U)
     {   /*Switch Mode*/
-        if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
+        if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
         {
             numHostQueues = pDynamicMMap->numQueues * ICSS_EMAC_MAX_PORTS_PER_INSTANCE;        
-            if(queueNumber < (numHostQueues/ICSS_EMAC_MAX_PORTS_PER_INSTANCE)) {
+            if (queueNumber < (numHostQueues/ICSS_EMAC_MAX_PORTS_PER_INSTANCE)) {
                 temp_addr = (pruicssHwAttrs->pru1DramBase + pStaticMMap->p0QueueDescOffset + (((uint32_t)(queueNumber))* ICSS_EMAC_DEFAULT_FW_QD_SIZE));
             }
             else {
@@ -895,7 +895,7 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
     queue_wr_ptr = qDesc->wr_ptr;
     queue_rd_ptr = qDesc->rd_ptr;
     sPort = &(((ICSS_EMAC_Object *)icssEmacHandle->object)->switchPort[ICSS_EMAC_PORT_0]);
-    if(qDesc->overflow_cnt > 0)
+    if (qDesc->overflow_cnt > 0)
     {
         sPort->queue[queueNumber].qStat.errCount += qDesc->overflow_cnt;        /* increment missed packets to error counter */
         qDesc->overflow_cnt = 0;
@@ -905,12 +905,12 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
     rd_buf_desc = HW_RD_REG32(temp_addr);
     rxQueue = &(sPort->queue[queueNumber]);
 
-    if(emacMode == 0U)
+    if (emacMode == 0U)
     { /*Switch Mode*/
         /* Determine the address of the first buffer descriptor from the rd_ptr */
         /*Check if Packet was received in collision queue or not */
         shadow = ((uint16_t)((rd_buf_desc & 0x00004000U) >> 14U));
-        if(shadow != 0)
+        if (shadow != 0)
         {
         /* Pick the data from collision buffer's */
             rd_buffer_l3_addr = ((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->l3OcmcBaseAddr) +  pDynamicMMap->p0ColBufferOffset);
@@ -931,7 +931,7 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
         rd_buffer_l3_addr = ((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->l3OcmcBaseAddr) + temp_var1 + temp_var2);
     }
     /* Take out the port number - it may have changed */
-    rxArg->port = (0x00030000U & rd_buf_desc)>>16;
+    rxArg->port = (0x00030000U & rd_buf_desc) >> 16;
 
     temp_addr = (rd_buffer_l3_addr + 6U);
     srcMacId = (uint8_t*)(temp_addr);
@@ -939,15 +939,15 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
 
     rd_packet_length = ((uint16_t)((0x1ffc0000U & rd_buf_desc) >> 18));
 
-    size = (rd_packet_length >>2);
-    if( (rd_packet_length & 0x00000003U) != 0U )
+    size = (rd_packet_length >> 2);
+    if ( (rd_packet_length & 0x00000003U) != 0U )
     {
         size = size + 1u;
     }
 
     /*Compute number of buffer desc required & update rd_ptr in queue */
     update_rd_ptr = ((rd_packet_length/(ICSS_EMAC_DEFAULT_FW_BLOCK_SIZE)) * (ICSS_EMAC_DEFAULT_FW_BD_SIZE)) + queue_rd_ptr;
-    if( (rd_packet_length % (ICSS_EMAC_DEFAULT_FW_BLOCK_SIZE)) != 0U) /* checks multiple of 32 else need to increment by 4 */
+    if ( (rd_packet_length % (ICSS_EMAC_DEFAULT_FW_BLOCK_SIZE)) != 0U) /* checks multiple of 32 else need to increment by 4 */
     {
         update_rd_ptr += ICSS_EMAC_DEFAULT_FW_BD_SIZE;
     }
@@ -956,26 +956,26 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
 
     /*If timestamp bit is set then we need to account
     * for additional 32B used for Rx timestamp*/
-    if((rd_buf_desc & 0x8000U) != 0U)
+    if ((rd_buf_desc & 0x8000U) != 0U)
     {
         ptp_pkt = 1;
         update_rd_ptr += ICSS_EMAC_DEFAULT_FW_BD_SIZE;
     }
 
     /*Check for wrap around */
-    if(update_rd_ptr >= rxQueue->queue_size)
+    if (update_rd_ptr >= rxQueue->queue_size)
     {
         update_rd_ptr = update_rd_ptr - (rxQueue->queue_size - rxQueue->buffer_desc_offset);
 
     }
-    if(true_rd_ptr >= rxQueue->queue_size)
+    if (true_rd_ptr >= rxQueue->queue_size)
     {
         true_rd_ptr = true_rd_ptr - (rxQueue->queue_size - rxQueue->buffer_desc_offset);
     }
-    if(rd_packet_length <= ICSS_EMAC_MAXMTU)        /* make sure we do not have too big packets */
+    if (rd_packet_length <= ICSS_EMAC_MAXMTU)        /* make sure we do not have too big packets */
     {
         /* Switch Mode */
-        if(ICSS_EMAC_LEARNING_ENABLE == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->learningEnable)
+        if (ICSS_EMAC_LEARNING_ENABLE == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->learningEnable)
         {
             learningExcCallback = &((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).learningExCallBack);
             /*TODO: Review this*/
@@ -984,7 +984,7 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
         }
 
         /* Copy the data from switch buffers to DDR */
-        if( (true_rd_ptr < queue_rd_ptr) && (true_rd_ptr != rxQueue->buffer_desc_offset))
+        if ( (true_rd_ptr < queue_rd_ptr) && (true_rd_ptr != rxQueue->buffer_desc_offset))
         {
             typeProt = (uint16_t*)rd_buffer_l3_addr + 6;
             typeProt1 = ((uint16_t)((*typeProt) << 8U));
@@ -998,9 +998,9 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
             destAddress = destAddress + rx_num_of_bytes;
             new_size = rd_packet_length - rx_num_of_bytes;
 
-            if(emacMode == 0U)
+            if (emacMode == 0U)
             { /*Switch Mode*/
-                if(shadow != 0)
+                if (shadow != 0)
                 {
                     rd_buffer_l3_addr = rd_buffer_l3_addr + rx_num_of_bytes;
                 }
@@ -1015,7 +1015,7 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
             }
             ICSS_EMAC_memcpyLocal((int32_t*)destAddress, (int32_t*)rd_buffer_l3_addr, (size_t)new_size);
             /*Copy and append the timestamp to packet if it's a PTP frame*/
-            if(ptp_pkt == TRUE)
+            if (ptp_pkt == TRUE)
             {
                 aligned_length = (new_size & 0xFFE0) + 32;
                 ICSS_EMAC_memcpyLocal((int32_t*)(destAddress + new_size), (int32_t*)(rd_buffer_l3_addr + aligned_length), (size_t)10);
@@ -1025,7 +1025,7 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
         {
             ICSS_EMAC_memcpyLocal((int32_t*)destAddress, (int32_t*)rd_buffer_l3_addr, (size_t)rd_packet_length);
             /*Copy and append the timestamp to packet if it's a PTP frame*/
-            if(ptp_pkt == TRUE)
+            if (ptp_pkt == TRUE)
             {
                 aligned_length = (rd_packet_length & 0xFFE0) + 32;
                 ICSS_EMAC_memcpyLocal((int32_t*)(destAddress + rd_packet_length), (int32_t*)(rd_buffer_l3_addr + aligned_length), (size_t)10);
@@ -1043,15 +1043,15 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
         ret_val = SystemP_FAILURE;
     }
 
-    if(ret_flag == 0U)
+    if (ret_flag == 0U)
     {
-        if(emacMode == 0U)
+        if (emacMode == 0U)
         { /*Switch Mode*/
             temp_addr = (pruicssHwAttrs->pru1DramBase  + pStaticMMap->p0QueueDescOffset + (((uint32_t)(queueNumber))* ICSS_EMAC_DEFAULT_FW_QD_SIZE));
             /* Note: hostQueueIsolationMode is supported only on AM243x and AM64x */
-            if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
+            if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
             {
-                if(queueNumber < (numHostQueues/ICSS_EMAC_MAX_PORTS_PER_INSTANCE)) {
+                if (queueNumber < (numHostQueues/ICSS_EMAC_MAX_PORTS_PER_INSTANCE)) {
                     temp_addr = (pruicssHwAttrs->pru1DramBase + pStaticMMap->p0QueueDescOffset + (((uint32_t)(queueNumber))* ICSS_EMAC_DEFAULT_FW_QD_SIZE));
                 }
                 else {
@@ -1067,7 +1067,7 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
             /* Write back to queue */
             HW_WR_REG16(temp_addr, update_rd_ptr);
             /* Check if Host needs to change the wr_ptr for collision queue as well */
-            if(shadow != 0)
+            if (shadow != 0)
             {
                 temp_addr = (pruicssHwAttrs->pru1DramBase  + pStaticMMap->p0ColQueueDescOffset);
                 ICSS_EMAC_Queue *qDescCol = (ICSS_EMAC_Queue *)(temp_addr);
@@ -1091,11 +1091,11 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
         rxQueue->qStat.rawCount++;
 
         rxArg->more = 0;
-        if(emacMode == 0U)
+        if (emacMode == 0U)
         { /*Switch Mode*/
-            if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
+            if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
             {
-                if(queueNumber < (numHostQueues/ICSS_EMAC_MAX_PORTS_PER_INSTANCE)) {
+                if (queueNumber < (numHostQueues/ICSS_EMAC_MAX_PORTS_PER_INSTANCE)) {
                     temp_addr = (pruicssHwAttrs->pru1DramBase + pStaticMMap->p0QueueDescOffset + (((uint32_t)(queueNumber))* ICSS_EMAC_DEFAULT_FW_QD_SIZE));
                 }
                 else {
@@ -1118,13 +1118,13 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
         }
         queue_wr_ptr = qDesc->wr_ptr;
 
-        if(update_rd_ptr != queue_wr_ptr)
+        if (update_rd_ptr != queue_wr_ptr)
         {
             rxArg->more = 1;
         }
 
         hostStatPtr = (ICSS_EMAC_HostStatistics *)(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->hostStat));
-        if(emacMode == 0U) /*In Switch Mode both the statistics structures are in single handle.Depending on port update the corresponding structure*/
+        if (emacMode == 0U) /*In Switch Mode both the statistics structures are in single handle.Depending on port update the corresponding structure*/
         {
             hostStatPtr += (rxArg->port - 1);
         }
@@ -1158,11 +1158,11 @@ int32_t ICSS_EMAC_txPacket(const ICSS_EMAC_TxArgument *txArg, void *userArg)
     uint8_t             trigTx1;
     uint8_t             trigTx2;
     ICSS_EMAC_Handle    icssEmacHandle = txArg->icssEmacHandle;
-    uint8_t             portNumber= txArg->portNumber;
+    uint8_t             portNumber = txArg->portNumber;
     uint8_t             queuePriority = txArg->queuePriority;
     uint16_t            lengthOfPacket = txArg->lengthOfPacket;
 
-    if(((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).customTxCallBack).callBack != NULL)
+    if (((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).customTxCallBack).callBack != NULL)
     {
         /* Invoke  custom Tx packet callback function */
         ret1 = (((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).customTxCallBack).callBack)(
@@ -1198,7 +1198,7 @@ int32_t ICSS_EMAC_txPacket(const ICSS_EMAC_TxArgument *txArg, void *userArg)
                 break;
         }
 
-        if(trigTx1 == 1U)
+        if (trigTx1 == 1U)
         {
             ret1 = ICSS_EMAC_txPacketEnqueue(icssEmacHandle,
                                             txArg->srcAddress,
@@ -1207,7 +1207,7 @@ int32_t ICSS_EMAC_txPacket(const ICSS_EMAC_TxArgument *txArg, void *userArg)
                                             lengthOfPacket);
         }
 
-        if(trigTx2 == 1U)
+        if (trigTx2 == 1U)
         {
             ret2 = ICSS_EMAC_txPacketEnqueue(icssEmacHandle,
                                             txArg->srcAddress,
@@ -1218,22 +1218,22 @@ int32_t ICSS_EMAC_txPacket(const ICSS_EMAC_TxArgument *txArg, void *userArg)
     }
     else
     {
-		if (portNumber == ICSS_EMAC_PORT_1)
-		{
+        if (portNumber == ICSS_EMAC_PORT_1)
+        {
             ret1 = ICSS_EMAC_txPacketEnqueue(icssEmacHandle,
                                             txArg->srcAddress,
                                             portNumber,
                                             queuePriority,
                                             lengthOfPacket);
-		}
-		else
-		{
-			ret2 = ICSS_EMAC_txPacketEnqueue(icssEmacHandle,
+        }
+        else if (portNumber == ICSS_EMAC_PORT_2)
+        {
+            ret2 = ICSS_EMAC_txPacketEnqueue(icssEmacHandle,
                                             txArg->srcAddress,
                                             portNumber,
                                             queuePriority,
                                             lengthOfPacket);
-		}
+        }
     }
 
     return ((ret2 << 16) | (ret1 & 0xFFFF));
@@ -1293,7 +1293,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
 
     /*If queue is occupied by other task, it's respective index will be set in txOccupied*/
     queue_idx = 1 << queuePriority;
-    while((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->txOccupied & queue_idx) == queue_idx)
+    while ((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->txOccupied & queue_idx) == queue_idx)
     {
         ClockP_usleep(1000);
     }
@@ -1302,7 +1302,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
     ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->txOccupied |= queue_idx;
 #endif
 
-    if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == ICSS_EMAC_MODE_SWITCH)
+    if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == ICSS_EMAC_MODE_SWITCH)
     {
         emacMode = 0;
     }
@@ -1311,14 +1311,14 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
         emacMode = 1U;
     }
 
-    if(emacMode == 1U)
+    if (emacMode == 1U)
     {   /*MAC Mode*/
 
-        if(ICSS_EMAC_PORT_1 == portNumber)
+        if (ICSS_EMAC_PORT_1 == portNumber)
         {
             pruSharedMem = pruicssHwAttrs->pru0DramBase;
         }
-        if(ICSS_EMAC_PORT_2 == portNumber)
+        if (ICSS_EMAC_PORT_2 == portNumber)
         {
             pruSharedMem = pruicssHwAttrs->pru1DramBase;
         }
@@ -1332,7 +1332,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
         hostStatPtr += (portNumber - 1U);/*Switch mode. Points to correct structure depending on port*/
     }
 
-    if((portNumber != ICSS_EMAC_PORT_1) && (portNumber != ICSS_EMAC_PORT_2))
+    if ((portNumber != ICSS_EMAC_PORT_1) && (portNumber != ICSS_EMAC_PORT_2))
     {
         hostStatPtr->txDroppedPackets++;
 #ifdef BUILD_HSR_PRP_MII
@@ -1341,7 +1341,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
 #endif
         return ((int32_t)ICSS_EMAC_SWITCH_INVALID_PORT);
     }
-    if(queuePriority > ((uint8_t)(pDynamicMMap->numQueues) - (uint8_t)1U))
+    if (queuePriority > ((uint8_t)(pDynamicMMap->numQueues) - (uint8_t)1U))
     {
         hostStatPtr->txDroppedPackets++;
 #ifdef BUILD_HSR_PRP_MII
@@ -1349,7 +1349,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
 #endif
         return ((int32_t)ICSS_EMAC_ERR_SWITCH_INVALID_PARAM);
     }
-    if(lengthOfPacket > ICSS_EMAC_MAXMTU)
+    if (lengthOfPacket > ICSS_EMAC_MAXMTU)
     {
         hostStatPtr->txDroppedPackets++;
 #ifdef BUILD_HSR_PRP_MII
@@ -1357,7 +1357,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
 #endif
         return ((int32_t)ICSS_EMAC_ERR_BADPACKET);
     }
-    if(lengthOfPacket < ICSS_EMAC_MINMTU)
+    if (lengthOfPacket < ICSS_EMAC_MINMTU)
     {
         hostStatPtr->txDroppedPackets++;
 #ifdef BUILD_HSR_PRP_MII
@@ -1366,10 +1366,10 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
         return ((int32_t)ICSS_EMAC_ERR_BADPACKET);
     }
 
-    if(lengthOfPacket < ETHERNET_FRAME_SIZE_60)
+    if (lengthOfPacket < ETHERNET_FRAME_SIZE_60)
     {
         original_length_of_packet = (uint16_t)lengthOfPacket;
-        packet_min_size_padding =1U;
+        packet_min_size_padding = 1U;
         lengthOfPacket = ETHERNET_FRAME_SIZE_60;
     }
     else
@@ -1379,7 +1379,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
 
     macAddr = (uint8_t*)srcAddress;
 
-    if(linkStatus == 0U)
+    if (linkStatus == 0U)
     {
         hostStatPtr->txDroppedPackets++;
 #ifdef BUILD_HSR_PRP_MII
@@ -1399,7 +1399,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
     txQueue = &(sPort->queue[queuePriority]);
     txQueueOtherPort = &(sOtherPort->queue[queuePriority]);
 #endif    
-    if(emacMode == 0U)
+    if (emacMode == 0U)
     {   /*Switch Mode*/
 #ifndef BUILD_HSR_PRP_MII
         txQueue = &(sPort->queue[queuePriority]);
@@ -1408,12 +1408,12 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
         temp_addr = (pruicssHwAttrs->pru1DramBase + txQueue->queue_desc_offset + 4U);
         temp = HW_RD_REG32(temp_addr);
         collision_queue_selected =  (temp & 0x00000100U);  /* Check the "busy_m" bit */
-        if(collision_queue_selected != 0U)
+        if (collision_queue_selected != 0U)
         {
             hostStatPtr->txNumCollision = hostStatPtr->txNumCollision + 1;
             /* Queue is busy  .. put the packet in the collision Queue */
             txQueue = &(sPort->queue[ICSS_EMAC_COLQUEUE]);
-            if(portNumber == ICSS_EMAC_PORT_1)
+            if (portNumber == ICSS_EMAC_PORT_1)
             {
                 temp_addr = (pruicssHwAttrs->pru1DramBase + pStaticMMap->colStatusAddr+ 1U);
                 col_queue_already_occupied = HW_RD_REG8(temp_addr);
@@ -1423,7 +1423,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
                 temp_addr = (pruicssHwAttrs->pru1DramBase +  pStaticMMap->colStatusAddr + 2U);
                 col_queue_already_occupied = HW_RD_REG8(temp_addr);
             }
-            if(col_queue_already_occupied != 0)
+            if (col_queue_already_occupied != 0)
             {
                 hostStatPtr->txDroppedPackets++;
                 hostStatPtr->txCollisionDroppedPackets++;
@@ -1442,7 +1442,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
             temp_addr = (pruicssHwAttrs->pru1DramBase + txQueue->queue_desc_offset + 4U);
             temp = HW_RD_REG32(temp_addr);
             collision_queue_selected =  (temp & 0x00000100U);  /* Check the "busy_m" bit */
-            if(collision_queue_selected != 0U)
+            if (collision_queue_selected != 0U)
             {
                 hostStatPtr->txNumCollision = hostStatPtr->txNumCollision + 1;
                 temp_addr = ( pruicssHwAttrs->pru1DramBase+ txQueue->queue_desc_offset + 4U);
@@ -1468,7 +1468,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
     buffer_des = (((uint32_t)(lengthOfPacket)) << 18U);
 #endif
 
-    if(emacMode == 0U)
+    if (emacMode == 0U)
     { /*Switch Mode*/
         temp_addr = (pruicssHwAttrs->pru1DramBase + txQueue->queue_desc_offset);
         /*  Read the write pointer from Queue descriptor */
@@ -1485,7 +1485,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
 
     wrk_queue_wr_ptr = (((uint16_t)(lengthOfPacket)) / (ICSS_EMAC_DEFAULT_FW_BLOCK_SIZE));  /* Divide by 32 */
     wrk_queue_wr_ptr = (uint16_t)((wrk_queue_wr_ptr) * (ICSS_EMAC_DEFAULT_FW_BD_SIZE));  /* Multiply by 4 ..as one descriptor represents 32 bytes and BD takes 4 bytes */
-    if((((uint32_t)(lengthOfPacket)) % (ICSS_EMAC_DEFAULT_FW_BLOCK_SIZE)) != 0U)
+    if ((((uint32_t)(lengthOfPacket)) % (ICSS_EMAC_DEFAULT_FW_BLOCK_SIZE)) != 0U)
     {
          wrk_queue_wr_ptr = wrk_queue_wr_ptr + (ICSS_EMAC_DEFAULT_FW_BD_SIZE);
     }
@@ -1494,12 +1494,12 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
     wrk_queue_wr_ptr = wrk_queue_wr_ptr + queue_wr_ptr;
     size = txQueue->queue_size;
     /*Check if queue is full and there is an wrap around */
-    if(((queue_wr_ptr + (ICSS_EMAC_DEFAULT_FW_BD_SIZE)) % size) == 0U)
+    if (((queue_wr_ptr + (ICSS_EMAC_DEFAULT_FW_BD_SIZE)) % size) == 0U)
     {
-        if(queue_rd_ptr == txQueue->buffer_desc_offset) /* Since queue is not starting from 0. */
+        if (queue_rd_ptr == txQueue->buffer_desc_offset) /* Since queue is not starting from 0. */
         {
             txQueue->qStat.errCount++;
-            if(emacMode == 0U)
+            if (emacMode == 0U)
             { /*Switch Mode*/
                 temp_addr = (pruicssHwAttrs->pru1DramBase + txQueue->queue_desc_offset + 4U);
                 HW_WR_REG8(temp_addr, 0);
@@ -1517,10 +1517,10 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
         }
     }
     /* Check if the Queue is already full */
-    if((queue_wr_ptr + (ICSS_EMAC_DEFAULT_FW_BD_SIZE)) == queue_rd_ptr)
+    if ((queue_wr_ptr + (ICSS_EMAC_DEFAULT_FW_BD_SIZE)) == queue_rd_ptr)
     {
         txQueue->qStat.errCount++;
-        if(emacMode == 0U)
+        if (emacMode == 0U)
         {   /*Switch Mode*/
             temp_addr = (pruicssHwAttrs->pru1DramBase+ txQueue->queue_desc_offset + 4U);
             HW_WR_REG8(temp_addr, 0);
@@ -1537,27 +1537,27 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
         return ((int32_t)ICSS_EMAC_ERR_TX_OUT_OF_BD);       /* No space in queue */
     }
     /* Three cases arise between wr_ptr and rd_ptr */
-    if(queue_wr_ptr == queue_rd_ptr)
+    if (queue_wr_ptr == queue_rd_ptr)
     {
         /*Check for wrap around */
-        if(wrk_queue_wr_ptr >=  size)
+        if (wrk_queue_wr_ptr >= size)
         {
             wrk_queue_wr_ptr = (wrk_queue_wr_ptr % size);
             /*Add offset as queue doesn't start from 0. */
             wrk_queue_wr_ptr = wrk_queue_wr_ptr + txQueue->buffer_desc_offset;
         }
     }
-    else if(queue_wr_ptr > queue_rd_ptr)
+    else if (queue_wr_ptr > queue_rd_ptr)
     {
         /*Check for wrap around */
-        if(wrk_queue_wr_ptr >=  size)
+        if (wrk_queue_wr_ptr >= size)
         {
             wrk_queue_wr_ptr = (wrk_queue_wr_ptr % size);
             wrk_queue_wr_ptr = wrk_queue_wr_ptr + txQueue->buffer_desc_offset;
-            if(wrk_queue_wr_ptr >= queue_rd_ptr)
+            if (wrk_queue_wr_ptr >= queue_rd_ptr)
             {
                 txQueue->qStat.errCount++;
-                if(emacMode == 0U)
+                if (emacMode == 0U)
                 {   /*Switch Mode*/
                     temp_addr = (pruicssHwAttrs->pru1DramBase + txQueue->queue_desc_offset + 4U);
                     HW_WR_REG8(temp_addr, 0);
@@ -1577,10 +1577,10 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
     }
     else
     {
-        if(wrk_queue_wr_ptr >= queue_rd_ptr)
+        if (wrk_queue_wr_ptr >= queue_rd_ptr)
         {
             txQueue->qStat.errCount++;
-            if(emacMode == 0U)
+            if (emacMode == 0U)
             {   /*Switch Mode*/
                 temp_addr = (pruicssHwAttrs->pru1DramBase + txQueue->queue_desc_offset + 4U);
                 HW_WR_REG8(temp_addr, 0);
@@ -1606,15 +1606,15 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
     buffer_offset_computed = buffer_offset_computed + pDynamicMMap->transmitQueuesBufferOffset;
 
     /* Check if queue wrap around has happened. If yes then data can't be stored sequentially. */
-    if( (wrk_queue_wr_ptr < queue_wr_ptr) &&  (wrk_queue_wr_ptr != txQueue->buffer_desc_offset))
+    if ( (wrk_queue_wr_ptr < queue_wr_ptr) &&  (wrk_queue_wr_ptr != txQueue->buffer_desc_offset))
     {
         num_of_bytes = (size - queue_wr_ptr);
         num_of_bytes /= (ICSS_EMAC_DEFAULT_FW_BD_SIZE);
         num_of_bytes *= (ICSS_EMAC_DEFAULT_FW_BLOCK_SIZE);      /* divide by buffer descriptor size * buffer size */
         /* check if Padding has to be done. If yes then Pad with Zero's to reach the minimum size for the ethernet frame. */
-        if(packet_min_size_padding == 1U)
+        if (packet_min_size_padding == 1U)
         {
-            if( num_of_bytes <= original_length_of_packet)
+            if ( num_of_bytes <= original_length_of_packet)
             {
                 temp_addr = ((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->l3OcmcBaseAddr) + ((uint32_t)buffer_offset_computed));
                 ICSS_EMAC_memcpyLocal((int32_t*)(temp_addr), (int32_t*) srcAddress, (size_t)num_of_bytes);
@@ -1625,7 +1625,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
                 /* Copy the valid packet data first and then Pad with zero's.  */
                 ICSS_EMAC_memcpyLocal((int32_t*)(temp_addr), (int32_t*) srcAddress, (size_t)original_length_of_packet);
                 /* Pad the remaining bytes with Zero's */
-                for(i=0; i< (num_of_bytes - original_length_of_packet); i++)
+                for (i = 0; i< (num_of_bytes - original_length_of_packet); i++)
                 {
                     temp_addr = ((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->l3OcmcBaseAddr) + ((uint32_t)buffer_offset_computed) + original_length_of_packet + i);
                     HW_WR_REG8(temp_addr, 0);
@@ -1640,9 +1640,9 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
         new_packet_length = ((uint16_t)lengthOfPacket) - num_of_bytes;
         srcAddress = srcAddress + num_of_bytes;
 
-        if(emacMode == 0U)
+        if (emacMode == 0U)
         { /*Switch Mode*/
-            if(collision_queue_selected != 0)
+            if (collision_queue_selected != 0)
             {
                 buffer_offset_computed = buffer_offset_computed + num_of_bytes;
             }
@@ -1658,12 +1658,12 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
             buffer_offset_computed = txQueue->buffer_offset;
         }
 
-        if( packet_min_size_padding == 1u)
+        if ( packet_min_size_padding == 1u)
         {
-            if(original_length_of_packet <= num_of_bytes)
+            if (original_length_of_packet <= num_of_bytes)
             {
                 /* Pad all the remaining bytes with Zero's */
-                for(i=0; i< new_packet_length; i++)
+                for (i = 0; i< new_packet_length; i++)
                 {
                     temp_addr = ((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->l3OcmcBaseAddr) + ((uint32_t)buffer_offset_computed) + i);
                     HW_WR_REG8(temp_addr, 0);
@@ -1676,7 +1676,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
                 temp_addr = ((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->l3OcmcBaseAddr) + ((uint32_t)buffer_offset_computed));
                 ICSS_EMAC_memcpyLocal((int32_t*)(temp_addr),(int32_t*) srcAddress, (size_t)remaining_valid_frame_data_length);
                 /*Pad the remaining bytes with Zero's */
-                for(i=0; i< (new_packet_length - remaining_valid_frame_data_length); i++)
+                for (i = 0; i < (new_packet_length - remaining_valid_frame_data_length); i++)
                 {
                     temp_addr = ((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->l3OcmcBaseAddr) + ((uint32_t)buffer_offset_computed) + remaining_valid_frame_data_length+ i);
                     HW_WR_REG8(temp_addr, 0);
@@ -1691,12 +1691,12 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
     }
     else
     {
-        if( packet_min_size_padding  == 1u)
+        if (packet_min_size_padding == 1u)
         {
             temp_addr = ((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->l3OcmcBaseAddr) + ((uint32_t)buffer_offset_computed));
             ICSS_EMAC_memcpyLocal((int32_t*)(temp_addr), (int32_t*)srcAddress, (size_t)original_length_of_packet);
             /* Padd the remaining bytes with Zero's */
-            for(i=0; i< (((uint16_t)lengthOfPacket) - original_length_of_packet); i++)
+            for (i = 0; i < (((uint16_t)lengthOfPacket) - original_length_of_packet); i++)
             {
                 temp_addr = ((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->l3OcmcBaseAddr) + ((uint32_t)buffer_offset_computed) + original_length_of_packet + i);
                 HW_WR_REG8(temp_addr, 0);
@@ -1708,7 +1708,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
             ICSS_EMAC_memcpyLocal((int32_t*)(temp_addr), (int32_t*)srcAddress, (size_t)lengthOfPacket);
         }
     }
-    if(emacMode == 0U)
+    if (emacMode == 0U)
     {   /*Switch Mode*/
         temp_addr = (pruicssHwAttrs->sharedDramBase + ((uint32_t)queue_wr_ptr) );
         HW_WR_REG32(temp_addr, buffer_des);
@@ -1731,7 +1731,7 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
 
     txQueue->qStat.rawCount++;
 
-    if(emacMode == 0U)
+    if (emacMode == 0U)
     {   /*Switch Mode*/
         temp_addr = (pruicssHwAttrs->pru1DramBase + txQueue->queue_desc_offset + 4U);
         /* Release the Queue. Clear the "busy_s" bit .. even if collision queue was selected then below line won't have any impact. */
@@ -1743,12 +1743,12 @@ int32_t ICSS_EMAC_txPacketEnqueue(ICSS_EMAC_Handle  icssEmacHandle,
         HW_WR_REG8(temp_addr, 0U);
     }
 
-    if(emacMode == 0U)
+    if (emacMode == 0U)
     {   /*Switch Mode*/
         /* If packet was put in collision queue then indiciate it to collision task */
-        if(collision_queue_selected != 0)
+        if (collision_queue_selected != 0)
         {
-            if(portNumber ==ICSS_EMAC_PORT_1)
+            if (portNumber == ICSS_EMAC_PORT_1)
             {
                 collision_status = ((uint16_t)queuePriority);
                 collision_status = (uint16_t)((collision_status) << 1);
@@ -1783,15 +1783,15 @@ void ICSS_EMAC_osRxTaskFnc(void *args)
     pacingEnabled = ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->enableIntrPacing;
     pacingMode = ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->intrPacingMode;
 
-    while(1)
+    while (1)
     {
         ICSS_EMAC_pend(icssEmacHandle, ICSS_EMAC_INTR_SRC_RX);
 
         ICSS_EMAC_pollPkt(icssEmacHandle);
-        if(pacingEnabled == ICSS_EMAC_ENABLE_PACING)
+        if (pacingEnabled == ICSS_EMAC_ENABLE_PACING)
         {
             /*Enable interrupts*/
-            if(pacingMode == ICSS_EMAC_INTR_PACING_MODE1)
+            if (pacingMode == ICSS_EMAC_INTR_PACING_MODE1)
             {
                 ICSS_EMAC_enableRxInterrupt(icssEmacHandle);
             }
@@ -1804,22 +1804,22 @@ void ICSS_EMAC_osLinkTaskFnc(void *args)
     ICSS_EMAC_Handle icssEmacHandle;
     icssEmacHandle = (ICSS_EMAC_Handle)args;
 
-    while(1)
+    while (1)
     {
         ICSS_EMAC_pend(icssEmacHandle, ICSS_EMAC_INTR_SRC_LINK);
 
-        if(ICSS_EMAC_MODE_SWITCH == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
+        if (ICSS_EMAC_MODE_SWITCH == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
         {
             /*Update flags in memory*/
             ICSS_EMAC_updatePhyStatus(ICSS_EMAC_PORT_1, icssEmacHandle);
             /*Update flags in memory*/
             ICSS_EMAC_updatePhyStatus(ICSS_EMAC_PORT_2, icssEmacHandle);
         }
-        else if(ICSS_EMAC_MODE_MAC1 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
+        else if (ICSS_EMAC_MODE_MAC1 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
         {
             ICSS_EMAC_updatePhyStatus(ICSS_EMAC_PORT_1, icssEmacHandle);
         }
-        else if(ICSS_EMAC_MODE_MAC2 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
+        else if (ICSS_EMAC_MODE_MAC2 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
         {
             ICSS_EMAC_updatePhyStatus(ICSS_EMAC_PORT_2, icssEmacHandle);
         }
@@ -1831,13 +1831,13 @@ void ICSS_EMAC_osTxTaskFnc(void *args)
     ICSS_EMAC_Handle icssEmacHandle;
     icssEmacHandle = (ICSS_EMAC_Handle)args;
 
-    while(1)
+    while (1)
     {
         ICSS_EMAC_pend((void *)icssEmacHandle, ICSS_EMAC_INTR_SRC_TX);
 
         // TODO: Review this
         // ((ICSS_EMAC_Object *)icssEmacHandle->object)->txCallback(icssEmacHandle, NULL);
-        if(((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).txCallBack).callBack != NULL)
+        if (((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).txCallBack).callBack != NULL)
         {
             ((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).txCallBack).callBack(
                 (void *)icssEmacHandle,
@@ -1858,7 +1858,7 @@ void ICSS_EMAC_rxInterruptHandler(void *args)
     pacingEnabled = ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->enableIntrPacing;
 
     /*disable Rx interrupt on ARM, PRU line stays high*/
-    if(pacingEnabled == ICSS_EMAC_ENABLE_PACING)
+    if (pacingEnabled == ICSS_EMAC_ENABLE_PACING)
     {
         ICSS_EMAC_disableRxInterrupt(icssEmacHandle);
     }
@@ -1875,7 +1875,7 @@ void ICSS_EMAC_txInterruptHandler(void *args)
     intStatus = HW_RD_REG32(pruicssHwAttrs->intcRegBase + CSL_ICSS_PR1_ICSS_INTC_INTC_SLV_ENA_STATUS_REG0);
     if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == (uint8_t)ICSS_EMAC_MODE_MAC1)
     {
-        if((TX_COMPLETION0_PRU_EVT_MASK & intStatus) != 0U)
+        if ((TX_COMPLETION0_PRU_EVT_MASK & intStatus) != 0U)
         {
             SemaphoreP_post(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->txSemaphoreObject));
             ICSS_EMAC_clearTxIrq(icssEmacHandle);
@@ -1883,7 +1883,7 @@ void ICSS_EMAC_txInterruptHandler(void *args)
     }
     if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == (uint8_t)ICSS_EMAC_MODE_MAC2)
     {
-        if((TX_COMPLETION1_PRU_EVT_MASK & intStatus) != 0U)
+        if ((TX_COMPLETION1_PRU_EVT_MASK & intStatus) != 0U)
         {
             SemaphoreP_post(&(((ICSS_EMAC_Object *)icssEmacHandle->object)->txSemaphoreObject));
             ICSS_EMAC_clearTxIrq(icssEmacHandle);
@@ -1902,7 +1902,7 @@ int32_t ICSS_EMAC_getPortLinkStatus(ICSS_EMAC_Handle    icssEmacHandle,
 {
     int32_t retVal = SystemP_SUCCESS;
 
-    if(((ICSS_EMAC_Object *)icssEmacHandle->object)->linkStatus[portNum] == 0)
+    if (((ICSS_EMAC_Object *)icssEmacHandle->object)->linkStatus[portNum] == 0)
     {
         retVal = SystemP_FAILURE;
     }
@@ -1925,7 +1925,7 @@ int32_t ICSS_EMAC_rxPktInfo2(ICSS_EMAC_Handle   icssEmacHandle,
     uint8_t                     emacMode = 0;
     uint32_t                    temp_addr = 0U;
     uint32_t                    temp_var1 = 0U;
-    uint16_t                    shadow=0;
+    uint16_t                    shadow = 0;
     uint32_t                    rd_buffer_l3_addr;
     uint16_t                    rd_buf_desc_num;
     ICSS_EMAC_QueueParams       *rxQueue;
@@ -1945,43 +1945,43 @@ int32_t ICSS_EMAC_rxPktInfo2(ICSS_EMAC_Handle   icssEmacHandle,
     uint8_t                     PrioQueue[(uint8_t)(pDynamicMMap->numQueues)];
     uint8_t                     i;
 
-    for(i = (uint8_t)ICSS_EMAC_QUEUE1; i <= finalPrioQueue; i++)
+    for (i = (uint8_t)ICSS_EMAC_QUEUE1; i <= finalPrioQueue; i++)
     {
         PrioQueue[i] = i;
     }
     i = (uint8_t)ICSS_EMAC_QUEUE1;
 #endif
 
-    switch(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
+    switch (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
     {
         case ICSS_EMAC_MODE_SWITCH:
             emacMode = 0;
-            if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
+            if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
             {
 #ifdef BUILD_HSR_PRP_MII
                /*ICSS_EMAC_HIGH_PRIORITY is 2, ICSS_EMAC_LOW_PRIORITY is 1,
                 * pktPriority 0 is reserved for non priority based interrupts and
                 * single Rx Task with one handler implementation.
                 */
-                if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->pktPriority == ICSS_EMAC_HIGH_PRIORITY)
+                if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->pktPriority == ICSS_EMAC_HIGH_PRIORITY)
                 {
                     PrioQueue[0] = (uint8_t)ICSS_EMAC_QUEUE1;
                     PrioQueue[1] = (uint8_t)ICSS_EMAC_QUEUE3;
                     finalPrioQueue = (uint8_t)ICSS_EMAC_QUEUE3;
                 }
-                else if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->pktPriority == ICSS_EMAC_LOW_PRIORITY)
+                else if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->pktPriority == ICSS_EMAC_LOW_PRIORITY)
                 {
                     PrioQueue[0] = (uint8_t)ICSS_EMAC_QUEUE2;
                     PrioQueue[1] = (uint8_t)ICSS_EMAC_QUEUE4;
-                    finalPrioQueue= (uint8_t)ICSS_EMAC_QUEUE4;
+                    finalPrioQueue = (uint8_t)ICSS_EMAC_QUEUE4;
                 }
                 else
                 {
-                    if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->pingPong == ICSS_EMAC_SCAN_PORT1_HIGH_FIRST)
+                    if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->pingPong == ICSS_EMAC_SCAN_PORT1_HIGH_FIRST)
                     {
                         /*Scan all four queues but High priority port 1 queue then port 2 high priority first and i.e., 0 and 2
-		                *Then scan Low Priority port 1 and Low Priority port 2*/
-			            PrioQueue[0] = (uint8_t)ICSS_EMAC_QUEUE1; /*Port 1 High Priority*/
+                        *Then scan Low Priority port 1 and Low Priority port 2*/
+                        PrioQueue[0] = (uint8_t)ICSS_EMAC_QUEUE1; /*Port 1 High Priority*/
                         PrioQueue[1] = (uint8_t)ICSS_EMAC_QUEUE3; /*Port 2 High Priority*/
                         PrioQueue[2] = (uint8_t)ICSS_EMAC_QUEUE2; /*Port 1 Low Priority*/
                         PrioQueue[3] = (uint8_t)ICSS_EMAC_QUEUE4; /*Port 2 Low Priority*/
@@ -1991,7 +1991,7 @@ int32_t ICSS_EMAC_rxPktInfo2(ICSS_EMAC_Handle   icssEmacHandle,
                     else
                     {
                         /*Scan all four queues but High priority port 2 queue then port 1 high priority first and i.e., 2 and 0
-		                *Then scan Low Priority port 1 and Low Priority port 2*/
+                        *Then scan Low Priority port 1 and Low Priority port 2*/
                         PrioQueue[0] = (uint8_t)ICSS_EMAC_QUEUE3; /*Port 2 High Priority*/
                         PrioQueue[1] = (uint8_t)ICSS_EMAC_QUEUE1; /*Port 1 High Priority*/
                         PrioQueue[2] = (uint8_t)ICSS_EMAC_QUEUE4; /*Port 2 Low Priority*/
@@ -2003,7 +2003,7 @@ int32_t ICSS_EMAC_rxPktInfo2(ICSS_EMAC_Handle   icssEmacHandle,
 #else
                 numHostQueues = numHostQueues*ICSS_EMAC_MAX_PORTS_PER_INSTANCE;
                 /* Alternating port priority */
-                if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portPrioritySelection == 1) {
+                if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portPrioritySelection == 1) {
                     initPrioQueue = (uint8_t)ICSS_EMAC_QUEUE1;
                     ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portPrioritySelection = 2;
                 }
@@ -2045,10 +2045,10 @@ int32_t ICSS_EMAC_rxPktInfo2(ICSS_EMAC_Handle   icssEmacHandle,
     }
 
 #ifdef BUILD_HSR_PRP_MII  
-    while((packet_found == 0) && (i < pDynamicMMap->numQueues))
+    while ((packet_found == 0) && (i < pDynamicMMap->numQueues))
     {
         queue = PrioQueue[i];
-        if(emacMode == 0U) { /*Switch Mode*/
+        if (emacMode == 0U) { /*Switch Mode*/
             temp_var1 = ((uint32_t)(queue))*ICSS_EMAC_DEFAULT_FW_QD_SIZE;
             temp_addr = (pruicssHwAttrs->pru1DramBase + pStaticMMap->p0QueueDescOffset + temp_var1);
             qDesc = (ICSS_EMAC_Queue *)(temp_addr);
@@ -2060,12 +2060,12 @@ int32_t ICSS_EMAC_rxPktInfo2(ICSS_EMAC_Handle   icssEmacHandle,
 #else
     i = initPrioQueue;
     
-    while((packet_found == 0) && (queueCheckCount != numHostQueues))
+    while ((packet_found == 0) && (queueCheckCount != numHostQueues))
     {
-        if(emacMode == 0U) {   /*Switch Mode*/
-            if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
+        if (emacMode == 0U) {   /*Switch Mode*/
+            if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
             {
-                if(i < (numHostQueues/ICSS_EMAC_MAX_PORTS_PER_INSTANCE)){
+                if (i < (numHostQueues/ICSS_EMAC_MAX_PORTS_PER_INSTANCE)){
                     temp_var1 = ((uint32_t)(i))* ICSS_EMAC_DEFAULT_FW_QD_SIZE;
                 }
                 else {
@@ -2091,13 +2091,13 @@ int32_t ICSS_EMAC_rxPktInfo2(ICSS_EMAC_Handle   icssEmacHandle,
 
         queue_wr_ptr = qDesc->wr_ptr;
         queue_rd_ptr = qDesc->rd_ptr;
-        if(qDesc->overflow_cnt > 0)
+        if (qDesc->overflow_cnt > 0)
         {
             sPort = &(((ICSS_EMAC_Object *)icssEmacHandle->object)->switchPort[ICSS_EMAC_PORT_0]);
             sPort->queue[i].qStat.errCount += qDesc->overflow_cnt;  /* increment missed packets to error counter */
             qDesc->overflow_cnt = 0;    /* reset to zero as limited to 256 anyway */
         }
-        if(queue_rd_ptr != queue_wr_ptr)
+        if (queue_rd_ptr != queue_wr_ptr)
         {
             pRxPktInfo->queueNumber = (int32_t)i;
             temp_addr = (pruicssHwAttrs->sharedDramBase + ((uint32_t)queue_rd_ptr));
@@ -2111,7 +2111,7 @@ int32_t ICSS_EMAC_rxPktInfo2(ICSS_EMAC_Handle   icssEmacHandle,
             temp_addr = ((0x400 & rd_buf_desc) >> 10);
             pRxPktInfo->host_recv_flag = temp_addr;
 
-            if(ICSS_EMAC_FW_LEARNING_EN == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->learningEnable) {
+            if (ICSS_EMAC_FW_LEARNING_EN == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->learningEnable) {
                 /* Check firmware FDB lookup success */
                 temp_addr = ((ICSS_EMAC_BD_FDB_LOOKUP_SUCCESS_MASK & rd_buf_desc) >> ICSS_EMAC_BD_FDB_LOOKUP_SUCCESS_SHIFT);
                 pRxPktInfo->fdbLookupSuccess = (uint32_t)(temp_addr);
@@ -2130,7 +2130,7 @@ int32_t ICSS_EMAC_rxPktInfo2(ICSS_EMAC_Handle   icssEmacHandle,
              * received in the collision queue or not.
              */
             shadow = (uint16_t)(((rd_buf_desc & 0x00004000U) >> 14));
-            if(shadow != 0)
+            if (shadow != 0)
             {
                 /* The data is in the collision buffer's */
                 rd_buffer_l3_addr = ((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->l3OcmcBaseAddr) +  pDynamicMMap->p0ColBufferOffset);
@@ -2146,22 +2146,22 @@ int32_t ICSS_EMAC_rxPktInfo2(ICSS_EMAC_Handle   icssEmacHandle,
             pRxPktInfo->rdBufferL3Addr = rd_buffer_l3_addr;
 #ifdef BUILD_HSR_PRP_MII  
             /* Check if we've reached the final priority queue */
-            if(PrioQueue[i] == finalPrioQueue)
+            if (PrioQueue[i] == finalPrioQueue)
             {
                 break;
             }
-	        i++;
+            i++;
 #endif
         }
 
-        if(((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->splitQueue)
+        if (((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->splitQueue)
         {
-            if(i == finalPrioQueue)
+            if (i == finalPrioQueue)
             {
                 break;
             }
 
-            if(i < ((uint8_t)(pDynamicMMap->numQueues) / 2))
+            if (i < ((uint8_t)(pDynamicMMap->numQueues) / 2))
             {
                 i = (i + (((uint8_t)(pDynamicMMap->numQueues) / 2)));
             }
@@ -2173,15 +2173,15 @@ int32_t ICSS_EMAC_rxPktInfo2(ICSS_EMAC_Handle   icssEmacHandle,
         }
         else
         {
-            if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
+            if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
             {
 #ifndef BUILD_HSR_PRP_MII  
                 queueCheckCount++;
 #endif
                 /* Queue check order in case Port 1 is given higher priority: 1 -> 5 -> 2 -> 6 -> 3 -> 7 -> 4 -> 8 */
                 /* Queue check order in case Port 2 is given higher priority: 5 -> 1 -> 6 -> 2 -> 7 -> 3 -> 8 -> 4 */
-                if(queueJump == 4) {
-                    if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portPrioritySelection == 2)
+                if (queueJump == 4) {
+                    if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portPrioritySelection == 2)
                     {
                         i = i + queueJump;
                         queueJump = 3; 
@@ -2192,11 +2192,11 @@ int32_t ICSS_EMAC_rxPktInfo2(ICSS_EMAC_Handle   icssEmacHandle,
                         queueJump = 5;
                     }
                 }
-                else if(queueJump == 5) {
+                else if (queueJump == 5) {
                     i = i + queueJump;
                     queueJump = 4;
                 }
-                else if(queueJump == 3) {
+                else if (queueJump == 3) {
                     i = i - queueJump;
                     queueJump = 4;
                 }
@@ -2211,7 +2211,7 @@ int32_t ICSS_EMAC_rxPktInfo2(ICSS_EMAC_Handle   icssEmacHandle,
         }
     }
     /* Received IRQ but can't find the packet in any queue */
-    if(packet_found == 0)
+    if (packet_found == 0)
     {
         rd_packet_length = 0;
     }
@@ -2254,9 +2254,9 @@ void ICSS_EMAC_updatePhyStatus(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
     ETHPHY_SpeedDuplexConfig    speedDuplexConfig;
     int32_t                     status = SystemP_FAILURE;
 
-    if(ICSS_EMAC_MODE_SWITCH == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
+    if (ICSS_EMAC_MODE_SWITCH == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
     {
-        index= portNum - 1U;
+        index = portNum - 1U;
     }
     else
     {
@@ -2266,9 +2266,9 @@ void ICSS_EMAC_updatePhyStatus(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
     linkStatus = ((ICSS_EMAC_Object *)icssEmacHandle->object)->linkStatus[index];
     prevlinkStatus = ((ICSS_EMAC_Object *)icssEmacHandle->object)->prevlinkStatus[index];
 
-    if((linkStatus ^ prevlinkStatus) != 0U)
+    if ((linkStatus ^ prevlinkStatus) != 0U)
     {
-        if(portNum == ((uint8_t)(ICSS_EMAC_PORT_1)))
+        if (portNum == ((uint8_t)(ICSS_EMAC_PORT_1)))
         {
             temp_addr = (pruicssHwAttrs->pru0DramBase + pStaticMMap->phySpeedOffset);
             phySpeedStatusPtr = (uint32_t*)(temp_addr);
@@ -2276,7 +2276,7 @@ void ICSS_EMAC_updatePhyStatus(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
             portStatusPtr = (uint8_t*)(temp_addr);
         }
 
-        if(portNum == ((uint8_t)(ICSS_EMAC_PORT_2)))
+        if (portNum == ((uint8_t)(ICSS_EMAC_PORT_2)))
         {
             temp_addr = (pruicssHwAttrs->pru1DramBase + pStaticMMap->phySpeedOffset);
             phySpeedStatusPtr = (uint32_t*)(temp_addr);
@@ -2284,27 +2284,27 @@ void ICSS_EMAC_updatePhyStatus(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
             portStatusPtr = (uint8_t*)(temp_addr);
         }
 
-        if(linkStatus != 0U)
+        if (linkStatus != 0U)
         {
             status = ETHPHY_command(((ICSS_EMAC_Object *)icssEmacHandle->object)->ethphyHandle[index],
                                     ETHPHY_CMD_GET_SPEED_AND_DUPLEX_CONFIG,
                                     (void *)&speedDuplexConfig,
                                     sizeof(speedDuplexConfig));
 
-            if(SystemP_SUCCESS != status)
+            if (SystemP_SUCCESS != status)
             {
                 speedDuplexConfig.config = ETHPHY_SPEED_DUPLEX_CONFIG_INVALID;
             }
 
-            if(phySpeedStatusPtr != NULL)
+            if (phySpeedStatusPtr != NULL)
             {
-                switch(speedDuplexConfig.config)
+                switch (speedDuplexConfig.config)
                 {
                     case  ETHPHY_SPEED_DUPLEX_CONFIG_100FD:
                         *(phySpeedStatusPtr) = (uint32_t)Hundred_Mbps;
                         fullDuplex = 1u;
 #if defined(SOC_AM64X) || defined (SOC_AM243X)
-                        if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_RGMII_MODE)
+                        if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_RGMII_MODE)
                         {
                             ICSS_EMAC_rgmiiInbandConfig(icssEmacHandle, portNum, ICSS_RGMII_INBAND_DISABLE);
                         }
@@ -2314,7 +2314,7 @@ void ICSS_EMAC_updatePhyStatus(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
                         *(phySpeedStatusPtr) = (uint32_t)Hundred_Mbps;
                         fullDuplex = 0;
 #if defined(SOC_AM64X) || defined (SOC_AM243X)
-                        if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_RGMII_MODE)
+                        if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_RGMII_MODE)
                         {
                             ICSS_EMAC_rgmiiInbandConfig(icssEmacHandle, portNum, ICSS_RGMII_INBAND_DISABLE);
                         }
@@ -2324,7 +2324,7 @@ void ICSS_EMAC_updatePhyStatus(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
                         *(phySpeedStatusPtr) = (uint32_t)Ten_Mbps;
                         fullDuplex = 1u;      
 #if defined(SOC_AM64X) || defined (SOC_AM243X)
-                        if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_RGMII_MODE)
+                        if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_RGMII_MODE)
                         {
                             ICSS_EMAC_rgmiiInbandConfig(icssEmacHandle, portNum, ICSS_RGMII_INBAND_ENABLE);
                         }
@@ -2334,7 +2334,7 @@ void ICSS_EMAC_updatePhyStatus(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
                         *(phySpeedStatusPtr) = (uint32_t)Ten_Mbps;
                         fullDuplex = 0;
 #if defined(SOC_AM64X) || defined (SOC_AM243X)
-                        if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_RGMII_MODE)
+                        if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_RGMII_MODE)
                         {
                             ICSS_EMAC_rgmiiInbandConfig(icssEmacHandle, portNum, ICSS_RGMII_INBAND_ENABLE);
                         }
@@ -2345,7 +2345,7 @@ void ICSS_EMAC_updatePhyStatus(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
                         *(phySpeedStatusPtr) = (uint32_t)Hundred_Mbps;
                         fullDuplex = 1u;
 #if defined(SOC_AM64X) || defined (SOC_AM243X)
-                        if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_RGMII_MODE)
+                        if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyToMacInterfaceMode == ICSS_EMAC_RGMII_MODE)
                         {
                             ICSS_EMAC_rgmiiInbandConfig(icssEmacHandle, portNum, ICSS_RGMII_INBAND_DISABLE);
                         }
@@ -2353,13 +2353,13 @@ void ICSS_EMAC_updatePhyStatus(uint8_t portNum, ICSS_EMAC_Handle icssEmacHandle)
                         break;
                 }
             }
-            if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->halfDuplexEnable != 0U)
+            if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->halfDuplexEnable != 0U)
             {
-                if(portStatusPtr != NULL)
+                if (portStatusPtr != NULL)
                 {
                     portStatus = *portStatusPtr;
                     /*set flags for HD*/
-                    if(fullDuplex == 0U)
+                    if (fullDuplex == 0U)
                     {
                         portStatus |= (uint8_t)ICSS_EMAC_PORT_IS_HD_MASK;
                     }
@@ -2388,23 +2388,23 @@ static inline void ICSS_EMAC_pollPkt(ICSS_EMAC_Handle icssEmacHandle)
     ICSS_EMAC_PktInfo       rxPktInfo;
     uint8_t                 numQueues = (uint8_t)((((ICSS_EMAC_Object *)icssEmacHandle->object)->fwDynamicMMap).numQueues);
 
-    while((allQueuesEempty != 1) && (numPacketsInLoop <= (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->pacingThreshold)))
+    while ((allQueuesEempty != 1) && (numPacketsInLoop <= (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->pacingThreshold)))
     {
         pLength = ((int16_t)(ICSS_EMAC_rxPktInfo2(icssEmacHandle, &rxPktInfo)));
         isNRT = 0;
 #ifdef BUILD_HSR_PRP_MII  
         rxArg.host_recv_flag = rxPktInfo.host_recv_flag;
 #endif
-        if(pLength > 0)
+        if (pLength > 0)
         {
             /* Check if split queue is enabled */
-            if(((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->splitQueue)
+            if (((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->splitQueue)
             {
                 /*Check if queue is being used for port1 (Queue_No. > Max_Queue/2) */
-                if(rxPktInfo.queueNumber >= (numQueues / 2))
+                if (rxPktInfo.queueNumber >= (numQueues / 2))
                 {
                     /*If the queue is NRT*/
-                    if((rxPktInfo.queueNumber - (numQueues  / 2)) >= ((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->ethPrioQueue)
+                    if ((rxPktInfo.queueNumber - (numQueues  / 2)) >= ((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->ethPrioQueue)
                     {
                         isNRT = 1;
                     }
@@ -2412,7 +2412,7 @@ static inline void ICSS_EMAC_pollPkt(ICSS_EMAC_Handle icssEmacHandle)
                 else
                 {
                     /*Queue is being used for port0, check if the queue is NRT*/
-                    if(rxPktInfo.queueNumber >= ((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->ethPrioQueue)
+                    if (rxPktInfo.queueNumber >= ((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->ethPrioQueue)
                     {
                         isNRT = 1;
                     }
@@ -2420,19 +2420,19 @@ static inline void ICSS_EMAC_pollPkt(ICSS_EMAC_Handle icssEmacHandle)
             }
             else
             {
-                if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
+                if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->hostQueueIsolationMode == 1)
                 {
                     /* Check for Port 0 and Port 1 to confirm whether the selected queue is NRT or RT*/
-                    if(rxPktInfo.queueNumber < numQueues) 
+                    if (rxPktInfo.queueNumber < numQueues) 
                     {
-                        if(rxPktInfo.queueNumber >= ((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->ethPrioQueue)
+                        if (rxPktInfo.queueNumber >= ((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->ethPrioQueue)
                         {
                             isNRT = 1;
                         }
                     }
                     else
                     {
-                        if(rxPktInfo.queueNumber >= ((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->ethPrioQueue + numQueues)
+                        if (rxPktInfo.queueNumber >= ((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->ethPrioQueue + numQueues)
                         {
                             isNRT = 1;
                         }
@@ -2441,14 +2441,14 @@ static inline void ICSS_EMAC_pollPkt(ICSS_EMAC_Handle icssEmacHandle)
                 }
                 else 
                 {
-                    if(rxPktInfo.queueNumber >= ((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->ethPrioQueue)
+                    if (rxPktInfo.queueNumber >= ((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->ethPrioQueue)
                         {
                             isNRT = 1;
                         }
                 }
             }
 
-            if(isNRT && ((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).rxNRTCallBack).callBack != NULL)
+            if (isNRT && ((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).rxNRTCallBack).callBack != NULL)
             {
 
                 /* Invoke  receive packet callback function */
@@ -2459,7 +2459,7 @@ static inline void ICSS_EMAC_pollPkt(ICSS_EMAC_Handle icssEmacHandle)
             }
             else
             {
-                if(((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).rxRTCallBack).callBack != NULL)
+                if (((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).rxRTCallBack).callBack != NULL)
                 {
                     ((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).rxRTCallBack).callBack(
                         (void *)icssEmacHandle,
@@ -2469,7 +2469,7 @@ static inline void ICSS_EMAC_pollPkt(ICSS_EMAC_Handle icssEmacHandle)
                 else
                 {
                     /* TODO: Review this */
-                    // if((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject != NULL)
+                    // if ((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject != NULL)
                     //                 && ((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject)->rxCallBack != NULL)
                     //                 && (((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject)->rxCallBack)->callBack != NULL))
                     rxArg.icssEmacHandle = icssEmacHandle;
@@ -2484,7 +2484,7 @@ static inline void ICSS_EMAC_pollPkt(ICSS_EMAC_Handle icssEmacHandle)
         }
         else
         {
-            allQueuesEempty =1;
+            allQueuesEempty = 1;
         }
     }
 }
@@ -2508,7 +2508,7 @@ static inline void ICSS_EMAC_clearIrq(ICSS_EMAC_Handle icssEmacHandle, uint32_t 
     PRUICSS_Handle          pruicssHandle = ((ICSS_EMAC_Object *)icssEmacHandle->object)->pruicssHandle;
     PRUICSS_HwAttrs const   *pruicssHwAttrs = (PRUICSS_HwAttrs const *)(pruicssHandle->hwAttrs);
 
-    if(32 > intNum)
+    if (32 > intNum)
     {
         HW_WR_REG32((pruicssHwAttrs->intcRegBase + CSL_ICSS_PR1_ICSS_INTC_INTC_SLV_ENA_STATUS_REG0),
                     ((uint32_t)1U) << intNum);
@@ -2526,13 +2526,13 @@ static inline void ICSS_EMAC_clearRxIrq(ICSS_EMAC_Handle icssEmacHandle)
     PRUICSS_HwAttrs const   *pruicssHwAttrs = (PRUICSS_HwAttrs const *)(pruicssHandle->hwAttrs);
     volatile uint32_t intStatus = 0;
 
-    if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == ICSS_EMAC_MODE_MAC2)
+    if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == ICSS_EMAC_MODE_MAC2)
     {
         ICSS_EMAC_clearIrq(icssEmacHandle, 21);
     }
     else
     {
-        if(((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->splitQueue)
+        if (((ICSS_EMAC_Attrs *)(icssEmacHandle->attrs))->splitQueue)
         {
             intStatus = HW_RD_REG32((pruicssHwAttrs->intcRegBase + CSL_ICSS_PR1_ICSS_INTC_INTC_SLV_ENA_STATUS_REG0));
 
@@ -2551,7 +2551,7 @@ static inline void ICSS_EMAC_clearRxIrq(ICSS_EMAC_Handle icssEmacHandle)
 
 static inline void ICSS_EMAC_clearTxIrq(ICSS_EMAC_Handle icssEmacHandle)
 {
-    if(((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == ICSS_EMAC_MODE_MAC2)
+    if (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == ICSS_EMAC_MODE_MAC2)
     {
         ICSS_EMAC_clearIrq(icssEmacHandle, 23);
     }
@@ -2583,7 +2583,7 @@ static inline void ICSS_EMAC_pollLink(ICSS_EMAC_Handle icssEmacHandle, uint32_t 
     temp_addr = (pruicssHwAttrs->intcRegBase + CSL_ICSS_PR1_ICSS_INTC_INTC_SLV_ENA_STATUS_REG1);
     /*Find out which port it is*/
     intStatusPtr = (uint32_t*)(temp_addr);
-    if((((uint32_t)LINK0_PRU_EVT_MASK & *intStatusPtr) != 0U) && ((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == (uint8_t)ICSS_EMAC_MODE_SWITCH) || (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == (uint8_t)ICSS_EMAC_MODE_MAC1)))
+    if ((((uint32_t)LINK0_PRU_EVT_MASK & *intStatusPtr) != 0U) && ((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == (uint8_t)ICSS_EMAC_MODE_SWITCH) || (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == (uint8_t)ICSS_EMAC_MODE_MAC1)))
     {
         /*TODO: Review this*/
         /**Link 0 Port event*/
@@ -2606,7 +2606,7 @@ static inline void ICSS_EMAC_pollLink(ICSS_EMAC_Handle icssEmacHandle, uint32_t 
         retVal = MDIO_phyLinkStatus(pruicssHwAttrs->miiMdioRegBase,
                                         ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyAddr[0]);
 
-        if(retVal == SystemP_SUCCESS)
+        if (retVal == SystemP_SUCCESS)
             linkStatus = 1;
 
         ((ICSS_EMAC_Object *)icssEmacHandle->object)->linkStatus[0] = (uint8_t)linkStatus;
@@ -2614,7 +2614,7 @@ static inline void ICSS_EMAC_pollLink(ICSS_EMAC_Handle icssEmacHandle, uint32_t 
         temp_addr = (pruicssHwAttrs->pru0DramBase + pStaticMMap->portStatusOffset);
         portStatusPtr = (uint8_t*)(temp_addr);
 
-        if(linkStatus != 0U)
+        if (linkStatus != 0U)
         {
             portStatus |= (uint8_t)(ICSS_EMAC_PORT_LINK_MASK);
             ioctlvalue = (uint8_t)(ICSS_EMAC_IOCTL_PORT_CTRL_ENABLE);
@@ -2629,20 +2629,20 @@ static inline void ICSS_EMAC_pollLink(ICSS_EMAC_Handle icssEmacHandle, uint32_t 
             ICSS_EMAC_ioctl(icssEmacHandle, ICSS_EMAC_IOCTL_PORT_CTRL, (uint8_t)ICSS_EMAC_PORT_1, (void*)&ioctlParams);
             ICSS_EMAC_portFlush(icssEmacHandle, (uint8_t)ICSS_EMAC_PORT_1);
             ICSS_EMAC_resetTxQueues(icssEmacHandle, (uint8_t)ICSS_EMAC_PORT_1);
-            if(attrs->portMask == (uint8_t)ICSS_EMAC_MODE_SWITCH)
+            if (attrs->portMask == (uint8_t)ICSS_EMAC_MODE_SWITCH)
             {
                 retVal = ICSS_EMAC_purgeTable((uint8_t)ICSS_EMAC_PORT_1, &object->macTable[ICSS_EMAC_PORT_1 - 1U]);
             }
         }
 
-        if(portStatusPtr != NULL)
+        if (portStatusPtr != NULL)
         {
             /*write back*/
             *(portStatusPtr) = portStatus;
         }
         /*Protocol specific processing*/
         /* TODO: Review this*/
-        if(((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).port0LinkCallBack).callBack != NULL)
+        if (((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).port0LinkCallBack).callBack != NULL)
         {
             ((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).port0LinkCallBack).callBack(
                 (void *)icssEmacHandle,
@@ -2652,7 +2652,7 @@ static inline void ICSS_EMAC_pollLink(ICSS_EMAC_Handle icssEmacHandle, uint32_t 
         linkStatusChange = (bool)TRUE;
     }
 
-    if((((uint32_t)LINK1_PRU_EVT_MASK & *intStatusPtr) != 0U) && ((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == (uint8_t)ICSS_EMAC_MODE_SWITCH) || (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == (uint8_t)ICSS_EMAC_MODE_MAC2)))
+    if ((((uint32_t)LINK1_PRU_EVT_MASK & *intStatusPtr) != 0U) && ((((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == (uint8_t)ICSS_EMAC_MODE_SWITCH) || (((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask == (uint8_t)ICSS_EMAC_MODE_MAC2)))
     {
         /**Link 1 Port event*/
 
@@ -2672,28 +2672,28 @@ static inline void ICSS_EMAC_pollLink(ICSS_EMAC_Handle icssEmacHandle, uint32_t 
         ICSS_EMAC_clearIrq(icssEmacHandle, 53);
 
         hostStatPtr->linkBreak++;
-        if(ICSS_EMAC_MODE_SWITCH != ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
+        if (ICSS_EMAC_MODE_SWITCH != ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
         {
             linkStatus = 0;
             retVal = MDIO_phyLinkStatus(pruicssHwAttrs->miiMdioRegBase,
                                         ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyAddr[0]);
-            if(retVal == SystemP_SUCCESS)
+            if (retVal == SystemP_SUCCESS)
                 linkStatus = 1;
-            ((ICSS_EMAC_Object *)icssEmacHandle->object)->linkStatus[0]=(uint8_t)linkStatus;
+            ((ICSS_EMAC_Object *)icssEmacHandle->object)->linkStatus[0] = (uint8_t)linkStatus;
         }
         else
         {
             linkStatus = 0;
             retVal = MDIO_phyLinkStatus(pruicssHwAttrs->miiMdioRegBase,
                                         ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->phyAddr[1]);
-            if(retVal == SystemP_SUCCESS)
+            if (retVal == SystemP_SUCCESS)
                 linkStatus = 1;
             ((ICSS_EMAC_Object *)icssEmacHandle->object)->linkStatus[ICSS_EMAC_PORT_2-1U] = (uint8_t)linkStatus;
         }
         temp_addr = (pruicssHwAttrs->pru1DramBase + pStaticMMap->portStatusOffset);
         portStatusPtr = (uint8_t*)(temp_addr);
 
-        if(linkStatus != 0U)
+        if (linkStatus != 0U)
         {
             portStatus |= ICSS_EMAC_PORT_LINK_MASK;
             ioctlvalue = ICSS_EMAC_IOCTL_PORT_CTRL_ENABLE;
@@ -2708,20 +2708,20 @@ static inline void ICSS_EMAC_pollLink(ICSS_EMAC_Handle icssEmacHandle, uint32_t 
             ICSS_EMAC_ioctl(icssEmacHandle, ICSS_EMAC_IOCTL_PORT_CTRL, (uint8_t)ICSS_EMAC_PORT_2, (void*)&ioctlParams);
             ICSS_EMAC_portFlush(icssEmacHandle, (uint8_t)ICSS_EMAC_PORT_2);
             ICSS_EMAC_resetTxQueues(icssEmacHandle, (uint8_t)ICSS_EMAC_PORT_2);
-            if(attrs->portMask == (uint8_t)ICSS_EMAC_MODE_SWITCH)
+            if (attrs->portMask == (uint8_t)ICSS_EMAC_MODE_SWITCH)
             {
                 retVal = ICSS_EMAC_purgeTable((uint8_t)ICSS_EMAC_PORT_2, &object->macTable[ICSS_EMAC_PORT_2 - 1U]);
             }
         }
 
-        if(portStatusPtr != NULL)
+        if (portStatusPtr != NULL)
         {
             /*write back*/
             *(portStatusPtr) = portStatus;
         }
 
         /* TODO: Review this*/
-        if(((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).port1LinkCallBack).callBack != NULL)
+        if (((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).port1LinkCallBack).callBack != NULL)
         {
             ((((ICSS_EMAC_Object *)icssEmacHandle->object)->callBackObject).port1LinkCallBack).callBack(
                 (void *)icssEmacHandle,
@@ -2731,7 +2731,7 @@ static inline void ICSS_EMAC_pollLink(ICSS_EMAC_Handle icssEmacHandle, uint32_t 
         linkStatusChange = (bool)TRUE;
     }
 
-    if(linkStatusChange == TRUE)
+    if (linkStatusChange == TRUE)
     {
         if (pollSource == ICSS_EMAC_POLL_FROM_ISR)
         {
@@ -2739,17 +2739,17 @@ static inline void ICSS_EMAC_pollLink(ICSS_EMAC_Handle icssEmacHandle, uint32_t 
         }
         else
         {
-            if(ICSS_EMAC_MODE_SWITCH == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
+            if (ICSS_EMAC_MODE_SWITCH == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
             {
                 /*Update flags in memory*/
                 ICSS_EMAC_updatePhyStatus(ICSS_EMAC_PORT_1, icssEmacHandle);
                 ICSS_EMAC_updatePhyStatus(ICSS_EMAC_PORT_2, icssEmacHandle);
             }
-            else if(ICSS_EMAC_MODE_MAC1 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
+            else if (ICSS_EMAC_MODE_MAC1 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
             {
                 ICSS_EMAC_updatePhyStatus(ICSS_EMAC_PORT_1, icssEmacHandle);
             }
-            else if(ICSS_EMAC_MODE_MAC2 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
+            else if (ICSS_EMAC_MODE_MAC2 == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->portMask)
             {
                 ICSS_EMAC_updatePhyStatus(ICSS_EMAC_PORT_2, icssEmacHandle);
             }
@@ -2840,7 +2840,7 @@ static inline int32_t ICSS_EMAC_handleSpecialUnicastMACAddress(ICSS_EMAC_Handle 
     temp_addr = (pruicssHwAttrs->pru1DramBase + pStaticMMap->specialUnicastMACAddressFeatureEnableOffset);
     specialUnicastMACAddressFeatureEnablePtr = (uint8_t*)(temp_addr);
 
-    if(!enableFeature)
+    if (!enableFeature)
     {
         /* Special Unicast MAC Address feature is disabled */
         *(specialUnicastMACAddressFeatureEnablePtr) = 0;
@@ -2884,11 +2884,11 @@ static inline int32_t ICSS_EMAC_configPortFwdState(ICSS_EMAC_Handle icssEmacHand
 
     pruicssHwAttrs = (PRUICSS_HwAttrs const *)(pruicssHandle->hwAttrs);
     
-    if(portNo == ICSS_EMAC_PORT_1)
+    if (portNo == ICSS_EMAC_PORT_1)
     {
         portFwdAddressPtr = (uint8_t*)((pruicssHwAttrs->pru0DramBase + pStaticMMap->portForwardStatusOffset));
     }
-    else if(portNo == ICSS_EMAC_PORT_2)
+    else if (portNo == ICSS_EMAC_PORT_2)
     {
         portFwdAddressPtr = (uint8_t*)((pruicssHwAttrs->pru1DramBase + pStaticMMap->portForwardStatusOffset));
     }
@@ -2896,12 +2896,12 @@ static inline int32_t ICSS_EMAC_configPortFwdState(ICSS_EMAC_Handle icssEmacHand
     {
         return retVal;
     }
-    if(portFwdState == ICSS_EMAC_IOCTL_PORT_FWD_CTRL_DISABLE_CMD)
+    if (portFwdState == ICSS_EMAC_IOCTL_PORT_FWD_CTRL_DISABLE_CMD)
     {
         *(portFwdAddressPtr) = ICSS_EMAC_IOCTL_PORT_FWD_CTRL_DISABLE_CMD;
         retVal = SystemP_SUCCESS;
     }
-    else if(portFwdState == ICSS_EMAC_IOCTL_PORT_FWD_CTRL_ENABLE_CMD)
+    else if (portFwdState == ICSS_EMAC_IOCTL_PORT_FWD_CTRL_ENABLE_CMD)
     {
         *(portFwdAddressPtr) = ICSS_EMAC_IOCTL_PORT_FWD_CTRL_ENABLE_CMD;
         retVal = SystemP_SUCCESS;
@@ -2914,7 +2914,7 @@ ICSS_EMAC_pruRstIsoState ICSS_EMAC_getResetIsolationStatus(ICSS_EMAC_Handle emac
     /*Default value is not supported*/
     ICSS_EMAC_pruRstIsoState retVal = RESET_ISOLATION_NOT_SUPPORTED;
 
-    if(NULL != emacHandle)
+    if (NULL != emacHandle)
     {
         /*Get the reset isolation status from the ICSS_EMAC object*/
         retVal = ((ICSS_EMAC_Object *)(emacHandle->object))->pruRstIsoStatus;

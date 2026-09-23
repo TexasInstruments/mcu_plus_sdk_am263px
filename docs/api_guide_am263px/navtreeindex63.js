@@ -1,7 +1,5 @@
 var NAVTREEINDEX63 =
 {
-"structCpswStats__HostPort__2g.html#aee0df83e4902ca590961f61e507a181f":[18,4,0,9,0,0,25],
-"structCpswStats__HostPort__2g.html#af07f6d3e3921bfc2ff226f7cb79c48f7":[18,4,0,9,0,0,17],
 "structCpswStats__HostPort__2g.html#af4e23627511201d6a1eb905b314e52bf":[18,4,0,9,0,0,33],
 "structCpswStats__HostPort__2g.html#af57d1cea2304b906efeccd50dd1d8240":[18,4,0,9,0,0,13],
 "structCpswStats__HostPort__2g.html#af64ca19c528177e59eeaed6cbfbfde29":[18,4,0,9,0,0,44],
@@ -249,5 +247,7 @@ var NAVTREEINDEX63 =
 "structCpsw__InterVlanRouteIngressPktMatchCfg.html#a9b433df2ebbd6175a703cc0c97ceca81":[18,4,0,6,0,0,4],
 "structCpsw__InterVlanRouteIngressPktMatchCfg.html#ac2584609cf84f5f2c49d94a69230f519":[18,4,0,6,0,0,5],
 "structCpsw__InterVlanRouteIngressPktMatchCfg.html#accba47fddd4b3c5ae94ad2e5aa5336d1":[18,4,0,6,0,0,6],
-"structCpsw__MdioLinkStateChangeInfo.html":[18,4,0,6,0,11]
+"structCpsw__MdioLinkStateChangeInfo.html":[18,4,0,6,0,11],
+"structCpsw__MdioLinkStateChangeInfo.html#a229777a008b8bc26ad213a337ce94f36":[18,4,0,6,0,11,4],
+"structCpsw__MdioLinkStateChangeInfo.html#a5f5a2540b8d8aec8367c99bc390cfd4d":[18,4,0,6,0,11,3]
 };

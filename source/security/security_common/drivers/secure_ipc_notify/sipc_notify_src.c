@@ -239,6 +239,9 @@ static inline void SIPC_insertClientIds(uint8_t remoteClientId,uint8_t selfClien
     *(msgValue + 1 ) = selfClientId ;
 }
 
+/**
+ *  Design: TIFSMCU-4407
+ */
 /* Secure IPC Isr */
 void SIPC_isr(void *args)
 {
@@ -304,6 +307,10 @@ void SIPC_isr(void *args)
         pendingIntr = SIPC_mailboxGetPendingIntr(mailboxBaseAddr);
     } while ( pendingIntr != 0U );
 }
+
+/**
+ *  Design: TIFSMCU-4406
+ */
 /* This api will be used to send message to a particular remoteSecCodeId and remoteClientId. */
 int32_t SIPC_sendMsg(uint8_t remoteSecCoreId, uint8_t remoteClientId,uint8_t localClientId, uint8_t* msgValue, SIPC_fifoFlags waitForFifoNotFull)
 {
@@ -347,6 +354,9 @@ int32_t SIPC_sendMsg(uint8_t remoteSecCoreId, uint8_t remoteClientId,uint8_t loc
     return status;
 }
 
+/**
+ *  Design: TIFSMCU-4405
+ */
 int32_t SIPC_registerClient(uint8_t localClientId, SIPC_FxnCallback msgCallback, const void *args)
 {
     int32_t status = SystemP_FAILURE;
@@ -366,6 +376,9 @@ int32_t SIPC_registerClient(uint8_t localClientId, SIPC_FxnCallback msgCallback,
     return status;
 }
 
+/**
+ *  Design: TIFSMCU-4408
+ */
 int32_t SIPC_unregisterClient(uint16_t localClientId)
 {
     uint32_t oldIntState;
@@ -395,6 +408,10 @@ void SIPC_Params_init(SIPC_Params *params)
 
     params->interruptConfig_Num = 0 ;
 }
+
+/**
+ *  Design: TIFSMCU-4404
+ */
 
 int32_t SIPC_init(SIPC_Params *params)
 {
@@ -510,6 +527,10 @@ int32_t SIPC_init(SIPC_Params *params)
     }
     return status;
 }
+
+/**
+ *  Design: TIFSMCU-4409
+ */
 
 void SIPC_deInit(void)
 {

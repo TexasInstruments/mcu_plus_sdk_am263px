@@ -105,7 +105,7 @@ void TimeSync_resetIEP(TimeSync_ParamsHandle_t timeSyncHandle)
      * to that value. An extra second is added as a margin of safety*/
     reminder = doubleWord % (uint64_t)SEC_TO_NS;
 
-    if(reminder != 0)
+    if (reminder != 0)
     {
         doubleWord += (SEC_TO_NS - reminder) + SEC_TO_NS;
     }
@@ -175,13 +175,13 @@ void TimeSync_getTxTS(TimeSync_ParamsHandle_t timeSyncHandle, uint8_t portNum,
     oppPort &= 0x3;
 
     /*This gets called only in case of forced 2-step slave*/
-    if(SYNC_FRAME == frameType)              /*Sync frame*/
+    if (SYNC_FRAME == frameType)              /*Sync frame*/
     {
         /*Set event flag to indicate sync frame tx*/
         EventP_setBits(&(timeSyncHandle->ptpSendFollowUpEvtObject[oppPort - 1]), timeSyncHandle->eventIdSync);
     }
 
-    if(DELAY_RESP_FRAME == frameType)              /*Pdelay response*/
+    if (DELAY_RESP_FRAME == frameType)              /*Pdelay response*/
     {
         ptpPDelayResFlwUpPacket =
             timeSyncHandle->timeSyncBuff.pdelayResFlwUp_TxBuf[portNum - 1];
@@ -195,7 +195,7 @@ void TimeSync_getTxTS(TimeSync_ParamsHandle_t timeSyncHandle, uint8_t portNum,
         TimeSync_convEndianess(&nanoseconds, ptpPDelayResFlwUpPacket + \
                       PTP_REQ_RCPT_TS_NSEC_OFFSET - offset, 4);
 
-        if(timeSyncHandle->timeSyncConfig.ll_has_hsrTag ||
+        if (timeSyncHandle->timeSyncConfig.ll_has_hsrTag ||
                 timeSyncHandle->timeSyncConfig.custom_tx_api)
         {
 // #ifdef NEW_TX_CALLBACK
@@ -280,7 +280,7 @@ void TimeSync_lineDelayCalc(TimeSync_ParamsHandle_t timeSyncHandle)
                                   (uint64_t)SEC_TO_NS) + (uint64_t)
                                  timeSyncHandle->syncParam[syncPortNum]->originTsNs);
 
-    if(masterDelay > (slaveDelay + correctionField))
+    if (masterDelay > (slaveDelay + correctionField))
     {
         /*Add path delay minus correction divided by 2*/
         timeSyncHandle->tsRunTimeVar->meanPathDelay = (masterDelay - slaveDelay -
@@ -294,7 +294,7 @@ void TimeSync_lineDelayCalc(TimeSync_ParamsHandle_t timeSyncHandle)
     }
 
     /*First time so assign directly*/
-    if((timeSyncHandle->tsRunTimeVar->stateMachine &
+    if ((timeSyncHandle->tsRunTimeVar->stateMachine &
             TS_STATE_MACHINE_LINE_DELAY_COMPUTED) == 0)
     {
         timeSyncHandle->tsRunTimeVar->pathDelay[syncPortNum] =
@@ -352,7 +352,7 @@ void TimeSync_peerDelayCalc(TimeSync_ParamsHandle_t timeSyncHandle,
     /*compute T4 - T1. Time difference on our device, take care of wrap around
      *Only nanoseconds used. Assumption is that transaction is completed within a second */
 
-    if(timeSyncHandle->pDelayParams[index].T4Nsec <
+    if (timeSyncHandle->pDelayParams[index].T4Nsec <
             timeSyncHandle->pDelayParams[index].T1Nsec)
     {
         T4_T1_diff = ((uint64_t)SEC_TO_NS + (uint64_t)
@@ -371,11 +371,11 @@ void TimeSync_peerDelayCalc(TimeSync_ParamsHandle_t timeSyncHandle,
                             timeSyncHandle->tsNrrInfo[index]->nrr);
 
     /*Special processing if 2-step*/
-    if(twoStep == 1)
+    if (twoStep == 1)
     {
 
         /*compute T3-T2*. Time difference on Peer*/
-        if(timeSyncHandle->pDelayParams[index].T3Nsec <
+        if (timeSyncHandle->pDelayParams[index].T3Nsec <
                 timeSyncHandle->pDelayParams[index].T2Nsec)
         {
             T3_T2_diff = ((uint64_t)SEC_TO_NS +
@@ -393,7 +393,7 @@ void TimeSync_peerDelayCalc(TimeSync_ParamsHandle_t timeSyncHandle,
         correctionFieldSum = timeSyncHandle->pDelayParams[index].delayResCorrField +
                              timeSyncHandle->pDelayParams[index].delayResFwUpCorrField;
 
-        if(T4_T1_diff >= (T3_T2_diff + correctionFieldSum))
+        if (T4_T1_diff >= (T3_T2_diff + correctionFieldSum))
         {
             timeSyncHandle->tsRunTimeVar->meanPathDelay = T4_T1_diff - T3_T2_diff -
                     correctionFieldSum;
@@ -413,7 +413,7 @@ void TimeSync_peerDelayCalc(TimeSync_ParamsHandle_t timeSyncHandle,
         /*compute T3-T2*. Time difference on Peer*/
         T3_T2_diff =  timeSyncHandle->pDelayParams[index].delayResCorrField;
 
-        if(T4_T1_diff > T3_T2_diff)
+        if (T4_T1_diff > T3_T2_diff)
         {
             timeSyncHandle->tsRunTimeVar->meanPathDelay = T4_T1_diff - T3_T2_diff;
             /*Average the delay*/
@@ -427,13 +427,13 @@ void TimeSync_peerDelayCalc(TimeSync_ParamsHandle_t timeSyncHandle,
 
     }
 
-    if(timeSyncHandle->tsRunTimeVar->meanPathDelay >
+    if (timeSyncHandle->tsRunTimeVar->meanPathDelay >
             TIMESYNC_PEER_DELAY_ERROR_THRESHOLD)
     {
         timeSyncHandle->tsRunTimeVar->meanPathDelay = 0;
     }
 
-    if((timeSyncHandle->tsRunTimeVar->stateMachine &
+    if ((timeSyncHandle->tsRunTimeVar->stateMachine &
             TS_STATE_MACHINE_LINE_DELAY_COMPUTED) == 0)
     {
         timeSyncHandle->tsRunTimeVar->pathDelay[index] =
@@ -454,7 +454,7 @@ void TimeSync_peerDelayCalc(TimeSync_ParamsHandle_t timeSyncHandle,
                            1 - FILTER_ALPHA_COEFF));
     }
 
-    if(ICSS_EMAC_PORT_1 == portNum)
+    if (ICSS_EMAC_PORT_1 == portNum)
     {
         bytePtr = (uint8_t *)(sharedRAMbaseAddress + P1_SMA_LINE_DELAY_OFFSET);
     }
@@ -488,7 +488,7 @@ void TimeSync_synchronizeClock(TimeSync_ParamsHandle_t timeSyncHandle)
     meanPathDelay =
         timeSyncHandle->tsRunTimeVar->pathDelay[syncPortNum];
 
-    if(timeSyncHandle->syncParam[syncPortNum]->originTsSec ==
+    if (timeSyncHandle->syncParam[syncPortNum]->originTsSec ==
             timeSyncHandle->syncParam[syncPortNum]->rxTsSec)
     {
         timeSyncHandle->tsRunTimeVar->currOffset =
@@ -513,7 +513,7 @@ void TimeSync_synchronizeClock(TimeSync_ParamsHandle_t timeSyncHandle)
 
     /*Take running average of the offset*/
 
-    if(timeSyncHandle->tsRunTimeVar->ltaOffsetValid)
+    if (timeSyncHandle->tsRunTimeVar->ltaOffsetValid)
     {
         timeSyncHandle->tsRunTimeVar->ltaOffset = (int32_t)((double)(
                     FILTER_ALPHA_COEFF) *
@@ -528,7 +528,7 @@ void TimeSync_synchronizeClock(TimeSync_ParamsHandle_t timeSyncHandle)
     }
 
 
-    if(timeSyncHandle->tsRunTimeVar->driftStable)
+    if (timeSyncHandle->tsRunTimeVar->driftStable)
     {
         adjOffset = timeSyncHandle->tsRunTimeVar->currOffset +
                     timeSyncHandle->tsRunTimeVar->ltaOffset  +
@@ -568,26 +568,26 @@ void TimeSync_synchronizeClock(TimeSync_ParamsHandle_t timeSyncHandle)
     MoffsetStable[Mindex] = timeSyncHandle->tsRunTimeVar->offsetStable;
     Mrcf[Mindex] = timeSyncHandle->tsSyntInfo->rcf;
     Mindex++;
-    if(Mindex == MSIZE)
+    if (Mindex == MSIZE)
     {
         Mindex = 0;
     }
 #endif
 
     /*Check this condition only if device is in sync*/
-    if((timeSyncHandle->tsRunTimeVar->stateMachine &
+    if ((timeSyncHandle->tsRunTimeVar->stateMachine &
             TS_STATE_MACHINE_DEVICE_IN_SYNC) ==
             TS_STATE_MACHINE_DEVICE_IN_SYNC)
     {
 #ifdef TIMESYNC_LOCAL_DEBUG
-        if(abs(timeSyncHandle->tsRunTimeVar->currOffset) > abs(MmaxOffset))
+        if (abs(timeSyncHandle->tsRunTimeVar->currOffset) > abs(MmaxOffset))
         {
             MmaxOffset = timeSyncHandle->tsRunTimeVar->currOffset;
         }
         MOffset[(abs(timeSyncHandle->tsRunTimeVar->currOffset))/1000]++;
 #endif
         /*This is to track any large change in the timebase*/
-        if(abs(timeSyncHandle->tsRunTimeVar->currOffset) > OFFSET_THRESHOLD_FOR_RESET)
+        if (abs(timeSyncHandle->tsRunTimeVar->currOffset) > OFFSET_THRESHOLD_FOR_RESET)
         {
 #ifdef TIMESYNC_LOCAL_DEBUG
             MresetCount++;
@@ -599,7 +599,7 @@ void TimeSync_synchronizeClock(TimeSync_ParamsHandle_t timeSyncHandle)
     }
 
     /*Calculate observed offset scaled log variance as per section 7.6.3.3 in IEEE standard 1588 (2018)*/
-    if(timeSyncHandle->tsRunTimeVar->prevOffsetValid[1])
+    if (timeSyncHandle->tsRunTimeVar->prevOffsetValid[1])
     {
         /* variance is equal to (1/3)*(1/2)*(1/N-2)*(sum of (x(k+2) - 2*x(k+1) + x(k))^2).
            where x(k+2), x(k+1) and x(k) are observed offsets. N = 3 for the calculations
@@ -616,7 +616,7 @@ void TimeSync_synchronizeClock(TimeSync_ParamsHandle_t timeSyncHandle)
      */
 
     /*Find clock drift*/
-    if(timeSyncHandle->tsRunTimeVar->prevOffsetValid[0])
+    if (timeSyncHandle->tsRunTimeVar->prevOffsetValid[0])
     {
         timeSyncHandle->tsRunTimeVar->clockDrift += abs(
                     timeSyncHandle->tsRunTimeVar->currOffset -
@@ -626,7 +626,7 @@ void TimeSync_synchronizeClock(TimeSync_ParamsHandle_t timeSyncHandle)
     }
 
     /*set prevoffset to current once drift is computed*/
-    if(timeSyncHandle->tsRunTimeVar->prevOffsetValid[0])
+    if (timeSyncHandle->tsRunTimeVar->prevOffsetValid[0])
     {
         timeSyncHandle->tsRunTimeVar->prevOffset[1] = timeSyncHandle->tsRunTimeVar->prevOffset[0];
         timeSyncHandle->tsRunTimeVar->prevOffsetValid[1] = 1;
@@ -636,7 +636,7 @@ void TimeSync_synchronizeClock(TimeSync_ParamsHandle_t timeSyncHandle)
     timeSyncHandle->tsRunTimeVar->prevOffsetValid[0] = 1;
 
     /*Wait for the drift to stabilize*/
-    if(timeSyncHandle->tsRunTimeVar->clockDrift <= STABLE_FILTER_THRESHOLD
+    if (timeSyncHandle->tsRunTimeVar->clockDrift <= STABLE_FILTER_THRESHOLD
             && (timeSyncHandle->tsRunTimeVar->driftStable == 0))
     {
         timeSyncHandle->tsRunTimeVar->driftStable = 1;
@@ -645,7 +645,7 @@ void TimeSync_synchronizeClock(TimeSync_ParamsHandle_t timeSyncHandle)
     }
 
     /*Wait for offset to become zero*/
-    if(abs(timeSyncHandle->tsRunTimeVar->ltaOffset) <= STABLE_FILTER_THRESHOLD
+    if (abs(timeSyncHandle->tsRunTimeVar->ltaOffset) <= STABLE_FILTER_THRESHOLD
             && (timeSyncHandle->tsRunTimeVar->offsetStable == 0) &&
             (timeSyncHandle->tsRunTimeVar->driftStable))
     {
@@ -667,21 +667,21 @@ void TimeSync_synchronizeClock(TimeSync_ParamsHandle_t timeSyncHandle)
      * will settle into a zone with 200ns offset*/
 
     /*Run the logic only once we are stable*/
-    if(timeSyncHandle->tsRunTimeVar->offsetStable)
+    if (timeSyncHandle->tsRunTimeVar->offsetStable)
     {
         timeSyncHandle->offsetAlgo->lastSeen_good_drift_index++;
 
         /*If the drift is below our threshold and we have a close cluster
          * then we use this value for our averaging purpose
          */
-        if((timeSyncHandle->tsRunTimeVar->clockDrift <
+        if ((timeSyncHandle->tsRunTimeVar->clockDrift <
                 timeSyncHandle->offsetAlgo->driftThreshold)
                 && (timeSyncHandle->offsetAlgo->lastSeen_good_drift_index <
                     OFFSET_ALGO_CLUSTER_SIZE))
         {
             timeSyncHandle->offsetAlgo->lastSeen_good_drift_index = 0;
 
-            if(timeSyncHandle->offsetAlgo->num_entries_index < OFFSET_ALGO_BIN_SIZE)
+            if (timeSyncHandle->offsetAlgo->num_entries_index < OFFSET_ALGO_BIN_SIZE)
             {
                 /*Store the value for averaging later*/
                 timeSyncHandle->offsetAlgo->correction[timeSyncHandle->offsetAlgo->num_entries_index++]
@@ -696,7 +696,7 @@ void TimeSync_synchronizeClock(TimeSync_ParamsHandle_t timeSyncHandle)
         }
 
         /*If cluster is broken then we reset the counters*/
-        else if((timeSyncHandle->offsetAlgo->lastSeen_good_drift_index >=
+        else if ((timeSyncHandle->offsetAlgo->lastSeen_good_drift_index >=
                  OFFSET_ALGO_CLUSTER_SIZE)
                 && (timeSyncHandle->offsetAlgo->binFull != 1))
         {
@@ -741,7 +741,7 @@ void TimeSync_updateNRRParams(TimeSync_ParamsHandle_t timeSyncHandle,
                                          timeSyncHandle->pDelayParams[portNum - 1].delayResFwUpCorrField;
 
     /*Wait for TS array to be full before starting syntonization*/
-    if((!nrrInfo->nrrEnable)
+    if ((!nrrInfo->nrrEnable)
             && (nrrInfo->nrrIndex == (SYNT_DEPTH + 2)))
     {
         nrrInfo->nrrEnable = 1;
@@ -764,7 +764,7 @@ void TimeSync_calcNRR(TimeSync_ParamsHandle_t timeSyncHandle, uint8_t portNum)
     curIndex = nrrInfo->curIndex;
 
     /*calculate nrr */
-    if(nrrInfo->nrrEnable)
+    if (nrrInfo->nrrEnable)
     {
         prevIndex = timeSyncHandle->syntIndexMap[curIndex];
         num = nrrInfo->correctedPeerTS[curIndex] -
@@ -822,14 +822,14 @@ void TimeSync_calcRcfAndSyncInterval(TimeSync_ParamsHandle_t timeSyncHandle)
             timeSyncHandle->syncParam[syncPortNum]->correctionField;
 
     /*Wait for TS array to be full before starting syntonization*/
-    if((!timeSyncHandle->tsSyntInfo->syntEnable)
+    if ((!timeSyncHandle->tsSyntInfo->syntEnable)
             && (timeSyncHandle->tsSyntInfo->syntIndex == (SYNT_DEPTH + 2)))
     {
         timeSyncHandle->tsSyntInfo->syntEnable = 1;
     }
 
     /*calculate rcf */
-    if(timeSyncHandle->tsSyntInfo->syntEnable)
+    if (timeSyncHandle->tsSyntInfo->syntEnable)
     {
         prevIndex = timeSyncHandle->syntIndexMap[curIndex];
         num = timeSyncHandle->tsSyntInfo->correctedMasterTs[curIndex] -
@@ -849,13 +849,13 @@ void TimeSync_calcRcfAndSyncInterval(TimeSync_ParamsHandle_t timeSyncHandle)
         timeSyncHandle->tsRunTimeVar->parentParams.observedClockPhaseChangeRate = (int32_t)((double)(timeSyncHandle->tsSyntInfo->rcf - 1.0) * (0x10000000000));
 
         /*calculate average of difference between two successive sync frames*/
-        for(count = 0; count < 3; count++)
+        for (count = 0; count < 3; count++)
         {
 
             tempIndex = (curIndex + count) % SYNT_DEPTH;
             prevIndex = timeSyncHandle->prevIndexMap[tempIndex];
 
-            if(timeSyncHandle->tsSyntInfo->correctedMasterTs[tempIndex] >
+            if (timeSyncHandle->tsSyntInfo->correctedMasterTs[tempIndex] >
                     timeSyncHandle->tsSyntInfo->correctedMasterTs[prevIndex])
             {
                 syncIntervalAverage += (timeSyncHandle->tsSyntInfo->correctedMasterTs[tempIndex]
@@ -868,7 +868,7 @@ void TimeSync_calcRcfAndSyncInterval(TimeSync_ParamsHandle_t timeSyncHandle)
 
         timeSyncHandle->tsRunTimeVar->currSyncInterval = syncIntervalAverage;
 
-        if(timeSyncHandle->tsRunTimeVar->ltaSyncInterval == 0)
+        if (timeSyncHandle->tsRunTimeVar->ltaSyncInterval == 0)
         {
             timeSyncHandle->tsRunTimeVar->ltaSyncInterval =
                 timeSyncHandle->tsRunTimeVar->currSyncInterval;
@@ -928,20 +928,20 @@ void TimeSync_processPTPFrame(TimeSync_ParamsHandle_t timeSyncHandle,
     uint64_t seconds = 0;
     uint64_t ptpFlags = 0;
     uint8_t domainNumber = 0;
-    uint8_t *TimeStampFromFrame =0;
+    uint8_t *TimeStampFromFrame = 0;
 
     offset = timeSyncHandle->timeSyncConfig.frame_offset;
 
-    if(TRUE == timeSyncHandle->timeSyncConfig.hsrEnabled)
+    if (TRUE == timeSyncHandle->timeSyncConfig.hsrEnabled)
     {
-        if(isLinkLocal)
+        if (isLinkLocal)
         {
             /*Read the flag value from shared RAM*/
             bytePtr = (uint8_t *)(((PRUICSS_HwAttrs const *)(timeSyncHandle->pruicssHandle->hwAttrs))->sharedDramBase
                                   + LINK_LOCAL_FRAME_HAS_HSR_TAG);
             timeSyncHandle->timeSyncConfig.ll_has_hsrTag = *bytePtr;
 
-            if(timeSyncHandle->timeSyncConfig.ll_has_hsrTag)
+            if (timeSyncHandle->timeSyncConfig.ll_has_hsrTag)
             {
                 offset -= HSR_CORRECTION;
             }
@@ -963,23 +963,23 @@ void TimeSync_processPTPFrame(TimeSync_ParamsHandle_t timeSyncHandle,
 
     domainNumber = (uint8_t)(*(pktBuffer + PTP_DOMAIN_NUM_OFFSET - offset));
 
-    if(domainNumber != timeSyncHandle->timeSyncConfig.domainNumber[0])
+    if (domainNumber != timeSyncHandle->timeSyncConfig.domainNumber[0])
     {
         return;
     }
 
     /*If timestamp is appended to packet, copy them here*/
-    if(!timeSyncHandle->timeSyncConfig.timestamp_from_shared_ram)
+    if (!timeSyncHandle->timeSyncConfig.timestamp_from_shared_ram)
     {
         TimeStampFromFrame = pktBuffer + size;
         TimeSync_getRxTimestampFromFrame(timeSyncHandle, portNum, \
                                         &nanoseconds, &seconds, TimeStampFromFrame);
     }
 
-    if((PTP_ANNOUNCE_MSG_ID == pktType) || (PTP_MGMT_MSG_ID == pktType))
+    if ((PTP_ANNOUNCE_MSG_ID == pktType) || (PTP_MGMT_MSG_ID == pktType))
     {
         /*debug, remove in final code*/
-        if(PTP_ANNOUNCE_MSG_ID == pktType)
+        if (PTP_ANNOUNCE_MSG_ID == pktType)
         {
 
             /* Store the masterParams */
@@ -990,47 +990,47 @@ void TimeSync_processPTPFrame(TimeSync_ParamsHandle_t timeSyncHandle,
             TimeSync_convEndianess(pktBuffer + PTP_UTC_OFFSET, &(timeSyncHandle->tsRunTimeVar->masterParams.UTCOffset), PTP_UTC_SIZE);
             TimeSync_convEndianess(pktBuffer + PTP_FLAG_OFFSET, &(ptpFlags), PTP_FLAG_SIZE);
             memset(&(timeSyncHandle->tsRunTimeVar->masterParams.ptp_flags), 0, sizeof(timeSyncHandle->tsRunTimeVar->masterParams.ptp_flags));
-            if(ptpFlags & PTP_LEAP_61_MASK)
+            if (ptpFlags & PTP_LEAP_61_MASK)
             {
                 timeSyncHandle->tsRunTimeVar->masterParams.ptp_flags[TS_LEAP_61_INDEX] = 1;
             }
-            if(ptpFlags & PTP_LEAP_59_MASK)
+            if (ptpFlags & PTP_LEAP_59_MASK)
             {
                 timeSyncHandle->tsRunTimeVar->masterParams.ptp_flags[TS_LEAP_59_INDEX] = 1;
             }
-            if(ptpFlags & PTP_UTC_REASONABLE_MASK)
+            if (ptpFlags & PTP_UTC_REASONABLE_MASK)
             {
                 timeSyncHandle->tsRunTimeVar->masterParams.ptp_flags[TS_UTC_REASONABLE_INDEX] = 1;
             }
-            if(ptpFlags & PTP_TIMESCALE_MASK)
+            if (ptpFlags & PTP_TIMESCALE_MASK)
             {
                 timeSyncHandle->tsRunTimeVar->masterParams.ptp_flags[TS_PTP_TIMESCALE_INDEX] = 1;
             }
-            if(ptpFlags & PTP_TIME_TRACEABLE_MASK)
+            if (ptpFlags & PTP_TIME_TRACEABLE_MASK)
             {
                 timeSyncHandle->tsRunTimeVar->masterParams.ptp_flags[TS_TIME_TRACEABLE_INDEX] = 1;
             }
-            if(ptpFlags & PTP_FREQ_TRACEABLE_MASK)
+            if (ptpFlags & PTP_FREQ_TRACEABLE_MASK)
             {
                 timeSyncHandle->tsRunTimeVar->masterParams.ptp_flags[TS_FREQ_TRACEABLE_INDEX] = 1;
             }
-            if(ptpFlags & PTP_ALTERNATE_MASTER_MASK)
+            if (ptpFlags & PTP_ALTERNATE_MASTER_MASK)
             {
                 timeSyncHandle->tsRunTimeVar->masterParams.ptp_flags[TS_ALTERNATE_MASTER_INDEX] = 1;
             }
-            if(ptpFlags & PTP_UNICAST_MASK)
+            if (ptpFlags & PTP_UNICAST_MASK)
             {
                 timeSyncHandle->tsRunTimeVar->masterParams.ptp_flags[TS_PTP_UNICAST] = 1;
             }
-            if(ptpFlags & PTP_PROFILE_SPECIFIC_1_MASK)
+            if (ptpFlags & PTP_PROFILE_SPECIFIC_1_MASK)
             {
                 timeSyncHandle->tsRunTimeVar->masterParams.ptp_flags[TS_PROFILE_SPECIFIC_1_INDEX] = 1;
             }
-            if(ptpFlags & PTP_PROFILE_SPECIFIC_2_MASK)
+            if (ptpFlags & PTP_PROFILE_SPECIFIC_2_MASK)
             {
                 timeSyncHandle->tsRunTimeVar->masterParams.ptp_flags[TS_PROFILE_SPECIFIC_2_INDEX] = 1;
             }
-            if(ptpFlags & PTP_SECURITY_MASK)
+            if (ptpFlags & PTP_SECURITY_MASK)
             {
                 timeSyncHandle->tsRunTimeVar->masterParams.ptp_flags[TS_PTP_SECURITY_INDEX] = 1;
             }
@@ -1051,17 +1051,17 @@ void TimeSync_processPTPFrame(TimeSync_ParamsHandle_t timeSyncHandle,
         }
 
         /*Should we use the port number???*/
-        if(!(timeSyncHandle->stackParams.generalFrameFlag)) /*Make sure the previous packet is transferred to PTP Stack*/
+        if (!(timeSyncHandle->stackParams.generalFrameFlag)) /*Make sure the previous packet is transferred to PTP Stack*/
         {
             timeSyncHandle->stackParams.ptpGeneralSize = size;
 
-            if(TRUE == timeSyncHandle->timeSyncConfig.hsrEnabled)
+            if (TRUE == timeSyncHandle->timeSyncConfig.hsrEnabled)
             {
                 timeSyncHandle->stackParams.ptpGeneralSize -= HSR_CORRECTION;
                 memcpy(timeSyncHandle->stackParams.ptpGeneralFrame, pktBuffer,
                        SRC_DST_MAC_SIZE);
 
-                if(((timeSyncHandle->stackParams.ptpGeneralSize - SRC_DST_MAC_SIZE) > 0) &&
+                if (((timeSyncHandle->stackParams.ptpGeneralSize - SRC_DST_MAC_SIZE) > 0) &&
                    (timeSyncHandle->stackParams.ptpGeneralSize <= (ICSS_EMAC_MAXMTU)))
                 {
                     memcpy(timeSyncHandle->stackParams.ptpGeneralFrame + SRC_DST_MAC_SIZE,
@@ -1069,7 +1069,8 @@ void TimeSync_processPTPFrame(TimeSync_ParamsHandle_t timeSyncHandle,
                         timeSyncHandle->stackParams.ptpGeneralSize - SRC_DST_MAC_SIZE);
                 }
             }
-            else if(timeSyncHandle->stackParams.ptpGeneralSize <= (ICSS_EMAC_MAXMTU))
+            else if ((timeSyncHandle->stackParams.ptpGeneralSize > 0U) &&
+                    (timeSyncHandle->stackParams.ptpGeneralSize <= (ICSS_EMAC_MAXMTU)))
             {
                 memcpy(timeSyncHandle->stackParams.ptpGeneralFrame, pktBuffer,
                        timeSyncHandle->stackParams.ptpGeneralSize);
@@ -1082,9 +1083,9 @@ void TimeSync_processPTPFrame(TimeSync_ParamsHandle_t timeSyncHandle,
 
     else
     {
-        if(PTP_PDLY_REQ_MSG_ID == pktType)         /*Pdelay request frame*/
+        if (PTP_PDLY_REQ_MSG_ID == pktType)         /*Pdelay request frame*/
         {
-            if(timeSyncHandle->timeSyncConfig.timestamp_from_shared_ram)
+            if (timeSyncHandle->timeSyncConfig.timestamp_from_shared_ram)
             {
                 TimeSync_getRxTimestamp(timeSyncHandle, DELAY_REQ_FRAME, portNum, \
                                         &nanoseconds, &seconds);
@@ -1098,7 +1099,7 @@ void TimeSync_processPTPFrame(TimeSync_ParamsHandle_t timeSyncHandle,
             /*Copy into buffer and post event*/
 
             /*Remove HSR tag*/
-            if(timeSyncHandle->timeSyncConfig.ll_has_hsrTag)
+            if (timeSyncHandle->timeSyncConfig.ll_has_hsrTag)
             {
                 memcpy(timeSyncHandle->timeSyncBuff.pdelayReq_RxBuf[portNum - 1], pktBuffer,
                        SRC_DST_MAC_SIZE);
@@ -1117,9 +1118,9 @@ void TimeSync_processPTPFrame(TimeSync_ParamsHandle_t timeSyncHandle,
             EventP_setBits(&(timeSyncHandle->ptpPdelayReqEvtObject[portNum - 1]), timeSyncHandle->eventIdPdelayReq);
         }
 
-        else if(PTP_PDLY_RSP_MSG_ID == pktType)         /*Pdelay response frame*/
+        else if (PTP_PDLY_RSP_MSG_ID == pktType)         /*Pdelay response frame*/
         {
-            if(timeSyncHandle->timeSyncConfig.timestamp_from_shared_ram)
+            if (timeSyncHandle->timeSyncConfig.timestamp_from_shared_ram)
             {
                 TimeSync_getRxTimestamp(timeSyncHandle, DELAY_RESP_FRAME, portNum, \
                                         &nanoseconds, &seconds);
@@ -1134,7 +1135,7 @@ void TimeSync_processPTPFrame(TimeSync_ParamsHandle_t timeSyncHandle,
             /*set two step flag. Used in another task*/
             timeSyncHandle->pDelayParams[portNum - 1].ifTwoStep = ifTwoStep;
 
-            if(timeSyncHandle->timeSyncConfig.ll_has_hsrTag)
+            if (timeSyncHandle->timeSyncConfig.ll_has_hsrTag)
             {
                 memcpy(timeSyncHandle->timeSyncBuff.pdelayRes_RxBuf[portNum - 1],
                        pktBuffer,
@@ -1159,18 +1160,18 @@ void TimeSync_processPTPFrame(TimeSync_ParamsHandle_t timeSyncHandle,
              * Pdelay response then we don't want that task to
              * pend forever
              */
-            if(!ifTwoStep)
+            if (!ifTwoStep)
             {
                 EventP_setBits(&(timeSyncHandle->ptpPdelayResEvtObject[portNum - 1]), timeSyncHandle->eventIdPdelayRespFlwUp);
             }
 
         }
 
-        else if(PTP_PDLY_RESP_FLW_UP_MSG_ID ==
+        else if (PTP_PDLY_RESP_FLW_UP_MSG_ID ==
                 pktType)         /*Pdelay response follow up frame*/
         {
             /*Copy into buffer and post event*/
-            if(timeSyncHandle->timeSyncConfig.ll_has_hsrTag)
+            if (timeSyncHandle->timeSyncConfig.ll_has_hsrTag)
             {
                 memcpy(timeSyncHandle->timeSyncBuff.pdelayResFlwUp_RxBuf[portNum - 1],
                        pktBuffer,
@@ -1190,12 +1191,12 @@ void TimeSync_processPTPFrame(TimeSync_ParamsHandle_t timeSyncHandle,
             EventP_setBits(&(timeSyncHandle->ptpPdelayResEvtObject[portNum - 1]), timeSyncHandle->eventIdPdelayRespFlwUp);
         }
 
-        else if(PTP_SYNC_MSG_ID == pktType)
+        else if (PTP_SYNC_MSG_ID == pktType)
         {
             /*Get the timestamp. If it's in shared RAM, it's copied here, else
              * it's copied by the RT callback to the structure timeSyncHandle->rxTimestamp_gPTP
              */
-            if(timeSyncHandle->timeSyncConfig.timestamp_from_shared_ram)
+            if (timeSyncHandle->timeSyncConfig.timestamp_from_shared_ram)
             {
                 TimeSync_getRxTimestamp(timeSyncHandle, SYNC_FRAME, portNum, \
                                         &nanoseconds, &seconds);
@@ -1211,12 +1212,12 @@ void TimeSync_processPTPFrame(TimeSync_ParamsHandle_t timeSyncHandle,
             TimeSync_processSyncFrame(timeSyncHandle, pktBuffer, FALSE, portNum, size);
         }
 
-        else if(PTP_FOLLOW_UP_MSG_ID == pktType)
+        else if (PTP_FOLLOW_UP_MSG_ID == pktType)
         {
             TimeSync_processSyncFrame(timeSyncHandle, pktBuffer, TRUE, portNum, size);
         }
 
-        else if(PTP_DLY_RESP_MSG_ID == pktType)   /*PTP_DLY_RSP_MSG_ID*/
+        else if (PTP_DLY_RESP_MSG_ID == pktType)   /*PTP_DLY_RSP_MSG_ID*/
         {
             TimeSync_processDelayResFrame(timeSyncHandle, pktBuffer, portNum);
         }
@@ -1259,13 +1260,13 @@ void TimeSync_processSyncFrame(TimeSync_ParamsHandle_t timeSyncHandle,
     oppPortlinkStatus = 0;
     retVal = MDIO_phyLinkStatus(((PRUICSS_HwAttrs const *)(timeSyncHandle->pruicssHandle->hwAttrs))->miiMdioRegBase,
                                             ((ICSS_EMAC_Attrs *)(timeSyncHandle->emacHandle->attrs))->phyAddr[oppPort - 1]);
-    if(retVal == SystemP_SUCCESS)
+    if (retVal == SystemP_SUCCESS)
         oppPortlinkStatus = 1;
-    // oppPortlinkStatus =((ICSS_EmacObject *)
+    // oppPortlinkStatus = ((ICSS_EmacObject *)
     //                      (timeSyncHandle->emacHandle)->object)->linkStatus[oppPort - 1];
 
     /*Since we are processing tagged HSR frames, we need to account for it*/
-    if(TRUE == timeSyncHandle->timeSyncConfig.hsrEnabled)
+    if (TRUE == timeSyncHandle->timeSyncConfig.hsrEnabled)
     {
         offset -= HSR_CORRECTION;
     }
@@ -1279,9 +1280,9 @@ void TimeSync_processSyncFrame(TimeSync_ParamsHandle_t timeSyncHandle,
      * sync frames from master port*/
 
     /*For sync frame*/
-    if(!followUp)
+    if (!followUp)
     {
-        if(masterPortNum == portNum)
+        if (masterPortNum == portNum)
         {
             timeSyncHandle->tsRunTimeVar->syncPortNum = portNum;
             /*Reset the last seen counter*/
@@ -1304,7 +1305,7 @@ void TimeSync_processSyncFrame(TimeSync_ParamsHandle_t timeSyncHandle,
 
         /*if forced mode is on and it's a 1-step then we send the frame out
          * of the opposite port after setting the 2-step bit*/
-        if(!timeSyncHandle->syncParam[portNum - 1]->ifTwoStep &&
+        if (!timeSyncHandle->syncParam[portNum - 1]->ifTwoStep &&
                 timeSyncHandle->timeSyncConfig.masterParams.ptp_flags[TS_PTP_TWO_STEP_INDEX] &&
                 !timeSyncHandle->timeSyncConfig.emac_mode && oppPortlinkStatus)
         {
@@ -1322,7 +1323,7 @@ void TimeSync_processSyncFrame(TimeSync_ParamsHandle_t timeSyncHandle,
 
             /*Strip the HSR tag before copying the follow up frame
               since we will add a different HSR tag*/
-            if(timeSyncHandle->timeSyncConfig.hsrEnabled)
+            if (timeSyncHandle->timeSyncConfig.hsrEnabled)
             {
                 memcpy(timeSyncHandle->timeSyncBuff.followUp_TxBuf[portNum - 1], buff, 12);
                 memcpy(timeSyncHandle->timeSyncBuff.followUp_TxBuf[portNum - 1] + 12, buff + 18,
@@ -1346,7 +1347,7 @@ void TimeSync_processSyncFrame(TimeSync_ParamsHandle_t timeSyncHandle,
 
         }
 
-        if((timeSyncHandle->syncParam[portNum - 1]->ifTwoStep)
+        if ((timeSyncHandle->syncParam[portNum - 1]->ifTwoStep)
                 || (masterPortNum != portNum))
         {
             return;
@@ -1371,7 +1372,7 @@ void TimeSync_processSyncFrame(TimeSync_ParamsHandle_t timeSyncHandle,
         bytePtr = (uint8_t *)(buff + PTP_SEQ_ID_OFFSET - offset);
         TimeSync_convEndianess(bytePtr, &(halfWord), 2);
 
-        if(timeSyncHandle->tsRunTimeVar->curSyncSeqId[portNum - 1] != halfWord)
+        if (timeSyncHandle->tsRunTimeVar->curSyncSeqId[portNum - 1] != halfWord)
         {
             return;
         }
@@ -1398,10 +1399,10 @@ void TimeSync_processSyncFrame(TimeSync_ParamsHandle_t timeSyncHandle,
          * calculate Bridge delay and send out follow up frame---*/
 
         /*If PTP is configured in EMAC mode then don't do Bridge delay computation*/
-        if(!timeSyncHandle->timeSyncConfig.emac_mode)
+        if (!timeSyncHandle->timeSyncConfig.emac_mode)
         {
 
-            if(oppPortlinkStatus)
+            if (oppPortlinkStatus)
             {
                 doubleWord = timeSyncHandle->syncParam[portNum - 1]->txTsSec *
                              (uint64_t)SEC_TO_NS + \
@@ -1416,7 +1417,7 @@ void TimeSync_processSyncFrame(TimeSync_ParamsHandle_t timeSyncHandle,
                 timeElapsed = (uint32_t)((double)timeElapsed * timeSyncHandle->tsSyntInfo->rcf);
 
                 /*Add Peer delay for P2P mode*/
-                if(P2P == timeSyncHandle->timeSyncConfig.type)
+                if (P2P == timeSyncHandle->timeSyncConfig.type)
                 {
                     timeElapsed += timeSyncHandle->tsRunTimeVar->pathDelay[portNum - 1];
                 }
@@ -1429,7 +1430,7 @@ void TimeSync_processSyncFrame(TimeSync_ParamsHandle_t timeSyncHandle,
                 TimeSync_convEndianess(&timeElapsed,
                               (buff + PTP_CORRECTION_OFFSET - offset), 6);
 
-                if(timeSyncHandle->timeSyncConfig.custom_tx_api)
+                if (timeSyncHandle->timeSyncConfig.custom_tx_api)
                 {
 // #ifdef NEW_TX_CALLBACK
 //                     txArg.customFlag = 0;
@@ -1464,7 +1465,7 @@ void TimeSync_processSyncFrame(TimeSync_ParamsHandle_t timeSyncHandle,
     }
 
     /*First time*/
-    if((timeSyncHandle->tsRunTimeVar->stateMachine &
+    if ((timeSyncHandle->tsRunTimeVar->stateMachine &
             TS_STATE_MACHINE_FIRST_ADJUSTMENT_DONE) == 0)
     {
 
@@ -1479,9 +1480,9 @@ void TimeSync_processSyncFrame(TimeSync_ParamsHandle_t timeSyncHandle,
 
     else    /*if not first time sync frame*/
     {
-        if(timeSyncHandle->tsRunTimeVar->syncPortNum == portNum)
+        if (timeSyncHandle->tsRunTimeVar->syncPortNum == portNum)
         {
-            if((timeSyncHandle->tsRunTimeVar->stateMachine &
+            if ((timeSyncHandle->tsRunTimeVar->stateMachine &
                     TS_STATE_MACHINE_READY_FOR_SYNC) == TS_STATE_MACHINE_READY_FOR_SYNC)
             {
                 /*Synchronize clock*/
@@ -1492,10 +1493,10 @@ void TimeSync_processSyncFrame(TimeSync_ParamsHandle_t timeSyncHandle,
 
     }
 
-    if(timeSyncHandle->tsRunTimeVar->syncPortNum == portNum)
+    if (timeSyncHandle->tsRunTimeVar->syncPortNum == portNum)
     {
         /*Post interrupt to send a delay request frame*/
-        if(timeSyncHandle->timeSyncConfig.type == E2E)
+        if (timeSyncHandle->timeSyncConfig.type == E2E)
         {
             SemaphoreP_post(&(timeSyncHandle->delayReqTxSemObject));
         }
@@ -1517,7 +1518,7 @@ void TimeSync_processDelayResFrame(TimeSync_ParamsHandle_t timeSyncHandle,
     bytePtr = (uint8_t *)(buff + PTP_SEQ_ID_OFFSET - offset);
     TimeSync_convEndianess(bytePtr, &(halfWord), 2);
 
-    if((timeSyncHandle->tsRunTimeVar->delReqSequenceID - 1) != halfWord)
+    if ((timeSyncHandle->tsRunTimeVar->delReqSequenceID - 1) != halfWord)
     {
         return;
     }
@@ -1553,7 +1554,7 @@ void TimeSync_processPdelayReqFrame(TimeSync_ParamsHandle_t timeSyncHandle,
 
     ICSS_EMAC_TxArgument txArg;
 
-    if(ICSS_EMAC_PORT_1 == portNum)
+    if (ICSS_EMAC_PORT_1 == portNum)
     {
         ptpPDelayResPacket = timeSyncHandle->timeSyncBuff.pdelayRes_TxBuf[0];
         ptpPDelayResFlwUpPacket = timeSyncHandle->timeSyncBuff.pdelayResFlwUp_TxBuf[0];
@@ -1628,7 +1629,7 @@ void TimeSync_processPdelayReqFrame(TimeSync_ParamsHandle_t timeSyncHandle,
     TimeSync_convEndianess(&(timeSyncHandle->pDelayParams[portNum - 1].pDelayReqRcvdTSNsec),
                   ptpPDelayResPacket + PTP_REQ_RCPT_TS_NSEC_OFFSET - offset, 4);
 
-    if(timeSyncHandle->timeSyncConfig.ll_has_hsrTag ||
+    if (timeSyncHandle->timeSyncConfig.ll_has_hsrTag ||
             timeSyncHandle->timeSyncConfig.custom_tx_api)
     {
 // #ifdef NEW_TX_CALLBACK
@@ -1680,7 +1681,7 @@ void TimeSync_processPdelayRespFrame(TimeSync_ParamsHandle_t timeSyncHandle,
     memcpy(buf_for_comp, buff + PTP_REQ_SRC_PORT_IDENTITY - offset,
            8);
 
-    if(0 != memcmp(buf_for_comp, timeSyncHandle->timeSyncConfig.clockIdentity, 8))
+    if (0 != memcmp(buf_for_comp, timeSyncHandle->timeSyncConfig.clockIdentity, 8))
     {
         return;
     }
@@ -1688,13 +1689,13 @@ void TimeSync_processPdelayRespFrame(TimeSync_ParamsHandle_t timeSyncHandle,
     /*check with the sequence id that was sent out*/
     TimeSync_convEndianess(buff + PTP_SEQ_ID_OFFSET - offset, &halfWord, 2);
 
-    if(halfWord != (timeSyncHandle->tsRunTimeVar->pDelReqSequenceID[portNum - 1] -
+    if (halfWord != (timeSyncHandle->tsRunTimeVar->pDelReqSequenceID[portNum - 1] -
                     1))
     {
         return;
     }
 
-    if(!followUp)
+    if (!followUp)
     {
 
         /*Extract correction field*/
@@ -1704,7 +1705,7 @@ void TimeSync_processPdelayRespFrame(TimeSync_ParamsHandle_t timeSyncHandle,
         /*Now check if it's a two step, if yes then exit*/
         TimeSync_convEndianess(buff + PTP_FLAG_OFFSET - offset, &halfWord, 2);
 
-        if(halfWord & PTP_TWO_STEP_MASK)
+        if (halfWord & PTP_TWO_STEP_MASK)
         {
             /*Extract T2 timestamp in seconds*/
             TimeSync_convEnd6to8(buff + PTP_REQ_RCPT_TS_SEC_OFFSET - offset, \
@@ -1774,7 +1775,7 @@ void TimeSync_forced2StepBDCalc(TimeSync_ParamsHandle_t timeSyncHandle,
     timeElapsed = (uint32_t)((double)timeElapsed * timeSyncHandle->tsSyntInfo->rcf);
 
     /*Add Peer delay for P2P mode*/
-    if(P2P == timeSyncHandle->timeSyncConfig.type)
+    if (P2P == timeSyncHandle->timeSyncConfig.type)
     {
         timeElapsed += timeSyncHandle->tsRunTimeVar->pathDelay[portNum - 1];
     }
@@ -1785,7 +1786,7 @@ void TimeSync_forced2StepBDCalc(TimeSync_ParamsHandle_t timeSyncHandle,
                   (ptpFlwUpPacket + PTP_CORRECTION_OFFSET -
                    timeSyncHandle->timeSyncConfig.frame_offset), 6);
 
-    if(timeSyncHandle->timeSyncConfig.hsrEnabled ||
+    if (timeSyncHandle->timeSyncConfig.hsrEnabled ||
             timeSyncHandle->timeSyncConfig.custom_tx_api)
     {
 
@@ -1827,16 +1828,16 @@ void TimeSync_getGeneralMessage(TimeSync_ParamsHandle_t timeSyncHandle,
     uint8_t *macId = NULL;
     uint8_t count = 0;
 
-    if(timeSyncHandle->stackParams.generalFrameFlag)
+    if (timeSyncHandle->stackParams.generalFrameFlag)
     {
-        if(E2E == timeSyncHandle->timeSyncConfig.type)
+        if (E2E == timeSyncHandle->timeSyncConfig.type)
         {
             memcpy(buff, timeSyncHandle->stackParams.ptpGeneralFrame +
                    PTP_E2E_BUFFER_OFFSET,
                    timeSyncHandle->stackParams.ptpGeneralSize - PTP_E2E_BUFFER_OFFSET);
         }
 
-        if(P2P == timeSyncHandle->timeSyncConfig.type)
+        if (P2P == timeSyncHandle->timeSyncConfig.type)
         {
             memcpy(buff, timeSyncHandle->stackParams.ptpGeneralFrame +
                    PTP_P2P_BUFFER_OFFSET,
@@ -1846,7 +1847,7 @@ void TimeSync_getGeneralMessage(TimeSync_ParamsHandle_t timeSyncHandle,
         macId = (uint8_t *)(timeSyncHandle->stackParams.ptpGeneralFrame +
                             SRC_MAC_OFFSET);
 
-        for(count = 0; count < 6; count++)
+        for (count = 0; count < 6; count++)
         {
             timeSyncHandle->stackParams.ptpSrcMacID[count] = macId[count];
         }
@@ -1874,7 +1875,7 @@ void TimeSync_updateParentAddress(TimeSync_ParamsHandle_t timeSyncHandle,
     macId = (uint8_t *)(((PRUICSS_HwAttrs const *)(timeSyncHandle->pruicssHandle->hwAttrs))->sharedDramBase
                         + SYNC_MASTER_MAC_OFFSET);
 
-    for(count = 0; count < 6; count++)
+    for (count = 0; count < 6; count++)
     {
         macId[count] = parentMac[count];
     }
@@ -1885,7 +1886,7 @@ void TimeSync_getPrevAddress(TimeSync_ParamsHandle_t timeSyncHandle,
 {
     uint8_t count = 0;
 
-    for(count = 0; count < 6; count++)
+    for (count = 0; count < 6; count++)
     {
         prevMac[count] = timeSyncHandle->stackParams.ptpSrcMacID[count];
     }
@@ -1913,7 +1914,7 @@ void TimeSync_Port1linkResetCallBack(uint8_t linkStatus, void *arg2)
 
     /*If link loss on port connected to Master then reset the
          *  Syntonization and Sync params*/
-    if(timeSyncHandle->tsRunTimeVar->syncPortNum == ICSS_EMAC_PORT_1)
+    if (timeSyncHandle->tsRunTimeVar->syncPortNum == ICSS_EMAC_PORT_1)
     {
         /*Reset RCF*/
         memset((timeSyncHandle->tsSyntInfo), 0x0, sizeof(timeSync_SyntInfo_t));
@@ -1949,7 +1950,7 @@ void TimeSync_Port2linkResetCallBack(uint8_t linkStatus, void *arg2)
 
     /*If link loss on port connected to Master then reset the
      *  Syntonization and Sync params*/
-    if(timeSyncHandle->tsRunTimeVar->syncPortNum == ICSS_EMAC_PORT_2)
+    if (timeSyncHandle->tsRunTimeVar->syncPortNum == ICSS_EMAC_PORT_2)
     {
         /*Reset RCF*/
         memset((timeSyncHandle->tsSyntInfo), 0x0, sizeof(timeSync_SyntInfo_t));
@@ -1974,7 +1975,7 @@ void TimeSync_reset(TimeSync_ParamsHandle_t timeSyncHandle)
     uint8_t ptpEnabled = timeSyncHandle->enabled;
 
     /*call sync loss callback*/
-    if(timeSyncHandle->timeSyncConfig.timeSyncSyncLossCallBackfn != NULL)
+    if (timeSyncHandle->timeSyncConfig.timeSyncSyncLossCallBackfn != NULL)
     {
         timeSyncHandle->timeSyncConfig.timeSyncSyncLossCallBackfn();
     }
@@ -2017,13 +2018,13 @@ void TimeSync_reset(TimeSync_ParamsHandle_t timeSyncHandle)
         TIMESYNC_OFFSET_STABLE_ALGO_THRESHOLD;
 
     /*Reset stack*/
-    if((timeSyncHandle->timeSyncConfig).ptpDrvStackReset != NULL)
+    if ((timeSyncHandle->timeSyncConfig).ptpDrvStackReset != NULL)
     {
         (timeSyncHandle->timeSyncConfig).ptpDrvStackReset((void *)timeSyncHandle);
     }
 
     /*Finally enable PTP, only if it was enabled while calling this function*/
-    if(ptpEnabled == TRUE)
+    if (ptpEnabled == TRUE)
         TimeSync_drvEnable(timeSyncHandle);
 }
 
@@ -2064,7 +2065,7 @@ void TimeSync_writeTS_SingleStep_Sync(TimeSync_ParamsHandle_t timeSyncHandle,
     seconds += 1;
     iepCount = seconds * (uint64_t)SEC_TO_NS;
 
-    if(ICSS_EMAC_PORT_1 == portNum)
+    if (ICSS_EMAC_PORT_1 == portNum)
     {
         memcpy((uint8_t *)(sharedRAMbaseAddress + SINGLE_STEP_IEP_OFFSET_P1), &iepCount,
                8);
@@ -2087,7 +2088,7 @@ void TimeSync_dummyBMCA(TimeSync_ParamsHandle_t timeSyncHandle,
 {
     /*Extract MAC ID and write parent address*/
 
-    if(!timeSyncHandle->tsRunTimeVar->bmcaDone)
+    if (!timeSyncHandle->tsRunTimeVar->bmcaDone)
     {
         /*pass the source MAC ID*/
         TimeSync_updateParentAddress(timeSyncHandle, pktBuffer + 6);
@@ -2097,7 +2098,7 @@ void TimeSync_dummyBMCA(TimeSync_ParamsHandle_t timeSyncHandle,
 
 void TimeSync_rxPhyDelayCorrection(TimeSync_ParamsHandle_t timeSyncHandle)
 {
-    if(timeSyncHandle->rxTimestamp_gPTP->nanoseconds >= timeSyncHandle->timeSyncConfig.rxPhyLatency)
+    if (timeSyncHandle->rxTimestamp_gPTP->nanoseconds >= timeSyncHandle->timeSyncConfig.rxPhyLatency)
     {
         timeSyncHandle->rxTimestamp_gPTP->nanoseconds -= timeSyncHandle->timeSyncConfig.rxPhyLatency;
     }

@@ -102,7 +102,7 @@ int8_t TimeSync_isrAndTaskInit(TimeSync_ParamsHandle_t timeSyncHandle)
 
     status = HwiP_construct(&(timeSyncHandle->timeSync_txTSIsrObject), &hwiParams);
 
-    if(status == SystemP_FAILURE)
+    if (status == SystemP_FAILURE)
     {
         return TIME_SYNC_UNABLE_TO_CREATE_INTERRUPT;
     }
@@ -110,12 +110,12 @@ int8_t TimeSync_isrAndTaskInit(TimeSync_ParamsHandle_t timeSyncHandle)
     /*Enable interrupt*/
     HwiP_enableInt(timeSyncHandle->timeSyncConfig.txIntNum);
 
-    if(timeSyncHandle->timeSyncConfig.type == E2E)
+    if (timeSyncHandle->timeSyncConfig.type == E2E)
     {
         /*Create semaphore for sending delay request frames*/
         status = SemaphoreP_constructBinary(&(timeSyncHandle->delayReqTxSemObject), 0);
 
-        if(status == SystemP_FAILURE)
+        if (status == SystemP_FAILURE)
         {
             return TIME_SYNC_UNABLE_TO_CREATE_SEMAPHORE;
         }
@@ -129,41 +129,41 @@ int8_t TimeSync_isrAndTaskInit(TimeSync_ParamsHandle_t timeSyncHandle)
     timeSyncHandle->eventIdDelayReq = ICSS_TIMESYNC_EVENT_BIT6;
     timeSyncHandle->eventIdFlwUpGenerated = ICSS_TIMESYNC_EVENT_BIT7;
 
-    for(portNum = 0; portNum < ICSS_EMAC_MAX_PORTS_PER_INSTANCE; portNum++)
+    for (portNum = 0; portNum < ICSS_EMAC_MAX_PORTS_PER_INSTANCE; portNum++)
     {
         status = EventP_construct(&(timeSyncHandle->ptpPdelayResEvtObject[portNum]));
 
-        if(status == SystemP_FAILURE)
+        if (status == SystemP_FAILURE)
         {
             return TIME_SYNC_UNABLE_TO_CREATE_EVENT;
         }
     }
 
-    for(portNum = 0; portNum < ICSS_EMAC_MAX_PORTS_PER_INSTANCE; portNum++)
+    for (portNum = 0; portNum < ICSS_EMAC_MAX_PORTS_PER_INSTANCE; portNum++)
     {
         status = EventP_construct(&(timeSyncHandle->txTSAvailableEvtObject[portNum]));
 
-        if(status == SystemP_FAILURE)
+        if (status == SystemP_FAILURE)
         {
             return TIME_SYNC_UNABLE_TO_CREATE_EVENT;
         }
     }
 
-    for(portNum = 0; portNum < ICSS_EMAC_MAX_PORTS_PER_INSTANCE; portNum++)
+    for (portNum = 0; portNum < ICSS_EMAC_MAX_PORTS_PER_INSTANCE; portNum++)
     {
         status = EventP_construct(&(timeSyncHandle->ptpPdelayReqEvtObject[portNum]));
 
-        if(status == SystemP_FAILURE)
+        if (status == SystemP_FAILURE)
         {
             return TIME_SYNC_UNABLE_TO_CREATE_EVENT;
         }
     }
 
-    for(portNum = 0; portNum < ICSS_EMAC_MAX_PORTS_PER_INSTANCE; portNum++)
+    for (portNum = 0; portNum < ICSS_EMAC_MAX_PORTS_PER_INSTANCE; portNum++)
     {
         status = EventP_construct(&(timeSyncHandle->ptpSendFollowUpEvtObject[portNum]));
 
-        if(status == SystemP_FAILURE)
+        if (status == SystemP_FAILURE)
         {
             return TIME_SYNC_UNABLE_TO_CREATE_EVENT;
         }
@@ -171,7 +171,7 @@ int8_t TimeSync_isrAndTaskInit(TimeSync_ParamsHandle_t timeSyncHandle)
 
     /*-----------Create Tasks------------*/
 
-    if(timeSyncHandle->timeSyncConfig.type == P2P)
+    if (timeSyncHandle->timeSyncConfig.type == P2P)
     {
         TaskP_Params_init(&taskParams);
 
@@ -184,13 +184,13 @@ int8_t TimeSync_isrAndTaskInit(TimeSync_ParamsHandle_t timeSyncHandle)
 
         status = TaskP_construct(&(timeSyncHandle->timeSync_pDelayReqSendTask), &taskParams);
 
-        if(status == SystemP_FAILURE)
+        if (status == SystemP_FAILURE)
         {
             return TIME_SYNC_UNABLE_TO_CREATE_TASK;
         }
     }
 
-    if(timeSyncHandle->timeSyncConfig.type == E2E)
+    if (timeSyncHandle->timeSyncConfig.type == E2E)
     {
         TaskP_Params_init(&taskParams);
 
@@ -203,7 +203,7 @@ int8_t TimeSync_isrAndTaskInit(TimeSync_ParamsHandle_t timeSyncHandle)
 
         status = TaskP_construct(&(timeSyncHandle->timeSync_delayReqSendTask), &taskParams);
 
-        if(status == SystemP_FAILURE)
+        if (status == SystemP_FAILURE)
         {
             return TIME_SYNC_UNABLE_TO_CREATE_TASK;
         }
@@ -220,7 +220,7 @@ int8_t TimeSync_isrAndTaskInit(TimeSync_ParamsHandle_t timeSyncHandle)
 
     status = TaskP_construct(&(timeSyncHandle->timeSync_TxTSTaskP1), &taskParams);
 
-    if(status == SystemP_FAILURE)
+    if (status == SystemP_FAILURE)
     {
         return TIME_SYNC_UNABLE_TO_CREATE_TASK;
     }
@@ -236,7 +236,7 @@ int8_t TimeSync_isrAndTaskInit(TimeSync_ParamsHandle_t timeSyncHandle)
 
     status = TaskP_construct(&(timeSyncHandle->timeSync_TxTSTaskP2), &taskParams);
 
-    if(status == SystemP_FAILURE)
+    if (status == SystemP_FAILURE)
     {
         return TIME_SYNC_UNABLE_TO_CREATE_TASK;
     }
@@ -253,7 +253,7 @@ int8_t TimeSync_isrAndTaskInit(TimeSync_ParamsHandle_t timeSyncHandle)
 
     status = TaskP_construct(&(timeSyncHandle->timeSync_NRT_Task), &taskParams);
 
-    if(status == SystemP_FAILURE)
+    if (status == SystemP_FAILURE)
     {
         return TIME_SYNC_UNABLE_TO_CREATE_TASK;
     }
@@ -270,7 +270,7 @@ int8_t TimeSync_isrAndTaskInit(TimeSync_ParamsHandle_t timeSyncHandle)
 
     status = TaskP_construct(&(timeSyncHandle->timeSync_backgroundTask), &taskParams);
 
-    if(status == SystemP_FAILURE)
+    if (status == SystemP_FAILURE)
     {
         return TIME_SYNC_UNABLE_TO_CREATE_TASK;
     }
@@ -292,12 +292,12 @@ void TimeSync_PdelayReqSendTask(void *args)
 
     uint8_t offset = timeSyncHandle->timeSyncConfig.frame_offset;
 
-    while(1)
+    while (1)
     {
-        if(P2P == timeSyncHandle->timeSyncConfig.type)
+        if (P2P == timeSyncHandle->timeSyncConfig.type)
         {
 
-            if(timeSyncHandle->enabled == TRUE)
+            if (timeSyncHandle->enabled == TRUE)
             {
                 /*TODO: Review this*/
                 /*Construct a Delay Request packet and send it on both ports*/
@@ -307,14 +307,14 @@ void TimeSync_PdelayReqSendTask(void *args)
                 retVal = MDIO_phyLinkStatus(((PRUICSS_HwAttrs const *)(timeSyncHandle->pruicssHandle->hwAttrs))->miiMdioRegBase,
                                                 ((ICSS_EMAC_Attrs *)(timeSyncHandle->emacHandle->attrs))->phyAddr[ICSS_EMAC_PORT_1 - 1]);
 
-                if(retVal == SystemP_SUCCESS)
+                if (retVal == SystemP_SUCCESS)
                     linkStatus = 1;
 
                 /*Send delay request frames in a burst*/
-                for(frameCount = 0;
+                for (frameCount = 0;
                         frameCount < timeSyncHandle->timeSyncConfig.pdelayBurstNumPkts; frameCount++)
                 {
-                    if(linkStatus)
+                    if (linkStatus)
                     {
                         /*write sequence id into memory*/
                         TimeSync_addHalfWord(timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[0] + PTP_SEQ_ID_OFFSET
@@ -328,7 +328,7 @@ void TimeSync_PdelayReqSendTask(void *args)
 
                         /*Use registered callback to send packet on Port 1
                          * In case of LL frame with HSR tag*/
-                        if(timeSyncHandle->timeSyncConfig.ll_has_hsrTag ||
+                        if (timeSyncHandle->timeSyncConfig.ll_has_hsrTag ||
                                 timeSyncHandle->timeSyncConfig.custom_tx_api)
                         {
 /*TODO: Review this*/
@@ -342,13 +342,13 @@ void TimeSync_PdelayReqSendTask(void *args)
                             txArg.srcAddress = timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[0];
 
                             /*TODO: Review this*/
-                            // if(((((ICSS_EmacObject *)
+                            // if (((((ICSS_EmacObject *)
                             //         timeSyncHandle->emacHandle->object)->callBackHandle)->txCallBack)->callBack(
                             //             &txArg,
                             //             ((((ICSS_EmacObject *)
                             //                timeSyncHandle->emacHandle->object)->callBackHandle)->txCallBack)->userArg) ==
                             //         0)
-                            if((ICSS_EMAC_txPacket(&txArg, NULL) & ICSS_EMAC_PORT1_TX_ERROR_MASK) == SystemP_SUCCESS)
+                            if ((ICSS_EMAC_txPacket(&txArg, NULL) & ICSS_EMAC_PORT1_TX_ERROR_MASK) == SystemP_SUCCESS)
                             {
                                 timeSyncHandle->tsRunTimeVar->pDelReqSequenceID[ICSS_EMAC_PORT_1 - 1]++;
                             }
@@ -364,11 +364,11 @@ void TimeSync_PdelayReqSendTask(void *args)
                             txArg.srcAddress = timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[0];
 
                             /*send packet on port 1 without tag*/
-                            // if(ICSS_EmacTxPacketEnqueue(timeSyncHandle->emacHandle,
+                            // if (ICSS_EmacTxPacketEnqueue(timeSyncHandle->emacHandle,
                             //                             timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[0],
                             //                             ICSS_EMAC_PORT_1,
-                            //                             ICSS_EMAC_QUEUE1, TIMESYNC_PDELAY_BUF_SIZE) ==  0)
-                            if((ICSS_EMAC_txPacket(&txArg, NULL)& ICSS_EMAC_PORT1_TX_ERROR_MASK) == SystemP_SUCCESS)
+                            //                             ICSS_EMAC_QUEUE1, TIMESYNC_PDELAY_BUF_SIZE) == 0)
+                            if ((ICSS_EMAC_txPacket(&txArg, NULL)& ICSS_EMAC_PORT1_TX_ERROR_MASK) == SystemP_SUCCESS)
                             {
                                 timeSyncHandle->tsRunTimeVar->pDelReqSequenceID[ICSS_EMAC_PORT_1 - 1]++;
                             }
@@ -391,10 +391,10 @@ void TimeSync_PdelayReqSendTask(void *args)
                     linkStatus = 0;
                     retVal = MDIO_phyLinkStatus(((PRUICSS_HwAttrs const *)(timeSyncHandle->pruicssHandle->hwAttrs))->miiMdioRegBase,
                                                     ((ICSS_EMAC_Attrs *)(timeSyncHandle->emacHandle->attrs))->phyAddr[ICSS_EMAC_PORT_2 - 1]);
-                    if(retVal == SystemP_SUCCESS)
+                    if (retVal == SystemP_SUCCESS)
                         linkStatus = 1;
 
-                    if(linkStatus)
+                    if (linkStatus)
                     {
                         /*write sequence id into memory*/
                         TimeSync_addHalfWord(timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[1] + PTP_SEQ_ID_OFFSET
@@ -407,7 +407,7 @@ void TimeSync_PdelayReqSendTask(void *args)
                                     ICSS_EMAC_PORT_2);
 
                         /*Use registered callback to send packet on Port 2*/
-                        if(timeSyncHandle->timeSyncConfig.ll_has_hsrTag ||
+                        if (timeSyncHandle->timeSyncConfig.ll_has_hsrTag ||
                                 timeSyncHandle->timeSyncConfig.custom_tx_api)
                         {
 /*TODO: Review this*/
@@ -420,13 +420,13 @@ void TimeSync_PdelayReqSendTask(void *args)
                             txArg.queuePriority = ICSS_EMAC_QUEUE1;
                             txArg.srcAddress = timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[1];
 
-                            // if(((((ICSS_EmacObject *)
+                            // if (((((ICSS_EmacObject *)
                             //         timeSyncHandle->emacHandle->object)->callBackHandle)->txCallBack)->callBack(
                             //             &txArg,
                             //             ((((ICSS_EmacObject *)
                             //                timeSyncHandle->emacHandle->object)->callBackHandle)->txCallBack)->userArg) ==
                             //         0)
-                            if((ICSS_EMAC_txPacket(&txArg, NULL)& ICSS_EMAC_PORT2_TX_ERROR_MASK) == SystemP_SUCCESS)
+                            if ((ICSS_EMAC_txPacket(&txArg, NULL)& ICSS_EMAC_PORT2_TX_ERROR_MASK) == SystemP_SUCCESS)
                             {
                                 timeSyncHandle->tsRunTimeVar->pDelReqSequenceID[ICSS_EMAC_PORT_2 - 1]++;
                             }
@@ -440,11 +440,11 @@ void TimeSync_PdelayReqSendTask(void *args)
                             txArg.portNumber = ICSS_EMAC_PORT_2;
                             txArg.queuePriority = ICSS_EMAC_QUEUE1;
                             txArg.srcAddress = timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[1];
-                            // if(ICSS_EmacTxPacketEnqueue(timeSyncHandle->emacHandle,
+                            // if (ICSS_EmacTxPacketEnqueue(timeSyncHandle->emacHandle,
                             //                             timeSyncHandle->timeSyncBuff.pdelayReq_TxBuf[1],
                             //                             ICSS_EMAC_PORT_2,
-                            //                             ICSS_EMAC_QUEUE1, TIMESYNC_PDELAY_BUF_SIZE) ==  0)
-                            if((ICSS_EMAC_txPacket(&txArg, NULL) & ICSS_EMAC_PORT2_TX_ERROR_MASK) == SystemP_SUCCESS)
+                            //                             ICSS_EMAC_QUEUE1, TIMESYNC_PDELAY_BUF_SIZE) == 0)
+                            if ((ICSS_EMAC_txPacket(&txArg, NULL) & ICSS_EMAC_PORT2_TX_ERROR_MASK) == SystemP_SUCCESS)
                             {
                                 timeSyncHandle->tsRunTimeVar->pDelReqSequenceID[ICSS_EMAC_PORT_2 - 1]++;
                             }
@@ -472,7 +472,7 @@ void TimeSync_delayReqSendTask(void *args)
     TimeSync_ParamsHandle_t timeSyncHandle = (TimeSync_ParamsHandle_t)args;
     uint8_t offset = timeSyncHandle->timeSyncConfig.frame_offset;
 
-    while(1)
+    while (1)
     {
         /*Wait for sync frame to post the semaphore
          * and then send a delay request frame on the port on which
@@ -491,7 +491,7 @@ void TimeSync_delayReqSendTask(void *args)
                     - offset,
                     timeSyncHandle->tsRunTimeVar->delReqSequenceID);
 
-        if(timeSyncHandle->timeSyncConfig.custom_tx_api)
+        if (timeSyncHandle->timeSyncConfig.custom_tx_api)
         {
 // #ifdef NEW_TX_CALLBACK
 //             txArg.customFlag = 0;
@@ -502,25 +502,25 @@ void TimeSync_delayReqSendTask(void *args)
             txArg.queuePriority = ICSS_EMAC_QUEUE1;
             txArg.srcAddress = timeSyncHandle->timeSyncBuff.delayReq_TxBuf;
 
-            // if(((((ICSS_EmacObject *)
+            // if (((((ICSS_EmacObject *)
             //         timeSyncHandle->emacHandle->object)->callBackHandle)->txCallBack)->callBack(
             //             &txArg, ((((ICSS_EmacObject *)
             //                        timeSyncHandle->emacHandle->object)->callBackHandle)->txCallBack)->userArg) ==
             //         0)
-			if (ICSS_EMAC_PORT_1 == txArg.portNumber)
-			{			
-                if((ICSS_EMAC_txPacket(&txArg, NULL) & ICSS_EMAC_PORT1_TX_ERROR_MASK) == SystemP_SUCCESS)
+            if (ICSS_EMAC_PORT_1 == txArg.portNumber)
+            {			
+                if ((ICSS_EMAC_txPacket(&txArg, NULL) & ICSS_EMAC_PORT1_TX_ERROR_MASK) == SystemP_SUCCESS)
                 {
                     timeSyncHandle->tsRunTimeVar->delReqSequenceID++;
                 }
-			}
-			else
-		    {
-			    if((ICSS_EMAC_txPacket(&txArg, NULL)& ICSS_EMAC_PORT2_TX_ERROR_MASK) == SystemP_SUCCESS)
+            }
+            else
+            {
+                if ((ICSS_EMAC_txPacket(&txArg, NULL)& ICSS_EMAC_PORT2_TX_ERROR_MASK) == SystemP_SUCCESS)
                 {
                     timeSyncHandle->tsRunTimeVar->delReqSequenceID++;
                 } 
-			}
+            }
         }
 
         else
@@ -531,24 +531,24 @@ void TimeSync_delayReqSendTask(void *args)
             txArg.queuePriority = ICSS_EMAC_QUEUE1;
             txArg.srcAddress = timeSyncHandle->timeSyncBuff.delayReq_TxBuf;
             /*send packet on same port as master*/
-            // if(ICSS_EmacTxPacketEnqueue(timeSyncHandle->emacHandle,
+            // if (ICSS_EmacTxPacketEnqueue(timeSyncHandle->emacHandle,
             //                             timeSyncHandle->timeSyncBuff.delayReq_TxBuf,
             //                             timeSyncHandle->tsRunTimeVar->syncPortNum,
-            //                             ICSS_EMAC_QUEUE1, TIMESYNC_DELAY_REQ_BUF_SIZE) ==  0)
-			if (ICSS_EMAC_PORT_1 == txArg.portNumber)
-			{			
-                if((ICSS_EMAC_txPacket(&txArg, NULL)& ICSS_EMAC_PORT1_TX_ERROR_MASK) == SystemP_SUCCESS)
+            //                             ICSS_EMAC_QUEUE1, TIMESYNC_DELAY_REQ_BUF_SIZE) == 0)
+            if (ICSS_EMAC_PORT_1 == txArg.portNumber)
+            {			
+                if ((ICSS_EMAC_txPacket(&txArg, NULL)& ICSS_EMAC_PORT1_TX_ERROR_MASK) == SystemP_SUCCESS)
                 {
                     timeSyncHandle->tsRunTimeVar->delReqSequenceID++;
                 }
-			}
-			else
-		    {
-			    if((ICSS_EMAC_txPacket(&txArg, NULL)& ICSS_EMAC_PORT2_TX_ERROR_MASK) == SystemP_SUCCESS)
+            }
+            else
+            {
+                if ((ICSS_EMAC_txPacket(&txArg, NULL)& ICSS_EMAC_PORT2_TX_ERROR_MASK) == SystemP_SUCCESS)
                 {
                     timeSyncHandle->tsRunTimeVar->delReqSequenceID++;
                 } 
-			}
+            }
         }
     }
 }
@@ -558,7 +558,7 @@ void TimeSync_TxTSTask_P1(void *args)
     TimeSync_ParamsHandle_t timeSyncHandle = (TimeSync_ParamsHandle_t)args;
     uint32_t events = 0;
 
-    while(1)
+    while (1)
     {
         /*Pend on event to process Tx timestamp interrupt*/
         EventP_waitBits(&(timeSyncHandle->txTSAvailableEvtObject[ICSS_EMAC_PORT_1 - 1]),
@@ -568,17 +568,17 @@ void TimeSync_TxTSTask_P1(void *args)
                         SystemP_WAIT_FOREVER,
                         &events);
 
-        if(events & timeSyncHandle->eventIdSync)
+        if (events & timeSyncHandle->eventIdSync)
         {
             TimeSync_getTxTS(timeSyncHandle, ICSS_EMAC_PORT_1, SYNC_FRAME);
         }
 
-        if(events & timeSyncHandle->eventIdPdelayReq)
+        if (events & timeSyncHandle->eventIdPdelayReq)
         {
             TimeSync_getTxTS(timeSyncHandle, ICSS_EMAC_PORT_1, DELAY_REQ_FRAME);
         }
 
-        if(events & timeSyncHandle->eventIdPdelayResp)
+        if (events & timeSyncHandle->eventIdPdelayResp)
         {
             TimeSync_getTxTS(timeSyncHandle, ICSS_EMAC_PORT_1, DELAY_RESP_FRAME);
         }
@@ -590,7 +590,7 @@ void TimeSync_TxTSTask_P2(void *args)
     TimeSync_ParamsHandle_t timeSyncHandle = (TimeSync_ParamsHandle_t)args;
     uint32_t events = 0;
 
-    while(1)
+    while (1)
     {
         /*Pend on event to process Tx timestamp interrupt*/
         EventP_waitBits(&(timeSyncHandle->txTSAvailableEvtObject[ICSS_EMAC_PORT_2 - 1]),
@@ -600,17 +600,17 @@ void TimeSync_TxTSTask_P2(void *args)
                         SystemP_WAIT_FOREVER,
                         &events);
 
-        if(events & timeSyncHandle->eventIdSync)
+        if (events & timeSyncHandle->eventIdSync)
         {
             TimeSync_getTxTS(timeSyncHandle, ICSS_EMAC_PORT_2, SYNC_FRAME);
         }
 
-        if(events & timeSyncHandle->eventIdPdelayReq)
+        if (events & timeSyncHandle->eventIdPdelayReq)
         {
             TimeSync_getTxTS(timeSyncHandle, ICSS_EMAC_PORT_2, DELAY_REQ_FRAME);
         }
 
-        if(events & timeSyncHandle->eventIdPdelayResp)
+        if (events & timeSyncHandle->eventIdPdelayResp)
         {
             TimeSync_getTxTS(timeSyncHandle, ICSS_EMAC_PORT_2, DELAY_RESP_FRAME);
         }
@@ -622,7 +622,7 @@ void TimeSync_NRT_Task(void *args)
     uint32_t events = 0;
     TimeSync_ParamsHandle_t timeSyncHandle = (TimeSync_ParamsHandle_t)args;
 
-    while(1)
+    while (1)
     {
         /*Wait 1ms then move on to other tasks*/
         EventP_waitBits(&(timeSyncHandle->ptpPdelayResEvtObject[ICSS_EMAC_PORT_1 - 1]),
@@ -633,13 +633,13 @@ void TimeSync_NRT_Task(void *args)
                         &events);
 
         /*Calculate Peer Delay on Port 1*/
-        if(events)
+        if (events)
         {
             TimeSync_processPdelayRespFrame(timeSyncHandle,
                                             timeSyncHandle->timeSyncBuff.pdelayRes_RxBuf[ICSS_EMAC_PORT_1 - 1],
                                             FALSE, ICSS_EMAC_PORT_1);
 
-            if(timeSyncHandle->pDelayParams[ICSS_EMAC_PORT_1 - 1].ifTwoStep)
+            if (timeSyncHandle->pDelayParams[ICSS_EMAC_PORT_1 - 1].ifTwoStep)
             {
 
                 TimeSync_processPdelayRespFrame(timeSyncHandle,
@@ -657,13 +657,13 @@ void TimeSync_NRT_Task(void *args)
                         &events);
 
         /*Calculate Peer Delay on Port 2*/
-        if(events)
+        if (events)
         {
             TimeSync_processPdelayRespFrame(timeSyncHandle,
                                             timeSyncHandle->timeSyncBuff.pdelayRes_RxBuf[ICSS_EMAC_PORT_2 - 1],
                                             FALSE, ICSS_EMAC_PORT_2);
 
-            if(timeSyncHandle->pDelayParams[ICSS_EMAC_PORT_2 - 1].ifTwoStep)
+            if (timeSyncHandle->pDelayParams[ICSS_EMAC_PORT_2 - 1].ifTwoStep)
             {
                 TimeSync_processPdelayRespFrame(timeSyncHandle,
                                                 timeSyncHandle->timeSyncBuff.pdelayResFlwUp_RxBuf[ICSS_EMAC_PORT_2 - 1],
@@ -679,7 +679,7 @@ void TimeSync_NRT_Task(void *args)
                         1,
                         &events);
 
-        if(events)
+        if (events)
         {
             TimeSync_processPdelayReqFrame(timeSyncHandle,
                                            timeSyncHandle->timeSyncBuff.pdelayReq_RxBuf[ICSS_EMAC_PORT_1 - 1], \
@@ -693,7 +693,7 @@ void TimeSync_NRT_Task(void *args)
                         1, /*Wait for all bits to be set*/
                         1,
                         &events);
-        if(events)
+        if (events)
         {
             TimeSync_processPdelayReqFrame(timeSyncHandle,
                                            timeSyncHandle->timeSyncBuff.pdelayReq_RxBuf[ICSS_EMAC_PORT_2 - 1], \
@@ -708,7 +708,7 @@ void TimeSync_NRT_Task(void *args)
                         1,
                         &events);
 
-        if(events)
+        if (events)
         {
             TimeSync_forced2StepBDCalc(timeSyncHandle, ICSS_EMAC_PORT_1);
         }
@@ -721,7 +721,7 @@ void TimeSync_NRT_Task(void *args)
                         1,
                         &events);
 
-        if(events)
+        if (events)
         {
             TimeSync_forced2StepBDCalc(timeSyncHandle, ICSS_EMAC_PORT_2);
         }
@@ -738,13 +738,13 @@ void TimeSync_BackgroundTask(void *args)
 
     sharedRAMbaseAddress = (uint32_t)((PRUICSS_HwAttrs const *)(timeSyncHandle->pruicssHandle->hwAttrs))->sharedDramBase;
 
-    while(1)
+    while (1)
     {
         /*Increment the tick counter*/
         timeSyncHandle->tsRunTimeVar->tickCounter++;
 
         /*check for sync timeout*/
-        if(timeSyncHandle->tsRunTimeVar->syncLastSeenCounter++ >
+        if (timeSyncHandle->tsRunTimeVar->syncLastSeenCounter++ >
                 timeSyncHandle->tsRunTimeVar->syncTimeoutInterval)
         {
 
@@ -753,7 +753,7 @@ void TimeSync_BackgroundTask(void *args)
             timeSyncHandle->numSyncMissed++;
 
             /*If we continuously miss sync frames then reset*/
-            if((timeSyncHandle->numSyncMissed % NUM_SYNC_MISSED_THRESHOLD) == 0)
+            if ((timeSyncHandle->numSyncMissed % NUM_SYNC_MISSED_THRESHOLD) == 0)
             {
                 TimeSync_reset(timeSyncHandle);
             }
@@ -764,12 +764,12 @@ void TimeSync_BackgroundTask(void *args)
         }
 
         /*Check if we have to process the data*/
-        if(timeSyncHandle->offsetAlgo->binFull == 1)
+        if (timeSyncHandle->offsetAlgo->binFull == 1)
         {
             /*get average of all offsets*/
             avgCorrection = 0;
 
-            for(count = 0; count < 5; count++)
+            for (count = 0; count < 5; count++)
             {
                 avgCorrection += timeSyncHandle->offsetAlgo->correction[count];
             }
@@ -784,10 +784,10 @@ void TimeSync_BackgroundTask(void *args)
         }
 
 #ifdef TIMESYNC_LOCAL_DEBUG
-        if(Mindex % 100 == 0 && Mindex)
+        if (Mindex % 100 == 0 && Mindex)
         {
             uint32_t index_counter;
-            for(index_counter = Mindex - 100 ; index_counter < Mindex ; index_counter++)
+            for (index_counter = Mindex - 100 ; index_counter < Mindex ; index_counter++)
             {
                 DebugP_log("\n\r\n\r*************** index = %d **********", index_counter);
                 DebugP_log("\n\rMoriginTsSec\t\t = %d", MoriginTsSec[index_counter]);
@@ -817,7 +817,7 @@ void TimeSync_BackgroundTask(void *args)
             }
 
             DebugP_log("\n\r");
-            for(count = 0; count < 11; count++)
+            for (count = 0; count < 11; count++)
             {
                 DebugP_log("\n\rOffset bin %d count = %d", count, MOffset[count]);
             }
@@ -856,7 +856,7 @@ void TimeSync_txTSIsr(uintptr_t arg)
                                           + CSL_ICSS_PR1_ICSS_INTC_INTC_SLV_ENA_STATUS_REG0);
 
     /*Check which port posted the interrupt*/
-    if(*intStatusPtr & TIMESYNC_TX_TS_ISR_MASK_P1)
+    if (*intStatusPtr & TIMESYNC_TX_TS_ISR_MASK_P1)
     {
         bytePtr = (uint8_t *)((uint32_t)(sharedRAMbaseAddress +
                                          TX_TS_NOTIFICATION_OFFSET_SYNC_P1));
@@ -874,7 +874,7 @@ void TimeSync_txTSIsr(uintptr_t arg)
         oppPort = ICSS_EMAC_PORT_1;
     }
 
-    if(*(bytePtr))      /*sync frame*/
+    if (*(bytePtr))      /*sync frame*/
     {
         TimeSync_getTxTimestamp(timeSyncHandle, SYNC_FRAME, portNum,
                                 &nanoseconds, &seconds);
@@ -883,7 +883,7 @@ void TimeSync_txTSIsr(uintptr_t arg)
         timeSyncHandle->syncParam[oppPort - 1]->txTs = nanoseconds;
 
         /*If slave and forced 2-step then post event to send out follow up frame*/
-        if(timeSyncHandle->tsRunTimeVar->forced2step[oppPort - 1])
+        if (timeSyncHandle->tsRunTimeVar->forced2step[oppPort - 1])
         {
             EventP_setBits(&(timeSyncHandle->txTSAvailableEvtObject[portNum - 1]), timeSyncHandle->eventIdSync);
         }
@@ -891,12 +891,12 @@ void TimeSync_txTSIsr(uintptr_t arg)
         *(bytePtr) = 0;
     }
 
-    if(*(bytePtr + 1))      /*delay request frame*/
+    if (*(bytePtr + 1))      /*delay request frame*/
     {
         TimeSync_getTxTimestamp(timeSyncHandle, DELAY_REQ_FRAME, portNum,
                                 &nanoseconds, &seconds);
 
-        if(timeSyncHandle->timeSyncConfig.type == P2P)
+        if (timeSyncHandle->timeSyncConfig.type == P2P)
         {
             timeSyncHandle->pDelayParams[portNum - 1].T1Sec = seconds;
             /*Copy nanoseconds*/
@@ -912,7 +912,7 @@ void TimeSync_txTSIsr(uintptr_t arg)
         *(bytePtr + 1) = 0;
     }
 
-    if(*(bytePtr + 2))      /*Pdelay response frame*/
+    if (*(bytePtr + 2))      /*Pdelay response frame*/
     {
         EventP_setBits(&(timeSyncHandle->txTSAvailableEvtObject[portNum - 1]), timeSyncHandle->eventIdPdelayResp);
         *(bytePtr + 2) = 0;

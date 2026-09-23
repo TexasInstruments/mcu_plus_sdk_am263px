@@ -103,12 +103,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ga7701836048362438077fba0563b4f79b"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__IP__VTM__FUNCTION.html#ga7701836048362438077fba0563b4f79b">SDL_VTM_tsGetCtrl</a> (<a class="el" href="sdl__soc__vtm_8h.html#ad1764a56fd7ca1ae485dd8b509dc5289">SDL_VTM_InstTs</a> instance, uint32_t *pTsCtrlCfg)</td></tr>
 <tr class="memdesc:ga7701836048362438077fba0563b4f79b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read VTM Temperature Sensor Control.  <a href="group__SDL__IP__VTM__FUNCTION.html#ga7701836048362438077fba0563b4f79b">More...</a><br /></td></tr>
 <tr class="separator:ga7701836048362438077fba0563b4f79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacc599fff629f998be5925f4adcdd0ad6"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__IP__VTM__FUNCTION.html#gacc599fff629f998be5925f4adcdd0ad6">SDL_VTM_tsConvADCToTemp</a> (<a class="el" href="group__SDL__IP__VTM__Enum.html#gae10ff0bea1cd5ecd8f4470dc63c90082">SDL_VTM_adc_code</a> adcCode, int32_t *pMilliDegreeTempVal)</td></tr>
-<tr class="memdesc:gacc599fff629f998be5925f4adcdd0ad6"><td class="mdescLeft">&#160;</td><td class="mdescRight">VTM Temperature ADC code to Temperature conversion.  <a href="group__SDL__IP__VTM__FUNCTION.html#gacc599fff629f998be5925f4adcdd0ad6">More...</a><br /></td></tr>
-<tr class="separator:gacc599fff629f998be5925f4adcdd0ad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga97c2a20c535f0e82165c407cd9c8e436"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__IP__VTM__FUNCTION.html#ga97c2a20c535f0e82165c407cd9c8e436">SDL_VTM_tsConvTempToAdc</a> (int32_t milliDegreeTempVal, <a class="el" href="group__SDL__IP__VTM__Enum.html#gae10ff0bea1cd5ecd8f4470dc63c90082">SDL_VTM_adc_code</a> *pAdcCode)</td></tr>
-<tr class="memdesc:ga97c2a20c535f0e82165c407cd9c8e436"><td class="mdescLeft">&#160;</td><td class="mdescRight">VTM Temperature to ADC code conversion.  <a href="group__SDL__IP__VTM__FUNCTION.html#ga97c2a20c535f0e82165c407cd9c8e436">More...</a><br /></td></tr>
-<tr class="separator:ga97c2a20c535f0e82165c407cd9c8e436"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga78a62633e6e033c43bf8dfdca441780d"></a>
@@ -173,82 +167,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The SDL error code for the API. Success : SDL_PASS Fail : SDL_EFAIL Invalid Args : SDL_EBADARGS </dd></dl>
-
-</div>
-</div>
-<a id="gacc599fff629f998be5925f4adcdd0ad6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacc599fff629f998be5925f4adcdd0ad6">&#9670;&nbsp;</a></span>SDL_VTM_tsConvADCToTemp()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t SDL_VTM_tsConvADCToTemp </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="group__SDL__IP__VTM__Enum.html#gae10ff0bea1cd5ecd8f4470dc63c90082">SDL_VTM_adc_code</a>&#160;</td>
-          <td class="paramname"><em>adcCode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int32_t *&#160;</td>
-          <td class="paramname"><em>pMilliDegreeTempVal</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>VTM Temperature ADC code to Temperature conversion. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">adcCode</td><td>[IN] 7 Bit ADC code </td></tr>
-    <tr><td class="paramname">pMilliDegreeTempVal</td><td>[OUT] Pointer to Temperature in milli degree celcius</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The SDL error code for the API. Success : SDL_PASS Invalid Args : SDL_EBADARGS </dd></dl>
-
-</div>
-</div>
-<a id="ga97c2a20c535f0e82165c407cd9c8e436"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga97c2a20c535f0e82165c407cd9c8e436">&#9670;&nbsp;</a></span>SDL_VTM_tsConvTempToAdc()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t SDL_VTM_tsConvTempToAdc </td>
-          <td>(</td>
-          <td class="paramtype">int32_t&#160;</td>
-          <td class="paramname"><em>milliDegreeTempVal</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group__SDL__IP__VTM__Enum.html#gae10ff0bea1cd5ecd8f4470dc63c90082">SDL_VTM_adc_code</a> *&#160;</td>
-          <td class="paramname"><em>pAdcCode</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>VTM Temperature to ADC code conversion. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">milliDegreeTempVal</td><td>[IN] Temperature in milli degree celcius </td></tr>
-    <tr><td class="paramname">pAdcCode</td><td>[OUT] Pointer to 7 Bit ADC code</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The SDL error code for the API. Success : SDL_PASS Invalid Args : SDL_EBADARGS </dd></dl>
 
 </div>
 </div>
