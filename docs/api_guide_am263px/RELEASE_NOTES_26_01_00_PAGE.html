@@ -587,6 +587,10 @@ Known Issues</h2>
 <td>MCUSDK-15963 </td><td>MCSPI LLD driver generates redundant TX_EMPTY interrupt during single transfer </td><td>McSPI </td><td>26.01.00 onwards </td><td>Disable FIFO in the driver/SysConfig. This results in one interrupt per word (no buffering), but eliminates the initial TXx_EMPTY burst. Or Use DMA mode (<a class="el" href="group__DRV__MCSPI__LLD__MODULE.html#gaae2d0e9af00185a61a45e225c733270c" title="This API reads writes data from the McSPI instance in DMA mode.">MCSPI_lld_readWriteDma()</a>) to offload data movement and bypass the interrupt-driven FIFO filling.  </td></tr>
 <tr>
 <td>MCUSDK-15953 </td><td>AllSoc: Libraries Don't Build When DebugP_ASSERT_ENABLED is 0 </td><td>Build </td><td>26.00.00 onwards </td><td>None  </td></tr>
+<tr>
+<td>PINDSW-11658 </td><td>Klocwork issue on icss_emac_lld. Refer MCU_PLUS_SDK_AM263PX_SA_Report.html for details. </td><td>ICSS-EMAC </td><td>26.01.00 onwards </td><td>None  </td></tr>
+<tr>
+<td>MCUSDK-16011 </td><td>Klocwork issues on ENET TSN-STACK. Refer MCU_PLUS_SDK_AM263PX_SA_Report.html for details. </td><td>Networking </td><td>26.01.00 onwards </td><td>None  </td></tr>
 </table>
 <h2><a class="anchor" id="autotoc_md335"></a>
 Errata</h2>
