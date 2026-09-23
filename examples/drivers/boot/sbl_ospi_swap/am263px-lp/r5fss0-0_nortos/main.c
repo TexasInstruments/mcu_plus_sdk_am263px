@@ -158,6 +158,7 @@ int main(void)
             */
             bootrgn = bootinfo->fields.bootRegion;
 
+            SOC_controlModuleUnlockMMR(SOC_DOMAIN_ID_MAIN, MSS_CTRL_PARTITION0);
             if (bootrgn == BOOT_REGION_B)
             {
                 FSS_selectRegionB((FSS_Handle)&fssConf);
@@ -166,6 +167,7 @@ int main(void)
             {
                 FSS_selectRegionA((FSS_Handle)&fssConf);
             }
+            SOC_controlModuleLockMMR(SOC_DOMAIN_ID_MAIN, MSS_CTRL_PARTITION0);
 #endif
     
             OSPI_Handle ospiHandle = OSPI_getHandle(CONFIG_OSPI0);
@@ -258,6 +260,7 @@ int main(void)
             */
             if(status == SystemP_FAILURE)
             {
+                SOC_controlModuleUnlockMMR(SOC_DOMAIN_ID_MAIN, MSS_CTRL_PARTITION0);
                 if (bootrgn == BOOT_REGION_B)
                 {
                     FSS_selectRegionA((FSS_Handle)&fssConf);
@@ -266,6 +269,7 @@ int main(void)
                 {
                     FSS_selectRegionB((FSS_Handle)&fssConf);
                 }
+                SOC_controlModuleLockMMR(SOC_DOMAIN_ID_MAIN, MSS_CTRL_PARTITION0);
                 status = Bootloader_parseAndLoadMultiCoreELF(bootHandle, &bootImageInfo);
             }
 #endif

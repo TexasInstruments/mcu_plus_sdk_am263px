@@ -389,6 +389,7 @@ SDL_UTILS_getPMINTENCLR:
 ******************************************************************************/
 	.global SDL_UTILS_enable_event_bus
 SDL_UTILS_enable_event_bus:
+    PUSH    {r5}
 	ORR r1,r1,#0x7 << 25           	/* Don't need to force dpu_tcm_check_parity_en_o */
 	MCR p15, #0, r1, c1, c0, #1   	/* ACTLR enable ECC for cache */
 	MRC p15, #0, r0, c1, c0, #0   	/* Read System Control Register */
@@ -396,6 +397,7 @@ SDL_UTILS_enable_event_bus:
 	MRC P15,#0, R5, C9, C12,#0 		/* enable export of events to Eventbus for monitoring */
 	ORR R5, R5, #0x11
 	MCR P15,#0, R5, C9, C12,#0
+    POP     {r5}
 	BX      lr
 
 /*****************************************************************************
@@ -403,6 +405,7 @@ SDL_UTILS_enable_event_bus:
 ******************************************************************************/
 	.global SDL_UTILS_enable_cache_event_bus
 SDL_UTILS_enable_cache_event_bus:
+    PUSH    {r5}
     MRC P15,#0, R5, C9, C12,#0      /* enable export of events to Eventbus for monitoring */
     ORR R5, R5, #0x11
     MCR P15,#0, R5, C9, C12,#0
@@ -412,6 +415,7 @@ SDL_UTILS_enable_cache_event_bus:
     MCR p15, #0, r1, c1, c0, #1 	/* ACTLR enable ECC for cache */
     MRC p15, #0, r0, c1, c0, #0     /* Read System Control Register */
     NOP
+    POP     {r5}
 	BX      lr
 
 /*****************************************************************************

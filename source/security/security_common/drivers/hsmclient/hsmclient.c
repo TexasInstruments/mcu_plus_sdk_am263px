@@ -101,6 +101,9 @@ static uint32_t hsm_client_msg_queue_size = 64U;
  * SysConfig/linker setup.  The driver only holds an extern reference.
  */
 extern uint8_t gHsmClientHostBuff[HSMCLIENT_HOST_BUFF_SIZE];
+
+/* This variable allows user to disable buffer support */
+uint32_t gHsmClient_DisableHostBuffSupport;
 #endif
 
 /**
@@ -556,7 +559,7 @@ static void *HsmClient_getIPCBuffPtr(void *src, uint32_t size)
 {
     void *pBuff = src;
 #ifdef HSMCLIENT_HOST_BUFF_ENABLE
-    if ((src != NULL) && (size <= HSMCLIENT_HOST_BUFF_SIZE) &&
+    if ((src != NULL) && (size < HSMCLIENT_HOST_BUFF_SIZE) && (HSMCLIENT_HOST_BUFF_SUPPORT_ENABLE == gHsmClient_DisableHostBuffSupport) &&
         (((size % CacheP_CACHELINE_ALIGNMENT) != 0U) || (((uintptr_t)src % CacheP_CACHELINE_ALIGNMENT) != 0U)))
     {
         /* Stage the application buffer into the driver-owned host buffer */
@@ -576,7 +579,7 @@ static void *HsmClient_getIPCBuffPtr(void *src, uint32_t size)
 static void HsmClient_syncIPCBuffPtr(void *dst, uint32_t size)
 {
 #ifdef HSMCLIENT_HOST_BUFF_ENABLE
-    if ((dst != NULL) && (size <= HSMCLIENT_HOST_BUFF_SIZE) &&
+    if ((dst != NULL) && (size < HSMCLIENT_HOST_BUFF_SIZE) && (HSMCLIENT_HOST_BUFF_SUPPORT_ENABLE == gHsmClient_DisableHostBuffSupport) &&
         (((size % CacheP_CACHELINE_ALIGNMENT) != 0U) || (((uintptr_t)dst % CacheP_CACHELINE_ALIGNMENT) != 0U)))
     {
         /* Stage the host buffer into the application owned buffer */

@@ -186,9 +186,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga15b976660e5afaf6492a6d8bb0a6d588"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__IP__ESM__API.html#ga15b976660e5afaf6492a6d8bb0a6d588">SDL_ESM_isEnableIntr</a> (uint32_t baseAddr, uint32_t intrSrc, uint32_t *pEnStatus)</td></tr>
 <tr class="memdesc:ga15b976660e5afaf6492a6d8bb0a6d588"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used check if interrupt is enabled/disabled.  <a href="group__SDL__IP__ESM__API.html#ga15b976660e5afaf6492a6d8bb0a6d588">More...</a><br /></td></tr>
 <tr class="separator:ga15b976660e5afaf6492a6d8bb0a6d588"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5e257c1f8cbe9400a18f554e1f02c71b"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__IP__ESM__API.html#ga5e257c1f8cbe9400a18f554e1f02c71b">SDL_ESM_disableCfgIntr</a> (uint32_t baseAddr, uint32_t intrNum)</td></tr>
-<tr class="memdesc:ga5e257c1f8cbe9400a18f554e1f02c71b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to disable the configuration interrupt.  <a href="group__SDL__IP__ESM__API.html#ga5e257c1f8cbe9400a18f554e1f02c71b">More...</a><br /></td></tr>
-<tr class="separator:ga5e257c1f8cbe9400a18f554e1f02c71b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga186ed01aa13fb19c6d97ec781f6bc652"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__IP__ESM__API.html#ga186ed01aa13fb19c6d97ec781f6bc652">SDL_ESM_disableCfgIntr</a> (uint32_t baseAddr, uint32_t group)</td></tr>
+<tr class="memdesc:ga186ed01aa13fb19c6d97ec781f6bc652"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to disable the configuration interrupt.  <a href="group__SDL__IP__ESM__API.html#ga186ed01aa13fb19c6d97ec781f6bc652">More...</a><br /></td></tr>
+<tr class="separator:ga186ed01aa13fb19c6d97ec781f6bc652"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8027934be7e557084c9b52cdc698a1a8"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__IP__ESM__API.html#ga8027934be7e557084c9b52cdc698a1a8">SDL_ESM_enableCfgIntr</a> (uint32_t baseAddr, uint32_t group)</td></tr>
 <tr class="memdesc:ga8027934be7e557084c9b52cdc698a1a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to enable the configuration interrupt.  <a href="group__SDL__IP__ESM__API.html#ga8027934be7e557084c9b52cdc698a1a8">More...</a><br /></td></tr>
 <tr class="separator:ga8027934be7e557084c9b52cdc698a1a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,12 +204,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga4d439fed58fcceeabfad6a448ac577e4"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__IP__ESM__API.html#ga4d439fed58fcceeabfad6a448ac577e4">SDL_ESM_getIntrPriorityLvl</a> (uint32_t baseAddr, uint32_t intrSrc, <a class="el" href="group__SDL__IP__ESM__API.html#ga06f41023eabd3866b6e7cff0476f84e8">esmIntrPriorityLvl_t</a> *pIntrPriorityLvl)</td></tr>
 <tr class="memdesc:ga4d439fed58fcceeabfad6a448ac577e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to get interrupt level.  <a href="group__SDL__IP__ESM__API.html#ga4d439fed58fcceeabfad6a448ac577e4">More...</a><br /></td></tr>
 <tr class="separator:ga4d439fed58fcceeabfad6a448ac577e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac99d7b3e06618adbdb61375957619e43"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__IP__ESM__API.html#gac99d7b3e06618adbdb61375957619e43">SDL_ESM_getCfgIntrStatus</a> (uint32_t baseAddr, uint32_t group, uint32_t *pStaus)</td></tr>
-<tr class="memdesc:gac99d7b3e06618adbdb61375957619e43"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to get the configuration interrupt status for a group.  <a href="group__SDL__IP__ESM__API.html#gac99d7b3e06618adbdb61375957619e43">More...</a><br /></td></tr>
-<tr class="separator:gac99d7b3e06618adbdb61375957619e43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gade4128ef684edfe2cd6b502e98dbf3e0"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__IP__ESM__API.html#gade4128ef684edfe2cd6b502e98dbf3e0">SDL_ESM_getIntrStatus</a> (uint32_t baseAddr, uint32_t intrSrc, uint32_t *pStaus)</td></tr>
-<tr class="memdesc:gade4128ef684edfe2cd6b502e98dbf3e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to get the interrupt status.  <a href="group__SDL__IP__ESM__API.html#gade4128ef684edfe2cd6b502e98dbf3e0">More...</a><br /></td></tr>
-<tr class="separator:gade4128ef684edfe2cd6b502e98dbf3e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7fdc0032b4f5c460be9de02573bbba03"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__IP__ESM__API.html#ga7fdc0032b4f5c460be9de02573bbba03">SDL_ESM_getCfgIntrStatus</a> (uint32_t baseAddr, uint32_t group, uint32_t *pStatus)</td></tr>
+<tr class="memdesc:ga7fdc0032b4f5c460be9de02573bbba03"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to get the configuration interrupt status for a group.  <a href="group__SDL__IP__ESM__API.html#ga7fdc0032b4f5c460be9de02573bbba03">More...</a><br /></td></tr>
+<tr class="separator:ga7fdc0032b4f5c460be9de02573bbba03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac606282813f2cbd8974cedd783321db9"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__IP__ESM__API.html#gac606282813f2cbd8974cedd783321db9">SDL_ESM_getIntrStatus</a> (uint32_t baseAddr, uint32_t intrSrc, uint32_t *pStatus)</td></tr>
+<tr class="memdesc:gac606282813f2cbd8974cedd783321db9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to get the interrupt status.  <a href="group__SDL__IP__ESM__API.html#gac606282813f2cbd8974cedd783321db9">More...</a><br /></td></tr>
+<tr class="separator:gac606282813f2cbd8974cedd783321db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga19a2d0476135d951c5da309a12d21e16"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SDL__IP__ESM__API.html#ga19a2d0476135d951c5da309a12d21e16">SDL_ESM_setCfgIntrStatusRAW</a> (uint32_t baseAddr, uint32_t group)</td></tr>
 <tr class="memdesc:ga19a2d0476135d951c5da309a12d21e16"><td class="mdescLeft">&#160;</td><td class="mdescRight">This API is used to set the configuration interrupt RAW status for a group.  <a href="group__SDL__IP__ESM__API.html#ga19a2d0476135d951c5da309a12d21e16">More...</a><br /></td></tr>
 <tr class="separator:ga19a2d0476135d951c5da309a12d21e16"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1389,8 +1389,8 @@ ESM Interrupt Priority Levels</h2></td></tr>
     sdlRet = SDL_ESM_isEnableIntr (baseAddr, intrNum, &amp;status);</pre> 
 </div>
 </div>
-<a id="ga5e257c1f8cbe9400a18f554e1f02c71b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga5e257c1f8cbe9400a18f554e1f02c71b">&#9670;&nbsp;</a></span>SDL_ESM_disableCfgIntr()</h2>
+<a id="ga186ed01aa13fb19c6d97ec781f6bc652"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga186ed01aa13fb19c6d97ec781f6bc652">&#9670;&nbsp;</a></span>SDL_ESM_disableCfgIntr()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1405,7 +1405,7 @@ ESM Interrupt Priority Levels</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>intrNum</em>&#160;</td>
+          <td class="paramname"><em>group</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1419,7 +1419,7 @@ ESM Interrupt Priority Levels</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">baseAddr</td><td>Base Address of the ESM Registers.</td></tr>
-    <tr><td class="paramname">intrNum</td><td>Interrupt Number to disable</td></tr>
+    <tr><td class="paramname">group</td><td>Group Number to disable</td></tr>
   </table>
   </dd>
 </dl>
@@ -1430,9 +1430,9 @@ ESM Interrupt Priority Levels</h2></td></tr>
 <dl class="section post"><dt>Postcondition</dt><dd><br  />
  None</dd></dl>
 <p><b>Example</b> </p><pre class="fragment">    uint32_t            baseAddr = SDL_MCU_ESM0_CFG_BASE;
-    uint32_t            intrNum = 0u;
+    uint32_t            group = 0u;
     int32_t             sdlRet;
-    sdlRet = SDL_ESM_disableCfgIntr (baseAddr, intrNum);</pre> 
+    sdlRet = SDL_ESM_disableCfgIntr (baseAddr, group);</pre> 
 </div>
 </div>
 <a id="ga8027934be7e557084c9b52cdc698a1a8"></a>
@@ -1683,8 +1683,8 @@ ESM Interrupt Priority Levels</h2></td></tr>
     sdlRet = SDL_ESM_getIntrPriorityLvl (baseAddr, intrSrc, &amp;pri);</pre> 
 </div>
 </div>
-<a id="gac99d7b3e06618adbdb61375957619e43"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac99d7b3e06618adbdb61375957619e43">&#9670;&nbsp;</a></span>SDL_ESM_getCfgIntrStatus()</h2>
+<a id="ga7fdc0032b4f5c460be9de02573bbba03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7fdc0032b4f5c460be9de02573bbba03">&#9670;&nbsp;</a></span>SDL_ESM_getCfgIntrStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1705,7 +1705,7 @@ ESM Interrupt Priority Levels</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint32_t *&#160;</td>
-          <td class="paramname"><em>pStaus</em>&#160;</td>
+          <td class="paramname"><em>pStatus</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1720,7 +1720,7 @@ ESM Interrupt Priority Levels</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">baseAddr</td><td>Base Address of the ESM Registers.</td></tr>
     <tr><td class="paramname">group</td><td>Group for which status to return.</td></tr>
-    <tr><td class="paramname">pStaus</td><td>pointer to interrupt status</td></tr>
+    <tr><td class="paramname">pStatus</td><td>pointer to interrupt status</td></tr>
   </table>
   </dd>
 </dl>
@@ -1737,8 +1737,8 @@ ESM Interrupt Priority Levels</h2></td></tr>
     sdlRet = SDL_ESM_getCfgIntrStatus (baseAddr, group, &amp;status);</pre> 
 </div>
 </div>
-<a id="gade4128ef684edfe2cd6b502e98dbf3e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gade4128ef684edfe2cd6b502e98dbf3e0">&#9670;&nbsp;</a></span>SDL_ESM_getIntrStatus()</h2>
+<a id="gac606282813f2cbd8974cedd783321db9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac606282813f2cbd8974cedd783321db9">&#9670;&nbsp;</a></span>SDL_ESM_getIntrStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1759,7 +1759,7 @@ ESM Interrupt Priority Levels</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint32_t *&#160;</td>
-          <td class="paramname"><em>pStaus</em>&#160;</td>
+          <td class="paramname"><em>pStatus</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1774,7 +1774,7 @@ ESM Interrupt Priority Levels</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">baseAddr</td><td>Base Address of the ESM Registers.</td></tr>
     <tr><td class="paramname">intrSrc</td><td>Interrupt for which status to return.</td></tr>
-    <tr><td class="paramname">pStaus</td><td>pointer to interrupt status</td></tr>
+    <tr><td class="paramname">pStatus</td><td>pointer to interrupt status</td></tr>
   </table>
   </dd>
 </dl>
@@ -1788,7 +1788,7 @@ ESM Interrupt Priority Levels</h2></td></tr>
 <p><b>Example</b> </p><pre class="fragment">    uint32_t            baseAddr = SDL_MCU_ESM0_CFG_BASE;
     uint32_t            status, intrSrc  = SDL_ESM1_INTR_MCU0_CPU0_ECC_CORRECTED_LEVEL;
     int32_t             sdlRet;
-    sdlRet = SDL_ESM_getIntrStatus (baseAddr, intrSrc, &amp;status);</pre> 
+    sdlRet = SDL_ESM_getIntrStatus (baseAddr, intrSrc, &amp;pStatus);</pre> 
 </div>
 </div>
 <a id="ga19a2d0476135d951c5da309a12d21e16"></a>

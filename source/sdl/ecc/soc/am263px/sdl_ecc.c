@@ -62,7 +62,7 @@
 #define SDL_ESM_MAX_EVENT_MAP_WORDS       (32U)
 
 /* Event BitMap for ECC ESM callback for MAIN */
-uint32_t eventBitMapMAIN[SDL_ESM_MAX_EVENT_MAP_WORDS] =
+static uint32_t eventBitMapMAIN[SDL_ESM_MAX_EVENT_MAP_WORDS] =
 {
      0xffffffffu, 0xffffffffu, 0x0007e01fu, 0x00007ff8u,
      0x00000000u, 0x00000000u, 0x00000000u, 0x00000000u,
@@ -121,22 +121,22 @@ typedef struct SDL_ECC_Instance_s
 static SDL_ECC_Instance_t SDL_ECC_instance[SDL_ECC_Base_Address_TOTAL_ENTRIES];
 /* Local functions */
 static int32_t SDL_ECC_getRamId(SDL_ECC_MemType eccMemType, SDL_ECC_MemSubType memSubType,
-                           uint32_t *ramIdP, uint32_t *pRAMIdType);
+                           uint32_t *pRAMId, uint32_t *pRAMIdType);
 static int32_t SDL_ECC_getAggregatorType(SDL_ECC_MemType eccMemType,
                            SDL_ECC_MemSubType memSubType, uint32_t *pIinjectOnly);
 static int32_t SDL_ECC_getAggrBaseAddr(SDL_ECC_MemType eccMemType, SDL_ecc_aggrRegs **pEccAggr);
 static int32_t SDL_ECC_memoryRefresh(uint32_t *memAddr, size_t size);
-static uint32_t SDL_ECC_triggerAccessForEcc(const uint32_t *memoryAccessAddr);
+static uint32_t SDL_ECC_triggerAccessForEcc(const uint32_t *pMemoryAccessAddr);
 
 static int32_t SDL_ECC_getMemConfig(SDL_ECC_MemType eccMemType, SDL_ECC_MemSubType memSubType,
-                               SDL_MemConfig_t *memConfig);
+                               SDL_MemConfig_t *pMemConfig);
 
 
 static uint32_t SDL_ECC_getDetectErrorSource (SDL_ECC_InjectErrorType injectErorType);
 
 static int32_t SDL_ECC_getBitLocation(uint32_t bitMask,
                             uint32_t startBitLocation,
-                            uint32_t *bitLocation);
+                            uint32_t *pPbitLocation);
 static int32_t SDL_ECC_handleEccAggrEvent (SDL_ECC_MemType eccMemType, uint32_t errorSrc,
                                        uint32_t errorAddr);
 static int32_t SDL_ECC_ESMCallBackFunction_MAIN (SDL_ESM_Inst instance, SDL_ESM_IntType intrType,
@@ -579,14 +579,14 @@ int32_t SDL_ECC_getErrorInfo(SDL_ECC_MemType eccMemType, SDL_Ecc_AggrIntrSrc int
  *
  * \return  SDL_PASS : Success; SDL_EFAIL for failures
  */
-int32_t SDL_ECC_ackIntr(SDL_ECC_MemType eccMemType, SDL_Ecc_AggrIntrSrc errorSrc)
+int32_t SDL_ECC_ackIntr(SDL_ECC_MemType eccMemType, SDL_Ecc_AggrIntrSrc intrSrc)
 {
     int32_t retVal = SDL_PASS;
     SDL_ecc_aggrRegs *eccAggrRegs;
 
     (void)SDL_ECC_getAggrBaseAddr(eccMemType, &eccAggrRegs);
 
-    retVal = SDL_ecc_aggrAckIntr(eccAggrRegs, errorSrc);
+    retVal = SDL_ecc_aggrAckIntr(eccAggrRegs, intrSrc);
 
     return retVal;
 }

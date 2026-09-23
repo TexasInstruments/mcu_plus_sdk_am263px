@@ -101,14 +101,15 @@
 % {
 % for(let i = 0; i < module.$instances.length; i++) {
     % let instance = module.$instances[i];
+    % let icssmBase = (instance.instance === "ICSSM1") ? "CSL_ICSSM1_INTERNAL" : "CSL_ICSSM0_INTERNAL_U_BASE";
     %   if(instance.iepSyncMode) {
-    CSL_REG32_WR(CSL_ICSSM0_INTERNAL_U_BASE + CSL_ICSS_M_PR1_CFG_SLV_REGS_BASE + CSL_ICSS_M_PR1_CFG_SLV_IEPCLK_REG, 1);
+    CSL_REG32_WR(`icssmBase` + CSL_ICSS_M_PR1_CFG_SLV_REGS_BASE + CSL_ICSS_M_PR1_CFG_SLV_IEPCLK_REG, 1);
     %   }
     %   if(instance["INTC MODE"] === "mode1"){
-    CSL_REG32_WR(CSL_ICSSM0_INTERNAL_U_BASE + CSL_ICSS_M_PR1_CFG_SLV_REGS_BASE + CSL_ICSS_M_PR1_CFG_SLV_MII_RT_REG , 1);
+    CSL_REG32_WR(`icssmBase` + CSL_ICSS_M_PR1_CFG_SLV_REGS_BASE + CSL_ICSS_M_PR1_CFG_SLV_MII_RT_REG , 1);
     %   }
     %   if(instance["INTC MODE"] === "mode0"){
-    CSL_REG32_WR(CSL_ICSSM0_INTERNAL_U_BASE + CSL_ICSS_M_PR1_CFG_SLV_REGS_BASE + CSL_ICSS_M_PR1_CFG_SLV_MII_RT_REG , 0);
+    CSL_REG32_WR(`icssmBase` + CSL_ICSS_M_PR1_CFG_SLV_REGS_BASE + CSL_ICSS_M_PR1_CFG_SLV_MII_RT_REG , 0);
     %   }
 % }
 % }

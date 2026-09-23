@@ -8258,3 +8258,59 @@ Date:   Fri Jul 10 15:50:55 2026 +0530
  drivers/.meta/pinmux/pinmux_config.c.xdt | 6 ++++++
  1 file changed, 6 insertions(+)
 
+========================================
+Changes from build on 2026-09-23 20:36:26
+Previous commit: b843c168704e4a4911f669cbcbee718454bb6459
+Current commit: 8f0969ddba4e970170a1e3c328660a3b630bd8bb
+========================================
+
+commit 8f0969ddba4e970170a1e3c328660a3b630bd8bb
+Author: Shivank Sharma <s-sharma6@ti.com>
+Date:   Fri Sep 18 00:05:27 2026 +0530
+
+    am26x: flash: fix sanity issues
+    
+    - fix flash_v2 for sanity issues
+    
+    Fixes: MCUSDK-15992
+    
+    Signed-off-by: Shivank Sharma <s-sharma6@ti.com>
+
+ board/.meta/flash/S25FL128SA.json       | 16 ++++++++++++++-
+ board/.meta/flash/v2/flash_v2.syscfg.js | 82 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 97 insertions(+), 1 deletion(-)
+
+commit 5109d2e017792cb7bdc8455c62ebe6a3f64a79ce
+Author: Aswathi R <a-r1@ti.com>
+Date:   Thu Sep 17 22:03:12 2026 +0530
+
+    am261x: infra: remove AM261x_ZCZ_400
+    
+    - remove AM261x_ZCZ_400 from supported packages since it is meaningless
+      on current sysconfig 1.27
+    
+    Fixes: MCUSDK-15990
+    Signed-off-by: Aswathi R <a-r1@ti.com>
+
+ .meta/common.syscfg.js                                    |  6 +-----
+ board/.meta/flash/flash_am261x.syscfg.js                  |  8 ++++----
+ drivers/.meta/ospi/soc/ospi_am261x.syscfg.js              |  2 +-
+ memory_configurator/.meta/default_linker.syscfg.js        |  2 +-
+ memory_configurator/.meta/default_linker_config.syscfg.js |  4 ++--
+ memory_configurator/.meta/physicalLayout.json             | 27 ---------------------------
+ 6 files changed, 9 insertions(+), 40 deletions(-)
+
+commit 0397c02e0ecaf5d6a5ef5f49f265884f728ddfda
+Author: Manoj Koppolu <manoj_koppolu@ti.com>
+Date:   Thu Sep 10 14:59:37 2026 +0530
+
+    am261x: pruicss: fix bug in configuring intc mode
+    
+    Fixes: PINDSW-11642
+    
+    Signed-off-by: Manoj Koppolu <manoj_koppolu@ti.com>
+
+ drivers/.meta/pruicss/m_v0/pruicss_m_v0.syscfg.js  | 4 ++--
+ drivers/.meta/pruicss/templates/pruicss_init.c.xdt | 7 ++++---
+ 2 files changed, 6 insertions(+), 5 deletions(-)
+

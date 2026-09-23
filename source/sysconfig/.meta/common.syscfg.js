@@ -93,7 +93,7 @@ function getSocName() {
         return "am263x";
     if(system.deviceData.device == "AM263Px")
         return "am263px";
-    if((system.deviceData.device == "AM261x_ZCZ") || (system.deviceData.device == "AM261x_ZCZ_400") || (system.deviceData.device == "AM261x_ZNC") || (system.deviceData.device == "AM261x_ZNC_400") || (system.deviceData.device == "AM261x_ZEJ") || (system.deviceData.device == "AM261x_ZEJ_400") || (system.deviceData.device == "AM261x_ZFG") || (system.deviceData.device == "AM261x_ZFG_400"))
+    if((system.deviceData.device == "AM261x_ZCZ") || (system.deviceData.device == "AM261x_ZNC") || (system.deviceData.device == "AM261x_ZNC_400") || (system.deviceData.device == "AM261x_ZEJ") || (system.deviceData.device == "AM261x_ZEJ_400") || (system.deviceData.device == "AM261x_ZFG") || (system.deviceData.device == "AM261x_ZFG_400"))
         return "am261x";
     if(system.deviceData.device == "AM273x")
         return "am273x";
@@ -121,8 +121,6 @@ function getDeviceName() {
     if(system.deviceData.device == "AM263Px")
         return "am263px-cc";
     if(system.deviceData.device == "AM261x_ZCZ")
-        return "am261x-som";
-    if(system.deviceData.device == "AM261x_ZCZ_400")
         return "am261x-som";
     if(system.deviceData.device == "AM261x_ZFG")
         return "am261x-lp";
@@ -154,8 +152,6 @@ function getBoardName() {
             return "am263px-cc";
     }
     if(system.deviceData.device == "AM261x_ZCZ")
-        return "am261x-som";
-    if(system.deviceData.device == "AM261x_ZCZ_400")
         return "am261x-som";
     if(system.deviceData.device == "AM261x_ZFG")
         return "am261x-lp";

@@ -94,32 +94,33 @@ $(document).ready(function(){initNavTree('enetlld_performance.html',''); initRes
 <div class="toc"><h3>Table of Contents</h3>
 <ul><li class="level1"><a href="#autotoc_md1464">Introduction</a></li>
 <li class="level1"><a href="#autotoc_md1465">Setup Details</a></li>
-<li class="level1"><a href="#autotoc_md1466">Layer 2 Performance</a><ul><li class="level2"><a href="#autotoc_md1467">Configuration Details</a></li>
-<li class="level2"><a href="#autotoc_md1468">Layer 2 Latency</a></li>
+<li class="level1"><a href="#autotoc_md1466">Library Memory Footprint - Cpsw, Lwip, Gptp</a><ul><li class="level2"><a href="#autotoc_md1467">Library Sizes - Feature-rich(Without LTO)</a></li>
+<li class="level2"><a href="#autotoc_md1468">Library Sizes - Per usecase (Without LTO)</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1469">TCP/IP Performance</a><ul><li class="level2"><a href="#autotoc_md1470">Configuration Details</a><ul><li class="level3"><a href="#autotoc_md1471">TCP Throughput</a></li>
-<li class="level3"><a href="#autotoc_md1472">UDP Throughput</a></li>
+<li class="level1"><a href="#autotoc_md1469">Layer 2 Performance</a><ul><li class="level2"><a href="#autotoc_md1470">Configuration Details</a></li>
+<li class="level2"><a href="#autotoc_md1471">Layer 2 Latency</a></li>
+<li class="level2"><a href="#autotoc_md1472">Layer 2 Throughput</a></li>
+<li class="level2"><a href="#autotoc_md1473">Forwarding Latency</a></li>
 </ul>
 </li>
+<li class="level1"><a href="#autotoc_md1474">gPTP Performance</a></li>
+<li class="level1"><a href="#autotoc_md1475">TCP/IP Performance</a><ul><li class="level2"><a href="#autotoc_md1476">Configuration Details</a><ul><li class="level3"><a href="#autotoc_md1477">TCP Throughput</a></li>
+<li class="level3"><a href="#autotoc_md1478">UDP Throughput</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md1473">Ether-Ring Performance</a></li>
-<li class="level1"><a href="#autotoc_md1474">Ether-Ring Round Trip Latency with CAN(Vehicle) traffic</a></li>
-<li class="level1"><a href="#autotoc_md1475">Daisy Chain KPI performance with TSN Features(EST,Gptp)</a><ul><li class="level2"><a href="#autotoc_md1476">Test Setup</a></li>
-<li class="level2"><a href="#autotoc_md1477">Test Configuration</a></li>
-<li class="level2"><a href="#autotoc_md1478">Round Trip Latencies with 3 nodes(1 talker, 2listener)</a></li>
-<li class="level2"><a href="#autotoc_md1479">KPI Summary</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#networking_xip_performance">XIP Performance</a></li>
-<li class="level1"><a href="#autotoc_md1480">See Also</a></li>
+<li class="level1"><a href="#autotoc_md1479">Ether-Ring Performance</a></li>
+<li class="level1"><a href="#autotoc_md1480">Ether-Ring Round Trip Latency with CAN(Vehicle) traffic</a></li>
+<li class="level1"><a href="#autotoc_md1481">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_components_networking_enet_lld_enet_cpsw_performance_am263px"></a> </p>
 <h1><a class="anchor" id="autotoc_md1464"></a>
 Introduction</h1>
-<p>This section provides the performance numbers of Ethernet drivers using CPSW peripheral in MCU+ SDK</p>
+<p>This section provides the performance numbers and memory footprint of Ethernet drivers using CPSW peripheral in MCU+ SDK</p>
 <h1><a class="anchor" id="autotoc_md1465"></a>
 Setup Details</h1>
 <table class="markdownTable">
@@ -135,12 +136,62 @@ Setup Details</h1>
 <td class="markdownTableBodyNone">Cache status  </td><td class="markdownTableBodyNone">Enabled   </td></tr>
 </table>
 <h1><a class="anchor" id="autotoc_md1466"></a>
+Library Memory Footprint - Cpsw, Lwip, Gptp</h1>
+<p>The two tables below capture:</p><ul>
+<li><b>Library Sizes - Feature-rich</b> is the raw, as-built size of each <code>.lib</code> this ethernet driver ships (<code>enet-cpsw</code>, <code>lwip</code>, <code>tsn</code>), before it is ever linked into an application. This is a <b>superset</b> library size: every function and object in the library.</li>
+<li><b>Library Sizes - Per usecase</b>, by contrast, comes from the linker's <code>.map</code> file for a fully linked application image - which reflects actual library content used by application/usecase. Enabling LTO would shrink the <code>code</code>/<code>.text</code> figures in the Example Sizes table further by removing unused/inlined functions across translation units at link time.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md1467"></a>
+Library Sizes - Feature-rich(Without LTO)</h2>
+<p>Each row is one prebuilt static ethernet library; the columns are the standard linker output sections contributed by that library on its own (i.e. before it is linked into any particular application).</p>
+<ul>
+<li>**.text** - executable code.</li>
+<li>**.data** - initialized global/static variables (occupies both flash and RAM).</li>
+<li>**.bss** - zero-initialized global/static variables (RAM only, not stored in the binary).</li>
+<li><b>Total</b> - <code>.text + .data + .bss</code>, i.e. the library's full static footprint.</li>
+</ul>
+<table class="doxtable">
+<tr>
+<th rowspan="2">Library </th><th colspan="4">Section Sizes (KB)  </th></tr>
+<tr>
+<th>.text</th><th>.data</th><th>.bss</th><th>Total  </th></tr>
+<tr>
+<td>enet-cpsw.freertos</td><td class="num">147.97</td><td class="num">14.32</td><td class="num">5.38</td><td class="num">167.67 </td></tr>
+<tr>
+<td>lwip (freertos)</td><td class="num">158.64</td><td class="num">3.38</td><td class="num">9.01</td><td class="num">171.03 </td></tr>
+<tr>
+<td>tsn (freertos)</td><td class="num">291.40</td><td class="num">4.35</td><td class="num">160.97</td><td class="num">456.72 </td></tr>
+</table>
+<h2><a class="anchor" id="autotoc_md1468"></a>
+Library Sizes - Per usecase (Without LTO)</h2>
+<p>Each row is a complete, linked application image, so unused library code has already been stripped by the compiler</p>
+<ul>
+<li><b>code</b> - linked <code>.text</code>, i.e. actual code retained in this image (a subset of the library's full <code>.text</code> from the table above, since the linker drops unreferenced functions).</li>
+<li><b>ro_data</b> - read-only data (<code>.rodata</code>), e.g. string literals and const tables.</li>
+<li><b>rw_data</b> - <code>.data</code> + <code>.bss</code> combined for that library's contribution to this image.</li>
+<li><b>Total</b> - sum of every non-<code>---</code> cell in the row, i.e. the whole image's static footprint attributable to these libraries (excludes application code/OS/driver layers not listed here).</li>
+</ul>
+<table class="doxtable">
+<tr>
+<th rowspan="2">Use Case </th><th colspan="3">enet-cpsw </th><th colspan="3">lwip (freertos) </th><th colspan="3">tsn (freertos) </th><th rowspan="2">Total (KB)  </th></tr>
+<tr>
+<th>code</th><th>ro_data</th><th>rw_data </th><th>code</th><th>ro_data</th><th>rw_data </th><th>code</th><th>ro_data</th><th>rw_data  </th></tr>
+<tr>
+<td>Basic Layer2 TX/RX</td><td class="num">65.57</td><td class="num">16.06</td><td class="num">3.86</td><td class="na">&mdash;</td><td class="na">&mdash;</td><td class="na">&mdash;</td><td class="na">&mdash;</td><td class="na">&mdash;</td><td class="na">&mdash;</td><td class="num">85.49 </td></tr>
+<tr>
+<td>LwIP - TCP Server</td><td class="num">65.76</td><td class="num">15.29</td><td class="num">5.16</td><td class="num">63.30</td><td class="num">17.49</td><td class="num">140.15</td><td class="na">&mdash;</td><td class="na">&mdash;</td><td class="na">&mdash;</td><td class="num">306.96 </td></tr>
+<tr>
+<td>LwIP - UDP/IGMP Multicast</td><td class="num">65.97</td><td class="num">15.39</td><td class="num">5.16</td><td class="num">67.63</td><td class="num">18.07</td><td class="num">140.43</td><td class="na">&mdash;</td><td class="na">&mdash;</td><td class="na">&mdash;</td><td class="num">312.15 </td></tr>
+<tr>
+<td>Basic TSN (talker/listener)</td><td class="num">77.15</td><td class="num">14.96</td><td class="num">3.86</td><td class="na">&mdash;</td><td class="na">&mdash;</td><td class="na">&mdash;</td><td class="num">160.19</td><td class="num">43.81</td><td class="num">162.27</td><td class="num">462.24 </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md1469"></a>
 Layer 2 Performance</h1>
 <p> <style>div.image img[src="CPSW_latency_measurement_diagram.bmp"]{width:30%}</style> </p><div class="image">
 <img src="CPSW_latency_measurement_diagram.bmp" alt=""/>
 <div class="caption">
 Latency defination</div></div>
-<h2><a class="anchor" id="autotoc_md1467"></a>
+<h2><a class="anchor" id="autotoc_md1470"></a>
 Configuration Details</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -173,22 +224,61 @@ Configuration Details</h2>
 </table>
 <p><br  />
  </p>
-<h2><a class="anchor" id="autotoc_md1468"></a>
+<h2><a class="anchor" id="autotoc_md1471"></a>
 Layer 2 Latency</h2>
-<table class="doxtable">
+<p>RX/TX Latency here is one-way, wire-to-application (or application-to-wire) latency, split into where it's spent: <b>CPU&lt;-&gt;CPSW</b> is time inside the SoC (CPSW switch + CPDMA + interrupt/ISR handling up to/from the application buffer), and <b>PHY</b> is the fixed latency contributed by the DP83869HM PHY itself (from its datasheet, not measured on this setup). <b>Total Latency</b> is the sum of Phy delay and time taken by packet to/from CPU DMA Trigger to Mac. </p><table class="doxtable">
 <tr>
 <td style="text-align: center;"><b>Parameter</b> </td><td style="text-align: center;"><b>CPU&lt;-&gt;CPSW <br  />
  Latency Value (ns)</b> </td><td style="text-align: center;"><b>PHY (DP83869HM)Latency<br  />
  (from datasheet) in ns</b> </td><td style="text-align: center;"><b>Total Latency <br  />
  (ns)</b>  </td></tr>
 <tr>
-<td>RX Latency </td><td>4756 </td><td>193 </td><td>4949  </td></tr>
+<td>RX Latency </td><td>9265 </td><td>193 </td><td>9458  </td></tr>
 <tr>
 <td>TX Latency </td><td>13225 </td><td>384 </td><td>13609  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1469"></a>
+<h2><a class="anchor" id="autotoc_md1472"></a>
+Layer 2 Throughput</h2>
+<p>Raw Layer-2 (no TCP/IP) transmit throughput achievable at the given packet size, and the CPU load needed to sustain it - useful as a "best case" upper bound before any protocol-stack (TCP/IP) overhead is added. </p><table class="doxtable">
+<tr>
+<td style="text-align: left;"><b>Test</b> </td><td style="text-align: center;"><b>Bandwidth <br  />
+ (Mbps)</b> </td><td style="text-align: center;"><b>CPU Load <br  />
+ (%) </b> </td><td style="text-align: center;"><b>Packet Size <br  />
+ (bytes)</b>  </td></tr>
+<tr>
+<td>Layer 2 Transmission</td><td>938</td><td>21</td><td>1500  </td></tr>
+</table>
+<p><b>Analysis:</b> 938 Mbps at 1500-byte packets is ~94% of the 1 Gbps link's raw capacity, achieved at only 21% CPU load - CPDMA scatter-gather and interrupt pacing keep the R5F largely free for other work even at near-line-rate Layer-2 transmission.</p>
+<h2><a class="anchor" id="autotoc_md1473"></a>
+Forwarding Latency</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Packet Length(Bytes)  </th><th class="markdownTableHeadNone">100M Link Store and Forward(us)  </th><th class="markdownTableHeadNone">1G Link Store and Forward(us)   </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">64  </td><td class="markdownTableBodyNone">8.5  </td><td class="markdownTableBodyNone">1.8   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">256  </td><td class="markdownTableBodyNone">19  </td><td class="markdownTableBodyNone">2.7   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">1024  </td><td class="markdownTableBodyNone">83  </td><td class="markdownTableBodyNone">9.9   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">1470  </td><td class="markdownTableBodyNone">125  </td><td class="markdownTableBodyNone">13.5   </td></tr>
+</table>
+<blockquote class="doxtable">
+<p>Forwarding latency is calculated as MAC-to-MAC switching latency + PHY delay + wire (path) latency/delay. </p>
+</blockquote>
+<h1><a class="anchor" id="autotoc_md1474"></a>
+gPTP Performance</h1>
+<p>This table measures how quickly and how precisely a slave synchronizes to a gPTP grandmaster over a single hop - see the TSN demo's daisy-chain KPI data (<a class="el" href="EXAMPLES_ENET_CPSW_TSN_DEMO_TALKER.html">Enet CPSW TSN Integrated Demo - Talker</a>) for multi-hop accuracy under load. </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">gPTP Parameter  </th><th class="markdownTableHeadNone">Value  </th><th class="markdownTableHeadNone">Notes   </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Initial time to sync  </td><td class="markdownTableBodyNone">~500 ms  </td><td class="markdownTableBodyNone">Measured from link up with Quick sync enabled.   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Sync accuracy  </td><td class="markdownTableBodyNone">&lt; 100 ns  </td><td class="markdownTableBodyNone">Tested with Intel I210, I229, and I350 NICs and TI EVM-to-EVM setups.   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md1475"></a>
 TCP/IP Performance</h1>
-<h2><a class="anchor" id="autotoc_md1470"></a>
+<h2><a class="anchor" id="autotoc_md1476"></a>
 Configuration Details</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -225,21 +315,22 @@ Configuration Details</h2>
 </table>
 <p><br  />
 </p>
-<h3><a class="anchor" id="autotoc_md1471"></a>
+<h3><a class="anchor" id="autotoc_md1477"></a>
 TCP Throughput</h3>
-<table class="doxtable">
+<p>Maximum sustained TCP throughput as measured by iperf, and the R5F CPU load required to sustain it. <b>TCP RX</b>/**TX** are single-direction tests; <b>TCP Bidirectional</b> runs both directions simultaneously, so its Bandwidth column reports the RX and TX rates achieved concurrently. </p><table class="doxtable">
 <tr>
 <td style="text-align: left;"><b>Test</b> </td><td style="text-align: center;"><b>Bandwidth <br  />
  (Mbps)</b> </td><td style="text-align: center;"><b>CPU Load <br  />
  (%) </b>  </td></tr>
 <tr>
-<td>TCP RX</td><td>195</td><td>98  </td></tr>
+<td>TCP RX</td><td>172</td><td>96  </td></tr>
 <tr>
-<td>TCP TX</td><td>158</td><td>100  </td></tr>
+<td>TCP TX</td><td>112</td><td>100  </td></tr>
 <tr>
 <td>TCP Bidirectional</td><td>RX=73 <br  />
  TX=87</td><td>100  </td></tr>
 </table>
+<p><b>Analysis:</b> Single-direction TCP TX (172 Mbps) outperforms RX (112 Mbps) since RX contains LwIP's receive-side buffer copy/ACK processing; both directions run near 100% CPU load. further.</p>
 <p><b>Host PC commands:</b></p><ul>
 <li>TCP Rx and Tx (Sequential):<br  />
  $<code>iperf -c &lt;evm_ip&gt; -r</code><br  />
@@ -248,24 +339,25 @@ TCP Throughput</h3>
  $<code>iperf -c &lt;evm_ip&gt; -d</code><br  />
  </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1472"></a>
+<h3><a class="anchor" id="autotoc_md1478"></a>
 UDP Throughput</h3>
-<table class="doxtable">
+<p>Unlike the TCP table above, the <b>Bandwidth</b> column in the <b>UDP RX</b> rows is the <em>offered</em> load requested on the host PC (via iperf's <code>-b &lt;bw&gt;</code>, see the commands below) - not necessarily what the EVM actually received. Each of the 3 UDP RX rows is one offered-load step (5/10/15 Mbps for 64B datagrams, scaling up for larger datagrams); <b>Packet Loss (%)</b> at that row shows how much of that offered load the EVM failed to receive. <b>UDP RX (Max)</b> and <b>UDP TX (Max)</b> are the highest offered load (RX) or transmit rate (TX) the EVM could sustain at that datagram size while keeping packet loss low. </p><table class="doxtable">
 <tr>
 <td rowspan="2" style="text-align: left;"><b>Test</b> </td><td colspan="3" style="text-align: center;"><b>Datagram Length = 64B </b> </td><td colspan="3" style="text-align: center;"><b>Datagram Length = 256B</b> </td><td colspan="3" style="text-align: center;"><b>Datagram Length = 512B</b> </td><td colspan="3" style="text-align: center;"><b>Datagram Length = 1470B</b>  </td></tr>
 <tr>
 <td><b>Bandwidth (Mbps)</b></td><td><b>CPU Load (%)</b></td><td><b>Packet Loss (%)</b> </td><td><b>Bandwidth (Mbps)</b></td><td><b>CPU Load (%)</b></td><td><b>Packet Loss (%)</b> </td><td><b>Bandwidth (Mbps)</b></td><td><b>CPU Load (%)</b></td><td><b>Packet Loss (%)</b> </td><td><b>Bandwidth (Mbps)</b></td><td><b>CPU Load (%)</b></td><td><b>Packet Loss (%)</b>  </td></tr>
 <tr>
-<td rowspan="3">UDP RX </td><td>5</td><td>41</td><td>0.0 </td><td>5</td><td>20</td><td>0.0 </td><td>25</td><td>48</td><td>0.0 </td><td>50</td><td>42</td><td>0.0  </td></tr>
+<td rowspan="3">UDP RX </td><td>5</td><td>81</td><td>3.3 </td><td>5</td><td>23</td><td>0.0 </td><td>25</td><td>57</td><td>0.0 </td><td>50</td><td>43</td><td>0.0  </td></tr>
 <tr>
-<td>10</td><td>72</td><td>0.0 </td><td>15</td><td>53</td><td>0.0 </td><td>50</td><td>85</td><td>0.7 </td><td>60</td><td>48</td><td>0.0  </td></tr>
+<td>10</td><td>95</td><td>44 </td><td>15</td><td>65</td><td>0.0 </td><td>45</td><td>93</td><td>2.7 </td><td>60</td><td>57</td><td>0.0  </td></tr>
 <tr>
-<td>15</td><td>91</td><td>7.3 </td><td>25</td><td>81</td><td>0.15 </td><td>55</td><td>95</td><td>0.4 </td><td>95</td><td>72</td><td>0.0  </td></tr>
+<td>15</td><td>91</td><td>7.3 </td><td>25</td><td>90</td><td>11 </td><td>50</td><td>99</td><td>7.9 </td><td>95</td><td>78</td><td>0.0  </td></tr>
 <tr>
-<td>UDP RX (Max) </td><td>13</td><td>91</td><td>1.3 </td><td>30</td><td>96</td><td>3.4 </td><td>58</td><td>97</td><td>1.1 </td><td>130.8</td><td>97</td><td>1.4  </td></tr>
+<td>UDP RX (Max) </td><td>6</td><td>68</td><td>0.0 </td><td>19</td><td>81</td><td>0.7 </td><td>40</td><td>85</td><td>0.3 </td><td>125</td><td>98</td><td>0.4  </td></tr>
 <tr>
-<td>UDP TX (Max) </td><td>23.7</td><td>100</td><td>0.0 </td><td>54.1</td><td>100</td><td>0.0 </td><td>108</td><td>100</td><td>0.0 </td><td>311</td><td>100</td><td>0.0  </td></tr>
+<td>UDP TX (Max) </td><td>11</td><td>100</td><td>0.0 </td><td>44.5</td><td>100</td><td>0.0 </td><td>88.9</td><td>100</td><td>0.0 </td><td>258</td><td>100</td><td>0.0  </td></tr>
 </table>
+<p><b>Analysis:</b> Small datagrams (64B) are the worst case by far - sustainable throughput tops out around 5 Mbps with 81% CPU load, because per-packet software overhead (not link bandwidth) dominates at high packet rates for tiny payloads. Throughput scales up sharply with datagram size: max-size 1470B datagrams sustain 125 Mbps RX / 258 Mbps TX, since the same per-packet overhead is amortized over far more payload bytes. TX consistently out-sustains RX at every datagram size (e.g. 258 vs 125 Mbps at 1470B) for the same reason as TCP above - the receive path pays extra for buffer/queue management that the transmit path doesn't.</p>
 <p><b>Host PC commands:</b></p><ul>
 <li>Test with datagram length of 64B:<br  />
  $<code>iperf -c &lt;evm_ip&gt; -u -l64 -b &lt;bw&gt; -r</code><br  />
@@ -284,96 +376,6 @@ where &lt;bw&gt; is 25M, 50M, 100M, etc<br  />
 where &lt;bw&gt; is 25M, 50M, 100M, etc<br  />
  </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md1473"></a>
-Ether-Ring Performance</h1>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Traffic Type  </th><th class="markdownTableHeadNone">Average Latency(us)  </th><th class="markdownTableHeadNone">Max Latency(us)   </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Profile-A(Transmit-Heavy)  </td><td class="markdownTableBodyNone">44  </td><td class="markdownTableBodyNone">94   </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Profile-B(Receive-Heavy)  </td><td class="markdownTableBodyNone">40  </td><td class="markdownTableBodyNone">96   </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Profile-C(Symmetric Traffic)  </td><td class="markdownTableBodyNone">27  </td><td class="markdownTableBodyNone">80   </td></tr>
-</table>
-<h1><a class="anchor" id="autotoc_md1474"></a>
-Ether-Ring Round Trip Latency with CAN(Vehicle) traffic</h1>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Packet Rate(per sec)  </th><th class="markdownTableHeadNone">Average Latency(us)  </th><th class="markdownTableHeadNone">Max Latency(us)   </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">2000  </td><td class="markdownTableBodyNone">561  </td><td class="markdownTableBodyNone">569   </td></tr>
-</table>
-<h1><a class="anchor" id="autotoc_md1475"></a>
-Daisy Chain KPI performance with TSN Features(EST,Gptp)</h1>
-<h2><a class="anchor" id="autotoc_md1476"></a>
-Test Setup</h2>
-<p>A line (daisy-chain) topology with 1 talker and N listeners, each board connecting its MAC port 2 to the next node's MAC port 1. An external PC is connected to the talker's MAC port 1 to inject the saturating bulk background load.</p>
-<div class="image">
-<img src="tsn_demo_talker_listener_setup.png" alt="" width="60%"/>
-<div class="caption">
-Talker,Listener EVM Connections </div></div>
-<ul>
-<li>Talker (CPSW_TSN_DEMO_TALKER): gPTP grandmaster, generates the express probe stream, computes/reports round-trip latency statistics.</li>
-<li>Listener 1, Listener 2 (CPSW_TSN_DEMO_LISTENER): gPTP slaves; each echoes its own express probe back to the talker.</li>
-<li>PC -&gt; Talker MAC port 1: bulk background load only.</li>
-<li>Talker MAC port 2 -&gt; Listener 1 MAC port 1; Listener 1 MAC port 2 -&gt; Listener 2 MAC port 1.</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md1477"></a>
-Test Configuration</h2>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Configuration  </th><th class="markdownTableHeadNone">Value   </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Boards  </td><td class="markdownTableBodyNone">1x AM263Px-LP(talker) + 2x AM263Px-LP (listener)   </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Chain length  </td><td class="markdownTableBodyNone">3 nodes (1 talker + 2 listeners)   </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">RTOS  </td><td class="markdownTableBodyNone">FreeRTOS   </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">RTOS application  </td><td class="markdownTableBodyNone">CPSW_TSN_DEMO_TALKER, CPSW_TSN_DEMO_LISTENER   </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Ethernet Interface Type  </td><td class="markdownTableBodyNone">RGMII at 1 Gbps   </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Express probe stream  </td><td class="markdownTableBodyNone">256 B payload, 125 µs period, VLAN 100, PCP 5   </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Background bulk load  </td><td class="markdownTableBodyNone">External PC on talker's MAC port 1, ~900 Mbit/s, PC-driven   </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">TSN features under test  </td><td class="markdownTableBodyNone">gPTP (802.1AS), EST (802.1Qbv)   </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Latency measurement  </td><td class="markdownTableBodyNone">Round-trip calculated by Tsn Talker   </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Sample size  </td><td class="markdownTableBodyNone">10,000 samples/run   </td></tr>
-</table>
-<p><br  />
- </p>
-<h2><a class="anchor" id="autotoc_md1478"></a>
-Round Trip Latencies with 3 nodes(1 talker, 2listener)</h2>
-<table class="doxtable">
-<tr>
-<td rowspan="2" style="text-align: left;"><b>Feature Configuration</b> </td><td colspan="3" style="text-align: center;"><b>Listener 1 Round Trip Latency (us)</b> </td><td colspan="3" style="text-align: center;"><b>Listener 2 Round Trip Latency (us)</b>  </td></tr>
-<tr>
-<td><b>Min</b></td><td><b>Max</b></td><td><b>Avg</b> </td><td><b>Min</b></td><td><b>Max</b></td><td><b>Avg</b>  </td></tr>
-<tr>
-<td><b>Baseline (TSN off)</b> </td><td>29.10</td><td>61.93</td><td>43.01 </td><td>37.14</td><td>97.46</td><td>67.70  </td></tr>
-<tr>
-<td><b>EST only</b> </td><td>29.37</td><td>59.21</td><td>39.05 </td><td>39.81</td><td>91.92</td><td>72.00  </td></tr>
-</table>
-<h2><a class="anchor" id="autotoc_md1479"></a>
-KPI Summary</h2>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">KPI  </th><th class="markdownTableHeadNone">Value   </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Round trip latency (EST only)  </td><td class="markdownTableBodyNone">Listener 1: Min 29.37 us / Max 59.21 us / Avg 39.05 us <br  />
- Listener 2: Min 39.81 us / Max 91.92 us / Avg 72.00 us   </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">gPTP sync accuracy  </td><td class="markdownTableBodyNone">&lt; 100 ns   </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">CPU load - Talker  </td><td class="markdownTableBodyNone">45%   </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">CPU load - Listener  </td><td class="markdownTableBodyNone">32%   </td></tr>
-</table>
 <h1><a class="anchor" id="networking_xip_performance"></a>
 XIP Performance</h1>
 <p>Lwip Application size: 796KB</p>
@@ -407,7 +409,33 @@ XIP Performance</h1>
 <tr>
 <td>UDP Rx </td><td>116Mbps ~1% pkt drop&#160;92% CPU load </td><td>39Mbps&#160; ~1% pkt drop&#160;97% CPU load </td><td>53Mbps&#160; ~1% pkt drop&#160;98% CPU load </td><td>82Mbps ~1% pkt drop 99% CPU load </td><td>110Mbps ~1% pkt drop&#160;90% CPU load </td><td>110Mbps ~1% pkt drop&#160;88% CPU load </td><td>116Mbps ~1% pkt drop&#160;92% CPU load  </td></tr>
 </table>
+<h1><a class="anchor" id="autotoc_md1479"></a>
+Ether-Ring Performance</h1>
+<p>Redundancy-traffic latency in an Ether-Ring topology, measured for the three traffic profiles defined by <a class="el" href="EXAMPLES_ENET_CPSW_ETHERRING_TRAFFICGEN.html">Enet CPSW Ether-Ring Real-time and LWIP Traffic Generator Application</a> (background LwIP traffic running concurrently in all three): <b>Profile-A</b> sends more than it receives (simulating a Zonal controller streaming to a central compute node), <b>Profile-B</b> is the inverse, and <b>Profile-C</b> sends/receives at the same rate.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Traffic Type  </th><th class="markdownTableHeadNone">Average Latency(us)  </th><th class="markdownTableHeadNone">Max Latency(us)   </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Profile-A(Transmit-Heavy)  </td><td class="markdownTableBodyNone">44  </td><td class="markdownTableBodyNone">94   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Profile-B(Receive-Heavy)  </td><td class="markdownTableBodyNone">40  </td><td class="markdownTableBodyNone">96   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Profile-C(Symmetric Traffic)  </td><td class="markdownTableBodyNone">27  </td><td class="markdownTableBodyNone">80   </td></tr>
+</table>
 <h1><a class="anchor" id="autotoc_md1480"></a>
+Ether-Ring Round Trip Latency with CAN(Vehicle) traffic</h1>
+<p>Round-trip latency for CAN traffic tunneled over the Ether-Ring redundant Ethernet path (vehicle in-cabin/backbone use case), at a fixed, sustained packet rate.</p>
+<div class="image">
+<img src="etherring_can_latency_measurement.png" alt="" width="60%"/>
+<div class="caption">
+Round Trip Latency Measurement </div></div>
+ <table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Packet Rate(per sec)  </th><th class="markdownTableHeadNone">Average Latency(us)  </th><th class="markdownTableHeadNone">Max Latency(us)   </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">2000  </td><td class="markdownTableBodyNone">561  </td><td class="markdownTableBodyNone">569   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md1481"></a>
 See Also</h1>
 <p><a class="el" href="NETWORKING.html">Ethernet And Networking</a> <a class="el" href="EXAMPLES_ENET_LWIP_CPSW.html">Enet Lwip CPSW Example</a> <a class="el" href="EXAMPLES_ENET_CPSW_ETHERRING_CAN.html">Enet CPSW Ether-Ring CAN Example</a> <a class="el" href="EXAMPLES_ENET_CPSW_ETHERRING_TRAFFICGEN.html">Enet CPSW Ether-Ring Real-time and LWIP Traffic Generator Application</a> <a class="el" href="EXAMPLES_ENET_CPSW_ETHERRING.html">Enet CPSW Ether-Ring TSN Example</a> </p>
 </div></div><!-- contents -->

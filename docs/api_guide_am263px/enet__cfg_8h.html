@@ -139,6 +139,12 @@ Macros</h2></td></tr>
 <tr class="memitem:aecff5765a41b2077fe55156778b2ad0e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="enet__cfg_8h.html#aecff5765a41b2077fe55156778b2ad0e">ENET_CFG_TRACE_DISABLE_INFOSTRING</a>&#160;&#160;&#160;(<a class="el" href="enet__cfg_8h.html#a0a863c1211ebd81ebcac95ed6fd1696d">ENET_ON</a>)</td></tr>
 <tr class="memdesc:aecff5765a41b2077fe55156778b2ad0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eliminate embedded strings from all ASSERT/TRACE invocation.  <a href="enet__cfg_8h.html#aecff5765a41b2077fe55156778b2ad0e">More...</a><br /></td></tr>
 <tr class="separator:aecff5765a41b2077fe55156778b2ad0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf0e473ddba35f0405235344c5bd0e44"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="enet__cfg_8h.html#abf0e473ddba35f0405235344c5bd0e44">ENET_CSUM_OFFLOAD_TARGET_CPSW_DMA</a>&#160;&#160;&#160;(0U)</td></tr>
+<tr class="memdesc:abf0e473ddba35f0405235344c5bd0e44"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX checksum offload target: CPSW DMA hardware. Pass to Lwip2Enet_setTxCsumOffloadTarget() to use CPSW DMA descriptor-based offload.  <a href="enet__cfg_8h.html#abf0e473ddba35f0405235344c5bd0e44">More...</a><br /></td></tr>
+<tr class="separator:abf0e473ddba35f0405235344c5bd0e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1a2b0163ec8212db1cf3cc096ac543f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="enet__cfg_8h.html#ae1a2b0163ec8212db1cf3cc096ac543f">ENET_CSUM_OFFLOAD_TARGET_PRU_FW</a>&#160;&#160;&#160;(1U)</td></tr>
+<tr class="memdesc:ae1a2b0163ec8212db1cf3cc096ac543f"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX checksum offload target: PRU firmware. Pass to Lwip2Enet_setTxCsumOffloadTarget() to delegate checksum computation to PRU FW.  <a href="enet__cfg_8h.html#ae1a2b0163ec8212db1cf3cc096ac543f">More...</a><br /></td></tr>
+<tr class="separator:ae1a2b0163ec8212db1cf3cc096ac543f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a0a863c1211ebd81ebcac95ed6fd1696d"></a>
@@ -355,6 +361,38 @@ Macros</h2></td></tr>
 
 <p>Eliminate embedded strings from all ASSERT/TRACE invocation. </p>
 <p>Enabling this option reduces rodata footprint of enet library by removing strings in trace. Removal of strings will result in cryptic trace msgs because informative strings are removed and only function name, file,line num info will be printed based on ENET_CFG_TRACE_TRACE_FORMAT define. </p>
+
+</div>
+</div>
+<a id="abf0e473ddba35f0405235344c5bd0e44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf0e473ddba35f0405235344c5bd0e44">&#9670;&nbsp;</a></span>ENET_CSUM_OFFLOAD_TARGET_CPSW_DMA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ENET_CSUM_OFFLOAD_TARGET_CPSW_DMA&#160;&#160;&#160;(0U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TX checksum offload target: CPSW DMA hardware. Pass to Lwip2Enet_setTxCsumOffloadTarget() to use CPSW DMA descriptor-based offload. </p>
+
+</div>
+</div>
+<a id="ae1a2b0163ec8212db1cf3cc096ac543f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1a2b0163ec8212db1cf3cc096ac543f">&#9670;&nbsp;</a></span>ENET_CSUM_OFFLOAD_TARGET_PRU_FW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ENET_CSUM_OFFLOAD_TARGET_PRU_FW&#160;&#160;&#160;(1U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TX checksum offload target: PRU firmware. Pass to Lwip2Enet_setTxCsumOffloadTarget() to delegate checksum computation to PRU FW. </p>
 
 </div>
 </div>

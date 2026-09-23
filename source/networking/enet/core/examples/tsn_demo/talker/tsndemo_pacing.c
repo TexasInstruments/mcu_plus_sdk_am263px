@@ -93,8 +93,8 @@
  *          GENF_START could never have reached the hardware-push logic
  *          either. Both are fixed in example.syscfg + this file.
  *        - The CPTS reference clock differs by board variant, not just by
- *          SoC: am261x-lp runs CPTS at 250 MHz (4 ns/tick),
- *          am261x-som at 200 MHz (5 ns/tick) - see each board's
+ *          SoC:  am261x-lp run CPTS at 250 MHz (4 ns/tick) and am261x-som
+ *          run CPTS at 200 MHz (5 ns/tick) - see each board's
  *          enet_cpsw1.cptsRftClkFreq in example.syscfg. TSNDEMO_CPTS_TICK_NS
  *          below is selected by a per-board macro (Makefile
  *          DEFINES_common), not a single shared AM261x constant.

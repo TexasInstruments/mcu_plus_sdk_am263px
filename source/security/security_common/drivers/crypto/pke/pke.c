@@ -848,7 +848,7 @@ AsymCrypt_Return_t AsymCrypt_EddsaVerify(AsymCrypt_Handle handle,
             pkeStatus = cri_pke_eddsa_verify(gPKE, curve, pubKey, hash, curvelen, sig->R, sig->s, signatureRPrime);
 
             if (pkeStatus == PKE_NO_ERROR_STATUS) {
-                if (memcmp((const void *)&sig->R[0], (const void *)&signatureRPrime[0], key_len) == 0) {
+                if (memcmp(sig->R, signatureRPrime, key_len) == 0) {
                     /* PKE Eddsa Verification Signature matches*/
                     status = ASYM_CRYPT_RETURN_SUCCESS;
                 } else {
@@ -876,7 +876,7 @@ AsymCrypt_Return_t AsymCrypt_EddsaGetPubKey(AsymCrypt_Handle handle,
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
     int32_t pkeStatus = PKE_FAULT_STATUS;
     cri_ecc_curve_t curve = NULL;
-    uint8_t privKeyHash[64];
+    uint8_t privKeyHash[EDDSA_ED448_HASH_LEN];
     const uint8_t *privKeyPtr = &privKey[0U];
     uint32_t key_len = 0U;
 
@@ -886,7 +886,7 @@ AsymCrypt_Return_t AsymCrypt_EddsaGetPubKey(AsymCrypt_Handle handle,
         key_len = EDDSA_ED25519_KEY_LEN;
         curve = cri_pke_get_curve(CRI_ECC_CURVE_ED25519);
     } else if (ASYM_CRYPT_CURVE_TYPE_EDDSA_448 == input_curve) {
-        key_len = EDDSA_ED448_HASH_LEN;
+        key_len = EDDSA_ED448_KEY_LEN;
         curve = cri_pke_get_curve(CRI_ECC_CURVE_ED448);
     }else {
         /* Do Nothing, added to avoid MISRA.IF.NO_ELSE.*/

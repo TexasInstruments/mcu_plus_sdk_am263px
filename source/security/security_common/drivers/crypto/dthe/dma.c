@@ -86,11 +86,7 @@ DMA_Return_t DMA_Config_TxChannel(DMA_Handle handle, const uint32_t *srcAddress,
         dmaModuleStatus = config->dmaFxns->cfgDmaTxChFxn(config->dmaHandle, srcAddress, dstAddress, numBlocks, blockSize, operationType);
     }
 
-    if (dmaModuleStatus == SystemP_FAILURE)
-    {
-        dmaStatus = DMA_RETURN_FAILURE;
-    }
-    else if (dmaModuleStatus == SystemP_SUCCESS)
+    if (dmaModuleStatus == SystemP_SUCCESS)
     {
         dmaStatus = DMA_RETURN_SUCCESS;
     }
@@ -113,11 +109,7 @@ DMA_Return_t DMA_enableTxTransferRegion(DMA_Handle handle)
         dmaModuleStatus = config->dmaFxns->enableTxTransferRegionFxn(config->dmaHandle);
     }
 
-    if (dmaModuleStatus == SystemP_FAILURE)
-    {
-        dmaStatus = DMA_RETURN_FAILURE;
-    }
-    else if (dmaModuleStatus == SystemP_SUCCESS)
+    if (dmaModuleStatus == SystemP_SUCCESS)
     {
         dmaStatus = DMA_RETURN_SUCCESS;
     }
@@ -140,11 +132,7 @@ DMA_Return_t DMA_WaitForTxTransfer(DMA_Handle handle)
         dmaModuleStatus = config->dmaFxns->waitForTxTranferFxn(config->dmaHandle);
     }
 
-    if (dmaModuleStatus == SystemP_FAILURE)
-    {
-        dmaStatus = DMA_RETURN_FAILURE;
-    }
-    else if (dmaModuleStatus == SystemP_SUCCESS)
+    if (dmaModuleStatus == SystemP_SUCCESS)
     {
         dmaStatus = DMA_RETURN_SUCCESS;
     }
@@ -167,11 +155,7 @@ DMA_Return_t DMA_startTxChannel(DMA_Handle handle)
         dmaModuleStatus = config->dmaFxns->startTxChannelFxn(config->dmaHandle);
     }
 
-    if (dmaModuleStatus == SystemP_FAILURE)
-    {
-        dmaStatus = DMA_RETURN_FAILURE;
-    }
-    else if (dmaModuleStatus == SystemP_SUCCESS)
+    if (dmaModuleStatus == SystemP_SUCCESS)
     {
         dmaStatus = DMA_RETURN_SUCCESS;
     }
@@ -194,11 +178,7 @@ DMA_Return_t DMA_disableTxCh(DMA_Handle handle)
         dmaModuleStatus = config->dmaFxns->disableTxChFxn(config->dmaHandle);
     }
 
-    if (dmaModuleStatus == SystemP_FAILURE)
-    {
-        dmaStatus = DMA_RETURN_FAILURE;
-    }
-    else if (dmaModuleStatus == SystemP_SUCCESS)
+    if (dmaModuleStatus == SystemP_SUCCESS)
     {
         dmaStatus = DMA_RETURN_SUCCESS;
     }
@@ -221,11 +201,7 @@ DMA_Return_t DMA_Config_RxChannel(DMA_Handle handle, const uint32_t *srcAddress,
         dmaModuleStatus = config->dmaFxns->cfgDmaRxChFxn(config->dmaHandle, srcAddress, dstAddress, numBlocks, operationType);
     }
 
-    if (dmaModuleStatus == SystemP_FAILURE)
-    {
-        dmaStatus = DMA_RETURN_FAILURE;
-    }
-    else if (dmaModuleStatus == SystemP_SUCCESS)
+    if (dmaModuleStatus == SystemP_SUCCESS)
     {
         dmaStatus = DMA_RETURN_SUCCESS;
     }
@@ -248,11 +224,7 @@ DMA_Return_t DMA_enableRxTransferRegion(DMA_Handle handle)
         dmaModuleStatus = config->dmaFxns->enableRxTransferRegionFxn(config->dmaHandle);
     }
 
-    if (dmaModuleStatus == SystemP_FAILURE)
-    {
-        dmaStatus = DMA_RETURN_FAILURE;
-    }
-    else if (dmaModuleStatus == SystemP_SUCCESS)
+    if (dmaModuleStatus == SystemP_SUCCESS)
     {
         dmaStatus = DMA_RETURN_SUCCESS;
     }
@@ -275,11 +247,7 @@ DMA_Return_t DMA_WaitForRxTransfer(DMA_Handle handle)
         dmaModuleStatus = config->dmaFxns->waitForRxTranferFxn(config->dmaHandle);
     }
 
-    if (dmaModuleStatus == SystemP_FAILURE)
-    {
-        dmaStatus = DMA_RETURN_FAILURE;
-    }
-    else if (dmaModuleStatus == SystemP_SUCCESS)
+    if (dmaModuleStatus == SystemP_SUCCESS)
     {
         dmaStatus = DMA_RETURN_SUCCESS;
     }
@@ -302,11 +270,7 @@ DMA_Return_t DMA_startRxChannel(DMA_Handle handle)
         dmaModuleStatus = config->dmaFxns->startRxChannelFxn(config->dmaHandle);
     }
 
-    if (dmaModuleStatus == SystemP_FAILURE)
-    {
-        dmaStatus = DMA_RETURN_FAILURE;
-    }
-    else if (dmaModuleStatus == SystemP_SUCCESS)
+    if (dmaModuleStatus == SystemP_SUCCESS)
     {
         dmaStatus = DMA_RETURN_SUCCESS;
     }
@@ -329,11 +293,7 @@ DMA_Return_t DMA_disableRxCh(DMA_Handle handle)
         dmaModuleStatus = config->dmaFxns->disableRxChFxn(config->dmaHandle);
     }
 
-    if (dmaModuleStatus == SystemP_FAILURE)
-    {
-        dmaStatus = DMA_RETURN_FAILURE;
-    }
-    else if (dmaModuleStatus == SystemP_SUCCESS)
+    if (dmaModuleStatus == SystemP_SUCCESS)
     {
         dmaStatus = DMA_RETURN_SUCCESS;
     }

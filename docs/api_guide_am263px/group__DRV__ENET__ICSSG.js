@@ -170,6 +170,7 @@ var group__DRV__ENET__ICSSG =
       [ "qosLevels", "structIcssg__Cfg.html#a8ca78211d3e6c096dbe1b5072a3ddc86", null ],
       [ "isPremQueEnable", "structIcssg__Cfg.html#a28d3663e2729a547f0aab2ffbdcaa54c", null ],
       [ "clockTypeFw", "structIcssg__Cfg.html#a00cdbbba3cbf23f378aef95368d04e8b", null ],
+      [ "rxCsumOffloadEn", "structIcssg__Cfg.html#a2d5662aa1e54c7f137fd98c2d8b807ad", null ],
       [ "fw", "structIcssg__Cfg.html#a5ae397b0b8a0daed3cb783c0f653b1ce", null ]
     ] ],
     [ "IcssgMacPort_Cfg", "structIcssgMacPort__Cfg.html", [

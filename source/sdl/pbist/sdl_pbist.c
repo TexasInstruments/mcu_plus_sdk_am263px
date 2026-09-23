@@ -348,7 +348,7 @@ static int32_t SDL_PBIST_runTest(SDL_PBIST_testType testType, SDL_pbistRegs *pRe
     }
     pInfo->doneFlag = PBIST_NOT_DONE;
 
-    for (i = 0; (i < numRuns) && (ret == SDL_PASS); i++)
+    for (i = 0; i < numRuns; i++)
     {
         if (testType == SDL_PBIST_TEST)
         {
@@ -424,6 +424,11 @@ static int32_t SDL_PBIST_runTest(SDL_PBIST_testType testType, SDL_pbistRegs *pRe
 
             /* reset Done flag so we can run again */
             pInfo->doneFlag = PBIST_NOT_DONE;
+        }
+        /* Exit loop on any failure */
+        if (ret != SDL_PASS)
+        {
+            break;
         }
     }
 #if defined (SOC_AM263X)

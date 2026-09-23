@@ -271,12 +271,12 @@ function getConfigurables()
                 options: [
                     {
                         name:"mode1",
-                        displayName: "ICSSM0_MII_RT_EVENT_ENABLE",
+                        displayName: "MII_RT_EVENT_ENABLE",
                         description:'In this mode MII_RT_EVENTS are enabled PRU-ICSS Interrupt Controller lines 32 through 55 are mapped to internal events'
                     },
                     {
                         name:"mode0",
-                        displayName: "ICSSM0_MII_RT_EVENT_DISABLE",
+                        displayName: "MII_RT_EVENT_DISABLE",
                         description:"In this mode MII_RT_EVENTS are NOT enabled PRU-ICSS Interrupt Controller lines 32 through 55 are mapped to external events"
                     },
                 ],

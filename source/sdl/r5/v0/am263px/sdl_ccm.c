@@ -113,7 +113,7 @@ typedef struct SDL_CCM_instance_s
 /* SDL CCM Instance */
 static SDL_CCM_Instance_t SDL_CCM_instance;
 
-uint32_t SDL_CCM_eventBitMap_param[SDL_ESM_MAX_EVENT_MAP_WORDS] =
+static uint32_t SDL_CCM_eventBitMap_param[SDL_ESM_MAX_EVENT_MAP_WORDS] =
 {
      0x00000000u, 0x00000000u, 0x00780880u, 0x00000000u,
      0x00000000u, 0x00000000u, 0x00000000u, 0x00000000u,

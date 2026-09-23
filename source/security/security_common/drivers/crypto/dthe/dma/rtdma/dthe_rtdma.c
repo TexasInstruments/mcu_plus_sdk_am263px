@@ -180,7 +180,7 @@ static int32_t RTDMA_selectTxChannelParams(const RTDMA_TxSelectInput *ptrInput, 
         ptrOutput->srcBurstStep = RTDMA_WORD_SIZE;       /* Increment source by 4 bytes per word */
         ptrOutput->destBurstStep = RTDMA_WORD_SIZE_NEG;   /* Destination stays at same location (peripheral register) */
         ptrOutput->srcTransferStep = RTDMA_WORD_SIZE;  /* Move to next burst */
-        ptrOutput->destTransferStep = ((RTDMA_WORD_SIZE - 1U) * RTDMA_WORD_SIZE); /* Destination doesn't change between transfers */
+        ptrOutput->destTransferStep = ((RTDMA_WORD_SIZE - 1) * RTDMA_WORD_SIZE); /* Destination doesn't change between transfers */
         status = SystemP_SUCCESS;
     }
     else if(ptrInput->operationType == DMA_SHA_ENABLE)
@@ -193,7 +193,7 @@ static int32_t RTDMA_selectTxChannelParams(const RTDMA_TxSelectInput *ptrInput, 
         {
             /* SHA configuration */
             ptrOutput->trigger = RTDMA_TRIGGER_DTHE_SHA_DATAIN;
-            ptrOutput->burstSize = ptrInput->blockSize*RTDMA_WORD_SIZE;
+            ptrOutput->burstSize = ptrInput->blockSize*4U;
             ptrOutput->transferSize = ptrInput->numBlocks;
             ptrOutput->srcBurstStep = RTDMA_WORD_SIZE;       /* Increment source by 4 bytes per word */
             ptrOutput->destBurstStep = 0;                              /* Destination stays at same location (peripheral register) */
@@ -214,12 +214,12 @@ static int32_t RTDMA_selectTxChannelParams(const RTDMA_TxSelectInput *ptrInput, 
              * Data must be written to SM3_DATA_IN[0] through SM3_DATA_IN[15] sequentially.
              * Burst step is applied (blockSize-1) times, so transfer step must compensate. */
             ptrOutput->trigger = RTDMA_TRIGGER_DTHE_SM3_DATAIN;
-            ptrOutput->burstSize = ptrInput->blockSize*RTDMA_WORD_SIZE;                        /* Burst size in bytes (16 words × 4 = 64 bytes) */
+            ptrOutput->burstSize = ptrInput->blockSize*4U;                        /* Burst size in bytes (16 words × 4 = 64 bytes) */
             ptrOutput->transferSize = ptrInput->numBlocks;
             ptrOutput->srcBurstStep = RTDMA_WORD_SIZE;        /* Increment source by 4 bytes per word */
             ptrOutput->destBurstStep = RTDMA_WORD_SIZE;       /* Increment dest to write to SM3_DATA_IN[0], [1], ..., [15] */
             ptrOutput->srcTransferStep = RTDMA_WORD_SIZE;   /* Continue to next block in source buffer */
-            ptrOutput->destTransferStep = RTDMA_SM3_TRANSFER_STEP_NEG; /* Reset dest back to SM3_DATA_IN[0] */
+            ptrOutput->destTransferStep = (int16_t)RTDMA_SM3_TRANSFER_STEP_NEG; /* Reset dest back to SM3_DATA_IN[0] */
             status = SystemP_SUCCESS;
         }
     }
@@ -234,7 +234,7 @@ static int32_t RTDMA_selectTxChannelParams(const RTDMA_TxSelectInput *ptrInput, 
         ptrOutput->srcBurstStep = RTDMA_WORD_SIZE;        /* Increment source by 4 bytes per word */
         ptrOutput->destBurstStep = RTDMA_WORD_SIZE;     /* Increment dest: DATA_IN_0 → DATA_IN_1 → DATA_IN_2 → DATA_IN_3 */
         ptrOutput->srcTransferStep = RTDMA_WORD_SIZE;   /* Continue to next block in source buffer */
-        ptrOutput->destTransferStep = RTDMA_WORD_SIZE_NEG_12; /* Reset dest back to DATA_IN_0 */
+        ptrOutput->destTransferStep = (int16_t)RTDMA_WORD_SIZE_NEG_12; /* Reset dest back to DATA_IN_0 */
         status = SystemP_SUCCESS;
     }
     else
@@ -419,7 +419,7 @@ int32_t RTDMA_Config_RxChannel(DMA_Handle handle, const uint32_t *srcAddress, co
             burstSize = RTDMA_AES_SM4_BURST_SIZE;
             srcBurstStep = RTDMA_WORD_SIZE_NEG;      /* Decrement: DATA_OUT_3 → DATA_OUT_0 */
             destBurstStep = (int16_t)(RTDMA_WORD_SIZE);      /* Increment destination buffer */
-            srcTransferStep = (int16_t)((RTDMA_WORD_SIZE - 1U) * RTDMA_WORD_SIZE); /* Reset back to DATA_OUT_3 */
+            srcTransferStep = (int16_t)((RTDMA_WORD_SIZE - 1) * RTDMA_WORD_SIZE); /* Reset back to DATA_OUT_3 */
             destTransferStep = (int16_t)(RTDMA_WORD_SIZE);   /* Continue in destination buffer */
             status = SystemP_SUCCESS;
         }
@@ -430,7 +430,7 @@ int32_t RTDMA_Config_RxChannel(DMA_Handle handle, const uint32_t *srcAddress, co
             burstSize = RTDMA_AES_SM4_BURST_SIZE; 
             srcBurstStep = (int16_t)(RTDMA_WORD_SIZE);        /* Increment: DATA_OUT_0 → DATA_OUT_3 */
             destBurstStep = (int16_t)(RTDMA_WORD_SIZE);       /* Increment destination buffer */
-            srcTransferStep = RTDMA_WORD_SIZE_NEG_12; /* Reset back to DATA_OUT_0 */
+            srcTransferStep = (int16_t)RTDMA_WORD_SIZE_NEG_12; /* Reset back to DATA_OUT_0 */
             destTransferStep = (int16_t)(RTDMA_WORD_SIZE);    /* Continue in destination buffer */
             status = SystemP_SUCCESS;
         }

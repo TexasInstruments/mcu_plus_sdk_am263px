@@ -93,7 +93,11 @@ typedef struct {
 
 #if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)
 SOC_SDL_ModuleClockFrequency sdl_gSocModulesClockFrequency[] = {
+#if defined (SOC_AM261X)
+    { SOC_RcmPeripheralId_WDT0, SOC_RcmPeripheralClockSource_SYS_CLK, 40000 },
+#else
     { SOC_RcmPeripheralId_WDT0, SOC_RcmPeripheralClockSource_SYS_CLK, 32000 },
+#endif
 
     { SOC_MODULES_END, SOC_MODULES_END, SOC_MODULES_END },
 };

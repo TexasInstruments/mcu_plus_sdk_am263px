@@ -475,7 +475,8 @@ AsymCrypt_Handle AsymCrypt_open(uint32_t index)
         attrs->isOpen = 1U;
         handle = (AsymCrypt_Handle) config;
 
-        /* Enable the TRNG hardware  so that RNG_read() -
+#if (defined (SOC_AM263X) || defined (SOC_AM263PX)) && !defined(__ARM_ARCH_7R__)
+        /* Enable the TRNG hardware so that RNG_read() -
          * used by AsymCrypt_ECDSAKeyGenPrivate() - succeeds */
         if (NULL != gRngHandle)
         {
@@ -485,6 +486,7 @@ AsymCrypt_Handle AsymCrypt_open(uint32_t index)
         {
             handle = NULL;
         }
+#endif
     }
 
     return (handle);
@@ -507,8 +509,10 @@ AsymCrypt_Return_t AsymCrypt_close(AsymCrypt_Handle handle)
         handle = NULL;
         status  = ASYM_CRYPT_RETURN_SUCCESS;
 
+#if (defined (SOC_AM263X) || defined (SOC_AM263PX)) && !defined(__ARM_ARCH_7R__)
         /* close the RNG instance */
         (void) RNG_close(gRngHandle);
+#endif
     }
     return (status);
 }
@@ -1129,21 +1133,24 @@ AsymCrypt_Return_t PKA_ECpMultiply(AsymCrypt_Handle handle,
     CSL_Eip_29t2_ramRegs *pka_regs;
     PKA_Config      *config;
     PKA_Attrs *attrs;
-    config  = (PKA_Config *) handle;
-    attrs   = config->attrs;
 
-    size = cp->prime[0];
-
-    /* check sizes */
-    if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
-           (size < cp->a[0]) || (size < cp->b[0]) ||
-           (size < P1->x[0]) || (size < P1->y[0]) || (size < k[0]) ||
-           (k[0] == 0U))))
+    if (NULL != handle)
     {
-        /* Checking handle is opened or not */
-        if((attrs->isOpen) && (NULL != handle))
+        config  = (PKA_Config *) handle;
+        attrs   = config->attrs;
+
+        size = cp->prime[0];
+
+        /* check sizes */
+        if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) ||
+               (size < cp->a[0]) || (size < cp->b[0]) ||
+               (size < P1->x[0]) || (size < P1->y[0]) || (size < k[0]) ||
+               (k[0] == 0U))))
         {
-            status = ASYM_CRYPT_RETURN_SUCCESS;
+            if(attrs->isOpen)
+            {
+                status = ASYM_CRYPT_RETURN_SUCCESS;
+            }
         }
     }
 
@@ -1287,12 +1294,16 @@ AsymCrypt_Return_t AsymCrypt_EcdhGenSharedSecret(AsymCrypt_Handle handle,
 
 /* Draws a value uniformly at random in [1, n-1], n = cp->order, via
  * rejection sampling. Shared by AsymCrypt_ECDSAKeyGenPrivate() (private key)
- * and AsymCrypt_ECDSASign() (per-signature nonce k). */
+ * and AsymCrypt_ECDSASign() (per-signature nonce k).
+ *
+ * RNG-based key/nonce generation is only wired up for AM263X/AM263PX
+ * HSM-core builds */
 static AsymCrypt_Return_t PKA_ECGenRandomInRange(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
                         uint32_t size,
                         uint32_t result[EC_PARAM_MAXLEN])
 {
+#if (defined (SOC_AM263X) || defined (SOC_AM263PX)) && !defined(__ARM_ARCH_7R__)
     AsymCrypt_Return_t status = ASYM_CRYPT_RETURN_FAILURE;
     PKA_Config      *config;
     PKA_Attrs *attrs;
@@ -1403,28 +1414,43 @@ static AsymCrypt_Return_t PKA_ECGenRandomInRange(AsymCrypt_Handle handle,
     }
 
     return (status);
+#else
+    (void)handle;
+    (void)cp;
+    (void)size;
+    (void)result;
+
+    return ASYM_CRYPT_RETURN_FAILURE;
+#endif
 }
 
+/* ECDSA Private key generation is supported only on AM263X 
+ * and AM263PX since it requires a random number to be geenrated
+ * in the range [1,n-1] */
 AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPrivate(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
                         uint32_t priv[ECDSA_MAX_LENGTH],
                         uint32_t curveType)
 {
+#if (defined (SOC_AM263X) || defined (SOC_AM263PX)) && !defined(__ARM_ARCH_7R__)
     AsymCrypt_Return_t status = ASYM_CRYPT_RETURN_FAILURE;
     PKA_Attrs *attrs;
     uint32_t size;
 
     (void) curveType;
 
-    attrs = ((PKA_Config *) handle)->attrs;
-
-    size = cp->prime[0];
-
-    if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) || (size != cp->order[0]))))
+    if (NULL != handle)
     {
-        if((attrs->isOpen) && (NULL != handle))
+        attrs = ((PKA_Config *) handle)->attrs;
+
+        size = cp->prime[0];
+
+        if ((!((size <= 2U) || (size > (ECDSA_MAX_LENGTH - 1U)) || (size != cp->order[0]))))
         {
-            status = ASYM_CRYPT_RETURN_SUCCESS;
+            if(attrs->isOpen)
+            {
+                status = ASYM_CRYPT_RETURN_SUCCESS;
+            }
         }
     }
 
@@ -1434,6 +1460,14 @@ AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPrivate(AsymCrypt_Handle handle,
     }
 
     return (status);
+#else
+    (void)handle;
+    (void)cp;
+    (void)priv;
+    (void)curveType;
+
+    return ASYM_CRYPT_RETURN_FAILURE;
+#endif
 }
 
 /* pub = priv * G (curve generator) - same op as EcdhGenSharedSecret, just
@@ -1595,22 +1629,30 @@ AsymCrypt_Return_t PKA_ModuloP(AsymCrypt_Handle handle,
         status = ASYM_CRYPT_RETURN_SUCCESS;
     }
 
-    /*Get A and P length with most significant non-zero 32-bit word*/
-    lenA = A[0];
-    while((A[lenA] == 0) && lenA > 1)
-    {
-        lenA--;
+    if ((ASYM_CRYPT_RETURN_SUCCESS == status) && (lenA < EC_PARAM_MAXLEN) && (lenP < EC_PARAM_MAXLEN))
+    {    
+        /*Get A and P length with most significant non-zero 32-bit word*/
+        lenA = A[0];
+        while((A[lenA] == 0) && lenA > 1)
+        {
+            lenA--;
+        }
+        lenP = P[0];
+        while((P[lenP] == 0) && lenP > 1)
+        {
+            lenP--;
+        }
+        status = ASYM_CRYPT_RETURN_SUCCESS;
     }
-    lenP = P[0];
-    while((P[lenP] == 0) && lenP > 1)
+    else
     {
-        lenP--;
+        status = ASYM_CRYPT_RETURN_FAILURE;
     }
 
     if(status == ASYM_CRYPT_RETURN_SUCCESS)
     {
         /*Check for Valid length*/
-        if((lenA > 1) && (lenP > 1) && lenA >= lenP)
+        if((lenA > 1) && (lenP > 1) && (lenA >= lenP))
         {
             pka_regs = PKA_getBaseAddress(attrs);
 

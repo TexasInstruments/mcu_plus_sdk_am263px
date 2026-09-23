@@ -85,6 +85,7 @@ int32_t SDL_VTM_initTs(const SDL_VTM_configTs *pConfig)
     }
     else
     {
+        SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
         /* Enable BGR bit */
         SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE_CFG),\
                         TOP_CTRL_TSENSE_CFG_TSENSE_CFG_BGROFF, \
@@ -102,14 +103,17 @@ int32_t SDL_VTM_initTs(const SDL_VTM_configTs *pConfig)
         SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE_CFG),\
                         TOP_CTRL_TSENSE_CFG_TSENSE_CFG_SNSR_MX_HIZ, \
                         SDL_VTM_NORMAL_HIZ);
+        SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
 
        if(pConfig->cfgTs0Tshut == 1U)
         {
+            SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
             /* Enable over ride so that configured values are used for
                thermal shutdown. */
             SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE0_TSHUT), \
                      TOP_CTRL_TSENSE0_TSHUT_TSENSE0_TSHUT_EFUSE_OVERRIDE, \
                      SDL_VTM_OVERRIDE_PATTERN);
+            SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
 
             /* Convert the given temperature from milli centigrade to adc
                code.*/
@@ -117,10 +121,12 @@ int32_t SDL_VTM_initTs(const SDL_VTM_configTs *pConfig)
                              pConfig->ts0_ts_hot_temp_in_milli_degree_celsius,
                              &ts0TsHotTempAdcCode))
             {
+                SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
                 /* Write the converted ADC code to register*/
                 SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE0_TSHUT), \
                         TOP_CTRL_TSENSE0_TSHUT_TSENSE0_TSHUT_TSHUT_THRHLD_HOT, \
                         ts0TsHotTempAdcCode);
+                SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
             }
             else
             {
@@ -133,10 +139,12 @@ int32_t SDL_VTM_initTs(const SDL_VTM_configTs *pConfig)
                               pConfig->ts0_ts_cold_temp_in_milli_degree_celsius,
                               &ts0TsColdTempAdcCode))
             {
+                SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
                 /* Write the converted ADC code to register*/
                 SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE0_TSHUT), \
                         TOP_CTRL_TSENSE0_TSHUT_TSENSE0_TSHUT_TSHUT_THRSHLD_COLD, \
                         ts0TsColdTempAdcCode);
+                SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
             }
             else
             {
@@ -151,10 +159,12 @@ int32_t SDL_VTM_initTs(const SDL_VTM_configTs *pConfig)
                     pConfig->ts0_alert_hot_temp_in_milli_degree_celsius,
                     &ts0AlertHotTempAdcCode))
             {
+                SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
                 /* Write the converted ADC code to register*/
                 SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE0_ALERT),\
                             TOP_CTRL_TSENSE0_ALERT_TSENSE0_ALERT_ALERT_THRHLD_HOT,\
                             ts0AlertHotTempAdcCode);
+                SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
             }
             else
             {
@@ -166,16 +176,19 @@ int32_t SDL_VTM_initTs(const SDL_VTM_configTs *pConfig)
                  pConfig->ts0_alert_cold_temp_in_milli_degree_celsius,
                  &ts0AlertColdTempAdcCode))
              {
+                SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
                 /* Write the converted ADC code to register*/
                 SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE0_ALERT),
                                 TOP_CTRL_TSENSE0_ALERT_TSENSE0_ALERT_ALERT_THRHLD_COLD,\
                                 ts0AlertColdTempAdcCode);
+                SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
             }
             else
             {
                 sdlResult = SDL_EBADARGS;
             }
 
+            SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
             /* Enable Cold comparator output */
             SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE0_CNTL),
                             TOP_CTRL_TSENSE0_CNTL_TSENSE0_CNTL_MASK_COLD,
@@ -188,24 +201,29 @@ int32_t SDL_VTM_initTs(const SDL_VTM_configTs *pConfig)
             SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE0_CNTL),
                             TOP_CTRL_TSENSE0_CNTL_TSENSE0_CNTL_MASK_LOW_THRHLD,
                             SDL_VTM_MASK_LOW_TH);
+            SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
         }
 
        if(pConfig->cfgTs1Tshut == 1U)
         {
+            SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
             /* Enable over ride so that configured values are used for thermal shutdown. */
             SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE1_TSHUT),
                             TOP_CTRL_TSENSE1_TSHUT_TSENSE1_TSHUT_EFUSE_OVERRIDE,
                             SDL_VTM_OVERRIDE_PATTERN);
+            SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
 
             /* Convert the given temperature from milli centigrade to adc code.*/
             if(SDL_PASS == SDL_VTM_tsConvTempToAdc(
                       pConfig->ts1_ts_hot_temp_in_milli_degree_celsius,
                       &ts1TsHotTempAdcCode))
             {
+                SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
                 /* Write the converted ADC code to register*/
                 SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE1_TSHUT),
                                 TOP_CTRL_TSENSE1_TSHUT_TSENSE1_TSHUT_TSHUT_THRHLD_HOT,
                                 ts1TsHotTempAdcCode);
+                SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
             }
             else
             {
@@ -217,10 +235,12 @@ int32_t SDL_VTM_initTs(const SDL_VTM_configTs *pConfig)
                       pConfig->ts1_ts_cold_temp_in_milli_degree_celsius,
                       &ts1TsColdTempAdcCode))
             {
+                SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
                 /* Write the converted ADC code to register*/
                 SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE1_TSHUT),
                                 TOP_CTRL_TSENSE1_TSHUT_TSENSE1_TSHUT_TSHUT_THRSHLD_COLD,
                                 ts1TsColdTempAdcCode);
+                SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
             }
             else
             {
@@ -235,10 +255,12 @@ int32_t SDL_VTM_initTs(const SDL_VTM_configTs *pConfig)
                       pConfig->ts1_alert_hot_temp_in_milli_degree_celsius,
                       &ts1AlertHotTempAdcCode))
             {
+                SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
                 /* Write the converted ADC code to register*/
                 SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE1_ALERT),
                                 TOP_CTRL_TSENSE1_ALERT_TSENSE1_ALERT_ALERT_THRHLD_HOT,
                                 ts1AlertHotTempAdcCode);
+                SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
             }
             else
             {
@@ -250,15 +272,18 @@ int32_t SDL_VTM_initTs(const SDL_VTM_configTs *pConfig)
                       pConfig->ts1_alert_cold_temp_in_milli_degree_celsius,
                     &ts1AlertColdTempAdcCode))
             {
+                SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
                 SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE1_ALERT),
                                 TOP_CTRL_TSENSE1_ALERT_TSENSE1_ALERT_ALERT_THRHLD_COLD,
                                 ts1AlertColdTempAdcCode);
+                SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
             }
             else
             {
                 sdlResult = SDL_EBADARGS;
             }
 
+            SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
             /* Enable Cold comparator output */
             SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE1_CNTL),
                             TOP_CTRL_TSENSE1_CNTL_TSENSE1_CNTL_MASK_COLD,
@@ -273,6 +298,7 @@ int32_t SDL_VTM_initTs(const SDL_VTM_configTs *pConfig)
             SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE1_CNTL),
                             TOP_CTRL_TSENSE1_CNTL_TSENSE1_CNTL_MASK_LOW_THRHLD,
                             SDL_VTM_MASK_LOW_TH);
+            SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
         }
     }
     return (sdlResult);
@@ -283,6 +309,7 @@ int32_t SDL_VTM_initTs(const SDL_VTM_configTs *pConfig)
  */
 void SDL_VTM_enableTs(uint32_t sensorSelect, uint8_t delay)
 {
+    SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
     /* Enable all the required sensors */
     SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE_CFG),
                     TOP_CTRL_TSENSE_CFG_TSENSE_CFG_SENSOR_SEL,
@@ -300,6 +327,7 @@ void SDL_VTM_enableTs(uint32_t sensorSelect, uint8_t delay)
         SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE_CFG),
                     TOP_CTRL_TSENSE_CFG_TSENSE_CFG_DELAY, SDL_VTM_MAXDELAY);
     }
+    SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
 }
 
 /**
@@ -307,9 +335,11 @@ void SDL_VTM_enableTs(uint32_t sensorSelect, uint8_t delay)
  */
 void SDL_VTM_enableTc(void)
 {
+    SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
     /* Enable the Temperature Controller. */
     SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE_CFG),
                     TOP_CTRL_TSENSE_CFG_TSENSE_CFG_ENABLE, SDL_VTM_TSENSE_ON);
+    SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
 }
 
  /**
@@ -317,9 +347,11 @@ void SDL_VTM_enableTc(void)
  */
 void SDL_VTM_disableTc(void)
 {
+    SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
     /* Dnable the Temperature Controller */
     SDL_REG32_FINS((SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE_CFG),
                     TOP_CTRL_TSENSE_CFG_TSENSE_CFG_ENABLE, SDL_VTM_TSENSE_OFF);
+    SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
 }
 
  /**
@@ -413,6 +445,7 @@ int32_t SDL_VTM_setAlertTemp(SDL_VTM_InstTs instance, int32_t alert_th_hot,
         }
         if(sdlResult == SDL_PASS)
         {
+            SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
             switch(instance)
             {
                 case SDL_VTM_INSTANCE_TS_0:
@@ -437,6 +470,7 @@ int32_t SDL_VTM_setAlertTemp(SDL_VTM_InstTs instance, int32_t alert_th_hot,
                 default:
                 break;
             }
+            SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
         }
     }
     return (sdlResult);
@@ -467,6 +501,7 @@ int32_t SDL_VTM_setTShutTemp(SDL_VTM_InstTs instance,
         }
         if(sdlResult == SDL_PASS)
         {
+            SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
             switch(instance)
             {
                 case SDL_VTM_INSTANCE_TS_0:
@@ -497,6 +532,7 @@ int32_t SDL_VTM_setTShutTemp(SDL_VTM_InstTs instance,
                 default:
                 break;
             }
+            SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
         }
     }
     return (sdlResult);
@@ -518,6 +554,7 @@ int32_t SDL_VTM_setClearInterrupts(SDL_VTM_InstTs instance,
     }
     else
     {
+        SDL_MMR_Unlock(SDL_TOP_CTRL_U_BASE);
         switch(instance)
         {
             case SDL_VTM_INSTANCE_TS_0:
@@ -546,6 +583,7 @@ int32_t SDL_VTM_setClearInterrupts(SDL_VTM_InstTs instance,
             default:
             break;
         }
+        SDL_MMR_Lock(SDL_TOP_CTRL_U_BASE);
     }
     return (sdlResult);
 }

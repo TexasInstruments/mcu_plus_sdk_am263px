@@ -167,6 +167,12 @@ New in this Release</h1>
 <td class="markdownTableBodyNone">ICSS-EMAC and ICSS TimeSync driver sources are now at <code>source/networking/icss_emac_lld/</code> . Check <a class="el" href="ICSS_EMAC_MIGRATION_GUIDE.html#ICSS_EMAC_SOURCE_PATH_CHANGE">Source Path Change (MCU+ SDK &gt;= 26.01.00)</a> &zwj; for the migration guide  </td><td class="markdownTableBodyNone">Networking   </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">ICSS-EMAC: Added <code>pruRstIsoStatusParams</code> field to <code><a class="el" href="structICSS__EMAC__Params.html" title="ICSS_EMAC Parameters.">ICSS_EMAC_Params</a></code> and <code><a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#gaa0ea20af82b6ded6ca9f595991930887" title="Gets the reset isolation status from the ICSS_EMAC handle.">ICSS_EMAC_getResetIsolationStatus()</a></code> API for PRU reset isolation support. Reset isolation requires firmware support — do not enable unless the PRU firmware explicitly supports it. Supported on AM243x and AM64x only.  </td><td class="markdownTableBodyNone">Networking   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">CPSW: Added OOB Example to showcase performance of TSN Features(EST, GPTP)  </td><td class="markdownTableBodyNone">Networking   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">CPSW: zero-copy stats IOCTL implementation  </td><td class="markdownTableBodyNone">Networking   </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">CPSW: Add MII Pinmux support in Syscfg  </td><td class="markdownTableBodyNone">Networking   </td></tr>
 </table>
 <h1><a class="anchor" id="autotoc_md319"></a>
 Modules Not tested/supported in this release</h1>
@@ -452,6 +458,16 @@ Fixed Issues</h2>
 <td>MCUSDK-15576 </td><td>I2C Target doesn't work with 0 write size interaction </td><td>I2C </td><td>26.00.00 onwards </td><td>AM263x, AM263Px, AM261x </td><td>Updated source code  </td></tr>
 <tr>
 <td>PSIRT-276 </td><td>Buffer overflow in MCELF Program Header Table parsing due to unvalidated e_phentsize field </td><td>SBL </td><td>10.00.00 onwards </td><td>AM263x, AM263Px, AM261x </td><td>Added validation of the ELF Program Header entry size (e_phentsize) in Bootloader_parseAndLoadMultiCoreELF to prevent an out-of-bounds write into the PHT buffer  </td></tr>
+<tr>
+<td>MCUSDK-15819 </td><td>CPTS: <code>ENET_TIMESYNC_IOCTL_ADJUST_TIMESTAMP</code> applies only 1/(tsAddVal+1) of the requested frequency correction </td><td>Networking </td><td>26.00.00 </td><td>AM263x, AM263Px, AM261x </td><td>Updated CPSW_CPTS_IOCTL_SET_GEN, CPSW_CPTS_IOCTL_SET_ESTF IOCTLs to account tsAddVal for PPM Corrections  </td></tr>
+<tr>
+<td>MCUSDK-15827 </td><td>Networking: ENET_TIMESYNC_IOCTL_ADJUST_TIMESTAMP IOCTL needs boundary checks </td><td>Networking </td><td>26.00.00 </td><td>AM263x, AM263Px, AM261x </td><td>Updated ENET_TIMESYNC_IOCTL_ADJUST_TIMESTAMP, CPSW_CPTS_IOCTL_SET_GEN, CPSW_CPTS_IOCTL_SET_ESTF IOCTLs to report error in case of out-of-bound adjust values  </td></tr>
+<tr>
+<td>MCUSDK-15981 </td><td>Poll Enable Mask generated incorrectly </td><td>Networking </td><td>26.00.00 </td><td>AM263x, AM263Px, AM261x </td><td>Updated logic to generate Poll Enable Mask based on PHY address  </td></tr>
+<tr>
+<td>MCUSDK-15562 </td><td>EEPROM dependency cannot be removed even if MAC address is configured manually </td><td>Networking </td><td>11.01.00 </td><td>AM263x, AM263Px, AM261x </td><td>Remove EEPROM dependency for Manual MAC address assignment mode  </td></tr>
+<tr>
+<td>MCUSDK-15754 </td><td>UDP port number in lwip cpsw example </td><td>Networking </td><td>26.00.00 </td><td>AM263x, AM263Px, AM261x </td><td>Corrected the UDP Port number in LWIP CPSW example  </td></tr>
 </table>
 <h2><a class="anchor" id="autotoc_md334"></a>
 Known Issues</h2>

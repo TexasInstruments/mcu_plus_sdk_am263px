@@ -32,6 +32,7 @@ var SECURITY_PAGE =
       [ "HSM Client Read SW Revision Service.", "DRIVERS_HSMCLIENT_PAGE.html#DRIVERS_HSMCLIENT_READ_SW_REVISION", null ],
       [ "HSM Client Write SW Revision Service.", "DRIVERS_HSMCLIENT_PAGE.html#DRIVERS_HSMCLIENT_WRITE_SW_REVISION", null ],
       [ "HSM Client Get Derived KEK Service.", "DRIVERS_HSMCLIENT_PAGE.html#DRIVERS_HSMCLIENT_GET_KEK", null ],
+      [ "HSM Client Crypto Service (MAC Operations).", "DRIVERS_HSMCLIENT_PAGE.html#DRIVERS_HSMCLIENT_CRYPTO_SERVICE", null ],
       [ "HSM Client Key Writer Service.", "DRIVERS_HSMCLIENT_PAGE.html#DRIVERS_HSMCLIENT_KEYWRITER", null ],
       [ "HSM Client Get Random Number Service.", "DRIVERS_HSMCLIENT_PAGE.html#DRIVERS_HSMCLIENT_getRandomNum", null ],
       [ "HSM Client Import Keyring Service.", "DRIVERS_HSMCLIENT_PAGE.html#DRIVERS_HSMCLIENT_importKeyring", null ],

@@ -271,6 +271,33 @@ Macros</h2></td></tr>
 <tr class="memitem:gab20e91570cd8d15dbd55a75c7b5d24f1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENET__DMA__API.html#gab20e91570cd8d15dbd55a75c7b5d24f1">ENETDMA_TXCSUMINFO_SET_CHKSUM_BYTECNT</a>(chkSumInfo,  val)&#160;&#160;&#160;                <a class="el" href="group__ENET__MAIN__API.html#ga1af1d104fe82258a7bc18092014905c4">ENET_FINS</a>(chkSumInfo, ENETDMA_TXCSUMINFO_CHKSUM_BYTECNT, val)</td></tr>
 <tr class="memdesc:gab20e91570cd8d15dbd55a75c7b5d24f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set Checksum Byte Count into FHOST Checksum Encapsulation word.  <a href="group__ENET__DMA__API.html#gab20e91570cd8d15dbd55a75c7b5d24f1">More...</a><br /></td></tr>
 <tr class="separator:gab20e91570cd8d15dbd55a75c7b5d24f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga24661f6d5aaf7a62e2608c120c7bbcbc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENET__DMA__API.html#ga24661f6d5aaf7a62e2608c120c7bbcbc">ENETDMA_TXCSUMINFO_PRU_CSUM_OFFLOAD_SHIFT</a>&#160;&#160;&#160;(0U)</td></tr>
+<tr class="memdesc:ga24661f6d5aaf7a62e2608c120c7bbcbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">PRU FW TX checksum offload - transport (TCP/UDP) flag bit shift.  <a href="group__ENET__DMA__API.html#ga24661f6d5aaf7a62e2608c120c7bbcbc">More...</a><br /></td></tr>
+<tr class="separator:ga24661f6d5aaf7a62e2608c120c7bbcbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1d1cf579576111f3d6f07e081fca8630"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENET__DMA__API.html#ga1d1cf579576111f3d6f07e081fca8630">ENETDMA_TXCSUMINFO_PRU_CSUM_OFFLOAD_MASK</a>&#160;&#160;&#160;(((uint32_t)0x1U) &lt;&lt; <a class="el" href="group__ENET__DMA__API.html#ga24661f6d5aaf7a62e2608c120c7bbcbc">ENETDMA_TXCSUMINFO_PRU_CSUM_OFFLOAD_SHIFT</a>)</td></tr>
+<tr class="memdesc:ga1d1cf579576111f3d6f07e081fca8630"><td class="mdescLeft">&#160;</td><td class="mdescRight">PRU FW TX checksum offload - transport (TCP/UDP) flag bit mask.  <a href="group__ENET__DMA__API.html#ga1d1cf579576111f3d6f07e081fca8630">More...</a><br /></td></tr>
+<tr class="separator:ga1d1cf579576111f3d6f07e081fca8630"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaed89b12db8805cd1c0ff766490900bb0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENET__DMA__API.html#gaed89b12db8805cd1c0ff766490900bb0">ENETDMA_TXCSUMINFO_PRU_IP_CSUM_OFFLOAD_SHIFT</a>&#160;&#160;&#160;(1U)</td></tr>
+<tr class="memdesc:gaed89b12db8805cd1c0ff766490900bb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">PRU FW TX checksum offload - IP header flag bit shift.  <a href="group__ENET__DMA__API.html#gaed89b12db8805cd1c0ff766490900bb0">More...</a><br /></td></tr>
+<tr class="separator:gaed89b12db8805cd1c0ff766490900bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga30cc81816cdbcacbba494ba7a5392bf9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENET__DMA__API.html#ga30cc81816cdbcacbba494ba7a5392bf9">ENETDMA_TXCSUMINFO_PRU_IP_CSUM_OFFLOAD_MASK</a>&#160;&#160;&#160;(((uint32_t)0x1U) &lt;&lt; <a class="el" href="group__ENET__DMA__API.html#gaed89b12db8805cd1c0ff766490900bb0">ENETDMA_TXCSUMINFO_PRU_IP_CSUM_OFFLOAD_SHIFT</a>)</td></tr>
+<tr class="memdesc:ga30cc81816cdbcacbba494ba7a5392bf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">PRU FW TX checksum offload - IP header flag bit mask.  <a href="group__ENET__DMA__API.html#ga30cc81816cdbcacbba494ba7a5392bf9">More...</a><br /></td></tr>
+<tr class="separator:ga30cc81816cdbcacbba494ba7a5392bf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga631891080671003b69a012f841e165c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENET__DMA__API.html#ga631891080671003b69a012f841e165c5">ENETDMA_RXCSUMINFO_PRU_CSUM_FLAG_MASK</a>&#160;&#160;&#160;(0xFFU)</td></tr>
+<tr class="memdesc:ga631891080671003b69a012f841e165c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">PRU FW RX checksum flag mask (low byte of chkSumInfo).  <a href="group__ENET__DMA__API.html#ga631891080671003b69a012f841e165c5">More...</a><br /></td></tr>
+<tr class="separator:ga631891080671003b69a012f841e165c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac17ef617cffe59cb287fa5d66504c276"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENET__DMA__API.html#gac17ef617cffe59cb287fa5d66504c276">ENETDMA_RXCSUMINFO_PRU_CSUM_FAIL_FLAG</a>&#160;&#160;&#160;(0x00U)</td></tr>
+<tr class="memdesc:gac17ef617cffe59cb287fa5d66504c276"><td class="mdescLeft">&#160;</td><td class="mdescRight">PRU FW RX checksum flag - checksum failed.  <a href="group__ENET__DMA__API.html#gac17ef617cffe59cb287fa5d66504c276">More...</a><br /></td></tr>
+<tr class="separator:gac17ef617cffe59cb287fa5d66504c276"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaded80a42acd0080391c2eeae77662c6c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENET__DMA__API.html#gaded80a42acd0080391c2eeae77662c6c">ENETDMA_RXCSUMINFO_PRU_CSUM_PASS_FLAG</a>&#160;&#160;&#160;(0x01U)</td></tr>
+<tr class="memdesc:gaded80a42acd0080391c2eeae77662c6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">PRU FW RX checksum flag - checksum passed.  <a href="group__ENET__DMA__API.html#gaded80a42acd0080391c2eeae77662c6c">More...</a><br /></td></tr>
+<tr class="separator:gaded80a42acd0080391c2eeae77662c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3e25612d676cf9560ede0ad5647e043a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENET__DMA__API.html#ga3e25612d676cf9560ede0ad5647e043a">ENETDMA_RXCSUMINFO_PRU_CSUM_NA_FLAG</a>&#160;&#160;&#160;(0xFFU)</td></tr>
+<tr class="memdesc:ga3e25612d676cf9560ede0ad5647e043a"><td class="mdescLeft">&#160;</td><td class="mdescRight">PRU FW RX checksum flag - not applicable (non-TCP/UDP, or offload not compiled in).  <a href="group__ENET__DMA__API.html#ga3e25612d676cf9560ede0ad5647e043a">More...</a><br /></td></tr>
+<tr class="separator:ga3e25612d676cf9560ede0ad5647e043a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga38123009b1126abbcff7a56f7c8bcda8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENET__DMA__API.html#ga38123009b1126abbcff7a56f7c8bcda8">ENETDMA_RXCSUMINFO_GET_PRU_CSUM_FLAG</a>(chkSumInfo)&#160;&#160;&#160;                ((chkSumInfo) &amp; <a class="el" href="group__ENET__DMA__API.html#ga631891080671003b69a012f841e165c5">ENETDMA_RXCSUMINFO_PRU_CSUM_FLAG_MASK</a>)</td></tr>
+<tr class="memdesc:ga38123009b1126abbcff7a56f7c8bcda8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get PRU FW RX checksum flag from dmaPkt-&gt;chkSumInfo.  <a href="group__ENET__DMA__API.html#ga38123009b1126abbcff7a56f7c8bcda8">More...</a><br /></td></tr>
+<tr class="separator:ga38123009b1126abbcff7a56f7c8bcda8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac4c15f07af314e20ab9a9158092e3d9e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ENET__DMA__API.html#gac4c15f07af314e20ab9a9158092e3d9e">ENET_DMA_STATS_HISTORY_CNT</a>&#160;&#160;&#160;((uint32_t)2U)</td></tr>
 <tr class="memdesc:gac4c15f07af314e20ab9a9158092e3d9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enet DMA statistics configuration.  <a href="group__ENET__DMA__API.html#gac4c15f07af314e20ab9a9158092e3d9e">More...</a><br /></td></tr>
 <tr class="separator:gac4c15f07af314e20ab9a9158092e3d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -861,6 +888,154 @@ Enet DMA driver opaque handles</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Set Checksum Byte Count into FHOST Checksum Encapsulation word. </p>
+
+</div>
+</div>
+<a id="ga24661f6d5aaf7a62e2608c120c7bbcbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga24661f6d5aaf7a62e2608c120c7bbcbc">&#9670;&nbsp;</a></span>ENETDMA_TXCSUMINFO_PRU_CSUM_OFFLOAD_SHIFT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ENETDMA_TXCSUMINFO_PRU_CSUM_OFFLOAD_SHIFT&#160;&#160;&#160;(0U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PRU FW TX checksum offload - transport (TCP/UDP) flag bit shift. </p>
+
+</div>
+</div>
+<a id="ga1d1cf579576111f3d6f07e081fca8630"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1d1cf579576111f3d6f07e081fca8630">&#9670;&nbsp;</a></span>ENETDMA_TXCSUMINFO_PRU_CSUM_OFFLOAD_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ENETDMA_TXCSUMINFO_PRU_CSUM_OFFLOAD_MASK&#160;&#160;&#160;(((uint32_t)0x1U) &lt;&lt; <a class="el" href="group__ENET__DMA__API.html#ga24661f6d5aaf7a62e2608c120c7bbcbc">ENETDMA_TXCSUMINFO_PRU_CSUM_OFFLOAD_SHIFT</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PRU FW TX checksum offload - transport (TCP/UDP) flag bit mask. </p>
+
+</div>
+</div>
+<a id="gaed89b12db8805cd1c0ff766490900bb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaed89b12db8805cd1c0ff766490900bb0">&#9670;&nbsp;</a></span>ENETDMA_TXCSUMINFO_PRU_IP_CSUM_OFFLOAD_SHIFT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ENETDMA_TXCSUMINFO_PRU_IP_CSUM_OFFLOAD_SHIFT&#160;&#160;&#160;(1U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PRU FW TX checksum offload - IP header flag bit shift. </p>
+
+</div>
+</div>
+<a id="ga30cc81816cdbcacbba494ba7a5392bf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga30cc81816cdbcacbba494ba7a5392bf9">&#9670;&nbsp;</a></span>ENETDMA_TXCSUMINFO_PRU_IP_CSUM_OFFLOAD_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ENETDMA_TXCSUMINFO_PRU_IP_CSUM_OFFLOAD_MASK&#160;&#160;&#160;(((uint32_t)0x1U) &lt;&lt; <a class="el" href="group__ENET__DMA__API.html#gaed89b12db8805cd1c0ff766490900bb0">ENETDMA_TXCSUMINFO_PRU_IP_CSUM_OFFLOAD_SHIFT</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PRU FW TX checksum offload - IP header flag bit mask. </p>
+
+</div>
+</div>
+<a id="ga631891080671003b69a012f841e165c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga631891080671003b69a012f841e165c5">&#9670;&nbsp;</a></span>ENETDMA_RXCSUMINFO_PRU_CSUM_FLAG_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ENETDMA_RXCSUMINFO_PRU_CSUM_FLAG_MASK&#160;&#160;&#160;(0xFFU)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PRU FW RX checksum flag mask (low byte of chkSumInfo). </p>
+
+</div>
+</div>
+<a id="gac17ef617cffe59cb287fa5d66504c276"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac17ef617cffe59cb287fa5d66504c276">&#9670;&nbsp;</a></span>ENETDMA_RXCSUMINFO_PRU_CSUM_FAIL_FLAG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ENETDMA_RXCSUMINFO_PRU_CSUM_FAIL_FLAG&#160;&#160;&#160;(0x00U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PRU FW RX checksum flag - checksum failed. </p>
+
+</div>
+</div>
+<a id="gaded80a42acd0080391c2eeae77662c6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaded80a42acd0080391c2eeae77662c6c">&#9670;&nbsp;</a></span>ENETDMA_RXCSUMINFO_PRU_CSUM_PASS_FLAG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ENETDMA_RXCSUMINFO_PRU_CSUM_PASS_FLAG&#160;&#160;&#160;(0x01U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PRU FW RX checksum flag - checksum passed. </p>
+
+</div>
+</div>
+<a id="ga3e25612d676cf9560ede0ad5647e043a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3e25612d676cf9560ede0ad5647e043a">&#9670;&nbsp;</a></span>ENETDMA_RXCSUMINFO_PRU_CSUM_NA_FLAG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ENETDMA_RXCSUMINFO_PRU_CSUM_NA_FLAG&#160;&#160;&#160;(0xFFU)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PRU FW RX checksum flag - not applicable (non-TCP/UDP, or offload not compiled in). </p>
+
+</div>
+</div>
+<a id="ga38123009b1126abbcff7a56f7c8bcda8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga38123009b1126abbcff7a56f7c8bcda8">&#9670;&nbsp;</a></span>ENETDMA_RXCSUMINFO_GET_PRU_CSUM_FLAG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ENETDMA_RXCSUMINFO_GET_PRU_CSUM_FLAG</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">chkSumInfo</td><td>)</td>
+          <td>&#160;&#160;&#160;                ((chkSumInfo) &amp; <a class="el" href="group__ENET__DMA__API.html#ga631891080671003b69a012f841e165c5">ENETDMA_RXCSUMINFO_PRU_CSUM_FLAG_MASK</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get PRU FW RX checksum flag from dmaPkt-&gt;chkSumInfo. </p>
 
 </div>
 </div>

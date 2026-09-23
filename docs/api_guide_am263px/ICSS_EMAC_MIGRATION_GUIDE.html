@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('ICSS_EMAC_MIGRATION_GUIDE.html',''); i
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_components_networking_icss_emac_icss_emac_migration_guide"></a> This list describes the differences between ICSS-EMAC driver of MCU+ SDK and ICSS-EMAC driver from the PDK.</p>
-<h1><a class="anchor" id="autotoc_md1565"></a>
+<h1><a class="anchor" id="autotoc_md1566"></a>
 API changes</h1>
 <p>There are changes in API names, structure names and macro names. All names begin with <code>ICSS_EMAC_</code> now. In PDK driver, user had to include multiple header files from the driver. In MCU+ SDK, only a single include file is needed, which is <code>${SDK_INSTALL_PATH}/source/networking/icss_emac_lld/icss_emac/icss_emac.h</code>. From the user point of view, IOCTL, Rx and Tx related API usage is same as in PDK. The initialization code for icss-emac has changed, and is described in the points below. All the APIs from PDK driver are not included, only the ones used in the networking libraries are added in the MCU+ SDK's driver. The changes in API names are listed below.</p>
 <table class="doxtable">
@@ -117,7 +117,7 @@ API changes</h1>
 <tr>
 <td>ICSS_EmacTxPacket </td><td><a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga49a2a061f6f24145004053b005f6e1a5">ICSS_EMAC_txPacket</a>  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md1566"></a>
+<h1><a class="anchor" id="autotoc_md1567"></a>
 Important Notes</h1>
 <ul>
 <li>In PDK, for initializing the handle for icss-emac, user had to manually perform dynamic allocation of memory needed for the icss-emac internal object. In MCU+ SDK, all allocation is static and user does not have to worry about memory allocation. <a class="el" href="structICSS__EMAC__Params.html">ICSS_EMAC_Params</a> should be filled before making the <a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html#ga3dfa23ace97b9812cbc71184186b8e52">ICSS_EMAC_open</a> function call to get the handle, which will be used for subsequent API calls.</li>
@@ -143,7 +143,7 @@ Source Path Change (MCU+ SDK &gt;= 26.01.00)</h1>
 <li><code>source/networking/icss_timesync</code> → <code>source/networking/icss_emac_lld/icss_timesync</code></li>
 </ul>
 <p>No API changes are introduced by this path change.</p>
-<h1><a class="anchor" id="autotoc_md1567"></a>
+<h1><a class="anchor" id="autotoc_md1568"></a>
 See Also</h1>
 <p><a class="el" href="group__NETWORKING__ICSS__EMAC__MODULE.html">APIs for ICSS-EMAC</a> </p>
 </div></div><!-- contents -->

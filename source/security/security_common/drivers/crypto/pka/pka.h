@@ -107,8 +107,10 @@ typedef void *RNG_Handle;
 extern PKA_Config            gPkaConfig[];
 /** \brief Externally defined driver configuration Num */
 extern uint32_t             gPkaConfigNum;
+#if (defined (SOC_AM263X) || defined (SOC_AM263PX)) && !defined(__ARM_ARCH_7R__)
 /** \brief Externally defined rng driver handle */
 extern RNG_Handle            gRngHandle;
+#endif
 
 /* ========================================================================== */
 /*                              Function Definitions                          */

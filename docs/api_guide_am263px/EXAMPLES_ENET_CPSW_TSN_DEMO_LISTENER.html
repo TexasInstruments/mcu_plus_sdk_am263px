@@ -92,23 +92,23 @@ $(document).ready(function(){initNavTree('EXAMPLES_ENET_CPSW_TSN_DEMO_LISTENER.h
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3483">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md3484">Test Setup</a></li>
-<li class="level1"><a href="#autotoc_md3485">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3486">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3487">Build the example</a></li>
-<li class="level2"><a href="#autotoc_md3488">HW Setup</a></li>
-<li class="level2"><a href="#autotoc_md3489">Run the example</a></li>
-<li class="level2"><a href="#autotoc_md3490">EST schedule parameters</a></li>
-<li class="level2"><a href="#autotoc_md3491">UART Menu</a></li>
-<li class="level2"><a href="#autotoc_md3492">Sample output</a></li>
+<ul><li class="level1"><a href="#autotoc_md3484">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3485">Test Setup</a></li>
+<li class="level1"><a href="#autotoc_md3486">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md3487">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3488">Build the example</a></li>
+<li class="level2"><a href="#autotoc_md3489">HW Setup</a></li>
+<li class="level2"><a href="#autotoc_md3490">Run the example</a></li>
+<li class="level2"><a href="#autotoc_md3491">EST schedule parameters</a></li>
+<li class="level2"><a href="#autotoc_md3492">UART Menu</a></li>
+<li class="level2"><a href="#autotoc_md3493">Sample output</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3493">Troubleshooting issues</a></li>
-<li class="level1"><a href="#autotoc_md3494">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3494">Troubleshooting issues</a></li>
+<li class="level1"><a href="#autotoc_md3495">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_enet_cpsw_tsn_demo_listener"></a></p>
-<h1><a class="anchor" id="autotoc_md3483"></a>
+<h1><a class="anchor" id="autotoc_md3484"></a>
 Introduction</h1>
 <p>This is the listener side of the TSN integrated demo. One talker node (<a class="el" href="EXAMPLES_ENET_CPSW_TSN_DEMO_TALKER.html">Enet CPSW TSN Integrated Demo - Talker</a>) generates a measured express probe stream and, optionally, a saturating bulk background stream; <b>every other node in the chain runs this listener image</b>. See the talker page for the full concept explanation (why TSN, what the demo measures, chain topology, the wire traffic mix, and the bidirectional chain-position-staggered EST design) - this page only covers what's specific to the listener role, and how to configure its own features.</p>
 <p>Role of Listener in this Demo:</p>
@@ -127,13 +127,13 @@ Introduction</h1>
 <li>The <code>featureBits</code> echoed in every frame is how the talker verifies the whole chain is in the same feature state before opening a measurement window.</li>
 <li>The 'L' command increases upstream network congestion by looping background traffic back to the talker entirely via hardware inside the final listener.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3484"></a>
+<h1><a class="anchor" id="autotoc_md3485"></a>
 Test Setup</h1>
 <div class="image">
 <img src="tsn_demo_talker_listener_setup.png" alt="" width="60%"/>
 <div class="caption">
 Talker,Listener EVM Connections </div></div>
-<h1><a class="anchor" id="autotoc_md3485"></a>
+<h1><a class="anchor" id="autotoc_md3486"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -147,22 +147,22 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/tsn_demo/listener   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3486"></a>
+<h1><a class="anchor" id="autotoc_md3487"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md3487"></a>
+<h2><a class="anchor" id="autotoc_md3488"></a>
 Build the example</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>).</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3488"></a>
+<h2><a class="anchor" id="autotoc_md3489"></a>
 HW Setup</h2>
 <dl class="section note"><dt>Note</dt><dd>Make sure you have setup the EVM with cable connections as shown here, <a class="el" href="EVM_SETUP_PAGE.html">EVM Setup</a>. In addition do the below steps.</dd></dl>
 <ul>
 <li>Connect this node's MAC port 1 toward the talker (or toward the previous listener in the chain), and MAC port 2 toward the next listener if any (see the above picture for Talker,listener EVM connections)</li>
 <li>All links must run at 1 Gbit (see the talker page for why the EST schedule depends on link speed).</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3489"></a>
+<h2><a class="anchor" id="autotoc_md3490"></a>
 Run the example</h2>
 <ul>
 <li>Launch a CCS debug session and run the example executable (see <a class="el" href="CCS_LAUNCH_PAGE.html">CCS Launch, Load and Run</a>).</li>
@@ -175,7 +175,7 @@ Run the example</h2>
 <li>When the talker operator switches to a TSN-on run mode, enable the same features here <b>before</b> starting the run on the talker (listeners first, talker last - IET verification is a link-partner handshake and needs both ends enabled).</li>
 <li>To enable IET feature both link partners should have IET configured. Press 'i' in both link partner consoles and verify IET enablement using 'Features applied: EST=off <b>IET=on</b> CUTTHRU=off' print</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3490"></a>
+<h2><a class="anchor" id="autotoc_md3491"></a>
 EST schedule parameters</h2>
 <p>Every feature starts <b>off</b> on every boot/reset and the &lsquo;'d&rsquo;<code>status print will show </code>EST=off IET=off CUTTHRU=off<code>until you toggle something from the console. Once you press</code>'e'`, this node computes and programs the gate-control list below on both of its MAC ports.</p>
 <center> <table class="doxtable">
@@ -202,7 +202,7 @@ EST schedule parameters</h2>
 <ul>
 <li>These numbers hold for the talker's port and any listener's downstream-facing port, where the express window is fixed at <code>TSNDEMO_EST_DOWNSTREAM_WIDTH_NS</code> = 20000 ns. A listener's upstream/echo-facing port uses a wider express window that grows with this node's distance from the end of the chain instead - see <code>TsnDemoFeature_computePortWindow()</code> in <code>tsndemo_feature.c</code>.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3491"></a>
+<h2><a class="anchor" id="autotoc_md3492"></a>
 UART Menu</h2>
 <div class="fragment"><div class="line">--- TSN Demo Listener -------------------------------------</div>
 <div class="line"> &#39;e&#39;  -  Toggle EST</div>
@@ -229,7 +229,7 @@ UART Menu</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">x  </td><td class="markdownTableBodyNone">Stop   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md3492"></a>
+<h2><a class="anchor" id="autotoc_md3493"></a>
 Sample output</h2>
 <div class="fragment"><div class="line">==========================</div>
 <div class="line">  TSN Demo - Listener</div>
@@ -290,14 +290,14 @@ Sample output</h2>
 </div><!-- fragment --><div class="fragment"><div class="line">g</div>
 <div class="line">&lt;live per-port EST oper-list readback, including this port&#39;s computed</div>
 <div class="line"> upstream/downstream role and offset&gt;</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3493"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3494"></a>
 Troubleshooting issues</h1>
 <ul>
 <li><b>Link not at 1 Gbit</b>: see the talker page - the staggered EST schedule's timing assumes 1 Gbit throughout the chain.</li>
 <li><b>This node ended up with the wrong upstream/downstream role</b>: double check the node id and total chain length you entered at boot - both are used to derive which port faces downstream, and a wrong answer to either one (especially the chain length) will misapply the stagger on both of this node's ports even though &lsquo;'g&rsquo;` will still print <em>something</em> plausible-looking.</li>
 <li>**&lsquo;'L&rsquo;` refused**: this is expected on any node that has a downstream neighbor - only the true end of the chain should reflect bulk traffic back upstream, to avoid duplicate reflected frames.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3494"></a>
+<h1><a class="anchor" id="autotoc_md3495"></a>
 See Also</h1>
 <p><a class="el" href="EXAMPLES_ENET_CPSW_TSN_DEMO_TALKER.html">Enet CPSW TSN Integrated Demo - Talker</a>, <a class="el" href="NETWORKING.html">Ethernet And Networking</a> </p>
 </div></div><!-- contents -->

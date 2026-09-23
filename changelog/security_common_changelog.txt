@@ -1418,3 +1418,113 @@ Date:   Thu Jul 16 15:42:55 2026 +0530
  updateC29SDK.py | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
+========================================
+Changes from build on 2026-09-23 20:38:15
+Previous commit: dfe4c1c008dac09f70a9b1abcacd41d118dbf1fc
+Current commit: 5ab89e3e13812801d0c9321152b4f49ff33458e8
+========================================
+
+commit 5ab89e3e13812801d0c9321152b4f49ff33458e8
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Wed Sep 16 08:55:25 2026 +0530
+
+    all_soc: drivers/crypto/dthe: Simplify DMA status handling
+    
+    Simplify DMA wrapper status mapping in DTHE driver:
+    - Remove explicit DMA_RETURN_FAILURE branches, only map SystemP_SUCCESS
+      to DMA_RETURN_SUCCESS
+    - Updated Tx/Rx config, enable/disable, start and wait functions
+    
+    Reduces redundant failure checks and aligns with current error
+    propagation.
+    
+    Fixes: TIFSMCU-5825
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/dthe/dma.c | 60 ++++++++++--------------------------------------------------
+ 1 file changed, 10 insertions(+), 50 deletions(-)
+
+commit dfbf90d29fb7b3fe4b9681274e43d28862419e10
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Sat Sep 12 13:57:17 2026 +0530
+
+    am263x/am263px: Security: Fix MISRA-C issues
+    
+    - Modify the size check in hsmclient.c to silence the
+      suspicious use of size issue
+    - Add length checks for lenA and lenP in pka.c
+    
+    Fixes: TIFSMCU-6054
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/crypto/pka/pka.c      | 26 +++++++++++++++++---------
+ drivers/hsmclient/hsmclient.c |  4 ++--
+ 2 files changed, 19 insertions(+), 11 deletions(-)
+
+commit bbda39be3990d29083553f900fc767d2673a53a0
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Fri Sep 11 17:58:04 2026 +0530
+
+    am263px/am263x: HSMClient: Disable host buffer
+    
+    - Add a condition to allow users to disable host buffer support
+      in run time
+    
+    Fixes: TIFSMCU-6044
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/hsmclient/hsmclient.c |  7 +++++--
+ drivers/hsmclient/hsmclient.h | 12 ++++++++++++
+ 2 files changed, 17 insertions(+), 2 deletions(-)
+
+commit c33ff1ba075cbcff2e2b2dba15e63930179024a1
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Wed Sep 9 18:50:54 2026 +0530
+
+    all socs: PKA: Fix RNG bug
+    
+    - Add conditions to ensure that the rng handle is
+      only used for am263x and am263px socs
+    
+    Fixes: TIFSMCU-6036
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/crypto/pka/pka.c | 32 ++++++++++++++++++++++++++++++--
+ drivers/crypto/pka/pka.h |  2 ++
+ 2 files changed, 32 insertions(+), 2 deletions(-)
+
+commit d1bc751a513d30b6d9bceefc1e0fad7b012c6001
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Wed Sep 9 16:34:37 2026 +0530
+
+    am263x/am263px: PKA: Fix MISRA-C issue
+    
+    - Fix the critical MISRA-C issue
+    
+    Fixes: TIFSMCU-6023
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/crypto/pka/pka.c | 42 ++++++++++++++++++++++++------------------
+ 1 file changed, 24 insertions(+), 18 deletions(-)
+
+commit d9c8a631fc6a4bc3af14e159dc99dd4e097c98bc
+Author: Seema.Khatib <seema.khatib@ti.com>
+Date:   Mon Sep 7 12:54:34 2026 +0530
+
+    f29h85x: SC: misra
+    
+    -update crypto files to fix misra and cert c violations
+    
+    Fixes: TIFSMCU-5697
+    
+    Signed-off-by: Seema.Khatib <seema.khatib@ti.com>
+
+ drivers/crypto/dthe/dma/rtdma/dthe_rtdma.c | 14 +++++++-------
+ drivers/crypto/pke/pke.c                   |  6 +++---
+ 2 files changed, 10 insertions(+), 10 deletions(-)
+

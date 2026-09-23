@@ -22745,3 +22745,323 @@ Date:   Mon May 25 11:23:37 2026 +0530
  sysconfig/networking/.meta/enet_cpsw/templates/enet_app_syscfg_info.c.xdt   |  16 +-
  15 files changed, 1802 insertions(+), 81 deletions(-)
 
+========================================
+Changes from build on 2026-09-23 20:38:22
+Previous commit: 5f831e2ff3ed8cef272b2df48003c74aee60672a
+Current commit: fcfff1e3a33034159e3c147b9e84ff04028d05a5
+========================================
+
+commit fcfff1e3a33034159e3c147b9e84ff04028d05a5
+Author: Ranga Rakesh Jonnalagadda <r-jonnalagadda@ti.com>
+Date:   Thu Sep 17 14:43:05 2026 +0530
+
+    enet: am263x/am263px/am261x: Fix CPTS adjust overflow in IOCTL
+    
+    - Multiplying tsAdj->adjValInNsecs (int32_t) by -1 was performed using 32-bit arithmetic before casting.
+      This risks undefined behavior and wrapping if the value is INT32_MIN.Fixed by casting to int64_t prior
+      to negation to ensure safe 64-bit evaluation before assigning to adjOffset.
+    
+    Fixes: MCUSDK-15794
+    
+    Signed-off-by: Ranga Rakesh Jonnalagadda <r-jonnalagadda@ti.com>
+
+ src/mod/cpsw_cpts_ioctl.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 4ef51d3624c1ae09a39032c5b6cd9b7769d69a83
+Author: Laxman <l-chinnannavar@ti.com>
+Date:   Tue Sep 1 16:52:14 2026 +0530
+
+    am243x/am64x: enet: Update ENET interface for PRU checksum offload
+    
+    - Add option to enable/disable checksum offload to PRU via syscfg.
+    
+    Fixes: PINDSW-11222
+    
+    Signed-off-by: Laxman <l-chinnannavar@ti.com>
+
+ include/per/icssg.h                                                   |  4 ++
+ lwipif/src/lwip2lwipif.c                                              | 17 ++++++---
+ src/dma/udma/enet_udma_priv.c                                         |  4 --
+ src/per/icssg.c                                                       | 86 +++++++++++++++++++++++++++++++++++++++++++
+ sysconfig/networking/.meta/enet_icss/enet_icss.syscfg.js              | 10 +++++
+ sysconfig/networking/.meta/enet_icss/templates/enet_lwipif.c.xdt      | 33 ++++++++++++++++-
+ sysconfig/networking/.meta/enet_icss/templates/icss_init_config.c.xdt |  1 +
+ 7 files changed, 143 insertions(+), 12 deletions(-)
+
+commit 4751d22fe0afca2ed562ff78204b5488ad9c947f
+Author: Laxman <l-chinnannavar@ti.com>
+Date:   Wed Aug 5 10:46:16 2026 +0530
+
+    am243x/am64x: enet: Add Rx PRU checksum offload support
+    
+    - Add Rx checksum offload support for TCP and UDP frames
+    
+    Fixes: PINDSW-11222
+    
+    Signed-off-by: Laxman <l-chinnannavar@ti.com>
+
+ include/core/enet_dma.h       | 22 ++++++++++++++++++++++
+ lwipif/inc/lwip2enet.h        |  5 +++++
+ lwipif/src/lwip2enet.c        | 12 +++++++++++-
+ src/dma/udma/enet_udma_priv.c |  6 +++++-
+ 4 files changed, 43 insertions(+), 2 deletions(-)
+
+commit 83ed60ec2ab35cc54f2854db2db4a814ca962ee9
+Author: Laxman <l-chinnannavar@ti.com>
+Date:   Sun Jun 28 18:23:54 2026 +0530
+
+    am243x/am64x: enet: Add PRU checksum offload support
+    
+    - Checksum offload support for IP,TCP and UDP frames
+    
+    Fixes: PINDSW-11222
+    
+    Signed-off-by: Laxman <l-chinnannavar@ti.com>
+
+ include/core/enet_dma.h          | 16 ++++++++++++++++
+ include/dma/udma/enet_udma_psi.h | 20 ++++++++++++++++++++
+ include/enet_cfg.h               | 12 ++++++++++++
+ lwipif/inc/lwip2enet.h           |  6 ++++++
+ lwipif/src/lwip2enet.c           | 10 ++++++++--
+ lwipif/src/lwip2lwipif.c         | 61 ++++++++++++++++++++++++++++++++++++++++---------------------
+ lwipif/src/lwip2lwipif_priv.h    |  2 +-
+ src/dma/udma/enet_udma_priv.c    | 24 +++++++++++++++++++++++-
+ 8 files changed, 126 insertions(+), 25 deletions(-)
+
+commit bf514fef1b8ffee1baeb97ce848e26c24e291e0c
+Author: Ranga Rakesh Jonnalagadda <r-jonnalagadda@ti.com>
+Date:   Wed Sep 16 21:07:34 2026 +0530
+
+    am261x-som: enet: Revert ZEJ 1.28.0 syscfg SOM Package support
+    
+    - Reverting SysConfig v1.28.0 changes to align with the v1.27.0 SDK release
+    - SysConfig 1.27.0 SOM package supports the 400MHz CPU clock.
+    - Dual-variant support (400MHz and 500MHz) will be deferred to v1.28.0
+    
+    Fixes: MCUSDK-15794
+    
+    Signed-off-by: Ranga Rakesh Jonnalagadda <r-jonnalagadda@ti.com>
+
+ examples/enet_cpsw_est/am261x-som/r5fss0-0_freertos/example.syscfg     |  4 +--
+ examples/tsn/gptp_cpsw_app/am261x-som/r5fss0-0_freertos/example.syscfg |  8 ++---
+ examples/tsn_demo/listener/am261x-som/r5fss0-0_freertos/example.syscfg |  9 ++---
+ examples/tsn_demo/talker/am261x-som/r5fss0-0_freertos/example.syscfg   | 77 ++++++++++++++++++++----------------------
+ examples/tsn_demo/talker/tsndemo_pacing.c                              |  6 ++--
+ sysconfig/networking/.meta/enet_cpsw/am261x/enet_cpsw_am261x.syscfg.js | 14 ++++----
+ 6 files changed, 54 insertions(+), 64 deletions(-)
+
+commit 67eeb29f4580e64c61468e2a8798a6d9772e8236
+Author: Ranga Rakesh Jonnalagadda <r-jonnalagadda@ti.com>
+Date:   Tue Sep 15 00:26:47 2026 +0530
+
+    am261x: enet: Fix dataabort in UDP stats report
+    
+    - with release optimization flags stats_buffer() dissasembly has
+    unexpected branch instrutions generated. added optnone attribute
+    to avoid optimizations in stats_buffer()
+    - use optnone attribute only with ti-arm-clang compiler
+    
+    Fixes: MCUSDK-15794
+    
+    Signed-off-by: Ranga Rakesh Jonnalagadda <r-jonnalagadda@ti.com>
+
+ examples/lwip/enet_lwip_cpsw/.project/project_am243x.js                          | 2 ++
+ examples/lwip/enet_lwip_cpsw/.project/project_am261x.js                          | 1 +
+ examples/lwip/enet_lwip_cpsw/.project/project_am263px.js                         | 1 +
+ examples/lwip/enet_lwip_cpsw/.project/project_am263x.js                          | 1 +
+ examples/lwip/enet_lwip_cpsw/.project/project_am273x.js                          | 1 +
+ examples/lwip/enet_lwip_cpsw/.project/project_am275x.js                          | 2 ++
+ examples/lwip/enet_lwip_cpsw/.project/project_am62ax.js                          | 2 ++
+ examples/lwip/enet_lwip_cpsw/.project/project_am62dx.js                          | 2 ++
+ examples/lwip/enet_lwip_cpsw/.project/project_am62lx.js                          | 2 ++
+ examples/lwip/enet_lwip_cpsw/.project/project_am62px.js                          | 3 +++
+ examples/lwip/enet_lwip_cpsw/.project/project_am62x.js                           | 2 ++
+ examples/lwip/enet_lwip_cpsw/.project/project_am64x.js                           | 2 ++
+ examples/lwip/enet_lwip_cpsw/.project/project_awr294x.js                         | 1 +
+ examples/lwip/enet_lwip_cpsw/am243x-evm/r5fss0-0_freertos/gcc-armv7/makefile     | 1 +
+ .../enet_lwip_cpsw/am243x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec | 1 +
+ examples/lwip/enet_lwip_cpsw/am243x-evm/r5fss0-0_freertos/ti-arm-clang/makefile  | 1 +
+ examples/lwip/enet_lwip_cpsw/am243x-evm/r5fss0-1_freertos/gcc-armv7/makefile     | 1 +
+ .../enet_lwip_cpsw/am243x-evm/r5fss0-1_freertos/ti-arm-clang/example.projectspec | 1 +
+ examples/lwip/enet_lwip_cpsw/am243x-evm/r5fss0-1_freertos/ti-arm-clang/makefile  | 1 +
+ examples/lwip/enet_lwip_cpsw/am243x-lp/r5fss0-0_freertos/gcc-armv7/makefile      | 1 +
+ .../enet_lwip_cpsw/am243x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 1 +
+ examples/lwip/enet_lwip_cpsw/am243x-lp/r5fss0-0_freertos/ti-arm-clang/makefile   | 1 +
+ .../enet_lwip_cpsw/am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 1 +
+ examples/lwip/enet_lwip_cpsw/am261x-lp/r5fss0-0_freertos/ti-arm-clang/makefile   | 1 +
+ .../enet_lwip_cpsw/am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec | 1 +
+ examples/lwip/enet_lwip_cpsw/am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile  | 1 +
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 1 +
+ .../am263px-cc-dp83826/am263px-cc/r5fss0-0_freertos/ti-arm-clang/makefile        | 1 +
+ .../am263px-cc/r5fss0-1_freertos/ti-arm-clang/example.projectspec                | 1 +
+ .../am263px-cc-dp83826/am263px-cc/r5fss0-1_freertos/ti-arm-clang/makefile        | 1 +
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 1 +
+ .../am263px-cc-dp83869/am263px-cc/r5fss0-0_freertos/ti-arm-clang/makefile        | 1 +
+ .../am263px-cc/r5fss0-1_freertos/ti-arm-clang/example.projectspec                | 1 +
+ .../am263px-cc-dp83869/am263px-cc/r5fss0-1_freertos/ti-arm-clang/makefile        | 1 +
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 1 +
+ .../am263px-cc-dp83tg720/am263px-cc/r5fss0-0_freertos/ti-arm-clang/makefile      | 1 +
+ .../am263px-cc/r5fss0-1_freertos/ti-arm-clang/example.projectspec                | 1 +
+ .../am263px-cc-dp83tg720/am263px-cc/r5fss0-1_freertos/ti-arm-clang/makefile      | 1 +
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 1 +
+ .../am263px-lp-dp83869/am263px-lp/r5fss0-0_freertos/ti-arm-clang/makefile        | 1 +
+ .../enet_lwip_cpsw/am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 1 +
+ examples/lwip/enet_lwip_cpsw/am263x-cc/r5fss0-0_freertos/ti-arm-clang/makefile   | 1 +
+ .../enet_lwip_cpsw/am263x-cc/r5fss0-1_freertos/ti-arm-clang/example.projectspec  | 1 +
+ examples/lwip/enet_lwip_cpsw/am263x-cc/r5fss0-1_freertos/ti-arm-clang/makefile   | 1 +
+ .../enet_lwip_cpsw/am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 1 +
+ examples/lwip/enet_lwip_cpsw/am263x-lp/r5fss0-0_freertos/ti-arm-clang/makefile   | 1 +
+ .../enet_lwip_cpsw/am273x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec | 1 +
+ examples/lwip/enet_lwip_cpsw/am273x-evm/r5fss0-0_freertos/ti-arm-clang/makefile  | 1 +
+ .../enet_lwip_cpsw/am273x-evm/r5fss0-1_freertos/ti-arm-clang/example.projectspec | 1 +
+ examples/lwip/enet_lwip_cpsw/am273x-evm/r5fss0-1_freertos/ti-arm-clang/makefile  | 1 +
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 1 +
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 1 +
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 1 +
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile      | 1 +
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 1 +
+ .../am62dx-evm-dp83867/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile    | 1 +
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 1 +
+ .../am62dx-evm-dp83tg721/am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile  | 1 +
+ .../enet_lwip_cpsw/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec  | 1 +
+ examples/lwip/enet_lwip_cpsw/am62lx-evm/a53ss0-0_freertos/gcc-aarch64/makefile   | 1 +
+ .../am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 1 +
+ .../lwip/enet_lwip_cpsw/am62px-sk/wkup-r5fss0-0_freertos/ti-arm-clang/makefile   | 1 +
+ .../enet_lwip_cpsw/am62x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec    | 1 +
+ examples/lwip/enet_lwip_cpsw/am62x-sk/a53ss0-0_freertos/gcc-aarch64/makefile     | 1 +
+ .../enet_lwip_cpsw/am64x-evm/a53ss0-0_freertos/gcc-aarch64/example.projectspec   | 1 +
+ examples/lwip/enet_lwip_cpsw/am64x-evm/a53ss0-0_freertos/gcc-aarch64/makefile    | 1 +
+ .../enet_lwip_cpsw/am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec  | 1 +
+ examples/lwip/enet_lwip_cpsw/am64x-evm/r5fss0-0_freertos/ti-arm-clang/makefile   | 1 +
+ .../enet_lwip_cpsw/am64x-evm/r5fss0-1_freertos/ti-arm-clang/example.projectspec  | 1 +
+ examples/lwip/enet_lwip_cpsw/am64x-evm/r5fss0-1_freertos/ti-arm-clang/makefile   | 1 +
+ .../enet_lwip_cpsw/am64x-sk/a53ss0-0_freertos/gcc-aarch64/example.projectspec    | 1 +
+ examples/lwip/enet_lwip_cpsw/am64x-sk/a53ss0-0_freertos/gcc-aarch64/makefile     | 1 +
+ .../enet_lwip_cpsw/am64x-sk/r5fss0-0_freertos/ti-arm-clang/example.projectspec   | 1 +
+ examples/lwip/enet_lwip_cpsw/am64x-sk/r5fss0-0_freertos/ti-arm-clang/makefile    | 1 +
+ examples/lwip/enet_lwip_cpsw/udp_iperf.c                                         | 3 ++-
+ 75 files changed, 85 insertions(+), 1 deletion(-)
+
+commit 1aa45e584f1cda6a79b997fb836f91bb07bb7552
+Author: Ranga Rakesh Jonnalagadda <r-jonnalagadda@ti.com>
+Date:   Fri Sep 11 16:57:59 2026 +0530
+
+    am261x: enet: Fix dataabort in UDP stats report
+    
+    - with release optimization flags stats_buffer() dissasembly has
+      unexpected branch instrutions generated. added optnone attribute
+      to avoid optimizations in stats_buffer()
+    
+    Fixes: MCUSDK-15794
+    
+    Signed-off-by: Ranga Rakesh Jonnalagadda <r-jonnalagadda@ti.com>
+
+ examples/lwip/enet_lwip_cpsw/udp_iperf.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit f45e978b2f29042b5e476fb28c147235160c1272
+Author: Ranga Rakesh Jonnalagadda <r-jonnalagadda@ti.com>
+Date:   Fri Sep 11 19:44:34 2026 +0530
+
+    am261x: enet: Fix kw issue in traffic shaping IOCTL
+    
+    - Fix kw issue in traffic shaping IOCTL
+    
+    Fixes: MCUSDK-15794
+    
+    Signed-off-by: Ranga Rakesh Jonnalagadda <r-jonnalagadda@ti.com>
+
+ src/mod/cpsw_hostport_ioctl.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 28d2eae49c3235d11b7a07a01bb6f2da37216395
+Author: Kalyan Vagvala <k-vagvala@ti.com>
+Date:   Fri Sep 11 12:08:29 2026 +0530
+
+    all: sysconfig: Fix MDIO poll/C45 bitmask using PHY address index
+    
+    getArraytoBitMask() was shifting by the array index (elem) instead
+    of the array value (configObj[elem]). For mdioPollEnMask = ["1"],
+    this generated pollEnMask = 0x1 (PHY addr 0) instead of 0x2 (PHY
+    addr 1), causing MDIO to never poll the correct PHY. The bug is
+    silent when PHY address is 0 since index 0 == value 0.
+    
+    Fixes: MCUSDK-15981
+    
+    Signed-off-by: Kalyan Vagvala <k-vagvala@ti.com>
+
+ sysconfig/networking/.meta/common/enet_cpsw_utils.syscfg.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit a0ae755f052648e9fe1c508162534995653ade65
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Wed Sep 9 11:14:44 2026 +0530
+
+    allsoc: tsr: tsr set implemented
+    
+    - EnetAppUtils_setTimeSyncRouter API implemented
+      inplace of placeholder.
+    
+    Fixes: SITSW-13100
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ utils/enet_apputils_k3.c         | 76 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----
+ utils/include/enet_apputils_k3.h | 30 ++++++++++++++++++++++++++++++
+ 2 files changed, 101 insertions(+), 5 deletions(-)
+
+commit fc3524ccd179e593abdbd410de608cd3e0208cc6
+Author: Gouri Siva M <g-t1@ti.com>
+Date:   Wed Sep 9 13:21:07 2026 +0530
+
+    am261x-som: enet: ZCZ package update
+    
+     - New CPTS ref clock is 250M from prev 200M
+     - Modifying all the examples CPTS add value to adjust to latest one
+    
+    Fixes: MCUSDK-15547
+    
+    Signed-off-by: Gouri Siva M <g-m1@ti.com>
+
+ examples/enet_cpsw_est/am261x-som/r5fss0-0_freertos/example.syscfg     |  2 +-
+ examples/tsn/gptp_cpsw_app/am261x-som/r5fss0-0_freertos/example.syscfg |  2 +-
+ examples/tsn_demo/listener/am261x-som/r5fss0-0_freertos/example.syscfg |  2 +-
+ examples/tsn_demo/talker/am261x-som/r5fss0-0_freertos/example.syscfg   |  2 +-
+ examples/tsn_demo/talker/tsndemo_pacing.c                              |  6 +++---
+ sysconfig/networking/.meta/enet_cpsw/am261x/enet_cpsw_am261x.syscfg.js | 10 ++++++++--
+ 6 files changed, 15 insertions(+), 9 deletions(-)
+
+commit fcd48d20331d9ac53112f96db18a5aa0f0972817
+Author: Kalyan Vagvala <k-vagvala@ti.com>
+Date:   Tue Aug 18 06:58:21 2026 +0530
+
+    am261x: sysconfig: add support for zej, znc
+    
+    - update enet_cpsw_am261x.syscfg.js file to support new package variants
+    
+    Fixes: MCUSDK-15547
+    
+    Signed-off-by: Kalyan Vagvala <k-vagvala@ti.com>
+
+ sysconfig/networking/.meta/enet_cpsw/am261x/enet_cpsw_am261x.syscfg.js | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+commit c87d4a0c2ec5ccc47b83ab9b167c426e77bb0137
+Author: Ranga Rakesh Jonnalagadda <r-jonnalagadda@ti.com>
+Date:   Tue Sep 8 17:32:03 2026 +0530
+
+    am26xx,am243x,am64x: enet: Fix Syscfg sanity in macAddrList field
+    
+    - move description to long description for macAddrList field
+    
+    Fixes: MCUSDK-15794
+    
+    Signed-off-by: Ranga Rakesh Jonnalagadda <r-jonnalagadda@ti.com>
+
+ sysconfig/networking/.meta/enet_cpsw/am261x/enet_cpsw_am261x.syscfg.js           | 3 ++-
+ sysconfig/networking/.meta/enet_cpsw/am263px/enet_cpsw_am263px.syscfg.js         | 3 ++-
+ sysconfig/networking/.meta/enet_cpsw/am263x/enet_cpsw_am263x.syscfg.js           | 3 ++-
+ .../networking/.meta/enet_cpsw/am64x_am243x/enet_cpsw_am64x_am243x.syscfg.js     | 3 ++-
+ 4 files changed, 8 insertions(+), 4 deletions(-)
+

@@ -103,13 +103,26 @@ __attribute__((weak)) int32_t Keyring_init(HsmClient_t *gHSMClient)
     return SystemP_SUCCESS;
 }
 
+
+int32_t enable_flash_dac_phy()
+{
+    int32_t status = SystemP_SUCCESS;
+    /* enable Phy and Phy pipeline for XIP execution */
+    if (OSPI_isPhyEnable(gOspiHandle[CONFIG_OSPI0]))
+    {
+        status = OSPI_enablePhy(gOspiHandle[CONFIG_OSPI0]);
+        status = OSPI_enablePhyPipeline(gOspiHandle[CONFIG_OSPI0]);
+    }
+    status = OSPI_enableDacMode(gOspiHandle[CONFIG_OSPI0]);
+    return status;
+}
+
 int main(void)
 {
     int32_t status;
     Bootloader_profileReset();
     Bootloader_socConfigurePll();
     Bootloader_socSetAutoClock();
-
     System_init();
     Bootloader_profileAddProfilePoint("System_init");
     Drivers_open();
@@ -149,6 +162,7 @@ int main(void)
 			volatile uint8_t bootrgn;
             bootinfo_sector_t *bootinfo;
             Flash_Attrs *flashAttr = Flash_getAttrs(CONFIG_FLASH0);
+            DebugP_assert(enable_flash_dac_phy() == SystemP_SUCCESS);
             bootinfo = (bootinfo_sector_t *)__TI_SBL_FLASH_BOOTINFO_SECTOR_START;
             fssConf.extFlashSize = flashAttr->flashSize;
             /*
@@ -158,6 +172,7 @@ int main(void)
             */
             bootrgn = bootinfo->fields.bootRegion;
 
+            SOC_controlModuleUnlockMMR(SOC_DOMAIN_ID_MAIN, MSS_CTRL_PARTITION0);
             if (bootrgn == BOOT_REGION_B)
             {
                 FSS_selectRegionB((FSS_Handle)&fssConf);
@@ -166,6 +181,7 @@ int main(void)
             {
                 FSS_selectRegionA((FSS_Handle)&fssConf);
             }
+            SOC_controlModuleLockMMR(SOC_DOMAIN_ID_MAIN, MSS_CTRL_PARTITION0);
 #endif
     
             OSPI_Handle ospiHandle = OSPI_getHandle(CONFIG_OSPI0);
@@ -258,6 +274,7 @@ int main(void)
             */
             if(status == SystemP_FAILURE)
             {
+                SOC_controlModuleUnlockMMR(SOC_DOMAIN_ID_MAIN, MSS_CTRL_PARTITION0);
                 if (bootrgn == BOOT_REGION_B)
                 {
                     FSS_selectRegionA((FSS_Handle)&fssConf);
@@ -266,6 +283,7 @@ int main(void)
                 {
                     FSS_selectRegionB((FSS_Handle)&fssConf);
                 }
+                SOC_controlModuleLockMMR(SOC_DOMAIN_ID_MAIN, MSS_CTRL_PARTITION0);
                 status = Bootloader_parseAndLoadMultiCoreELF(bootHandle, &bootImageInfo);
             }
 #endif

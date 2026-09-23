@@ -77,6 +77,18 @@ extern "C"
  *        config header.
  */
 #define HSMCLIENT_CACHE_ENABLE  (1U)
+
+/**
+ * @brief
+ *        Denotes that host buffer support is enabled
+ */
+#define HSMCLIENT_HOST_BUFF_SUPPORT_ENABLE  (0xAAAAAAAAU)
+
+/**
+ * @brief
+ *        Denotes that host buffer support is disabled
+ */
+#define HSMCLIENT_HOST_BUFF_SUPPORT_DISABLE  (0xFFFFFFFFU)
 #endif
 
 /**

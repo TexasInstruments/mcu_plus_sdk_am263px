@@ -185,16 +185,16 @@ int32_t SDL_VTM_setTShutTemp(SDL_VTM_InstTs instance, int32_t tshut_th_hot, \
  *  \brief API to set/Clear masks for generating interrupts
  *
  *  \param instance         [IN]  VTM Temperature sensor instance
- *  \param hotintr          [IN]  Enable/disable hot interrupt.
- *  \param coldintr         [IN]  Enable/disable cold interrupt.
-*   \param lowthresholdintr [IN]  Enable/disable low treshold interrupt.
+ *  \param hotIntr          [IN]  Enable/disable hot interrupt.
+ *  \param coldIntr         [IN]  Enable/disable cold interrupt.
+*   \param lowThresholdIntr [IN]  Enable/disable low treshold interrupt.
  *
  *  \return The SDL error code for the API.
  *                                 If instance is invalid: SDL_EBADARGS
  *                                 Success: SDL_PASS
  */
-int32_t SDL_VTM_setClearInterrupts(SDL_VTM_InstTs instance, uint8_t  hotintr, \
-                                 uint8_t  coldintr, uint8_t  lowthresholdintr);
+int32_t SDL_VTM_setClearInterrupts(SDL_VTM_InstTs instance, uint8_t  hotIntr, \
+                                 uint8_t  coldIntr, uint8_t  lowThresholdIntr);
 
 /**
  *  \brief Read VTM Temperature sensor status

@@ -119,26 +119,27 @@ var ENET_LLD =
     [ "Ethernet Performance on AM263Px", "enetlld_performance.html", [
       [ "Introduction", "enetlld_performance.html#autotoc_md1464", null ],
       [ "Setup Details", "enetlld_performance.html#autotoc_md1465", null ],
-      [ "Layer 2 Performance", "enetlld_performance.html#autotoc_md1466", [
-        [ "Configuration Details", "enetlld_performance.html#autotoc_md1467", null ],
-        [ "Layer 2 Latency", "enetlld_performance.html#autotoc_md1468", null ]
+      [ "Library Memory Footprint - Cpsw, Lwip, Gptp", "enetlld_performance.html#autotoc_md1466", [
+        [ "Library Sizes - Feature-rich(Without LTO)", "enetlld_performance.html#autotoc_md1467", null ],
+        [ "Library Sizes - Per usecase (Without LTO)", "enetlld_performance.html#autotoc_md1468", null ]
       ] ],
-      [ "TCP/IP Performance", "enetlld_performance.html#autotoc_md1469", [
-        [ "Configuration Details", "enetlld_performance.html#autotoc_md1470", [
-          [ "TCP Throughput", "enetlld_performance.html#autotoc_md1471", null ],
-          [ "UDP Throughput", "enetlld_performance.html#autotoc_md1472", null ]
+      [ "Layer 2 Performance", "enetlld_performance.html#autotoc_md1469", [
+        [ "Configuration Details", "enetlld_performance.html#autotoc_md1470", null ],
+        [ "Layer 2 Latency", "enetlld_performance.html#autotoc_md1471", null ],
+        [ "Layer 2 Throughput", "enetlld_performance.html#autotoc_md1472", null ],
+        [ "Forwarding Latency", "enetlld_performance.html#autotoc_md1473", null ]
+      ] ],
+      [ "gPTP Performance", "enetlld_performance.html#autotoc_md1474", null ],
+      [ "TCP/IP Performance", "enetlld_performance.html#autotoc_md1475", [
+        [ "Configuration Details", "enetlld_performance.html#autotoc_md1476", [
+          [ "TCP Throughput", "enetlld_performance.html#autotoc_md1477", null ],
+          [ "UDP Throughput", "enetlld_performance.html#autotoc_md1478", null ]
         ] ]
       ] ],
-      [ "Ether-Ring Performance", "enetlld_performance.html#autotoc_md1473", null ],
-      [ "Ether-Ring Round Trip Latency with CAN(Vehicle) traffic", "enetlld_performance.html#autotoc_md1474", null ],
-      [ "Daisy Chain KPI performance with TSN Features(EST,Gptp)", "enetlld_performance.html#autotoc_md1475", [
-        [ "Test Setup", "enetlld_performance.html#autotoc_md1476", null ],
-        [ "Test Configuration", "enetlld_performance.html#autotoc_md1477", null ],
-        [ "Round Trip Latencies with 3 nodes(1 talker, 2listener)", "enetlld_performance.html#autotoc_md1478", null ],
-        [ "KPI Summary", "enetlld_performance.html#autotoc_md1479", null ]
-      ] ],
       [ "XIP Performance", "enetlld_performance.html#networking_xip_performance", null ],
-      [ "See Also", "enetlld_performance.html#autotoc_md1480", null ]
+      [ "Ether-Ring Performance", "enetlld_performance.html#autotoc_md1479", null ],
+      [ "Ether-Ring Round Trip Latency with CAN(Vehicle) traffic", "enetlld_performance.html#autotoc_md1480", null ],
+      [ "See Also", "enetlld_performance.html#autotoc_md1481", null ]
     ] ],
     [ "Enet EST/TAS Support", "enet_tas_top.html", [
       [ "Introduction", "enet_tas_top.html#enet_est_intro", [
@@ -184,12 +185,12 @@ var ENET_LLD =
     ] ],
     [ "Ethernet Packet Pool Allocation Guidelines", "PACKETPOOL_CONFIG_TOP.html", null ],
     [ "Ether-Ring Overview", "ETHERRING_OVERVIEW.html", [
-      [ "Software Architecture", "ETHERRING_OVERVIEW.html#autotoc_md1481", null ],
-      [ "CAN to Ethernet Traffic Simulation", "ETHERRING_OVERVIEW.html#autotoc_md1482", null ],
-      [ "Packet Duplication on Transmission", "ETHERRING_OVERVIEW.html#autotoc_md1483", null ],
-      [ "Software Assistance on Transmission side", "ETHERRING_OVERVIEW.html#autotoc_md1484", null ],
-      [ "Software Assistance on Reception side", "ETHERRING_OVERVIEW.html#autotoc_md1485", null ],
-      [ "Duplicate packet Rejection on Reception side(Duplicate Packet Rejection)", "ETHERRING_OVERVIEW.html#autotoc_md1486", null ]
+      [ "Software Architecture", "ETHERRING_OVERVIEW.html#autotoc_md1482", null ],
+      [ "CAN to Ethernet Traffic Simulation", "ETHERRING_OVERVIEW.html#autotoc_md1483", null ],
+      [ "Packet Duplication on Transmission", "ETHERRING_OVERVIEW.html#autotoc_md1484", null ],
+      [ "Software Assistance on Transmission side", "ETHERRING_OVERVIEW.html#autotoc_md1485", null ],
+      [ "Software Assistance on Reception side", "ETHERRING_OVERVIEW.html#autotoc_md1486", null ],
+      [ "Duplicate packet Rejection on Reception side(Duplicate Packet Rejection)", "ETHERRING_OVERVIEW.html#autotoc_md1487", null ]
     ] ],
     [ "Ethernet interface (RGMII / MII) selection", "enet_interface_selection.html", null ]
 ];

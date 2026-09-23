@@ -263,9 +263,12 @@ static int32_t Flash_nandOspiRead(Flash_Config *config, uint32_t offset, uint8_t
     }
 
 #if defined (SOC_AM263PX) || defined (SOC_AM261X)
-    if(obj->phyEnable)
+    if(status == SystemP_SUCCESS)
     {
-        OSPI_enablePhy(obj->ospiHandle);
+        if(obj->phyEnable)
+        {
+            OSPI_enablePhy(obj->ospiHandle);
+        }
     }
 #endif
 
@@ -407,7 +410,7 @@ static int32_t Flash_nandOspiRead(Flash_Config *config, uint32_t offset, uint8_t
     }
 
 #if defined (SOC_AM263PX) || defined (SOC_AM261X)
-    if(obj->phyEnable)
+    if((obj != NULL) && (obj->phyEnable))
     {
         OSPI_disablePhy(obj->ospiHandle);
     }

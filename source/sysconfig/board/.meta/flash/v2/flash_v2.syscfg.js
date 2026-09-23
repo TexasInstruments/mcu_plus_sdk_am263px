@@ -702,6 +702,29 @@ function getConfigurables()
                         inst.dummyClksCmd = 0;
                         inst.dummyClksRd = 0;
 
+                        inst.proto_isAddrReg = false;
+                        inst.proto_cmdRegRd  = "0x00";
+                        inst.proto_cmdRegWr  = "0x00";
+                        inst.proto_cfgReg    = "0x00";
+                        inst.proto_shift     = 0;
+                        inst.proto_mask      = "0x00";
+                        inst.proto_bitP      = 0;
+
+                        inst.dummy_isAddrReg = false;
+                        inst.dummy_cmdRegRd  = "0x00";
+                        inst.dummy_cmdRegWr  = "0x00";
+                        inst.dummy_cfgReg    = "0x00";
+                        inst.dummy_shift     = 0;
+                        inst.dummy_mask      = "0x00";
+                        inst.dummy_bitP      = 0;
+
+                        inst.strDtr_isAddrReg = false;
+                        inst.strDtr_cmdRegRd  = "0x00";
+                        inst.strDtr_cmdRegWr  = "0x00";
+                        inst.strDtr_cfgReg    = "0x00";
+                        inst.strDtr_shift     = 0;
+                        inst.strDtr_mask      = "0x00";
+                        inst.strDtr_bitP      = 0;
                     }
                 }
                 else if(inst.flashType == "SERIAL_NAND")
@@ -791,6 +814,29 @@ function getConfigurables()
                         inst.dummyClksCmd = 0;
                         inst.dummyClksRd = 0;
 
+                        inst.proto_isAddrReg = false;
+                        inst.proto_cmdRegRd  = "0x00";
+                        inst.proto_cmdRegWr  = "0x00";
+                        inst.proto_cfgReg    = "0x00";
+                        inst.proto_shift     = 0;
+                        inst.proto_mask      = "0x00";
+                        inst.proto_bitP      = 0;
+
+                        inst.dummy_isAddrReg = false;
+                        inst.dummy_cmdRegRd  = "0x00";
+                        inst.dummy_cmdRegWr  = "0x00";
+                        inst.dummy_cfgReg    = "0x00";
+                        inst.dummy_shift     = 0;
+                        inst.dummy_mask      = "0x00";
+                        inst.dummy_bitP      = 0;
+
+                        inst.strDtr_isAddrReg = false;
+                        inst.strDtr_cmdRegRd  = "0x00";
+                        inst.strDtr_cmdRegWr  = "0x00";
+                        inst.strDtr_cfgReg    = "0x00";
+                        inst.strDtr_shift     = 0;
+                        inst.strDtr_mask      = "0x00";
+                        inst.strDtr_bitP      = 0;
                     }
                 }
 
@@ -1741,6 +1787,12 @@ function fillConfigs(inst, cfg) {
                 inst.proto_bitP      = pCfg.protoCfg.bitP;
             } else {
                 inst.proto_isAddrReg = false;
+                inst.proto_cmdRegRd  = "0x00";
+                inst.proto_cmdRegWr  = "0x00";
+                inst.proto_cfgReg    = "0x00";
+                inst.proto_shift     = 0;
+                inst.proto_mask      = "0x00";
+                inst.proto_bitP      = 0;
             }
             /* Dummy config */
             if(pCfg.dummyCfg != null) {
@@ -1753,6 +1805,12 @@ function fillConfigs(inst, cfg) {
                 inst.dummy_bitP      = pCfg.dummyCfg.bitP;
             } else {
                 inst.dummy_isAddrReg = false;
+                inst.dummy_cmdRegRd  = "0x00";
+                inst.dummy_cmdRegWr  = "0x00";
+                inst.dummy_cfgReg    = "0x00";
+                inst.dummy_shift     = 0;
+                inst.dummy_mask      = "0x00";
+                inst.dummy_bitP      = 0;
             }
             /* Str-Dtr config */
             if(pCfg.strDtrCfg != null) {
@@ -1765,6 +1823,12 @@ function fillConfigs(inst, cfg) {
                 inst.strDtr_bitP      = pCfg.strDtrCfg.bitP;
             } else {
                 inst.strDtr_isAddrReg = false;
+                inst.strDtr_cmdRegRd  = "0x00";
+                inst.strDtr_cmdRegWr  = "0x00";
+                inst.strDtr_cfgReg    = "0x00";
+                inst.strDtr_shift     = 0;
+                inst.strDtr_mask      = "0x00";
+                inst.strDtr_bitP      = 0;
             }
 
             /* Custom */
@@ -1853,6 +1917,12 @@ function fillConfigs(inst, cfg) {
                 inst.proto_bitP      = pCfg.protoCfg.bitP;
             } else {
                 inst.proto_isAddrReg = false;
+                inst.proto_cmdRegRd  = "0x00";
+                inst.proto_cmdRegWr  = "0x00";
+                inst.proto_cfgReg    = "0x00";
+                inst.proto_shift     = 0;
+                inst.proto_mask      = "0x00";
+                inst.proto_bitP      = 0;
             }
             /* Dummy config */
             if(pCfg.dummyCfg != null) {
@@ -1865,6 +1935,12 @@ function fillConfigs(inst, cfg) {
                 inst.dummy_bitP      = pCfg.dummyCfg.bitP;
             } else {
                 inst.dummy_isAddrReg = false;
+                inst.dummy_cmdRegRd  = "0x00";
+                inst.dummy_cmdRegWr  = "0x00";
+                inst.dummy_cfgReg    = "0x00";
+                inst.dummy_shift     = 0;
+                inst.dummy_mask      = "0x00";
+                inst.dummy_bitP      = 0;
             }
             /* Str-Dtr config */
             if(pCfg.strDtrCfg != null) {
@@ -1877,6 +1953,12 @@ function fillConfigs(inst, cfg) {
                 inst.strDtr_bitP      = pCfg.strDtrCfg.bitP;
             } else {
                 inst.strDtr_isAddrReg = false;
+                inst.strDtr_cmdRegRd  = "0x00";
+                inst.strDtr_cmdRegWr  = "0x00";
+                inst.strDtr_cfgReg    = "0x00";
+                inst.strDtr_shift     = 0;
+                inst.strDtr_mask      = "0x00";
+                inst.strDtr_bitP      = 0;
             }
 
         }

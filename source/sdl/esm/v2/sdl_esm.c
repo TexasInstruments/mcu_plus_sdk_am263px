@@ -595,7 +595,7 @@ static SDL_Result ESM_init (const SDL_ESM_Inst esmInstType,
 /**
  * Design: PROC_SDL-1064,PROC_SDL-1065
  */
-int32_t SDL_ESM_registerECCCallback(SDL_ESM_Inst esmInstType,uint32_t eventBitmap[],
+int32_t SDL_ESM_registerECCCallback(SDL_ESM_Inst instance,uint32_t eventBitmap[],
                                     SDL_ESM_applicationCallback callBack,
                                     void *callbackArg)
 {
@@ -603,7 +603,7 @@ int32_t SDL_ESM_registerECCCallback(SDL_ESM_Inst esmInstType,uint32_t eventBitma
     SDL_Result result = SDL_PASS;
     SDL_ESM_Instance_t *SDL_ESM_Instance;
 
-    if (SDL_ESM_selectEsmInst(esmInstType, &SDL_ESM_Instance) == ((bool)false))
+    if (SDL_ESM_selectEsmInst(instance, &SDL_ESM_Instance) == ((bool)false))
     {
         result = SDL_EFAIL;
     }
@@ -620,15 +620,15 @@ int32_t SDL_ESM_registerECCCallback(SDL_ESM_Inst esmInstType,uint32_t eventBitma
 /**
  * Design: PROC_SDL-1066,PROC_SDL-1067
  */
-int32_t SDL_ESM_registerCCMCallback(SDL_ESM_Inst esmInstType,uint32_t eventBitmap[],
-                                      SDL_ESM_applicationCallback callBack,
+int32_t SDL_ESM_registerCCMCallback(SDL_ESM_Inst instance,uint32_t eventBitmap[],
+                                      SDL_ESM_applicationCallback ccmCallback,
                                       void *callbackArg)
 {
     uint32_t i;
     SDL_Result result = SDL_PASS;
     SDL_ESM_Instance_t *SDL_ESM_Instance_CCM;
 
-    if(SDL_ESM_selectEsmInst(esmInstType, &SDL_ESM_Instance_CCM) == ((bool)false))
+    if(SDL_ESM_selectEsmInst(instance, &SDL_ESM_Instance_CCM) == ((bool)false))
     {
         result = SDL_EFAIL;
     }
@@ -637,7 +637,7 @@ int32_t SDL_ESM_registerCCMCallback(SDL_ESM_Inst esmInstType,uint32_t eventBitma
     {
         SDL_ESM_Instance_CCM->ccmenableBitmap[i] = eventBitmap[i];
     }
-    SDL_ESM_Instance_CCM->ccmCallBackFunction = callBack;
+    SDL_ESM_Instance_CCM->ccmCallBackFunction = ccmCallback;
     SDL_ESM_Instance_CCM->ccmCallBackFunctionArg = callbackArg;
 
     return result;

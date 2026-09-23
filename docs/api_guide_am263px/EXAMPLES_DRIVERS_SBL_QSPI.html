@@ -92,18 +92,18 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_SBL_QSPI.html',''); i
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md2963">Introduction</a></li>
-<li class="level1"><a href="#EXAMPLES_DRIVERS_SBL_QSPI_MCELF">SBL QSPI Multicore ELF</a><ul><li class="level2"><a href="#autotoc_md2964">Flash Configuration</a></li>
+<ul><li class="level1"><a href="#autotoc_md2964">Introduction</a></li>
+<li class="level1"><a href="#EXAMPLES_DRIVERS_SBL_QSPI_MCELF">SBL QSPI Multicore ELF</a><ul><li class="level2"><a href="#autotoc_md2965">Flash Configuration</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#EXAMPLES_DRIVERS_SBL_QSPI_COMBOS">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md2965">Steps to Run the Example</a></li>
-<li class="level1"><a href="#autotoc_md2966">See Also</a></li>
-<li class="level1"><a href="#autotoc_md2967">Sample Output</a></li>
+<li class="level1"><a href="#autotoc_md2966">Steps to Run the Example</a></li>
+<li class="level1"><a href="#autotoc_md2967">See Also</a></li>
+<li class="level1"><a href="#autotoc_md2968">Sample Output</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_drivers_sbl_qspi"></a></p>
-<h1><a class="anchor" id="autotoc_md2963"></a>
+<h1><a class="anchor" id="autotoc_md2964"></a>
 Introduction</h1>
 <p>This bootloader does SOC initializations and attempts to boot a multicore mcelf image present at 0x81000 location in the QSPI Flash. To flash a multicore mcelf at this location, follow the steps mentioned in <a class="el" href="TOOLS_FLASH.html#BASIC_STEPS_TO_FLASH_FILES">Basic steps to flash files</a>.</p>
 <p><b>Note:</b> This bootloader works in 4S bootmode. Refer to the device user guide for bootmode configuration.</p>
@@ -114,7 +114,7 @@ SBL QSPI Multicore ELF</h1>
 <p>For AM261x and AM263Px devices, use the Multicore ELF project for SBL QSPI</p>
 <p>To flash an <b>mcelf</b> file, use the project <b>examples/drivers/boot/sbl_qspi_multicore_elf</b></p>
 <p>When an mcelf image is found, the SBL parses it, loads each segment to its specified address location. Then the core is released from reset.</p>
-<h2><a class="anchor" id="autotoc_md2964"></a>
+<h2><a class="anchor" id="autotoc_md2965"></a>
 Flash Configuration</h2>
 <p>When using the UART uniflash tool to program the QSPI flash, ensure the flash configuration in the flashwriter matches the SBL configuration:</p><ul>
 <li>Keep 4-byte address mode <b>disabled</b></li>
@@ -136,7 +136,7 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">examples/drivers/boot/sbl_qspi_multicore_elf   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2965"></a>
+<h1><a class="anchor" id="autotoc_md2966"></a>
 Steps to Run the Example</h1>
 <p>Since this is a bootloader, the example will be run every time you boot an application using this example. It is run from a QSPI boot media unlike other examples which are usually loaded with CCS. Nevertheless, you can build this example like you do for the others using makefile or build it via CCS by importing as a project.</p>
 <ul>
@@ -144,10 +144,10 @@ Steps to Run the Example</h1>
 <li><b>When using makefiles to build</b>, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>Refer to the page <a class="el" href="TOOLS_FLASH.html#BASIC_STEPS_TO_FLASH_FILES">Basic steps to flash files</a> to flash this bootloader along with the application to boot.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2966"></a>
+<h1><a class="anchor" id="autotoc_md2967"></a>
 See Also</h1>
 <p><a class="el" href="DRIVERS_BOOTLOADER_PAGE.html">BOOTLOADER</a></p>
-<h1><a class="anchor" id="autotoc_md2967"></a>
+<h1><a class="anchor" id="autotoc_md2968"></a>
 Sample Output</h1>
 <div class="fragment"><div class="line">Starting OSPI Bootloader ...</div>
 <div class="line">[BOOTLOADER_PROFILE] Boot Media       : NOR SPI FLASH</div>

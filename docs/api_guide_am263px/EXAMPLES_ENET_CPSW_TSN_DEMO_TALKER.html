@@ -92,34 +92,35 @@ $(document).ready(function(){initNavTree('EXAMPLES_ENET_CPSW_TSN_DEMO_TALKER.htm
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md3495">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md3496">TSN features showcased</a></li>
-<li class="level1"><a href="#autotoc_md3497">Chain topology - EVM Connections</a><ul><li class="level2"><a href="#autotoc_md3498">Contention with Background traffic</a></li>
-<li class="level2"><a href="#autotoc_md3499">Bidirectional, chain-position-staggered EST</a></li>
+<ul><li class="level1"><a href="#autotoc_md3496">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md3497">TSN features showcased</a></li>
+<li class="level1"><a href="#autotoc_md3498">Chain topology - EVM Connections</a><ul><li class="level2"><a href="#autotoc_md3499">Contention with Background traffic</a></li>
+<li class="level2"><a href="#autotoc_md3500">Bidirectional, chain-position-staggered EST</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3500">Wire traffic composition</a></li>
-<li class="level1"><a href="#autotoc_md3501">TSN feature configuration</a><ul><li class="level2"><a href="#autotoc_md3502">EST (&lsquo;&#39;e&rsquo;`)</a></li>
-<li class="level2"><a href="#autotoc_md3503">IET (&lsquo;&#39;i&rsquo;`)</a></li>
-<li class="level2"><a href="#autotoc_md3504">Cut-through (&lsquo;&#39;u&rsquo;`)</a></li>
+<li class="level1"><a href="#autotoc_md3501">Wire traffic composition</a></li>
+<li class="level1"><a href="#autotoc_md3502">TSN feature configuration</a><ul><li class="level2"><a href="#autotoc_md3503">EST (&lsquo;&#39;e&rsquo;`)</a></li>
+<li class="level2"><a href="#autotoc_md3504">IET (&lsquo;&#39;i&rsquo;`)</a></li>
+<li class="level2"><a href="#autotoc_md3505">Cut-through (&lsquo;&#39;u&rsquo;`)</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3505">Supported Combinations</a></li>
-<li class="level1"><a href="#autotoc_md3506">Packet pool configuration</a></li>
-<li class="level1"><a href="#autotoc_md3507">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3508">Build the example</a></li>
-<li class="level2"><a href="#autotoc_md3509">HW Setup</a></li>
-<li class="level2"><a href="#autotoc_md3510">Run the example</a></li>
-<li class="level2"><a href="#autotoc_md3511">UART Menu</a></li>
-<li class="level2"><a href="#autotoc_md3512">Sample output</a></li>
-<li class="level2"><a href="#autotoc_md3513">Interpreting the report</a></li>
+<li class="level1"><a href="#autotoc_md3506">Supported Combinations</a></li>
+<li class="level1"><a href="#autotoc_md3507">Packet pool configuration</a></li>
+<li class="level1"><a href="#autotoc_md3508">Steps to Run the Example</a><ul><li class="level2"><a href="#autotoc_md3509">Build the example</a></li>
+<li class="level2"><a href="#autotoc_md3510">HW Setup</a></li>
+<li class="level2"><a href="#autotoc_md3511">Run the example</a></li>
+<li class="level2"><a href="#autotoc_md3512">UART Menu</a></li>
+<li class="level2"><a href="#autotoc_md3513">Sample output</a></li>
+<li class="level2"><a href="#autotoc_md3514">Interpreting the report</a></li>
+<li class="level2"><a href="#autotoc_md3515">KPI (measured)</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md3514">Troubleshooting issues</a></li>
-<li class="level1"><a href="#autotoc_md3515">See Also</a></li>
+<li class="level1"><a href="#autotoc_md3516">Troubleshooting issues</a></li>
+<li class="level1"><a href="#autotoc_md3517">See Also</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_examples_networking_enet_cpsw_tsn_demo_talker"></a></p>
-<h1><a class="anchor" id="autotoc_md3495"></a>
+<h1><a class="anchor" id="autotoc_md3496"></a>
 Introduction</h1>
 <p>This example is the talker (measurement) side of a two-image TSN demo: <code>tsn_demo_talker</code> and <a class="el" href="EXAMPLES_ENET_CPSW_TSN_DEMO_LISTENER.html">Enet CPSW TSN Integrated Demo - Listener</a>. It configures and tests end-to-end latency for real-time and background traffic. The setup combines various TSN standards, including gPTP 802.1AS, scheduled traffic 802.1Qbv, frame preemption 802.3br, and cut-through switching.</p>
 <p>It generates periodic "time-critical" probe stream shares the wire with a saturating "bulk" background stream, across a chain of boards. Without any TSN features turned on, a bulk frame that's already in flight can delay a probe that arrives right behind it - and that risk compounds at every hop in the chain. Enabling TSN features eliminates this cumulative delay, drastically reducing end-to-end latency and ensuring deterministic delivery for high-priority traffic.</p>
@@ -138,7 +139,7 @@ Introduction</h1>
 <li>Times every express probe round-trip (talker TX -&gt; listener echo -&gt; talker RX) using CPTS hardware timestamps, and reports latency distribution, jitter and loss statistics per run, plus a side-by-side TSN-off-vs-TSN-on comparison.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>IET (frame preemption) and cut-through are only available on AM261x CPSW - see the feature table below. On any other supported SoC, the console menu simply won't offer the &lsquo;'i&rsquo;<code>/</code>'u'` toggles at all, rather than accepting them and silently doing nothing.</dd></dl>
-<h1><a class="anchor" id="autotoc_md3496"></a>
+<h1><a class="anchor" id="autotoc_md3497"></a>
 TSN features showcased</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -163,7 +164,7 @@ TSN features showcased</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">AM263Px  </td><td class="markdownTableBodyNone">Yes  </td><td class="markdownTableBodyNone">No  </td><td class="markdownTableBodyNone">No   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3497"></a>
+<h1><a class="anchor" id="autotoc_md3498"></a>
 Chain topology - EVM Connections</h1>
 <p>Each board has exactly two CPSW MAC ports, which makes a <b>line (daisy-chain) topology</b> the natural fit - one port faces "up" the chain, the other faces "down" toward the next node:</p>
 <div class="image">
@@ -175,11 +176,11 @@ Talker,Listener EVM Connections </div></div>
 <li>The talker's <b>MAC port 2</b> goes to Listener 1's MAC port 1.</li>
 <li>Listener 1's MAC port 2 goes to Listener 2's MAC port 1, and so on down the chain; the last listener's second port is left unconnected in daisy chain.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3498"></a>
+<h2><a class="anchor" id="autotoc_md3499"></a>
 Contention with Background traffic</h2>
 <p>By default, the talker doesn't generate any bulk traffic of its own - the contended run modes (&lsquo;'2&rsquo;<code>/</code>'3'` below) expect the background load to come from an external PC connected to the talker's <b>MAC port 1</b>. Anything the PC sends that isn't tagged with the express or gPTP priority lands in the demo's "open" EST window exactly like a bulk stream would, so no special frame format is required on the PC side - see the wire traffic table below for the priorities to avoid.</p>
 <p>If PC is not connected to talker, then user can generate a 300Mbps bulk stream of its own in software instead - this is a build-time option (<code>TSNDEMO_ENABLE_BULK_TASK</code> in <code>tsndemo_talker.c</code>, off by default), not a console toggle.</p>
-<h2><a class="anchor" id="autotoc_md3499"></a>
+<h2><a class="anchor" id="autotoc_md3500"></a>
 Bidirectional, chain-position-staggered EST</h2>
 <p>A single, identical EST gate schedule is not valid for every port on every node in a multi-hop chain, so this demo computes a different schedule per port based on that node's position:</p>
 <ul>
@@ -187,7 +188,7 @@ Bidirectional, chain-position-staggered EST</h2>
 <li><b>Upstream ports</b> (facing back toward the talker, i.e. the echo path): the express gate window both starts later <em>and</em> grows wider the further back a node is from the chain's far end - the software-driven echo turnaround has its own, larger latency floor, and the timing uncertainty of exactly when an echo left a downstream hop's window accumulates hop-by-hop on the way back.</li>
 <li>The per-hop increment is derived based on TSN features enabled: it collapses to a small, near-constant value when IET or cut-through is active on that hop, or scales with the configured bulk frame size when neither is active (a large in-flight bulk frame can block an express frame from even reaching its egress queue without cut-through/preemption).</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3500"></a>
+<h1><a class="anchor" id="autotoc_md3501"></a>
 Wire traffic composition</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -200,10 +201,10 @@ Wire traffic composition</h1>
 <td class="markdownTableBodyNone">Bulk / background load  </td><td class="markdownTableBodyNone">0x88B6 (talker's own generator) or whatever a PC sends  </td><td class="markdownTableBodyNone">1 (open window only)  </td><td class="markdownTableBodyNone">1450 bytes (talker's own generator); PC traffic can be anything  </td><td class="markdownTableBodyNone">Back-to-back, not periodic   </td></tr>
 </table>
 <p>If you're driving bulk traffic from an external PC and want it to behave like the talker's own bulk stream, the only real requirement is: don't tag it with PCP 5 or PCP 7.</p>
-<h1><a class="anchor" id="autotoc_md3501"></a>
+<h1><a class="anchor" id="autotoc_md3502"></a>
 TSN feature configuration</h1>
 <p>This section is the "how do I actually change this" reference - what each console key does, and which source file to edit if the console toggle isn't enough.</p>
-<h2><a class="anchor" id="autotoc_md3502"></a>
+<h2><a class="anchor" id="autotoc_md3503"></a>
 EST (‘'e’`)</h2>
 <p>Toggling &lsquo;'e&rsquo;` computes and applies a fresh admin list on every MAC port, using the chain-position-staggered scheme described above, then enables the TAS state machine. Press it again to disable EST (falls back to open gating on every port).</p>
 <center> <table class="doxtable">
@@ -239,7 +240,7 @@ EST (‘'e’`)</h2>
 <li><code>TSNDEMO_EST_HOPINC_FAST_NS</code> - the per-hop stagger increment used when IET or cut-through is active on that hop (when neither is active, the increment is computed instead, from the configured bulk frame size - see <code>TsnDemoFeature_hopIncNs()</code> in <code>tsndemo_feature.c</code>).</li>
 </ul>
 <p>cond SOC_AM261X </p>
-<h2><a class="anchor" id="autotoc_md3503"></a>
+<h2><a class="anchor" id="autotoc_md3504"></a>
 IET (‘'i’`)</h2>
 <p>Toggling 'i' enables frame preemption on every chain-facing port (and runs the verification handshake with the link partner - this is why listeners should have IET on <em>before</em> the talker, see the recommended script below). Express and preemptable priroity queues are configured in <code>gTsnDemoIetCfg</code> in <code>tsndemo_feature.c</code>:</p>
 <table class="markdownTable">
@@ -255,7 +256,7 @@ IET (‘'i’`)</h2>
 <td class="markdownTableBodyNone">0-4  </td><td class="markdownTableBodyNone">Bulk (uses PCP 1)  </td><td class="markdownTableBodyNone"><b>Preemptable</b>   </td></tr>
 </table>
 <p>Minimum non-final fragment size is 128 bytes (<code>minFragSize = 1</code>), and preemption verification is enabled (<code>mac_verify_enable = true</code>) - both ends of a link must have IET enabled for verification to succeed.</p>
-<h2><a class="anchor" id="autotoc_md3504"></a>
+<h2><a class="anchor" id="autotoc_md3505"></a>
 Cut-through (‘'u’`)</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -264,7 +265,7 @@ Cut-through (‘'u’`)</h2>
 <td class="markdownTableBodyNone">0 - 7 (all)  </td><td class="markdownTableBodyNone">Yes (<code>TSNDEMO_CUTTHRU_PRI_MASK</code> = <code>0xFF</code>)   </td></tr>
 </table>
 <p>By default this mask covers <b>every</b> priority, including bulk - a large in-flight bulk frame still fully occupies a hop before an express frame behind it can be relayed otherwise.</p>
-<h1><a class="anchor" id="autotoc_md3505"></a>
+<h1><a class="anchor" id="autotoc_md3506"></a>
 Supported Combinations</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -278,19 +279,19 @@ Supported Combinations</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Example folder  </td><td class="markdownTableBodyNone">source/networking/enet/core/examples/tsn_demo/listener   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3506"></a>
+<h1><a class="anchor" id="autotoc_md3507"></a>
 Packet pool configuration</h1>
 <p>To change packet pool configuration from syscfg, please refer to <a class="el" href="PACKETPOOL_CONFIG_TOP.html">Ethernet Packet Pool Allocation Guidelines</a></p>
-<h1><a class="anchor" id="autotoc_md3507"></a>
+<h1><a class="anchor" id="autotoc_md3508"></a>
 Steps to Run the Example</h1>
-<h2><a class="anchor" id="autotoc_md3508"></a>
+<h2><a class="anchor" id="autotoc_md3509"></a>
 Build the example</h2>
 <ul>
 <li>When using CCS projects to build, import the CCS project for the required combination and build it using the CCS project menu (see <a class="el" href="CCS_PROJECTS_PAGE.html">Using SDK with CCS Projects</a>).</li>
 <li>When using makefiles to build, note the required combination and build using make command (see <a class="el" href="MAKEFILE_BUILD_PAGE.html">Using SDK with Makefiles</a>)</li>
 <li>When building via makefiles for a specific AM261x board variant, make sure the board's own <code>TSNDEMO_BOARD_AM261X_LP</code> / <code>TSNDEMO_BOARD_AM261X_SOM</code> macro is defined (already set correctly per-board by the shipped Makefiles) - it selects the correct CPTS tick rate for that board's silicon, which the gate-locked pacing described below depends on.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3509"></a>
+<h2><a class="anchor" id="autotoc_md3510"></a>
 HW Setup</h2>
 <dl class="section note"><dt>Note</dt><dd>Make sure you have setup the EVM with cable connections as shown here, <a class="el" href="EVM_SETUP_PAGE.html">EVM Setup</a>. In addition do below steps.</dd></dl>
 <ul>
@@ -298,7 +299,7 @@ HW Setup</h2>
 <li>Connect a PC to this board's MAC port 1 and start bulk traffic generator.</li>
 <li>All links must run at 1 Gbit - the EST schedule's timing assumptions (section "Bidirectional, chain-position-staggered EST" above) are computed for 1 Gbit link speed.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3510"></a>
+<h2><a class="anchor" id="autotoc_md3511"></a>
 Run the example</h2>
 <dl class="section attention"><dt>Attention</dt><dd>If you need to reload and run again, a CPU power-cycle is MUST</dd></dl>
 <ul>
@@ -306,7 +307,7 @@ Run the example</h2>
 <li>At the UART prompt, enter the total number of nodes in the chain (<code>2..4</code>, including this talker). The talker's own node id is always 0 and its downstream port is always fixed to MAC port 2 - only the total chain length is asked.</li>
 <li>Wait for gPTP to reach sync-stable and for link speed to be checked; the menu below prints once both are done.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3511"></a>
+<h2><a class="anchor" id="autotoc_md3512"></a>
 UART Menu</h2>
 <div class="fragment"><div class="line">--- TSN Demo Talker ---------------------------------------</div>
 <div class="line"> &#39;1&#39;  -  Run BASELINE           (express only, features off)</div>
@@ -354,7 +355,7 @@ UART Menu</h2>
 <li>Press <code>3</code> - same contention, TSN features on.</li>
 <li>Press <code>c</code> - prints the side-by-side table: p99 one-way latency, PDV, max latency, loss %, and bulk throughput ("cost of TSN"), TSN-off vs TSN-on, with the improvement factor.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md3512"></a>
+<h2><a class="anchor" id="autotoc_md3513"></a>
 Sample output</h2>
 <div class="fragment"><div class="line">==========================</div>
 <div class="line">  TSN Demo - Talker</div>
@@ -400,7 +401,7 @@ Sample output</h2>
 <div class="line"> &#39;p&#39;  -  Print last report     &#39;c&#39;  -  Print A/B comparison</div>
 <div class="line"> &#39;d&#39;  -  Status</div>
 <div class="line"> ...</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3513"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3514"></a>
 Interpreting the report</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -416,7 +417,18 @@ Interpreting the report</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">bulk offered load (Mbit/s)  </td><td class="markdownTableBodyNone">How much background traffic was actually pushed during the window   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md3514"></a>
+<h2><a class="anchor" id="autotoc_md3515"></a>
+KPI (measured)</h2>
+<p>Test Parameters: 1 talker + 2 listeners (3 nodes), 125 µs express period, ~900 Mbit/s PC-driven bulk on the talker's MAC port 1, 10000 samples/run per configuration. Values are the mean min/max/avg round-trip latency (T4-T1) across repeated runs of the CONTENTION-TSN-ON run mode.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Feature configuration  </th><th class="markdownTableHeadNone">Listener 1 round-trip latency  </th><th class="markdownTableHeadNone">Listener 2 round-trip latency   </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Baseline (TSN off)  </td><td class="markdownTableBodyNone">Min: 29.10 µs, Max: 61.93 µs, Avg: 43.01 µs  </td><td class="markdownTableBodyNone">Min: 37.14 µs, Max: 97.46 µs, Avg: 67.70 µs   </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>EST only</b>  </td><td class="markdownTableBodyNone"><b>Min: 29.37 µs, Max: 59.21 µs, Avg: 39.05 µs</b>  </td><td class="markdownTableBodyNone"><b>Min: 39.81 µs, Max: 91.92 µs, Avg: 72.00 µs</b>   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md3516"></a>
 Troubleshooting issues</h1>
 <ul>
 <li><b>Link not at 1 Gbit</b>: the EST schedule's per-hop timing math assumes 1 Gbit links throughout the chain; a lower-speed link will make the express window mistimed relative to real transit time.</li>
@@ -426,7 +438,7 @@ Troubleshooting issues</h1>
   NOT gate-locked" when EST is on and you expected GENF locking, check that the correct <code>TSNDEMO_BOARD_AM261X_LP</code>/<code>_SOM</code> macro is defined for your board - using the wrong one applies the wrong CPTS tick rate and the schedule will look correct in software but be wrong on the wire.</li>
 <li><b>Round-trip report always shows "no samples"</b>: if <code>tx</code>/<code>rx</code> counts in the report look healthy (loss near 0%) but round-trip latency still shows no samples, hardware RX timestamping on the host port has somehow ended up disabled (<code>enet_cpsw1.cptsHostRxTsEn</code> in <code>example.syscfg</code>) - it needs to be <code>true</code>, since the round-trip measurement depends on a hardware RX timestamp of the returning echo.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3515"></a>
+<h1><a class="anchor" id="autotoc_md3517"></a>
 See Also</h1>
 <p><a class="el" href="EXAMPLES_ENET_CPSW_TSN_DEMO_LISTENER.html">Enet CPSW TSN Integrated Demo - Listener</a>, <a class="el" href="NETWORKING.html">Ethernet And Networking</a> </p>
 </div></div><!-- contents -->

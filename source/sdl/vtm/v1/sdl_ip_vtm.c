@@ -116,13 +116,13 @@ SDL_VTM_adc_code SDL_VTM_getAdcCode(SDL_VTM_InstTs  instance)
  /**
  * Design: PROC_SDL-1330,PROC_SDL-1331
  */
-int32_t SDL_VTM_tsGetCtrl (SDL_VTM_InstTs  instance, uint32_t *ptsenseCTRL)
+int32_t SDL_VTM_tsGetCtrl (SDL_VTM_InstTs  instance, uint32_t *pTsCtrlCfg)
 {
     int32_t sdlResult = SDL_PASS;
 
     /* argument checks */
     if((instance  >=  SDL_VTM_INSTANCE_TS_2) ||
-       (ptsenseCTRL == NULL_PTR))
+       (pTsCtrlCfg == NULL_PTR))
     {
         sdlResult = SDL_EBADARGS;
     }
@@ -131,10 +131,10 @@ int32_t SDL_VTM_tsGetCtrl (SDL_VTM_InstTs  instance, uint32_t *ptsenseCTRL)
         switch(instance)
         {
             case SDL_VTM_INSTANCE_TS_0:
-                    *ptsenseCTRL = SDL_REG32_RD(SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE0_CNTL);
+                    *pTsCtrlCfg = SDL_REG32_RD(SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE0_CNTL);
             break;
             case SDL_VTM_INSTANCE_TS_1:
-                    *ptsenseCTRL = SDL_REG32_RD(SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE1_CNTL);
+                    *pTsCtrlCfg = SDL_REG32_RD(SDL_TOP_CTRL_U_BASE+SDL_VTM_TSENSE1_CNTL);
             break;
             default:
             break;

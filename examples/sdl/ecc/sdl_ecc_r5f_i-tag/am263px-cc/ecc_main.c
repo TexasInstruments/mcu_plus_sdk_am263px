@@ -91,7 +91,7 @@ int32_t SDL_ESM_applicationCallbackFunction(SDL_ESM_Inst esmInst,
 
 
     int32_t retVal = 0;
-    uint32_t rd_data = 0, clearErr = 0;
+    uint32_t clearErr = 0;
 
     DebugP_log("\r\nESM Call back function called : instType 0x%x, intType 0x%x, " \
                 "grpChannel 0x%x, index 0x%x, intSrc 0x%x \r\n",
@@ -108,25 +108,19 @@ int32_t SDL_ESM_applicationCallbackFunction(SDL_ESM_Inst esmInst,
 	}
 
     DebugP_log("\r\nLow Priority Interrupt Executed\r\n");
+    SDL_MMR_Unlock(SDL_MSS_CTRL_U_BASE);
 #if defined (R5F0_INPUTS)
     /* Clear SEC MSS_CTRL register*/
     SDL_REG32_WR(SDL_R5SS0_CPU0_ECC_CORR_ERRAGG_STATUS_RAW, clearErr);
-    rd_data = SDL_REG32_RD(SDL_R5SS0_CPU0_ECC_CORR_ERRAGG_STATUS_RAW);
-    DebugP_log("\r\nRead data of SEC MSS_CTRL register is  0x%u\r\n",rd_data);
     /* Clear SEC RAW MSS_CTRL register*/
     SDL_REG32_WR(SDL_R5SS0_CPU0_ECC_CORR_ERRAGG_STATUS, clearErr);
-    rd_data = SDL_REG32_RD(SDL_R5SS0_CPU0_ECC_CORR_ERRAGG_STATUS);
-    DebugP_log("\r\nRead data of SEC RAW MSS_CTRL register is 0x%u\r\n",rd_data);
 #elif defined (R5F1_INPUTS)
     /* Clear SEC MSS_CTRL register*/
     SDL_REG32_WR(SDL_R5SS1_CPU0_ECC_CORR_ERRAGG_STATUS_RAW, clearErr);
-    rd_data = SDL_REG32_RD(SDL_R5SS1_CPU0_ECC_CORR_ERRAGG_STATUS_RAW);
-    DebugP_log("\r\nRead data of SEC MSS_CTRL register is  0x%u\r\n",rd_data);
     /* Clear SEC RAW MSS_CTRL register*/
     SDL_REG32_WR(SDL_R5SS1_CPU0_ECC_CORR_ERRAGG_STATUS, clearErr);
-    rd_data = SDL_REG32_RD(SDL_R5SS1_CPU0_ECC_CORR_ERRAGG_STATUS);
-    DebugP_log("\r\nRead data of SEC RAW MSS_CTRL register is 0x%u\r\n",rd_data);
 #endif
+    SDL_MMR_Lock(SDL_MSS_CTRL_U_BASE);
 
     SDL_ESM_clrNError(SDL_ESM_INST_MAIN_ESM0);
 
@@ -141,6 +135,7 @@ int32_t ecc_main(void)
 
     /* Open drivers to open the UART driver for console */
     Drivers_open();
+    Board_driversOpen();
 
     DebugP_log("\r\nECC Example Application\r\n");
     DebugP_log("\r\nECC UC-1 Test \r\n");
