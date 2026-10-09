@@ -241,8 +241,8 @@ RNG_Return_t RNG_read(RNG_Handle handle, uint32_t *out)
     RNG_Return_t retVal  = RNG_RETURN_FAILURE;
     uint32_t     val     = 0U, mask = 0U;
     uint32_t     ready   = 0U;
-    RNG_Config   *config;
-    CSL_Cp_aceTrngRegs  *pTrngRegs;
+    RNG_Config   *config = NULL;
+    CSL_Cp_aceTrngRegs  *pTrngRegs = NULL;
 
     if (NULL != handle)
     {

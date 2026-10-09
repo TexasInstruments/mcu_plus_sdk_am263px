@@ -472,7 +472,10 @@ AsymCrypt_Return_t AsymCrypt_EddsaVerify(AsymCrypt_Handle handle,
         }
 
         /* Restore back hash_len Bytes from tempBuff */
-        memcpy(ptrdataInput, tempBuff, hash_len);
+        if (NULL != ptrdataInput)
+        {
+            memcpy(ptrdataInput, tempBuff, hash_len);
+        }
     }
 
     return status;
@@ -493,14 +496,21 @@ AsymCrypt_Return_t AsymCrypt_EddsaGetPubKey(AsymCrypt_Handle handle,
     uint32_t     pubKeySizeByte;
     uint32_t     key_len = 0U;
 
-    config  = (PKA_Config *) handle;
-    attrs   = config->attrs;
-
     /* Checking handle and shaHandle is opened or not */
-    if (!(attrs->isOpen) || (NULL == handle) || (shaCbFxn == NULL) || (privKey == NULL) || (pubKey == NULL)) {
+    if ((NULL == handle) || (shaCbFxn == NULL) || (privKey == NULL) || (pubKey == NULL)) {
         status = ASYM_CRYPT_RETURN_FAILURE;
     } else {
-        status = ASYM_CRYPT_RETURN_SUCCESS;
+        config  = (PKA_Config *) handle;
+        attrs   = config->attrs;
+
+        if (!(attrs->isOpen))
+        {
+            status = ASYM_CRYPT_RETURN_FAILURE;
+        }
+        else
+        {
+            status = ASYM_CRYPT_RETURN_SUCCESS;
+        }
     }
 
     if (ASYM_CRYPT_CURVE_TYPE_EDDSA_25519 == input_curve) {
@@ -756,18 +766,25 @@ static AsymCrypt_Return_t AsymCrypt_Eddsa_concatArray(uint8_t *ptrArr1, uint32_t
     AsymCrypt_Return_t status = ASYM_CRYPT_RETURN_FAILURE;
     uint32_t i = 0;
 
-    *len3 = len1+len2;
-
-    for (i = 0; i < (*len3); i++) {
-        if (i < len1) {
-            ptrArr3[i] = ptrArr1[i];
-        } else {
-            ptrArr3[i] = ptrArr2[i];
-        }
+    if (len1 > UINT32_MAX - len2)
+    {
+        status = ASYM_CRYPT_RETURN_FAILURE;
     }
+    else
+    {
+        *len3 = len1+len2;
 
-    if (*len3 != 0) {
-        status = ASYM_CRYPT_RETURN_SUCCESS;
+        for (i = 0; i < (*len3); i++) {
+            if (i < len1) {
+                ptrArr3[i] = ptrArr1[i];
+            } else {
+                ptrArr3[i] = ptrArr2[i];
+            }
+        }
+
+        if (*len3 != 0) {
+            status = ASYM_CRYPT_RETURN_SUCCESS;
+        }
     }
 
     return status;
@@ -881,9 +898,9 @@ static void AsymCrypt_Ed25519_encodeEdPoint(const struct AsymCrypt_EddsaPoint *P
         for (i = 32U-(*sizeInByte); i< 32U; i++) {
             Y[i] = 0;
         }
-        *sizeInByte = ED_SIZE_32_BYTE;
     }
 
+    *sizeInByte = ED_SIZE_32_BYTE;
     yMsByte = Y[*sizeInByte -1];
     Y[*sizeInByte -1] = ((0x7FU & yMsByte) | (xLsBit << 7));
     memcpy(encodedPoint, Y, *sizeInByte);
@@ -900,7 +917,7 @@ static AsymCrypt_Return_t  AsymCrypt_Ed25519_decodeEdPoint(AsymCrypt_Handle hand
                                                struct AsymCrypt_EddsaPoint *P)
 {
     AsymCrypt_Return_t   status = ASYM_CRYPT_RETURN_FAILURE;
-    uint8_t        temp1[ED_SIZE_32_BYTE];
+    uint8_t        temp1[EDDSA_MAX_KEY_LEN];
     uint32_t       U[EC_PARAM_MAXLEN], V[EC_PARAM_MAXLEN];
     uint32_t       Y2[EC_PARAM_MAXLEN], X2[EC_PARAM_MAXLEN];
     uint32_t       W[EC_PARAM_MAXLEN], W2[EC_PARAM_MAXLEN];
@@ -949,25 +966,31 @@ static AsymCrypt_Return_t  AsymCrypt_Ed25519_decodeEdPoint(AsymCrypt_Handle hand
         status = PKA_ModPSub(handle, W2, X2, gEd25519Param.prime, temp_bn1);
     }
 
-    if (temp_bn1[0] == 1 && temp_bn1[1] == 0) {
-        X_temp[0] = W[0];
-        for (i = 1; i <= W[0]; i++) {
-            X_temp[i] = W[i];
-        }
-    } else {
-        status = PKA_ModPExp(handle, bn_2, gExp2, gEd25519Param.prime, I);
-        if (status == ASYM_CRYPT_RETURN_SUCCESS) {
-            status = PKA_ModPMul(handle, W, I, gEd25519Param.prime, X_temp);
+    if (status == ASYM_CRYPT_RETURN_SUCCESS)
+    {
+        if ((temp_bn1[0U] == 1) && (temp_bn1[1U] == 0)) {
+            X_temp[0] = W[0];
+            for (i = 1; i <= W[0]; i++) {
+                X_temp[i] = W[i];
+            }
+        } else {
+            status = PKA_ModPExp(handle, bn_2, gExp2, gEd25519Param.prime, I);
+            if (status == ASYM_CRYPT_RETURN_SUCCESS) {
+                status = PKA_ModPMul(handle, W, I, gEd25519Param.prime, X_temp);
+            }
         }
     }
 
-    if ((X_temp[1] % 2) == x0) {
-        P->x[0] = X_temp[0];
-        for (i = 1; i<= X_temp[0]; i++) {
-            P->x[i] = X_temp[i];
+    if (status == ASYM_CRYPT_RETURN_SUCCESS)
+    {
+        if ((X_temp[1U] % 2U) == x0) {
+            P->x[0] = X_temp[0];
+            for (i = 1; i<= X_temp[0]; i++) {
+                P->x[i] = X_temp[i];
+            }
+        } else {
+            status = PKA_ModPSub(handle, gEd25519Param.prime, X_temp, gEd25519Param.prime, P->x);
         }
-    } else {
-        status = PKA_ModPSub(handle, gEd25519Param.prime, X_temp, gEd25519Param.prime, P->x);
     }
 
     return status;

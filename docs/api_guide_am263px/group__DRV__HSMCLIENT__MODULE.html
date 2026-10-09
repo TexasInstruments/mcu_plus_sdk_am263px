@@ -319,6 +319,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gabe2810b39dc269a55fcca419c65eb87c"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gabe2810b39dc269a55fcca419c65eb87c">HsmClient_SecCfgUpdate</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structFirmwareUpdateReq__t.html">FirmwareUpdateReq_t</a> *pFirmwareUpdateObject)</td></tr>
 <tr class="memdesc:gabe2810b39dc269a55fcca419c65eb87c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client request to update device Sec-Cfg Valid only for F29x family of devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#gabe2810b39dc269a55fcca419c65eb87c">More...</a><br /></td></tr>
 <tr class="separator:gabe2810b39dc269a55fcca419c65eb87c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa697d7c61e4be595e628fe2688b7331f"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gaa697d7c61e4be595e628fe2688b7331f">HsmClient_ProgramBankMode</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, uint32_t targetBankMode)</td></tr>
+<tr class="memdesc:gaa697d7c61e4be595e628fe2688b7331f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client request to update device Bank Mode Valid only for F29x family of devices.  <a href="group__DRV__HSMCLIENT__MODULE.html#gaa697d7c61e4be595e628fe2688b7331f">More...</a><br /></td></tr>
+<tr class="separator:gaa697d7c61e4be595e628fe2688b7331f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab86209b718b0ffd17871e0d1c5354a75"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gab86209b718b0ffd17871e0d1c5354a75">HsmClient_getDeviceConfig</a> (<a class="el" href="structHsmClient__t.html">HsmClient_t</a> *HsmClient, <a class="el" href="structDeviceConfigRead__t.html">DeviceConfigRead_t</a> *pDeviceConfigObject, uint32_t timeout)</td></tr>
 <tr class="memdesc:gab86209b718b0ffd17871e0d1c5354a75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Client request to get device configuration from HSM This is a blocking call that waits for HSM response.  <a href="group__DRV__HSMCLIENT__MODULE.html#gab86209b718b0ffd17871e0d1c5354a75">More...</a><br /></td></tr>
 <tr class="separator:gab86209b718b0ffd17871e0d1c5354a75"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -511,6 +514,9 @@ Macros</h2></td></tr>
 <tr class="memitem:gaac2e7a5e4462d3ae02133255e9e9a801"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#gaac2e7a5e4462d3ae02133255e9e9a801">HSM_MSG_ENABLE_FA</a>&#160;&#160;&#160;(0x905CU)</td></tr>
 <tr class="memdesc:gaac2e7a5e4462d3ae02133255e9e9a801"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable Failure Analysis Transition service ID.  <a href="group__DRV__HSMCLIENT__MODULE.html#gaac2e7a5e4462d3ae02133255e9e9a801">More...</a><br /></td></tr>
 <tr class="separator:gaac2e7a5e4462d3ae02133255e9e9a801"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5a24a67873af1e7c1fec422c9037e93b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga5a24a67873af1e7c1fec422c9037e93b">HSM_MSG_UPDATE_BM</a>&#160;&#160;&#160;(0x905DU)</td></tr>
+<tr class="memdesc:ga5a24a67873af1e7c1fec422c9037e93b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Program Bank Mode.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga5a24a67873af1e7c1fec422c9037e93b">More...</a><br /></td></tr>
+<tr class="separator:ga5a24a67873af1e7c1fec422c9037e93b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga53441a5d8285223de54f3ae2729a94e7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DRV__HSMCLIENT__MODULE.html#ga53441a5d8285223de54f3ae2729a94e7">HSM_MSG_CRYPTO_SERVICE</a>&#160;&#160;&#160;(0xA001U)</td></tr>
 <tr class="memdesc:ga53441a5d8285223de54f3ae2729a94e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic Crypto service ID.  <a href="group__DRV__HSMCLIENT__MODULE.html#ga53441a5d8285223de54f3ae2729a94e7">More...</a><br /></td></tr>
 <tr class="separator:ga53441a5d8285223de54f3ae2729a94e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1455,6 +1461,22 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enable Failure Analysis Transition service ID. </p>
+
+</div>
+</div>
+<a id="ga5a24a67873af1e7c1fec422c9037e93b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5a24a67873af1e7c1fec422c9037e93b">&#9670;&nbsp;</a></span>HSM_MSG_UPDATE_BM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HSM_MSG_UPDATE_BM&#160;&#160;&#160;(0x905DU)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Program Bank Mode. </p>
 
 </div>
 </div>
@@ -3523,6 +3545,49 @@ Macros</h2></td></tr>
 <li>SystemP_FAILURE if NACK message is received or client id not registered. </li>
 </ol>
 </dd></dl>
+
+</div>
+</div>
+<a id="gaa697d7c61e4be595e628fe2688b7331f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa697d7c61e4be595e628fe2688b7331f">&#9670;&nbsp;</a></span>HsmClient_ProgramBankMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t HsmClient_ProgramBankMode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structHsmClient__t.html">HsmClient_t</a> *&#160;</td>
+          <td class="paramname"><em>HsmClient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>targetBankMode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Client request to update device Bank Mode Valid only for F29x family of devices. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">HsmClient</td><td>[IN] HsmClient object </td></tr>
+    <tr><td class="paramname">targetBankMode</td><td>[IN] Arguments to be passed to HSM core via SIPC.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><ol type="1">
+<li>SystemP_SUCCESS if programming done successfully</li>
+<li>SystemP_FAILURE if NACK message is received or client id not registered.</li>
+</ol>
+</dd></dl>
+<p>Design: TIFSMCU-6106 </p>
 
 </div>
 </div>

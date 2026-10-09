@@ -1068,6 +1068,16 @@ int32_t ICSS_EMAC_txPacket(const ICSS_EMAC_TxArgument *txArg, void *userArg);
  */
 ICSS_EMAC_pruRstIsoState ICSS_EMAC_getResetIsolationStatus(ICSS_EMAC_Handle emacHandle);
 
+/**
+ *  \brief  Gets the version of ICSS_EMAC
+ *
+ *          This API returns the current running version of ICSS_EMAC as
+ *          uint32_t. This can be used for runtime version checks.
+ *
+ *  \return 32 bit version code
+ */
+uint32_t ICSS_EMAC_getVersion(void);
+
 /* ========================================================================== */
 /*                            Global Variables                                */
 /* ========================================================================== */

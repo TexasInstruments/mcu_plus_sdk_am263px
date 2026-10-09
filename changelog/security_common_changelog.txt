@@ -1600,3 +1600,153 @@ Date:   Thu Sep 17 13:53:24 2026 +0530
  drivers/hsmclient/soc/f29h85x/hsmclient_wait_for_boot_notify.c |  4 ++++
  3 files changed, 26 insertions(+)
 
+========================================
+Changes from build on 2026-10-09 20:49:20
+Previous commit: 8695773f6fba249e870c8b17460375e71c30f047
+Current commit: 80de5e9d29ac6bb1935e5b150a2fd00637f2e1a6
+========================================
+
+commit 80de5e9d29ac6bb1935e5b150a2fd00637f2e1a6
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Fri Oct 9 12:31:41 2026 +0530
+
+    am261x: PKE: Fix kw issue
+    
+    - Add a NULL check for the curve
+    
+    Fixes: TIFSMCU-6057
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/crypto/pke/pke.c | 48 ++++++++++++++++++++++++++++++++----------------
+ 1 file changed, 32 insertions(+), 16 deletions(-)
+
+commit fb5ce8eeb3d6781abd4e85b5e4324c6e714fb927
+Author: Gurvir Singh <gurvir@ti.com>
+Date:   Wed Oct 7 15:49:01 2026 +0530
+
+    am26xx: crypto: pka
+    
+    update license header file
+    
+    Fixes: TIFSMCU-6254
+    
+    Signed-off-by: Gurvir Singh <gurvir@ti.com>
+
+ drivers/crypto/pka/eip29t2_firmware.c | 52 ++--------------------------------------------------
+ 1 file changed, 2 insertions(+), 50 deletions(-)
+
+commit 29709a137d235c3cc1c2f1d99849cdb6ddcf04c9
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Tue Oct 6 16:44:12 2026 +0530
+
+    am26xx: PKE: Update submodule
+    
+    - Update pke submodule
+    
+    Fixes: TIFSMCU-6245
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/crypto/pke/hw_include/pke_hw | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 158e561564e87c1ed8f3112623edb5e1b736fad4
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Mon Oct 5 23:30:50 2026 +0530
+
+    am26xx: PKA: Modify pka driver files
+    
+    - Address MISRA-C and CERT-C issues to make the platform
+      complaint
+    
+    Fixes: TIFSMCU-6245
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ drivers/crypto/pka/pka.c       | 102 +++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------
+ drivers/crypto/pka/pka_eddsa.c |  87 +++++++++++++++++++++++++++++++++++++++++++--------------------------
+ 2 files changed, 119 insertions(+), 70 deletions(-)
+
+commit f5c333ff6ddd430fbc9f3e6c13b5d1d5b9ccc3bd
+Author: Rohith Kumar V <r-v3@ti.com>
+Date:   Fri Oct 2 13:39:31 2026 +0530
+
+    am26xx/f29x: Tools: Update keyring readme
+    
+    - Update the keyring readme with asymmetric private
+      and custom data information
+    
+    Fixes: TIFSMCU-6053
+    
+    Signed-off-by: Rohith Kumar V <r-v3@ti.com>
+
+ tools/keyring_cert/readme.md | 255 +++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 168 insertions(+), 87 deletions(-)
+
+commit 2f7f37ac6041ee25bf5ffb33752b68b831aabebe
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Tue Sep 29 23:54:52 2026 +0530
+
+    all_soc: pke: Fix MISRA memcmp arg types
+    
+    - Replace memcmp with byte-wise comparison loop
+    - Fix MISRA memcmp arg types in PKE
+    
+    Fixes: TIFSMCU-6184
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ drivers/crypto/pke/pke.c | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+
+commit 31d92378c4a95bcfa03aeb5043771ef8e7e67483
+Author: Aakash Kedia <a-kedia@ti.com>
+Date:   Tue Sep 29 20:39:49 2026 +0530
+
+    am261x/f29x: scripts: Update for RSA PSS
+    
+    - Sync submodule with RSA PSS script
+    - ROM image generation updates included
+    
+    Fixes: TIFSMCU-6184
+    
+    Signed-off-by: Aakash Kedia <a-kedia@ti.com>
+
+ tools/boot/signing/mcu_rom_image_gen.py | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
+
+commit 875948c733443e2b33ab90d52e8a4ec129e74b5c
+Author: aswin <a-puthenpurackaldileep@ti.com>
+Date:   Thu Sep 24 16:33:49 2026 +0530
+
+    am26x: task: MISRA Fixes
+    
+    Incorporate MISRA fixes provided by Elektrobit
+    
+    Fixes: TIFSMCU-6162
+    
+    Signed-off-by: Aswin P D <a-puthenpurackaldileep@ti.com>
+
+ drivers/crypto/dthe/dthe_sha.c |   4 +--
+ drivers/crypto/pka/pka.c       | 116 ++++++++++++++++++++++++++++++++++++++++-----------------------------------------
+ drivers/crypto/rng/rng.c       |   4 +--
+ 3 files changed, 62 insertions(+), 62 deletions(-)
+
+commit 065a6eea1bcda86e0da9f79fdf2d13d85a3cdecb
+Author: Shashank B <s-b1@ti.com>
+Date:   Thu Sep 17 11:23:14 2026 +0530
+
+    f29x: hsmclient: Add service to program bank mode
+    
+    - Add client side service to program bank mode
+    
+    Fixes: TIFSMCU-6154
+    
+    Signed-off-by: Shashank B <s-b1@ti.com>
+
+ drivers/hsmclient/hsmclient.c     | 57 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ drivers/hsmclient/hsmclient.h     | 15 ++++++++++++++-
+ drivers/hsmclient/hsmclient_msg.h |  2 ++
+ 3 files changed, 73 insertions(+), 1 deletion(-)
+

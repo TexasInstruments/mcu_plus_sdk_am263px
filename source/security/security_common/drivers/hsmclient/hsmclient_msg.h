@@ -117,6 +117,8 @@ extern "C"
 #define HSM_MSG_BANK_SWAP                        (0x905BU)
 /** @brief Enable Failure Analysis Transition service ID */
 #define HSM_MSG_ENABLE_FA                        (0x905CU)
+/** @brief Program Bank Mode */
+#define HSM_MSG_UPDATE_BM                        (0x905DU)
 /** @brief Generic Crypto service ID */
 #define HSM_MSG_CRYPTO_SERVICE                   (0xA001U)
 

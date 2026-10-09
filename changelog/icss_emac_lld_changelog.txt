@@ -485,3 +485,24 @@ Date:   Wed Sep 16 10:34:34 2026 +0530
  icss_emac/source/icss_emac_local.c | 88 ++++++++++++++++++++++++++++++++++++++++++------------------------------------
  2 files changed, 58 insertions(+), 52 deletions(-)
 
+========================================
+Changes from build on 2026-10-09 20:49:22
+Previous commit: 9f2da368d4d7acd2998b11ba5995226ed2e3f855
+Current commit: fede17d3bf369e054a9468ea7223702d69f7c664
+========================================
+
+commit 24116844bb2b3b10eb896d307900d354ef300622
+Author: Christof Vogt <c-vogt@ti.com>
+Date:   Thu Sep 10 15:04:50 2026 +0200
+
+    allsoc: icss_emac: add version check macros
+    
+    Fixes: PINDSW-10865
+    
+    Signed-off-by: Christof Vogt <c-vogt@ti.com>
+
+ icss_emac/icss_emac.h        | 10 ++++++++++
+ icss_emac/icss_emac_ver.h    | 41 ++++++++++++++++++++++++++++++++++++-----
+ icss_emac/source/icss_emac.c |  6 ++++++
+ 3 files changed, 52 insertions(+), 5 deletions(-)
+

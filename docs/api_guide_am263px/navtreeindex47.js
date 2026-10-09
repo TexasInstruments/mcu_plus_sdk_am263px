@@ -1,5 +1,7 @@
 var NAVTREEINDEX47 =
 {
+"group__DRV__UART__LLD__MODULE.html#gab9b0551b7c13161a9b2fe50074dd5da8":[18,7,46,109],
+"group__DRV__UART__LLD__MODULE.html#gab9cdbdd8b01cdf9968b35c075af0f0cb":[18,7,46,14],
 "group__DRV__UART__LLD__MODULE.html#gabb4427cf28c3a56e93f0758a12f74bf5":[18,7,46,24],
 "group__DRV__UART__LLD__MODULE.html#gabd065bcddb0e805820d4a1439bae8af1":[18,7,46,93],
 "group__DRV__UART__LLD__MODULE.html#gabd78e478b1ec04323ccacdcd8bf74b65":[18,7,46,33],
@@ -247,7 +249,5 @@ var NAVTREEINDEX47 =
 "group__ENETPHY__generic__phy.html#ga0a4c4d7e34a0f212d35eb6c848fdddf7":[18,4,0,13,9,87],
 "group__ENETPHY__generic__phy.html#ga14702e1fa541d739f76bba91b15d1f09":[18,4,0,13,9,80],
 "group__ENETPHY__generic__phy.html#ga191780bc2cc31aa7ad66dfca963f181e":[18,4,0,13,9,26],
-"group__ENETPHY__generic__phy.html#ga1954b0c82671e7f0646e41ac2572098c":[18,4,0,13,9,6],
-"group__ENETPHY__generic__phy.html#ga19cdecc2bf0fcc38275ff878d504d866":[18,4,0,13,9,84],
-"group__ENETPHY__generic__phy.html#ga1a5d13c79cd6c5373646db541ea3ce37":[18,4,0,13,9,4]
+"group__ENETPHY__generic__phy.html#ga1954b0c82671e7f0646e41ac2572098c":[18,4,0,13,9,6]
 };

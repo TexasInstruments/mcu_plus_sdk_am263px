@@ -23065,3 +23065,169 @@ Date:   Tue Sep 8 17:32:03 2026 +0530
  .../networking/.meta/enet_cpsw/am64x_am243x/enet_cpsw_am64x_am243x.syscfg.js     | 3 ++-
  4 files changed, 8 insertions(+), 4 deletions(-)
 
+========================================
+Changes from build on 2026-10-09 20:49:33
+Previous commit: fcfff1e3a33034159e3c147b9e84ff04028d05a5
+Current commit: bdefb871d725434aecad5a32ad10d704e797e796
+========================================
+
+commit bdefb871d725434aecad5a32ad10d704e797e796
+Author: harini <harini.c@ti.com>
+Date:   Fri Oct 9 13:36:37 2026 +0530
+
+    am283x: makefile: Rebase changes
+    
+    - Rebase mcu_plus_sdk am283 branch
+    with main branch
+    - Commit makefile changes
+    
+    Fixes: SITSW-11000
+    
+    Signed-off-by: harini <harini.c@ti.com>
+
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  2 +-
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 10 ++--------
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  2 +-
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 10 ++--------
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  2 +-
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 10 ++--------
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                |  2 +-
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 10 ++--------
+ 8 files changed, 12 insertions(+), 36 deletions(-)
+
+commit 689cf0f96fce94306396f6cff5dbb1e43eff0289
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Tue Sep 29 17:53:01 2026 +0530
+
+    am283x: example: added example build
+    
+    - Added MAC and PHY loopback example build
+    
+    - Added Layer2 Examples
+    
+    Fixes: SITSW-12898
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ examples/enet_layer2_cpsw/.project/project_am283x.js                        | 198 ++++++++++++++++++++
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/example.syscfg          | 113 ++++++++++++
+ .../enet_layer2_cpsw/am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/main.c |  99 ++++++++++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec           | 142 +++++++++++++++
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/ti-arm-clang/linker.cmd | 126 +++++++++++++
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile   | 349 +++++++++++++++++++++++++++++++++++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  96 ++++++++++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |  20 +++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |  12 ++
+ examples/enet_layer2_cpsw_switch/.project/project_am283x.js                 | 203 +++++++++++++++++++++
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/example.syscfg          | 116 ++++++++++++
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/main.c                  |  99 ++++++++++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec           | 143 +++++++++++++++
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/ti-arm-clang/linker.cmd | 126 +++++++++++++
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile   | 350 ++++++++++++++++++++++++++++++++++++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  96 ++++++++++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |  20 +++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |  12 ++
+ .../enet_cpsw_loopback/loopback_mac_end/.project/project_am283x.js          | 200 +++++++++++++++++++++
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/example.syscfg          | 114 ++++++++++++
+ .../loopback_mac_end/am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/main.c |  99 ++++++++++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec           | 142 +++++++++++++++
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/ti-arm-clang/linker.cmd | 126 +++++++++++++
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile   | 350 ++++++++++++++++++++++++++++++++++++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  96 ++++++++++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |  20 +++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |  12 ++
+ .../enet_cpsw_loopback/loopback_phy_end/.project/project_am283x.js          | 200 +++++++++++++++++++++
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/example.syscfg          | 116 ++++++++++++
+ .../loopback_phy_end/am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/main.c |  99 ++++++++++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec           | 141 +++++++++++++++
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/ti-arm-clang/linker.cmd | 126 +++++++++++++
+ .../am283x-evm-dp83867/am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile   | 349 +++++++++++++++++++++++++++++++++++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  96 ++++++++++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |  20 +++
+ .../am283x-evm/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |  12 ++
+ 36 files changed, 4638 insertions(+)
+
+commit 46b75cad7fee20e79e69c2f8a0908e0b12847921
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Tue Sep 29 11:54:11 2026 +0530
+
+    am283x: sysconfig: added files for sysconfig
+    
+    - xdt file added required for sysconfig to
+      generate enet functions.
+    
+    - sysconfig file for ethphy is added
+    
+    - all files are copied from am275x
+    
+    Fixes: SITSW-12898
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ sysconfig/board/.meta/ethphy_cpsw_icssg/ethphy_cpsw_icssg_am283x.syscfg.js  |  93 ++++++++
+ .../board/.meta/ethphy_cpsw_icssg/templates/am283x/enet_board_cfg.c.xdt     | 428 ++++++++++++++++++++++++++++++++++++
+ .../board/.meta/ethphy_cpsw_icssg/templates/am283x/enet_board_cfg.h.xdt     |  49 +++++
+ 3 files changed, 570 insertions(+)
+
+commit 738baff6cfae4ec1cf4eaec77fa0ecae688afff8
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Fri Sep 25 12:43:31 2026 +0530
+
+    am62px: template: ioexpander I2C instance changed
+    
+    - on AM62P evm IOExpander, used for RGMII reset,
+      is connected to I2C1.
+    
+    Fixes: SITSW-13295
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ sysconfig/board/.meta/ethphy_cpsw_icssg/templates/am62px/enet_board_cfg.c.xdt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 29c5ad2bd81a4d48e0446bf3f864351d2c398587
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Fri Sep 25 14:00:22 2026 +0530
+
+    am275x: rm: Hw Push alloc changed
+    
+    - allocated 8 Hw Push event for
+      am275x and am283x
+    
+    Fixes: SITSW-13179
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ sysconfig/networking/.meta/enet_cpsw/templates/am275x/enet_soc_cfg.c.xdt | 2 +-
+ sysconfig/networking/.meta/enet_cpsw/templates/am283x/enet_soc_cfg.c.xdt | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 74a50221f2561f17b9c9a0f86f1af5f3ddb35442
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Mon Sep 7 16:47:16 2026 +0530
+
+    allsoc: rm: Fix Hw push alloc IOCTL
+    
+    - HW PUSH event resource management
+      fixed and correct configuration is
+      used for all the cores.
+    
+    Fixes: SITSw-13179
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ src/core/enet_rm.c                                                          | 44 ++++++++++++++++++++++++++++++++-----
+ src/core/enet_rm_ioctl.c                                                    | 18 ++++++++++-----
+ sysconfig/networking/.meta/enet_cpsw/am275x/enet_cpsw_am275x.syscfg.js      |  2 +-
+ sysconfig/networking/.meta/enet_cpsw/am283x/enet_cpsw_am283x.syscfg.js      |  2 +-
+ .../networking/.meta/enet_cpsw/am62dx_am62ax_am62px/enet_cpsw_top.syscfg.js | 20 ++++++++---------
+ sysconfig/networking/.meta/enet_cpsw/am62lx/enet_cpsw_top.syscfg.js         |  2 +-
+ .../.meta/enet_cpsw/am64x_am243x/enet_cpsw_am64x_am243x.syscfg.js           |  4 ++--
+ sysconfig/networking/.meta/enet_cpsw/templates/am62ax/enet_soc_cfg.c.xdt    |  2 +-
+ sysconfig/networking/.meta/enet_cpsw/templates/am62dx/enet_soc_cfg.c.xdt    |  2 +-
+ sysconfig/networking/.meta/enet_cpsw/templates/am62lx/enet_soc_cfg.c.xdt    |  2 +-
+ sysconfig/networking/.meta/enet_cpsw/templates/am62px/enet_soc_cfg.c.xdt    |  2 +-
+ sysconfig/networking/.meta/enet_cpsw/templates/am62x/enet_soc_cfg.c.xdt     |  2 +-
+ .../networking/.meta/enet_cpsw/templates/am64x_am243x/enet_soc_cfg.c.xdt    |  2 +-
+ 13 files changed, 71 insertions(+), 33 deletions(-)
+

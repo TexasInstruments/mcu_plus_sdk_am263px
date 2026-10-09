@@ -46,11 +46,13 @@
  *    MINOR - Introduction of a new protocol or feature that does not break
  *            any existing functionality.
  *            Example: 01.03.00.00 -> 01.04.00.00
- *    PATCH - Targeted bug-fix release; no new APIs or features added.
+ *    PATCH - Targeted bug-fix release; no changes in icss_emac.h for API compatibility
  *            Example: 01.04.00.00 -> 01.04.01.00
  *    BUILD - Auto-incremented identifier for every internal CI/CD build.
  *            Example: 01.04.01.00 -> 01.04.01.01
  */
+
+#include <kernel/dpl/DebugP.h>
 
 /* ========================================================================== */
 /*                           Macros & Typedefs                                */
@@ -62,9 +64,38 @@
 #define ICSS_EMAC_LLD_VERSION_BUILD  (0x01U)   /*!< LLD build number  */
 
 /** Composite 32-bit version ID: bits[31:24]=MAJOR, [23:16]=MINOR, [15:8]=PATCH, [7:0]=BUILD */
-#define ICSS_EMAC_LLD_VERSION_ID     (((uint32_t)ICSS_EMAC_LLD_VERSION_MAJOR << 24U) | \
-                                      ((uint32_t)ICSS_EMAC_LLD_VERSION_MINOR << 16U) | \
-                                      ((uint32_t)ICSS_EMAC_LLD_VERSION_PATCH <<  8U) | \
-                                      ((uint32_t)ICSS_EMAC_LLD_VERSION_BUILD <<  0U))
+#define ICSS_EMAC_LLD_VERSION_ID_BUILD(a, b, c, d)  (((uint32_t)(a) << 24U) | \
+                                                    ((uint32_t)(b) << 16U) | \
+                                                    ((uint32_t)(c) <<  8U) | \
+                                                    ((uint32_t)(d) <<  0U))
+
+/** Current version of iccs_emac */                                                    
+#define ICSS_EMAC_LLD_VERSION_ID \
+    ICSS_EMAC_LLD_VERSION_ID_BUILD( \
+        ICSS_EMAC_LLD_VERSION_MAJOR, \
+        ICSS_EMAC_LLD_VERSION_MINOR, \
+        ICSS_EMAC_LLD_VERSION_PATCH, \
+        ICSS_EMAC_LLD_VERSION_BUILD)
+
+/** Macro used to check if library and header have exact same version.
+ *  This enforces recompilation of all involved libraries on every change.
+ */
+#define ICSS_EMAC_ASSERT_LIBVER_IDENTICAL DebugP_assert((ICSS_EMAC_getVersion() ^ ICSS_EMAC_LLD_VERSION_ID) == 0)
+
+/** Macro used to check if API of header and running lib is compatible
+ *  This allows compile of icss_emac lib only if there is no API change
+ */
+#define ICSS_EMAC_ASSERT_LIBVER_API_COMPATIBLE DebugP_assert(((ICSS_EMAC_getVersion() ^ ICSS_EMAC_LLD_VERSION_ID) & 0xFFFF0000) == 0)
+
+/** Macro used to check if minimal version is used  for header and lib */
+#define ICSS_EMAC_ASSERT_VER_MINIMAL(a, b, c, d) DebugP_assert(ICSS_EMAC_getVersion() >= ICSS_EMAC_LLD_VERSION_ID_BUILD((a), (b), (c), (d)) \
+                                                    && ICSS_EMAC_LLD_VERSION_ID >= ICSS_EMAC_LLD_VERSION_ID_BUILD((a), (b), (c), (d)))
+/** Macro used to check if exact version is used for header and lib */
+#define ICSS_EMAC_ASSERT_VER_EXACT(a, b, c, d) DebugP_assert(ICSS_EMAC_getVersion() == ICSS_EMAC_LLD_VERSION_ID_BUILD((a), (b), (c), (d)) \
+                                                    && ICSS_EMAC_LLD_VERSION_ID == ICSS_EMAC_LLD_VERSION_ID_BUILD((a), (b), (c), (d)))
+
+/** Macro used to check if correct minor version is used for header and lib */
+#define ICSS_EMAC_ASSERT_VER_MINOR(a, b) DebugP_assert((ICSS_EMAC_getVersion() & 0xFFFF0000) == ICSS_EMAC_LLD_VERSION_ID_BUILD((a), (b), 0, 0) \
+                                                    && (ICSS_EMAC_LLD_VERSION_ID & 0xFFFF0000) == ICSS_EMAC_LLD_VERSION_ID_BUILD((a), (b), 0, 0))
 
 #endif /* ICSS_EMAC_VER_H_ */

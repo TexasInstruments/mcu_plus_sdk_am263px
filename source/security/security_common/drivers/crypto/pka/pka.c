@@ -51,59 +51,59 @@
 /*                           Macros & Typedefs                                */
 /* ========================================================================== */
 
-#define PKA_CLK_CTRL_REG_CLK_ON_SHIFT              (0)
-#define PKA_CLK_CTRL_SEQ_CLK_ON_SHIFT              (1)
-#define PKA_CLK_CTRL_PKCP_CLK_ON_SHIFT             (2)
-#define PKA_CLK_CTRL_LNME_CLK_ON_SHIFT             (3)
-#define PKA_CLK_CTRL_LNME_REG_CLK_ON_SHIFT         (4)
-#define PKA_CLK_CTRL_GF2M_CLK_ON_SHIFT             (5)
-#define PKA_CLK_CTRL_DATA_RAM_CLK_ON_SHIFT         (6)
+#define PKA_CLK_CTRL_REG_CLK_ON_SHIFT              (0U)
+#define PKA_CLK_CTRL_SEQ_CLK_ON_SHIFT              (1U)
+#define PKA_CLK_CTRL_PKCP_CLK_ON_SHIFT             (2U)
+#define PKA_CLK_CTRL_LNME_CLK_ON_SHIFT             (3U)
+#define PKA_CLK_CTRL_LNME_REG_CLK_ON_SHIFT         (4U)
+#define PKA_CLK_CTRL_GF2M_CLK_ON_SHIFT             (5U)
+#define PKA_CLK_CTRL_DATA_RAM_CLK_ON_SHIFT         (6U)
 
-#define PKA_CLK_CTRL_REG_CLK_EN_SHIFT              (16)
-#define PKA_CLK_CTRL_SEQ_CLK_EN_SHIFT              (17)
-#define PKA_CLK_CTRL_PKCP_CLK_EN_SHIFT             (18)
-#define PKA_CLK_CTRL_LNME_CLK_EN_SHIFT             (19)
-#define PKA_CLK_CTRL_LNME_REG_CLK_EN_SHIFT         (20)
-#define PKA_CLK_CTRL_GF2M_CLK_EN_SHIFT             (21)
-#define PKA_CLK_CTRL_DATA_RAM_CLK_EN_SHIFT         (22)
+#define PKA_CLK_CTRL_REG_CLK_EN_SHIFT              (16U)
+#define PKA_CLK_CTRL_SEQ_CLK_EN_SHIFT              (17U)
+#define PKA_CLK_CTRL_PKCP_CLK_EN_SHIFT             (18U)
+#define PKA_CLK_CTRL_LNME_CLK_EN_SHIFT             (19U)
+#define PKA_CLK_CTRL_LNME_REG_CLK_EN_SHIFT         (20U)
+#define PKA_CLK_CTRL_GF2M_CLK_EN_SHIFT             (21U)
+#define PKA_CLK_CTRL_DATA_RAM_CLK_EN_SHIFT         (22U)
 
-#define PKA_SEQ_CTRL_RESET_SHIFT                   (31)
-#define PKA_SEQ_CTRL_RESULT_SHIFT                  (8)
-#define PKA_SW_REV_FIRMWARE_VERSION_SHIFT          (16)
-#define PKA_SEQ_CTRL_RESULT_MASK                   (0xffUL << 8)
-#define PKA_SW_REV_FIRMWARE_VERSION_MASK           (0xfffUL << 16)
+#define PKA_SEQ_CTRL_RESET_SHIFT                   (31U)
+#define PKA_SEQ_CTRL_RESULT_SHIFT                  (8U)
+#define PKA_SW_REV_FIRMWARE_VERSION_SHIFT          (16U)
+#define PKA_SEQ_CTRL_RESULT_MASK                   (0xffUL << 8U)
+#define PKA_SW_REV_FIRMWARE_VERSION_MASK           (0xfffUL << 16U)
 
-#define PKA_CLK_CTRL_REG_CLK_OFF_SHIFT             (8)
-#define PKA_CLK_CTRL_SEQ_CLK_OFF_SHIFT             (9)
-#define PKA_CLK_CTRL_PKCP_CLK_OFF_SHIFT            (10)
-#define PKA_CLK_CTRL_LNME_CLK_OFF_SHIFT            (11)
-#define PKA_CLK_CTRL_LNME_REG_CLK_OFF_SHIFT        (12)
-#define PKA_CLK_CTRL_GF2M_CLK_OFF_SHIFT            (13)
-#define PKA_CLK_CTRL_DATA_RAM_CLK_OFF_SHIFT        (14)
+#define PKA_CLK_CTRL_REG_CLK_OFF_SHIFT             (8U)
+#define PKA_CLK_CTRL_SEQ_CLK_OFF_SHIFT             (9U)
+#define PKA_CLK_CTRL_PKCP_CLK_OFF_SHIFT            (10U)
+#define PKA_CLK_CTRL_LNME_CLK_OFF_SHIFT            (11U)
+#define PKA_CLK_CTRL_LNME_REG_CLK_OFF_SHIFT        (12U)
+#define PKA_CLK_CTRL_GF2M_CLK_OFF_SHIFT            (13U)
+#define PKA_CLK_CTRL_DATA_RAM_CLK_OFF_SHIFT        (14U)
 
-#define PKA_FUNCTION_COMPARE_SHIFT                 (10)
-#define PKA_FUNCTION_RUN_SHIFT                     (15)
-#define PKA_FUNCTION_RUN_MASK                      (1UL << 15)
-#define PKA_FUNCTION_CMD_HI_SHIFT                  (16)
-#define PKA_FUNCTION_CMD_LO_SHIFT                  (12)
-#define PKA_FUNCTION_RUN_SHIFT                     (15)
+#define PKA_FUNCTION_COMPARE_SHIFT                 (10U)
+#define PKA_FUNCTION_RUN_SHIFT                     (15U)
+#define PKA_FUNCTION_RUN_MASK                      (1UL << 15U)
+#define PKA_FUNCTION_CMD_HI_SHIFT                  (16U)
+#define PKA_FUNCTION_CMD_LO_SHIFT                  (12U)
+#define PKA_FUNCTION_RUN_SHIFT                     (15U)
 
-#define PKA_FUNCTION_ADD_MASK                      (1UL<<4)
-#define PKA_FUNCTION_SUBTRACT_MASK                 (1UL<<5)
-#define PKA_FUNCTION_MODULO_MASK                   (1UL<<9)
-#define PKA_FUNCTION_COPY_MASK                     (1UL<<11)
-#define PKA_FUNCTION_DIVIDE_MASK                   (1UL<<8)
-#define PKA_FUNCTION_MULTIPLY_MASK                 (1UL<<0)
+#define PKA_FUNCTION_ADD_MASK                      (1UL<<4U)
+#define PKA_FUNCTION_SUBTRACT_MASK                 (1UL<<5U)
+#define PKA_FUNCTION_MODULO_MASK                   (1UL<<9U)
+#define PKA_FUNCTION_COPY_MASK                     (1UL<<11U)
+#define PKA_FUNCTION_DIVIDE_MASK                   (1UL<<8U)
+#define PKA_FUNCTION_MULTIPLY_MASK                 (1UL<<0U)
 
-#define PKA_COMPARE_A_LT_B_MASK                    (1UL << 1)
-#define PKA_COMPARE_A_GT_B_MASK                    (1UL << 2)
-#define PKA_COMPARE_A_EQ_B_MASK                    (1UL << 0)
+#define PKA_COMPARE_A_LT_B_MASK                    (1UL << 1U)
+#define PKA_COMPARE_A_GT_B_MASK                    (1UL << 2U)
+#define PKA_COMPARE_A_EQ_B_MASK                    (1UL << 0U)
 
 /** PKA RAM size (4kbytes) in words */
 #define PKA_RAM_SIZE_WORDS                         (1024U)
 
-#define PKA_SEQ_CTRL_DONE_MASK                     (1UL << 8)
-#define PKA_SEQ_CTRL_DONE_SHIFT                    (8)
+#define PKA_SEQ_CTRL_DONE_MASK                     (1UL << 8U)
+#define PKA_SEQ_CTRL_DONE_SHIFT                    (8U)
 
 /** Result code when a PKA firmware command was successfUL */
 #define PKA_COMMAND_RESULT_SUCCESS                 (0x1U)
@@ -432,7 +432,7 @@ static void PKA_setDPtr(CSL_Eip_29t2_ramRegs *pka_regs, uint32_t offset)
 
 AsymCrypt_Handle AsymCrypt_open(uint32_t index)
 {
-    uint32_t        status  = ASYM_CRYPT_RETURN_SUCCESS;
+    AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_SUCCESS;
     AsymCrypt_Handle      handle  = NULL;
     PKA_Config      *config = NULL;
     PKA_Attrs       *attrs  = NULL;
@@ -444,7 +444,7 @@ AsymCrypt_Handle AsymCrypt_open(uint32_t index)
     else
     {
         config = &gPkaConfig[index];
-        DebugP_assert(NULL != config->attrs);
+        DebugP_assert((int32_t)(NULL != config->attrs));
         attrs = config->attrs;
         if(1U == attrs->isOpen)
         {
@@ -502,9 +502,9 @@ AsymCrypt_Return_t AsymCrypt_close(AsymCrypt_Handle handle)
     if((NULL != config) && (config->attrs->isOpen != (uint32_t)FALSE))
     {
         attrs = config->attrs;
-        DebugP_assert(NULL != attrs);
+        DebugP_assert((int32_t)(NULL != attrs));
         PKA_disable(attrs);
-        attrs->isOpen = FALSE;
+        attrs->isOpen = (uint32_t)FALSE;
         /* TO disable module*/
         handle = NULL;
         status  = ASYM_CRYPT_RETURN_SUCCESS;
@@ -1492,15 +1492,18 @@ AsymCrypt_Return_t PKA_ECMontMultiply(AsymCrypt_Handle handle,
 {
     PKA_Config      *config;
     PKA_Attrs *attrs;
-    config  = (PKA_Config *) handle;
-    attrs   = config->attrs;
     CSL_Eip_29t2_ramRegs *pka_regs;
 	AsymCrypt_Return_t status = ASYM_CRYPT_RETURN_FAILURE;
     uint32_t k1[EC_PARAM_MAXLEN];
 
     /* Checking handle is opened or not */
-    if ((attrs->isOpen) && (NULL != handle)) {
-        status = ASYM_CRYPT_RETURN_SUCCESS;
+    if (NULL != handle) {
+        config  = (PKA_Config *) handle;
+        attrs   = config->attrs;
+        if (attrs->isOpen)
+        {
+            status = ASYM_CRYPT_RETURN_SUCCESS;
+        }
     }
 
     if (status ==  ASYM_CRYPT_RETURN_SUCCESS) {
@@ -1535,17 +1538,20 @@ AsymCrypt_Return_t PKA_ModPInv(AsymCrypt_Handle handle,
 {
     PKA_Config      *config;
     PKA_Attrs *attrs;
-    config  = (PKA_Config *) handle;
-    attrs   = config->attrs;
     CSL_Eip_29t2_ramRegs *pka_regs;
     AsymCrypt_Return_t status = ASYM_CRYPT_RETURN_FAILURE;
     uint32_t size  = 0, numCount = 0, offset =0;
     volatile uint32_t reg = 0, completeStatus = 0;
 
 	/* Checking handle is opened or not */
-    if((attrs->isOpen) && (NULL != handle))
+    if(NULL != handle)
     {
-        status = ASYM_CRYPT_RETURN_SUCCESS;
+        config  = (PKA_Config *) handle;
+        attrs   = config->attrs;
+        if (attrs->isOpen)
+        {
+            status = ASYM_CRYPT_RETURN_SUCCESS;
+        }
     }
 
     if(status == ASYM_CRYPT_RETURN_SUCCESS)
@@ -1620,29 +1626,38 @@ AsymCrypt_Return_t PKA_ModuloP(AsymCrypt_Handle handle,
     uint32_t             lenA=0, lenP=0, numCount = 0, curPos=0;
     uint64_t             tempWord = 0UL, tempRem = 0UL;
 
-    config  = (PKA_Config *) handle;
-    attrs   = config->attrs;
-
     /* Checking handle is opened or not */
-    if((attrs->isOpen) && (NULL != handle))
+    if(NULL != handle)
     {
-        status = ASYM_CRYPT_RETURN_SUCCESS;
+        config  = (PKA_Config *) handle;
+        attrs   = config->attrs;
+        if (attrs->isOpen)
+        {
+            status = ASYM_CRYPT_RETURN_SUCCESS;
+        }
     }
 
-    if ((ASYM_CRYPT_RETURN_SUCCESS == status) && (lenA < EC_PARAM_MAXLEN) && (lenP < EC_PARAM_MAXLEN))
+    if (ASYM_CRYPT_RETURN_SUCCESS == status)
     {    
         /*Get A and P length with most significant non-zero 32-bit word*/
-        lenA = A[0];
-        while((A[lenA] == 0) && lenA > 1)
-        {
-            lenA--;
-        }
+        lenA = A[0]; 
         lenP = P[0];
-        while((P[lenP] == 0) && lenP > 1)
+        if ((lenA < EC_PARAM_MAXLEN) && (lenP < EC_PARAM_MAXLEN))
         {
-            lenP--;
+            while((A[lenA] == 0) && lenA > 1)
+            {
+                lenA--;
+            }
+            while((P[lenP] == 0) && lenP > 1)
+            {
+                lenP--;
+            }
+            status = ASYM_CRYPT_RETURN_SUCCESS;
         }
-        status = ASYM_CRYPT_RETURN_SUCCESS;
+        else
+        {
+            status = ASYM_CRYPT_RETURN_FAILURE;
+        }
     }
     else
     {
@@ -1781,8 +1796,6 @@ AsymCrypt_Return_t PKA_ModPSub(AsymCrypt_Handle handle,
 {
     PKA_Config      *config;
     PKA_Attrs *attrs;
-    config  = (PKA_Config *) handle;
-    attrs   = config->attrs;
     CSL_Eip_29t2_ramRegs *pka_regs;
     AsymCrypt_Return_t status = ASYM_CRYPT_RETURN_FAILURE;
 
@@ -1791,9 +1804,14 @@ AsymCrypt_Return_t PKA_ModPSub(AsymCrypt_Handle handle,
     uint32_t tempResult[EC_PARAM_MAXLEN];
 
     /* Checking handle is opened or not */
-    if((attrs->isOpen) && (NULL != handle))
+    if(NULL != handle)
     {
-        status = ASYM_CRYPT_RETURN_SUCCESS;
+        config  = (PKA_Config *) handle;
+        attrs   = config->attrs;
+        if (attrs->isOpen)
+        {
+            status = ASYM_CRYPT_RETURN_SUCCESS;
+        }
     }
 
     if (status == ASYM_CRYPT_RETURN_SUCCESS)
@@ -1858,8 +1876,6 @@ AsymCrypt_Return_t PKA_ModPExp(AsymCrypt_Handle handle,
 {
     PKA_Config      *config;
     PKA_Attrs *attrs;
-    config  = (PKA_Config *) handle;
-    attrs   = config->attrs;
     CSL_Eip_29t2_ramRegs *pka_regs;
     uint32_t size = 0U, offset=0, numCount=0;
 
@@ -1867,9 +1883,14 @@ AsymCrypt_Return_t PKA_ModPExp(AsymCrypt_Handle handle,
     volatile uint32_t reg=0, completeStatus = 0;
 
     /* Checking handle is opened or not */
-    if((attrs->isOpen) && (NULL != handle))
+    if(NULL != handle)
     {
-        status = ASYM_CRYPT_RETURN_SUCCESS;
+        config  = (PKA_Config *) handle;
+        attrs   = config->attrs;
+        if (attrs->isOpen)
+        {
+            status = ASYM_CRYPT_RETURN_SUCCESS;
+        }
     }
 
     if(status == ASYM_CRYPT_RETURN_SUCCESS)
@@ -1949,12 +1970,14 @@ static AsymCrypt_Return_t PKA_ECMontRecoverY (AsymCrypt_Handle handle,
     uint32_t             numCount=0;
     const uint32_t       bn_4[2] = {1,4};
 
-    config  = (PKA_Config *) handle;
-    attrs   = config->attrs;
-
-    if((attrs->isOpen) && (NULL != handle))
+    if(NULL != handle)
     {
-        status = ASYM_CRYPT_RETURN_SUCCESS;
+        config  = (PKA_Config *) handle;
+        attrs   = config->attrs;
+        if (attrs->isOpen)
+        {
+            status = ASYM_CRYPT_RETURN_SUCCESS;
+        }
     }
 
     if(status == ASYM_CRYPT_RETURN_SUCCESS)
@@ -2174,13 +2197,16 @@ static AsymCrypt_Return_t PKA_modpMath(AsymCrypt_Handle handle,
 
     PKA_Config      *config;
     PKA_Attrs *attrs;
-    config  = (PKA_Config *) handle;
-    attrs   = config->attrs;
     CSL_Eip_29t2_ramRegs *pka_regs;
     /* Checking handle is opened or not */
-    if((attrs->isOpen) && (NULL != handle))
+    if(NULL != handle)
     {
-        status = ASYM_CRYPT_RETURN_SUCCESS;
+        config  = (PKA_Config *) handle;
+        attrs   = config->attrs;
+        if (attrs->isOpen)
+        {
+            status = ASYM_CRYPT_RETURN_SUCCESS;
+        }
     }
 
     if(status == ASYM_CRYPT_RETURN_SUCCESS)
@@ -2534,15 +2560,15 @@ static inline uint32_t PKA_dwAlign(uint32_t size)
 
 uint32_t PKA_countLeadingZeros(uint32_t x)
 {
-    uint32_t bit_count = 0, lz = 0;
+    uint32_t bit_count = 0U, lz = 0U;
 
-    bit_count = sizeof(x)*8;
+    bit_count = (uint32_t)(sizeof(x)*8U);
 
     /* Left shift until Most significant bit doesn become 1 */
 
-    while( (x & (1 << (bit_count - 1))) == 0)
+    while( (x & (1U << (bit_count - 1))) == 0)
     {
-        x <<= 1;
+        x <<= 1U;
         lz++;
     }
 
@@ -2573,7 +2599,7 @@ static uint32_t PKA_bigIntBitLen(const uint32_t bn[ECDSA_MAX_LENGTH])
     }
     else
     {
-        status = (i * 32U) - PKA_countLeadingZeros((int32_t) bn[i]);
+        status = (i * 32U) - PKA_countLeadingZeros((uint32_t) bn[i]);
     }
     return (status);
 }

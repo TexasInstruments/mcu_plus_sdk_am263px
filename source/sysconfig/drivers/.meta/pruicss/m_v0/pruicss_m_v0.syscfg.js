@@ -1,9 +1,24 @@
 let common = system.getScript("/common");
 let soc = system.getScript(`/drivers/pruicss/soc/pruicss_${common.getSocName()}`);
-let device = common.getDeviceName();
+let helperScript = system.getScript(`/clockTree/helperScript.js`);
 let is_am263x_soc = (common.getSocName() == "am263x") ? true : false;
 let is_am263px_soc = (common.getSocName() == "am263px") ? true : false;
 let is_am261x_soc = (common.getSocName() == "am261x") ? true : false;
+
+/*am261x: R5F clock tree only offers 400MHz or 500MHz; 450MHz is the midpoint used to classify it*/
+function isR5Clock400MHz() {
+    return helperScript.helperGetFrequencyNamedConnection("R5FSS0_GATED_CLK") <= 450*1000000;
+}
+
+/*am261x: Core Clk and IEP Clk being equal is exactly what IEP Clk Sync Mode achieves (IEP sourced from core clock), so auto-enable it*/
+function enableSyncModeIfClocksMatch(inst, ui) {
+    if(!inst.iepSyncMode && inst.coreClk == inst.iepClk)
+    {
+        inst.iepSyncMode = true;
+        ui.iepClk.readOnly = true;
+        ui.coreClk.readOnly = true;
+    }
+}
 
 function getConfigArr() {
     return soc.getConfigArr();
@@ -120,58 +135,13 @@ function getConfigurables()
             
         )
     }
-    else if(device == "am261x-som") 
-    {
-        config.push(
-            {
-                name: "instance",
-                displayName: "Instance",
-                default: "ICSSM0",
-                options: [
-                    {
-                        name: "ICSSM0",
-                    },
-                    {
-                        name: "ICSSM1",
-                    },
-                ],
-            },
-            {
-                name: "coreClk",
-                displayName: "Core Clk (Hz)",
-                default: 200*1000000,
-                options: [
-                    {
-                        name: 200*1000000,
-                        description: "ICSS core clock is derived from SYS_CLK(200 MH)"
-                    }
-                ],
-            }, 
-            {
-                name: "iepClk",
-                displayName: "IEP Clk (Hz)",
-                default: 200*1000000,
-                options: [
-                    {
-                        name: 200*1000000,
-                        description: "ICSS iep clock is derived from SYS_CLK(200 MHz)"
-                    }
-                ]
-            }, 
-            {
-                name: "uartClk",
-                displayName: "Uart Clk (Hz)",
-                default: 160*1000000,
-                options: [
-                    {
-                        name: 160*1000000,
-                        description: "UART clock is derived from DPLL_PER_HSDIV0_CLKOUT2(160 MHz)"
-                    }
-                ],
-            }
-        )     
-    }
     else {
+        /*am261x: default Core/IEP clocks to match the current R5F clock frequency (400MHz -> 200MHz, 500MHz -> 225/250MHz)*/
+        let defaultCoreClk = isR5Clock400MHz() ? 200*1000000 : 225*1000000;
+        let defaultIepClk = isR5Clock400MHz() ? 200*1000000 : 250*1000000;
+        /*400MHz defaults land on matching Core/IEP clocks - default Sync Mode on (and lock the fields) to match,
+          since onChange only fires on direct user edits, not on instance creation/migration*/
+        let defaultIepSyncMode = (defaultCoreClk == defaultIepClk);
         config.push(
             {
                 name: "instance",
@@ -189,7 +159,8 @@ function getConfigurables()
             {
                 name: "coreClk",
                 displayName: "Core Clk (Hz)",
-                default: 225*1000000,
+                default: defaultCoreClk,
+                readOnly: defaultIepSyncMode,
                 options: [
                     {
                         name: 200*1000000,
@@ -200,11 +171,13 @@ function getConfigurables()
                         description: "ICSS core clock is derived from DPLL_ETH_HSDIV0_CLKOUT0(450 MHz) with divider 2"
                     }
                 ],
-            }, 
+                onChange: enableSyncModeIfClocksMatch,
+            },
             {
                 name: "iepClk",
                 displayName: "IEP Clk (Hz)",
-                default: 250*1000000,
+                default: defaultIepClk,
+                readOnly: defaultIepSyncMode,
                 options: [
                     {
                         name: 200*1000000,
@@ -225,7 +198,8 @@ function getConfigurables()
                         reason: "This option is auto selected when IEP Clk Sync Mode is enabled"
                     }]
                 },
-            }, 
+                onChange: enableSyncModeIfClocksMatch,
+            },
             {
                 name: "uartClk",
                 displayName: "Uart Clk (Hz)",
@@ -236,12 +210,12 @@ function getConfigurables()
                         description: "UART clock is derived from DPLL_PER_HSDIV0_CLKOUT2(160 MHz)"
                     }
                 ],
-            }, 
+            },
             {
                 name: "iepSyncMode",
                 displayName: "IEP Clk Sync Mode",
                 longDescription: "In this mode the async IEP bridge is bypassed and the source of IEP CLK is ICSSMn_CORE_CLK. This means all PRU-ICSSMn IOs which use internal IEP clock will use internal core clock.",
-                default: false,
+                default: defaultIepSyncMode,
                 onChange: (inst, ui) => {
                     if(inst.iepSyncMode)
                     {
@@ -252,8 +226,10 @@ function getConfigurables()
                     }
                     else
                     {
-                        /*Change back IEP to default option if iepSyncMode is disabled*/
-                        inst.iepClk = 250*1000000,
+                        /*Change back IEP to default option (matching current R5F clock frequency) if iepSyncMode is disabled.
+                          Uses the defaultIepClk captured when this instance's config was built, since onChange handlers
+                          cannot access system.clockTree - only the current instance's configuration.*/
+                        inst.iepClk = defaultIepClk,
                         ui.iepClk.readOnly =  false,
                         ui.coreClk.readOnly =  false
                     }     

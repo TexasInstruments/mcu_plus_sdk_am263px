@@ -589131,3 +589131,24 @@ Date:   Tue Sep 22 22:18:31 2026 +0530
  docs/mcu_plus_sdk_am263x_manifest.html           |   40 +-
  20 files changed, 32528 insertions(+), 15 deletions(-)
 
+========================================
+Changes from build on 2026-10-09 20:49:17
+Previous commit: e46fa0ada8afbe3e139623f4c98240b95f2e0dc0
+Current commit: b9164821c3511bcf48573245f8114e80900b7735
+========================================
+
+commit b9164821c3511bcf48573245f8114e80900b7735
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Fri Sep 25 15:55:06 2026 +0530
+
+    am64/243: enet: HW push alloc updated
+    
+    - CPSW-3g has 8 instances of Hw Push event
+    
+    Fixes: SITSW-13179
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ source/networking/enet/soc/k3/am64x_am243x/enet_soc_cfg.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+

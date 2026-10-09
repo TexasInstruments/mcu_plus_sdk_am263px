@@ -1353,7 +1353,20 @@ int32_t HsmClient_activeToDormantBankCopy(HsmClient_t *HsmClient,
  */
 int32_t HsmClient_SecCfgUpdate(HsmClient_t *HsmClient,
                                             FirmwareUpdateReq_t *pFirmwareUpdateObject);
- 
+
+/**
+ *  @brief  Client request to update device Bank Mode
+ *          Valid only for F29x family of devices
+ *
+ *  @param  HsmClient               [IN] HsmClient object
+ *  @param  targetBankMode     [IN] Arguments to be passed to HSM core via SIPC.
+ * 
+ * @return
+ * 1. SystemP_SUCCESS if programming done successfully
+ * 2. SystemP_FAILURE if NACK message is received or client id not registered.
+ */
+int32_t HsmClient_ProgramBankMode(HsmClient_t *HsmClient,
+                                            uint32_t targetBankMode);
  /**
  * @brief
  *  Client request to get device configuration from HSM

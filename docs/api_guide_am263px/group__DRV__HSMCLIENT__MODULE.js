@@ -265,6 +265,7 @@ var group__DRV__HSMCLIENT__MODULE =
     [ "HSM_MSG_FW_UPDATE_SECCFG", "group__DRV__HSMCLIENT__MODULE.html#ga961b6e9ba945d256aed207d40283f16f", null ],
     [ "HSM_MSG_BANK_SWAP", "group__DRV__HSMCLIENT__MODULE.html#ga51f48b5ecad8c29c9ed06e2a5bdfab59", null ],
     [ "HSM_MSG_ENABLE_FA", "group__DRV__HSMCLIENT__MODULE.html#gaac2e7a5e4462d3ae02133255e9e9a801", null ],
+    [ "HSM_MSG_UPDATE_BM", "group__DRV__HSMCLIENT__MODULE.html#ga5a24a67873af1e7c1fec422c9037e93b", null ],
     [ "HSM_MSG_CRYPTO_SERVICE", "group__DRV__HSMCLIENT__MODULE.html#ga53441a5d8285223de54f3ae2729a94e7", null ],
     [ "HSM_FLAG_AOP", "group__DRV__HSMCLIENT__MODULE.html#ga0842e3d812796be34207849e8dc8dc3a", null ],
     [ "HSM_FLAG_NAOP", "group__DRV__HSMCLIENT__MODULE.html#ga5f0c48b13ab8d657a61ff359466f16e8", null ],
@@ -330,6 +331,7 @@ var group__DRV__HSMCLIENT__MODULE =
     [ "HsmClient_secCfgValidate", "group__DRV__HSMCLIENT__MODULE.html#ga6634bc2f8d0d9f5574111f6070838002", null ],
     [ "HsmClient_activeToDormantBankCopy", "group__DRV__HSMCLIENT__MODULE.html#ga2a4fabce99d63a311aab8352a9fe890b", null ],
     [ "HsmClient_SecCfgUpdate", "group__DRV__HSMCLIENT__MODULE.html#gabe2810b39dc269a55fcca419c65eb87c", null ],
+    [ "HsmClient_ProgramBankMode", "group__DRV__HSMCLIENT__MODULE.html#gaa697d7c61e4be595e628fe2688b7331f", null ],
     [ "HsmClient_getDeviceConfig", "group__DRV__HSMCLIENT__MODULE.html#gab86209b718b0ffd17871e0d1c5354a75", null ],
     [ "HsmClient_CryptoService", "group__DRV__HSMCLIENT__MODULE.html#ga5d455e29e9539fbd6b0ceb3eaead24cd", null ],
     [ "HsmClient_runTimeBankSwap", "group__DRV__HSMCLIENT__MODULE.html#gaaa5ee846577c5404a103d3ee391c4fb6", null ]

@@ -2922,3 +2922,9 @@ ICSS_EMAC_pruRstIsoState ICSS_EMAC_getResetIsolationStatus(ICSS_EMAC_Handle emac
 
     return retVal;
 }
+
+uint32_t ICSS_EMAC_getVersion(void)
+{
+    return ICSS_EMAC_LLD_VERSION_ID;
+}
+

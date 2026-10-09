@@ -8314,3 +8314,28 @@ Date:   Thu Sep 10 14:59:37 2026 +0530
  drivers/.meta/pruicss/templates/pruicss_init.c.xdt | 7 ++++---
  2 files changed, 6 insertions(+), 5 deletions(-)
 
+========================================
+Changes from build on 2026-10-09 20:47:05
+Previous commit: 8f0969ddba4e970170a1e3c328660a3b630bd8bb
+Current commit: b25c38079423e25f7893e8a8cc36713768558719
+========================================
+
+commit b25c38079423e25f7893e8a8cc36713768558719
+Author: Aaron <aaron.richard@ti.com>
+Date:   Mon Sep 28 19:49:13 2026 +0530
+
+    am261x: pruicss: Fix ZCZ package Core/IEP clock
+    
+    - Remove the am261x-som branch that hardcoded PRU to 200MHz regardless of R5F
+    - Default Core Clk/IEP Clk to match the current R5F clock frequency:
+    - 400MHz -> 200MHz, 500MHz -> 225/250MHz
+    - Via the clock tree helper, instead of a static 225/250MHz default
+    - Auto-check IEP Clk Sync Mode (and lock Core/IEP Clk)
+    
+    Fixes: MCUSDK-15984
+    
+    Signed-off-by: Aaron Thomas <aaron.richard@ti.com>
+
+ drivers/.meta/pruicss/m_v0/pruicss_m_v0.syscfg.js | 96 ++++++++++++++++++++++++---------------------------------------
+ 1 file changed, 36 insertions(+), 60 deletions(-)
+

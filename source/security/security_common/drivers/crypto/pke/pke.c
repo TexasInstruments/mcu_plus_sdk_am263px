@@ -838,6 +838,7 @@ AsymCrypt_Return_t AsymCrypt_EddsaVerify(AsymCrypt_Handle handle,
     int32_t pkeStatus = PKE_FAULT_STATUS;
     uint32_t hash_len;
     uint32_t key_len;
+    uint32_t i = 0U;
 
     if (ASYM_CRYPT_CURVE_TYPE_EDDSA_25519 == input_curve) {
         hash_len = EDDSA_ED25519_HASH_LEN;
@@ -872,13 +873,13 @@ AsymCrypt_Return_t AsymCrypt_EddsaVerify(AsymCrypt_Handle handle,
             pkeStatus = cri_pke_eddsa_verify(gPKE, curve, pubKey, hash, curvelen, sig->R, sig->s, signatureRPrime);
 
             if (pkeStatus == PKE_NO_ERROR_STATUS) {
-                if (memcmp(sig->R, signatureRPrime, key_len) == 0) {
-                    /* PKE Eddsa Verification Signature matches*/
-                    status = ASYM_CRYPT_RETURN_SUCCESS;
-                } else {
-                    /* PKE Eddsa Verification Signature does not matches*/
-                    status = ASYM_CRYPT_RETURN_FAILURE;
-                }
+                    for(i = 0U; i < key_len; i++) {
+                        if (sig->R[i] != signatureRPrime[i]) {
+                            /* PKE Eddsa Verification Signature does not matches*/
+                            status = ASYM_CRYPT_RETURN_FAILURE;
+                            break;
+                        }
+                    }
             } else {
                 status  = ASYM_CRYPT_RETURN_FAILURE;
             }
@@ -1080,18 +1081,26 @@ AsymCrypt_Return_t AsymCrypt_SM2DSASign(AsymCrypt_Handle handle,
 
         /* Get SM2 curve */
         curve = cri_pke_get_curve(CRI_ECC_CURVE_SM2);
-        /* Get curve length of SM2 */
-        curvelen = cri_pke_get_curve_length(curve);
 
-        /* Get signature */
-        pkeStatus = cri_pke_ecdsa_sign_extended(gPKE, curve, &priv[1U], NULL, noncePtr,  &h[1U], curvelen, &sig->r[1U], &sig->s[1U]);
-
-        if (pkeStatus == PKE_NO_ERROR_STATUS)
+        if (curve != NULL)
         {
-            status  = ASYM_CRYPT_RETURN_SUCCESS;
+            /* Get curve length of SM2 */
+            curvelen = cri_pke_get_curve_length(curve);
 
-            sig->r[0U] = size;
-            sig->s[0U] = size;
+            /* Get signature */
+            pkeStatus = cri_pke_ecdsa_sign_extended(gPKE, curve, &priv[1U], NULL, noncePtr,  &h[1U], curvelen, &sig->r[1U], &sig->s[1U]);
+
+            if (pkeStatus == PKE_NO_ERROR_STATUS)
+            {
+                status  = ASYM_CRYPT_RETURN_SUCCESS;
+
+                sig->r[0U] = size;
+                sig->s[0U] = size;
+            }
+            else
+            {
+                status  = ASYM_CRYPT_RETURN_FAILURE;
+            }
         }
         else
         {
@@ -1130,15 +1139,23 @@ AsymCrypt_Return_t AsymCrypt_SM2DSAVerify(AsymCrypt_Handle handle,
     {
         /* Get SM2 curve */
         curve = cri_pke_get_curve(CRI_ECC_CURVE_SM2);
-        /* Get curve length of SM2 */
-        curvelen = cri_pke_get_curve_length(curve);
 
-        /* Verify signature */
-        pkeStatus = cri_pke_ecdsa_verify_hash(gPKE, curve, &pub->x[1U], &pub->y[1U], &h[1U], curvelen, &sig->r[1U], &sig->s[1U], &signatureRPrime);
-
-        if (pkeStatus == PKE_NO_ERROR_STATUS)
+        if (curve != NULL)
         {
-            status  = ASYM_CRYPT_RETURN_SUCCESS;
+            /* Get curve length of SM2 */
+            curvelen = cri_pke_get_curve_length(curve);
+
+            /* Verify signature */
+            pkeStatus = cri_pke_ecdsa_verify_hash(gPKE, curve, &pub->x[1U], &pub->y[1U], &h[1U], curvelen, &sig->r[1U], &sig->s[1U], &signatureRPrime);
+
+            if (pkeStatus == PKE_NO_ERROR_STATUS)
+            {
+                status  = ASYM_CRYPT_RETURN_SUCCESS;
+            }
+            else
+            {
+                status  = ASYM_CRYPT_RETURN_FAILURE;
+            }
         }
         else
         {

@@ -336,5 +336,6 @@ var group__NETWORKING__ICSS__EMAC__MODULE =
     [ "ICSS_EMAC_rxPktGet", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga6a5967f060e14a11d20eea9cd8b66e5f", null ],
     [ "ICSS_EMAC_rxPktInfo", "group__NETWORKING__ICSS__EMAC__MODULE.html#gabf7e27aeb2dd4e42638b8ab8e20ecdd6", null ],
     [ "ICSS_EMAC_txPacket", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga49a2a061f6f24145004053b005f6e1a5", null ],
-    [ "ICSS_EMAC_getResetIsolationStatus", "group__NETWORKING__ICSS__EMAC__MODULE.html#gaa0ea20af82b6ded6ca9f595991930887", null ]
+    [ "ICSS_EMAC_getResetIsolationStatus", "group__NETWORKING__ICSS__EMAC__MODULE.html#gaa0ea20af82b6ded6ca9f595991930887", null ],
+    [ "ICSS_EMAC_getVersion", "group__NETWORKING__ICSS__EMAC__MODULE.html#ga2fe2000446574212f3df61100ce925a0", null ]
 ];

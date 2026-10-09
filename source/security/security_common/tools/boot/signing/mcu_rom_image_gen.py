@@ -669,6 +669,10 @@ my_parser.add_argument('--sign-key-id',     type=str,
                        required=False, help='Index of signing key inside keyring')
 my_parser.add_argument('--enc-key-id',     type=str,
                        required=False, help='Index of encryption key inside keyring')
+my_parser.add_argument('--rsassa_pss',
+                       help='If binary needs to be signed RSASSA PSS scheme or not [y/n]', action="store_true")
+my_parser.add_argument('--pss_saltlen',     type=int,   default=0,
+                       help='Salt length for RSASSA PSS scheme')
 
 args = my_parser.parse_args()
 
@@ -689,8 +693,12 @@ else:
 out_name = args.out_image
 
 # Generate the certificate
-subprocess.check_output('openssl req -new -x509 -key {} -nodes -outform DER -out {} -config {} -{}'.format(
-    args.sign_key, cert_name, cert_file_name, g_sha_to_use), shell=True)
+if (args.rsassa_pss):
+    subprocess.check_output('openssl req -new -x509 -key {} -nodes -outform DER -out {} -config {} -{} -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:{} '.format(
+        args.sign_key, cert_name, cert_file_name, g_sha_to_use, args.pss_saltlen), shell=True)
+else:
+    subprocess.check_output('openssl req -new -x509 -key {} -nodes -outform DER -out {} -config {} -{} '.format(
+        args.sign_key, cert_name, cert_file_name, g_sha_to_use), shell=True)
 
 # Concatenate the certificate and  input binary
 final_fh = open(args.out_image, 'wb+')

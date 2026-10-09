@@ -209,8 +209,8 @@ DTHE_SHA_Return_t DTHE_SHA_close(DTHE_Handle handle)
 DTHE_SHA_Return_t DTHE_SHA_compute(DTHE_Handle handle, DTHE_SHA_Params* ptrShaParams, Bool isLastBlock)
 {
     DTHE_SHA_Return_t       status = DTHE_SHA_RETURN_SUCCESS;
-    uint8_t                 useAlgoConstants;
-    uint8_t                 closeHash;
+    uint8_t                 useAlgoConstants = 0U;
+    uint8_t                 closeHash = 0U;
     uint8_t                 blockSize = 0U;
     uint32_t                shiftSize = 0U;
     uint32_t                dataLenBytes = 0U;
