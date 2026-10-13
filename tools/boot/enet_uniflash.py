@@ -356,7 +356,7 @@ def packetize(linecfg: LineCfg, debug: bool):
                 start = (i*BOOTLOADER_UNIFLASH_BUF_SIZE) + (j*BOOTLOADER_UNIFLASH_PACKET_SIZE)
                 end = start + BOOTLOADER_UNIFLASH_PACKET_SIZE
                 if end >= len(file_bytes):
-                    end = -1
+                    end = len(file_bytes) 
                 data_bytes += file_bytes[start:end]
                 if debug:
                     print("[DEBUG] Part {} Packet {}: ".format(i, j+1))

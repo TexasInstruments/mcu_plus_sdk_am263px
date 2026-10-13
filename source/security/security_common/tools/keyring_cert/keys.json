@@ -52,19 +52,19 @@
     "keyring_symm": [
         {
             "key_id": "0",
-            "key_rights": "0000000A",
+            "key_rights": "00000A0A",
             "key_length": 128,
             "aes_key": "aux_keys/aes128.key"
         },
         {
             "key_id": "1",
-            "key_rights": "0000000A",
+            "key_rights": "00000A0A",
             "key_length": 192,
             "aes_key": "aux_keys/aes192.key"
         },
         {
             "key_id": "2",
-            "key_rights": "0000000A",
+            "key_rights": "00000A0A",
             "key_length": 256,
             "aes_key": "aux_keys/aes256.key"
         }

@@ -589152,3 +589152,137 @@ Date:   Fri Sep 25 15:55:06 2026 +0530
  source/networking/enet/soc/k3/am64x_am243x/enet_soc_cfg.h | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
+========================================
+Changes from build on 2026-10-13 20:50:00
+Previous commit: b9164821c3511bcf48573245f8114e80900b7735
+Current commit: 8e932e4c4a1ac739366cc6b83fa569b8a17bea71
+========================================
+
+commit 8e932e4c4a1ac739366cc6b83fa569b8a17bea71
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Thu Oct 8 16:12:55 2026 +0530
+
+    am243x/64x: sbl: add docs EnetSBL
+    
+    - Added docs for EnetSBL
+    
+    Fixes: SITSW-12222
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ docs_src/docs/api_guide/components/tools/tools_flash.md  | 88 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ docs_src/docs/api_guide/device/am243x/examples.cfg       |  1 +
+ docs_src/docs/api_guide/device/am64x/examples.cfg        |  1 +
+ docs_src/docs/api_guide/examples/examples_drivers_sbl.md |  1 +
+ 4 files changed, 91 insertions(+)
+
+commit a985f4869f7b594930aa1364859a1135fe9b083d
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Thu Oct 8 10:05:30 2026 +0530
+
+    am243x/64x: sbl: add default configs
+    
+    - added default cfg files for using SBL
+      to load applications.
+    
+    Fixes: SITSW-13250
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ tools/boot/sbl_prebuilt/am243x-evm/default_sbl_eth.cfg        | 19 +++++++++++++++++++
+ tools/boot/sbl_prebuilt/am243x-evm/default_sbl_eth_loader.cfg | 19 +++++++++++++++++++
+ tools/boot/sbl_prebuilt/am243x-lp/default_sbl_eth.cfg         | 25 +++++++++++++++++++++++++
+ tools/boot/sbl_prebuilt/am243x-lp/default_sbl_eth_loader.cfg  | 22 ++++++++++++++++++++++
+ tools/boot/sbl_prebuilt/am64x-evm/default_sbl_eth.cfg         | 19 +++++++++++++++++++
+ tools/boot/sbl_prebuilt/am64x-evm/default_sbl_eth_loader.cfg  | 19 +++++++++++++++++++
+ 6 files changed, 123 insertions(+)
+
+commit b5d04bcf4828af58167d51212ca6e0bceeeb6bfd
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Thu Oct 8 10:02:19 2026 +0530
+
+    am243x/64x: sbl: add gen-build files
+    
+    - added gen-builds change for SBL
+      Ethernet
+    
+    Fixes: SITSW-13250
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ .metadata/.tirex/am243x.content.tirex.json                                  |  66 +++++++
+ .metadata/.tirex/am64x.content.tirex.json                                   |  33 ++++
+ .../am243x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec             | 135 ++++++++++++++
+ .../boot/sbl_enet_uniflash/am243x-evm/r5fss0-0_nortos/ti-arm-clang/makefile | 354 ++++++++++++++++++++++++++++++++++++
+ .../sbl_enet_uniflash/am243x-evm/r5fss0-0_nortos/ti-arm-clang/makefile.defs |  11 ++
+ .../am243x-evm/r5fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen      |  80 ++++++++
+ .../am243x-evm/r5fss0-0_nortos/ti-arm-clang/makefile_projectspec            |  17 ++
+ .../am243x-evm/r5fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs                 |  11 ++
+ .../am243x-lp/r5fss0-0_nortos/ti-arm-clang/example.projectspec              | 135 ++++++++++++++
+ .../boot/sbl_enet_uniflash/am243x-lp/r5fss0-0_nortos/ti-arm-clang/makefile  | 354 ++++++++++++++++++++++++++++++++++++
+ .../sbl_enet_uniflash/am243x-lp/r5fss0-0_nortos/ti-arm-clang/makefile.defs  |  11 ++
+ .../am243x-lp/r5fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       |  80 ++++++++
+ .../am243x-lp/r5fss0-0_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../am243x-lp/r5fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs                  |  11 ++
+ .../am64x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec              | 135 ++++++++++++++
+ .../boot/sbl_enet_uniflash/am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile  | 354 ++++++++++++++++++++++++++++++++++++
+ .../sbl_enet_uniflash/am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile.defs  |  11 ++
+ .../am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       |  80 ++++++++
+ .../am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../am64x-evm/r5fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs                  |  11 ++
+ makefile.am243x                                                             |  26 +++
+ makefile.am64x                                                              |  13 ++
+ makefile_projectspec.am243x                                                 |  26 +++
+ makefile_projectspec.am64x                                                  |  13 ++
+ 24 files changed, 2001 insertions(+)
+
+commit 287fad35ed1bfef0b82284b6e3c4908881e5a808
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Thu Oct 8 10:01:00 2026 +0530
+
+    am243x/64x: sbl: develop SBL ethernet
+    
+    - Ethernet SBL developed for AM243X & AM64X
+    which receives the appimages over network
+    and stores them on flash but does not run
+    them.
+    
+    - It uses stically allocated IP address to
+    transfer the appimages using raw UDP packets
+    without lwip stack.
+    
+    Fixes: SITSW-13250
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ .project/device/project_am243x.js                                           |    1 +
+ .project/device/project_am64x.js                                            |    1 +
+ examples/drivers/boot/sbl_enet_uniflash/.project/project.js                 |   14 +
+ examples/drivers/boot/sbl_enet_uniflash/.project/project_am243x.js          |  151 +++++
+ examples/drivers/boot/sbl_enet_uniflash/.project/project_am64x.js           |  150 +++++
+ .../boot/sbl_enet_uniflash/am243x-evm/r5fss0-0_nortos/example.syscfg        |  304 +++++++++
+ examples/drivers/boot/sbl_enet_uniflash/am243x-evm/r5fss0-0_nortos/main.c   |  146 +++++
+ .../drivers/boot/sbl_enet_uniflash/am243x-lp/r5fss0-0_nortos/example.syscfg |  298 +++++++++
+ examples/drivers/boot/sbl_enet_uniflash/am243x-lp/r5fss0-0_nortos/main.c    |  151 +++++
+ .../drivers/boot/sbl_enet_uniflash/am64x-evm/r5fss0-0_nortos/example.syscfg |  299 +++++++++
+ examples/drivers/boot/sbl_enet_uniflash/am64x-evm/r5fss0-0_nortos/main.c    |  147 +++++
+ examples/drivers/boot/sbl_enet_uniflash/sbl_enet.c                          | 1154 +++++++++++++++++++++++++++++++++++
+ examples/drivers/boot/sbl_enet_uniflash/sbl_enet.h                          |  121 ++++
+ 13 files changed, 2937 insertions(+)
+
+commit 3b84a8c865b5e831030e6f4f24ea37894b6233ed
+Author: Souraduti Parui <s-parui@ti.com>
+Date:   Mon Oct 5 14:32:03 2026 +0530
+
+    allsoc: tool: fix enet-sbl appimag transfer
+    
+    - script for loading appimage to Enet SBL
+      used to skip the last byte due to this line
+    
+    Fixes: SITSW-9013
+    
+    Signed-off-by: Souraduti Parui <s-parui@ti.com>
+
+ tools/boot/enet_uniflash.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
