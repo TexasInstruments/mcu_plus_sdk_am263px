@@ -833,6 +833,7 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
     /*Used to copy timestamp*/
     uint16_t                    aligned_length = 0;
     uint16_t                    true_rd_ptr = 0;
+    uint32_t                    ts_src_addr = 0;
     ICSS_EMAC_Handle            icssEmacHandle = rxArg->icssEmacHandle;
     uint32_t                    destAddress = rxArg->destAddress;
     uint8_t                     queueNumber = rxArg->queueNumber;
@@ -972,7 +973,17 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
     {
         true_rd_ptr = true_rd_ptr - (rxQueue->queue_size - rxQueue->buffer_desc_offset);
     }
-    if (rd_packet_length <= ICSS_EMAC_MAXMTU)        /* make sure we do not have too big packets */
+
+    /* The firmware stores the 10 byte Rx timestamp in the block right after the packet,
+     * wrapping to the start of the ring if the packet ends on the last block. For
+     * collision queue packets (shadow != 0) calculate timestamp address later. */
+    if ((ptp_pkt == TRUE) && (shadow == 0U))
+    {
+        ts_src_addr = ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->l3OcmcBaseAddr + rxQueue->buffer_offset +
+                      (((uint32_t)(true_rd_ptr - rxQueue->buffer_desc_offset) / ICSS_EMAC_DEFAULT_FW_BD_SIZE) *
+                       ICSS_EMAC_DEFAULT_FW_BLOCK_SIZE);
+    }
+    if (rd_packet_length <= ICSS_EMAC_MAXMTU)       /* make sure we do not have too big packets */
     {
         /* Switch Mode */
         if (ICSS_EMAC_LEARNING_ENABLE == ((ICSS_EMAC_Attrs *)icssEmacHandle->attrs)->learningEnable)
@@ -1017,8 +1028,13 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
             /*Copy and append the timestamp to packet if it's a PTP frame*/
             if (ptp_pkt == TRUE)
             {
-                aligned_length = (new_size & 0xFFE0) + 32;
-                ICSS_EMAC_memcpyLocal((int32_t*)(destAddress + new_size), (int32_t*)(rd_buffer_l3_addr + aligned_length), (size_t)10);
+                /* Calculate timestamp address for collision queue packets */
+                if (shadow == 1U)
+                {
+                    aligned_length = (new_size & 0xFFE0) + 32;
+                    ts_src_addr = rd_buffer_l3_addr + aligned_length;
+                }
+                ICSS_EMAC_memcpyLocal((int32_t*)(destAddress + new_size), (int32_t*)ts_src_addr, (size_t)10);
             }
         }
         else
@@ -1027,8 +1043,12 @@ int32_t ICSS_EMAC_rxPktGet(ICSS_EMAC_RxArgument *rxArg, void *userArg)
             /*Copy and append the timestamp to packet if it's a PTP frame*/
             if (ptp_pkt == TRUE)
             {
-                aligned_length = (rd_packet_length & 0xFFE0) + 32;
-                ICSS_EMAC_memcpyLocal((int32_t*)(destAddress + rd_packet_length), (int32_t*)(rd_buffer_l3_addr + aligned_length), (size_t)10);
+                if (shadow == 1U)
+                {
+                    aligned_length = (rd_packet_length & 0xFFE0) + 32;
+                    ts_src_addr = rd_buffer_l3_addr + aligned_length;
+                }
+                ICSS_EMAC_memcpyLocal((int32_t*)(destAddress + rd_packet_length), (int32_t*)ts_src_addr, (size_t)10);
             }
             typeProt = (uint16_t*)destAddress + 6;
             typeProt1 = ((uint16_t)((*typeProt) << 8U));

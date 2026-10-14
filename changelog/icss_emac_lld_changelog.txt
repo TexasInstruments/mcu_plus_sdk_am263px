@@ -506,3 +506,43 @@ Date:   Thu Sep 10 15:04:50 2026 +0200
  icss_emac/source/icss_emac.c |  6 ++++++
  3 files changed, 52 insertions(+), 5 deletions(-)
 
+========================================
+Changes from build on 2026-10-14 20:47:53
+Previous commit: fede17d3bf369e054a9468ea7223702d69f7c664
+Current commit: d264010536f1a28e854caab8b1bb1a8efe797c85
+========================================
+
+commit 827fd0980da2c07d452c2981f5c2d55e9f680909
+Author: Archit Dev <a-dev@ti.com>
+Date:   Tue Oct 13 10:43:27 2026 +0530
+
+    allsoc: icss_timesync: restore offset reset threshold to 1000 ns
+    
+    - Lower OFFSET_THRESHOLD_FOR_RESET from 10000 ns back to the original
+      1000 ns
+    - Bump version number
+    
+    Fixes: PINDSW-5666
+    
+    Signed-off-by: Archit Dev <a-dev@ti.com>
+
+ icss_emac/icss_emac_ver.h     | 2 +-
+ icss_timesync/icss_timeSync.h | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 1c1448902b11735e5e051e1d73b38ce5c0bdd53e
+Author: Laxman <l-chinnannavar@ti.com>
+Date:   Fri Oct 9 18:53:32 2026 +0530
+
+    allsoc: icss_emac: Fix Rx timestamp read address for PTP frames
+    
+    - Rx timestamp read from correct address in case packet ends at last block of queue buffer
+    
+    Fixes: PINDSW-11598
+    
+    Signed-off-by: Laxman <l-chinnannavar@ti.com>
+
+ icss_emac/icss_emac_ver.h    |  2 +-
+ icss_emac/source/icss_emac.c | 30 +++++++++++++++++++++++++-----
+ 2 files changed, 26 insertions(+), 6 deletions(-)
+

@@ -60,7 +60,7 @@
 
 #define ICSS_EMAC_LLD_VERSION_MAJOR  (0x01U)   /*!< LLD major version */
 #define ICSS_EMAC_LLD_VERSION_MINOR  (0x00U)   /*!< LLD minor version */
-#define ICSS_EMAC_LLD_VERSION_PATCH  (0x01U)   /*!< LLD patch version */
+#define ICSS_EMAC_LLD_VERSION_PATCH  (0x02U)   /*!< LLD patch version */
 #define ICSS_EMAC_LLD_VERSION_BUILD  (0x01U)   /*!< LLD build number  */
 
 /** Composite 32-bit version ID: bits[31:24]=MAJOR, [23:16]=MINOR, [15:8]=PATCH, [7:0]=BUILD */

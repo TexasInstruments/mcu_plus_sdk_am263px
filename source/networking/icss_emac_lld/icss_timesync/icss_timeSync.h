@@ -222,7 +222,7 @@ extern "C"
  *      If offset from Master goes above this threshold it will
  *      trigger a reset. Value is in nanoseconds
  */
-#define OFFSET_THRESHOLD_FOR_RESET     10000
+#define OFFSET_THRESHOLD_FOR_RESET     1000
 
 /**
  * \def STABLE_FILTER_THRESHOLD
