@@ -23231,3 +23231,62 @@ Date:   Mon Sep 7 16:47:16 2026 +0530
  .../networking/.meta/enet_cpsw/templates/am64x_am243x/enet_soc_cfg.c.xdt    |  2 +-
  13 files changed, 71 insertions(+), 33 deletions(-)
 
+========================================
+Changes from build on 2026-10-15 20:47:17
+Previous commit: bdefb871d725434aecad5a32ad10d704e797e796
+Current commit: c2f28404927ab67e56b2cf65b5ee8fc8a36cd48c
+========================================
+
+commit c2f28404927ab67e56b2cf65b5ee8fc8a36cd48c
+Author: thilak <t-karanam@ti.com>
+Date:   Sat Oct 10 11:35:08 2026 +0530
+
+    am275x: enet: Add CPTS Testcases (Hw Push and Genf)
+    
+    - Add Hw Push Event related testcases that tests, registration and
+      De-Registration of callbacks and event callbacks itself.
+    - Add GenF testcases that generates a signal at various frequency
+    - This verification is performed using Hw Push Events.
+    
+    Fixes: SITSW-12682
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ test/timesync_tests/.project/project.js                                     |  14 +
+ test/timesync_tests/.project/project_am275x.js                              | 226 ++++++++++
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/example.syscfg          | 148 +++++++
+ test/timesync_tests/am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/main.c  |  99 +++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec           | 191 +++++++++
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/linker.cmd | 121 ++++++
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile   | 384 +++++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  97 +++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |  20 +
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |  12 +
+ test/timesync_tests/timesync_tests.c                                        | 822 ++++++++++++++++++++++++++++++++++++
+ test/timesync_tests/timesync_tests.h                                        |  55 +++
+ test/timesync_tests/tsnapp_cpsw_main.c                                      | 106 +++++
+ 13 files changed, 2295 insertions(+)
+
+commit 405cce7f616ff09836ce5971c894d53c1486dd7e
+Author: thilak <t-karanam@ti.com>
+Date:   Fri Oct 9 14:52:20 2026 +0530
+
+    allsocs: enet: Fix CPTS/GENF/ESTF PPM Correction Logic
+    
+    - Add MAX_ADJUST_RATE_ON_CLOCK config with corrected max PPM correction
+      formula (CPSW_CPTS_MAX_PPM_CORRECTION) based on CPTS hardware limits
+      (ppm_counter_min=0x400, ts_add_val=5)
+    - Fix adjust timestamp ioctl handler to convert adjVal from CPTS refclk
+      ticks to nanoseconds.
+    - Remove incorrect tsAddVal scaling in CpswCpts_calcPpmVal since
+      GENF/ESTF PPM uses CPTS refclk tick period directly.
+    
+    Fixes: SITSW-12682
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ examples/tsn/gptp_init.c                                         |  9 ++++++++-
+ src/mod/cpsw_cpts_ioctl.c                                        | 33 +++++++++++++++++++--------------
+ sysconfig/networking/.meta/enet_cpsw/templates/enet_syscfg.h.xdt |  1 +
+ 3 files changed, 28 insertions(+), 15 deletions(-)
+
