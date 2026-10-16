@@ -11,3 +11,4 @@
 #include <soc/f29p32x/soc_defines.h>
 #include <modules/memlog/memlog.h>
 %}
+void putchar_(char character);

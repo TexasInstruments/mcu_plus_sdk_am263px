@@ -1,7 +1,24 @@
 %%{
     let module = system.modules['/kernel/dpl/mpu_armv7'];
+    let soc = system.getScript('/common').getSocName();
+    let general_module = system.modules['/memory_configurator/general'];
+    let compiler = null
+
+    if (general_module != undefined) {
+        let instance = general_module.$instances[0]
+        compiler = instance.choose_compiler
+    }
+
 %%}
 % if (module.isCacheAvailable()) {
 #include <kernel/dpl/CacheP.h>
 % }
 #include <kernel/dpl/MpuP_armv7.h>
+
+%if((soc === 'am263px' || soc === 'am261x') && (compiler != "iar-arm")){
+#define BOOT_SECTION __attribute__((section(".text.boot"), do_not_share))
+%} else {
+#define BOOT_SECTION __attribute__((section(".text.boot")))
+%}
+
+void BOOT_SECTION __mpu_init(void);
