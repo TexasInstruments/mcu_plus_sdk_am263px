@@ -643096,3 +643096,40 @@ Date:   Mon Oct 5 11:56:46 2026 +0530
  tools/usb_test_scripts/usb_vendor_bulk_echo_test.py                         |   221 +
  53791 files changed, 9313262 insertions(+)
 
+========================================
+Changes from build on 2026-10-21 20:51:03
+Previous commit: e68ca4ab24cfb99c7d92f3146419ce4a708f1319
+Current commit: c87c2e204b455d8d0380cf08f7cba6ebbd4c321c
+========================================
+
+commit c87c2e204b455d8d0380cf08f7cba6ebbd4c321c
+Author: Fayaz Akthar <f-akthar@ti.com>
+Date:   Thu Oct 15 17:28:22 2026 +0530
+
+    am64x_am243x: sysfw: Update TIFS to v12.02.00
+    
+    Update tifs binary and headers to tag v12.02.00 from
+    v12.02.00 for am64x sr2.
+    
+    Major Updates:
+    
+    Common:
+    1. MISRA-C Fixes
+    2. Update docs to be in line with latest TIFS offerings
+    
+    Fixes: SITSW-13554
+    
+    Signed-off-by: Fayaz Akthar <f-akthar@ti.com>
+
+ source/drivers/sciclient/include/tisci/rm/tisci_rm_psil.h           |    40 +
+ source/drivers/sciclient/include/tisci/rm/tisci_rm_udmap.h          |   273 +
+ source/drivers/sciclient/include/tisci/security/tisci_sec_isc_ids.h |   105 +
+ source/drivers/sciclient/include/tisci/tisci_core.h                 |     1 +
+ source/drivers/sciclient/include/tisci/tisci_protocol.h             |    11 +
+ source/drivers/sciclient/soc/am64x_am243x/sysfw-hs-enc-cert.bin     |   Bin 1684 -> 1684 bytes
+ source/drivers/sciclient/soc/am64x_am243x/sysfw-hs-enc.bin          |   Bin 225280 -> 225280 bytes
+ source/drivers/sciclient/soc/am64x_am243x/sysfw-hs-fs-enc-cert.bin  |   Bin 1684 -> 1684 bytes
+ source/drivers/sciclient/soc/am64x_am243x/sysfw-hs-fs-enc.bin       |   Bin 225280 -> 225280 bytes
+ source/drivers/sciclient/soc/am64x_am243x/sysfw_hs_fs_signed.h      | 28252 +++++++++++++++++++++---------------------
+ 10 files changed, 14556 insertions(+), 14126 deletions(-)
+
