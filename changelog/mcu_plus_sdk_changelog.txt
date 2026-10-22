@@ -643133,3 +643133,113 @@ Date:   Thu Oct 15 17:28:22 2026 +0530
  source/drivers/sciclient/soc/am64x_am243x/sysfw_hs_fs_signed.h      | 28252 +++++++++++++++++++++---------------------
  10 files changed, 14556 insertions(+), 14126 deletions(-)
 
+========================================
+Changes from build on 2026-10-22 20:51:17
+Previous commit: c87c2e204b455d8d0380cf08f7cba6ebbd4c321c
+Current commit: 093a84b2ec3a5a0322c8021ee5c14152b3dcb69c
+========================================
+
+commit 093a84b2ec3a5a0322c8021ee5c14152b3dcb69c
+Author: BensenBernard <b-bernard@ti.com>
+Date:   Wed Oct 21 16:10:15 2026 +0530
+
+    am261x: usb: port VSC echo example for SOM
+    
+    - Ported vendor specific class example for SOM
+    
+    Fixes: MCUSDK-16041
+    
+    Signed-off-by: Bensen Bernard <b-bernard@ti.com>
+
+ .metadata/.tirex/am261x.content.tirex.json                                  |  66 +++++++
+ examples/usb/device/vendor_bulk_echo/.project/project_am261x.js             |   2 +
+ .../usb/device/vendor_bulk_echo/am261x-som/r5fss0-0_freertos/example.syscfg | 292 +++++++++++++++++++++++++++++
+ examples/usb/device/vendor_bulk_echo/am261x-som/r5fss0-0_freertos/main.c    |  84 +++++++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec           | 122 ++++++++++++
+ .../vendor_bulk_echo/am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile     | 363 ++++++++++++++++++++++++++++++++++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile.defs                 |  14 ++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    | 109 +++++++++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |  17 ++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |   8 +
+ .../usb/device/vendor_bulk_echo/am261x-som/r5fss0-0_nortos/example.syscfg   | 292 +++++++++++++++++++++++++++++
+ examples/usb/device/vendor_bulk_echo/am261x-som/r5fss0-0_nortos/main.c      |  50 +++++
+ .../am261x-som/r5fss0-0_nortos/ti-arm-clang/example.projectspec             | 119 ++++++++++++
+ .../vendor_bulk_echo/am261x-som/r5fss0-0_nortos/ti-arm-clang/makefile       | 360 +++++++++++++++++++++++++++++++++++
+ .../vendor_bulk_echo/am261x-som/r5fss0-0_nortos/ti-arm-clang/makefile.defs  |  14 ++
+ .../am261x-som/r5fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen      | 109 +++++++++++
+ .../am261x-som/r5fss0-0_nortos/ti-arm-clang/makefile_projectspec            |  17 ++
+ .../am261x-som/r5fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs                 |   8 +
+ makefile.am261x                                                             |  26 +++
+ makefile_projectspec.am261x                                                 |  26 +++
+ 20 files changed, 2098 insertions(+)
+
+commit 935aada9a92d7ecaa8e67d05a4bb33ed8457061e
+Author: BensenBernard <b-bernard@ti.com>
+Date:   Thu Oct 15 18:13:30 2026 +0530
+
+    am261x: usb: Add syscfg support for vendor example
+    
+    - Added syscfg support to generate the desciprtors from syscfg
+    - Added more test on the vsc example test script.
+    
+    Fixes: MCUSDK-16041
+    
+    Signed-off-by: Bensen Bernard <b-bernard@ti.com>
+
+ .../usb/device/vendor_bulk_echo/am261x-lp/r5fss0-0_freertos/example.syscfg  |   7 +-
+ .../usb/device/vendor_bulk_echo/am261x-lp/r5fss0-0_nortos/example.syscfg    |   7 +-
+ examples/usb/device/vendor_bulk_echo/usb_descriptors.c                      | 136 +-----------------------------
+ tools/usb_test_scripts/usb_vendor_bulk_echo_test.py                         | 161 ++++++++++++++++++++++++++++--------
+ 4 files changed, 138 insertions(+), 173 deletions(-)
+
+commit 7e2128260c2ff62433467115cbe77366668b2009
+Author: BensenBernard <b-bernard@ti.com>
+Date:   Thu Oct 15 18:09:51 2026 +0530
+
+    am261x: usb: fix issues in the USB linked libraries
+    
+    - corrected the libraries linked with USB examples
+    - fixed freertos implementation on dfu and vsc examples
+    - added cache alignment configuration in the tinyusb
+    
+    Fixes: MCUSDK-16040
+    
+    Signed-off-by: Bensen Bernard <b-bernard@ti.com>
+
+ examples/usb/device/cdc_echo/.project/project_am261x.js                     |  12 +-
+ .../r5fss0-0_freertos/iar-arm/cdc_echo_am261x-lp_r5fss0-0_freertos.ipcf     |   5 +-
+ examples/usb/device/cdc_echo/am261x-lp/r5fss0-0_freertos/iar-arm/makefile   |   7 +-
+ .../cdc_echo/am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec   |   6 +-
+ .../usb/device/cdc_echo/am261x-lp/r5fss0-0_freertos/ti-arm-clang/makefile   |   6 +-
+ .../cdc_echo/am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec  |   6 +-
+ .../usb/device/cdc_echo/am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile  |   6 +-
+ examples/usb/device/cdc_echo/cdc_echo_freertos.c                            |   2 +-
+ examples/usb/device/dfu/.project/project_am261x.js                          |  27 ++++-
+ examples/usb/device/dfu/am261x-lp/r5fss0-0_freertos/iar-arm/makefile        |   9 +-
+ .../r5fss0-0_freertos/iar-arm/usb_dfu_am261x-lp_r5fss0-0_freertos.ipcf      |   9 +-
+ .../device/dfu/am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec |   8 +-
+ examples/usb/device/dfu/am261x-lp/r5fss0-0_freertos/ti-arm-clang/makefile   |   8 +-
+ .../dfu/am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec       |   8 +-
+ examples/usb/device/dfu/am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile  |   8 +-
+ examples/usb/device/dfu/dfu_freertos.c                                      | 224 ++++++++++++++++++++++++++++++++++++
+ examples/usb/device/dfu/dfu_nortos.c                                        |   3 +-
+ examples/usb/device/ncm/.project/project_am261x.js                          |   2 +-
+ examples/usb/device/ncm/am261x-lp/r5fss0-0_freertos/iar-arm/makefile        |   2 +-
+ .../r5fss0-0_freertos/iar-arm/usb_ncm_am261x-lp_r5fss0-0_freertos.ipcf      |   2 +-
+ .../device/ncm/am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec |   2 +-
+ examples/usb/device/ncm/am261x-lp/r5fss0-0_freertos/ti-arm-clang/makefile   |   2 +-
+ .../ncm/am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec       |   2 +-
+ examples/usb/device/ncm/am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile  |   2 +-
+ examples/usb/device/vendor_bulk_echo/vendor_bulk_echo.c                     |  60 ++++++----
+ examples/usb/device/vendor_bulk_echo/vendor_bulk_echo_freertos.c            |  62 ++++++----
+ source/usb/tinyusb/config/freertos/am261x/benchmark_config/tusb_config.h    |   5 +
+ source/usb/tinyusb/config/freertos/am261x/cdc_config/tusb_config.h          |   5 +
+ source/usb/tinyusb/config/freertos/am261x/dfu_config/tusb_config.h          |   5 +
+ source/usb/tinyusb/config/freertos/am261x/ncm_config/tusb_config.h          |   5 +
+ source/usb/tinyusb/config/freertos/am261x/vendor_config/tusb_config.h       |   5 +
+ source/usb/tinyusb/config/nortos/am261x/cdc_config/tusb_config.h            |   5 +
+ source/usb/tinyusb/config/nortos/am261x/dfu_config/tusb_config.h            |   5 +
+ source/usb/tinyusb/config/nortos/am261x/ncm_config/tusb_config.h            |   5 +
+ source/usb/tinyusb/config/nortos/am261x/vendor_config/tusb_config.h         |   5 +
+ 35 files changed, 428 insertions(+), 107 deletions(-)
+

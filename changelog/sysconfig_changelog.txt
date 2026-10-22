@@ -9929,3 +9929,25 @@ Date:   Thu Oct 15 12:38:30 2026 +0530
  xbar/.meta/xbar.syscfg.js                                                   |    8 +
  1569 files changed, 161581 insertions(+)
 
+========================================
+Changes from build on 2026-10-22 20:49:09
+Previous commit: 98c4c7baa20376f26152cd81edadd7420a107a8a
+Current commit: 65e1daf70a17042e10c09260f3906aa630d680d5
+========================================
+
+commit 65e1daf70a17042e10c09260f3906aa630d680d5
+Author: BensenBernard <b-bernard@ti.com>
+Date:   Fri Oct 16 11:45:53 2026 +0530
+
+    am261x: usb: Enable syscfg support for USB VSC
+    
+    - Added support to generate descriptors for Vendor Specific class
+    
+    Fixes: MCUSDK-16041
+    
+    Signed-off-by: Bensen Bernard <b-bernard@ti.com>
+
+ usb/.meta/tinyusb/templates/tinyusb_usb_descriptors.c.xdt | 3 ---
+ usb/.meta/tinyusb/v1/tinyusb_v1.syscfg.js                 | 3 ++-
+ 2 files changed, 2 insertions(+), 4 deletions(-)
+
