@@ -155,9 +155,9 @@ Typedefs</h2></td></tr>
 <tr class="memitem:gaf5bfe06e819c6f62cb848da73ede2b4c"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CPSW__CPTS__MOD.html#gaf5bfe06e819c6f62cb848da73ede2b4c">CpswCpts_EventNotifyCb</a>) (void *eventNotifyCbArg, <a class="el" href="structCpswCpts__Event.html">CpswCpts_Event</a> *eventInfo)</td></tr>
 <tr class="memdesc:gaf5bfe06e819c6f62cb848da73ede2b4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">CPTS event notify callback.  <a href="group__CPSW__CPTS__MOD.html#gaf5bfe06e819c6f62cb848da73ede2b4c">More...</a><br /></td></tr>
 <tr class="separator:gaf5bfe06e819c6f62cb848da73ede2b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8e780aaccd99adbc788cef965735ea43"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CPSW__CPTS__MOD.html#ga8e780aaccd99adbc788cef965735ea43">CpswCpts_HwPushNotifyCb</a>) (void *hwPushNotifyCbArg, <a class="el" href="group__CPSW__CPTS__MOD.html#ga7cf8c9867115d68d2048d7a2899e409b">CpswCpts_HwPush</a> hwPushNum)</td></tr>
-<tr class="memdesc:ga8e780aaccd99adbc788cef965735ea43"><td class="mdescLeft">&#160;</td><td class="mdescRight">CPTS hardware push notify callback/.  <a href="group__CPSW__CPTS__MOD.html#ga8e780aaccd99adbc788cef965735ea43">More...</a><br /></td></tr>
-<tr class="separator:ga8e780aaccd99adbc788cef965735ea43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab854b9a06280cafaf132cb840d953c0b"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__CPSW__CPTS__MOD.html#gab854b9a06280cafaf132cb840d953c0b">CpswCpts_HwPushNotifyCb</a>) (void *hwPushNotifyCbArg, <a class="el" href="group__CPSW__CPTS__MOD.html#ga7cf8c9867115d68d2048d7a2899e409b">CpswCpts_HwPush</a> hwPushNum, uint64_t tsVal)</td></tr>
+<tr class="memdesc:gab854b9a06280cafaf132cb840d953c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">CPTS hardware push notify callback/.  <a href="group__CPSW__CPTS__MOD.html#gab854b9a06280cafaf132cb840d953c0b">More...</a><br /></td></tr>
+<tr class="separator:gab854b9a06280cafaf132cb840d953c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -396,14 +396,14 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="ga8e780aaccd99adbc788cef965735ea43"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8e780aaccd99adbc788cef965735ea43">&#9670;&nbsp;</a></span>CpswCpts_HwPushNotifyCb</h2>
+<a id="gab854b9a06280cafaf132cb840d953c0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab854b9a06280cafaf132cb840d953c0b">&#9670;&nbsp;</a></span>CpswCpts_HwPushNotifyCb</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* CpswCpts_HwPushNotifyCb) (void *hwPushNotifyCbArg, <a class="el" href="group__CPSW__CPTS__MOD.html#ga7cf8c9867115d68d2048d7a2899e409b">CpswCpts_HwPush</a> hwPushNum)</td>
+          <td class="memname">typedef void(* CpswCpts_HwPushNotifyCb) (void *hwPushNotifyCbArg, <a class="el" href="group__CPSW__CPTS__MOD.html#ga7cf8c9867115d68d2048d7a2899e409b">CpswCpts_HwPush</a> hwPushNum, uint64_t tsVal)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -413,6 +413,7 @@ Macros</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">hwPushNotifyCbArg</td><td>Callback argument </td></tr>
     <tr><td class="paramname">hwPushNum</td><td>CPTS hardware push instance number </td></tr>
+    <tr><td class="paramname">tsVal</td><td>CPTS <a class="el" href="structTimestamp.html" title="The Timestamp type represents a positive time with respect to the epoch.">Timestamp</a> of Event </td></tr>
   </table>
   </dd>
 </dl>

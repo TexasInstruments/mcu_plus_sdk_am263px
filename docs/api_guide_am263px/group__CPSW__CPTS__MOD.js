@@ -61,7 +61,7 @@ var group__CPSW__CPTS__MOD =
     [ "CPSW_CPTS_HWPUSH_COUNT_MAX", "group__CPSW__CPTS__MOD.html#gabcfb0f68aa8cf699b03b23b3c1ca2af3", null ],
     [ "CPSW_CPTS_HWPUSH_NORM", "group__CPSW__CPTS__MOD.html#ga2f780a5e1a3499181f7218b95ac9fc34", null ],
     [ "CpswCpts_EventNotifyCb", "group__CPSW__CPTS__MOD.html#gaf5bfe06e819c6f62cb848da73ede2b4c", null ],
-    [ "CpswCpts_HwPushNotifyCb", "group__CPSW__CPTS__MOD.html#ga8e780aaccd99adbc788cef965735ea43", null ],
+    [ "CpswCpts_HwPushNotifyCb", "group__CPSW__CPTS__MOD.html#gab854b9a06280cafaf132cb840d953c0b", null ],
     [ "CpswCpts_Ioctl", "group__CPSW__CPTS__MOD.html#gab788726fe114cfc32a32011edfa724ff", [
       [ "CPSW_CPTS_IOCTL_REGISTER_STACK", "group__CPSW__CPTS__MOD.html#ggab788726fe114cfc32a32011edfa724ffa7638dd208ee480d49157d03deec2af30", null ],
       [ "CPSW_CPTS_IOCTL_UNREGISTER_STACK", "group__CPSW__CPTS__MOD.html#ggab788726fe114cfc32a32011edfa724ffaab969a908e16f3e423fc6e0b9011f178", null ],

@@ -14094,210 +14094,210 @@
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00490</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00491</field>
     <field name="keywords"></field>
-    <field name="text">void CpswCpts_HwPushNotifyCb hwPushNotifyCbArg CpswCpts_HwPush hwPushNum</field>
+    <field name="text">void CpswCpts_HwPushNotifyCb hwPushNotifyCbArg CpswCpts_HwPush hwPushNum uint64_t tsVal</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00498</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00500</field>
     <field name="keywords"></field>
     <field name="text">CpswCpts_StackConfig_s</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00501</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00503</field>
     <field name="keywords"></field>
     <field name="text">CpswCpts_EventNotifyCb eventNotifyCb</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00504</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00506</field>
     <field name="keywords"></field>
     <field name="text">eventNotifyCbArg CpswCpts_RegisterStackInArgs</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00510</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00512</field>
     <field name="keywords"></field>
     <field name="text">CpswCpts_RegisterHwPushCbInArgs_s</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00513</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00515</field>
     <field name="keywords"></field>
     <field name="text">CpswCpts_HwPush hwPushNum</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00516</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00518</field>
     <field name="keywords"></field>
     <field name="text">CpswCpts_HwPushNotifyCb hwPushNotifyCb</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00519</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00521</field>
     <field name="keywords"></field>
     <field name="text">hwPushNotifyCbArg CpswCpts_RegisterHwPushCbInArgs</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00525</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00527</field>
     <field name="keywords"></field>
     <field name="text">CpswCpts_SetCompValInArgs_s</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00528</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00530</field>
     <field name="keywords"></field>
     <field name="text">uint64_t tsCompVal</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00531</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00533</field>
     <field name="keywords"></field>
     <field name="text">uint32_t tsCompLen</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00536</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00538</field>
     <field name="keywords"></field>
     <field name="text">tsCompToggle CpswCpts_SetCompValInArgs</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00543</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00545</field>
     <field name="keywords"></field>
     <field name="text">CpswCpts_SetFxnGenInArgs_s</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00546</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00548</field>
     <field name="keywords"></field>
     <field name="text">uint32_t index</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00549</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00551</field>
     <field name="keywords"></field>
     <field name="text">uint32_t length</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00552</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00554</field>
     <field name="keywords"></field>
     <field name="text">uint64_t compare</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00557</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00559</field>
     <field name="keywords"></field>
     <field name="text">polarityInv</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00560</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00562</field>
     <field name="keywords"></field>
     <field name="text">uint64_t ppmVal</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00563</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00565</field>
     <field name="keywords"></field>
     <field name="text">CpswCpts_FxnGenAdjDir ppmDir</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00568</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00570</field>
     <field name="keywords"></field>
     <field name="text">EnetTimeSync_AdjMode ppmMode CpswCpts_SetFxnGenInArgs</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00575</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00577</field>
     <field name="keywords"></field>
     <field name="text">CpswCpts_SetFxnGenNudgeInArgs_s</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00578</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00580</field>
     <field name="keywords"></field>
     <field name="text">uint32_t index</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00582</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00584</field>
     <field name="keywords"></field>
     <field name="text">int32_t tsNudge CpswCpts_SetFxnGenNudgeInArgs</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00590</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00592</field>
     <field name="keywords"></field>
     <field name="text">CpswCpts_Cfg_s</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00594</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00596</field>
     <field name="keywords"></field>
     <field name="text">hostRxTsEn</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00599</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00601</field>
     <field name="keywords"></field>
     <field name="text">tsCompPolarity</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00602</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00604</field>
     <field name="keywords"></field>
     <field name="text">tsRxEventsDis</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00609</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00611</field>
     <field name="keywords"></field>
     <field name="text">tsGenfClrEn</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00612</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00614</field>
     <field name="keywords"></field>
     <field name="text">CpswCpts_RftClkFreq cptsRftClkFreq CpswCpts_Cfg</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">cpsw_cpts.h</field>
-    <field name="url">cpsw__cpts_8h_source.html#l00630</field>
+    <field name="url">cpsw__cpts_8h_source.html#l00632</field>
     <field name="keywords"></field>
     <field name="text">CpswCpts_initCfg CpswCpts_Cfg cptsCfg</field>
   </doc>
@@ -124518,10 +124518,10 @@
   <doc>
     <field name="type">typedef</field>
     <field name="name">CpswCpts_HwPushNotifyCb</field>
-    <field name="args">)(void *hwPushNotifyCbArg, CpswCpts_HwPush hwPushNum)</field>
-    <field name="url">group__CPSW__CPTS__MOD.html#ga8e780aaccd99adbc788cef965735ea43</field>
+    <field name="args">)(void *hwPushNotifyCbArg, CpswCpts_HwPush hwPushNum, uint64_t tsVal)</field>
+    <field name="url">group__CPSW__CPTS__MOD.html#gab854b9a06280cafaf132cb840d953c0b</field>
     <field name="keywords">CpswCpts_HwPushNotifyCb CpswCpts_HwPushNotifyCb</field>
-    <field name="text">CPTS hardware push notify callback/ CPTS hardware push notify callback/ hwPushNotifyCbArg Callback argument hwPushNum CPTS hardware push instance number</field>
+    <field name="text">CPTS hardware push notify callback/ CPTS hardware push notify callback/ hwPushNotifyCbArg Callback argument hwPushNum CPTS hardware push instance number tsVal CPTS Timestamp of Event</field>
   </doc>
   <doc>
     <field name="type">enum</field>
