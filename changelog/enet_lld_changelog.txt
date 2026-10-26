@@ -37344,3 +37344,25 @@ Date:   Fri Oct 16 15:48:19 2026 +0530
  utils/include/enet_udmautils.h                                              |   202 +
  7002 files changed, 1247094 insertions(+)
 
+========================================
+Changes from build on 2026-10-26 20:48:19
+Previous commit: 387a3be65fb8b709407b9c16cfb4c1bacb220c88
+Current commit: efa78702cefa637a94219407b3be4f70ae67de2c
+========================================
+
+commit efa78702cefa637a94219407b3be4f70ae67de2c
+Author: thilak <t-karanam@ti.com>
+Date:   Sun Oct 25 23:42:17 2026 +0530
+
+    allsocs: enet: Modify Cpts callback functions in tsn_demo
+    
+    - Change the function signature of CPTS Hw Push
+      event callback.
+    
+    Fixes: SITSW-12959
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ examples/tsn_demo/talker/tsndemo_pacing.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
