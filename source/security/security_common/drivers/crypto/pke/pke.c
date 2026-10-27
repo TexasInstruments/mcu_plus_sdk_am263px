@@ -127,7 +127,9 @@ uint32_t pke_temp_buff[RSA_MAX_LENGTH] = {0U};
 /* ========================================================================== */
 /*                          Function Definitions                              */
 /* ========================================================================== */
-
+/**
+ *  Design: TIFSMCU-6330
+ */
 AsymCrypt_Handle AsymCrypt_open(uint32_t index)
 {
     AsymCrypt_Handle handle;
@@ -164,6 +166,9 @@ AsymCrypt_Handle AsymCrypt_open(uint32_t index)
     return handle;
 }
 
+/**
+ *  Design: TIFSMCU-6331
+ */
 AsymCrypt_Return_t AsymCrypt_close(AsymCrypt_Handle handle)
 {
     AsymCrypt_Return_t status  = ASYM_CRYPT_RETURN_FAILURE;
@@ -305,6 +310,9 @@ AsymCrypt_Return_t AsymCrypt_RSAPublic(AsymCrypt_Handle handle,
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-4396
+ */
 AsymCrypt_Return_t AsymCrypt_RSAKeyGenPrivate(AsymCrypt_Handle handle,
                     struct AsymCrypt_RSAPrivkey *k,
                     uint32_t keybitsize)
@@ -360,6 +368,9 @@ AsymCrypt_Return_t AsymCrypt_RSAKeyGenPrivate(AsymCrypt_Handle handle,
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-4397
+ */
 AsymCrypt_Return_t AsymCrypt_RSAKeyGenPublic(AsymCrypt_Handle handle,
                     const struct AsymCrypt_RSAPrivkey *privKey,
                     struct AsymCrypt_RSAPubkey *pubKey,
@@ -394,7 +405,7 @@ AsymCrypt_Return_t AsymCrypt_RSAKeyGenPublic(AsymCrypt_Handle handle,
 }
 
 /**
- *  Design: TIFSMCU-4394
+ *  Design: TIFSMCU-6332
 */
 AsymCrypt_Return_t AsymCrypt_ECDSASign(AsymCrypt_Handle handle,
                     const struct AsymCrypt_ECPrimeCurveP *cp,
@@ -496,7 +507,7 @@ AsymCrypt_Return_t AsymCrypt_ECDSASign(AsymCrypt_Handle handle,
 }
 
 /**
- *  Design: TIFSMCU-4395
+ *  Design: TIFSMCU-6333
 */
 AsymCrypt_Return_t AsymCrypt_ECDSAVerify(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
@@ -636,7 +647,7 @@ AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPrivate(AsymCrypt_Handle handle,
 }
 
 /**
- *  Design: TIFSMCU-4393
+ *  Design: TIFSMCU-6334
 */
 AsymCrypt_Return_t AsymCrypt_ECDSAKeyGenPublic(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
@@ -967,6 +978,9 @@ AsymCrypt_Return_t AsymCrypt_EddsaGetPubKey(AsymCrypt_Handle handle,
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-6335
+*/
 AsymCrypt_Return_t AsymCrypt_EcdhGenSharedSecret(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPrimeCurveP *cp,
                         const uint32_t priv[ECDSA_MAX_LENGTH],
@@ -1029,6 +1043,9 @@ AsymCrypt_Return_t AsymCrypt_EcdhGenSharedSecret(AsymCrypt_Handle handle,
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-6336
+*/
 AsymCrypt_Return_t AsymCrypt_SM2DSASign(AsymCrypt_Handle handle,
                     const uint32_t priv[ECDSA_MAX_LENGTH],
                     const uint32_t k[ECDSA_MAX_LENGTH],
@@ -1111,6 +1128,9 @@ AsymCrypt_Return_t AsymCrypt_SM2DSASign(AsymCrypt_Handle handle,
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-6337
+*/
 AsymCrypt_Return_t AsymCrypt_SM2DSAVerify(AsymCrypt_Handle handle,
                         const struct AsymCrypt_ECPoint *pub,
                         const struct AsymCrypt_SM2DSASig *sig,
@@ -1166,6 +1186,9 @@ AsymCrypt_Return_t AsymCrypt_SM2DSAVerify(AsymCrypt_Handle handle,
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-6338
+*/
 AsymCrypt_Return_t AsymCrypt_SM2DSAKeyGenPrivate(AsymCrypt_Handle handle,
                         uint32_t priv[ECDSA_MAX_LENGTH])
 {
@@ -1202,6 +1225,9 @@ AsymCrypt_Return_t AsymCrypt_SM2DSAKeyGenPrivate(AsymCrypt_Handle handle,
     return (status);
 }
 
+/**
+ *  Design: TIFSMCU-6339
+*/
 AsymCrypt_Return_t AsymCrypt_SM2DSAKeyGenPublic(AsymCrypt_Handle handle,
                         struct AsymCrypt_ECPoint *pub,
                         const uint32_t priv[ECDSA_MAX_LENGTH])
