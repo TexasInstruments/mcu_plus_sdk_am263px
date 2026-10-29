@@ -1,10 +1,11 @@
 var NAVTREEINDEX22 =
 {
-"enetmdio_manualmode.html#autotoc_md1410":[5,1,6,1],
-"enetmdio_manualmode.html#autotoc_md1411":[5,1,6,2],
+"enetmdio_manualmode.html#autotoc_md1410":[5,1,6,0],
+"enetmdio_manualmode.html#autotoc_md1411":[5,1,6,1],
+"enetmdio_manualmode.html#autotoc_md1412":[5,1,6,2],
 "enetphy_guide_top.html":[5,1,3,2],
 "enetphy_guide_top.html#CustomBoardPhySupport":[5,1,3,2,2],
-"enetphy_guide_top.html#autotoc_md1408":[0],
+"enetphy_guide_top.html#autotoc_md1409":[0],
 "enetphy_guide_top.html#enetphy_guide_appendix":[5,1,3,2,5],
 "enetphy_guide_top.html#enetphy_guide_appendix_a":[5,1,3,2,5,0],
 "enetphy_guide_top.html#enetphy_guide_binding":[5,1,3,2,2,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX22 =
 "group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98a84001c80ec7f1b343339931fb2b388a4":[18,4,0,1,0,92,18],
 "group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98a91304d283bb80ce36e2710d6c84671cf":[18,4,0,1,0,92,28],
 "group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98a99915cd4982c26c54af3e0d69d9c4a16":[18,4,0,1,0,92,30],
-"group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98a9cd391867d2b8b44bd587e56ae5bc3aa":[18,4,0,1,0,92,11],
-"group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98a9e89ff165647c66926bf7685d3d84f08":[18,4,0,1,0,92,22]
+"group__CPSW__ALE__MOD.html#ggabed7e8ccaf9e220220ce26e85697cb98a9cd391867d2b8b44bd587e56ae5bc3aa":[18,4,0,1,0,92,11]
 };

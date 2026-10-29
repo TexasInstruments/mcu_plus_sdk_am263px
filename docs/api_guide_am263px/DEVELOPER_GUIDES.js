@@ -46,11 +46,11 @@ var DEVELOPER_GUIDES =
     ] ],
     [ "Understanding the bootflow and bootloaders", "BOOTFLOW_GUIDE.html", "BOOTFLOW_GUIDE" ],
     [ "Understanding Multicore ELF image format", "MCELF_LANDING.html", [
-      [ "Introduction", "MCELF_LANDING.html#autotoc_md760", null ],
-      [ "RPRC vs MCELF", "MCELF_LANDING.html#autotoc_md761", null ],
-      [ "Generation of MCELF images", "MCELF_LANDING.html#autotoc_md762", null ],
-      [ "Booting MCELF images", "MCELF_LANDING.html#autotoc_md763", null ],
-      [ "Limitations", "MCELF_LANDING.html#autotoc_md764", null ]
+      [ "Introduction", "MCELF_LANDING.html#autotoc_md761", null ],
+      [ "RPRC vs MCELF", "MCELF_LANDING.html#autotoc_md762", null ],
+      [ "Generation of MCELF images", "MCELF_LANDING.html#autotoc_md763", null ],
+      [ "Booting MCELF images", "MCELF_LANDING.html#autotoc_md764", null ],
+      [ "Limitations", "MCELF_LANDING.html#autotoc_md765", null ]
     ] ],
     [ "Using SDK with CCS Projects", "CCS_PROJECTS_PAGE.html", [
       [ "Introduction", "CCS_PROJECTS_PAGE.html#autotoc_md532", null ],
@@ -214,10 +214,10 @@ var DEVELOPER_GUIDES =
       [ "Debugging XIP applications", "BOOTFLOW_XIP.html#autotoc_md531", null ]
     ] ],
     [ "Configuring OptiFlash various IP", "OPTIFLASH_CONFIGURE.html", [
-      [ "Introduction", "OPTIFLASH_CONFIGURE.html#autotoc_md742", null ],
-      [ "How to configure RL2?", "OPTIFLASH_CONFIGURE.html#autotoc_md743", null ],
-      [ "How to configure FLC.", "OPTIFLASH_CONFIGURE.html#autotoc_md744", null ],
-      [ "How to configure RAT.", "OPTIFLASH_CONFIGURE.html#autotoc_md745", null ]
+      [ "Introduction", "OPTIFLASH_CONFIGURE.html#autotoc_md743", null ],
+      [ "How to configure RL2?", "OPTIFLASH_CONFIGURE.html#autotoc_md744", null ],
+      [ "How to configure FLC.", "OPTIFLASH_CONFIGURE.html#autotoc_md745", null ],
+      [ "How to configure RAT.", "OPTIFLASH_CONFIGURE.html#autotoc_md746", null ]
     ] ],
     [ "Migrating examples from package to package in AM263PX", "SOC_MIGRATION.html", [
       [ "Installing dependencies", "SOC_MIGRATION.html#autotoc_md649", null ],
@@ -242,69 +242,69 @@ var DEVELOPER_GUIDES =
       [ "See Also", "TMU_GUIDE.html#autotoc_md664", null ]
     ] ],
     [ "How to A/B Swap? Working of bootseg IP", "bootseg_ip_working.html", [
-      [ "Introduction", "bootseg_ip_working.html#autotoc_md752", null ],
-      [ "How to make 1st Half as Active Region", "bootseg_ip_working.html#autotoc_md753", null ],
-      [ "How to make 2nd Half as Active Region", "bootseg_ip_working.html#autotoc_md754", null ]
+      [ "Introduction", "bootseg_ip_working.html#autotoc_md753", null ],
+      [ "How to make 1st Half as Active Region", "bootseg_ip_working.html#autotoc_md754", null ],
+      [ "How to make 2nd Half as Active Region", "bootseg_ip_working.html#autotoc_md755", null ]
     ] ],
     [ "How to use Flash Operation Scheduler Hardware", "FLSOPSKD_IP.html", [
-      [ "Introduction", "FLSOPSKD_IP.html#autotoc_md755", [
-        [ "Why is FLSOPSKD Hardware Engine?", "FLSOPSKD_IP.html#autotoc_md756", null ],
-        [ "What is FLSOPSKD Hardware Engine?", "FLSOPSKD_IP.html#autotoc_md757", null ]
+      [ "Introduction", "FLSOPSKD_IP.html#autotoc_md756", [
+        [ "Why is FLSOPSKD Hardware Engine?", "FLSOPSKD_IP.html#autotoc_md757", null ],
+        [ "What is FLSOPSKD Hardware Engine?", "FLSOPSKD_IP.html#autotoc_md758", null ]
       ] ],
-      [ "Example Firmware", "FLSOPSKD_IP.html#autotoc_md758", null ],
-      [ "Using FLSOPSKD in Application", "FLSOPSKD_IP.html#autotoc_md759", null ]
+      [ "Example Firmware", "FLSOPSKD_IP.html#autotoc_md759", null ],
+      [ "Using FLSOPSKD in Application", "FLSOPSKD_IP.html#autotoc_md760", null ]
     ] ],
     [ "Enabling safety on external flash", "OPTIFLASH_ECCM.html", [
-      [ "Introduction", "OPTIFLASH_ECCM.html#autotoc_md799", null ],
-      [ "How to enable ECCM module", "OPTIFLASH_ECCM.html#autotoc_md800", [
-        [ "Write a config file", "OPTIFLASH_ECCM.html#autotoc_md801", null ],
-        [ "Using the config file", "OPTIFLASH_ECCM.html#autotoc_md802", null ]
+      [ "Introduction", "OPTIFLASH_ECCM.html#autotoc_md800", null ],
+      [ "How to enable ECCM module", "OPTIFLASH_ECCM.html#autotoc_md801", [
+        [ "Write a config file", "OPTIFLASH_ECCM.html#autotoc_md802", null ],
+        [ "Using the config file", "OPTIFLASH_ECCM.html#autotoc_md803", null ]
       ] ],
-      [ "Additional details", "OPTIFLASH_ECCM.html#autotoc_md803", [
-        [ "ECCM Module", "OPTIFLASH_ECCM.html#autotoc_md804", null ],
-        [ "Important considerations", "OPTIFLASH_ECCM.html#autotoc_md805", null ],
-        [ "Seeing the change", "OPTIFLASH_ECCM.html#autotoc_md806", null ]
+      [ "Additional details", "OPTIFLASH_ECCM.html#autotoc_md804", [
+        [ "ECCM Module", "OPTIFLASH_ECCM.html#autotoc_md805", null ],
+        [ "Important considerations", "OPTIFLASH_ECCM.html#autotoc_md806", null ],
+        [ "Seeing the change", "OPTIFLASH_ECCM.html#autotoc_md807", null ]
       ] ]
     ] ],
     [ "Optishare", "OPTIFLASH_OPTISHARE.html", [
-      [ "Introduction", "OPTIFLASH_OPTISHARE.html#autotoc_md807", null ],
-      [ "Optishare (Summary)", "OPTIFLASH_OPTISHARE.html#autotoc_md808", null ],
-      [ "Problem Statement", "OPTIFLASH_OPTISHARE.html#autotoc_md809", null ],
-      [ "OptiShare as a solution", "OPTIFLASH_OPTISHARE.html#autotoc_md810", [
-        [ "Implementation", "OPTIFLASH_OPTISHARE.html#autotoc_md811", [
-          [ "Compile time", "OPTIFLASH_OPTISHARE.html#autotoc_md812", [
-            [ "To enable optishare in SDK example:", "OPTIFLASH_OPTISHARE.html#autotoc_md813", null ],
-            [ "To enable optishare in CCS", "OPTIFLASH_OPTISHARE.html#autotoc_md814", null ]
+      [ "Introduction", "OPTIFLASH_OPTISHARE.html#autotoc_md808", null ],
+      [ "Optishare (Summary)", "OPTIFLASH_OPTISHARE.html#autotoc_md809", null ],
+      [ "Problem Statement", "OPTIFLASH_OPTISHARE.html#autotoc_md810", null ],
+      [ "OptiShare as a solution", "OPTIFLASH_OPTISHARE.html#autotoc_md811", [
+        [ "Implementation", "OPTIFLASH_OPTISHARE.html#autotoc_md812", [
+          [ "Compile time", "OPTIFLASH_OPTISHARE.html#autotoc_md813", [
+            [ "To enable optishare in SDK example:", "OPTIFLASH_OPTISHARE.html#autotoc_md814", null ],
+            [ "To enable optishare in CCS", "OPTIFLASH_OPTISHARE.html#autotoc_md815", null ]
           ] ],
-          [ "Runtime", "OPTIFLASH_OPTISHARE.html#autotoc_md815", null ]
+          [ "Runtime", "OPTIFLASH_OPTISHARE.html#autotoc_md816", null ]
         ] ]
       ] ],
-      [ "How to Implement in a project", "OPTIFLASH_OPTISHARE.html#autotoc_md816", [
-        [ "Build System Changes", "OPTIFLASH_OPTISHARE.html#autotoc_md817", null ],
-        [ "Memory Map Changes", "OPTIFLASH_OPTISHARE.html#autotoc_md818", null ],
-        [ "MPU settings", "OPTIFLASH_OPTISHARE.html#autotoc_md819", null ],
-        [ "Shared Memory Specification File (mem_spec.json)", "OPTIFLASH_OPTISHARE.html#autotoc_md820", null ],
-        [ "Code Changes", "OPTIFLASH_OPTISHARE.html#autotoc_md821", null ]
+      [ "How to Implement in a project", "OPTIFLASH_OPTISHARE.html#autotoc_md817", [
+        [ "Build System Changes", "OPTIFLASH_OPTISHARE.html#autotoc_md818", null ],
+        [ "Memory Map Changes", "OPTIFLASH_OPTISHARE.html#autotoc_md819", null ],
+        [ "MPU settings", "OPTIFLASH_OPTISHARE.html#autotoc_md820", null ],
+        [ "Shared Memory Specification File (mem_spec.json)", "OPTIFLASH_OPTISHARE.html#autotoc_md821", null ],
+        [ "Code Changes", "OPTIFLASH_OPTISHARE.html#autotoc_md822", null ]
       ] ],
-      [ "Performance Of OptiShare", "OPTIFLASH_OPTISHARE.html#autotoc_md822", [
-        [ "Building MulticoreELF Binaries with Optishare", "OPTIFLASH_OPTISHARE.html#autotoc_md823", null ]
+      [ "Performance Of OptiShare", "OPTIFLASH_OPTISHARE.html#autotoc_md823", [
+        [ "Building MulticoreELF Binaries with Optishare", "OPTIFLASH_OPTISHARE.html#autotoc_md824", null ]
       ] ],
-      [ "Final Remark", "OPTIFLASH_OPTISHARE.html#autotoc_md824", null ]
+      [ "Final Remark", "OPTIFLASH_OPTISHARE.html#autotoc_md825", null ]
     ] ],
     [ "Enabling Optishare In CCS", "OPTIFLASH_OPTISHARE_CCS.html", [
-      [ "Introduction", "OPTIFLASH_OPTISHARE_CCS.html#autotoc_md825", null ],
-      [ "Enabling Optishare", "OPTIFLASH_OPTISHARE_CCS.html#autotoc_md826", null ],
-      [ "Building the Application", "OPTIFLASH_OPTISHARE_CCS.html#autotoc_md827", null ]
+      [ "Introduction", "OPTIFLASH_OPTISHARE_CCS.html#autotoc_md826", null ],
+      [ "Enabling Optishare", "OPTIFLASH_OPTISHARE_CCS.html#autotoc_md827", null ],
+      [ "Building the Application", "OPTIFLASH_OPTISHARE_CCS.html#autotoc_md828", null ]
     ] ],
     [ "How to add compiler generated sections for instrumentation binaries?", "INSTRUMENTED_APPLICATION_SPECIAL_SECTION_ADD.html", [
-      [ "Introduction", "INSTRUMENTED_APPLICATION_SPECIAL_SECTION_ADD.html#autotoc_md746", [
-        [ "Using Memory Configurator", "INSTRUMENTED_APPLICATION_SPECIAL_SECTION_ADD.html#autotoc_md747", null ],
-        [ "Linker changes", "INSTRUMENTED_APPLICATION_SPECIAL_SECTION_ADD.html#autotoc_md748", null ]
+      [ "Introduction", "INSTRUMENTED_APPLICATION_SPECIAL_SECTION_ADD.html#autotoc_md747", [
+        [ "Using Memory Configurator", "INSTRUMENTED_APPLICATION_SPECIAL_SECTION_ADD.html#autotoc_md748", null ],
+        [ "Linker changes", "INSTRUMENTED_APPLICATION_SPECIAL_SECTION_ADD.html#autotoc_md749", null ]
       ] ]
     ] ],
     [ "Changes in linker/Memory Configurator for Smart Placement", "SMART_PLACEMENT_LINKER_CHANGE.html", [
-      [ "Introduction", "SMART_PLACEMENT_LINKER_CHANGE.html#autotoc_md749", null ],
-      [ "Linker changes", "SMART_PLACEMENT_LINKER_CHANGE.html#autotoc_md750", null ],
-      [ "Memory Configurator Changes", "SMART_PLACEMENT_LINKER_CHANGE.html#autotoc_md751", null ]
+      [ "Introduction", "SMART_PLACEMENT_LINKER_CHANGE.html#autotoc_md750", null ],
+      [ "Linker changes", "SMART_PLACEMENT_LINKER_CHANGE.html#autotoc_md751", null ],
+      [ "Memory Configurator Changes", "SMART_PLACEMENT_LINKER_CHANGE.html#autotoc_md752", null ]
     ] ]
 ];

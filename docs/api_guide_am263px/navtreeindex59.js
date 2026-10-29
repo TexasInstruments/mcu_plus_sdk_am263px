@@ -1,5 +1,6 @@
 var NAVTREEINDEX59 =
 {
+"group__network.html#ga86d08921fd786d09ba626da3d9dea8be":[18,12,1,46],
 "group__network.html#ga8a34965ff23af361137a62003ca0e5e5":[18,12,1,47],
 "group__network.html#ga8ab8cf704992a6c0bf58008101ac92eb":[18,12,1,27],
 "group__network.html#ga906f6ed4a12f6bfd0fec5fc546e35f45":[18,12,1,18],
@@ -248,6 +249,5 @@ var NAVTREEINDEX59 =
 "pages.html":[],
 "phy_integration_guide_top.html":[5,1,3],
 "structADC__RepeaterConfig.html":[18,7,0,0],
-"structADC__RepeaterConfig.html#a409593297e4c6d2bbcc7bd42f904b913":[18,7,0,0,0],
-"structADC__RepeaterConfig.html#a6d8da0cd46c62663c8888248b897b9fa":[18,7,0,0,1]
+"structADC__RepeaterConfig.html#a409593297e4c6d2bbcc7bd42f904b913":[18,7,0,0,0]
 };

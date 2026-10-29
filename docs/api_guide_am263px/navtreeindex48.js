@@ -1,5 +1,6 @@
 var NAVTREEINDEX48 =
 {
+"group__ENETPHY__generic__phy.html#ga1954b0c82671e7f0646e41ac2572098c":[18,4,0,13,9,6],
 "group__ENETPHY__generic__phy.html#ga19cdecc2bf0fcc38275ff878d504d866":[18,4,0,13,9,84],
 "group__ENETPHY__generic__phy.html#ga1a5d13c79cd6c5373646db541ea3ce37":[18,4,0,13,9,4],
 "group__ENETPHY__generic__phy.html#ga1b69c8cabb4d1c59cc5109ee2a69988b":[18,4,0,13,9,52],
@@ -248,6 +249,5 @@ var NAVTREEINDEX48 =
 "group__ENET__MAIN__API.html#ga80f04f1468808ed15038f5b46ae7609d":[18,4,0,4,65],
 "group__ENET__MAIN__API.html#ga83b2e377d9f9501bb145d1cc52274569":[18,4,0,4,8],
 "group__ENET__MAIN__API.html#ga843da9b25a250caf5114797fe410a64e":[18,4,0,4,99],
-"group__ENET__MAIN__API.html#ga859413e7830aecf913c1462ec6c0bcfd":[18,4,0,4,108],
-"group__ENET__MAIN__API.html#ga85ec1688c06002d48c7a80c4f4ea8988":[18,4,0,4,95]
+"group__ENET__MAIN__API.html#ga859413e7830aecf913c1462ec6c0bcfd":[18,4,0,4,108]
 };

@@ -1,5 +1,6 @@
 var NAVTREEINDEX52 =
 {
+"group__MDIO__MOD.html#ggab48ee8974570a86d1e28497623ffe6aea6a5fafc33d4af206d8a97496aa834ac4":[18,4,0,5,0,2,1],
 "group__MDIO__MOD.html#ggab48ee8974570a86d1e28497623ffe6aeac0f3a86c304c027d5be26c21cda517e9":[18,4,0,5,0,2,2],
 "group__MDIO__MOD.html#ggab48ee8974570a86d1e28497623ffe6aeafd13db752f609f82708b1cc204e5c241":[18,4,0,5,0,2,0],
 "group__NETWORKING__ICSS__EMAC__MODULE.html":[18,4,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX52 =
 "group__PHY__COMMON__H.html#ga2113aaba928ddc6dd30ac1bb9fdee328":[18,4,0,13,8,87],
 "group__PHY__COMMON__H.html#ga2271f0c3683ccd46d68f3f8b07f68ef9":[18,4,0,13,8,92],
 "group__PHY__COMMON__H.html#ga2c7a969c41fa21338ac951e02f940641":[18,4,0,13,8,82],
-"group__PHY__COMMON__H.html#ga2e51e0ab2ef6d7fc805e13f3353244ac":[18,4,0,13,8,65],
-"group__PHY__COMMON__H.html#ga33171703e8194bda68d302d65e0d95e4":[18,4,0,13,8,97]
+"group__PHY__COMMON__H.html#ga2e51e0ab2ef6d7fc805e13f3353244ac":[18,4,0,13,8,65]
 };

@@ -697074,3 +697074,25 @@ Date:   Fri Oct 23 15:41:52 2026 +0530
  tools/usb_test_scripts/usb_vendor_bulk_echo_test.py                         |   316 +
  53809 files changed, 9316082 insertions(+)
 
+========================================
+Changes from build on 2026-10-29 20:50:13
+Previous commit: ec6d40c2d9c7bd0a75886b9e9bc9cd3ef4f32a0a
+Current commit: 081b898b6c5f89ce3c8b9661ba862317011d030a
+========================================
+
+commit 081b898b6c5f89ce3c8b9661ba862317011d030a
+Author: BensenBernard <b-bernard@ti.com>
+Date:   Wed Oct 28 17:59:55 2026 +0530
+
+    am263x/am263px: docs: Add uniflash board select documentation
+    
+    - Added step to select board on uniflash tool for flashing
+    
+    Fixes: MCUSDK-15052
+    
+    Signed-off-by: Bensen Bernard <b-bernard@ti.com>
+
+ docs_src/docs/api_guide/components/tools/ti_uniflash.md      |   9 +++++++++
+ docs_src/docs/api_guide/images/ti_uniflash/board_type_lp.png | Bin 0 -> 4288 bytes
+ 2 files changed, 9 insertions(+)
+
