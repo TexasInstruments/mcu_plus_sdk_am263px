@@ -89,7 +89,9 @@ int32_t SDL_ESM_applicationCallbackFunction(SDL_ESM_Inst esmInst,
                 esmInst, esmIntrType, grpChannel, index, intSrc);
     printf("\r\nTake action \r\n");
 
+    SDL_ECC_disableTMUROMParity();
     SDL_ECC_disableTMUROMParityErrorForce();
+    SDL_ECC_clearTMUROMParityError();
 
 	esmError = true;
 
