@@ -42,30 +42,19 @@ RPMessage_QueueElem *RPMessage_allocEndPtMsg(uint32_t remoteCoreId)
 
     oldIntState = HwiP_disable();
     pMsg = RPMessage_queueGet(&coreObj->freeQ);
-    if(pMsg == NULL)
-    {
-        coreObj->freeQAllocPending = 1;
-    }
-    else
-    {
-        coreObj->freeQAllocPending = 0;
-    }
     HwiP_restore(oldIntState);
 
     return pMsg;
 }
 
-uint32_t RPMessage_freeEndPtMsg(uint16_t remoteCoreId, RPMessage_QueueElem *elem)
+void RPMessage_freeEndPtMsg(uint16_t remoteCoreId, RPMessage_QueueElem *elem)
 {
     RPMessage_Core *coreObj = &gIpcRpmsgCtrl.coreObj[remoteCoreId];
-    uint32_t oldIntState, isAllocPending;
+    uint32_t oldIntState;
 
     oldIntState = HwiP_disable();
-    isAllocPending = coreObj->freeQAllocPending;
     RPMessage_queuePut(&coreObj->freeQ, elem);
     HwiP_restore(oldIntState);
-
-    return isAllocPending;
 }
 
 void RPMessage_putEndPtMsg(RPMessage_Object *obj, RPMessage_QueueElem *elem)
@@ -119,10 +108,12 @@ void RPMessage_recvHandler(uint32_t remoteCoreId)
     uint16_t vringBufId;
     int32_t status;
     RPMessage_QueueElem *elem;
+    RPMessage_Core *coreObj = &gIpcRpmsgCtrl.coreObj[remoteCoreId];
 
     elem = RPMessage_allocEndPtMsg(remoteCoreId);
     if(elem!=NULL)
     {
+        coreObj->freeQueueStatus = FREE_QUEUE_AVAILABLE;
         status = RPMessage_vringGetFullRxBuf(remoteCoreId, &vringBufId);
         if(status == SystemP_SUCCESS)
         {
@@ -163,7 +154,7 @@ void RPMessage_recvHandler(uint32_t remoteCoreId)
                         status = SystemP_SUCCESS;
 
                         /* pMsg is not used, free it */
-                        (void)RPMessage_freeEndPtMsg(remoteCoreId, elem);
+                        RPMessage_freeEndPtMsg(remoteCoreId, elem);
                         /* done using vring buf, free it */
                         RPMessage_vringPutEmptyRxBuf(remoteCoreId, vringBufId);
                     }
@@ -197,8 +188,13 @@ void RPMessage_recvHandler(uint32_t remoteCoreId)
             * or no object registered for local end pt, so no need handle the message pointer,
             * free it
             */
-            (void)RPMessage_freeEndPtMsg(remoteCoreId, elem);
+            RPMessage_freeEndPtMsg(remoteCoreId, elem);
         }
+    }
+    else
+    {
+        /* free queue is empty, don't check again within the same loop */
+        coreObj->freeQueueStatus = FREE_QUEUE_NOT_AVAILABLE;
     }
 }
 
@@ -207,6 +203,7 @@ void RPMessage_notifyCallback(uint32_t remoteCoreId, uint16_t localClientId, uin
     if((gIpcRpmsgCtrl.isCoreEnable[remoteCoreId]!=0U) && (gIpcRpmsgCtrl.isCoreInitialized[remoteCoreId]!=0U))
     {
         uint16_t rxMsgValue = RPMESSAGE_MSG_VRING_NEW_FULL;
+        RPMessage_Core *coreObj = &gIpcRpmsgCtrl.coreObj[remoteCoreId];
 
         if((RPMessage_isLinuxCore(remoteCoreId)!=0U))
         {
@@ -217,6 +214,11 @@ void RPMessage_notifyCallback(uint32_t remoteCoreId, uint16_t localClientId, uin
             while((RPMessage_vringIsFullRxBuf(remoteCoreId)!=0U))
             {
                 RPMessage_recvHandler(remoteCoreId);
+                if(coreObj->freeQueueStatus == FREE_QUEUE_NOT_AVAILABLE)
+                {
+                    DebugP_logWarn("[IPC RPMSG] Application message queue is full for remoteCoreId=%d, stopping VRING drain\r\n", remoteCoreId);
+                    break;
+                }
             }
         }
         else
@@ -315,7 +317,6 @@ int32_t RPMessage_recv(RPMessage_Object *obj, void* data, uint16_t *dataLen,
         if((status == SystemP_SUCCESS) && (elem != NULL))
         {
             uint16_t crc;
-            uint32_t isAllocPending = 0;
             uint16_t vringBufId = elem->vringBufId;
             uint8_t *vringBufAddr = RPMessage_vringGetRxBufAddr(elem->remoteCoreId, vringBufId);
             RPMessage_Header *header = (RPMessage_Header *)vringBufAddr;
@@ -347,17 +348,19 @@ int32_t RPMessage_recv(RPMessage_Object *obj, void* data, uint16_t *dataLen,
             }
 
             RPMessage_vringPutEmptyRxBuf(*remoteCoreId, vringBufId);
-            isAllocPending = RPMessage_freeEndPtMsg(*remoteCoreId, elem);
-            if(isAllocPending!=0U)
-            {   /* if any messages are pending message pointer due to free Q being empty,
-                 * now there will be atleast one element to handle any pending vring requests.
-                 * So check vring and handle pending messages if any
-                 */
-                RPMessage_notifyCallback(*remoteCoreId,
-                    IPC_NOTIFY_CLIENT_ID_RPMSG,
-                    RPMESSAGE_MSG_VRING_NEW_FULL,
-                    SystemP_SUCCESS,
-                    NULL);
+            RPMessage_freeEndPtMsg(*remoteCoreId, elem);
+            {
+                RPMessage_Core *coreObj = &gIpcRpmsgCtrl.coreObj[*remoteCoreId];
+                if(coreObj->freeQueueStatus == FREE_QUEUE_NOT_AVAILABLE)
+                {   /* free queue was exhausted during vring drain; now that a slot is free,
+                     * resume draining any messages still pending in vring
+                     */
+                    RPMessage_notifyCallback(*remoteCoreId,
+                        IPC_NOTIFY_CLIENT_ID_RPMSG,
+                        RPMESSAGE_MSG_VRING_NEW_FULL,
+                        SystemP_SUCCESS,
+                        NULL);
+                }
             }
         }
         else
@@ -475,7 +478,7 @@ int32_t  RPMessage_coreInit(uint16_t remoteCoreId, const RPMessage_Params *param
     uint16_t elemId;
 
     SemaphoreP_constructBinary(&coreObj->newEmptyVringBufSem, 0);
-    coreObj->freeQAllocPending = 0;
+    coreObj->freeQueueStatus = FREE_QUEUE_AVAILABLE;
     RPMessage_queueReset(&coreObj->freeQ);
     for(elemId=0; elemId<RPMESSAGE_MAX_LOCAL_MSG_OBJ; elemId++)
     {
@@ -500,7 +503,7 @@ void RPMessage_coreDeInit(uint16_t remoteCoreId)
     RPMessage_Core *coreObj = &gIpcRpmsgCtrl.coreObj[remoteCoreId];
 
     SemaphoreP_destruct(&coreObj->newEmptyVringBufSem);
-    coreObj->freeQAllocPending = 0;
+    coreObj->freeQueueStatus = FREE_QUEUE_AVAILABLE;
     RPMessage_queueReset(&coreObj->freeQ);
 }
 

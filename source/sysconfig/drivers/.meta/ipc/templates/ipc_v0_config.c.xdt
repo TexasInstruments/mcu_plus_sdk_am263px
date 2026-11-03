@@ -5,6 +5,8 @@
     let enabledCpus = module.getEnabledCpus(instance);
     let enabledRPMessageCpus = module.getEnabledRPMessageCpus(instance);
     let implementationVersion = module.getImplementationVersion();
+    let hasremoteprocFeatureFlags = (instance.mcuAlwaysOn !== undefined);
+    let featureFlagsValue = (instance.mcuAlwaysOn ? 1 : 0) | (instance.mcuGsSupport ? 2 : 0) | (instance.mcuLpmSupport ? 4 : 0);
     let ipcSharedMemData = module.getIpcSharedMemData(instance);
 %%}
 % if ( enabledCpus.length > 0 || instance.enableLinuxIpc === true || instance.enableMailboxIpc === true) {
@@ -63,13 +65,20 @@ const RPMessage_ResourceTable gRPMessage_linuxResourceTable __attribute__ ((sect
 {
     {
         1U,         /* we're the first version that implements this */
+    % if (hasremoteprocFeatureFlags) {
+        3U,         /* number of entries */
+    % } else {
         2U,         /* number of entries, MUST be 2 */
+    % }
         { 0U, 0U, } /* reserved, must be zero */
     },
     /* offsets to the entries */
     {
         offsetof(RPMessage_ResourceTable, vdev),
         offsetof(RPMessage_ResourceTable, trace),
+    % if (hasremoteprocFeatureFlags) {
+        offsetof(RPMessage_ResourceTable, features),
+    % }
     },
     /* vdev entry */
     {
@@ -84,6 +93,15 @@ const RPMessage_ResourceTable gRPMessage_linuxResourceTable __attribute__ ((sect
         (uint32_t)gDebugMemLog, DebugP_MEM_LOG_SIZE,
         0, "trace:`selfCpuName`",
     },
+    % if (hasremoteprocFeatureFlags) {
+    /* TI vendor specific feature flags entry */
+    {
+        RPMESSAGE_TI_FW_FEATS,
+        sizeof(RPMessage_FWFeats), /* len: byte size of the TI vendor resource payload */
+        TI_RSC_MAGIC,
+        `featureFlagsValue`U,
+    },
+    % }
 };
 
 % }

@@ -750927,3 +750927,160 @@ Date:   Wed Oct 21 21:26:21 2026 +0530
  tools/usb_test_scripts/usb_vendor_bulk_echo_test.py                         |   316 +
  53810 files changed, 9316618 insertions(+)
 
+========================================
+Changes from build on 2026-11-03 20:50:35
+Previous commit: 87541bbb1fd275ec4bf4a011eb1b886d4b9d6b45
+Current commit: 3c89a91b6138b9a0c66bb412f15e0fa7c751bfe1
+========================================
+
+commit 3c89a91b6138b9a0c66bb412f15e0fa7c751bfe1
+Author: Nithyaa shri R B <n-rb@ti.com>
+Date:   Thu Oct 29 23:55:24 2026 +0530
+
+    all: ipc: Extend resource table with vendor
+    specific support flags.
+    
+    - Add vendor specific feature flags to determine
+    if the remote processor can be stopped or not.
+    
+    - It adds three flags mcuAlwaysOn, mcuGsSupport,
+    mcuLpmSupport based on SOC to determine if the
+    specific SOC supports LPM features on remoteproc
+    side.
+    
+    Fixes: MCUSDK-15241
+    
+    Signed-off-by: Nithyaa shri R B <n-rb@ti.com>
+
+ source/drivers/ipc_rpmsg/include/ipc_rpmsg_linux_resource_table.h | 31 ++++++++++++++++++++++++++++---
+ 1 file changed, 28 insertions(+), 3 deletions(-)
+
+commit 69289bbd41205b6cbe5722db6b85a956d3213ef2
+Author: Amalia Firos <f-amalia@ti.com>
+Date:   Tue Jun 2 11:12:09 2026 +0530
+
+    am64x: ipc rpmsg: Add IPC RPMsg test with A53 as master
+    
+    - A53 echoes messages with M4F to confirm normal IPC operation
+    - M4F sleeps to simulate a stalled core while A53 bursts messages
+    - Verifies freeQ exhaustion triggers break in RPMessage_notifyCallback
+    - Moving bss section to M4f_IRAM section, as rodata doesnt fit
+      in the available DRAM for M4f
+    
+    Fixes: SITSW-5891
+    
+    Signed-off-by: Amalia Firos <f-amalia@ti.com>
+
+ .project/device/project_am64x.js                                            |   1 +
+ .../ipc/ipc_rpmsg_echo_linux/am64x-evm/m4fss0-0_freertos/example.syscfg     |   9 +-
+ .../ipc/ipc_rpmsg_echo_linux/am64x-evm/r5fss0-0_freertos/example.syscfg     |   7 +-
+ .../ipc/ipc_rpmsg_echo_linux/am64x-evm/r5fss0-1_freertos/example.syscfg     |   7 +-
+ .../ipc/ipc_rpmsg_echo_linux/am64x-evm/r5fss1-0_freertos/example.syscfg     |   7 +-
+ .../ipc/ipc_rpmsg_echo_linux/am64x-evm/r5fss1-1_freertos/example.syscfg     |   7 +-
+ .../safety/reset_isolation_ipc/am243x-evm/m4fss0-0_freertos/example.syscfg  |  14 +-
+ .../safety/reset_isolation_ipc/am243x-evm/r5fss0-0_freertos/example.syscfg  |  24 ++-
+ .../safety/reset_isolation_ipc/am64x-evm/m4fss0-0_freertos/example.syscfg   |  14 +-
+ .../safety/reset_isolation_ipc/am64x-evm/r5fss0-0_freertos/example.syscfg   |  12 +-
+ test/drivers/ipc_rpmsg/am243x-evm/m4fss0-0_freertos/example.syscfg          |  82 ++++-----
+ test/drivers/ipc_rpmsg/am243x-evm/r5fss0-0_freertos/example.syscfg          |  99 +++++-----
+ test/drivers/ipc_rpmsg/am243x-evm/r5fss0-1_freertos/example.syscfg          |  83 +++++----
+ test/drivers/ipc_rpmsg/am243x-evm/r5fss1-0_freertos/example.syscfg          |  83 +++++----
+ test/drivers/ipc_rpmsg/am243x-evm/r5fss1-1_freertos/example.syscfg          |  83 +++++----
+ test/drivers/ipc_rpmsg/am243x-lp/m4fss0-0_freertos/example.syscfg           |  82 ++++-----
+ test/drivers/ipc_rpmsg/am243x-lp/r5fss0-0_freertos/example.syscfg           |  99 +++++-----
+ test/drivers/ipc_rpmsg/am243x-lp/r5fss0-1_freertos/example.syscfg           |  83 +++++----
+ test/drivers/ipc_rpmsg/am243x-lp/r5fss1-0_freertos/example.syscfg           |  83 +++++----
+ test/drivers/ipc_rpmsg/am243x-lp/r5fss1-1_freertos/example.syscfg           |  83 +++++----
+ test/drivers/ipc_rpmsg/am64x-evm/a53ss0-0_freertos/example.syscfg           |   7 +-
+ test/drivers/ipc_rpmsg/am64x-evm/m4fss0-0_freertos/example.syscfg           |   9 +-
+ test/drivers/ipc_rpmsg/am64x-evm/r5fss0-0_freertos/example.syscfg           |  12 +-
+ test/drivers/ipc_rpmsg/am64x-evm/r5fss0-1_freertos/example.syscfg           |   7 +-
+ test/drivers/ipc_rpmsg/am64x-evm/r5fss1-0_freertos/example.syscfg           |   7 +-
+ test/drivers/ipc_rpmsg/am64x-evm/r5fss1-1_freertos/example.syscfg           |   7 +-
+ test/drivers/ipc_rpmsg/am64x-sk/a53ss0-0_freertos/example.syscfg            |   7 +-
+ test/drivers/ipc_rpmsg/am64x-sk/m4fss0-0_freertos/example.syscfg            |   9 +-
+ test/drivers/ipc_rpmsg/am64x-sk/r5fss0-0_freertos/example.syscfg            |  12 +-
+ test/drivers/ipc_rpmsg/am64x-sk/r5fss0-1_freertos/example.syscfg            |   7 +-
+ test/drivers/ipc_rpmsg/am64x-sk/r5fss1-0_freertos/example.syscfg            |   7 +-
+ test/drivers/ipc_rpmsg/am64x-sk/r5fss1-1_freertos/example.syscfg            |   7 +-
+ test/drivers/ipc_rpmsg_a53/.project/project.js                              |  20 ++
+ test/drivers/ipc_rpmsg_a53/.project/project_am64x.js                        | 253 ++++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/a53ss0-0_nortos/example.syscfg         |  45 +++++
+ .../ipc_rpmsg_a53/am64x-evm/a53ss0-0_nortos/gcc-aarch64/example.projectspec | 109 +++++++++++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/a53ss0-0_nortos/gcc-aarch64/linker.cmd |  65 +++++++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/a53ss0-0_nortos/gcc-aarch64/makefile   | 314 ++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_a53/am64x-evm/a53ss0-0_nortos/gcc-aarch64/makefile.defs       |  11 ++
+ .../am64x-evm/a53ss0-0_nortos/gcc-aarch64/makefile_ccs_bootimage_gen        | 111 ++++++++++++
+ .../am64x-evm/a53ss0-0_nortos/gcc-aarch64/makefile_projectspec              |  17 ++
+ .../ipc_rpmsg_a53/am64x-evm/a53ss0-0_nortos/gcc-aarch64/syscfg_c.rov.xs     |  11 ++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/a53ss0-0_nortos/main.c                 |  50 +++++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/m4fss0-0_nortos/example.syscfg         | 163 +++++++++++++++++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/m4fss0-0_nortos/main.c                 |  50 +++++
+ .../am64x-evm/m4fss0-0_nortos/ti-arm-clang/example.projectspec              | 103 +++++++++++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/m4fss0-0_nortos/ti-arm-clang/makefile  | 347 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_a53/am64x-evm/m4fss0-0_nortos/ti-arm-clang/makefile.defs      |  11 ++
+ .../am64x-evm/m4fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       | 111 ++++++++++++
+ .../am64x-evm/m4fss0-0_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../ipc_rpmsg_a53/am64x-evm/m4fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs    |  11 ++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/r5fss0-0_freertos/example.syscfg       | 261 ++++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/r5fss0-0_freertos/main.c               |  84 +++++++++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 108 +++++++++++
+ .../drivers/ipc_rpmsg_a53/am64x-evm/r5fss0-0_freertos/ti-arm-clang/makefile | 352 ++++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_a53/am64x-evm/r5fss0-0_freertos/ti-arm-clang/makefile.defs    |  11 ++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen     | 111 ++++++++++++
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec           |  17 ++
+ .../ipc_rpmsg_a53/am64x-evm/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs  |  11 ++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/r5fss0-1_nortos/example.syscfg         | 231 +++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/r5fss0-1_nortos/main.c                 |  50 +++++
+ .../am64x-evm/r5fss0-1_nortos/ti-arm-clang/example.projectspec              | 105 +++++++++++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/r5fss0-1_nortos/ti-arm-clang/makefile  | 349 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_a53/am64x-evm/r5fss0-1_nortos/ti-arm-clang/makefile.defs      |  11 ++
+ .../am64x-evm/r5fss0-1_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       | 111 ++++++++++++
+ .../am64x-evm/r5fss0-1_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../ipc_rpmsg_a53/am64x-evm/r5fss0-1_nortos/ti-arm-clang/syscfg_c.rov.xs    |  11 ++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/r5fss1-0_nortos/example.syscfg         | 231 +++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/r5fss1-0_nortos/main.c                 |  50 +++++
+ .../am64x-evm/r5fss1-0_nortos/ti-arm-clang/example.projectspec              | 105 +++++++++++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/r5fss1-0_nortos/ti-arm-clang/makefile  | 349 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_a53/am64x-evm/r5fss1-0_nortos/ti-arm-clang/makefile.defs      |  11 ++
+ .../am64x-evm/r5fss1-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       | 111 ++++++++++++
+ .../am64x-evm/r5fss1-0_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../ipc_rpmsg_a53/am64x-evm/r5fss1-0_nortos/ti-arm-clang/syscfg_c.rov.xs    |  11 ++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/r5fss1-1_nortos/example.syscfg         | 231 +++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/r5fss1-1_nortos/main.c                 |  50 +++++
+ .../am64x-evm/r5fss1-1_nortos/ti-arm-clang/example.projectspec              | 105 +++++++++++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/r5fss1-1_nortos/ti-arm-clang/makefile  | 349 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_a53/am64x-evm/r5fss1-1_nortos/ti-arm-clang/makefile.defs      |  11 ++
+ .../am64x-evm/r5fss1-1_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       | 111 ++++++++++++
+ .../am64x-evm/r5fss1-1_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../ipc_rpmsg_a53/am64x-evm/r5fss1-1_nortos/ti-arm-clang/syscfg_c.rov.xs    |  11 ++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/system_freertos_nortos/makefile        | 194 ++++++++++++++++++++
+ .../ipc_rpmsg_a53/am64x-evm/system_freertos_nortos/makefile_projectspec     |  23 +++
+ .../am64x-evm/system_freertos_nortos/makefile_system_ccs_bootimage_gen      | 114 ++++++++++++
+ .../ipc_rpmsg_a53/am64x-evm/system_freertos_nortos/system.projectspec       |  30 +++
+ test/drivers/ipc_rpmsg_a53/am64x-evm/system_freertos_nortos/system.xml      |  27 +++
+ test/drivers/ipc_rpmsg_a53/test_ipc_rpmsg_a53.c                             | 261 ++++++++++++++++++++++++++
+ test/makefile.am64x                                                         |  13 ++
+ 90 files changed, 6649 insertions(+), 502 deletions(-)
+
+commit 7f44dbc8deddecfe4a5193dd01bc46411bb5d5de
+Author: Amalia Firos <f-amalia@ti.com>
+Date:   Wed Jun 3 11:32:16 2026 +0530
+
+    allsoc: ipc rpmsg: Fix M4F hang when processing burst messages
+    
+    - Exit RPMessage_notifyCallback loop early when free queue is exhausted
+    to prevent M4F hang under burst IPC load.
+    - Add gFreeQueueStatus global to track free queue availability
+    - Set to AVAILABLE when queue has space for new messages
+    - Set to NOT_AVAILABLE when allocation fails
+    - Break from VRING drain loop when free queue exhausted
+    
+    Fixes: SITSW-5891
+    
+    Signed-off-by: Amalia Firos <f-amalia@ti.com>
+
+ source/drivers/ipc_rpmsg/ipc_rpmsg.c      | 61 ++++++++++++++++++++++++++++++++-----------------------------
+ source/drivers/ipc_rpmsg/ipc_rpmsg_priv.h | 18 +++++++++++++-----
+ 2 files changed, 45 insertions(+), 34 deletions(-)
+

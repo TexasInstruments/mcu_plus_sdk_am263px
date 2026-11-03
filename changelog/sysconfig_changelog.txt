@@ -9951,3 +9951,33 @@ Date:   Fri Oct 16 11:45:53 2026 +0530
  usb/.meta/tinyusb/v1/tinyusb_v1.syscfg.js                 | 3 ++-
  2 files changed, 2 insertions(+), 4 deletions(-)
 
+========================================
+Changes from build on 2026-11-03 20:48:24
+Previous commit: 65e1daf70a17042e10c09260f3906aa630d680d5
+Current commit: 00bc15547c5b7b5992e492fd61d9c7d62e740a72
+========================================
+
+commit 00bc15547c5b7b5992e492fd61d9c7d62e740a72
+Author: Nithyaa shri R B <n-rb@ti.com>
+Date:   Thu Oct 29 23:40:47 2026 +0530
+
+    all: ipc: Extend resource table with vendor
+    specific support flags.
+    
+    - Add vendor specific feature flags to determine
+    if the remote processor can be stopped or not.
+    
+    - It adds three flags mcuAlwaysOn, mcuGsSupport,
+    mcuLpmSupport based on SOC to determine if the
+    specific SOC supports LPM features on remoteproc
+    side.
+    
+    Fixes: MCUSDK-15241
+    
+    Signed-off-by: Nithyaa shri R B <n-rb@ti.com>
+
+ drivers/.meta/ipc/soc/ipc_am64x.syscfg.js       | 29 +++++++++++++++++++++++++++++
+ drivers/.meta/ipc/templates/ipc_v0_config.c.xdt | 18 ++++++++++++++++++
+ drivers/.meta/ipc/v0/ipc_v0.syscfg.js           | 34 ++++++++++++++++++++++++----------
+ 3 files changed, 71 insertions(+), 10 deletions(-)
+

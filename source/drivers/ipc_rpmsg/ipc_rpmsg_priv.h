@@ -52,7 +52,16 @@ extern "C" {
  * Ideally this needs to be equal to number of buffers in vring since that
  * is the theortical max limit on outstanding recv messages.
  */
+
+#if defined (SOC_AM64X) || defined (SOC_AM243X)
+#define RPMESSAGE_MAX_LOCAL_MSG_OBJ     (256U)
+#else
 #define RPMESSAGE_MAX_LOCAL_MSG_OBJ     (16U)
+#endif
+
+/* Status flag for freeQ availability */
+#define FREE_QUEUE_AVAILABLE        (1U)
+#define FREE_QUEUE_NOT_AVAILABLE    (0U)
 
 /*
  * End Point used to communicate control messages.
@@ -207,10 +216,9 @@ typedef struct
                                              *
                                              * ONLY used during transmit
                                              */
-    uint32_t freeQAllocPending; /* flag to indicate if a freeQ alloc failed
-                                 * and therefore there is a pending recvied message in VRING
-                                 * if this flag is set then recv message handler is invoked without
-                                 * waiting for a new interrupt
+    uint32_t freeQueueStatus;   /* flag to track if free queue has space for new messages
+                                 * AVAILABLE: queue has space, NOTAVAILABLE: queue is full
+                                 * prevents infinite loop when processing messages from this core
                                  *
                                  * ONLY used during receive.
                                  */
@@ -293,7 +301,7 @@ void     RPMessage_vringResetLinux(uint16_t remoteCoreId, uint16_t isTx, const R
 void RPMessage_vringResetInternal(RPMessage_Vring *vringObj, uint16_t numBuf, uint16_t msgSize, uintptr_t vringBaseAddr, uint32_t offset_desc, uint32_t offset_avail, uint32_t offset_used, uint32_t offset_buf, uint32_t isTx);
 
 RPMessage_QueueElem *RPMessage_allocEndPtMsg(uint32_t remoteCoreId);
-uint32_t RPMessage_freeEndPtMsg(uint16_t remoteCoreId, RPMessage_QueueElem *elem);
+void RPMessage_freeEndPtMsg(uint16_t remoteCoreId, RPMessage_QueueElem *elem);
 void RPMessage_putEndPtMsg(RPMessage_Object *obj, RPMessage_QueueElem *elem);
 int32_t RPMessage_getEndPtMsg(RPMessage_Object *obj,  RPMessage_QueueElem **elem, uint32_t timeout);
 void RPMessage_recvHandler(uint32_t remoteCoreId);

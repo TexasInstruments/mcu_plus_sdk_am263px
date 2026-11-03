@@ -20,6 +20,12 @@ let ipc_options = [
 
 let ipc_options_default = "notify_rpmsg";
 
+/* vendor specific feature flags that are not IPC cores, exported in the Linux resource table */
+function isIpcFeatureFlag(name)
+{
+    return (name == "mcuAlwaysOn" || name == "mcuGsSupport" || name == "mcuLpmSupport");
+}
+
 function getConfigurables()
 {
     /* get 'CPU enable' configurables */
@@ -52,7 +58,7 @@ function getConfigurables()
 
     /* add defaults and options */
     config.forEach( function (element) {
-        if(element.name != "enableLinuxIpc" && element.name != "enableMailboxIpc" && element.name.search("_safeipc") == -1) {
+        if(element.name != "enableLinuxIpc" && element.name != "enableMailboxIpc" && !isIpcFeatureFlag(element.name) && element.name.search("_safeipc") == -1) {
             element.default = ipc_options_default;
             element.options = [ ...ipc_options ];
         }
@@ -213,6 +219,14 @@ function onChange(instance, ui)
             }
         }
     }
+    /* Show MCU feature flags only when Linux IPC is enabled, and only on SoCs that define them */
+    if(ui.mcuAlwaysOn !== undefined)
+    {
+        let hideFeatureFlags = (instance.enableLinuxIpc !== true);
+        ui.mcuAlwaysOn.hidden = hideFeatureFlags;
+        ui.mcuGsSupport.hidden = hideFeatureFlags;
+        ui.mcuLpmSupport.hidden = hideFeatureFlags;
+    }
     if(instance.enableCrc)
     {
         ui.crcHookFxn.hidden = false;
@@ -248,7 +262,7 @@ function getIpcSharedMemData(instance) {
         /* Create 2D array to hold the VRING addresses */
         for ( let config of configs)
         {
-            if(config.name != "enableLinuxIpc" && config.name != "enableMailboxIpc" && config.name.search("_safeipc") == -1) {
+            if(config.name != "enableLinuxIpc" && config.name != "enableMailboxIpc" && !isIpcFeatureFlag(config.name) && config.name.search("_safeipc") == -1) {
                 let remoteCoreName = config.name;
                 let sysCfgCoreName = ipc_soc.getSysCfgCoreName(remoteCoreName)
                 let remote_core_instance = common.getStaticModuleForCore(ipc_module_name, sysCfgCoreName);
@@ -261,7 +275,7 @@ function getIpcSharedMemData(instance) {
         }
         for ( let config of configs)
         {
-            if(config.name != "enableLinuxIpc" && config.name != "enableMailboxIpc" && config.name.search("_safeipc") == -1) {
+            if(config.name != "enableLinuxIpc" && config.name != "enableMailboxIpc" && !isIpcFeatureFlag(config.name) && config.name.search("_safeipc") == -1) {
                 let remoteCoreName = config.name;
                 let sysCfgCoreName = ipc_soc.getSysCfgCoreName(remoteCoreName)
                 let remote_core_instance = common.getStaticModuleForCore(ipc_module_name, sysCfgCoreName);
@@ -275,7 +289,7 @@ function getIpcSharedMemData(instance) {
                     }
                     for ( let config1 of configs)
                     {
-                        if(config1.name != "enableLinuxIpc" && config1.name != "enableMailboxIpc" && config1.name.search("_safeipc") == -1) {
+                        if(config1.name != "enableLinuxIpc" && config1.name != "enableMailboxIpc" && !isIpcFeatureFlag(config1.name) && config1.name.search("_safeipc") == -1) {
                             let remoteCoreName1 = config1.name;
                             let sysCfgCoreName1 = ipc_soc.getSysCfgCoreName(remoteCoreName1)
                             let remote_core_instance1 = common.getStaticModuleForCore(ipc_module_name, sysCfgCoreName1);
@@ -337,7 +351,7 @@ function getIpcSharedMemData(instance) {
     {
         for ( let config of configs)
         {
-            if(config.name != "enableLinuxIpc" && config.name != "enableMailboxIpc" && config.name.search("_safeipc") == -1) {
+            if(config.name != "enableLinuxIpc" && config.name != "enableMailboxIpc" && !isIpcFeatureFlag(config.name) && config.name.search("_safeipc") == -1) {
                 let remoteCoreName = config.name;
                 let sysCfgCoreName = ipc_soc.getSysCfgCoreName(remoteCoreName)
                 let remote_core_instance = common.getStaticModuleForCore(ipc_module_name, sysCfgCoreName);
@@ -358,7 +372,7 @@ function getIpcSharedMemData(instance) {
         }
         for ( let config of configs)
         {
-            if(config.name != "enableLinuxIpc" && config.name != "enableMailboxIpc" && config.name.search("_safeipc") == -1) {
+            if(config.name != "enableLinuxIpc" && config.name != "enableMailboxIpc" && !isIpcFeatureFlag(config.name) && config.name.search("_safeipc") == -1) {
                 let remoteCoreName = config.name;
                 let sysCfgCoreName = ipc_soc.getSysCfgCoreName(remoteCoreName)
                 let remote_core_instance = common.getStaticModuleForCore(ipc_module_name, sysCfgCoreName);
@@ -372,7 +386,7 @@ function getIpcSharedMemData(instance) {
                     }
                     for ( let config1 of configs)
                     {
-                        if(config1.name != "enableLinuxIpc" && config1.name != "enableMailboxIpc" && config1.name.search("_safeipc") == -1) {
+                        if(config1.name != "enableLinuxIpc" && config1.name != "enableMailboxIpc" && !isIpcFeatureFlag(config1.name) && config1.name.search("_safeipc") == -1) {
                             let remoteCoreName1 = config1.name;
                             let sysCfgCoreName1 = ipc_soc.getSysCfgCoreName(remoteCoreName1)
                             let remote_core_instance1 = common.getStaticModuleForCore(ipc_module_name, sysCfgCoreName1);
@@ -475,7 +489,7 @@ function getEnabledCpus(instance) {
 
     for( let cpuConfig of config)
     {
-        if(cpuConfig.name != "enableLinuxIpc" && cpuConfig.name != "enableMailboxIpc" ) {
+        if(cpuConfig.name != "enableLinuxIpc" && cpuConfig.name != "enableMailboxIpc" && !isIpcFeatureFlag(cpuConfig.name) ) {
             if(((instance[cpuConfig.name] == "notify") || (instance[cpuConfig.name] == "notify_rpmsg")) && cpuConfig.name != ipc_soc.getSelfIpcCoreName())
             {
                 enabledCpus.push(cpuConfig.name);
@@ -491,7 +505,7 @@ function getEnabledRPMessageCpus(instance) {
 
     for( let cpuConfig of config)
     {
-        if(cpuConfig.name != "enableLinuxIpc") {
+        if(cpuConfig.name != "enableLinuxIpc" && !isIpcFeatureFlag(cpuConfig.name)) {
             if(instance[cpuConfig.name] == "notify_rpmsg" && cpuConfig.name != ipc_soc.getSelfIpcCoreName())
             {
                 enabledCpus.push(cpuConfig.name);
@@ -532,7 +546,7 @@ function validate(instance, report) {
 
     for ( let config of configs)
     {
-        if(config.name != "enableLinuxIpc" && config.name != "enableMailboxIpc" && config.name.search("_safeipc") == -1) {
+        if(config.name != "enableLinuxIpc" && config.name != "enableMailboxIpc" && !isIpcFeatureFlag(config.name) && config.name.search("_safeipc") == -1) {
             let remoteCoreName = config.name;
             if( remoteCoreName != selfIpcCoreName)
             {
