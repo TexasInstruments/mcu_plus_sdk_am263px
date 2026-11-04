@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2021-2023 Texas Instruments Incorporated
+ *  Copyright (C) 2021-2026 Texas Instruments Incorporated
  *
  *  Redistribution and use in source and binary forms, with or without
  *  modification, are permitted provided that the following conditions
@@ -138,6 +138,7 @@ void watchdog_interrupt_main(void *args)
     HwiP_Params_init(&hwiPrms);
     hwiPrms.intNum      = CONFIG_WDT0_INTR;
     hwiPrms.callback    = &watchdogCallback;
+    hwiPrms.isPulse     = 1U;
     status              = HwiP_construct(&gRtiHwiObject, &hwiPrms);
     DebugP_assert(status == SystemP_SUCCESS);
 #endif

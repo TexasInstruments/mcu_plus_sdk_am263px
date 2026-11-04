@@ -96,7 +96,7 @@ uint32_t get_Hsmrt_size()
     hsmrt_Cert_Len = Bootloader_getX509CertLen(x509Header);
 
     Flash_read(gFlashHandle[0U], HSMRT_FLASH_OFFSET, (uint8_t *) x509HsmrtCert, hsmrt_Cert_Len);
-    CacheP_wb((void *)x509Header, hsmrt_Cert_Len, CacheP_TYPE_ALL);
+    CacheP_wb((void *)x509HsmrtCert, hsmrt_Cert_Len, CacheP_TYPE_ALL);
 
     hsmrt_image_Size = Bootloader_getMsgLen(x509HsmrtCert, hsmrt_Cert_Len);
 
