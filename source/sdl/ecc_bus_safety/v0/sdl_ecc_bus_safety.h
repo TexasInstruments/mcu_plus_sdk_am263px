@@ -58,7 +58,7 @@
 #include <sdl/include/soc_config.h>
 #include <sdl/ecc_bus_safety/v0/soc/sdl_ecc_bus_safety_soc.h>
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 /**
@@ -457,7 +457,7 @@ uint32_t SDL_ECC_BUS_SAFETY_DSS_AWR2944_AWR2943_Detect(void);
 /** @} */
 
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 }
 #endif /*extern "C" */
 

@@ -45,7 +45,7 @@
 
 #include <sdl/include/am263px/sdlr_soc_baseaddress.h>
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -80,7 +80,7 @@ typedef enum {
 int32_t SDL_MCRC_getBaseaddr(SDL_MCRC_InstType instance, uint32_t *baseAddr);
 
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 }
 
 #endif /*extern "C" */

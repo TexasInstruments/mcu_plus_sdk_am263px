@@ -71,7 +71,7 @@
 #include <sdl/include/sdlr.h>
 #include <sdl/mcrc/v0/soc/sdl_mcrc_soc.h>
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -798,7 +798,7 @@ int32_t SDL_MCRC_configCRCType(SDL_MCRC_InstType instance,
                                 SDL_MCRC_Channel_t channel);
 #endif
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 }
 
 #endif /*extern "C" */

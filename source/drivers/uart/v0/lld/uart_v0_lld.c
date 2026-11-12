@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2025 Texas Instruments Incorporated
+ * Copyright (C) 2021-2026 Texas Instruments Incorporated
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -109,7 +109,7 @@
 
 #define UART_EFR2                             (0x8CU)
 #define UART_EFR2_TIMEOUT_BEHAVE_SHIFT        (0x6U)
-#define UART_EFR2_TIMEOUT_BEHAVE_MASK         (0x6U)
+#define UART_EFR2_TIMEOUT_BEHAVE_MASK         (0x40U)
 
 /* UART read line status timeout in micro seconds  */
 #define UART_READ_LINE_STATUS_TIMEOUT_IN_US    (1U*1000U*1000U)
