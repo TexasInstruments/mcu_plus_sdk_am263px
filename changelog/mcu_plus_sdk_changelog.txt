@@ -858862,3 +858862,32 @@ Date:   Mon Oct 26 14:52:59 2026 +0530
  tools/usb_test_scripts/usb_vendor_bulk_echo_test.py                         |   316 +
  53867 files changed, 9322802 insertions(+)
 
+========================================
+Changes from build on 2026-11-16 20:50:28
+Previous commit: 739f59a9ac06b4bf5bc12af036ad99d12bff2584
+Current commit: 1307f66f6cfae5d922ca4a54df64cdd33f9a5572
+========================================
+
+commit 1307f66f6cfae5d922ca4a54df64cdd33f9a5572
+Author: LCPD Automation Script <lcpdbld@list.ti.com>
+Date:   Wed Nov 11 14:38:52 2026 +0000
+
+    am64x: tifs: update to SYSFW v12.02.02
+    
+    am64:
+    1. sa3ul: fix resource leaks and invalid state handling in MCELF auth.
+    2. sa3ul: add AES256 CTR mode support for CSP and proc auth boot via keyring
+    3. keyring: add EC keyring support
+    4. MISRA C fixes
+    
+    Fixes: SITSW-13554
+    
+    Signed-off-by: Fayaz Akthar <f-akthar@ti.com>
+
+ source/drivers/sciclient/soc/am64x_am243x/sysfw-hs-enc-cert.bin    |   Bin 1684 -> 1684 bytes
+ source/drivers/sciclient/soc/am64x_am243x/sysfw-hs-enc.bin         |   Bin 225280 -> 225280 bytes
+ source/drivers/sciclient/soc/am64x_am243x/sysfw-hs-fs-enc-cert.bin |   Bin 1684 -> 1684 bytes
+ source/drivers/sciclient/soc/am64x_am243x/sysfw-hs-fs-enc.bin      |   Bin 225280 -> 225280 bytes
+ source/drivers/sciclient/soc/am64x_am243x/sysfw_hs_fs_signed.h     | 28252 +++++++++++++++++++++----------------------
+ 5 files changed, 14126 insertions(+), 14126 deletions(-)
+
