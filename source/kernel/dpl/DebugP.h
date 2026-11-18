@@ -201,8 +201,13 @@ void _DebugP_assertNoLog(int32_t expression);
 /** @} */
 
 #else
+#if defined SOC_AM263X || defined SOC_AM263PX || defined SOC_AM261X
+#define DebugP_assert(expression)           (void)(expression)
+#define DebugP_assertNoLog(expression)      (void)(expression)
+#else
 #define DebugP_assert(expression)
 #define DebugP_assertNoLog(expression)
+#endif
 #endif
 
 #if DebugP_LOG_ENABLED
@@ -264,10 +269,17 @@ void _DebugP_logZone(uint32_t logZone, char *format, ...);
  /** @} */
 
 #else
+#if defined SOC_AM263X || defined SOC_AM263PX || defined SOC_AM261X
+#define DebugP_log(format, ...)      do { if(0) (void)(format, ##__VA_ARGS__); } while(0)
+#define DebugP_logError(format, ...) do { if(0) (void)(format, ##__VA_ARGS__); } while(0)
+#define DebugP_logWarn(format, ...)  do { if(0) (void)(format, ##__VA_ARGS__); } while(0)
+#define DebugP_logInfo(format, ...)  do { if(0) (void)(format, ##__VA_ARGS__); } while(0)
+#else
 #define DebugP_log(format, ...)
 #define DebugP_logError(format, ...)
 #define DebugP_logWarn(format, ...)
 #define DebugP_logInfo(format, ...)
+#endif
 #endif
 
 /**

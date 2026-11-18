@@ -17881,154 +17881,154 @@
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00220</field>
+    <field name="url">DebugP_8h_source.html#l00225</field>
     <field name="keywords"></field>
     <field name="text">_DebugP_logZone uint32_t logZone format</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00235</field>
+    <field name="url">DebugP_8h_source.html#l00240</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00244</field>
+    <field name="url">DebugP_8h_source.html#l00249</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00253</field>
+    <field name="url">DebugP_8h_source.html#l00258</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00262</field>
+    <field name="url">DebugP_8h_source.html#l00267</field>
     <field name="keywords"></field>
     <field name="text"></field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00280</field>
+    <field name="url">DebugP_8h_source.html#l00292</field>
     <field name="keywords"></field>
     <field name="text">uint32_t DebugP_logZoneEnable uint32_t logZoneMask</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00289</field>
+    <field name="url">DebugP_8h_source.html#l00301</field>
     <field name="keywords"></field>
     <field name="text">uint32_t DebugP_logZoneDisable uint32_t logZoneMask</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00296</field>
+    <field name="url">DebugP_8h_source.html#l00308</field>
     <field name="keywords"></field>
     <field name="text">DebugP_logZoneRestore uint32_t logZoneMask</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00305</field>
+    <field name="url">DebugP_8h_source.html#l00317</field>
     <field name="keywords"></field>
     <field name="text">DebugP_shmLogWriterInit DebugP_ShmLog shmLog uint16_t selfCoreId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00310</field>
+    <field name="url">DebugP_8h_source.html#l00322</field>
     <field name="keywords"></field>
     <field name="text">DebugP_shmLogWriterPreludeEnable</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00317</field>
+    <field name="url">DebugP_8h_source.html#l00329</field>
     <field name="keywords"></field>
     <field name="text">DebugP_shmLogWriterPreludeDisable</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00330</field>
+    <field name="url">DebugP_8h_source.html#l00342</field>
     <field name="keywords"></field>
     <field name="text">DebugP_shmLogWriterPutChar character</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00341</field>
+    <field name="url">DebugP_8h_source.html#l00353</field>
     <field name="keywords"></field>
     <field name="text">DebugP_uartLogWriterPutChar character</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00353</field>
+    <field name="url">DebugP_8h_source.html#l00365</field>
     <field name="keywords"></field>
     <field name="text">DebugP_shmLogReaderInit DebugP_ShmLog shmLog uint16_t numCores</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00359</field>
+    <field name="url">DebugP_8h_source.html#l00371</field>
     <field name="keywords"></field>
     <field name="text">DebugP_shmLogReaderSetChunkSize uint16_t readChunkSize</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00366</field>
+    <field name="url">DebugP_8h_source.html#l00378</field>
     <field name="keywords"></field>
     <field name="text">uint16_t DebugP_shmLogReaderGetChunkSize</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00374</field>
+    <field name="url">DebugP_8h_source.html#l00386</field>
     <field name="keywords"></field>
     <field name="text">DebugP_shmLogRead</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00386</field>
+    <field name="url">DebugP_8h_source.html#l00398</field>
     <field name="keywords"></field>
     <field name="text">DebugP_memLogWriterInit uint16_t selfCoreId</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00401</field>
+    <field name="url">DebugP_8h_source.html#l00413</field>
     <field name="keywords"></field>
     <field name="text">DebugP_memLogWriterPutChar character</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00411</field>
+    <field name="url">DebugP_8h_source.html#l00423</field>
     <field name="keywords"></field>
     <field name="text">DebugP_uartSetDrvIndex uint32_t uartDrvIndex</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00424</field>
+    <field name="url">DebugP_8h_source.html#l00436</field>
     <field name="keywords"></field>
     <field name="text">int32_t DebugP_scanf format</field>
   </doc>
   <doc>
     <field name="type">source</field>
     <field name="name">DebugP.h</field>
-    <field name="url">DebugP_8h_source.html#l00442</field>
+    <field name="url">DebugP_8h_source.html#l00454</field>
     <field name="keywords"></field>
     <field name="text">int32_t DebugP_readLine lineBuf uint32_t bufSize</field>
   </doc>

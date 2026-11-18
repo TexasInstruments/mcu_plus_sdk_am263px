@@ -188,70 +188,82 @@ $(document).ready(function(){initNavTree('DebugP_8h_source.html',''); initResiza
 <div class="line"><a name="l00199"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga7824b4e99fe103a171fbc355a1c01c67">  199</a></span>&#160;<span class="preprocessor">#define DebugP_assertNoLog(expression) (_DebugP_assertNoLog(expression))</span></div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="preprocessor">#define DebugP_assert(expression)</span></div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="preprocessor">#define DebugP_assertNoLog(expression)</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="preprocessor">#if DebugP_LOG_ENABLED</span></div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
-<div class="line"><a name="l00220"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gac9cb8f99cea4db1205dd1373dddf48ff">  220</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gac9cb8f99cea4db1205dd1373dddf48ff">_DebugP_logZone</a>(uint32_t logZone, <span class="keywordtype">char</span> *format, ...);</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
-<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">  235</a></span>&#160;<span class="preprocessor">#define DebugP_log(format, ...)    _DebugP_logZone(DebugP_LOG_ZONE_ALWAYS_ON, (char *)format, ##__VA_ARGS__)</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160; </div>
-<div class="line"><a name="l00244"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga8e7ba11b5db9c1a2743435f3c1bf04fe">  244</a></span>&#160;<span class="preprocessor">#define DebugP_logError(format, ...)     _DebugP_logZone(DebugP_LOG_ZONE_ERROR, &quot;ERROR: %s:%d: &quot; format, __FUNCTION__, __LINE__, ##__VA_ARGS__)</span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
-<div class="line"><a name="l00253"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gad45f0c27da076e5057a30246962f34ae">  253</a></span>&#160;<span class="preprocessor">#define DebugP_logWarn(format, ...)      _DebugP_logZone(DebugP_LOG_ZONE_WARN, &quot;WARNING: %s:%d: &quot; format, __FUNCTION__, __LINE__, ##__VA_ARGS__)</span></div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
-<div class="line"><a name="l00262"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga1f6954121ca94b5b8553024c077bf14a">  262</a></span>&#160;<span class="preprocessor">#define DebugP_logInfo(format, ...)      _DebugP_logZone(DebugP_LOG_ZONE_INFO, &quot;INFO: %s:%d: &quot; format, __FUNCTION__, __LINE__, ##__VA_ARGS__)</span></div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; </div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="preprocessor">#define DebugP_log(format, ...)</span></div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="preprocessor">#define DebugP_logError(format, ...)</span></div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="preprocessor">#define DebugP_logWarn(format, ...)</span></div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="preprocessor">#define DebugP_logInfo(format, ...)</span></div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160; </div>
-<div class="line"><a name="l00280"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gabfa4fe2a6496daee09c3a97179a43c75">  280</a></span>&#160;uint32_t <a class="code" href="group__KERNEL__DPL__DEBUG.html#gabfa4fe2a6496daee09c3a97179a43c75">DebugP_logZoneEnable</a>(uint32_t logZoneMask);</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
-<div class="line"><a name="l00289"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gaa3f247ce21c25c88dff6421889c127d9">  289</a></span>&#160;uint32_t <a class="code" href="group__KERNEL__DPL__DEBUG.html#gaa3f247ce21c25c88dff6421889c127d9">DebugP_logZoneDisable</a>(uint32_t logZoneMask);</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
-<div class="line"><a name="l00296"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga7ad5abb88f0302a0f6c381fb607a4fc1">  296</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga7ad5abb88f0302a0f6c381fb607a4fc1">DebugP_logZoneRestore</a>(uint32_t logZoneMask);</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160; </div>
-<div class="line"><a name="l00305"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gadd57c555a1e4dda746a54516ce5735fe">  305</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gadd57c555a1e4dda746a54516ce5735fe">DebugP_shmLogWriterInit</a>(<a class="code" href="structDebugP__ShmLog.html">DebugP_ShmLog</a> *shmLog, uint16_t selfCoreId);</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160; </div>
-<div class="line"><a name="l00310"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gad4635c2c782fd506c13b42caa1e43bab">  310</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gad4635c2c782fd506c13b42caa1e43bab">DebugP_shmLogWriterPreludeEnable</a>();</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160; </div>
-<div class="line"><a name="l00317"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gaf78c150d8bf80efda0aba32375d2428b">  317</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gaf78c150d8bf80efda0aba32375d2428b">DebugP_shmLogWriterPreludeDisable</a>();</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="preprocessor">#if defined SOC_AM263X || defined SOC_AM263PX || defined SOC_AM261X</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="preprocessor">#define DebugP_assert(expression)           (void)(expression)</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="preprocessor">#define DebugP_assertNoLog(expression)      (void)(expression)</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="preprocessor">#define DebugP_assert(expression)</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="preprocessor">#define DebugP_assertNoLog(expression)</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="preprocessor">#if DebugP_LOG_ENABLED</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
+<div class="line"><a name="l00225"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gac9cb8f99cea4db1205dd1373dddf48ff">  225</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gac9cb8f99cea4db1205dd1373dddf48ff">_DebugP_logZone</a>(uint32_t logZone, <span class="keywordtype">char</span> *format, ...);</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
+<div class="line"><a name="l00240"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gafe348ab5badd2c15118f95e21bb192c6">  240</a></span>&#160;<span class="preprocessor">#define DebugP_log(format, ...)    _DebugP_logZone(DebugP_LOG_ZONE_ALWAYS_ON, (char *)format, ##__VA_ARGS__)</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
+<div class="line"><a name="l00249"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga8e7ba11b5db9c1a2743435f3c1bf04fe">  249</a></span>&#160;<span class="preprocessor">#define DebugP_logError(format, ...)     _DebugP_logZone(DebugP_LOG_ZONE_ERROR, &quot;ERROR: %s:%d: &quot; format, __FUNCTION__, __LINE__, ##__VA_ARGS__)</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160; </div>
+<div class="line"><a name="l00258"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gad45f0c27da076e5057a30246962f34ae">  258</a></span>&#160;<span class="preprocessor">#define DebugP_logWarn(format, ...)      _DebugP_logZone(DebugP_LOG_ZONE_WARN, &quot;WARNING: %s:%d: &quot; format, __FUNCTION__, __LINE__, ##__VA_ARGS__)</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160; </div>
+<div class="line"><a name="l00267"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga1f6954121ca94b5b8553024c077bf14a">  267</a></span>&#160;<span class="preprocessor">#define DebugP_logInfo(format, ...)      _DebugP_logZone(DebugP_LOG_ZONE_INFO, &quot;INFO: %s:%d: &quot; format, __FUNCTION__, __LINE__, ##__VA_ARGS__)</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="preprocessor">#if defined SOC_AM263X || defined SOC_AM263PX || defined SOC_AM261X</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="preprocessor">#define DebugP_log(format, ...)      do { if(0) (void)(format, ##__VA_ARGS__); } while(0)</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="preprocessor">#define DebugP_logError(format, ...) do { if(0) (void)(format, ##__VA_ARGS__); } while(0)</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="preprocessor">#define DebugP_logWarn(format, ...)  do { if(0) (void)(format, ##__VA_ARGS__); } while(0)</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="preprocessor">#define DebugP_logInfo(format, ...)  do { if(0) (void)(format, ##__VA_ARGS__); } while(0)</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="preprocessor">#define DebugP_log(format, ...)</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="preprocessor">#define DebugP_logError(format, ...)</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="preprocessor">#define DebugP_logWarn(format, ...)</span></div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="preprocessor">#define DebugP_logInfo(format, ...)</span></div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160; </div>
+<div class="line"><a name="l00292"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gabfa4fe2a6496daee09c3a97179a43c75">  292</a></span>&#160;uint32_t <a class="code" href="group__KERNEL__DPL__DEBUG.html#gabfa4fe2a6496daee09c3a97179a43c75">DebugP_logZoneEnable</a>(uint32_t logZoneMask);</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160; </div>
+<div class="line"><a name="l00301"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gaa3f247ce21c25c88dff6421889c127d9">  301</a></span>&#160;uint32_t <a class="code" href="group__KERNEL__DPL__DEBUG.html#gaa3f247ce21c25c88dff6421889c127d9">DebugP_logZoneDisable</a>(uint32_t logZoneMask);</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; </div>
+<div class="line"><a name="l00308"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga7ad5abb88f0302a0f6c381fb607a4fc1">  308</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga7ad5abb88f0302a0f6c381fb607a4fc1">DebugP_logZoneRestore</a>(uint32_t logZoneMask);</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
+<div class="line"><a name="l00317"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gadd57c555a1e4dda746a54516ce5735fe">  317</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gadd57c555a1e4dda746a54516ce5735fe">DebugP_shmLogWriterInit</a>(<a class="code" href="structDebugP__ShmLog.html">DebugP_ShmLog</a> *shmLog, uint16_t selfCoreId);</div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160; </div>
-<div class="line"><a name="l00330"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga09c579165f3a21051f96cad2383cc48f">  330</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga09c579165f3a21051f96cad2383cc48f">DebugP_shmLogWriterPutChar</a>(<span class="keywordtype">char</span> character);</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160; </div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160; </div>
-<div class="line"><a name="l00341"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gab34de8f1e1d96dea0fd75c5ab3e2d71b">  341</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gab34de8f1e1d96dea0fd75c5ab3e2d71b">DebugP_uartLogWriterPutChar</a>(<span class="keywordtype">char</span> character);</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160; </div>
-<div class="line"><a name="l00353"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga3c72cd24ade647f36fab1915865e9daa">  353</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga3c72cd24ade647f36fab1915865e9daa">DebugP_shmLogReaderInit</a>(<a class="code" href="structDebugP__ShmLog.html">DebugP_ShmLog</a> *shmLog, uint16_t numCores);</div>
+<div class="line"><a name="l00322"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gad4635c2c782fd506c13b42caa1e43bab">  322</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gad4635c2c782fd506c13b42caa1e43bab">DebugP_shmLogWriterPreludeEnable</a>();</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160; </div>
+<div class="line"><a name="l00329"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gaf78c150d8bf80efda0aba32375d2428b">  329</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gaf78c150d8bf80efda0aba32375d2428b">DebugP_shmLogWriterPreludeDisable</a>();</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160; </div>
+<div class="line"><a name="l00342"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga09c579165f3a21051f96cad2383cc48f">  342</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga09c579165f3a21051f96cad2383cc48f">DebugP_shmLogWriterPutChar</a>(<span class="keywordtype">char</span> character);</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160; </div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160; </div>
+<div class="line"><a name="l00353"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gab34de8f1e1d96dea0fd75c5ab3e2d71b">  353</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gab34de8f1e1d96dea0fd75c5ab3e2d71b">DebugP_uartLogWriterPutChar</a>(<span class="keywordtype">char</span> character);</div>
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160; </div>
-<div class="line"><a name="l00359"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gab522508e9c0e5bf8a799a859c05fad39">  359</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gab522508e9c0e5bf8a799a859c05fad39">DebugP_shmLogReaderSetChunkSize</a>(uint16_t readChunkSize);</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160; </div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160; </div>
-<div class="line"><a name="l00366"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga9a4ea37a585dd8f8e294a8effe291fee">  366</a></span>&#160;uint16_t <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga9a4ea37a585dd8f8e294a8effe291fee">DebugP_shmLogReaderGetChunkSize</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160; </div>
-<div class="line"><a name="l00374"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gaf997bf25164b3cc752a2a8b3e1d6d5fe">  374</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gaf997bf25164b3cc752a2a8b3e1d6d5fe">DebugP_shmLogRead</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160; </div>
-<div class="line"><a name="l00386"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga6b8511f731f85a96eb86c9e39cde1c98">  386</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga6b8511f731f85a96eb86c9e39cde1c98">DebugP_memLogWriterInit</a>(uint16_t selfCoreId);</div>
+<div class="line"><a name="l00365"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga3c72cd24ade647f36fab1915865e9daa">  365</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga3c72cd24ade647f36fab1915865e9daa">DebugP_shmLogReaderInit</a>(<a class="code" href="structDebugP__ShmLog.html">DebugP_ShmLog</a> *shmLog, uint16_t numCores);</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160; </div>
+<div class="line"><a name="l00371"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gab522508e9c0e5bf8a799a859c05fad39">  371</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gab522508e9c0e5bf8a799a859c05fad39">DebugP_shmLogReaderSetChunkSize</a>(uint16_t readChunkSize);</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160; </div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160; </div>
+<div class="line"><a name="l00378"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga9a4ea37a585dd8f8e294a8effe291fee">  378</a></span>&#160;uint16_t <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga9a4ea37a585dd8f8e294a8effe291fee">DebugP_shmLogReaderGetChunkSize</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160; </div>
+<div class="line"><a name="l00386"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gaf997bf25164b3cc752a2a8b3e1d6d5fe">  386</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gaf997bf25164b3cc752a2a8b3e1d6d5fe">DebugP_shmLogRead</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160; </div>
-<div class="line"><a name="l00401"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gae2b158caedfc2b792c7b0ed708598d28">  401</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gae2b158caedfc2b792c7b0ed708598d28">DebugP_memLogWriterPutChar</a>(<span class="keywordtype">char</span> character);</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160; </div>
-<div class="line"><a name="l00411"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gab12ec33701f74e7818e0558b1f9a03f5">  411</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gab12ec33701f74e7818e0558b1f9a03f5">DebugP_uartSetDrvIndex</a>(uint32_t uartDrvIndex);</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160; </div>
-<div class="line"><a name="l00424"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga5c767649af82b6ee94fd3918500eae87">  424</a></span>&#160;int32_t <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga5c767649af82b6ee94fd3918500eae87">DebugP_scanf</a>(<span class="keywordtype">char</span> *format, ...);</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160; </div>
-<div class="line"><a name="l00442"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga0f7e9d807699f53a2e797c36120e19cc">  442</a></span>&#160;int32_t <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga0f7e9d807699f53a2e797c36120e19cc">DebugP_readLine</a>(<span class="keywordtype">char</span> *lineBuf, uint32_t bufSize);</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160; </div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;}</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160; </div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* DEBUGP_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00398"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga6b8511f731f85a96eb86c9e39cde1c98">  398</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga6b8511f731f85a96eb86c9e39cde1c98">DebugP_memLogWriterInit</a>(uint16_t selfCoreId);</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160; </div>
+<div class="line"><a name="l00413"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gae2b158caedfc2b792c7b0ed708598d28">  413</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gae2b158caedfc2b792c7b0ed708598d28">DebugP_memLogWriterPutChar</a>(<span class="keywordtype">char</span> character);</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160; </div>
+<div class="line"><a name="l00423"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#gab12ec33701f74e7818e0558b1f9a03f5">  423</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="group__KERNEL__DPL__DEBUG.html#gab12ec33701f74e7818e0558b1f9a03f5">DebugP_uartSetDrvIndex</a>(uint32_t uartDrvIndex);</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160; </div>
+<div class="line"><a name="l00436"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga5c767649af82b6ee94fd3918500eae87">  436</a></span>&#160;int32_t <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga5c767649af82b6ee94fd3918500eae87">DebugP_scanf</a>(<span class="keywordtype">char</span> *format, ...);</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160; </div>
+<div class="line"><a name="l00454"></a><span class="lineno"><a class="line" href="group__KERNEL__DPL__DEBUG.html#ga0f7e9d807699f53a2e797c36120e19cc">  454</a></span>&#160;int32_t <a class="code" href="group__KERNEL__DPL__DEBUG.html#ga0f7e9d807699f53a2e797c36120e19cc">DebugP_readLine</a>(<span class="keywordtype">char</span> *lineBuf, uint32_t bufSize);</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160; </div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;}</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160; </div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* DEBUGP_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astructDebugP__ShmLog_html_a02f438e183851bedcdcb304898819899"><div class="ttname"><a href="structDebugP__ShmLog.html#a02f438e183851bedcdcb304898819899">DebugP_ShmLog::wrIndex</a></div><div class="ttdeci">uint32_t wrIndex</div><div class="ttdef"><b>Definition:</b> DebugP.h:129</div></div>

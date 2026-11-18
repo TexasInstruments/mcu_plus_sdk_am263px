@@ -858891,3 +858891,293 @@ Date:   Wed Nov 11 14:38:52 2026 +0000
  source/drivers/sciclient/soc/am64x_am243x/sysfw_hs_fs_signed.h     | 28252 +++++++++++++++++++++----------------------
  5 files changed, 14126 insertions(+), 14126 deletions(-)
 
+========================================
+Changes from build on 2026-11-18 20:50:18
+Previous commit: 1307f66f6cfae5d922ca4a54df64cdd33f9a5572
+Current commit: d2ba33656d5949bf4e6e741fde26f0d16c83afb7
+========================================
+
+commit d2ba33656d5949bf4e6e741fde26f0d16c83afb7
+Author: BensenBernard <b-bernard@ti.com>
+Date:   Mon Nov 2 11:53:32 2026 +0530
+
+    am26xx: dpl: fix unused param warnings in debug macros
+    
+     - Added safe macro expansion for debug macros disabled condition.
+    
+    Fixes: MCUSDK-15953
+    
+    Signed-off-by: Bensen Bernard <b-bernard@ti.com>
+
+ source/kernel/dpl/DebugP.h | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+commit 5df8b958f8d49b7924f6e3a422758d6a4a820900
+Author: BensenBernard <b-bernard@ti.com>
+Date:   Tue Nov 3 11:02:33 2026 +0530
+
+    am26xx: docs: Port ipc rpmsg test to am26xx device
+    
+    - Renamed the ipc_rpmsg_a53 to ipc_rpmsg_burst
+    - Ported test to am26x, am263x, and am263px
+    
+    Fixes: MCUSDK-16088
+    
+    Signed-off-by: Bensen Bernard <b-bernard@ti.com>
+
+ .project/device/project_am261x.js                                           |   1 +
+ .project/device/project_am263px.js                                          |   1 +
+ .project/device/project_am263x.js                                           |   1 +
+ .project/device/project_am64x.js                                            |   2 +-
+ test/drivers/{ipc_rpmsg_a53 => ipc_rpmsg_burst}/.project/project.js         |   0
+ test/drivers/ipc_rpmsg_burst/.project/project_am261x.js                     | 171 ++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/.project/project_am263px.js                    | 179 ++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/.project/project_am263x.js                     | 179 ++++++++++++++++++
+ test/drivers/{ipc_rpmsg_a53 => ipc_rpmsg_burst}/.project/project_am64x.js   |   2 +-
+ test/drivers/ipc_rpmsg_burst/am261x-lp/r5fss0-0_freertos/example.syscfg     | 284 +++++++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am261x-lp/r5fss0-0_freertos/main.c             |  84 +++++++++
+ .../am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 108 +++++++++++
+ .../ipc_rpmsg_burst/am261x-lp/r5fss0-0_freertos/ti-arm-clang/example.syscfg | 284 +++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am261x-lp/r5fss0-0_freertos/ti-arm-clang/makefile       | 349 ++++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am261x-lp/r5fss0-0_freertos/ti-arm-clang/makefile.defs  |  14 ++
+ .../am261x-lp/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen     |  78 ++++++++
+ .../am261x-lp/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec           |  17 ++
+ .../am261x-lp/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs                |   8 +
+ test/drivers/ipc_rpmsg_burst/am261x-lp/r5fss0-1_nortos/example.syscfg       | 236 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am261x-lp/r5fss0-1_nortos/main.c               |  50 ++++++
+ .../am261x-lp/r5fss0-1_nortos/ti-arm-clang/example.projectspec              | 105 +++++++++++
+ .../ipc_rpmsg_burst/am261x-lp/r5fss0-1_nortos/ti-arm-clang/example.syscfg   | 236 ++++++++++++++++++++++++
+ .../drivers/ipc_rpmsg_burst/am261x-lp/r5fss0-1_nortos/ti-arm-clang/makefile | 346 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am261x-lp/r5fss0-1_nortos/ti-arm-clang/makefile.defs    |  14 ++
+ .../am261x-lp/r5fss0-1_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       |  78 ++++++++
+ .../am261x-lp/r5fss0-1_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../ipc_rpmsg_burst/am261x-lp/r5fss0-1_nortos/ti-arm-clang/syscfg_c.rov.xs  |   8 +
+ .../ipc_rpmsg_burst/am261x-lp/system_freertos_nortos/ti-arm-clang/makefile  | 204 +++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am261x-som/r5fss0-0_freertos/example.syscfg    | 284 +++++++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am261x-som/r5fss0-0_freertos/main.c            |  84 +++++++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.projectspec           | 108 +++++++++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/example.syscfg                | 284 +++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile      | 349 ++++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile.defs |  14 ++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  78 ++++++++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |  17 ++
+ .../am261x-som/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |   8 +
+ test/drivers/ipc_rpmsg_burst/am261x-som/r5fss0-1_nortos/example.syscfg      | 236 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am261x-som/r5fss0-1_nortos/main.c              |  50 ++++++
+ .../am261x-som/r5fss0-1_nortos/ti-arm-clang/example.projectspec             | 105 +++++++++++
+ .../ipc_rpmsg_burst/am261x-som/r5fss0-1_nortos/ti-arm-clang/example.syscfg  | 236 ++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am261x-som/r5fss0-1_nortos/ti-arm-clang/makefile        | 346 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am261x-som/r5fss0-1_nortos/ti-arm-clang/makefile.defs   |  14 ++
+ .../am261x-som/r5fss0-1_nortos/ti-arm-clang/makefile_ccs_bootimage_gen      |  78 ++++++++
+ .../am261x-som/r5fss0-1_nortos/ti-arm-clang/makefile_projectspec            |  17 ++
+ .../ipc_rpmsg_burst/am261x-som/r5fss0-1_nortos/ti-arm-clang/syscfg_c.rov.xs |   8 +
+ .../ipc_rpmsg_burst/am261x-som/system_freertos_nortos/ti-arm-clang/makefile | 204 +++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263px-cc/r5fss0-0_freertos/example.syscfg    | 284 +++++++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263px-cc/r5fss0-0_freertos/main.c            |  84 +++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec           | 108 +++++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/example.syscfg                | 284 +++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-cc/r5fss0-0_freertos/ti-arm-clang/makefile      | 349 ++++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-cc/r5fss0-0_freertos/ti-arm-clang/makefile.defs |  14 ++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  78 ++++++++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |  17 ++
+ .../am263px-cc/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |   8 +
+ test/drivers/ipc_rpmsg_burst/am263px-cc/r5fss0-1_nortos/example.syscfg      | 236 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263px-cc/r5fss0-1_nortos/main.c              |  50 ++++++
+ .../am263px-cc/r5fss0-1_nortos/ti-arm-clang/example.projectspec             | 105 +++++++++++
+ .../ipc_rpmsg_burst/am263px-cc/r5fss0-1_nortos/ti-arm-clang/example.syscfg  | 236 ++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-cc/r5fss0-1_nortos/ti-arm-clang/makefile        | 346 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-cc/r5fss0-1_nortos/ti-arm-clang/makefile.defs   |  14 ++
+ .../am263px-cc/r5fss0-1_nortos/ti-arm-clang/makefile_ccs_bootimage_gen      |  78 ++++++++
+ .../am263px-cc/r5fss0-1_nortos/ti-arm-clang/makefile_projectspec            |  17 ++
+ .../ipc_rpmsg_burst/am263px-cc/r5fss0-1_nortos/ti-arm-clang/syscfg_c.rov.xs |   8 +
+ test/drivers/ipc_rpmsg_burst/am263px-cc/r5fss1-0_nortos/example.syscfg      | 236 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263px-cc/r5fss1-0_nortos/main.c              |  50 ++++++
+ .../am263px-cc/r5fss1-0_nortos/ti-arm-clang/example.projectspec             | 105 +++++++++++
+ .../ipc_rpmsg_burst/am263px-cc/r5fss1-0_nortos/ti-arm-clang/example.syscfg  | 236 ++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-cc/r5fss1-0_nortos/ti-arm-clang/makefile        | 346 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-cc/r5fss1-0_nortos/ti-arm-clang/makefile.defs   |  14 ++
+ .../am263px-cc/r5fss1-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen      |  78 ++++++++
+ .../am263px-cc/r5fss1-0_nortos/ti-arm-clang/makefile_projectspec            |  17 ++
+ .../ipc_rpmsg_burst/am263px-cc/r5fss1-0_nortos/ti-arm-clang/syscfg_c.rov.xs |   8 +
+ test/drivers/ipc_rpmsg_burst/am263px-cc/r5fss1-1_nortos/example.syscfg      | 236 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263px-cc/r5fss1-1_nortos/main.c              |  50 ++++++
+ .../am263px-cc/r5fss1-1_nortos/ti-arm-clang/example.projectspec             | 105 +++++++++++
+ .../ipc_rpmsg_burst/am263px-cc/r5fss1-1_nortos/ti-arm-clang/example.syscfg  | 236 ++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-cc/r5fss1-1_nortos/ti-arm-clang/makefile        | 346 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-cc/r5fss1-1_nortos/ti-arm-clang/makefile.defs   |  14 ++
+ .../am263px-cc/r5fss1-1_nortos/ti-arm-clang/makefile_ccs_bootimage_gen      |  78 ++++++++
+ .../am263px-cc/r5fss1-1_nortos/ti-arm-clang/makefile_projectspec            |  17 ++
+ .../ipc_rpmsg_burst/am263px-cc/r5fss1-1_nortos/ti-arm-clang/syscfg_c.rov.xs |   8 +
+ test/drivers/ipc_rpmsg_burst/am263px-cc/system_freertos_nortos/makefile     | 232 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263px-lp/r5fss0-0_freertos/example.syscfg    | 284 +++++++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263px-lp/r5fss0-0_freertos/main.c            |  84 +++++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec           | 108 +++++++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/example.syscfg                | 284 +++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-lp/r5fss0-0_freertos/ti-arm-clang/makefile      | 349 ++++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-lp/r5fss0-0_freertos/ti-arm-clang/makefile.defs |  14 ++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  78 ++++++++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |  17 ++
+ .../am263px-lp/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |   8 +
+ test/drivers/ipc_rpmsg_burst/am263px-lp/r5fss0-1_nortos/example.syscfg      | 236 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263px-lp/r5fss0-1_nortos/main.c              |  50 ++++++
+ .../am263px-lp/r5fss0-1_nortos/ti-arm-clang/example.projectspec             | 105 +++++++++++
+ .../ipc_rpmsg_burst/am263px-lp/r5fss0-1_nortos/ti-arm-clang/example.syscfg  | 236 ++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-lp/r5fss0-1_nortos/ti-arm-clang/makefile        | 346 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-lp/r5fss0-1_nortos/ti-arm-clang/makefile.defs   |  14 ++
+ .../am263px-lp/r5fss0-1_nortos/ti-arm-clang/makefile_ccs_bootimage_gen      |  78 ++++++++
+ .../am263px-lp/r5fss0-1_nortos/ti-arm-clang/makefile_projectspec            |  17 ++
+ .../ipc_rpmsg_burst/am263px-lp/r5fss0-1_nortos/ti-arm-clang/syscfg_c.rov.xs |   8 +
+ test/drivers/ipc_rpmsg_burst/am263px-lp/r5fss1-0_nortos/example.syscfg      | 236 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263px-lp/r5fss1-0_nortos/main.c              |  50 ++++++
+ .../am263px-lp/r5fss1-0_nortos/ti-arm-clang/example.projectspec             | 105 +++++++++++
+ .../ipc_rpmsg_burst/am263px-lp/r5fss1-0_nortos/ti-arm-clang/example.syscfg  | 236 ++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-lp/r5fss1-0_nortos/ti-arm-clang/makefile        | 346 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-lp/r5fss1-0_nortos/ti-arm-clang/makefile.defs   |  14 ++
+ .../am263px-lp/r5fss1-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen      |  78 ++++++++
+ .../am263px-lp/r5fss1-0_nortos/ti-arm-clang/makefile_projectspec            |  17 ++
+ .../ipc_rpmsg_burst/am263px-lp/r5fss1-0_nortos/ti-arm-clang/syscfg_c.rov.xs |   8 +
+ test/drivers/ipc_rpmsg_burst/am263px-lp/r5fss1-1_nortos/example.syscfg      | 236 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263px-lp/r5fss1-1_nortos/main.c              |  50 ++++++
+ .../am263px-lp/r5fss1-1_nortos/ti-arm-clang/example.projectspec             | 105 +++++++++++
+ .../ipc_rpmsg_burst/am263px-lp/r5fss1-1_nortos/ti-arm-clang/example.syscfg  | 236 ++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-lp/r5fss1-1_nortos/ti-arm-clang/makefile        | 346 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263px-lp/r5fss1-1_nortos/ti-arm-clang/makefile.defs   |  14 ++
+ .../am263px-lp/r5fss1-1_nortos/ti-arm-clang/makefile_ccs_bootimage_gen      |  78 ++++++++
+ .../am263px-lp/r5fss1-1_nortos/ti-arm-clang/makefile_projectspec            |  17 ++
+ .../ipc_rpmsg_burst/am263px-lp/r5fss1-1_nortos/ti-arm-clang/syscfg_c.rov.xs |   8 +
+ test/drivers/ipc_rpmsg_burst/am263px-lp/system_freertos_nortos/makefile     | 232 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263x-cc/r5fss0-0_freertos/example.syscfg     | 283 +++++++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263x-cc/r5fss0-0_freertos/main.c             |  84 +++++++++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 108 +++++++++++
+ .../ipc_rpmsg_burst/am263x-cc/r5fss0-0_freertos/ti-arm-clang/example.syscfg | 283 +++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263x-cc/r5fss0-0_freertos/ti-arm-clang/makefile       | 349 ++++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263x-cc/r5fss0-0_freertos/ti-arm-clang/makefile.defs  |  14 ++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen     |  78 ++++++++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec           |  17 ++
+ .../am263x-cc/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs                |   8 +
+ test/drivers/ipc_rpmsg_burst/am263x-cc/r5fss0-1_nortos/example.syscfg       | 236 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263x-cc/r5fss0-1_nortos/main.c               |  50 ++++++
+ .../am263x-cc/r5fss0-1_nortos/ti-arm-clang/example.projectspec              | 105 +++++++++++
+ .../ipc_rpmsg_burst/am263x-cc/r5fss0-1_nortos/ti-arm-clang/example.syscfg   | 236 ++++++++++++++++++++++++
+ .../drivers/ipc_rpmsg_burst/am263x-cc/r5fss0-1_nortos/ti-arm-clang/makefile | 346 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263x-cc/r5fss0-1_nortos/ti-arm-clang/makefile.defs    |  14 ++
+ .../am263x-cc/r5fss0-1_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       |  78 ++++++++
+ .../am263x-cc/r5fss0-1_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../ipc_rpmsg_burst/am263x-cc/r5fss0-1_nortos/ti-arm-clang/syscfg_c.rov.xs  |   8 +
+ test/drivers/ipc_rpmsg_burst/am263x-cc/r5fss1-0_nortos/example.syscfg       | 236 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263x-cc/r5fss1-0_nortos/main.c               |  50 ++++++
+ .../am263x-cc/r5fss1-0_nortos/ti-arm-clang/example.projectspec              | 105 +++++++++++
+ .../ipc_rpmsg_burst/am263x-cc/r5fss1-0_nortos/ti-arm-clang/example.syscfg   | 236 ++++++++++++++++++++++++
+ .../drivers/ipc_rpmsg_burst/am263x-cc/r5fss1-0_nortos/ti-arm-clang/makefile | 346 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263x-cc/r5fss1-0_nortos/ti-arm-clang/makefile.defs    |  14 ++
+ .../am263x-cc/r5fss1-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       |  78 ++++++++
+ .../am263x-cc/r5fss1-0_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../ipc_rpmsg_burst/am263x-cc/r5fss1-0_nortos/ti-arm-clang/syscfg_c.rov.xs  |   8 +
+ test/drivers/ipc_rpmsg_burst/am263x-cc/r5fss1-1_nortos/example.syscfg       | 236 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263x-cc/r5fss1-1_nortos/main.c               |  50 ++++++
+ .../am263x-cc/r5fss1-1_nortos/ti-arm-clang/example.projectspec              | 105 +++++++++++
+ .../ipc_rpmsg_burst/am263x-cc/r5fss1-1_nortos/ti-arm-clang/example.syscfg   | 236 ++++++++++++++++++++++++
+ .../drivers/ipc_rpmsg_burst/am263x-cc/r5fss1-1_nortos/ti-arm-clang/makefile | 346 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263x-cc/r5fss1-1_nortos/ti-arm-clang/makefile.defs    |  14 ++
+ .../am263x-cc/r5fss1-1_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       |  78 ++++++++
+ .../am263x-cc/r5fss1-1_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../ipc_rpmsg_burst/am263x-cc/r5fss1-1_nortos/ti-arm-clang/syscfg_c.rov.xs  |   8 +
+ test/drivers/ipc_rpmsg_burst/am263x-cc/system_freertos_nortos/makefile      | 172 ++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263x-lp/r5fss0-0_freertos/example.syscfg     | 283 +++++++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263x-lp/r5fss0-0_freertos/main.c             |  84 +++++++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.projectspec            | 108 +++++++++++
+ .../ipc_rpmsg_burst/am263x-lp/r5fss0-0_freertos/ti-arm-clang/example.syscfg | 283 +++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263x-lp/r5fss0-0_freertos/ti-arm-clang/makefile       | 349 ++++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263x-lp/r5fss0-0_freertos/ti-arm-clang/makefile.defs  |  14 ++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen     |  78 ++++++++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec           |  17 ++
+ .../am263x-lp/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs                |   8 +
+ test/drivers/ipc_rpmsg_burst/am263x-lp/r5fss0-1_nortos/example.syscfg       | 236 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263x-lp/r5fss0-1_nortos/main.c               |  50 ++++++
+ .../am263x-lp/r5fss0-1_nortos/ti-arm-clang/example.projectspec              | 105 +++++++++++
+ .../ipc_rpmsg_burst/am263x-lp/r5fss0-1_nortos/ti-arm-clang/example.syscfg   | 236 ++++++++++++++++++++++++
+ .../drivers/ipc_rpmsg_burst/am263x-lp/r5fss0-1_nortos/ti-arm-clang/makefile | 346 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263x-lp/r5fss0-1_nortos/ti-arm-clang/makefile.defs    |  14 ++
+ .../am263x-lp/r5fss0-1_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       |  78 ++++++++
+ .../am263x-lp/r5fss0-1_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../ipc_rpmsg_burst/am263x-lp/r5fss0-1_nortos/ti-arm-clang/syscfg_c.rov.xs  |   8 +
+ test/drivers/ipc_rpmsg_burst/am263x-lp/r5fss1-0_nortos/example.syscfg       | 236 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263x-lp/r5fss1-0_nortos/main.c               |  50 ++++++
+ .../am263x-lp/r5fss1-0_nortos/ti-arm-clang/example.projectspec              | 105 +++++++++++
+ .../ipc_rpmsg_burst/am263x-lp/r5fss1-0_nortos/ti-arm-clang/example.syscfg   | 236 ++++++++++++++++++++++++
+ .../drivers/ipc_rpmsg_burst/am263x-lp/r5fss1-0_nortos/ti-arm-clang/makefile | 346 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263x-lp/r5fss1-0_nortos/ti-arm-clang/makefile.defs    |  14 ++
+ .../am263x-lp/r5fss1-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       |  78 ++++++++
+ .../am263x-lp/r5fss1-0_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../ipc_rpmsg_burst/am263x-lp/r5fss1-0_nortos/ti-arm-clang/syscfg_c.rov.xs  |   8 +
+ test/drivers/ipc_rpmsg_burst/am263x-lp/r5fss1-1_nortos/example.syscfg       | 236 ++++++++++++++++++++++++
+ test/drivers/ipc_rpmsg_burst/am263x-lp/r5fss1-1_nortos/main.c               |  50 ++++++
+ .../am263x-lp/r5fss1-1_nortos/ti-arm-clang/example.projectspec              | 105 +++++++++++
+ .../ipc_rpmsg_burst/am263x-lp/r5fss1-1_nortos/ti-arm-clang/example.syscfg   | 236 ++++++++++++++++++++++++
+ .../drivers/ipc_rpmsg_burst/am263x-lp/r5fss1-1_nortos/ti-arm-clang/makefile | 346 +++++++++++++++++++++++++++++++++++
+ .../ipc_rpmsg_burst/am263x-lp/r5fss1-1_nortos/ti-arm-clang/makefile.defs    |  14 ++
+ .../am263x-lp/r5fss1-1_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       |  78 ++++++++
+ .../am263x-lp/r5fss1-1_nortos/ti-arm-clang/makefile_projectspec             |  17 ++
+ .../ipc_rpmsg_burst/am263x-lp/r5fss1-1_nortos/ti-arm-clang/syscfg_c.rov.xs  |   8 +
+ test/drivers/ipc_rpmsg_burst/am263x-lp/system_freertos_nortos/makefile      | 172 ++++++++++++++++++
+ .../am64x-evm/a53ss0-0_nortos/example.syscfg                                |   0
+ .../am64x-evm/a53ss0-0_nortos/gcc-aarch64/example.projectspec               |   2 +-
+ .../am64x-evm/a53ss0-0_nortos/gcc-aarch64/linker.cmd                        |   0
+ .../am64x-evm/a53ss0-0_nortos/gcc-aarch64/makefile                          |   2 +-
+ .../am64x-evm/a53ss0-0_nortos/gcc-aarch64/makefile.defs                     |   0
+ .../am64x-evm/a53ss0-0_nortos/gcc-aarch64/makefile_ccs_bootimage_gen        |   0
+ .../am64x-evm/a53ss0-0_nortos/gcc-aarch64/makefile_projectspec              |   0
+ .../am64x-evm/a53ss0-0_nortos/gcc-aarch64/syscfg_c.rov.xs                   |   0
+ .../{ipc_rpmsg_a53 => ipc_rpmsg_burst}/am64x-evm/a53ss0-0_nortos/main.c     |   0
+ .../am64x-evm/m4fss0-0_nortos/example.syscfg                                |   0
+ .../{ipc_rpmsg_a53 => ipc_rpmsg_burst}/am64x-evm/m4fss0-0_nortos/main.c     |   0
+ .../am64x-evm/m4fss0-0_nortos/ti-arm-clang/example.projectspec              |   2 +-
+ .../am64x-evm/m4fss0-0_nortos/ti-arm-clang/makefile                         |   2 +-
+ .../am64x-evm/m4fss0-0_nortos/ti-arm-clang/makefile.defs                    |   0
+ .../am64x-evm/m4fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       |   0
+ .../am64x-evm/m4fss0-0_nortos/ti-arm-clang/makefile_projectspec             |   0
+ .../am64x-evm/m4fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs                  |   0
+ .../am64x-evm/r5fss0-0_freertos/example.syscfg                              |   0
+ .../{ipc_rpmsg_a53 => ipc_rpmsg_burst}/am64x-evm/r5fss0-0_freertos/main.c   |   0
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec            |   2 +-
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/makefile                       |   2 +-
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/makefile.defs                  |   0
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen     |   0
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec           |   0
+ .../am64x-evm/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs                |   0
+ .../am64x-evm/r5fss0-1_nortos/example.syscfg                                |   0
+ .../{ipc_rpmsg_a53 => ipc_rpmsg_burst}/am64x-evm/r5fss0-1_nortos/main.c     |   0
+ .../am64x-evm/r5fss0-1_nortos/ti-arm-clang/example.projectspec              |   2 +-
+ .../am64x-evm/r5fss0-1_nortos/ti-arm-clang/makefile                         |   2 +-
+ .../am64x-evm/r5fss0-1_nortos/ti-arm-clang/makefile.defs                    |   0
+ .../am64x-evm/r5fss0-1_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       |   0
+ .../am64x-evm/r5fss0-1_nortos/ti-arm-clang/makefile_projectspec             |   0
+ .../am64x-evm/r5fss0-1_nortos/ti-arm-clang/syscfg_c.rov.xs                  |   0
+ .../am64x-evm/r5fss1-0_nortos/example.syscfg                                |   0
+ .../{ipc_rpmsg_a53 => ipc_rpmsg_burst}/am64x-evm/r5fss1-0_nortos/main.c     |   0
+ .../am64x-evm/r5fss1-0_nortos/ti-arm-clang/example.projectspec              |   2 +-
+ .../am64x-evm/r5fss1-0_nortos/ti-arm-clang/makefile                         |   2 +-
+ .../am64x-evm/r5fss1-0_nortos/ti-arm-clang/makefile.defs                    |   0
+ .../am64x-evm/r5fss1-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       |   0
+ .../am64x-evm/r5fss1-0_nortos/ti-arm-clang/makefile_projectspec             |   0
+ .../am64x-evm/r5fss1-0_nortos/ti-arm-clang/syscfg_c.rov.xs                  |   0
+ .../am64x-evm/r5fss1-1_nortos/example.syscfg                                |   0
+ .../{ipc_rpmsg_a53 => ipc_rpmsg_burst}/am64x-evm/r5fss1-1_nortos/main.c     |   0
+ .../am64x-evm/r5fss1-1_nortos/ti-arm-clang/example.projectspec              |   2 +-
+ .../am64x-evm/r5fss1-1_nortos/ti-arm-clang/makefile                         |   2 +-
+ .../am64x-evm/r5fss1-1_nortos/ti-arm-clang/makefile.defs                    |   0
+ .../am64x-evm/r5fss1-1_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       |   0
+ .../am64x-evm/r5fss1-1_nortos/ti-arm-clang/makefile_projectspec             |   0
+ .../am64x-evm/r5fss1-1_nortos/ti-arm-clang/syscfg_c.rov.xs                  |   0
+ .../am64x-evm/system_freertos_nortos/makefile                               |   0
+ .../am64x-evm/system_freertos_nortos/makefile_projectspec                   |   0
+ .../am64x-evm/system_freertos_nortos/makefile_system_ccs_bootimage_gen      |   0
+ .../am64x-evm/system_freertos_nortos/system.projectspec                     |   0
+ .../am64x-evm/system_freertos_nortos/system.xml                             |   0
+ .../test_ipc_rpmsg_a53.c => ipc_rpmsg_burst/test_ipc_rpmsg_burst.c}         |  66 ++++---
+ test/makefile.am261x                                                        |  26 +++
+ test/makefile.am263px                                                       |  26 +++
+ test/makefile.am263x                                                        |  26 +++
+ test/makefile.am64x                                                         |   8 +-
+ 254 files changed, 24501 insertions(+), 39 deletions(-)
+
