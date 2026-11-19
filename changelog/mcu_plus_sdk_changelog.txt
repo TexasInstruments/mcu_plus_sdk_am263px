@@ -859181,3 +859181,25 @@ Date:   Tue Nov 3 11:02:33 2026 +0530
  test/makefile.am64x                                                         |   8 +-
  254 files changed, 24501 insertions(+), 39 deletions(-)
 
+========================================
+Changes from build on 2026-11-19 20:49:56
+Previous commit: d2ba33656d5949bf4e6e741fde26f0d16c83afb7
+Current commit: 2d3710edc662cc370f50e0b3466c910c71506ee5
+========================================
+
+commit 2d3710edc662cc370f50e0b3466c910c71506ee5
+Author: thilak <t-karanam@ti.com>
+Date:   Tue Nov 17 15:06:54 2026 +0530
+
+    allsocs: Docs: Update Enet KPIs
+    
+    - Update Enet KPIs in AM243x, AM64x Devices.
+    - Update the LwIP version to Unified LwIP test application version.
+    
+    Fixes: SITSW-11990
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ .../components/networking/enet_lld/enet_cpsw_performance_am243x_am64x.md    | 138 ++++++++++++++++++++----------------
+ 1 file changed, 76 insertions(+), 62 deletions(-)
+

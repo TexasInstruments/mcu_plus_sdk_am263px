@@ -395,7 +395,7 @@ void ICSS_EMAC_calcPort2BufferOffset(ICSS_EMAC_Handle icssEmacHandle,
 #else
     bufferOffsets[ICSS_EMAC_QUEUE1] = p1Q16BufferOffset + pDynamicMMap->txQueueSize[ICSS_EMAC_QUEUE16] * ICSS_EMAC_DEFAULT_FW_BLOCK_SIZE;
 #endif
-    for (qCount = (ICSS_EMAC_QUEUE1+1U); qCount < pDynamicMMap->numQueues; qCount++)
+    for (qCount = (ICSS_EMAC_QUEUE1+1U); (qCount < pDynamicMMap->numQueues) && (qCount < ICSS_EMAC_NUMQUEUES); qCount++)
     {
 #ifdef BUILD_HSR_PRP_MII
         /*Tx-optimization: Queue2 common queue is port 1 host Tx queues combined, multiply by -3 to get port 1 queue related offsets
@@ -453,7 +453,7 @@ void ICSS_EMAC_calcPort2BufferOffset(ICSS_EMAC_Handle icssEmacHandle,
 #else
     bdOffsets[ICSS_EMAC_QUEUE1] = p1Q16BdOffset + pDynamicMMap->txQueueSize[ICSS_EMAC_QUEUE16] * ICSS_EMAC_DEFAULT_FW_BD_SIZE;
 #endif    
-    for (qCount = (ICSS_EMAC_QUEUE1+1U); qCount < pDynamicMMap->numQueues; qCount++)
+    for (qCount = (ICSS_EMAC_QUEUE1+1U); (qCount < pDynamicMMap->numQueues) && (qCount < ICSS_EMAC_NUMQUEUES); qCount++)
     {
 #ifdef BUILD_HSR_PRP_MII
         /*Tx-optimization: Queue2 common queue is port 1 host Tx queues combined, multiply by -3 to get port 1 queue related offsets
@@ -1689,7 +1689,11 @@ void ICSS_EMAC_initLinkState(ICSS_EMAC_Handle   icssEmacHandle,
 
     /* Check for the interface id upper bound */ 
     DebugP_assert(interfaceId < ICSS_EMAC_MAX_PORTS_PER_INSTANCE);
-    
+    if (interfaceId >= ICSS_EMAC_MAX_PORTS_PER_INSTANCE)
+    {
+        return;
+    }
+
     pStaticMMap = &((ICSS_EMAC_Object *)icssEmacHandle->object)->fwStaticMMap;
 
     linkStatus = 0;
@@ -1731,6 +1735,10 @@ void ICSS_EMAC_initLinkState(ICSS_EMAC_Handle   icssEmacHandle,
 
         /* check the physical address to ensure that the temp_addr has been populated correctly */
         DebugP_assert(temp_addr != 0U);
+        if (temp_addr == 0U)
+        {
+            return;
+        }
         portStatusPtr = (uint8_t*)(temp_addr);
         *(portStatusPtr) = ICSS_EMAC_PORT_LINK_MASK;
 

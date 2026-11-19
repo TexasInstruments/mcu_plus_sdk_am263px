@@ -1069,11 +1069,9 @@ void TimeSync_processPTPFrame(TimeSync_ParamsHandle_t timeSyncHandle,
                         timeSyncHandle->stackParams.ptpGeneralSize - SRC_DST_MAC_SIZE);
                 }
             }
-            else if ((timeSyncHandle->stackParams.ptpGeneralSize > 0U) &&
-                    (timeSyncHandle->stackParams.ptpGeneralSize <= (ICSS_EMAC_MAXMTU)))
+            else if ((size > 0U) && (size < (ICSS_EMAC_MAXMTU)))
             {
-                memcpy(timeSyncHandle->stackParams.ptpGeneralFrame, pktBuffer,
-                       timeSyncHandle->stackParams.ptpGeneralSize);
+                memcpy(timeSyncHandle->stackParams.ptpGeneralFrame, pktBuffer, size);
             }
 
             timeSyncHandle->stackParams.generalFrameFlag = 1;
@@ -1830,18 +1828,25 @@ void TimeSync_getGeneralMessage(TimeSync_ParamsHandle_t timeSyncHandle,
 
     if (timeSyncHandle->stackParams.generalFrameFlag)
     {
+        /* Stored size must cover the header offset, otherwise the unsigned copy length wraps */
         if (E2E == timeSyncHandle->timeSyncConfig.type)
         {
-            memcpy(buff, timeSyncHandle->stackParams.ptpGeneralFrame +
-                   PTP_E2E_BUFFER_OFFSET,
-                   timeSyncHandle->stackParams.ptpGeneralSize - PTP_E2E_BUFFER_OFFSET);
+            if (timeSyncHandle->stackParams.ptpGeneralSize > PTP_E2E_BUFFER_OFFSET)
+            {
+                memcpy(buff, timeSyncHandle->stackParams.ptpGeneralFrame +
+                       PTP_E2E_BUFFER_OFFSET,
+                       timeSyncHandle->stackParams.ptpGeneralSize - PTP_E2E_BUFFER_OFFSET);
+            }
         }
 
         if (P2P == timeSyncHandle->timeSyncConfig.type)
         {
-            memcpy(buff, timeSyncHandle->stackParams.ptpGeneralFrame +
-                   PTP_P2P_BUFFER_OFFSET,
-                   timeSyncHandle->stackParams.ptpGeneralSize - PTP_P2P_BUFFER_OFFSET);
+            if (timeSyncHandle->stackParams.ptpGeneralSize > PTP_P2P_BUFFER_OFFSET)
+            {
+                memcpy(buff, timeSyncHandle->stackParams.ptpGeneralFrame +
+                       PTP_P2P_BUFFER_OFFSET,
+                       timeSyncHandle->stackParams.ptpGeneralSize - PTP_P2P_BUFFER_OFFSET);
+            }
         }
 
         macId = (uint8_t *)(timeSyncHandle->stackParams.ptpGeneralFrame +

@@ -219,9 +219,9 @@ function validateBankInterrupt(instance, report) {
                     let otherBank = getGpioBank(moduleInstances[i]);
                     if (otherBank !== null && otherBank === myBank) {
                         report.logError(
-                            "Conflicts with '" + moduleInstances[i].$name +
-                            "': both pins are in " + bankKeyToStr(myBank) +
-                            ". Only one interrupt per GPIO bank (16 pins) is allowed.",
+                            `Interrupt is already enabled on pin '${moduleInstances[i].$name}'. ` +
+                            `Both pins belong to ${bankKeyToStr(myBank)}, which shares a single interrupt line. ` +
+                            `Only one interrupt per GPIO bank (16 pins) is allowed.`,
                             instance, "enableIntr");
                         return;
                     }

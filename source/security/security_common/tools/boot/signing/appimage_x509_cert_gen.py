@@ -69,6 +69,8 @@ basicConstraints = CA:true
 1.3.6.1.4.1.294.1.35 = ASN1:SEQUENCE:sysfw_image_load
 1.3.6.1.4.1.294.1.3 = ASN1:SEQUENCE:swrv
 {ENCRYPTION_SEQUENCE}
+{KEY_INFO_SEQUENCE}
+{KEYRING_INFO_SEQUENCE}
 
 [ sysfw_image_integrity ]
 shaType = OID:{TEST_IMAGE_SHA_OID}
@@ -103,6 +105,18 @@ iterationCnt =  INTEGER:{TEST_IMAGE_KEY_DERIVE_INDEX}
 salt         =  FORMAT:HEX,OCT:{TEST_IMAGE_KEY_DERIVE_SALT}
 '''
 
+g_key_info_seq = '''
+[ key_info ]
+auth_key_id = INTEGER:{AUTH_KEYRING_ID}
+enc_key_id  = INTEGER:{ENC_KEYRING_ID}
+'''
+
+g_keyring_info_seq = '''
+[ keyring_info ]
+num_asymm_keys = INTEGER:{NUM_ASYMM_KEYS}
+num_symm_keys  = INTEGER:{NUM_SYMM_KEYS}
+'''
+
 def get_cert(args):
 	'''Generate the x509 certificate config'''
 	print("Generating certificate for {} ...".format(args.bin))
@@ -119,6 +133,10 @@ def get_cert(args):
 	v_TEST_IMAGE_ENC_RS           = "0000"
 	v_TEST_IMAGE_KEY_DERIVE_INDEX = 0
 	v_TEST_IMAGE_KEY_DERIVE_SALT  = "0000"
+	v_AUTH_KEYRING_ID             = 0
+	v_ENC_KEYRING_ID              = 0
+	v_NUM_ASYMM_KEYS              = 0
+	v_NUM_SYMM_KEYS               = 0
 
 	# Validation of args.
 
@@ -209,6 +227,32 @@ def get_cert(args):
 	else:
 		pass
 
+	# Validate key info arguments
+	if args.keyinfo_auth_key_id is not None:
+		if args.keyinfo_auth_key_id < 1 or args.keyinfo_auth_key_id > 254:
+			print("[ERROR] --keyinfo-auth-key-id must be between 1 and 254")
+			exit(2)
+		v_AUTH_KEYRING_ID = args.keyinfo_auth_key_id
+
+	if args.keyinfo_enc_key_id is not None:
+		if args.keyinfo_enc_key_id < 1 or args.keyinfo_enc_key_id > 254:
+			print("[ERROR] --keyinfo-enc-key-id must be between 1 and 254")
+			exit(2)
+		v_ENC_KEYRING_ID = args.keyinfo_enc_key_id
+
+	# Validate keyring info arguments
+	if args.keyring_num_asymm_keys is not None:
+		if args.keyring_num_asymm_keys < 1 or args.keyring_num_asymm_keys > 6:
+			print("[ERROR] --keyring-num-asymm-keys must be between 1 and 6")
+			exit(2)
+		v_NUM_ASYMM_KEYS = args.keyring_num_asymm_keys
+
+	if args.keyring_num_symm_keys is not None:
+		if args.keyring_num_symm_keys < 1 or args.keyring_num_symm_keys > 6:
+			print("[ERROR] --keyring-num-symm-keys must be between 1 and 6")
+			exit(2)
+		v_NUM_SYMM_KEYS = args.keyring_num_symm_keys
+
 	# Replace the variables in the main template now.
 	enc_seq=''
 	if(args.enc == 'y'):
@@ -216,11 +260,27 @@ def get_cert(args):
 	else:
 		enc_seq = ''
 
-	ret_cert = g_x509_template.format(TEST_IMAGE_SHA_OID=v_TEST_IMAGE_SHA_OID, TEST_IMAGE_SHA_VAL=v_TEST_IMAGE_SHA_VAL, TEST_IMAGE_LENGTH=v_TEST_IMAGE_LENGTH, TEST_BOOT_ADDR=v_TEST_BOOT_ADDR, AUTH_TYPE=v_AUTH_TYPE, ENCRYPTION_SEQUENCE=enc_seq)
+	key_info_seq = ''
+	if args.keyinfo_auth_key_id is not None or args.keyinfo_enc_key_id is not None:
+		key_info_seq = "1.3.6.1.4.1.294.1.38 = ASN1:SEQUENCE:key_info"
+
+	keyring_info_seq = ''
+	if args.keyring_num_asymm_keys is not None or args.keyring_num_symm_keys is not None:
+		keyring_info_seq = "1.3.6.1.4.1.294.1.39 = ASN1:SEQUENCE:keyring_info"
+
+	ret_cert = g_x509_template.format(TEST_IMAGE_SHA_OID=v_TEST_IMAGE_SHA_OID, TEST_IMAGE_SHA_VAL=v_TEST_IMAGE_SHA_VAL, TEST_IMAGE_LENGTH=v_TEST_IMAGE_LENGTH, TEST_BOOT_ADDR=v_TEST_BOOT_ADDR, AUTH_TYPE=v_AUTH_TYPE, ENCRYPTION_SEQUENCE=enc_seq, KEY_INFO_SEQUENCE=key_info_seq, KEYRING_INFO_SEQUENCE=keyring_info_seq)
 
 	# If encryption is enabled, append that sequence to the current certificate
 	if(args.enc == 'y'):
 		ret_cert += g_enc_boot_seq.format(TEST_IMAGE_ENC_IV=v_TEST_IMAGE_ENC_IV, TEST_IMAGE_ENC_RS=v_TEST_IMAGE_ENC_RS, TEST_IMAGE_KEY_DERIVE_INDEX=v_TEST_IMAGE_KEY_DERIVE_INDEX, TEST_IMAGE_KEY_DERIVE_SALT=v_TEST_IMAGE_KEY_DERIVE_SALT)
+
+	# If key info extension is enabled, append the key info sequence
+	if args.keyinfo_auth_key_id is not None or args.keyinfo_enc_key_id is not None:
+		ret_cert += g_key_info_seq.format(AUTH_KEYRING_ID=v_AUTH_KEYRING_ID, ENC_KEYRING_ID=v_ENC_KEYRING_ID)
+
+	# If keyring info extension is enabled, append the keyring info sequence
+	if args.keyring_num_asymm_keys is not None or args.keyring_num_symm_keys is not None:
+		ret_cert += g_keyring_info_seq.format(NUM_ASYMM_KEYS=v_NUM_ASYMM_KEYS, NUM_SYMM_KEYS=v_NUM_SYMM_KEYS)
 
 	# NOTE: Boot sequence is not used. We assume that SBL always sets the reset vectors and does image load
 
@@ -239,6 +299,11 @@ my_parser.add_argument('--core',       type=str, help='Core on which the binary 
 my_parser.add_argument('--enc',        type=str, help='If the binary need to be encrypted or not [y/n]')
 my_parser.add_argument('--loadaddr',   type=str, help='Target load address of the binary in hex. Default to 0x70000000')
 my_parser.add_argument('--authtype',   type=str, help='Authentication type. [0/1/2]. 0 - Move to destination address specified after authentication, 1 - In place authentication, 2 - Move to the certificate start after authentication. Default is 1')
+
+my_parser.add_argument('--keyinfo-auth-key-id', type=int, help='Key ID for authentication key from keyring (1-254). Required when signing with a key from the keyring.')
+my_parser.add_argument('--keyinfo-enc-key-id',  type=int, help='Key ID for encryption key from keyring (1-254). Required when encrypting with a key from the keyring.')
+my_parser.add_argument('--keyring-num-asymm-keys', type=int, help='Number of asymmetric keys in keyring (1-6). Required for keyring import certificate.')
+my_parser.add_argument('--keyring-num-symm-keys',  type=int, help='Number of symmetric keys in keyring (1-6). Required for keyring import certificate.')
 
 args = my_parser.parse_args()
 cert_str = get_cert(args)

@@ -546,3 +546,21 @@ Date:   Fri Oct 9 18:53:32 2026 +0530
  icss_emac/source/icss_emac.c | 30 +++++++++++++++++++++++++-----
  2 files changed, 26 insertions(+), 6 deletions(-)
 
+========================================
+Changes from build on 2026-11-19 20:50:01
+Previous commit: d264010536f1a28e854caab8b1bb1a8efe797c85
+Current commit: daae7786099dc6de0464f2c8273fc33118ef53d7
+========================================
+
+commit 83375a998798c2841c4e68f32ebd739f5ec20a50
+Author: Jayachandran Rameshbabu <j-rameshbabu@ti.com>
+Date:   Tue Nov 17 15:16:30 2026 +0530
+
+    allsoc: icss_timesync: Klockwork issues
+    
+    Fixes: PINDSW-11655
+
+ icss_emac/source/icss_emac_local.c | 14 +++++++++++---
+ icss_timesync/icss_timeSync.c      | 25 +++++++++++++++----------
+ 2 files changed, 26 insertions(+), 13 deletions(-)
+
