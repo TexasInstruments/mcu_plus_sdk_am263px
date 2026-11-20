@@ -65615,3 +65615,52 @@ Date:   Tue Nov 10 12:43:08 2026 +0530
  src/per/icssg_utils.c | 17 ++++++++++++++++-
  1 file changed, 16 insertions(+), 1 deletion(-)
 
+========================================
+Changes from build on 2026-11-20 20:50:11
+Previous commit: 8107d7315096d9edc0c06f1ce7a15bd9666fc9c7
+Current commit: 82181a45de505918f96b129c26c70d978fd199e8
+========================================
+
+commit 82181a45de505918f96b129c26c70d978fd199e8
+Author: thilak <t-karanam@ti.com>
+Date:   Thu Nov 19 23:40:45 2026 +0530
+
+    allsocs: enet: Fix Klocwork issues in MDIO, AVTP examples and board templates
+    
+    - mdio_ioctl.c: the six C45 helpers (Mdio_readRegC45, Mdio_writeRegC45
+      and the trigger/complete variants) now reject userCh >=
+      ENET_MDIO_GROUP_NUM with ENET_EINVALIDPARAMS, since the group comes
+      straight from the ioctl inArgs and indexes USER_GROUP[].
+    - avtp_testclient.c, avbclient_utils.c: set_ccr now copies netdev and sid
+      with ub_strncpy bounded by the destination size instead of strcpy, so a
+      long command line argument can no longer overflow ccr->netdev or astr.
+    - avtp_testclient.c: avtpc_cfg_set_media_stream_ready passed
+      sizeof(avtptcd->netdev), the size of a pointer, to ub_strncpy; use
+      sizeof(netdev) so the interface name is not truncated.
+    - enet_board_cfg.c.xdt (am62x, am62px, am62ax, am62lx, am62dx, am275x,
+      am283x, j722s, am64x_am243x cpsw): assert pAvailMacEntries != NULL at
+      the top of EnetBoard_getMacAddrList, before it is first written,
+      instead of after the dereference or not at all.
+    - enet_app_syscfg_info.c.xdt (enet_cpsw, enet_icss): add the same NULL
+      assert to EnetAppSoc_getMacAddrList.
+    
+    Fixes: SITSW-13671
+    
+    Signed-off-by: Thilak <t-karanam@ti.com>
+
+ examples/tsn/avb_cpsw_app/avbclient_utils.c                                 |  4 ++--
+ examples/tsn/avtp_testclient.c                                              |  6 +++---
+ src/mod/mdio_ioctl.c                                                        | 42 +++++++++++++++++++++++++++++++------
+ .../board/.meta/ethphy_cpsw_icssg/templates/am275x/enet_board_cfg.c.xdt     |  1 +
+ .../board/.meta/ethphy_cpsw_icssg/templates/am283x/enet_board_cfg.c.xdt     |  1 +
+ .../board/.meta/ethphy_cpsw_icssg/templates/am62ax/enet_board_cfg.c.xdt     |  3 +--
+ .../board/.meta/ethphy_cpsw_icssg/templates/am62dx/enet_board_cfg.c.xdt     |  1 +
+ .../board/.meta/ethphy_cpsw_icssg/templates/am62lx/enet_board_cfg.c.xdt     |  3 +--
+ .../board/.meta/ethphy_cpsw_icssg/templates/am62px/enet_board_cfg.c.xdt     |  3 +--
+ .../board/.meta/ethphy_cpsw_icssg/templates/am62x/enet_board_cfg.c.xdt      |  3 +--
+ .../ethphy_cpsw_icssg/templates/am64x_am243x/ethphy_cpsw_board_cfg.c.xdt    |  3 +--
+ .../board/.meta/ethphy_cpsw_icssg/templates/j722s/enet_board_cfg.c.xdt      |  1 +
+ sysconfig/networking/.meta/enet_cpsw/templates/enet_app_syscfg_info.c.xdt   |  1 +
+ sysconfig/networking/.meta/enet_icss/templates/enet_app_syscfg_info.c.xdt   |  1 +
+ 14 files changed, 52 insertions(+), 21 deletions(-)
+

@@ -859203,3 +859203,88 @@ Date:   Tue Nov 17 15:06:54 2026 +0530
  .../components/networking/enet_lld/enet_cpsw_performance_am243x_am64x.md    | 138 ++++++++++++++++++++----------------
  1 file changed, 76 insertions(+), 62 deletions(-)
 
+========================================
+Changes from build on 2026-11-20 20:50:04
+Previous commit: 2d3710edc662cc370f50e0b3466c910c71506ee5
+Current commit: dacceb6f3cab67a04bebe3d24b74ac6bf4fb2ada
+========================================
+
+commit dacceb6f3cab67a04bebe3d24b74ac6bf4fb2ada
+Author: Vaibhav Reddy <vaibhav.reddy@ti.com>
+Date:   Wed Nov 18 18:06:09 2026 +0530
+
+    am64x/am243x: bootloader: Write back and inv cache before authentication
+    
+     -Write back and invalidate the cache before authentication of certificate
+    
+    Fixes: SITSW-13290
+    
+    Signed-off-by: Vaibhav Reddy <vaibhav.reddy@ti.com>
+
+ source/drivers/bootloader/bootloader_mcelf.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+commit a2804fd3e93add2798eb3a46b84df36191366fa5
+Author: Ashutosh Nayak <a-nayak2@ti.com>
+Date:   Thu Oct 22 14:41:40 2026 +0530
+
+    am64x/243x: ECC: Test PRU aggregators
+    
+    - Update driver metadata for ECC PRU instances
+    
+    - Add new ECC example for PRU aggregator tests
+    
+    Fixes: PROC_SDL-10187
+    
+    Signed-off-by: Ashutosh Nayak <a-nayak2@ti.com>
+
+ .metadata/.tirex/am243x.content.tirex.json                                  |  66 +++
+ .metadata/.tirex/am64x.content.tirex.json                                   |  66 +++
+ .project/device/project_am243x.js                                           |   3 +-
+ .project/device/project_am64x.js                                            |   1 +
+ examples/sdl/ecc/sdl_ecc_pru/.project/project.js                            |  14 +
+ examples/sdl/ecc/sdl_ecc_pru/.project/project_am243x.js                     | 143 ++++++
+ examples/sdl/ecc/sdl_ecc_pru/.project/project_am64x.js                      | 143 ++++++
+ examples/sdl/ecc/sdl_ecc_pru/am243x-evm/m4fss0-0_nortos/example.syscfg      | 181 ++++++++
+ examples/sdl/ecc/sdl_ecc_pru/am243x-evm/m4fss0-0_nortos/main.c              |  50 +++
+ .../sdl_ecc_pru/am243x-evm/m4fss0-0_nortos/ti-arm-clang/example.projectspec | 110 +++++
+ .../sdl/ecc/sdl_ecc_pru/am243x-evm/m4fss0-0_nortos/ti-arm-clang/makefile    | 351 +++++++++++++++
+ .../ecc/sdl_ecc_pru/am243x-evm/m4fss0-0_nortos/ti-arm-clang/makefile.defs   |  11 +
+ .../am243x-evm/m4fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen      | 116 +++++
+ .../am243x-evm/m4fss0-0_nortos/ti-arm-clang/makefile_projectspec            |  17 +
+ .../ecc/sdl_ecc_pru/am243x-evm/m4fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs |  11 +
+ examples/sdl/ecc/sdl_ecc_pru/am243x-evm/r5fss0-0_nortos/example.syscfg      | 248 +++++++++++
+ examples/sdl/ecc/sdl_ecc_pru/am243x-evm/r5fss0-0_nortos/main.c              |  50 +++
+ .../sdl_ecc_pru/am243x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec | 112 +++++
+ .../sdl/ecc/sdl_ecc_pru/am243x-evm/r5fss0-0_nortos/ti-arm-clang/makefile    | 353 +++++++++++++++
+ .../ecc/sdl_ecc_pru/am243x-evm/r5fss0-0_nortos/ti-arm-clang/makefile.defs   |  11 +
+ .../am243x-evm/r5fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen      | 116 +++++
+ .../am243x-evm/r5fss0-0_nortos/ti-arm-clang/makefile_projectspec            |  17 +
+ .../ecc/sdl_ecc_pru/am243x-evm/r5fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs |  11 +
+ examples/sdl/ecc/sdl_ecc_pru/am64x-evm/m4fss0-0_nortos/example.syscfg       | 198 +++++++++
+ examples/sdl/ecc/sdl_ecc_pru/am64x-evm/m4fss0-0_nortos/main.c               |  50 +++
+ .../sdl_ecc_pru/am64x-evm/m4fss0-0_nortos/ti-arm-clang/example.projectspec  | 110 +++++
+ .../sdl/ecc/sdl_ecc_pru/am64x-evm/m4fss0-0_nortos/ti-arm-clang/makefile     | 353 +++++++++++++++
+ .../ecc/sdl_ecc_pru/am64x-evm/m4fss0-0_nortos/ti-arm-clang/makefile.defs    |  11 +
+ .../am64x-evm/m4fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       | 118 +++++
+ .../sdl_ecc_pru/am64x-evm/m4fss0-0_nortos/ti-arm-clang/makefile_projectspec |  17 +
+ .../ecc/sdl_ecc_pru/am64x-evm/m4fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs  |  11 +
+ examples/sdl/ecc/sdl_ecc_pru/am64x-evm/r5fss0-0_nortos/example.syscfg       | 244 ++++++++++
+ examples/sdl/ecc/sdl_ecc_pru/am64x-evm/r5fss0-0_nortos/main.c               |  50 +++
+ .../sdl_ecc_pru/am64x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec  | 112 +++++
+ .../sdl/ecc/sdl_ecc_pru/am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile     | 355 +++++++++++++++
+ .../ecc/sdl_ecc_pru/am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile.defs    |  11 +
+ .../am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile_ccs_bootimage_gen       | 118 +++++
+ .../sdl_ecc_pru/am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile_projectspec |  17 +
+ .../ecc/sdl_ecc_pru/am64x-evm/r5fss0-0_nortos/ti-arm-clang/syscfg_c.rov.xs  |  11 +
+ examples/sdl/ecc/sdl_ecc_pru/ecc_main.c                                     | 224 ++++++++++
+ examples/sdl/ecc/sdl_ecc_pru/ecc_main.h                                     |  81 ++++
+ examples/sdl/ecc/sdl_ecc_pru/ecc_trigger.c                                  | 858 ++++++++++++++++++++++++++++++++++++
+ makefile.am243x                                                             |  26 ++
+ makefile.am64x                                                              |  26 ++
+ makefile_projectspec.am243x                                                 |  26 ++
+ makefile_projectspec.am64x                                                  |  26 ++
+ source/sdl/ecc/soc/am64x_am243x/sdl_ecc_soc.h                               |  72 +--
+ source/sdl/include/am64x_am243x/sdlr_soc_ecc_aggr.h                         |  36 +-
+ 48 files changed, 5307 insertions(+), 55 deletions(-)
+

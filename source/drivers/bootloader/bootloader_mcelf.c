@@ -1173,6 +1173,26 @@ int32_t Bootloader_authCertificate(Bootloader_Config *config, Bootloader_McelfMe
             /* Check if the certificate length is within valid range */
             if((certLen > (uint32_t)0x100U) && (certLen < (uint32_t)0x800U) && status == SystemP_SUCCESS)
             {
+#if defined (SOC_AM64X) || defined (SOC_AM243X)
+                /* Get the 128B cache-line aligned image length */
+                uint32_t cacheAlignedLen = (certLen + 128) & ~(127);
+                if((config->bootMedia == BOOTLOADER_MEDIA_MEM) ||
+                   (config->bootMedia == BOOTLOADER_MEDIA_PCIE) ||
+                   (config->bootMedia == BOOTLOADER_MEDIA_UART))
+                {
+                    /* Write back and invalidate the cache before passing to HSM */
+                    CacheP_wbInv((void *)certLoadAddr, cacheAlignedLen, CacheP_TYPE_ALL);
+                }
+                else if(config->bootMedia == BOOTLOADER_MEDIA_FLASH)
+                {
+                    /* Invalidate the cache before passing to HSM */
+                    CacheP_inv((void *)certLoadAddr, cacheAlignedLen, CacheP_TYPE_ALL);
+                }
+                else
+                {
+                    /* do nothing */
+                }
+#endif
                 status = Bootloader_authInit(certLoadAddr);
             }
         }
