@@ -48,6 +48,7 @@
 #include "crf_task.h"
 #include "clock_rec.h"
 #include "tsninit.h"
+#include "enetapp_cpsw.h"
 
 /* ========================================================================== */
 /*                           Macros & Typedefs                                */
@@ -64,6 +65,16 @@
 #define CDCE_CRF_TS_INTERVAL   (160U)
 #define CDCE_CRF_STATS_PERIOD_S (1U)
 
+#if defined(AUTOPHY_MCR)
+/* Media clock comes from the DP83TG721 PHY, nudged through the PHY registers. */
+#define CDCE_CRF_CLOCK_SOURCE  CLOCK_REC_SOURCE_PHY
+/* Link must stay up this many 100 ms polls (3 s) before CRF starts, the PHY clock is unstable on link up. */
+#define CDCE_CRF_LINK_STABILITY_WAIT_TIME (3 * 10)
+#else
+/* Media clock comes from the on-board CDCE clock generator. */
+#define CDCE_CRF_CLOCK_SOURCE  CLOCK_REC_SOURCE_CDCE
+#endif
+
 /* ========================================================================== */
 /*                           Global Variables                                 */
 /* ========================================================================== */
@@ -76,8 +87,7 @@ static SemaphoreP_Object CdceCrf_clockStartedSem;
 
 static CrfTask_Params CdceCrf_taskParams = {
     .role                   = CDCE_CRF_ROLE,
-    /* Clock source is the on-board CDCE clock generator. */
-    .clkSrc                 = CLOCK_REC_SOURCE_CDCE,
+    .clkSrc                 = CDCE_CRF_CLOCK_SOURCE,
     .correctionFlags        = CLOCK_REC_CORRECT_FREQUENCY | CLOCK_REC_CORRECT_PHASE,
     .parentClockFrequency   = 48000,
     .nominalFrequency       = 48000,
@@ -107,6 +117,8 @@ static CrfTask_Params CdceCrf_taskParams = {
 /* ========================================================================== */
 /*                          Function Declarations                             */
 /* ========================================================================== */
+
+extern EnetApp_Cfg gEnetAppCfg;
 
 void EnetApp_AudioPlaybackDemoMain(void *args);
 void CdceCrf_mcaspRxCb(MCASP_Handle handle, MCASP_Transaction *transaction);
@@ -233,6 +245,24 @@ void EnetApp_AudioPlaybackDemoMain(void *args)
         DebugP_log("Waiting for tsn_gptpd to be initialzied...\n");
         ClockP_usleep(100000);
     }
+
+#if defined(AUTOPHY_MCR)
+    uint32_t waitTime = CDCE_CRF_LINK_STABILITY_WAIT_TIME;
+    do
+    {
+        if (EnetAppUtils_isPortLinkUp(gEnetAppCfg.hEnet, gEnetAppCfg.coreId, ENET_MAC_PORT_1))
+        {
+            waitTime--;
+        }
+        else
+        {
+            waitTime = CDCE_CRF_LINK_STABILITY_WAIT_TIME;
+        }
+        ClockP_usleep(100000);
+    } while (waitTime > 0);
+
+    DebugP_log("Link is Stable...\r\n");
+#endif
 
     status = CrfTask_create(&CdceCrf_taskParams);
     DebugP_assert(status == SystemP_SUCCESS);

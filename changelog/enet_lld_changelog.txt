@@ -65664,3 +65664,183 @@ Date:   Thu Nov 19 23:40:45 2026 +0530
  sysconfig/networking/.meta/enet_icss/templates/enet_app_syscfg_info.c.xdt   |  1 +
  14 files changed, 52 insertions(+), 21 deletions(-)
 
+========================================
+Changes from build on 2026-11-21 20:47:44
+Previous commit: 82181a45de505918f96b129c26c70d978fd199e8
+Current commit: 52ba2b5f4cf40c7652deabe4f882697db6e9bf75
+========================================
+
+commit 52ba2b5f4cf40c7652deabe4f882697db6e9bf75
+Author: thilak <t-karanam@ti.com>
+Date:   Fri Nov 20 13:56:46 2026 +0530
+
+    am275x: enet: Add DP83TG721 variant to media_clock_recovery_demo
+    
+    - Add am275x-evm-dp83tg721 board for crf_master and crf_slave
+    - Use PHY recovered media clock (CLOCK_REC_SOURCE_PHY) and wait for
+      stable link before starting CRF when AUTOPHY_MCR is defined
+    
+    Fixes: SITSW-13745
+    Signed-off-by: thilak <t-karanam@ti.com>
+
+ examples/tsn/media_clock_recovery_demo/crf_app.c                            |  34 ++-
+ .../tsn/media_clock_recovery_demo/crf_master/.project/project_am275x.js     |  32 ++-
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/example.syscfg        | 216 +++++++++++++++++++
+ .../crf_master/am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/main.c     |  99 +++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec           | 217 +++++++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/linker.cmd                    | 121 +++++++++++
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile | 411 +++++++++++++++++++++++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  97 +++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |  20 ++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |  12 ++
+ examples/tsn/media_clock_recovery_demo/crf_slave/.project/project_am275x.js |  33 ++-
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/example.syscfg        | 216 +++++++++++++++++++
+ .../crf_slave/am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/main.c      |  99 +++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec           | 218 +++++++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/linker.cmd                    | 121 +++++++++++
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile | 412 ++++++++++++++++++++++++++++++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  97 +++++++++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |  20 ++
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |  12 ++
+ 19 files changed, 2483 insertions(+), 4 deletions(-)
+
+commit bcdc3e109a2a10e554f75bd163a4abbba82a8df8
+Author: thilak <t-karanam@ti.com>
+Date:   Fri Nov 20 12:47:20 2026 +0530
+
+    am275x: enet: Rename cdce_crf demo to media_clock_recovery_demo
+    
+    - Rename cdce_crf to media_clock_recovery_demo
+    - Rename cdce_crf_master/cdce_crf_slave to crf_master/crf_slave
+    - Rename cdce_crf_app.c to crf_app.c
+    
+    Fixes: SITSW-13745
+    
+    Signed-off-by: thilak <t-karanam@ti.com>
+
+ examples/tsn/{cdce_crf => media_clock_recovery_demo}/board.c                     |  0
+ examples/tsn/{cdce_crf/cdce_crf_app.c => media_clock_recovery_demo/crf_app.c}    |  0
+ .../cdce_crf_master => media_clock_recovery_demo/crf_master}/.project/project.js |  0
+ .../crf_master}/.project/project_am275x.js                                       | 10 +++++-----
+ .../crf_master}/am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/example.syscfg   |  0
+ .../crf_master}/am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/main.c           |  0
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 12 ++++++------
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/linker.cmd      |  0
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 22 +++++++++++-----------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen         |  0
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec               |  2 +-
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs |  0
+ .../cdce_crf_slave => media_clock_recovery_demo/crf_slave}/.project/project.js   |  0
+ .../crf_slave}/.project/project_am275x.js                                        | 10 +++++-----
+ .../crf_slave}/am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/example.syscfg    |  0
+ .../crf_slave}/am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/main.c            |  0
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec                | 12 ++++++------
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/linker.cmd      |  0
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile        | 22 +++++++++++-----------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen         |  0
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec               |  2 +-
+ .../am275x-evm-dp83867/am275x-evm/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs |  0
+ examples/tsn/{cdce_crf => media_clock_recovery_demo}/default_flow_cfg.c          |  0
+ 23 files changed, 46 insertions(+), 46 deletions(-)
+
+commit 88e9c4dc52ef44bf810618c90c5cde11543badf3
+Author: thilak <t-karanam@ti.com>
+Date:   Fri Nov 20 12:38:48 2026 +0530
+
+    am62d/275x: enet: Remove CRF talker/listener and multistream MCR demos
+    
+    - Remove crftalker_app, crflistener_app and enet_multistream_mcr tsn
+      examples
+    
+    Fixes: SITSW-13745
+    
+    Signed-off-by: thilak <t-karanam@ti.com>
+
+ examples/tsn/crflistener_app/.project/project.js                            |  14 -
+ examples/tsn/crflistener_app/.project/project_am275x.js                     | 237 --------------
+ examples/tsn/crflistener_app/.project/project_am62ax.js                     | 237 --------------
+ examples/tsn/crflistener_app/.project/project_am62dx.js                     | 237 --------------
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/example.syscfg        | 148 ---------
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/main.c                |  99 ------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec           | 204 -------------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/linker.cmd                    | 121 --------
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile | 396 ------------------------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  97 ------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |  20 --
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |  12 -
+ examples/tsn/crflistener_app/am62ax-sk/mcu-r5fss0-0_freertos/example.syscfg | 144 ---------
+ examples/tsn/crflistener_app/am62ax-sk/mcu-r5fss0-0_freertos/main.c         |  99 ------
+ .../am62ax-sk/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec        | 189 ------------
+ .../crflistener_app/am62ax-sk/mcu-r5fss0-0_freertos/ti-arm-clang/linker.cmd | 118 -------
+ .../crflistener_app/am62ax-sk/mcu-r5fss0-0_freertos/ti-arm-clang/makefile   | 406 ------------------------
+ .../am62ax-sk/mcu-r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen | 109 -------
+ .../am62ax-sk/mcu-r5fss0-0_freertos/ti-arm-clang/makefile_projectspec       |  20 --
+ .../am62ax-sk/mcu-r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs            |   8 -
+ .../am62dx-evm-dp83tg721/am62dx-evm/mcu-r5fss0-0_freertos/example.syscfg    | 155 ----------
+ .../am62dx-evm-dp83tg721/am62dx-evm/mcu-r5fss0-0_freertos/main.c            |  99 ------
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec       | 203 ------------
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/linker.cmd                | 118 -------
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile                  | 411 -------------------------
+ .../mcu-r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen           | 109 -------
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile_projectspec      |  20 --
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs           |  12 -
+ examples/tsn/crflistener_app/default_flow_cfg.c                             |  62 ----
+ examples/tsn/crflistener_app/sharedrx_flow_cfg.c                            |  77 -----
+ examples/tsn/crftalker_app/.project/project.js                              |  14 -
+ examples/tsn/crftalker_app/.project/project_am275x.js                       | 237 --------------
+ examples/tsn/crftalker_app/.project/project_am62ax.js                       | 237 --------------
+ examples/tsn/crftalker_app/.project/project_am62dx.js                       | 237 --------------
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/example.syscfg        | 155 ----------
+ .../crftalker_app/am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/main.c  |  99 ------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec           | 204 -------------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/linker.cmd                    | 121 --------
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile | 396 ------------------------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  97 ------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |  20 --
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |  12 -
+ examples/tsn/crftalker_app/am62ax-sk/mcu-r5fss0-0_freertos/example.syscfg   | 144 ---------
+ examples/tsn/crftalker_app/am62ax-sk/mcu-r5fss0-0_freertos/main.c           |  99 ------
+ .../am62ax-sk/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec        | 189 ------------
+ .../crftalker_app/am62ax-sk/mcu-r5fss0-0_freertos/ti-arm-clang/linker.cmd   | 118 -------
+ .../tsn/crftalker_app/am62ax-sk/mcu-r5fss0-0_freertos/ti-arm-clang/makefile | 406 ------------------------
+ .../am62ax-sk/mcu-r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen | 109 -------
+ .../am62ax-sk/mcu-r5fss0-0_freertos/ti-arm-clang/makefile_projectspec       |  20 --
+ .../am62ax-sk/mcu-r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs            |   8 -
+ .../am62dx-evm-dp83tg721/am62dx-evm/mcu-r5fss0-0_freertos/example.syscfg    | 164 ----------
+ .../am62dx-evm-dp83tg721/am62dx-evm/mcu-r5fss0-0_freertos/main.c            |  99 ------
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/example.projectspec       | 203 ------------
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/linker.cmd                | 118 -------
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile                  | 411 -------------------------
+ .../mcu-r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen           | 109 -------
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/makefile_projectspec      |  20 --
+ .../am62dx-evm/mcu-r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs           |  12 -
+ examples/tsn/crftalker_app/default_flow_cfg.c                               |  62 ----
+ examples/tsn/crftalker_app/sharedrx_flow_cfg.c                              |  77 -----
+ examples/tsn/enet_multistream_mcr/crf_app.c                                 | 594 ------------------------------------
+ examples/tsn/enet_multistream_mcr/crf_hw_config.c                           | 490 -----------------------------
+ examples/tsn/enet_multistream_mcr/crf_hw_config.h                           |  85 ------
+ examples/tsn/enet_multistream_mcr/crflistener/.project/project.js           |  14 -
+ examples/tsn/enet_multistream_mcr/crflistener/.project/project_am275x.js    | 240 ---------------
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/example.syscfg        | 267 ----------------
+ .../crflistener/am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/main.c    |  99 ------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec           | 210 -------------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/linker.cmd                    | 121 --------
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile | 398 ------------------------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  97 ------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |  20 --
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |  12 -
+ examples/tsn/enet_multistream_mcr/crftalker/.project/project.js             |  14 -
+ examples/tsn/enet_multistream_mcr/crftalker/.project/project_am275x.js      | 240 ---------------
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/example.syscfg        | 265 ----------------
+ .../crftalker/am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/main.c      |  99 ------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/example.projectspec           | 210 -------------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/linker.cmd                    | 121 --------
+ .../am275x-evm-dp83tg721/am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile | 398 ------------------------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_ccs_bootimage_gen    |  97 ------
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/makefile_projectspec          |  20 --
+ .../am275x-evm/r5fss0-0_freertos/ti-arm-clang/syscfg_c.rov.xs               |  12 -
+ examples/tsn/enet_multistream_mcr/default_flow_cfg.c                        |  62 ----
+ examples/tsn/enet_multistream_mcr/enetapp_mcasp.c                           | 187 ------------
+ examples/tsn/enet_multistream_mcr/gptp_init_autophy.c                       | 544 ---------------------------------
+ 86 files changed, 13294 deletions(-)
+
