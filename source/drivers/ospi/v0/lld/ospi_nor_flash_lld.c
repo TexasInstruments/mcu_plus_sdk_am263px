@@ -141,7 +141,7 @@ int32_t OSPI_lld_norFlashInit1s1s1s(OSPILLD_Handle hOspi)
         OSPI_norFlashCmdWrite(hOspi, cmd, 0xFFFFFFFF, NULL, 0);
 
         /* Wait for a while */
-        uint32_t waitMicro = 500U * 1000U;
+        uint32_t waitMicro = 500U;
         hOspi->Clock_usleep(waitMicro);
 
         /* Set lowest bus clock */

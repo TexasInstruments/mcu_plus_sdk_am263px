@@ -77,6 +77,8 @@ extern "C" {
 #define SA2UL_MAX_IV_SIZE_BYTES         (16U)
 /** \brief Max Initialization vector (IV) size in bytes for AES GCM*/
 #define SA2UL_MAX_IV_SIZE_BYTES_GCM     (12U)
+/** \brief CMAC subkey length in bytes (128 bits) */
+#define SA2UL_CMAC_SUBKEY_LENGTH_BYTES  (16U)
 /** \brief Max number of rings */
 #define SA2UL_NUMBER_OF_RINGS           (3U)
 /** \brief Cache line size for alignment of descriptor and buffers */
@@ -183,8 +185,12 @@ extern "C" {
 #define SA2UL_ENC_MODE_CBC              (0x1U)
 /** \brief GCM mode */
 #define SA2UL_ENC_MODE_GCM              (0x2U)
+/** \brief CMAC mode */
+#define SA2UL_ENC_MODE_CMAC             (0x3U)
+/** \brief GMAC Authentication-only mode */
+#define SA2UL_ENC_MODE_GMAC_AH          (0x4U)
 /** \brief Maximun Encryption modes */
-#define SA2UL_ENC_MODE_MAX              (0x3U)
+#define SA2UL_ENC_MODE_MAX              (0x5U)
 /** @} */
 
 /**
@@ -240,6 +246,10 @@ typedef struct
     /**< Ghash used for AES GCM mode, refer \ref SA2UL_InputSizes */
     uint32_t                aadLen;
     /**< Additional authenticated data length, refer \ref SA2UL_InputSizes */
+    uint8_t                 cmacSubkey[SA2UL_CMAC_SUBKEY_LENGTH_BYTES];
+    /**< CMAC subkey, caller must derive and provide: K1 if the last block is complete, K2 if it is
+     *   partial. The message is processed as one packet, SA2UL pads a partial last block and applies
+     *   the subkey to its last 16 byte block */
 } SA2UL_ContextParams;
 
 /**

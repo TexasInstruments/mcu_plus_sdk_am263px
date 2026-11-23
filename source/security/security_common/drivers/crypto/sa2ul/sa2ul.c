@@ -61,7 +61,7 @@
 #define SA2UL_IS_HMAC(alg)                              ((alg & 0x10u) == 0)
 
 /** \brief Number of items in MCE data array */
-#define SA2UL_MCE_DATA_NUM                              (10U)
+#define SA2UL_MCE_DATA_NUM                              (14U)
 
 /** \brief Pack 2 instructions as 3 bytes */
 #define MCE_PACK2(op1, f21, f11, f01, op2, f22, f12, f02) \
@@ -450,6 +450,42 @@ static const uint8_t gSa2ulMceAes128GcmDecr[] =
 };
 
 /*!
+ * \brief Encryption mode control engine instructions for AES-256-CMAC
+ */
+static const uint8_t gSa2ulMceAes256Cmac[] =
+{
+ 0xf1, 0x0d, 0x19, 0x10, 0x8d, 0x2c, 0x12, 0x88, 0x88, 0xa6, 0x4b, 0x7e,
+ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
+
+/*!
+ * \brief Encryption mode control engine instructions for AES-128-CMAC
+ */
+static const uint8_t gSa2ulMceAes128Cmac[] =
+{
+ 0xf1, 0x0d, 0x19, 0x10, 0x8d, 0x2c, 0x12, 0x88, 0x08, 0xa6, 0x4b, 0x7e,
+ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
+
+/*!
+ * \brief Encryption mode control engine instructions for AES-256-GMAC IPSEC-AH (auth-only)
+ */
+static const uint8_t gSa2ulMceAes256GmacAh[] =
+{
+ 0x88, 0xa9, 0xfe, 0x83, 0x89, 0x7e, 0xd4, 0x01, 0x41, 0x83, 0x9d, 0x53,
+ 0xaa, 0x0b, 0x7e, 0x9a, 0x78, 0x3a, 0xa3, 0x8b, 0x5e, 0x00, 0x00, 0x00
+};
+
+/*!
+ * \brief Encryption mode control engine instructions for AES-128-GMAC IPSEC-AH (auth-only)
+ */
+static const uint8_t gSa2ulMceAes128GmacAh[] =
+{
+ 0x80, 0xa9, 0xfe, 0x83, 0x89, 0x7e, 0xd4, 0x01, 0x41, 0x83, 0x9d, 0x53,
+ 0xaa, 0x0b, 0x7e, 0x9a, 0x78, 0x3a, 0xa3, 0x8b, 0x5e, 0x00, 0x00, 0x00
+};
+
+/*!
  * \brief Encryption mode control engine instructions for different modes
  */
 static const SA2UL_MCEData gSa2ulMceDataArray[SA2UL_MCE_DATA_NUM] =
@@ -513,6 +549,30 @@ static const SA2UL_MCEData gSa2ulMceDataArray[SA2UL_MCE_DATA_NUM] =
         0u, 4u, 4u,
         sizeof(gSa2ulMceAes128GcmDecr),
         gSa2ulMceAes128GcmDecr
+    },
+    {
+        /* AES-256-CMAC */
+        0u, 0u, 0u,
+        sizeof(gSa2ulMceAes256Cmac),
+        gSa2ulMceAes256Cmac
+    },
+    {
+        /* AES-128-CMAC */
+        0u, 0u, 0u,
+        sizeof(gSa2ulMceAes128Cmac),
+        gSa2ulMceAes128Cmac
+    },
+    {
+        /* AES-256-GMAC-AH (auth-only) */
+        0u, 5u, 5u,
+        sizeof(gSa2ulMceAes256GmacAh),
+        gSa2ulMceAes256GmacAh
+    },
+    {
+        /* AES-128-GMAC-AH (auth-only) */
+        0u, 5u, 5u,
+        sizeof(gSa2ulMceAes128GmacAh),
+        gSa2ulMceAes128GmacAh
     }
 };
 
@@ -527,7 +587,11 @@ enum
     MCE_DATA_ARRAY_INDEX_AES_256_GCM_ENCRYPT,
     MCE_DATA_ARRAY_INDEX_AES_256_GCM_DECRYPT,
     MCE_DATA_ARRAY_INDEX_AES_128_GCM_ENCRYPT,
-    MCE_DATA_ARRAY_INDEX_AES_128_GCM_DECRYPT
+    MCE_DATA_ARRAY_INDEX_AES_128_GCM_DECRYPT,
+    MCE_DATA_ARRAY_INDEX_AES_256_CMAC,
+    MCE_DATA_ARRAY_INDEX_AES_128_CMAC,
+    MCE_DATA_ARRAY_INDEX_AES_256_GMAC_AH,
+    MCE_DATA_ARRAY_INDEX_AES_128_GMAC_AH
 };
 
 static const uint32_t gSa2ulHashSizeBytes[] =
@@ -1154,14 +1218,18 @@ int32_t SA2UL_contextAlloc(SA2UL_Handle handle, SA2UL_ContextObject *ctxObj, con
                         CSL_FMK(SA2UL_ENCRCTL_DEFAULT_NEXT_ENGINE_ID, SA2UL_ENGINE_CODE_DEFAULT_EGRESS_PORT) |
                         CSL_FMK(SA2UL_ENCRCTL_TRAILER_EVERY_CHUNK, 0u) |
                         CSL_FMK(SA2UL_ENCRCTL_TRAILER_AT_END, 0u) |
-                        CSL_FMK(SA2UL_ENCRCTL_PKT_DATA_SECTION_UPDATE, 1u) |
+                        CSL_FMK(SA2UL_ENCRCTL_PKT_DATA_SECTION_UPDATE,
+                                ((ctxObj->ctxPrms.encMode == SA2UL_ENC_MODE_CMAC) ||
+                                 (ctxObj->ctxPrms.encMode == SA2UL_ENC_MODE_GMAC_AH)) ? 0u : 1u) |
                         CSL_FMK(SA2UL_ENCRCTL_ENCRYPT_DECRYPT, 0u) |
                         CSL_FMK(SA2UL_ENCRCTL_BLK_SIZE, SA2UL_EncBlksizeEncoded[ctxObj->ctxPrms.encAlg]) |
                         CSL_FMK(SA2UL_ENCRCTL_SOP_OFFSET, gSa2ulMceDataArray[mcDataIndex].sopOffset) |
                         CSL_FMK(SA2UL_ENCRCTL_MIDDLE_OFFSET, gSa2ulMceDataArray[mcDataIndex].middleOffset) |
                         CSL_FMK(SA2UL_ENCRCTL_EOP_OFFSET, gSa2ulMceDataArray[mcDataIndex].eopOffset);
 
-                        if(ctxObj->ctxPrms.encMode == SA2UL_ENC_MODE_GCM)
+                        if((ctxObj->ctxPrms.encMode == SA2UL_ENC_MODE_GCM) ||
+                           (ctxObj->ctxPrms.encMode == SA2UL_ENC_MODE_CMAC) ||
+                           (ctxObj->ctxPrms.encMode == SA2UL_ENC_MODE_GMAC_AH))
                         {
                             /* Update Trailer only after specified length has been processed. */
                             sc.u.enc.encrCtl |= CSL_FMK(SA2UL_ENCRCTL_TRAILER_AT_END, 1u);
@@ -1204,6 +1272,43 @@ int32_t SA2UL_contextAlloc(SA2UL_Handle handle, SA2UL_ContextObject *ctxObj, con
 
                             sc.u.enc.encAux1[6] = (uint32_t) (authLen >> 32U);
                             sc.u.enc.encAux1[7] = (uint32_t) (authLen & 0xFFFFU);
+                        }
+                        else if (ctxObj->ctxPrms.encMode == SA2UL_ENC_MODE_CMAC)
+                        {
+                            /* Aux1[255:128] = subkey (K1 or K2), derived by software */
+                            SA2UL_u8LeToU32(sc.u.enc.encAux1, ctxObj->ctxPrms.cmacSubkey, SA2UL_CMAC_SUBKEY_LENGTH_BYTES);
+
+                            /* Aux1[127:0] = not used */
+                            sc.u.enc.encAux1[4] = 0u;
+                            sc.u.enc.encAux1[5] = 0u;
+                            sc.u.enc.encAux1[6] = 0u;
+                            sc.u.enc.encAux1[7] = 0u;
+
+                            /* Aux2 = REG1 = intermediate CBC-MAC value, left zero. */
+                        }
+                        else if (ctxObj->ctxPrms.encMode == SA2UL_ENC_MODE_GMAC_AH)
+                        {
+                            /* Copy IV */
+                            SA2UL_u8LeToU32(sc.u.enc.encAux3, ctxObj->ctxPrms.iv, SA2UL_MAX_IV_SIZE_BYTES_GCM);
+                            sc.u.enc.encAux3[SA2UL_MAX_IV_SIZE_BYTES_GCM / 4U] = (uint32_t) 0x1U;
+
+                            /* Aux2 = 0 - GMAC-AH does NOT load AAD from the command
+                             * label; the entire AAD is fed through the DMA input
+                             * stream instead. */
+                            sc.u.enc.encAux2[0] = 0u;
+                            sc.u.enc.encAux2[1] = 0u;
+                            sc.u.enc.encAux2[2] = 0u;
+                            sc.u.enc.encAux2[3] = 0u;
+
+                            /* Aux1[255:128] = Galois key H, Aux1[127:64] = Len(A) in bits. */
+                            SA2UL_u8LeToU32(sc.u.enc.encAux1, ctxObj->ctxPrms.ghash, SA2UL_GHASH_LENGTH_BYTES);
+                            aadLen = (ctxObj->ctxPrms.aadLen << 3);
+                            sc.u.enc.encAux1[4] = (uint32_t) (aadLen >> 32U);
+                            sc.u.enc.encAux1[5] = (uint32_t) (aadLen & 0xFFFFFFFFU);
+
+                            /* Aux1[63:0] = Len(C) = 0 */
+                            sc.u.enc.encAux1[6] = 0u;
+                            sc.u.enc.encAux1[7] = 0u;
                         }
                         else
                         {
@@ -1735,6 +1840,14 @@ static int32_t SA2UL_getMceIndex(SA2UL_ContextObject *ctxObj, uint8_t *aesKeyInv
                 retVal = MCE_DATA_ARRAY_INDEX_AES_256_GCM_DECRYPT;
             }
         }
+        else if(ctxObj->ctxPrms.encMode == SA2UL_ENC_MODE_CMAC)
+        {
+            retVal = MCE_DATA_ARRAY_INDEX_AES_256_CMAC;
+        }
+        else if(ctxObj->ctxPrms.encMode == SA2UL_ENC_MODE_GMAC_AH)
+        {
+            retVal = MCE_DATA_ARRAY_INDEX_AES_256_GMAC_AH;
+        }
     }
     else if((ctxObj->ctxPrms.encAlg == SA2UL_ENC_ALG_AES) && (ctxObj->ctxPrms.encKeySize == SA2UL_ENC_KEYSIZE_128))
     {
@@ -1767,6 +1880,14 @@ static int32_t SA2UL_getMceIndex(SA2UL_ContextObject *ctxObj, uint8_t *aesKeyInv
                 *aesKeyInvFlag = (uint8_t)FALSE;
                 retVal = MCE_DATA_ARRAY_INDEX_AES_128_GCM_DECRYPT;
             }
+        }
+        else if(ctxObj->ctxPrms.encMode == SA2UL_ENC_MODE_CMAC)
+        {
+            retVal = MCE_DATA_ARRAY_INDEX_AES_128_CMAC;
+        }
+        else if(ctxObj->ctxPrms.encMode == SA2UL_ENC_MODE_GMAC_AH)
+        {
+            retVal = MCE_DATA_ARRAY_INDEX_AES_128_GMAC_AH;
         }
     }
 
@@ -1920,9 +2041,11 @@ static int32_t SA2UL_pushBuffer(SA2UL_ContextObject *pCtxObj,const uint8_t  *inp
         {
             txDescr->exPktInfo.scptrH |= (CSL_FMK(SA2UL_SCPTRH_EGRESS_CPPI_STATUS_LEN, gSa2ulHashSizeBytes[pCtxObj->ctxPrms.hashAlg & 7u]));
         }
-        if((pCtxObj->ctxPrms.opType == SA2UL_OP_ENC) && (pCtxObj->ctxPrms.encMode == SA2UL_ENC_MODE_GCM))
+        if((pCtxObj->ctxPrms.opType == SA2UL_OP_ENC) &&
+           ((pCtxObj->ctxPrms.encMode == SA2UL_ENC_MODE_GCM) || (pCtxObj->ctxPrms.encMode == SA2UL_ENC_MODE_CMAC) ||
+            (pCtxObj->ctxPrms.encMode == SA2UL_ENC_MODE_GMAC_AH)))
         {
-            /* SW info word 2 requires egress status length for authentication tag generation for AES GCM (AEAD) operation. */
+            /* SW info word 2 requires egress status length for authentication tag generation for AES GCM (AEAD) / CMAC / GMAC-AH operation. */
             txDescr->exPktInfo.scptrH |= (CSL_FMK(SA2UL_SCPTRH_EGRESS_CPPI_STATUS_LEN, SA2UL_AES_GCM_AUTHTAG_SIZE_IN_BYTES));
         }
         /* Egress CPPI Destination Queue */
@@ -2046,7 +2169,9 @@ static int32_t SA2UL_popBuffer(SA2UL_ContextObject *pCtxObj, uint64_t *doneBuf, 
                     }
                 }
             }
-            else if((pCtxObj->ctxPrms.opType == SA2UL_OP_ENC) && (pCtxObj->ctxPrms.encMode == SA2UL_ENC_MODE_GCM))
+            else if((pCtxObj->ctxPrms.opType == SA2UL_OP_ENC) &&
+                    ((pCtxObj->ctxPrms.encMode == SA2UL_ENC_MODE_GCM) || (pCtxObj->ctxPrms.encMode == SA2UL_ENC_MODE_CMAC) ||
+                     (pCtxObj->ctxPrms.encMode == SA2UL_ENC_MODE_GMAC_AH)))
             {
                 /* Check for protocol-specific data for SA2UL hash ouput */
                 reg = CSL_FEXT(rxDescr->pd.descInfo,
