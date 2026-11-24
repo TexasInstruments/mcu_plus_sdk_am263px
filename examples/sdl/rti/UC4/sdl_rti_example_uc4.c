@@ -97,7 +97,11 @@
 
 volatile uint32_t isrFlag = RTI_NO_INTERRUPT;
 /**< Flag used to indicate interrupt is generated */
+#if defined(SOC_AM64X) || defined(SOC_AM243X)
+volatile  SDL_RTI_configParms     gRtiConfig;
+#else
 volatile  SDL_RTI_configParms     pConfig;
+#endif
   uint32_t rtiModule = SDL_RTI_BASE;
 /* ========================================================================== */
 /*                          Function Definitions                              */
@@ -224,6 +228,9 @@ int32_t SDL_RTI_exampleTest(void)
 #endif
     pConfig.SDL_RTI_dwwdWindowSize = RTI_DWWD_WINDOWSIZE_50_PERCENT;
     pConfig.SDL_RTI_dwwdReaction   = RTI_DWWD_REACTION_GENERATE_NMI;
+#if defined (SOC_AM64X) || defined (SOC_AM243X)
+    gRtiConfig = pConfig;
+#endif
 
     retVal = SDL_RTI_config(SDL_INSTANCE_RTI, &pConfig);
 
@@ -454,7 +461,7 @@ static void IntrDisable(uint32_t intsrc)
 #if defined (R5F_CORE)
 	SDL_RTI_getStatus(SDL_INSTANCE_RTI, &intrStatus);
     SDL_RTI_clearStatus(SDL_INSTANCE_RTI, intrStatus);
-	RTIAppExpiredDwwdService(rtiModule, pConfig.SDL_RTI_dwwdWindowSize);
+	RTIAppExpiredDwwdService(rtiModule, gRtiConfig.SDL_RTI_dwwdWindowSize);
 #endif
 #endif
 #if defined (SOC_AM263X) || defined (SOC_AM263PX) || defined (SOC_AM261X)

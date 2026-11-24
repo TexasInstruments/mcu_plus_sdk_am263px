@@ -138,7 +138,7 @@ typedef struct
 int32_t SDL_VTM_initTs(const SDL_VTM_configTs *pConfig);
 
 /**
- *  \brief Read VTM Temperature sensor values in degree celcius
+ *  \brief Read VTM Temperature sensor values in degree Celsius
  *
  *  \param instance         [IN]  VTM Temperature sensor instance
  *  \param pTempVal         [OUT]  Pointer to Temperature sensor values
@@ -154,8 +154,8 @@ int32_t SDL_VTM_getTemp(SDL_VTM_InstTs instance, uint32_t *pTempVal);
  *  \brief Set thresholds for temperature alerts
  *
  *  \param instance         [IN]  VTM Temperature sensor instance
- *  \param alert_th_hot     [IN]  Alert hot temperature in milli degree celcius
- *  \param alert_th_cold    [IN]  Alert cold temperature in milli degree celcius
+ *  \param alert_th_hot     [IN]  Alert hot temperature in milli degree Celsius
+ *  \param alert_th_cold    [IN]  Alert cold temperature in milli degree Celsius
  *
  *  \return The SDL error code for the API.
  *                                 If instance is invalid: SDL_EBADARGS
@@ -171,8 +171,8 @@ int32_t SDL_VTM_setAlertTemp(SDL_VTM_InstTs instance, int32_t alert_th_hot,
  *  \brief Set thresholds for temperature Shutdown
  *
  *  \param instance         [IN]  VTM Temperature sensor instance
- *  \param tshut_th_hot     [IN]  Shutdown hot temperature in milli degree celcius
- *  \param tshut_th_cold    [IN]  Shutdown cold temperature in milli degree celcius
+ *  \param tshut_th_hot     [IN]  Shutdown hot temperature in milli degree Celsius
+ *  \param tshut_th_cold    [IN]  Shutdown cold temperature in milli degree Celsius
  *
  *  \return The SDL error code for the API.
  *                                 If instance is invalid: SDL_EBADARGS

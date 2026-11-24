@@ -66,7 +66,7 @@ extern "C" {
  *
  *  \param adc_code                 [IN]   7 Bit ADC code
  *  \param pMilliDegreeTempVal      [OUT]  Pointer to Temperature in milli
- *                                         degree celcius
+ *                                         degree Celsius
  *
  *  \return The SDL error code for the API.
  *                                 Success      : SDL_PASS
@@ -78,7 +78,7 @@ int32_t SDL_VTM_tsConvADCToTemp (SDL_VTM_adc_code       adcCode,
 /**
  *  \brief VTM Temperature to ADC conversion
  *
- *  \param milliDegreeTempVal          [IN] Temperature in milli degree celcius
+ *  \param milliDegreeTempVal          [IN] Temperature in milli degree Celsius
  *  \param p_adc_code                  [OUT] pointer to 7 Bit ADC code
  *
  *  \return The SDL error code for the API.

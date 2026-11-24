@@ -43,7 +43,7 @@ extern "C" {
 
 /* Global Variables */
 
-/* Below is the temperature in Celcius/Centegrade*/
+/* Below is the temperature in Celsius/Centegrade*/
 const int32_t gSDL_pvt_poly0[] =
 {
     150, 150, 150, 150, 150, 150, 150, 150, 150, 150,
@@ -61,7 +61,7 @@ const int32_t gSDL_pvt_poly0[] =
     -40, -40, -40, -40,-40, -40, -40, -40, -40
 };
 
-/* Below is the temperature in milli Celcius/Centegrade*/
+/* Below is the temperature in milli Celsius/Centegrade*/
 const int32_t gSDL_pvt_poly[] =
 {
     150000, 150000, 150000, 150000, 150000, 150000, 150000, 150000, 150000, 150000,

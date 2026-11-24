@@ -1,7 +1,6 @@
 "use strict";
 
 let common = system.getScript("/common");
-let pinmux = system.getScript("/drivers/pinmux/pinmux");
 let device = common.getDeviceName();
 let soc = system.getScript(`/networking/soc/networking_${common.getSocName()}`);
 //Get packet pool configuration script
@@ -188,17 +187,26 @@ const enet_cpsw_board_config = {
     ],
 };
 
+/*
+ * Returns the list of interface names used by this CPSW instance for pinmux
+ * code generation. The XDT template iterates this list and resolves each name
+ * via getBinding(instance, interfaceName) → instance[name+"_pinmux"].peripheral.
+ */
 function getInterfaceNameList(inst) {
-    return pinMuxScript.getInterfaceNameList(inst);
-}
+    let list = ["MDIO"];
 
-function pinmuxRequirements(inst) {
-    return pinMuxScript.pinmuxRequirements(inst);
-}
+    if (inst.phyToMacInterfaceMode === "RMII") {
+        list.push("RMII1");
+        list.push("RMII2");
+    } else {
+        /* Default: RGMII */
+        list.push("RGMII1");
+        list.push("RGMII2");
+    }
 
-function getPeripheralPinNames(inst)
-{
-    return pinMuxScript.getPeripheralPinNames(inst);
+    if (inst.enableTsOut) list.push("CPSW_CPTS");
+
+    return list;
 }
 
 const enet_clock_config =
@@ -629,6 +637,91 @@ function moduleInstances(instance) {
         group: "lwipIfConfig",
     });
 
+    /* --- Pinmux children (new-pattern, replaces pinmuxRequirements) --- */
+
+    /* MDIO — always present */
+    Instances.push(
+        {
+            name: "MDIO_pinmux",
+            displayName: "MDIO Pinmux",
+            moduleName: "/drivers/pinmux/wrappers/MDIO",
+            collapsed: false,
+            args: { $name: instance.$name + "_MDIO_pinmux" },
+        },
+        {
+            name: "MDIO",
+            moduleName: "/drivers/pinmux/peripheral",
+            collapsed: true,
+            args: {
+                interfaceName: "MDIO",
+                $name: instance.$name + "_MDIO_legacy",
+            },
+        }
+    );
+
+    /* MAC interface pins — both ports always created regardless of DisableMacPort1/2.
+     * Port-enable is a MAC-layer concern; the solver still needs pin resources for
+     * both ports so that legacy .syscfg files assigning $suggestSolution on RGMII2
+     * (even when DisableMacPort2=true) continue to work. */
+    const macIfType = (instance.phyToMacInterfaceMode === "RMII") ? "RMII" : "RGMII";
+
+    for (const portIdx of ["1", "2"]) {
+        Instances.push(
+            {
+                name: macIfType + portIdx + "_pinmux",
+                displayName: macIfType + portIdx + " Pinmux",
+                moduleName: `/drivers/pinmux/wrappers/${macIfType}`,
+                collapsed: false,
+                args: { $name: instance.$name + "_" + macIfType + portIdx + "_pinmux" },
+            },
+            {
+                name: macIfType + portIdx,
+                moduleName: "/drivers/pinmux/peripheral",
+                collapsed: true,
+                args: {
+                    interfaceName: macIfType + portIdx,
+                    interfaceTypeName: macIfType,
+                    $name: instance.$name + "_" + macIfType + portIdx + "_legacy",
+                },
+            }
+        );
+    }
+
+    /* CPTS TS_SYNC — only when CPTS timestamp output is enabled.
+     * On AM62DX/AM62AX/AM62PX the TS_SYNC pin lives under the CPSW3G interface.
+     * Use a CPSW3G wrapper with all non-TS_SYNC pins stripped via removedPins,
+     * and a CPSW_CPTS legacy shim so old .syscfg files can still set
+     * enet_cpswN.CPSW_CPTS.$suggestSolution and .CPSW_CPTS.TS_SYNC.$suggestSolution. */
+    if (instance.enableTsOut) {
+        const cpsw3gPins = Object.keys(
+            system.deviceData.interfaces["CPSW3G"].interfacePins
+        );
+        Instances.push(
+            {
+                name: "CPSW_CPTS_pinmux",
+                displayName: "CPTS TS_SYNC Pinmux",
+                moduleName: "/drivers/pinmux/wrappers/CPSW3G",
+                collapsed: false,
+                args: {
+                    removedPins: JSON.stringify(
+                        cpsw3gPins.filter(p => p !== "TS_SYNC")
+                    ),
+                    $name: instance.$name + "_CPSW_CPTS_pinmux",
+                },
+            },
+            {
+                name: "CPSW_CPTS",
+                moduleName: "/drivers/pinmux/peripheral",
+                collapsed: true,
+                args: {
+                    interfaceName: "CPSW_CPTS",
+                    interfaceTypeName: "CPSW3G",
+                    $name: instance.$name + "_CPSW_CPTS_legacy",
+                },
+            }
+        );
+    }
+
     return (Instances);
 }
 
@@ -917,9 +1010,7 @@ let enet_cpsw_module = {
     moduleInstances: moduleInstances,
     utils: utilsScript,
     sharedModuleInstances: addSharedModuleInstances,
-    pinmuxRequirements,
     getInterfaceNameList,
-    getPeripheralPinNames,
     getClockEnableIds,
     getClockFrequencies,
     getDmaInterface,

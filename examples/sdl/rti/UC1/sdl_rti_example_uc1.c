@@ -98,7 +98,9 @@
 
 volatile uint32_t isrFlag = RTI_NO_INTERRUPT;
 /**< Flag used to indicate interrupt is generated */
+#if !defined (SOC_AM64X) && !defined (SOC_AM243X)
   SDL_RTI_configParms     pConfig;
+#endif
   uint32_t rtiModule = SDL_WDT_BASE;
 /* ========================================================================== */
 /*                          Function Definitions                              */

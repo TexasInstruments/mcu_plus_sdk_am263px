@@ -1,5 +1,6 @@
 var NAVTREEINDEX69 =
 {
+"structIcssgStats__Pa.html#a07236e05e1d8f222bb9cae83a0a735d2":[18,4,0,9,1,1,17],
 "structIcssgStats__Pa.html#a0783f6e5a7ea19b7be44a22343580bbb":[18,4,0,9,1,1,87],
 "structIcssgStats__Pa.html#a08844a9bf9b0d1d8d666e5f8e5a93076":[18,4,0,9,1,1,45],
 "structIcssgStats__Pa.html#a0aa71a85e6233edf17db859188b2d35d":[18,4,0,9,1,1,28],
@@ -248,6 +249,5 @@ var NAVTREEINDEX69 =
 "structLED__Fxns.html#a54728ac734c40551dfad2c2f8254f550":[18,1,3,1,0],
 "structLED__Fxns.html#ab25a9ae00c0d9fbcd9c732072f1696fe":[18,1,3,1,2],
 "structLED__Fxns.html#ad0eebb6f8a7318c1064b84441a607911":[18,1,3,1,3],
-"structLED__Object.html":[18,1,3,4],
-"structLED__Object.html#a0175b190d1cb4e789d810ad5bd1c870c":[18,1,3,4,1]
+"structLED__Object.html":[18,1,3,4]
 };

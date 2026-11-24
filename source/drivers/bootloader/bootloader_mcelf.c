@@ -147,6 +147,7 @@ static int32_t Bootloader_parseNoteSegment(Bootloader_Handle handle,
 static int32_t Bootloader_authInit(uint32_t certLoadAddr);
 static int32_t Bootloader_authUpdate(uint32_t segAddr, uint32_t segSize, uint8_t final_pkt, uint64_t dst);
 static int32_t Bootloader_authFinish(void);
+static void Bootloader_finishAuth(int32_t *status);
 
 /* Function to copy DMA restricted regions */
 static void Bootloader_restrictedRegionCopy(Bootloader_Handle handle, uint32_t segmentSize, uint32_t loadAddr);
@@ -728,6 +729,17 @@ static int32_t Bootloader_authFinish(void)
     }
 
     return status;
+}
+
+/* Runs the finish step regardless of earlier failures, without masking the earlier error */
+static void Bootloader_finishAuth(int32_t *status)
+{
+    int32_t finishStatus = Bootloader_authFinish();
+
+    if(*status == SystemP_SUCCESS)
+    {
+        *status = finishStatus;
+    }
 }
 
 static void Bootloader_restrictedRegionCopy(Bootloader_Handle handle, uint32_t segmentSize, uint32_t loadAddr)
@@ -1381,11 +1393,8 @@ int32_t Bootloader_parseAndLoadMultiCoreELF(Bootloader_Handle handle, Bootloader
                                                        imgAddr, isAuthRequired);
             }
 
-            /* Finish authentication */
-            if(status == SystemP_SUCCESS)
-            {
-                status = Bootloader_authFinish();
-            }
+            /* Always finish authentication so that SYSFW releases the SAxUL resources */
+            Bootloader_finishAuth(&status);
         }
         else
         {
@@ -1538,7 +1547,7 @@ int32_t Bootloader_UartParseAndLoadMultiCoreELF(Bootloader_Handle handle, Bootlo
 
             if(status == SystemP_SUCCESS)
             {
-                Bootloader_parseELFMeta(handle, bootImageInfo, &mcelfMetaInfo);
+                status = Bootloader_parseELFMeta(handle, bootImageInfo, &mcelfMetaInfo);
             }
 
             if(status == SystemP_SUCCESS)
@@ -1727,11 +1736,9 @@ int32_t Bootloader_UartParseAndLoadMultiCoreELF(Bootloader_Handle handle, Bootlo
                 status = config->fxns->imgCustomFxn(config->args);
 
             }
-            if(status == SystemP_SUCCESS)
-            {
-                status = Bootloader_authFinish();
-            }
 
+            /* Always finish authentication so that SYSFW releases the SAxUL resources */
+            Bootloader_finishAuth(&status);
         }
     }
     return status;
@@ -1817,11 +1824,8 @@ int32_t Bootloader_parseAndLoadMultiCoreELFLinux(Bootloader_Handle handle, Bootl
                                                            imgAddr, isAuthRequired);
             }
 
-            /* Finish authentication */
-            if(status == SystemP_SUCCESS)
-            {
-                status = Bootloader_authFinish();
-            }
+            /* Always finish authentication so that SYSFW releases the SAxUL resources */
+            Bootloader_finishAuth(&status);
         }
         else
         {

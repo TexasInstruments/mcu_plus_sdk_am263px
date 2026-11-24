@@ -1,5 +1,6 @@
 var NAVTREEINDEX61 =
 {
+"structCANFD__OptionTLV.html#a5fca1db5897ba2df41f476ea99d9e55f":[18,7,2,13,0],
 "structCANFD__OptionTLV.html#abfda5d1d7ad7be5b46e4f1baf6a77f24":[18,7,2,13,1],
 "structCANFD__OptionTLV.html#ae0e9bbb0ecfcd91a2b3fcaf8f6eefe9c":[18,7,2,13,2],
 "structCMACArgs__t.html":[18,7,16,21],
@@ -248,6 +249,5 @@ var NAVTREEINDEX61 =
 "structCpswAle__SetInterVlanCfgInArgs.html#a076684cdd1b9a01276f5aac3451a1295":[18,4,0,1,0,37,1],
 "structCpswAle__SetInterVlanCfgInArgs.html#a1648cef376f374c5c0f22a89f78e3097":[18,4,0,1,0,37,2],
 "structCpswAle__SetInterVlanCfgInArgs.html#a73c77a294d6848aff2b49e6eae2d54a0":[18,4,0,1,0,37,3],
-"structCpswAle__SetInterVlanCfgInArgs.html#a7990a4507187e2f184aeb0eb0286ba14":[18,4,0,1,0,37,0],
-"structCpswAle__SetInterVlanCfgInArgs.html#ab19004b0ea80c0dfeaa9d92e646c81c3":[18,4,0,1,0,37,4]
+"structCpswAle__SetInterVlanCfgInArgs.html#a7990a4507187e2f184aeb0eb0286ba14":[18,4,0,1,0,37,0]
 };

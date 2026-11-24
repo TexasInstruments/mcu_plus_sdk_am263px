@@ -1,5 +1,6 @@
 var NAVTREEINDEX66 =
 {
+"structEnetPhy__Cfg.html#a0fbd51a9e60e0b019a8d7c96f57464c7":[18,4,0,13,13,8],
 "structEnetPhy__Cfg.html#a13e073030c36adfcfb2578f3e6aab261":[18,4,0,13,13,5],
 "structEnetPhy__Cfg.html#a2fec6f917edb406803098dc9fa8f0cfb":[18,4,0,13,13,10],
 "structEnetPhy__Cfg.html#a326170d15fbd5660cd42f4058afca30b":[18,4,0,13,13,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX66 =
 "structFlashBankCopy__t.html":[18,7,16,19],
 "structFlashBankCopy__t.html#ad1220dd6b3216f69921bff5b11ed4a74":[18,7,16,19,0],
 "structFlash__Attrs.html":[18,1,1,4],
-"structFlash__Attrs.html#a0739ae1cced960468b78744a35959098":[18,1,1,4,11],
-"structFlash__Attrs.html#a36c227118f5cc35e681ab38b5c59e3b9":[18,1,1,4,0]
+"structFlash__Attrs.html#a0739ae1cced960468b78744a35959098":[18,1,1,4,11]
 };
