@@ -60,45 +60,45 @@
 /*===========================================================================*/
 
 /* Declaration of Global structure to contain all register values*/
-SDL_R5FCPU_StaticRegs  pCPUStaticRegs;
-SDL_R5MPU_staticRegs   pMPUStaticRegs;
+SDL_R5FCPU_StaticRegs  r5fCPUStaticRegs;
+SDL_R5MPU_staticRegs   r5fMPUStaticRegs;
 
 int32_t  sdl_apiTest(void);
-void    print_CPU_RegisterValue(SDL_R5FCPU_StaticRegs  *pCPUStaticRegs);
+void    print_CPU_RegisterValue(SDL_R5FCPU_StaticRegs  *r5fCPUStaticRegs);
 
 /*===========================================================================*/
 /*                         Local Function definitions                        */
 /*===========================================================================*/
 
-void  print_CPU_RegisterValue(SDL_R5FCPU_StaticRegs  *pCPUStaticRegs)
+void  print_CPU_RegisterValue(SDL_R5FCPU_StaticRegs  *r5fCPUStaticRegs)
 {
-    DebugP_log("The SCTLR register value  is  0x%x \r\n",pCPUStaticRegs->SCTLR);
-    DebugP_log("The ACTLR register value  is  0x%x \r\n",pCPUStaticRegs->ACTLR);
-    DebugP_log("The SecondaryACTLR register value  is  0x%x \r\n",pCPUStaticRegs->SecondaryACTLR);
-    DebugP_log("The CPACR register value  is  0x%x \r\n",pCPUStaticRegs->CPACR);
-    DebugP_log("The BTCMRegionR register value  is  0x%x \r\n", pCPUStaticRegs->BTCMRegionR);
-    DebugP_log("The ATCMRegionR register value  is  0x%x \r\n",pCPUStaticRegs->ATCMRegionR);
-    DebugP_log("The SlavePortControlR register value  is  0x%x \r\n",pCPUStaticRegs->SlavePortControlR);
-    DebugP_log("The CONTEXTIDR register value  is  0x%x \r\n",pCPUStaticRegs->CONTEXTIDR);
-    DebugP_log("The nVALIRQSET register value  is  0x%x \r\n",pCPUStaticRegs->nVALIRQSET);
-    DebugP_log("The nVALFIQSET register value  is  0x%x \r\n",pCPUStaticRegs->nVALFIQSET);
-    DebugP_log("The nVALRESETSET register value  is  0x%x \r\n",pCPUStaticRegs->nVALRESETSET);
-    DebugP_log("The nVALDEBUGSET register value  is  0x%x \r\n",pCPUStaticRegs->nVALDEBUGSET);
-    DebugP_log("The nVALIRQCLEAR register value  is  0x%x \r\n",pCPUStaticRegs->nVALIRQCLEAR);
-    DebugP_log("The nVALFIQCLEAR register value  is  0x%x \r\n",pCPUStaticRegs->nVALFIQCLEAR);
-    DebugP_log("The nVALRESETCLEAR register value  is  0x%x \r\n",pCPUStaticRegs->nVALRESETCLEAR);
-    DebugP_log("The nVALDEBUGCLEAR register value  is  0x%x \r\n",pCPUStaticRegs->nVALDEBUGCLEAR);
-    DebugP_log("The BuildOption1R register value  is  0x%x \r\n",pCPUStaticRegs->BuildOption1R);
-    DebugP_log("The BuildOption2R register value  is  0x%x \r\n",pCPUStaticRegs->BuildOption2R);
-    DebugP_log("The PinOptionR register value  is  0x%x \r\n",pCPUStaticRegs->PinOptionR);
-    DebugP_log("The LLPPnormalAXIRR register value  is  0x%x \r\n",pCPUStaticRegs->LLPPnormalAXIRR);
-    DebugP_log("The LLPPvirtualAXIRR register value  is  0x%x \r\n",pCPUStaticRegs->LLPPvirtualAXIRR);
-    DebugP_log("The AHBRR register value  is  0x%x \r\n",pCPUStaticRegs->AHBRR);
-    DebugP_log("The PMCNTENSET register value  is  0x%x \r\n",pCPUStaticRegs->PMCNTENSET);
-    DebugP_log("The PMCR register value  is  0x%x \r\n",pCPUStaticRegs->PMCR);
-    DebugP_log("The PMUSERENR register value  is  0x%x \r\n",pCPUStaticRegs->PMUSERENR);
-    DebugP_log("The PMINTENSET register value  is  0x%x \r\n",pCPUStaticRegs->PMINTENSET);
-    DebugP_log("The PMINTENCLR register value  is  0x%x \r\n",pCPUStaticRegs->PMINTENCLR);
+    DebugP_log("The SCTLR register value  is  0x%x \r\n",r5fCPUStaticRegs->SCTLR);
+    DebugP_log("The ACTLR register value  is  0x%x \r\n",r5fCPUStaticRegs->ACTLR);
+    DebugP_log("The SecondaryACTLR register value  is  0x%x \r\n",r5fCPUStaticRegs->SecondaryACTLR);
+    DebugP_log("The CPACR register value  is  0x%x \r\n",r5fCPUStaticRegs->CPACR);
+    DebugP_log("The BTCMRegionR register value  is  0x%x \r\n", r5fCPUStaticRegs->BTCMRegionR);
+    DebugP_log("The ATCMRegionR register value  is  0x%x \r\n",r5fCPUStaticRegs->ATCMRegionR);
+    DebugP_log("The SlavePortControlR register value  is  0x%x \r\n",r5fCPUStaticRegs->SlavePortControlR);
+    DebugP_log("The CONTEXTIDR register value  is  0x%x \r\n",r5fCPUStaticRegs->CONTEXTIDR);
+    DebugP_log("The nVALIRQSET register value  is  0x%x \r\n",r5fCPUStaticRegs->nVALIRQSET);
+    DebugP_log("The nVALFIQSET register value  is  0x%x \r\n",r5fCPUStaticRegs->nVALFIQSET);
+    DebugP_log("The nVALRESETSET register value  is  0x%x \r\n",r5fCPUStaticRegs->nVALRESETSET);
+    DebugP_log("The nVALDEBUGSET register value  is  0x%x \r\n",r5fCPUStaticRegs->nVALDEBUGSET);
+    DebugP_log("The nVALIRQCLEAR register value  is  0x%x \r\n",r5fCPUStaticRegs->nVALIRQCLEAR);
+    DebugP_log("The nVALFIQCLEAR register value  is  0x%x \r\n",r5fCPUStaticRegs->nVALFIQCLEAR);
+    DebugP_log("The nVALRESETCLEAR register value  is  0x%x \r\n",r5fCPUStaticRegs->nVALRESETCLEAR);
+    DebugP_log("The nVALDEBUGCLEAR register value  is  0x%x \r\n",r5fCPUStaticRegs->nVALDEBUGCLEAR);
+    DebugP_log("The BuildOption1R register value  is  0x%x \r\n",r5fCPUStaticRegs->BuildOption1R);
+    DebugP_log("The BuildOption2R register value  is  0x%x \r\n",r5fCPUStaticRegs->BuildOption2R);
+    DebugP_log("The PinOptionR register value  is  0x%x \r\n",r5fCPUStaticRegs->PinOptionR);
+    DebugP_log("The LLPPnormalAXIRR register value  is  0x%x \r\n",r5fCPUStaticRegs->LLPPnormalAXIRR);
+    DebugP_log("The LLPPvirtualAXIRR register value  is  0x%x \r\n",r5fCPUStaticRegs->LLPPvirtualAXIRR);
+    DebugP_log("The AHBRR register value  is  0x%x \r\n",r5fCPUStaticRegs->AHBRR);
+    DebugP_log("The PMCNTENSET register value  is  0x%x \r\n",r5fCPUStaticRegs->PMCNTENSET);
+    DebugP_log("The PMCR register value  is  0x%x \r\n",r5fCPUStaticRegs->PMCR);
+    DebugP_log("The PMUSERENR register value  is  0x%x \r\n",r5fCPUStaticRegs->PMUSERENR);
+    DebugP_log("The PMINTENSET register value  is  0x%x \r\n",r5fCPUStaticRegs->PMINTENSET);
+    DebugP_log("The PMINTENCLR register value  is  0x%x \r\n",r5fCPUStaticRegs->PMINTENCLR);
 }
 
 int32_t sdl_apiTest(void)
@@ -106,19 +106,19 @@ int32_t sdl_apiTest(void)
     int32_t sdlResult = SDL_EBADARGS;
     uint32_t SDL_MPU_region;
     /*Read all R5F cpu static registers*/
-    sdlResult = SDL_CPU_staticRegisterRead(&pCPUStaticRegs);
+    sdlResult = SDL_CPU_staticRegisterRead(&r5fCPUStaticRegs);
 
     for(SDL_MPU_region = 0; SDL_MPU_region < SDL_MPU_REGION_MAX; SDL_MPU_region++)
     {
-        SDL_R5MPU_readStaticRegisters(&pMPUStaticRegs, SDL_MPU_region);
+        SDL_R5MPU_readStaticRegisters(&r5fMPUStaticRegs, SDL_MPU_region);
         DebugP_log("The MPU Register read started for MPU REGION -> 0x%d \r\n\n",SDL_MPU_region);
 
-        DebugP_log("The SCTLR register value  is  0x%x \r\n",pMPUStaticRegs.sysControlReg);
-        DebugP_log("The MPUIR register value  is  0x%x \r\n",pMPUStaticRegs.mpuTypeReg);
-        DebugP_log("The RGNR register value  is  0x%x \r\n",pMPUStaticRegs.regionId);
-        DebugP_log("The MPURbaseAddr register value  is  0x%x \r\n",pMPUStaticRegs.baseAddr);
-        DebugP_log("The MPURsize register value  is  0x%x \r\n",pMPUStaticRegs.size);
-        DebugP_log("The MPURaccessControl register value  is  0x%x \r\n\n",pMPUStaticRegs.accessPermission);
+        DebugP_log("The SCTLR register value  is  0x%x \r\n",r5fMPUStaticRegs.sysControlReg);
+        DebugP_log("The MPUIR register value  is  0x%x \r\n",r5fMPUStaticRegs.mpuTypeReg);
+        DebugP_log("The RGNR register value  is  0x%x \r\n",r5fMPUStaticRegs.regionId);
+        DebugP_log("The MPURbaseAddr register value  is  0x%x \r\n",r5fMPUStaticRegs.baseAddr);
+        DebugP_log("The MPURsize register value  is  0x%x \r\n",r5fMPUStaticRegs.size);
+        DebugP_log("The MPURaccessControl register value  is  0x%x \r\n\n",r5fMPUStaticRegs.accessPermission);
     }
 
     if (sdlResult==SDL_PASS)
@@ -132,7 +132,7 @@ int32_t sdl_apiTest(void)
         sdlResult = SDL_EBADARGS;
     }
     /*Print All register values*/
-    print_CPU_RegisterValue(&pCPUStaticRegs);
+    print_CPU_RegisterValue(&r5fCPUStaticRegs);
 
     return sdlResult;
 

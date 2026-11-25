@@ -201,7 +201,12 @@ See Also</h1>
 <h1><a class="anchor" id="autotoc_md1819"></a>
 Sample Output</h1>
 <p>Shown below is a sample output when the application is run,</p>
-<dl class="section note"><dt>Note</dt><dd>The GPIO pin numbers printed in the log depend on the board configuration (e.g., GPIO 43 on AM263x CC, or GPIO 62 on AM243x LP / AM64x EVM).</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The GPIO pin numbers printed in the log depend on the board configuration:<ul>
+<li><b>AM263x CC</b>: GPIO 43 (TC1), GPIO 44 (TC2 ISR 1), GPIO 45 (TC2 ISR 2).</li>
+<li><b>AM243x LP</b>: GPIO 62 (TC1, BoosterPack J3 pin 23), GPIO 63 (TC2 ISR 1, BoosterPack J3 pin 24), GPIO 64 (TC2 ISR 2, BoosterPack J3 pin 25).</li>
+<li><b>AM64x</b>: MCU_GPIO0_9 (TC1, MCU Header J1 pin 12), MCU_GPIO0_7 (TC2 ISR 1, MCU Header J1 pin 9), MCU_GPIO0_8 (TC2 ISR 2, MCU Header J1 pin 5). Ground on J1 pin 23.</li>
+</ul>
+</dd></dl>
 <div class="fragment"><div class="line">DPL Low latency interrupt example started...</div>
 <div class="line"> </div>
 <div class="line">Interrupt Latency test...</div>
@@ -209,7 +214,7 @@ Sample Output</h1>
 <div class="line">Configuring source of interrupts... Done.</div>
 <div class="line">Registering interrupt handler in R5F VIM... Done.</div>
 <div class="line">Configuring pin to toggle in background loop... Done.</div>
-<div class="line">Please observe pin (GPIO 43 on AM263x / GPIO 62 on AM243x / AM64x)</div>
+<div class="line">Please observe pin (GPIO 43 on AM263x / GPIO 62 on AM243x LP / MCU GPIO 9 on AM64x)</div>
 <div class="line">   If toggling         -&gt; Background loop running</div>
 <div class="line">   If gap/no toggling  -&gt; Background loop interrupted. Interrupt routine running</div>
 <div class="line">Waiting for few seconds... Done.</div>
@@ -220,9 +225,9 @@ Sample Output</h1>
 <div class="line">Configuring source of interrupts... Done.</div>
 <div class="line">Registering interrupt handlers in R5F VIM... Done.</div>
 <div class="line">Configuring pins to use in interrupt routine... Done.</div>
-<div class="line">Please observe pins (GPIO 44 and 45 on AM263x / GPIO 63 and 64 on AM243x)</div>
-<div class="line">   If pin 44/63 high -&gt; ISR 1 running</div>
-<div class="line">   If pin 45/64 high -&gt; ISR 2 running</div>
+<div class="line">Please observe pins (GPIO 44 and 45 on AM263x / GPIO 63 and 64 on AM243x LP / MCU GPIO 7 and 8 on AM64x)</div>
+<div class="line">   If pin 44/63/7 high -&gt; ISR 1 running</div>
+<div class="line">   If pin 45/64/8 high -&gt; ISR 2 running</div>
 <div class="line">Waiting for few seconds...</div>
 <div class="line">De-initializations... Done.</div>
 <div class="line"> </div>

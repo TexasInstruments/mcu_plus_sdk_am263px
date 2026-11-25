@@ -475,7 +475,15 @@ int32_t MCSPI_transfer(MCSPI_Handle handle, MCSPI_Transaction *transaction)
                         }
                         else
                         {
-                            MCSPI_stop(mcspiLldHandle, &mcspiLldInithandle->chObj[chNum], chNum);
+                            /* Stop MCSPI Channel on timeout */
+                            if(MCSPI_OPER_MODE_DMA == attrs->operMode)
+                            {
+                                MCSPI_lld_dmaStop(mcspiLldHandle, &mcspiLldInithandle->chObj[chNum], chNum);
+                            }
+                            else
+                            {
+                                MCSPI_stop(mcspiLldHandle, &mcspiLldInithandle->chObj[chNum], chNum);
+                            }
                             status = SystemP_FAILURE;
                             /* update HLD current transaction status from LLD */
                             (void)memcpy(obj->transaction,
@@ -574,18 +582,15 @@ int32_t MCSPI_transferCancel(MCSPI_Handle handle)
             lldStatus = MCSPI_lld_readWriteDmaCancel(mcspiLldHandle);
         }
 
-        obj->transaction->status = MCSPI_TRANSFER_CANCELLED;
-        obj->transaction = NULL;
-    }
-    if ((lldStatus != MCSPI_STATUS_SUCCESS) &&
-        (lldStatus == MCSPI_INVALID_PARAM)  &&
-        (lldStatus != MCSPI_TRANSFER_CANCELLED))
-    {
-        status = SystemP_FAILURE;
-    }
-    else
-    {
-        status = SystemP_SUCCESS;
+        if (lldStatus == MCSPI_TRANSFER_CANCELLED)
+        {
+            obj->transaction->status = MCSPI_TRANSFER_CANCELLED;
+            obj->transaction = NULL;
+        }
+        else
+        {
+            status = MCSPI_STATUS_FAILURE;
+        }
     }
 
     return (status);

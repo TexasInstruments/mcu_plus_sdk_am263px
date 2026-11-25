@@ -91,8 +91,10 @@ extern "C" {
 #define SA2UL_RING_N_ELEMS              (8U)
 /** \brief Max SA2UL sw ring number */
 #define SA2UL_SW_RING_NUM               (304U)
-/** \brief Max Aes input length for encryption and decryption (64KB-1)*/
-#define SA2UL_MAX_INPUT_LENGTH_ENC      (0xFFFFU)
+/** \brief Maximum packet size allowed for SA2UL encryption engine (64KB - 1).
+ *         However input lengths to AES algorithm must be multiples of 16 bytes.
+ *         Effectively the maximum packet size is (64*1024 - 16) bytes. */
+#define SA2UL_MAX_INPUT_LENGTH_ENC      (0xFFF0U)
 /** \brief Max input length for authentication (4MB-1) */
 #define SA2UL_MAX_INPUT_LENGTH_AUTH     (0x3FFFFFU)
 /** \brief Max Additional Authenticated Data (AAD) size in bytes */

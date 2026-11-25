@@ -967959,3 +967959,437 @@ Date:   Sat Nov 21 18:22:53 2026 +0530
  tools/usb_test_scripts/usb_vendor_bulk_echo_test.py                         |   316 +
  54324 files changed, 9381172 insertions(+)
 
+========================================
+Changes from build on 2026-11-25 20:50:13
+Previous commit: 23083e1b6d6bf422bdf725bb99542084d5f771f0
+Current commit: b4aa9698336222df176e2508e3f20ecd4a6d9652
+========================================
+
+commit b4aa9698336222df176e2508e3f20ecd4a6d9652
+Author: Amalia Firos <f-amalia@ti.com>
+Date:   Wed Nov 25 17:08:20 2026 +0530
+
+    am64x/am243x: sbl_emmc: Add SDL library path to project config
+    
+    - Add SDL library for am64x and am243x in sbl_emmc and sbl_emmc_linux
+      project configs
+    - Regenerate makefiles and projectspecs for affected r5f targets
+    
+    Fixes: SITSW-10826
+    
+    Signed-off-by: Amalia F <f-amalia@ti.com>
+
+ examples/drivers/boot/sbl_emmc/.project/project_am243x.js                        | 2 ++
+ examples/drivers/boot/sbl_emmc/.project/project_am64x.js                         | 2 ++
+ examples/drivers/boot/sbl_emmc/am243x-evm/r5fss0-0_nortos/gcc-armv7/makefile     | 2 ++
+ .../boot/sbl_emmc/am243x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec    | 3 +++
+ examples/drivers/boot/sbl_emmc/am243x-evm/r5fss0-0_nortos/ti-arm-clang/makefile  | 4 ++++
+ .../boot/sbl_emmc/am64x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec     | 3 +++
+ examples/drivers/boot/sbl_emmc/am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile   | 4 ++++
+ examples/drivers/boot/sbl_emmc_linux/.project/project_am64x.js                   | 2 ++
+ .../sbl_emmc_linux/am64x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec    | 3 +++
+ .../drivers/boot/sbl_emmc_linux/am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile  | 4 ++++
+ 10 files changed, 29 insertions(+)
+
+commit 9dbaa2b559886324fe6ccff59d88736f5c6a4f0d
+Author: Amalia Firos <f-amalia@ti.com>
+Date:   Wed Nov 25 22:10:17 2026 +0530
+
+    am64x: sbl_emmc: Enable MCU PBIST positive and negative tests
+    
+    - Revert "am64x: sbl_emmc: Enable MCU PBIST positive and
+      negative tests"
+    - This reverts commit c3ca8631873ad4e05e7176a99c5706fe156180e5.
+    
+    Fixes: SITSW-10826
+    
+    Signed-off-by: Amalia F <f-amalia@ti.com>
+
+ examples/drivers/boot/sbl_emmc/.project/project_am64x.js                         |  2 --
+ examples/drivers/boot/sbl_emmc/am64x-evm/r5fss0-0_nortos/example.syscfg          |  9 ---------
+ examples/drivers/boot/sbl_emmc/am64x-evm/r5fss0-0_nortos/main.c                  | 18 ------------------
+ .../boot/sbl_emmc/am64x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec     |  3 ---
+ examples/drivers/boot/sbl_emmc/am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile   |  4 ----
+ 5 files changed, 36 deletions(-)
+
+commit af8e72e38a3e3a27c711cd54710ea6a06bf26f1f
+Author: Amalia Firos <f-amalia@ti.com>
+Date:   Wed Nov 25 22:10:15 2026 +0530
+
+    am243x: sbl_emmc: Enable MCU PBIST positive and negative tests
+    
+    - Revert "am243x: sbl_emmc: Enable MCU PBIST positive
+      and negative tests"
+    - This reverts commit 76d08d9b182b69182c614efcbf6dee28d075930a.
+    
+    Fixes: SITSW-10826
+    
+    Signed-off-by: Amalia F <f-amalia@ti.com>
+
+ examples/drivers/boot/sbl_emmc/.project/project_am243x.js                        |  2 --
+ examples/drivers/boot/sbl_emmc/am243x-evm/r5fss0-0_nortos/example.syscfg         |  8 --------
+ examples/drivers/boot/sbl_emmc/am243x-evm/r5fss0-0_nortos/gcc-armv7/makefile     |  2 --
+ examples/drivers/boot/sbl_emmc/am243x-evm/r5fss0-0_nortos/main.c                 | 15 ---------------
+ .../boot/sbl_emmc/am243x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec    |  3 ---
+ examples/drivers/boot/sbl_emmc/am243x-evm/r5fss0-0_nortos/ti-arm-clang/makefile  |  4 ----
+ 6 files changed, 34 deletions(-)
+
+commit c6cf44cfd8e83e794275613d62dd5af414bb9488
+Author: Amalia Firos <f-amalia@ti.com>
+Date:   Wed Nov 25 22:10:12 2026 +0530
+
+    am64x: sbl_emmc_linux: enable MCU PBIST positive and negative tests
+    
+    - Revert "am64x: sbl_emmc_linux: enable MCU PBIST positive
+      and negative tests
+    - This reverts commit 948e369971f7d95634a7483bebbcc5aca325a86c.
+    
+    Fixes: SITSW-10826
+    
+    Signed-off-by: Amalia F <f-amalia@ti.com>
+
+ examples/drivers/boot/sbl_emmc_linux/.project/project_am64x.js                   |  2 --
+ examples/drivers/boot/sbl_emmc_linux/am64x-evm/r5fss0-0_nortos/example.syscfg    |  9 ---------
+ examples/drivers/boot/sbl_emmc_linux/am64x-evm/r5fss0-0_nortos/main.c            | 15 ---------------
+ .../sbl_emmc_linux/am64x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec    |  3 ---
+ .../drivers/boot/sbl_emmc_linux/am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile  |  4 ----
+ 5 files changed, 33 deletions(-)
+
+commit 948e369971f7d95634a7483bebbcc5aca325a86c
+Author: Amalia Firos <f-amalia@ti.com>
+Date:   Wed Nov 25 10:53:33 2026 +0530
+
+    am64x: sbl_emmc_linux: enable MCU PBIST positive and negative tests
+    
+    - Configure CONFIG_MCU_PBIST0 in example.syscfg (MCU, R5F1, INFRA,
+      and MPU instances)
+    - Add SDL library search and link entries across project_am64x.js,
+      ti-arm-clang makefile, and example.projectspec
+    - Run PBIST positive completion and negative tests in main.c
+    
+    Fixes: SITSW-10826
+    
+    Signed-off-by: Amalia F <f-amalia@ti.com>
+
+ examples/drivers/boot/sbl_emmc_linux/.project/project_am64x.js                   |  2 ++
+ examples/drivers/boot/sbl_emmc_linux/am64x-evm/r5fss0-0_nortos/example.syscfg    |  9 +++++++++
+ examples/drivers/boot/sbl_emmc_linux/am64x-evm/r5fss0-0_nortos/main.c            | 15 +++++++++++++++
+ .../sbl_emmc_linux/am64x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec    |  3 +++
+ .../drivers/boot/sbl_emmc_linux/am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile  |  4 ++++
+ 5 files changed, 33 insertions(+)
+
+commit 76d08d9b182b69182c614efcbf6dee28d075930a
+Author: Amalia Firos <f-amalia@ti.com>
+Date:   Wed Nov 25 10:52:40 2026 +0530
+
+    am243x: sbl_emmc: Enable MCU PBIST positive and negative tests
+    
+    - Configure CONFIG_MCU_PBIST0 in example.syscfg (MCU, R5F1, and INFRA
+      instances)
+    - Add SDL library paths and links in project_am243x.js, ti-arm-clang
+      and gcc-armv7 makefiles, and example.projectspec
+    - Run PBIST positive completion and negative tests in main.c
+    
+    Fixes: SITSW-10826
+    
+    Signed-off-by: Amalia F <f-amalia@ti.com>
+
+ examples/drivers/boot/sbl_emmc/.project/project_am243x.js                        |  2 ++
+ examples/drivers/boot/sbl_emmc/am243x-evm/r5fss0-0_nortos/example.syscfg         |  8 ++++++++
+ examples/drivers/boot/sbl_emmc/am243x-evm/r5fss0-0_nortos/gcc-armv7/makefile     |  2 ++
+ examples/drivers/boot/sbl_emmc/am243x-evm/r5fss0-0_nortos/main.c                 | 15 +++++++++++++++
+ .../boot/sbl_emmc/am243x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec    |  3 +++
+ examples/drivers/boot/sbl_emmc/am243x-evm/r5fss0-0_nortos/ti-arm-clang/makefile  |  4 ++++
+ 6 files changed, 34 insertions(+)
+
+commit c3ca8631873ad4e05e7176a99c5706fe156180e5
+Author: Amalia Firos <f-amalia@ti.com>
+Date:   Wed Nov 25 10:49:16 2026 +0530
+
+    am64x: sbl_emmc: Enable MCU PBIST positive and negative tests
+    
+    - Configure CONFIG_MCU_PBIST0 in example.syscfg (MCU, R5F1, INFRA,
+      and MPU instances)
+    - Add SDL library search and link flags across project_am64x.js,
+      ti-arm-clang makefile, and example.projectspec
+    - Execute PBIST positive completion and negative tests in main.c
+    
+    Fixes: SITSW-10826
+    
+    Signed-off-by: Amalia F <f-amalia@ti.com>
+
+ examples/drivers/boot/sbl_emmc/.project/project_am64x.js                         |  2 ++
+ examples/drivers/boot/sbl_emmc/am64x-evm/r5fss0-0_nortos/example.syscfg          |  9 +++++++++
+ examples/drivers/boot/sbl_emmc/am64x-evm/r5fss0-0_nortos/main.c                  | 18 ++++++++++++++++++
+ .../boot/sbl_emmc/am64x-evm/r5fss0-0_nortos/ti-arm-clang/example.projectspec     |  3 +++
+ examples/drivers/boot/sbl_emmc/am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile   |  4 ++++
+ 5 files changed, 36 insertions(+)
+
+commit 6bd468230942f55197eabb7f10f1f1fc5da71a2e
+Author: Enesh Manian <enesh.manian@ti.com>
+Date:   Wed Nov 25 17:02:47 2026 +0530
+
+    am64x/am243x: DPL Timer: Add testcase for timer inconsistency
+    
+    - Added test case to validate timer inconistency postscalar/prescalar
+    
+    Fixes: SITSW-7868
+    
+    Signed-off-by: Enesh Manian <enesh.manian@ti.com>
+
+ .project/device/project_am243x.js                                           |   1 +
+ .project/device/project_am64x.js                                            |   1 +
+ test/kernel/dpl_timer/.project/project.js                                   |  14 ++
+ test/kernel/dpl_timer/.project/project_am243x.js                            | 210 +++++++++++++++++++++
+ test/kernel/dpl_timer/.project/project_am64x.js                             | 366 ++++++++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/.project/templates/main_freertos.c.xdt                | 102 ++++++++++
+ test/kernel/dpl_timer/.project/templates/main_freertos_smp.c.xdt            | 118 ++++++++++++
+ test/kernel/dpl_timer/am243x-evm/m4fss0-0_freertos/example.syscfg           | 177 +++++++++++++++++
+ test/kernel/dpl_timer/am243x-evm/m4fss0-0_freertos/main.c                   |  88 +++++++++
+ test/kernel/dpl_timer/am243x-evm/m4fss0-0_freertos/ti-arm-clang/makefile    | 349 ++++++++++++++++++++++++++++++++++
+ .../dpl_timer/am243x-evm/m4fss0-0_freertos/ti-arm-clang/makefile.defs       |  11 ++
+ test/kernel/dpl_timer/am243x-evm/m4fss0-0_nortos/example.syscfg             | 177 +++++++++++++++++
+ test/kernel/dpl_timer/am243x-evm/m4fss0-0_nortos/main.c                     |  50 +++++
+ test/kernel/dpl_timer/am243x-evm/m4fss0-0_nortos/ti-arm-clang/makefile      | 346 ++++++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am243x-evm/m4fss0-0_nortos/ti-arm-clang/makefile.defs |  11 ++
+ test/kernel/dpl_timer/am243x-evm/r5fss0-0_freertos/example.syscfg           | 234 +++++++++++++++++++++++
+ test/kernel/dpl_timer/am243x-evm/r5fss0-0_freertos/main.c                   |  88 +++++++++
+ test/kernel/dpl_timer/am243x-evm/r5fss0-0_freertos/ti-arm-clang/makefile    | 351 ++++++++++++++++++++++++++++++++++
+ .../dpl_timer/am243x-evm/r5fss0-0_freertos/ti-arm-clang/makefile.defs       |  11 ++
+ test/kernel/dpl_timer/am243x-evm/r5fss0-0_nortos/example.syscfg             | 234 +++++++++++++++++++++++
+ test/kernel/dpl_timer/am243x-evm/r5fss0-0_nortos/main.c                     |  50 +++++
+ test/kernel/dpl_timer/am243x-evm/r5fss0-0_nortos/ti-arm-clang/makefile      | 348 ++++++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am243x-evm/r5fss0-0_nortos/ti-arm-clang/makefile.defs |  11 ++
+ test/kernel/dpl_timer/am243x-lp/m4fss0-0_freertos/example.syscfg            | 164 ++++++++++++++++
+ test/kernel/dpl_timer/am243x-lp/m4fss0-0_freertos/main.c                    |  88 +++++++++
+ test/kernel/dpl_timer/am243x-lp/m4fss0-0_freertos/ti-arm-clang/makefile     | 349 ++++++++++++++++++++++++++++++++++
+ .../kernel/dpl_timer/am243x-lp/m4fss0-0_freertos/ti-arm-clang/makefile.defs |  11 ++
+ test/kernel/dpl_timer/am243x-lp/m4fss0-0_nortos/example.syscfg              | 164 ++++++++++++++++
+ test/kernel/dpl_timer/am243x-lp/m4fss0-0_nortos/main.c                      |  50 +++++
+ test/kernel/dpl_timer/am243x-lp/m4fss0-0_nortos/ti-arm-clang/makefile       | 346 ++++++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am243x-lp/m4fss0-0_nortos/ti-arm-clang/makefile.defs  |  11 ++
+ test/kernel/dpl_timer/am243x-lp/r5fss0-0_freertos/example.syscfg            | 234 +++++++++++++++++++++++
+ test/kernel/dpl_timer/am243x-lp/r5fss0-0_freertos/main.c                    |  88 +++++++++
+ test/kernel/dpl_timer/am243x-lp/r5fss0-0_freertos/ti-arm-clang/makefile     | 351 ++++++++++++++++++++++++++++++++++
+ .../kernel/dpl_timer/am243x-lp/r5fss0-0_freertos/ti-arm-clang/makefile.defs |  11 ++
+ test/kernel/dpl_timer/am243x-lp/r5fss0-0_nortos/example.syscfg              | 234 +++++++++++++++++++++++
+ test/kernel/dpl_timer/am243x-lp/r5fss0-0_nortos/main.c                      |  50 +++++
+ test/kernel/dpl_timer/am243x-lp/r5fss0-0_nortos/ti-arm-clang/makefile       | 348 ++++++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am243x-lp/r5fss0-0_nortos/ti-arm-clang/makefile.defs  |  11 ++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-0_freertos-smp/example.syscfg        |  47 +++++
+ .../kernel/dpl_timer/am64x-evm/a53ss0-0_freertos-smp/gcc-aarch64/linker.cmd |  68 +++++++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-0_freertos-smp/gcc-aarch64/makefile  | 328 ++++++++++++++++++++++++++++++++
+ .../dpl_timer/am64x-evm/a53ss0-0_freertos-smp/gcc-aarch64/makefile.defs     |  11 ++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-0_freertos-smp/main.c                | 104 ++++++++++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-0_freertos/example.syscfg            |  60 ++++++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-0_freertos/gcc-aarch64/linker.cmd    |  67 +++++++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-0_freertos/gcc-aarch64/makefile      | 321 +++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-0_freertos/gcc-aarch64/makefile.defs |  11 ++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-0_freertos/main.c                    |  88 +++++++++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-0_nortos/example.syscfg              |  47 +++++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-0_nortos/gcc-aarch64/linker.cmd      |  65 +++++++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-0_nortos/gcc-aarch64/makefile        | 317 +++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-0_nortos/gcc-aarch64/makefile.defs   |  11 ++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-0_nortos/main.c                      |  50 +++++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-1_freertos/example.syscfg            |  60 ++++++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-1_freertos/gcc-aarch64/linker.cmd    |  66 +++++++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-1_freertos/gcc-aarch64/makefile      | 321 +++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-1_freertos/gcc-aarch64/makefile.defs |  11 ++
+ test/kernel/dpl_timer/am64x-evm/a53ss0-1_freertos/main.c                    |  88 +++++++++
+ test/kernel/dpl_timer/am64x-evm/m4fss0-0_freertos/example.syscfg            | 176 +++++++++++++++++
+ test/kernel/dpl_timer/am64x-evm/m4fss0-0_freertos/main.c                    |  88 +++++++++
+ test/kernel/dpl_timer/am64x-evm/m4fss0-0_freertos/ti-arm-clang/makefile     | 351 ++++++++++++++++++++++++++++++++++
+ .../kernel/dpl_timer/am64x-evm/m4fss0-0_freertos/ti-arm-clang/makefile.defs |  11 ++
+ test/kernel/dpl_timer/am64x-evm/m4fss0-0_nortos/example.syscfg              | 176 +++++++++++++++++
+ test/kernel/dpl_timer/am64x-evm/m4fss0-0_nortos/main.c                      |  50 +++++
+ test/kernel/dpl_timer/am64x-evm/m4fss0-0_nortos/ti-arm-clang/makefile       | 348 ++++++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-evm/m4fss0-0_nortos/ti-arm-clang/makefile.defs  |  11 ++
+ test/kernel/dpl_timer/am64x-evm/r5fss0-0_freertos/example.syscfg            | 238 +++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-evm/r5fss0-0_freertos/main.c                    |  88 +++++++++
+ test/kernel/dpl_timer/am64x-evm/r5fss0-0_freertos/ti-arm-clang/makefile     | 353 ++++++++++++++++++++++++++++++++++
+ .../kernel/dpl_timer/am64x-evm/r5fss0-0_freertos/ti-arm-clang/makefile.defs |  11 ++
+ test/kernel/dpl_timer/am64x-evm/r5fss0-0_nortos/example.syscfg              | 238 +++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-evm/r5fss0-0_nortos/main.c                      |  50 +++++
+ test/kernel/dpl_timer/am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile       | 350 ++++++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-evm/r5fss0-0_nortos/ti-arm-clang/makefile.defs  |  11 ++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-0_freertos-smp/example.syscfg         |  47 +++++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-0_freertos-smp/gcc-aarch64/linker.cmd |  68 +++++++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-0_freertos-smp/gcc-aarch64/makefile   | 328 ++++++++++++++++++++++++++++++++
+ .../dpl_timer/am64x-sk/a53ss0-0_freertos-smp/gcc-aarch64/makefile.defs      |  11 ++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-0_freertos-smp/main.c                 | 104 ++++++++++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-0_freertos/example.syscfg             |  60 ++++++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-0_freertos/gcc-aarch64/linker.cmd     |  67 +++++++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-0_freertos/gcc-aarch64/makefile       | 321 +++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-0_freertos/gcc-aarch64/makefile.defs  |  11 ++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-0_freertos/main.c                     |  88 +++++++++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-0_nortos/example.syscfg               |  47 +++++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-0_nortos/gcc-aarch64/linker.cmd       |  65 +++++++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-0_nortos/gcc-aarch64/makefile         | 317 +++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-0_nortos/gcc-aarch64/makefile.defs    |  11 ++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-0_nortos/main.c                       |  50 +++++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-1_freertos/example.syscfg             |  61 ++++++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-1_freertos/gcc-aarch64/linker.cmd     |  66 +++++++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-1_freertos/gcc-aarch64/makefile       | 321 +++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-1_freertos/gcc-aarch64/makefile.defs  |  11 ++
+ test/kernel/dpl_timer/am64x-sk/a53ss0-1_freertos/main.c                     |  88 +++++++++
+ test/kernel/dpl_timer/am64x-sk/m4fss0-0_freertos/example.syscfg             | 176 +++++++++++++++++
+ test/kernel/dpl_timer/am64x-sk/m4fss0-0_freertos/main.c                     |  88 +++++++++
+ test/kernel/dpl_timer/am64x-sk/m4fss0-0_freertos/ti-arm-clang/makefile      | 351 ++++++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-sk/m4fss0-0_freertos/ti-arm-clang/makefile.defs |  11 ++
+ test/kernel/dpl_timer/am64x-sk/m4fss0-0_nortos/example.syscfg               | 176 +++++++++++++++++
+ test/kernel/dpl_timer/am64x-sk/m4fss0-0_nortos/main.c                       |  50 +++++
+ test/kernel/dpl_timer/am64x-sk/m4fss0-0_nortos/ti-arm-clang/makefile        | 348 ++++++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-sk/m4fss0-0_nortos/ti-arm-clang/makefile.defs   |  11 ++
+ test/kernel/dpl_timer/am64x-sk/r5fss0-0_freertos/example.syscfg             | 238 +++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-sk/r5fss0-0_freertos/main.c                     |  88 +++++++++
+ test/kernel/dpl_timer/am64x-sk/r5fss0-0_freertos/ti-arm-clang/makefile      | 353 ++++++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-sk/r5fss0-0_freertos/ti-arm-clang/makefile.defs |  11 ++
+ test/kernel/dpl_timer/am64x-sk/r5fss0-0_nortos/example.syscfg               | 238 +++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-sk/r5fss0-0_nortos/main.c                       |  50 +++++
+ test/kernel/dpl_timer/am64x-sk/r5fss0-0_nortos/ti-arm-clang/makefile        | 350 ++++++++++++++++++++++++++++++++++
+ test/kernel/dpl_timer/am64x-sk/r5fss0-0_nortos/ti-arm-clang/makefile.defs   |  11 ++
+ test/kernel/dpl_timer/test_dpl_timer.c                                      | 168 +++++++++++++++++
+ test/makefile.am243x                                                        | 104 ++++++++++
+ test/makefile.am64x                                                         | 208 ++++++++++++++++++++
+ 114 files changed, 15721 insertions(+)
+
+commit 19b5c2bc7b22e8417e811cfc7cf06f67e2f02011
+Author: Enesh Manian <enesh.manian@ti.com>
+Date:   Mon Nov 2 10:57:56 2026 +0530
+
+    am64x/am243x: DPL Timer: Fix the ClockP_usleep for FreeRTOS DPL
+    
+    - Fixed the 'unhandled time' when requested for ClockP_usleep in FreeRTOS
+    - Implemented fix suggested in SITSW-9089
+    
+    Fixes: SITSW-7868
+    
+    Signed-off-by: Enesh Manian <enesh.manian@ti.com>
+
+ source/kernel/freertos/dpl/common/ClockP_freertos.c | 35 ++++++++++++++++++++++++-----------
+ 1 file changed, 24 insertions(+), 11 deletions(-)
+
+commit 42cd7609d36a20c78d7f6b7f03b9d0de1161e104
+Author: Hemanth Nanthakumar <x1134501@ti.com>
+Date:   Tue Nov 24 22:40:18 2026 +0530
+
+    am64x: docs: add am64x low latency interrupt benchmarks
+    
+    - Added AM64x hardware measured execution time benchmark table
+    in low_latency_interrupt.md.
+    
+    - Updated pin observation instructions and sample log with AM64x
+       MCU Header J1 pin connections (pins 12, 9, and 5).
+    
+    Fixes: SITSW-13598
+    
+    Signed-off-by: Hemanth Nanthakumar <n-hemanth@ti.com>
+
+ docs_src/docs/api_guide/examples/kernel/low_latency_interrupt.md | 30 +++++++++++++++++++++++-------
+ 1 file changed, 23 insertions(+), 7 deletions(-)
+
+commit 144c87790f26d9c7da61e38c8b49c7915c363e81
+Author: Hemanth Nanthakumar <x1134501@ti.com>
+Date:   Tue Nov 24 22:37:07 2026 +0530
+
+    am64x: dpl: configure am64x gpio pins
+    
+    - Configured AM64x EVM GPIO pins using MCU domain (MCU_GPIO0_9,
+       MCU_GPIO0_7, MCU_GPIO0_8) routed to MCU Header J1 (pins 12, 9, 5).
+    
+    - Updated util_iomux_config_for_gpio for AM64x to unlock MCU
+       Padconfig Lock 0 and Lock 1 MMRs and configure pads directly.
+    
+    Fixes: SITSW-13598
+    
+    Signed-off-by: Hemanth Nanthakumar <n-hemanth@ti.com>
+
+ examples/kernel/dpl/dpl_low_latency_interrupt/dpl_low_latency_interrupt.c | 29 ++++++++++++++++++++++++++---
+ 1 file changed, 26 insertions(+), 3 deletions(-)
+
+commit c99448e7d652a3daa6a2dcbb45e536f51429b4b7
+Author: Jincy V <x1138984@ti.com>
+Date:   Tue Oct 13 14:42:15 2026 +0530
+
+    am64x/am243x: mcspi: add test cases for cancel api validation
+    
+        - add input validation test case.
+        - add Cancel during an interrupt and dma mode transfer test cases.
+        - add transaction bookkeeping test case to verify status, transferred word
+          count, and subsequent transfer on cancel.
+        - add Concurrency test case to verify back-to-back transfer Cancel and
+          race between cancel and natural transfer completion.
+        - add multi-threaded test cases to verify concurrent transfer cancellation
+          across blocking and callback modes in interrupt and DMA.
+    
+    Fixes: SITSW-13043
+    
+    Signed-off-by: Jincy V <v-jincy@ti.com>
+
+ test/drivers/mcspi/mcspi/.project/project_am243x.js                         |    8 +
+ test/drivers/mcspi/mcspi/.project/project_am64x.js                          |    6 +-
+ test/drivers/mcspi/mcspi/am243x-evm/r5fss0-0_freertos/gcc-armv7/makefile    |    2 +
+ test/drivers/mcspi/mcspi/am243x-evm/r5fss0-0_freertos/ti-arm-clang/makefile |    2 +
+ test/drivers/mcspi/mcspi/am243x-lp/r5fss0-0_freertos/gcc-armv7/makefile     |    2 +
+ test/drivers/mcspi/mcspi/am243x-lp/r5fss0-0_freertos/ti-arm-clang/makefile  |    2 +
+ test/drivers/mcspi/mcspi/am64x-evm/a53ss0-0_freertos/gcc-aarch64/makefile   |    1 +
+ test/drivers/mcspi/mcspi/am64x-evm/r5fss0-0_freertos/ti-arm-clang/makefile  |    1 +
+ test/drivers/mcspi/mcspi/am64x-sk/r5fss0-0_freertos/ti-arm-clang/makefile   |    1 +
+ test/drivers/mcspi/mcspi/test_mcspi.c                                       | 2036 ++++++++++++++++++++++++++++++++++-
+ 10 files changed, 2058 insertions(+), 3 deletions(-)
+
+commit 045a6b69ebe217579feb801d6b1c2b5b051a6ccb
+Author: Jincy V <x1138984@ti.com>
+Date:   Tue Nov 24 18:28:32 2026 +0530
+
+    am64x/243x: mcspi: udma: Fix DMA teardown hang on incomplete transfers
+    
+        - Implement Udma_chReset() in UDMA driver to reset channel on
+          disable failure.
+        - In MCSPI_udmaDeInitCh(), call Udma_chReset() if Udma_chDisable() fails.
+        - In MCSPI_transfer(), call MCSPI_lld_dmaStop() on timeout in DMA mode.
+    
+    Fixes: SITSW-13043
+    
+    Signed-off-by: Jincy V <v-jincy@ti.com>
+
+ source/drivers/mcspi/v0/lld/dma/udma/mcspi_dma_udma.c |  30 +++++------
+ source/drivers/mcspi/v0/mcspi_v0.c                    |  10 +++-
+ source/drivers/udma/include/udma_ch.h                 |  10 ++++
+ source/drivers/udma/v0/udma_ch.c                      | 158 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 193 insertions(+), 15 deletions(-)
+
+commit 99b7099c4a7d9ca9a40df8754dde901183b08917
+Author: Jincy V <x1138984@ti.com>
+Date:   Tue Oct 13 14:38:11 2026 +0530
+
+    am64x/am243x: mcspi: fix return status in MCSPI_transferCancel
+    
+        - Fix an issue where MCSPI_transferCancel() returned SystemP_SUCCESS
+          even when handle or obj->transaction was NULL.
+        - Scope the LLD status check inside the successful parameter validation
+          block so earlier failure status is not overwritten.
+    
+    Fixes: SITSW-13043
+    
+    Signed-off-by: Jincy V <v-jincy@ti.com>
+
+ source/drivers/mcspi/v0/mcspi_v0.c | 21 +++++++++------------
+ 1 file changed, 9 insertions(+), 12 deletions(-)
+
+commit 07554b49ed0e7902bc27edac5e140f407c3dc5f2
+Author: Amalia Firos <f-amalia@ti.com>
+Date:   Wed Nov 25 14:00:50 2026 +0530
+
+    am64x/am243x: sdl: Fix misra violations
+    
+    - MISRA.VAR.HIDDEN - Rename global variable in example files to
+      prevent name clash
+    
+    Fixes: SITSW-13747
+    
+    Signed-off-by: Amalia F <f-amalia@ti.com>
+
+ examples/sdl/r5f_cpu_utils/utils.c | 80 +++++++++++++++++++++++++++++++++++++++---------------------------------------
+ 1 file changed, 40 insertions(+), 40 deletions(-)
+

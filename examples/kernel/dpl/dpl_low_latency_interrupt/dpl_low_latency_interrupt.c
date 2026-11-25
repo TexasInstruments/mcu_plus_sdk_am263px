@@ -65,13 +65,20 @@
 #define APP_EPWM10_INTR_NUM         CSLR_R5FSS0_CORE0_INTR_EPWM0_EPWM_ETINT_0
 #define APP_EPWM11_INTR_NUM         CSLR_R5FSS0_CORE0_INTR_EPWM1_EPWM_ETINT_0
 
+#define CSL_EPWM_ETCLR              PWMSS_EPWM_ETCLR
+#define CSL_EPWM_ETCLR_INT_MASK     PWMSS_EPWM_ETCLR_INT_MASK
+
+#if defined (SOC_AM64X)
+#define APP_GPIO_BASE_ADDR          CSL_MCU_GPIO0_BASE
+#define APP_GPIO_PIN_TC1            (9)
+#define APP_GPIO_PIN1_TC2           (7)
+#define APP_GPIO_PIN2_TC2           (8)
+#else /* SOC_AM243X */
 #define APP_GPIO_BASE_ADDR          CSL_GPIO0_BASE
 #define APP_GPIO_PIN_TC1            (62)
 #define APP_GPIO_PIN1_TC2           (63)
 #define APP_GPIO_PIN2_TC2           (64)
-
-#define CSL_EPWM_ETCLR              PWMSS_EPWM_ETCLR
-#define CSL_EPWM_ETCLR_INT_MASK     PWMSS_EPWM_ETCLR_INT_MASK
+#endif
 
 #else /* SOC_AM263X || SOC_AM263PX */
 
@@ -173,6 +180,21 @@ void util_epwm_all_deInit(void)
 
 void util_iomux_config_for_gpio(uint32_t gpioNum)
 {
+#if defined (SOC_AM64X)
+    /* Map GPIO to pad offset: MCU_GPIO0_9 -> PIN_MCU_SPI1_D1, 7 -> PIN_MCU_SPI1_CLK, 8 -> PIN_MCU_SPI1_D0 */
+    uint32_t padOffset = (gpioNum == 9) ? PIN_MCU_SPI1_D1 :
+                         (gpioNum == 7) ? PIN_MCU_SPI1_CLK :
+                         (gpioNum == 8) ? PIN_MCU_SPI1_D0 : PIN_MCU_SPI1_D1;
+
+    /* Unlock MCU Padconfig MMR (Lock 0 and Lock 1) */
+    HW_WR_REG32(CSL_MCU_PADCFG_CTRL0_CFG0_BASE + 0x1008, 0x68EF3490);
+    HW_WR_REG32(CSL_MCU_PADCFG_CTRL0_CFG0_BASE + 0x100C, 0xD172BC5A);
+    HW_WR_REG32(CSL_MCU_PADCFG_CTRL0_CFG0_BASE + 0x5008, 0x68EF3490);
+    HW_WR_REG32(CSL_MCU_PADCFG_CTRL0_CFG0_BASE + 0x500C, 0xD172BC5A);
+
+    /* Configure Pad: Mode 7 (GPIO), Pull Disable */
+    HW_WR_REG32(CSL_MCU_PADCFG_CTRL0_CFG0_BASE + 0x4000 + padOffset, (PIN_MODE(7) | PIN_PULL_DISABLE));
+#else /* SOC_AM243X */
     /* Map GPIO to pad offset: GPIO 62..64 -> PIN_PRG1_PRU0_GPO17..19 (Balls U7, T8, U8) */
     uint32_t padOffset = (gpioNum >= 62 && gpioNum <= 64) ?
                          (PIN_PRG1_PRU0_GPO17 + ((gpioNum - 62) * 4)) :
@@ -185,6 +207,7 @@ void util_iomux_config_for_gpio(uint32_t gpioNum)
 
     /* Configure Pad: Mode 7 (GPIO), Pull Disable */
     HW_WR_REG32(CSL_PADCFG_CTRL0_CFG0_BASE + 0x4000 + padOffset, (PIN_MODE(7) | PIN_PULL_DISABLE));
+#endif
 }
 
 #else /* SOC_AM263X */

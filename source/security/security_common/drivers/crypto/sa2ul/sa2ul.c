@@ -1268,10 +1268,10 @@ int32_t SA2UL_contextAlloc(SA2UL_Handle handle, SA2UL_ContextObject *ctxObj, con
                             SA2UL_u8LeToU32(sc.u.enc.encAux2, ctxObj->ctxPrms.aad, SA2UL_MAX_AAD_SIZE_BYTES);
                             aadLen = (ctxObj->ctxPrms.aadLen << 3);
                             sc.u.enc.encAux1[4] = (uint32_t) (aadLen >> 32U);
-                            sc.u.enc.encAux1[5] = (uint32_t) (aadLen & 0xFFFFU);
+                            sc.u.enc.encAux1[5] = (uint32_t) (aadLen & 0xFFFFFFFFU);
 
                             sc.u.enc.encAux1[6] = (uint32_t) (authLen >> 32U);
-                            sc.u.enc.encAux1[7] = (uint32_t) (authLen & 0xFFFFU);
+                            sc.u.enc.encAux1[7] = (uint32_t) (authLen & 0xFFFFFFFFU);
                         }
                         else if (ctxObj->ctxPrms.encMode == SA2UL_ENC_MODE_CMAC)
                         {
@@ -1313,7 +1313,7 @@ int32_t SA2UL_contextAlloc(SA2UL_Handle handle, SA2UL_ContextObject *ctxObj, con
                         else
                         {
                             /* Copy IV */
-                            SA2UL_u8LeToU32(sc.u.enc.encAux3, ctxObj->ctxPrms.iv,SA2UL_MAX_IV_SIZE_BYTES);
+                            SA2UL_u8LeToU32(sc.u.enc.encAux2, ctxObj->ctxPrms.iv,SA2UL_MAX_IV_SIZE_BYTES);
                         }
 
                         sc.scctl.scctl1 =

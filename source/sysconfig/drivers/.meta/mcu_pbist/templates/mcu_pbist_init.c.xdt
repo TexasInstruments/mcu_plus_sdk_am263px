@@ -3,9 +3,8 @@
     let soc = system.getScript(`/drivers/mcu_pbist/soc/mcu_pbist_${common.getSocName()}`);
     let module = system.modules['/drivers/mcu_pbist/mcu_pbist'];
     let instance = module.$instances[0];
-
 %%}
-% if (instance.enableMcuPbist ){
+% if (instance.enableMcuPbist){
     /* PBIST */
 
     static uint32_t gMcuPbistTestStatus = 0U;
@@ -14,7 +13,6 @@
     {
         int32_t status = SystemP_SUCCESS;
 
-        bool PBISTResult;
         gMcuPbistTestStatus = 1;
 
         /* Initialize SDL DPL */
@@ -23,19 +21,16 @@
 
         CacheP_disable(CacheP_TYPE_L1P | CacheP_TYPE_L1D);
 
-        /* Start MCU PBIST */
-        status = SDL_PBIST_selfTest(`soc.getSdlMcuPbistInstance()`,SDL_PBIST_TEST,SDL_BIST_MAX_TIMEOUT_VALUE,&PBISTResult);
-        if(SystemP_FAILURE == status)
-        {
-            DebugP_logError(" PBIST Run test Failed...");
-        }
+        /* Unlock MMRs */
+        SOC_controlModuleUnlockMMR(SOC_DOMAIN_ID_MAIN, 4u);
+        SOC_controlModuleUnlockMMR(SOC_DOMAIN_ID_MCU, 3u);
 
-        status = SDL_PBIST_selfTest(`soc.getSdlMcuPbistInstance()`,SDL_PBIST_NEG_TEST,SDL_BIST_MAX_TIMEOUT_VALUE,&PBISTResult);
+        /* Start positive PBIST tests of all selected instances. */
+        status = SDL_PBIST_startAllTests(true);
         CacheP_enable(CacheP_TYPE_L1P | CacheP_TYPE_L1D);
-
         if(SystemP_FAILURE == status)
         {
-            DebugP_logError(" PBIST Error test Failed...");
+            DebugP_logError(" PBIST positive test failed...");
         }
     }
 

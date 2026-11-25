@@ -11572,3 +11572,35 @@ Date:   Wed Nov 18 12:44:49 2026 +0530
  xbar/.meta/xbar.syscfg.js                                                   |    8 +
  1569 files changed, 161640 insertions(+)
 
+========================================
+Changes from build on 2026-11-25 20:48:04
+Previous commit: 14a27d591efd9e2a40c86ed8aa899146ce8be84e
+Current commit: 1d70e9919fe5fd61f82933131f7f77e1b9d4176a
+========================================
+
+commit 1d70e9919fe5fd61f82933131f7f77e1b9d4176a
+Author: Amalia F <Amalia F>
+Date:   Tue Nov 17 12:39:00 2026 +0530
+
+    am64x/am243x: mcu_pbist: Add SysConfig support for PBIST instances
+    
+    - Add am64x and am243x PBIST instance configurations, auxiliary device
+      lists, and PSC/processor mappings
+    - Refactor mcu_pbist SysConfig module and templates to support selecting
+      multiple PBIST instances and running positive/negative self-tests
+    - Enable mcu_pbist in am243x driver version map and expose mcu_pbist
+    
+    Fixes: SITSW-10826
+    
+    Signed-off-by: Amalia F <f-amalia@ti.com>
+
+ drivers/.meta/mcu_pbist/soc/mcu_pbist_am243x.syscfg.js   |  41 ++++
+ drivers/.meta/mcu_pbist/soc/mcu_pbist_am64x.syscfg.js    |  78 ++++++++
+ drivers/.meta/mcu_pbist/templates/mcu_pbist.h.xdt        |  34 +++-
+ drivers/.meta/mcu_pbist/templates/mcu_pbist_config.c.xdt | 575 ++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ drivers/.meta/mcu_pbist/templates/mcu_pbist_init.c.xdt   |  19 +-
+ drivers/.meta/mcu_pbist/v0/mcu_pbist_v0.syscfg.js        |  77 +++++++-
+ drivers/.meta/soc/drivers_am243x.syscfg.js               |   5 +
+ drivers/.meta/soc/drivers_am64x.syscfg.js                |   6 +
+ 8 files changed, 808 insertions(+), 27 deletions(-)
+

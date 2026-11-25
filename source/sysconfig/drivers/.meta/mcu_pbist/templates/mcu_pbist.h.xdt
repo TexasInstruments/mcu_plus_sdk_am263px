@@ -3,24 +3,46 @@
     let soc = system.getScript(`/drivers/mcu_pbist/soc/mcu_pbist_${common.getSocName()}`);
     let module = system.modules['/drivers/mcu_pbist/mcu_pbist'];
     let instance = module.$instances[0];
+    let config = module.getInstanceConfig(instance);
 %%}
 % if (instance.enableMcuPbist){
 /*
  * PBIST
  */
 #include <drivers/hw_include/cslr_soc.h>
+#include <drivers/hw_include/hw_types.h>
 #include <kernel/dpl/AddrTranslateP.h>
 #include <sdl/include/sdl_types.h>
 #include <sdl/dpl/sdl_dpl.h>
 #include <sdl/sdl_pbist.h>
-
-extern CSL_top_ctrlRegs * ptrTopCtrlRegs;
+#include <drivers/sciclient.h>
+#include <drivers/bootloader.h>
+#include <drivers/soc.h>
 
 /*
- * Timeout for the PBIST/LBIST completion
+ * Timeout for PBIST completion
  */
 #define SDL_BIST_MAX_TIMEOUT_VALUE       (10000000u)
-#define PBIST_NOT_DONE        (0U)
-#define PBIST_DONE            (1U)
-#define SDL_PBIST_TEST        (0U)
+#define SDL_NUM_HWIP_OBJECTS             (10U)
+
+/* Number of PBIST Instances selected */
+#define PBIST_NUM_INSTANCE               (`config.selectedInstances.length`U)
+
+/* Number of auxiliary devices for selected PBIST instances */
+% for (var i = 0; i < config.auxDevices.length; i++){
+#define `config.coreList[i]`_NUM_AUX_DEVICES            `config.auxDevices[i].length`
+% }
+
+typedef int32_t (*PBIST_auxHandleFunctionPtr)(bool init);
+
+typedef struct PBIST_TestHandle_s
+{
+    SDL_PBIST_inst pbistInst;
+    uint32_t numAuxDevices;
+    uint32_t *auxDeviceIds;
+    PBIST_auxHandleFunctionPtr auxHandleFunction;
+} PBIST_TestHandle_t;
+
+int32_t SDL_PBIST_startAllTests(bool runPosTest);
+int32_t SDL_PBIST_completeAllTests(void);
 % }

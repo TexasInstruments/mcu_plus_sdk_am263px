@@ -380,27 +380,29 @@ static int32_t MCSPI_udmaDeInitCh(Udma_ChHandle chHandle,
     if(isChEnabled == MCSPI_UDMA_CHANNEL_ENABLE)
     {
         /* Disable Channel */
-        udmaStatus = Udma_chDisable(chHandle, UDMA_DEFAULT_CH_DISABLE_TIMEOUT);
-        DebugP_assert(UDMA_SOK == udmaStatus);
+        udmaStatus = Udma_chDisable(chHandle, UDMA_DEFAULT_CH_DISABLE_TIMEOUT * 10);
     }
 
-    if(isChEnabled == MCSPI_UDMA_CHANNEL_ENABLE)
+    /* Flush any pending request from the free queue */
+    while((bool)TRUE)
     {
-        /* Flush any pending request from the free queue */
-        while((bool)TRUE)
+        uint64_t pDesc;
+        int32_t  tempRetVal;
+
+        tempRetVal = Udma_ringFlushRaw(
+                        Udma_chGetFqRingHandle(chHandle), &pDesc);
+        if(UDMA_ETIMEOUT == tempRetVal)
         {
-            uint64_t pDesc;
-            int32_t  tempRetVal;
-
-            tempRetVal = Udma_ringFlushRaw(
-                            Udma_chGetFqRingHandle(chHandle), &pDesc);
-            if(UDMA_ETIMEOUT == tempRetVal)
-            {
-                break;
-            }
+            break;
         }
-
     }
+
+    /* Reset the channel if channel teardown fails */
+    if(UDMA_SOK != udmaStatus)
+    {
+        udmaStatus = Udma_chReset(chHandle);
+    }
+    DebugP_assert(UDMA_SOK == udmaStatus);
 
     /* UnRegister Event */
     udmaStatus = Udma_eventUnRegister(eventHandle);

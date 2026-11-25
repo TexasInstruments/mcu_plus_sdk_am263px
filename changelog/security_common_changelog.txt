@@ -2455,3 +2455,75 @@ Date:   Tue Sep 29 16:05:21 2026 +0530
  updateC29SDK.py                                                    |  117 ++
  151 files changed, 70986 insertions(+)
 
+========================================
+Changes from build on 2026-11-25 20:50:16
+Previous commit: db36fd179b56856b39771cffa2a9cc4ff6f1a8de
+Current commit: 9c0644dcf459f1f173abb97627b4e5ff9314b26a
+========================================
+
+commit 9c0644dcf459f1f173abb97627b4e5ff9314b26a
+Author: Prashant Shivhare <p-shivhare@ti.com>
+Date:   Mon Nov 16 13:58:14 2026 +0530
+
+    am64x/am243x: sa2ul: fix AES GCM length block truncation
+    
+    The GCM context loads Len(A) || Len(C), in bits, into encAux1[4..7].
+    The low 32-bit word of each length was masked with 0xFFFF, which drops
+    bits 16-31. Any payload of 8 KB or more (0x10000 bits) got a wrong
+    GHASH length block, so the authentication tag was wrong. The
+    ciphertext was not affected.
+    
+    Mask with 0xFFFFFFFF for both aadLen and authLen.
+    
+    Fixes: SITSW-13658
+    
+    Signed-off-by: Prashant Shivhare <p-shivhare@ti.com>
+
+ drivers/crypto/sa2ul/sa2ul.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit c8a4f0f40cb1e8866729c815c34a3578c57172b9
+Author: Prashant Shivhare <p-shivhare@ti.com>
+Date:   Tue Nov 24 14:29:26 2026 +0530
+
+    am64x/am243x: sa2ul: fix max AES packet size to be 16B aligned
+    
+    SA2UL_MAX_INPUT_LENGTH_ENC was 0xFFFF (64KB - 1). AES input lengths must
+    be a multiple of the 16B block size, so SA2UL_contextProcess() pushed an
+    invalid length for the first full chunk of any buffer larger than 64KB,
+    and the operation failed.
+    
+    Set it to 0xFFF0 (64KB - 16), the largest 16B aligned value that fits in
+    the encryption engine packet size limit.
+    
+    Fixes: SITSW-13792
+    
+    Signed-off-by: Prashant Shivhare <p-shivhare@ti.com>
+
+ drivers/crypto/sa2ul/sa2ul.h | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit c59288abafa4a2e7895f1a40268dd2818e63d508
+Author: Prashant Shivhare <p-shivhare@ti.com>
+Date:   Fri May 15 12:31:03 2026 +0530
+
+    am64x/am243x: sa2ul: Correct the field to set the IV
+    
+    For non AES-GCM modes, the IV is currently set to `encAux3` field of the
+    security context which is incorrect as per the Crypto TRM as the IV must
+    be set to `encAux2` field for non AES-GCM modes. This inconsistency
+    leads to incorrect computed ciphertext.
+    
+    It should be noted that the AES examples still pass, which is a false
+    positive, simply because the examples do not compare the computed
+    ciphertext with the expected ciphertext.
+    
+    Fix the issue by using the correct field (`encAux2`) to set the IV.
+    
+    Fixes: SITSW-10586
+    
+    Signed-off-by: Prashant Shivhare <p-shivhare@ti.com>
+
+ drivers/crypto/sa2ul/sa2ul.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+

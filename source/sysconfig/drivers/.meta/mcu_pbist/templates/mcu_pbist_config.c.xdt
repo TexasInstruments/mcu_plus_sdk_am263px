@@ -3,31 +3,96 @@
     let soc = system.getScript(`/drivers/mcu_pbist/soc/mcu_pbist_${common.getSocName()}`);
     let module = system.modules['/drivers/mcu_pbist/mcu_pbist'];
     let instance = module.$instances[0];
+    let config = module.getInstanceConfig(instance);
 %%}
+% if (instance.enableMcuPbist){
 
 /*
  * SDL Interface functions for PBIST modules
  */
+static HwiP_Object gSDLHwiPObject[SDL_NUM_HWIP_OBJECTS];
+uint32_t gSDLHwiPAvailable[SDL_NUM_HWIP_OBJECTS];
 
-static HwiP_Object gSDLHwiObject;
+static int32_t SDL_findAvailableObject(void)
+{
+    int32_t i;
+
+    for (i = 0; i < SDL_NUM_HWIP_OBJECTS; i++)
+    {
+        if (gSDLHwiPAvailable[i] == true)
+        {
+            gSDLHwiPAvailable[i] = false;
+            break;
+        }
+    }
+
+    if (i == SDL_NUM_HWIP_OBJECTS)
+    {
+        i = -1;
+    }
+
+    return i;
+}
+
+static int32_t SDL_findObject(HwiP_Object *obj)
+{
+    int32_t i;
+
+    for (i = 0; i < SDL_NUM_HWIP_OBJECTS; i++)
+    {
+        if (&gSDLHwiPObject[i] == obj)
+        {
+            break;
+        }
+    }
+
+    if (i == SDL_NUM_HWIP_OBJECTS)
+    {
+        i = -1;
+    }
+
+    return i;
+}
 
 static pSDL_DPL_HwipHandle SDL_registerInterrupt(SDL_DPL_HwipParams *pParams)
 {
     HwiP_Params hwipParams;
+    int32_t objNum;
+    pSDL_DPL_HwipHandle handle;
+
     HwiP_Params_init(&hwipParams);
 
     hwipParams.args = (void *)pParams->callbackArg;
     hwipParams.intNum = pParams->intNum;
     hwipParams.callback = pParams->callback;
 
-    HwiP_construct(&gSDLHwiObject, &hwipParams);
+    objNum = SDL_findAvailableObject();
 
-    return &gSDLHwiObject;
+    if (objNum != -1)
+    {
+        HwiP_construct(&gSDLHwiPObject[objNum], &hwipParams);
+        handle = &gSDLHwiPObject[objNum];
+    }
+    else
+    {
+        handle = NULL;
+    }
+
+    return handle;
 }
 
 static int32_t SDL_deregisterInterrupt(pSDL_DPL_HwipHandle handle)
 {
+    int32_t objNum;
+
+    objNum = SDL_findObject(handle);
+    if (objNum != -1)
+    {
+        gSDLHwiPAvailable[objNum] = true;
+    }
+
     HwiP_destruct(handle);
+
     return SDL_PASS;
 }
 
@@ -62,3 +127,505 @@ static SDL_DPL_Interface dpl_interface =
     .delay = (pSDL_DPL_DelayFunction) ClockP_sleep,
     .addrTranslate = (pSDL_DPL_AddrTranslateFunction) SDL_addrTranslate
 };
+
+int32_t SDL_dplInit(void)
+{
+    SDL_ErrType_t ret = SDL_PASS;
+    int32_t i;
+
+    for (i = 0; i < SDL_NUM_HWIP_OBJECTS; i++)
+    {
+        gSDLHwiPAvailable[i] = true;
+    }
+
+    ret = SDL_DPL_init(&dpl_interface);
+
+    return ret;
+}
+
+% if (instance.enableMcuPbist && config.selectedInstances.includes("SDL_PBIST_INST_INFRA")){
+int32_t SDL_PBIST_handleInfraAuxDevices(bool init)
+{
+    uint32_t baseAddr;
+    uint32_t baseAddrMcu;
+
+    baseAddr = (uint32_t)AddrTranslateP_getLocalAddr(CSL_CTRL_MMR0_CFG0_BASE);
+    baseAddrMcu = (uint32_t)AddrTranslateP_getLocalAddr(CSL_MCU_CTRL_MMR0_CFG0_BASE);
+
+    HW_WR_REG32(baseAddr + CSL_MAIN_CTRL_MMR_CFG0_LOCK3_KICK0, 0x68EF3490U);
+    HW_WR_REG32(baseAddr + CSL_MAIN_CTRL_MMR_CFG0_LOCK3_KICK1, 0xD172BC5AU);
+    HW_WR_REG32(baseAddrMcu + CSL_MCU_CTRL_MMR_CFG0_LOCK6_KICK0, 0x68EF3490U);
+    HW_WR_REG32(baseAddrMcu + CSL_MCU_CTRL_MMR_CFG0_LOCK6_KICK1, 0xD172BC5AU);
+    HW_WR_REG32(baseAddr + CSL_MAIN_CTRL_MMR_CFG0_LOCK2_KICK0, 0x68EF3490U);
+    HW_WR_REG32(baseAddr + CSL_MAIN_CTRL_MMR_CFG0_LOCK2_KICK1, 0xD172BC5AU);
+
+    if (init)
+    {
+        HW_WR_REG32(baseAddr + CSL_MAIN_CTRL_MMR_CFG0_PBIST_EN, 0x113U);
+        HW_WR_REG32(baseAddrMcu + CSL_MCU_CTRL_MMR_CFG0_MAIN_CLKGATE_CTRL0, 0x90360000U);
+        HW_WR_REG32(baseAddr + CSL_MAIN_CTRL_MMR_CFG0_ICSSG0_CLKSEL, 0x1U);
+        HW_WR_REG32(baseAddr + CSL_MAIN_CTRL_MMR_CFG0_ICSSG1_CLKSEL, 0x1U);
+    }
+    else
+    {
+        HW_WR_REG32(baseAddr + CSL_MAIN_CTRL_MMR_CFG0_PBIST_EN, 0x0U);
+    }
+
+    return SDL_PASS;
+}
+% }
+% if (instance.enableMcuPbist && config.selectedInstances.includes("SDL_PBIST_INST_MCU")){
+int32_t SDL_PBIST_handleMcuAuxDevices(bool init)
+{
+    uint32_t baseAddr;
+    uint32_t baseAddrMcu;
+
+    (void)init;
+
+    baseAddr = (uint32_t)AddrTranslateP_getLocalAddr(CSL_CTRL_MMR0_CFG0_BASE);
+    baseAddrMcu = (uint32_t)AddrTranslateP_getLocalAddr(CSL_MCU_CTRL_MMR0_CFG0_BASE);
+
+    *((uint32_t *)(baseAddr + CSL_MAIN_CTRL_MMR_CFG0_PBIST_EN)) = 0x1;
+    *((uint32_t *)(baseAddrMcu + CSL_MCU_CTRL_MMR_CFG0_MAIN_CLKGATE_CTRL0)) = 0x01018000;
+
+    return SDL_PASS;
+    
+}
+% }
+% if (instance.enableMcuPbist && config.selectedInstances.includes("SDL_PBIST_INST_MPU")){
+int32_t SDL_PBIST_handleMpuAuxDevices(bool init)
+{
+    uint32_t baseAddr;
+
+    baseAddr = (uint32_t)AddrTranslateP_getLocalAddr(CSL_CTRL_MMR0_CFG0_BASE);
+
+    HW_WR_REG32(baseAddr + CSL_MAIN_CTRL_MMR_CFG0_LOCK4_KICK0, 0x68EF3490U);
+    HW_WR_REG32(baseAddr + CSL_MAIN_CTRL_MMR_CFG0_LOCK4_KICK1, 0xD172BC5AU);
+
+    if (init)
+    {
+        HW_WR_REG32(baseAddr + CSL_MAIN_CTRL_MMR_CFG0_A53SS_DFT_CTL, 0x1U);
+    }
+    else
+    {
+        HW_WR_REG32(baseAddr + CSL_MAIN_CTRL_MMR_CFG0_A53SS_DFT_CTL, 0x0U);
+    }
+
+    return SDL_PASS;
+}
+% }
+
+% if (instance.enableMcuPbist){
+/* Lists of SDL auxiliary devices for each selected PBIST instance */
+% for (var i = 0; i < config.auxDevices.length; i++){
+uint32_t PBIST_`config.coreList[i]`AuxDevList[`config.coreList[i]`_NUM_AUX_DEVICES] =
+{
+    % for (var j = 0; j < config.auxDevices[i].length; j++){
+    `config.auxDevices[i][j]`,
+    % }
+};
+% }
+
+PBIST_TestHandle_t PBIST_TestHandleArray[PBIST_NUM_INSTANCE] =
+{
+% for (var i = 0; i < config.selectedInstances.length; i++){
+    {
+        .pbistInst          = SDL_PBIST_INST_`config.coreList[i]`,
+        .numAuxDevices      = `config.coreList[i]`_NUM_AUX_DEVICES,
+        .auxDeviceIds       = &PBIST_`config.coreList[i]`AuxDevList[0],
+        % if (config.coreList[i] === "INFRA") {
+        .auxHandleFunction  = SDL_PBIST_handleInfraAuxDevices,
+        % } else if (config.coreList[i] === "MCU") {
+        .auxHandleFunction  = SDL_PBIST_handleMcuAuxDevices,
+        % } else if (config.coreList[i] === "MPU") {
+        .auxHandleFunction  = SDL_PBIST_handleMpuAuxDevices,
+        % } else {
+        .auxHandleFunction  = 0,
+        % }
+    },
+% }
+};
+
+#include <sdl/sdl_pbist.h>
+#include <sdl/include/sdl_types.h>
+#include <sdl/pbist/sdl_pbist_priv.h>
+
+#include <sdl/dpl/sdl_dpl.h>
+
+
+#define PBIST_REG_REGION_SIZE             (0x400u)
+
+#define PBIST_MAX_TIMEOUT_VALUE           (100000000u)
+
+static uint8_t gmcuPbist = 0u;
+static int32_t SDL_PBIST_prepareTest(SDL_PBIST_inst instance, const SDL_pbistInstInfo *pInfo,
+                                     SDL_pbistRegs **pRegs,
+                                     pSDL_DPL_HwipHandle *PBIST_intrHandle)
+{
+    int32_t ret = SDL_PASS;
+    SDL_DPL_HwipParams intrParams;
+    void *localAddr = NULL;
+
+    /* Disable interrupt */
+    if (pInfo->interruptNumber != SDL_PBIST_INTERRUPT_INVALID)
+    {
+        ret = SDL_DPL_disableInterrupt((int32_t)pInfo->interruptNumber);
+
+        if (ret == SDL_PASS)
+        {
+            intrParams.intNum = (int32_t)pInfo->interruptNumber;
+            intrParams.callback = (pSDL_DPL_InterruptCallbackFunction)SDL_PBIST_eventHandler;
+            intrParams.callbackArg = (uintptr_t)instance;
+
+            /* Register call back function for PBIST Interrupt */
+            ret = SDL_DPL_registerInterrupt(&intrParams,
+                                            PBIST_intrHandle);
+        }
+        if (*PBIST_intrHandle == NULL)
+        {
+            ret = SDL_EFAIL;
+        }
+    }
+
+    /* Get PBIST register space Pointer */
+    if (ret == SDL_PASS)
+    {
+        localAddr = SDL_DPL_addrTranslate((uint64_t)pInfo->pPBISTRegs, PBIST_REG_REGION_SIZE);
+        if (localAddr == (void *)(-1))
+        {
+            ret = SDL_EFAIL;
+        }
+        *pRegs = (SDL_pbistRegs *)(localAddr);
+    }
+
+    return ret;
+}
+
+static int32_t SDL_PBIST_getResult(SDL_PBIST_testType testType, const SDL_pbistRegs *pRegs, bool *pResult)
+{
+    int32_t ret = SDL_PASS;
+    bool PBISTResult;
+
+    /*
+     * Return value is discarded because parameters have
+     * been checked for validity in previous APIs, and
+     * hence this API is guaranteed to return SDL_PASS
+     */
+    SDL_PBIST_checkResult(pRegs, &PBISTResult);
+
+    /* Check the PBIST result */
+    if (testType == SDL_PBIST_TEST)
+    {
+        if (PBISTResult == (bool) true)
+        {
+            *pResult = (bool) true;
+        }
+        else
+        /**
+         * TI_COVERAGE_GAP_START [Branch Coverage] The branch condition is dependent on hardware failure, which is not possible to force in testing
+         * TI_COVERAGE_UNIT_EFFECT For a successful PBIST test, PBISTResult will always be true. This is the expected behaviour
+         */
+        {
+            *pResult = (bool) false;
+            ret = SDL_EFAIL;
+        }
+        /* TI_COVERAGE_GAP_STOP */
+    }
+    /* (testType == SDL_PBIST_NEG_TEST) */
+    else
+    {
+        if (PBISTResult == (bool) false)
+        {
+            *pResult = (bool) true;
+        }
+        else
+        /**
+         * TI_COVERAGE_GAP_START [Branch Coverage] The branch condition is dependent on hardware failure, which is not possible to force in testing
+         * TI_COVERAGE_UNIT_EFFECT For a successful negative PBIST test, PBISTResult will always be false. This is the expected behaviour
+         */
+        {
+            *pResult = (bool) false;
+            ret = SDL_EFAIL;
+        }
+        /* TI_COVERAGE_GAP_STOP */
+    }
+
+    return ret;
+}
+
+static int32_t SDL_PBIST_runTest(SDL_PBIST_testType testType, SDL_pbistRegs *pRegs,
+                                 SDL_pbistInstInfo *pInfo, uint32_t timeout,
+                                 bool *pResult)
+{
+    int32_t ret = SDL_PASS;
+    uint32_t numRuns = 1;
+    uint32_t timeoutCount = 0;
+
+    if (testType == SDL_PBIST_TEST)
+    {
+        numRuns = pInfo->numPBISTRuns;
+    }
+    pInfo->doneFlag = PBIST_NOT_DONE;
+
+    /**
+     * TI_COVERAGE_GAP_START [Branch Coverage] The branch condition (ret == SDL_PASS) will get false condition coverage only if there is a hardware failure during PBIST runs
+     * TI_COVERAGE_UNIT_EFFECT For a functional scenario, ret will always be SDL_PASS. This is the expected behaviour
+     */
+    for (uint32_t i = 0; i < numRuns; i++)
+    /* TI_COVERAGE_GAP_STOP */
+    {
+        if (testType == SDL_PBIST_TEST)
+        {
+            /*
+             * Return value is discarded for this and the next API because
+             * parameters have been checked for validity in previous APIs,
+             * and hence these ones are guaranteed to return SDL_PASS
+             */
+            SDL_PBIST_start(pRegs, &pInfo->PBISTConfigRun[i]);
+        }
+        else /* (testType == SDL_PBIST_NEG_TEST) */
+        {
+            SDL_PBIST_startNeg(pRegs, &pInfo->PBISTNegConfigRun);
+        }
+        if(gmcuPbist != 1u)
+        {
+            timeoutCount = timeout;
+            /* Timeout if exceeds time */
+            while ((pInfo->doneFlag == PBIST_NOT_DONE) &&
+                   (timeoutCount > (uint32_t)0))
+            {
+                SDL_PBIST_checkDone(pInfo);
+                timeoutCount--;
+            }
+            if (pInfo->doneFlag == PBIST_NOT_DONE)
+            {
+                ret = SDL_EFAIL;
+            }
+            else
+            {
+                ret = SDL_PBIST_getResult(testType, pRegs, pResult);
+
+                /* Do a Soft Reset */
+                /**
+                 * TI_COVERAGE_GAP_START [Branch Coverage] The branch condition (ret == SDL_PASS) will get false coverage only if SDL_PBIST_getResult API return fail, which only occurs in hardware failure conditions
+                 * TI_COVERAGE_UNIT_EFFECT For a functional scenario, ret will always be SDL_PASS. This is the expected behaviour
+                 */
+                if (ret == SDL_PASS)
+                /* TI_COVERAGE_GAP_STOP */
+                {
+                    /*
+                     * Return values are discarded for these APIs because
+                     * pRegs has been checked for validity in previous APIs,
+                     * and hence these ones are guaranteed to return SDL_PASS
+                    */
+                    SDL_PBIST_softReset(pRegs);
+
+                    /* Execute exit sequence */
+                    SDL_PBIST_releaseTestMode(pRegs);
+                }
+            }
+
+            /* reset Done flag so we can run again */
+            pInfo->doneFlag = PBIST_NOT_DONE;
+
+            /* Exit loop on any failure */
+            if (ret != SDL_PASS)
+            {
+                break;
+            }
+        }
+    }
+
+    return ret;
+}
+
+static int32_t SDL_PBIST_cleanupTest(pSDL_DPL_HwipHandle PBIST_intrHandle)
+{
+    int32_t ret = SDL_PASS;
+
+    /* Destroy the interrupt handler */
+    if (PBIST_intrHandle != NULL)
+    {
+        (void)SDL_DPL_deregisterInterrupt(PBIST_intrHandle);
+    }
+
+    return ret;
+}
+
+int32_t SDL_SBL_PBIST_selfTest(SDL_PBIST_inst instance, SDL_PBIST_testType testType)
+{
+    int32_t ret = SDL_PASS;
+    SDL_pbistRegs *pRegs;
+    SDL_pbistInstInfo *pInfo;
+    bool PBISTResult;
+
+    pSDL_DPL_HwipHandle PBIST_intrHandle = NULL;
+
+    /* Get the PBIST Instance Info */
+    pInfo = SDL_PBIST_getInstInfo(instance);
+
+    ret = SDL_PBIST_prepareTest(instance, pInfo, &pRegs, &PBIST_intrHandle);
+
+    if (ret == SDL_PASS)
+    {
+        gmcuPbist=1u;
+        ret = SDL_PBIST_runTest(testType, pRegs, pInfo, 0u, &PBISTResult);
+        gmcuPbist = 0u;
+    }
+
+    (void)SDL_PBIST_cleanupTest(PBIST_intrHandle);
+
+    return ret;
+}
+
+
+/* SDL function to start PBIST selfTest of a given instance */
+int32_t SDL_PBIST_startInstance(uint32_t instanceId, bool runPosTest)
+{
+    SDL_ErrType_t status;
+
+    /* Power on all Auxiliary modules required for PBIST test */
+    for (int i = 0; i < PBIST_TestHandleArray[instanceId].numAuxDevices; i++)
+    {
+        status = Sciclient_pmSetModuleState(PBIST_TestHandleArray[instanceId].auxDeviceIds[i],
+                                            TISCI_MSG_VALUE_DEVICE_SW_STATE_ON,
+                                            TISCI_MSG_FLAG_AOP,
+                                            SystemP_WAIT_FOREVER);
+        DebugP_assert(status == SDL_PASS);
+    }
+
+    /* Initialize Auxiliary devices with init set as TRUE */
+    if (PBIST_TestHandleArray[instanceId].auxHandleFunction != 0)
+    {
+        status = PBIST_TestHandleArray[instanceId].auxHandleFunction(TRUE);
+        DebugP_assert(status == SDL_PASS);
+    }
+
+    /* Start the PBIST test */
+    if (runPosTest == true)
+    {
+        status = SDL_SBL_PBIST_selfTest((SDL_PBIST_inst)PBIST_TestHandleArray[instanceId].pbistInst, SDL_PBIST_TEST);
+        DebugP_assert(status == SDL_PASS);
+    }
+    else
+    {
+        status = SDL_SBL_PBIST_selfTest((SDL_PBIST_inst)PBIST_TestHandleArray[instanceId].pbistInst, SDL_PBIST_NEG_TEST);
+        DebugP_assert(status == SDL_PASS);
+    }
+
+    return (status);
+}
+
+uint32_t SDL_SBL_PBIST_checkDone(SDL_PBIST_inst instance)
+{
+     SDL_pbistInstInfo *pInfo;
+
+    /* Get the PBIST Instance Info */
+    pInfo = SDL_PBIST_getInstInfo(instance);
+
+    SDL_PBIST_checkDone(pInfo);
+
+    return( pInfo->doneFlag);
+}
+
+/* SDL function for waiting on PBIST of a given instance */
+int32_t SDL_PBIST_completeInstance(uint32_t instanceId)
+{
+    SDL_ErrType_t status = SystemP_FAILURE;
+    int32_t timeoutCount = 0;
+
+    while(timeoutCount < SDL_BIST_MAX_TIMEOUT_VALUE)
+    {
+        if(PBIST_DONE == SDL_SBL_PBIST_checkDone((SDL_PBIST_inst)PBIST_TestHandleArray[instanceId].pbistInst))
+        {
+            status = SystemP_SUCCESS;
+            break;
+        }
+        timeoutCount++;
+    }
+    DebugP_assert(status == SystemP_SUCCESS);
+
+    /* Restore Auxiliary devices with init set as FALSE */
+    if (PBIST_TestHandleArray[instanceId].auxHandleFunction != 0)
+    {
+        status = PBIST_TestHandleArray[instanceId].auxHandleFunction(FALSE);
+        DebugP_assert(status == SDL_PASS);
+    }
+
+    /* Power off all Auxiliary modules after a PBIST test */
+    for (int i = 0; i < PBIST_TestHandleArray[instanceId].numAuxDevices; i++)
+    {
+        % if (config.auxPscs.length > 0){
+
+        /* Powering off of PSC Auxiliary devices will be done by SDL PSC Function */
+        % }
+        % for (var i=0; i<config.auxPscs.length; i++){
+
+        if (PBIST_TestHandleArray[instanceId].auxDeviceIds[i] == `config.auxPscs[i]`)
+        {
+            continue;
+        }
+        % }
+
+        status = Sciclient_pmSetModuleState(PBIST_TestHandleArray[instanceId].auxDeviceIds[i],
+                                            TISCI_MSG_VALUE_DEVICE_SW_STATE_AUTO_OFF,
+                                            TISCI_MSG_FLAG_AOP,
+                                            SystemP_WAIT_FOREVER);
+        DebugP_assert(status == SDL_PASS);
+    }
+
+    return (status);
+}
+
+/* SDL function for starting PBIST tests of all selected instances */
+int32_t SDL_PBIST_startAllTests(bool runPosTest)
+{
+    SDL_ErrType_t status;
+
+    status = SDL_dplInit();
+    DebugP_assert(status == SDL_PASS);
+
+    /* Run PBIST tests for all selected instances */
+    for (int i = 0; i < PBIST_NUM_INSTANCE; i++)
+    {
+% if (config.selectedInstances.includes("SDL_PBIST_INST_MCU")){
+        if (((SDL_PBIST_inst)PBIST_TestHandleArray[i].pbistInst == SDL_PBIST_INST_MCU) &&
+            (Bootloader_socIsMCUResetIsoEnabled()))
+        {
+            continue;
+        }
+% }
+
+        status = SDL_PBIST_startInstance(i, runPosTest);
+        DebugP_assert(status == SDL_PASS);
+
+    }
+
+    return (status);
+}
+
+/* SDL function for completing PBIST tests of all selected instances */
+int32_t SDL_PBIST_completeAllTests(void)
+{
+    SDL_ErrType_t status;
+
+    /* Wait for completion of PBIST tests for all selected instances */
+    for (int i = 0; i < PBIST_NUM_INSTANCE; i++)
+    {
+% if (config.selectedInstances.includes("SDL_PBIST_INST_MCU")){
+        if (((SDL_PBIST_inst)PBIST_TestHandleArray[i].pbistInst == SDL_PBIST_INST_MCU) &&
+            (Bootloader_socIsMCUResetIsoEnabled()))
+        {
+            continue;
+        }
+% }
+
+        status = SDL_PBIST_completeInstance(i);
+        DebugP_assert(status == SDL_PASS);
+
+    }
+
+    return (status);
+}
+% }
+% }

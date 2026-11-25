@@ -233,21 +233,34 @@ void ClockP_sleep(uint32_t sec)
 
 void ClockP_usleep(uint32_t usec)
 {
-    uint64_t curTime, endTime;
-    uint32_t ticksToSleep;
+    uint64_t startTime = ClockP_getTimeUsec();
+    uint64_t curTime = 0U, elapsedTime = 0U;
 
-    curTime = ClockP_getTimeUsec();
-    endTime = curTime + usec;
-
-    if (usec >= gClockCtrl.usecPerTick) {
-        ticksToSleep = usec / gClockCtrl.usecPerTick;
-        ClockP_sleepTicks(ticksToSleep);
+    /* Block the calling task for the whole number of ticks in the requested time, 
+     * so the CPU is released to other tasks. Any remainder smaller than one tick 
+     * is handled by the busy-wait below. */
+    if (usec >= gClockCtrl.usecPerTick)
+    {
+        ClockP_sleepTicks((uint32_t)(usec / gClockCtrl.usecPerTick));
     }
-    else
+
+    /* Busy-wait, polling the high resolution time, until the requested duration 
+     * has elapsed since entry. This covers the sub-tick remainder, and guarantees
+     * that the sleep never returns early. If the timer counter wrapped 
+     * (curTime < startTime), the elapsed time is computed across the wrap. */
+    while (elapsedTime < usec)
     {
         curTime = ClockP_getTimeUsec();
-        while (curTime < endTime) {
-            curTime = ClockP_getTimeUsec();
+        
+        /* Calculate elapsed time, handling potential wrap-around */
+        if (curTime >= startTime)
+        {
+            elapsedTime = curTime - startTime;
+        }
+        else
+        {
+            /* Handle wrap-around case using usecPerTick as the wrap value */
+            elapsedTime = (gClockCtrl.usecPerTick - startTime) + curTime;
         }
     }
 }
